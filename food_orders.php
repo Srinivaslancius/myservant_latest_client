@@ -31,7 +31,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="terms&conditions.php" title="">Grocery Orders</a>
+								<a href="terms&conditions.php" title="">Food Orders</a>
 								
 							</li>
 							
@@ -58,13 +58,12 @@
          <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="nomargin_top">Service Orders</h3>
+                      <h3 class="nomargin_top">Food Orders</h3>
                     </div>
                       <div class="panel-body">
-
                      <div class="table-responsive">	
 					<?php $uid=$_SESSION['user_login_session_id'];
-                    $getOrders = "SELECT * from services_orders WHERE user_id = '$uid' GROUP BY order_id ORDER BY id DESC"; 
+                    $getOrders = "SELECT * from food_orders WHERE user_id = '$uid' GROUP BY order_id ORDER BY id DESC"; 
                     $getOrders1 = $conn->query($getOrders);
                     if($getOrders1->num_rows > 0) { 
                     while($orderData = $getOrders1->fetch_assoc()) { ?>					 
@@ -72,7 +71,7 @@
 					
             		<thead>
             		  <tr>
-					 
+					  
             			<th>Order PLACED</th>
             			<th>Order Price</th>
             			<th>SHIP TO</th>
@@ -82,18 +81,18 @@
             		</thead>
             		<tbody>
             		  <tr>
-					 
-            			<td><?php echo $orderData['created_at']; ?>	</td>
+					  
+					  <td><?php echo $orderData['created_at']; ?>	</td>
             			<td>Rs.<?php echo $orderData['order_total']; ?></td>
             			<td>s<?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
             			<td><?php echo $orderData['order_id']; ?></td>
-						<td><a href="view_service_order_details.php?id=<?php echo $orderData['id']; ?>"><button class="button1">View Details</button></a></td>
+						<td><a href="food_order_details.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a></td>
             		  </tr>
             		  
             		</tbody>
 					
         	     </table>
-				 <?php } } else { ?>
+				  <?php } } else { ?>
                      <h3 style="text-align:center;color:#fe6003;">No Orders Found</h3>
                 <?php } ?>
         	  </div>
