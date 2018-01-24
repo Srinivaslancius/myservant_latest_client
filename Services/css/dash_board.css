@@ -1,0 +1,168 @@
+ul#cat_nav li a#active, ul#cat_nav li a.active, ul#cat_nav li a:hover {
+    background: #fe6003;
+    color: white;
+}
+ul#cat_nav li a{
+    font-size: 13px;
+  
+}
+ul#cat_nav i {
+font-size: 15px;
+}
+ul#cat_nav li a:hover{
+	color:white;
+}
+ul#cat_nav li a#active {
+   background-color:#fe6003;
+   color:white;
+}
+.panel-group {
+    margin-bottom: 20px;
+}
+.panel, .panel-group .panel, .payment_select {
+    border-radius: 3px;
+}
+
+.panel-group .panel {
+    margin-bottom: 0;
+    border-radius: 4px;
+}
+
+.panel {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #ededed;
+}
+
+.panel-default {
+    border-color: #ddd;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.panel-default>.panel-heading {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+.panel-group .panel-heading {
+    border-bottom: 0;
+}
+
+.panel-heading {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.nomargin_top {
+    margin-top: -2px;
+}
+
+
+.panel-body {
+    padding: 30px;
+    line-height: 1.6 !important;
+    font-size: 14px;
+}
+
+.panel-body {
+    padding: 15px;
+}
+.box_style_1 {
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    /* margin-bottom: 25px; */
+    padding: 30px;
+    position: relative;
+    color: #666;
+}
+
+element.style {
+}
+
+
+
+.box_home#one {
+    background: url(../img/dashboard/services.png) center 40px no-repeat #fff
+}
+.box_home#two {
+    background: url(../img/dashboard/food.png) center 40px no-repeat #fff
+}
+.box_home#three {
+    background: url(../img/dashboard/grocery.png) center 40px no-repeat #fff;
+}
+.box_home#four {
+    background: url(../img/dashboard/wishlist.png) center 40px no-repeat #fff
+}
+.box_home#five {
+    background: url(../img/dashboard/my-address.png) center 40px no-repeat #fff
+}
+.box_home#six {
+    background: url(../img/dashboard/wallet.png) center 40px no-repeat #fff
+}
+.box_home#seven {
+    background: url(../img/dashboard/profile.png) center 40px no-repeat #fff
+}
+
+.box_home#eight {
+    background: url(../img/dashboard/rewards.png) center 40px no-repeat #fff
+}
+
+.box_home#nine {
+    background: url(../img/dashboard/change-passsword.png) center 40px no-repeat #fff
+}
+
+.box_home h3 {
+	margin-top:35px;
+    margin-bottom: 3px;
+	font-size:20px;
+}
+
+
+.box_home {
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ededed;
+    margin-bottom: 15px;
+    padding: 120px 25px 25px;
+    position: relative;
+    font-size: 14px;
+    color: #666;
+    min-height: 235px;
+}
+
+.box_home p{
+	text-align:center;
+}
+#delivery_time, #hero_video, #hero_video>div, .box_home, .high_light a, .thumb_strip {
+    text-align: center;
+}
+.table>thead>tr>th,.table>thead>tr>td{
+	width:20%;
+}
