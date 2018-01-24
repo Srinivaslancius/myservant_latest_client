@@ -28,31 +28,26 @@
       <div class="site-right-sidebar">
         <?php include_once './right_slide_toggle.php';?>
       </div>
-      <?php $pid = $_GET['pid']; ?>
+      <?php $product_id = $_GET['product_id']; ?>
       <?php
         if (!isset($_POST['submit']))  {
           echo "fail";
         } else  {   
 
             $lkp_city_id = $_POST['lkp_city_id'];  
-            $selling_price1 = $_REQUEST['selling_price'];          
-            foreach($selling_price1 as $key=>$value){
-                if(!empty($value)) {                  
-                    $weight_type =  $_REQUEST['weight_type'][$key];
-                    $mrp_price =    $_REQUEST['mrp_price'][$key];
-                    $selling_price = $_REQUEST['selling_price'][$key];                   
-                    $offer_type = $_REQUEST['select_opt'][$key];
-                    if($offer_type == 0) {
-                        $offer_percentage = 0;
-                    } else {
-                        $offer_percentage = $_REQUEST['offer_percentage'][$key];
-                    }
-                    //echo "<pre>"; print_r($buttonRadios); die;
-                    $sql = "INSERT INTO grocery_product_bind_weight_prices ( `product_id`,`lkp_city_id`, `weight_type`, `mrp_price`, `selling_price` , `offer_type`, `offer_percentage` ) VALUES ('$pid','$lkp_city_id', '$weight_type', '$mrp_price', '$selling_price', '$offer_type', '$offer_percentage')";
-                    $result = $conn->query($sql);
-                }
-            }
-            
+            $selling_price1 = $_POST['selling_price'];  
+            $weight_type =  $_POST['weight_type'];
+            $mrp_price =    $_POST['mrp_price'];
+            $selling_price = $_POST['selling_price'];                   
+            $offer_type = $_POST['select_opt'];
+            if($offer_type == 0) {
+                $offer_percentage = 0;
+            } else {
+                $offer_percentage = $_POST['offer_percentage'];
+            } 
+            echo "<pre>"; print_r($buttonRadios); die;
+            $updatePrice = "UPDATE `grocery_product_bind_weight_prices` SET weight_type = '$weight_type', mrp_price = '$mrp_price', selling_price = '$selling_price', offer_type = '$offer_type', offer_percentage = '$offer_percentage' WHERE id = '$product_id' ";
+                    $result = $conn->query($updatePrice);
             echo "<script type='text/javascript'>window.location='update_price.php?pid=".$pid."'</script>";
         }
         ?>
@@ -132,9 +127,6 @@
                                 </div>
 								 <div class="col-sm-8 col-md-8">
 								 </div>
-								 <div class="col-sm-4 col-md-4"style="margin-top:10px">
-                                            <span><button type="button" class="btn btn-success add_more_button"> <i class="zmdi zmdi-plus-circle zmdi-hc-fw" ></i></button></span>
-                                </div>
                             </div>
 
                             <br />
@@ -148,85 +140,11 @@
                     </div>
                 </div>
             </div>
-
-            <?php 
-                $i=1; 
-                $getProPriceInfo = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id='$pid' " ; 
-                $getProIn = $conn->query($getProPriceInfo);
-            ?>
-            <div class="panel panel-default panel-table m-b-0">
-                <div class="panel-heading">
-                    <h3 class="m-t-0 m-b-5 font_sz_view">View States</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered dataTable" id="table-2">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>City</th>                                    
-                                    <th>Offer</th>
-                                    <th>Offer Percentage</th>
-                                    <th>Weight</th>
-                                    <th>MRP</th>
-                                    <th>Selling Price</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while($getProdInfo = $getProIn->fetch_assoc() ) {?>
-                                <tr>
-                                    <td><?php echo $i; ?></td>
-                                    <?php $getCityName= getIndividualDetails('grocery_lkp_cities','id',$getProdInfo['lkp_city_id']); ?>
-                                    <?php 
-                                        if($getProdInfo['offer_type'] == 0) {
-                                            $checkOffer = "No";
-                                            $offerPer= "-";
-                                        } else {
-                                            $checkOffer = "Yes";
-                                            $offerPer= $getProdInfo['offer_percentage'] . ' %';
-                                        }
-                                    ?>
-                                    <td><?php echo $getCityName['city_name']; ?></td>
-                                    <td><?php echo $checkOffer; ?></td>
-                                    <td><?php echo $offerPer; ?></td>
-                                    <td><?php echo $getProdInfo['weight_type']; ?></td>
-                                    <td><?php echo $getProdInfo['mrp_price']; ?></td>
-                                    <td><?php echo $getProdInfo['selling_price']; ?></td>
-                                    <td><?php if ($getProdInfo['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$getProdInfo['id']." data-status=".$getProdInfo['lkp_status_id']." data-tbname='grocery_product_bind_weight_prices'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$getProdInfo['lkp_status_id']." data-incId=".$getProdInfo['id']." data-tbname='grocery_product_bind_weight_prices'>In Active</span>" ;} ?></td>
-                                    <td><span><a href="edit_product_price.php?product_id=<?php echo $getProdInfo['id'];?>"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></span></td>
-                                </tr>
-                                <?php $i++; } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
 
     <?php include_once 'footer.php'; ?>
     <script src="js/dashboard-3.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-        var max_fields_limit      = 10; //set limit for maximum input fields
-        var x = 1; //initialize counter for text box
-        $('.add_more_button').click(function(e){ //click event on add more fields button having class add_more_button                   
-            e.preventDefault();
-            if(x < max_fields_limit){ //check conditions
-                x++; //counter increment
-
-                $('.input_fields_container').append('<div><div class="row" style="border:1px solid #ddd;margin:60px 60px 0px 60px;padding-top:20px;padding-bottom:10px"><input type="hidden" id="setRaioVal_'+x+'"><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Offer</label><div class="btn-group col-sm-6 col-md-4" ><select class="form-control" onChange="check_offer1(this.value,'+x+')" name="select_opt[]"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></div></div><div class="form-group" id="offer_price_'+x+'" style="display:none"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Percentage</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control" name="offer_percentage[]" id="offer_per_'+x+'" placeholder="Offer Percentage (%)" ></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Weight (Ex: 100 Gms etc..)</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control" id="form-control-3" placeholder="Weight Types" name="weight_type[]" required></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">MRP</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control valid_mobile_num" id="form-control-3" placeholder="Enter MRP" name="mrp_price[]" required onkeyup="getPrice1(this.value,'+x+');"></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Selling Price</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control valid_mobile_num" id="selling_price_'+x+'" placeholder="Enter Selling Price" name="selling_price[]" required readonly></div></div><a href="#" style="margin-right:23%;margin-left:3px" class="remove_field btn btn-warning pull-right"><i class="zmdi zmdi-minus-circle zmdi-hc-fw"></i></a><a href="#" class="remove_field btn btn-warning pull-right"><i class="zmdi zmdi-plus-circle zmdi-hc-fw" ></i></a></div></div>'); //add input field
-
-            }
-        });  
-        $('.input_fields_container').on("click",".remove_field", function(e){ //user click on remove text links
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
-    });
-    </script>
 
     <script type="text/javascript">
     function check_offer(getRadioVal) {
