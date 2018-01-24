@@ -48,9 +48,9 @@
             }
            
             if( $result == 1){
-                echo "<script type='text/javascript'>window.location='manage_products.php?msg=success'</script>";
+                echo "<script type='text/javascript'>window.location='product_images.php?pid=".$pid."&msg=success'</script>";
             } else {
-                echo "<script type='text/javascript'>window.location='manage_products.php?msg=fail'</script>";
+                echo "<script type='text/javascript'>window.location='product_images.php?pid=".$pid."&msg=fail'</script>";
             }
         }
         ?>
@@ -63,6 +63,13 @@
                     <div class="row">
                         
                         <form class="form-horizontal" method="post" autocomplete="off" enctype="multipart/form-data">
+                        <?php $getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$pid); ?>
+                            <div class="form-group">
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Product Name</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="text" readonly class="form-control" name="product_name" value="<?php echo $getProductNames['product_name']; ?>">
+                                </div>
+                            </div>
                             <div class="clear_fix"></div>
                             <div class="input_fields_container">
                                 <div class="form-group">
@@ -100,7 +107,7 @@
                                 <tr>
                                     <th>S.no</th>                                    
                                     <th>Product Image</th>
-                                    <!-- <th>Actions</th> -->
+                                    <th>Actions</th>
                                     
                                 </tr>
                             </thead>
@@ -110,7 +117,7 @@
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$row['image']; ?>"  id="output" height="60" width="60"/></td>
-                                    <!-- <td><span><a href=""><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a></span></td> -->
+                                    <td><span><a href="delete_product_images.php?product_id=<?php echo $row['id']; ?>&pid=<?php echo $pid; ?>"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a></span></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
