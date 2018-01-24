@@ -28,7 +28,8 @@
       <div class="site-right-sidebar">
         <?php include_once './right_slide_toggle.php';?>
       </div>
-      <?php $product_id = $_GET['product_id']; ?>
+      <?php $product_id = $_GET['product_id'];
+      $pid = $_GET['pid']; ?>
       <?php
         if (!isset($_POST['submit']))  {
           echo "fail";
@@ -45,9 +46,9 @@
             } else {
                 $offer_percentage = $_POST['offer_percentage'];
             } 
-            echo "<pre>"; print_r($buttonRadios); die;
-            $updatePrice = "UPDATE `grocery_product_bind_weight_prices` SET weight_type = '$weight_type', mrp_price = '$mrp_price', selling_price = '$selling_price', offer_type = '$offer_type', offer_percentage = '$offer_percentage' WHERE id = '$product_id' ";
-                    $result = $conn->query($updatePrice);
+            //echo "<pre>"; print_r($_POST); die;
+            $updatePrice = "UPDATE `grocery_product_bind_weight_prices` SET lkp_city_id = '$lkp_city_id',weight_type = '$weight_type', mrp_price = '$mrp_price', selling_price = '$selling_price', offer_type = '$offer_type', offer_percentage = '$offer_percentage' WHERE id = '$product_id' ";
+            $result = $conn->query($updatePrice);
             echo "<script type='text/javascript'>window.location='update_price.php?pid=".$pid."'</script>";
         }
         ?>
@@ -58,9 +59,15 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        
+                        <?php $getPrices = getIndividualDetails('grocery_product_bind_weight_prices','id',$product_id); ?>
                         <form class="form-horizontal" method="post" autocomplete="off">
-
+                        <?php $getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$pid); ?>
+                            <div class="form-group" style="margin-right:50px;margin-left:50px">
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Product Name</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="text" readonly class="form-control" name="product_name" value="<?php echo $getProductNames['product_name']; ?>">
+                                </div>
+                            </div>
                             <div class="form-group" style="margin-right:50px;margin-left:50px">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select City</label>
                                 <div class="col-sm-6 col-md-4">
@@ -68,7 +75,7 @@
                                         <option value="">-- Select City --</option>
                                         <?php $getCities = getAllDataWithStatus('grocery_lkp_cities','0');?>
                                         <?php while($row = $getCities->fetch_assoc()) {  ?>
-                                            <option value="<?php echo $row['id']; ?>" ><?php echo $row['city_name']; ?></option>
+                                            <option <?php if($row['id'] == $getPrices['lkp_city_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['city_name']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -90,10 +97,10 @@
                                             </label>
                                         </div> -->
                                         <div class="btn-group col-sm-6 col-md-4" >
-                                            <select onChange="check_offer(this.value)" class="form-control" name="select_opt[]">
+                                            <select onChange="check_offer(this.value)" class="form-control offer_type" name="select_opt">
                                                 <option value="">Select</option>
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
+                                                <option <?php if($getPrices['offer_type'] == 1) { echo "Selected"; } ?> value="1">Yes</option>
+                                                <option <?php if($getPrices['offer_type'] == 0) { echo "Selected"; } ?> value="0">No</option>
                                             </select>
                                         </div>
                                     </div> 
@@ -101,26 +108,26 @@
                                     <div class="form-group offer_price" style="display:none">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Percentage</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control valid_mobile_num" name="offer_percentage[]" onChange="calculatePrice()" id="offer_per" placeholder="Offer Percentage (%)" >
+                                            <input type="text" class="form-control valid_mobile_num" name="offer_percentage" onChange="calculatePrice()" value="<?php echo $getPrices['offer_percentage']; ?>" id="offer_per" placeholder="Offer Percentage (%)" >
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Weight (Ex: 100 Gms etc..)</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control" name="weight_type[]" id="form-control-3" placeholder="Weights (Ex: 100 Gms etc..)" required>
+                                            <input type="text" class="form-control" name="weight_type" value="<?php echo $getPrices['weight_type']; ?>" id="form-control-3" placeholder="Weights (Ex: 100 Gms etc..)" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">MRP</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control valid_mobile_num" name="mrp_price[]" id="mrp_price" placeholder="Enter MRP" onkeyup="getPrice(this.value);" required>
+                                            <input type="text" class="form-control valid_mobile_num" name="mrp_price" id="mrp_price" placeholder="Enter MRP" value="<?php echo $getPrices['mrp_price']; ?>" onkeyup="getPrice(this.value);" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Selling Price</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control valid_mobile_num" name="selling_price[]" id="selling_price" placeholder="Enter Selling Price" required readonly>
+                                            <input type="text" class="form-control valid_mobile_num" value="<?php echo $getPrices['selling_price']; ?>" name="selling_price" id="selling_price" placeholder="Enter Selling Price" required readonly>
                                         </div>
                                        
                                     </div>
@@ -150,20 +157,16 @@
     function check_offer(getRadioVal) {
         if(getRadioVal == 1 ){
             $('.offer_price').css("display", "block");
+            $('#mrp_price, #selling_price,#offer_per').val('');
         } else {
-            $('.offer_price').css("display", "none");           
+            $('.offer_price').css("display", "none");
+            $('#mrp_price, #selling_price,#offer_per').val('');        
         }      
         $('#setRaioVal').val(getRadioVal);
     }
-    function check_offer1(getRadioVal,getIncValue) {
-        if(getRadioVal == 1 ){
-            $('#offer_price_'+getIncValue).css("display", "block");
-        } else {
-            $('#offer_price_'+getIncValue).css("display", "none");           
-        }
-         $('#setRaioVal_'+getIncValue).val(getRadioVal);
-    }
-
+    if ($('.offer_type').val() == 1) {
+        $('.offer_price').css("display", "block");
+    } 
     </script>
 
     <script type="text/javascript">

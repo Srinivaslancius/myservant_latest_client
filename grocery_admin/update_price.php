@@ -65,7 +65,13 @@
                     <div class="row">
                         
                         <form class="form-horizontal" method="post" autocomplete="off">
-
+                        <?php $getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$pid); ?>
+                            <div class="form-group" style="margin-right:50px;margin-left:50px">
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Product Name</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="text" readonly class="form-control" name="product_name" value="<?php echo $getProductNames['product_name']; ?>">
+                                </div>
+                            </div>
                             <div class="form-group" style="margin-right:50px;margin-left:50px">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select City</label>
                                 <div class="col-sm-6 col-md-4">
@@ -163,7 +169,7 @@
                         <table class="table table-striped table-bordered dataTable" id="table-2">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>S.no</th>
                                     <th>City</th>                                    
                                     <th>Offer</th>
                                     <th>Offer Percentage</th>
@@ -195,7 +201,7 @@
                                     <td><?php echo $getProdInfo['mrp_price']; ?></td>
                                     <td><?php echo $getProdInfo['selling_price']; ?></td>
                                     <td><?php if ($getProdInfo['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$getProdInfo['id']." data-status=".$getProdInfo['lkp_status_id']." data-tbname='grocery_product_bind_weight_prices'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$getProdInfo['lkp_status_id']." data-incId=".$getProdInfo['id']." data-tbname='grocery_product_bind_weight_prices'>In Active</span>" ;} ?></td>
-                                    <td><span><a href="edit_product_price.php?product_id=<?php echo $getProdInfo['id'];?>"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></span></td>
+                                    <td><span><a href="edit_product_price.php?product_id=<?php echo $getProdInfo['id'];?>&pid=<?php echo $pid;?>"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></span></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
