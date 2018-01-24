@@ -27,6 +27,7 @@
     height: 5px;
     border-radius: 50%;
 }
+
 </style>
 <body class="header_sticky">
 	<div class="boxed">
@@ -159,7 +160,7 @@
 <section class="flat-imagebox style2 background">
 			<div class="container">
 
-			<dl class="accordion">
+			<dl class="accordion2">
 <?php 
 if($_SESSION['city_name'] == '') {
     $lkp_city_id = 1;
@@ -173,8 +174,8 @@ $tagNames = $conn->query($getTags);
 
 <?php while($tagNames1 = $tagNames->fetch_assoc()) { ?>
 								
-  <dt class="accordion__title"><?php echo $tagNames1['tag_name']; ?></dt>
-  <dd class="accordion__content">
+  <dt class="accordion__title2"><?php echo $tagNames1['tag_name']; ?></dt>
+  <dd class="accordion__content2">
     <div class="row">
 						<?php 
 						$tag_id =  $tagNames1['id'];
@@ -228,6 +229,317 @@ $tagNames = $conn->query($getTags);
 $getCategoriesNames = "SELECT * FROM grocery_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_category_id FROM grocery_sub_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id LIMIT 0,5";
 $getCategoriesNames1 = $conn->query($getCategoriesNames);
 ?>
+
+	<section class="flat-imagebox style2 background">
+			<div class="container">
+			<dl class="accordion1">
+			<dt class="accordion__title1">New Arrivals</dt>
+			  <dd class="accordion__content1">
+			   <div class="row">
+									<div class="col-md-3 col-sm-6">
+									<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+									<div class="col-md-6">
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:342px;height:435px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Bread&bakery </a>
+													</div>
+													
+													<div class="price">
+														<span class="sale">₹1,999.00</span>
+														<span class="regular">₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<center><div class="btn-add-cart" style="width:60%">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+													</div></center>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-3 col-sm-6">
+										<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+								</div><!-- /.row -->
+  </dd>
+  <dt class="accordion__title1">Featured</dt>
+  <dd class="accordion__content1">
+    <div class="row">
+									<div class="col-md-3 col-sm-6">
+									<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+									<div class="col-md-6">
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:342px;height:435px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Bread&bakery </a>
+													</div>
+													
+													<div class="price">
+														<span class="sale">₹1,999.00</span>
+														<span class="regular">₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<center><div class="btn-add-cart" style="width:60%">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+													</div></center>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-3 col-sm-6">
+										<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+								</div><!-- /.row -->
+  </dd>
+  <dt class="accordion__title1"> Top Selling</dt>
+  <dd class="accordion__content1">
+   <div class="row">
+									<div class="col-md-3 col-sm-6">
+									<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+									<div class="col-md-6">
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:342px;height:435px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Bread&bakery </a>
+													</div>
+													
+													<div class="price">
+														<span class="sale">₹1,999.00</span>
+														<span class="regular">₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<center><div class="btn-add-cart" style="width:60%">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+													</div></center>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-3 col-sm-6">
+										<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+								</div><!-- /.row -->
+				</dd>
+				</dl>
+			</div>
+			</section>
+			
+			
+			
+			
 <!--Tabbination for Most popular product starts here -->
 <section class="flat-imagebox style2 background">
 				<div class="container">
@@ -817,23 +1129,49 @@ $getReturnPolicydataData = getIndividualDetails('grocery_content_pages','id',7);
 		if($(window).width() > 768){
 
 // Hide all but first tab content on larger viewports
-$('.accordion__content:not(:first)').hide();
+$('.accordion__content2:not(:first)').hide();
 
 // Activate first tab
-$('.accordion__title:first-child').addClass('active');
+$('.accordion__title2:first-child').addClass('active');
 
 } else {
   
 // Hide all content items on narrow viewports
-$('.accordion__content').hide();
+$('.accordion__content2').hide();
 };
 
 // Wrap a div around content to create a scrolling container which we're going to use on narrow viewports
-$( ".accordion__content" ).wrapInner( "<div class='overflow-scrolling'></div>" );
+$( ".accordion__content2" ).wrapInner( "<div class='overflow-scrolling'></div>" );
 
 // The clicking action
-$('.accordion__title').on('click', function() {	
-$('.accordion__content').hide();
+$('.accordion__title2').on('click', function() {	
+$('.accordion__content2').hide();
+$(this).next().show().prev().addClass('active').siblings().removeClass('active');
+});
+
+
+		</script>
+		<script>
+		if($(window).width() > 768){
+
+// Hide all but first tab content on larger viewports
+$('.accordion__content1:not(:first)').hide();
+
+// Activate first tab
+$('.accordion__title1:first-child').addClass('active');
+
+} else {
+  
+// Hide all content items on narrow viewports
+$('.accordion__content1').hide();
+};
+
+// Wrap a div around content to create a scrolling container which we're going to use on narrow viewports
+$( ".accordion__content1" ).wrapInner( "<div class='overflow-scrolling'></div>" );
+
+// The clicking action
+$('.accordion__title1').on('click', function() {	
+$('.accordion__content1').hide();
 $(this).next().show().prev().addClass('active').siblings().removeClass('active');
 });
 
@@ -867,24 +1205,7 @@ $(this).next().show().prev().addClass('active').siblings().removeClass('active')
 	}
 setInterval(function() { makeTimer(); }, 1000);
 </script>
-<script>
-function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
 <style type="text/css">
 
 
