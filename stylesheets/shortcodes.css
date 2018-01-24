@@ -446,7 +446,7 @@
 .imagebox .box-image {
 	margin-bottom:5px;
 	line-height:209px;
-	height:209px;
+	height: auto;
 }
 
 .imagebox .box-image a {

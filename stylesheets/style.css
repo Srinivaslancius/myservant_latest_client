@@ -3630,7 +3630,7 @@ i, cite, em, var, address, dfn {
     margin-top: 0px !important;
 }
 	}
-.accordion {
+.accordion2 {
   padding: 0;
   margin: 2em 0;
   width: 100%;
@@ -3639,7 +3639,7 @@ i, cite, em, var, address, dfn {
   position: relative;
 }
 
-.accordion__title {
+.accordion__title2 {
     padding: 2em 2.5em;
     background: #fff;
     border-top: 2px solid #eee;
@@ -3654,7 +3654,7 @@ i, cite, em, var, address, dfn {
 	
 }
 
-.no-js .accordion__title {
+.no-js .accordion__title2 {
   float: none;
   height:auto;
   cursor:auto;
@@ -3662,7 +3662,7 @@ i, cite, em, var, address, dfn {
   padding:0 2em;
 }
 
-.accordion__content {
+.accordion__content2 {
   float: right;
   width: 100%;
   margin: 5em 0 0 -100%;
@@ -3670,53 +3670,53 @@ i, cite, em, var, address, dfn {
   background: #ffff;
 }
 
-.no-js .accordion__content {
+.no-js .accordion__content2 {
   float:left;
   margin:0;
 }
 
-.accordion__title:hover,
-.accordion__title.active {
+.accordion__title2:hover,
+.accordion__title2.active {
   background: #474848;
   color: white;
 }
 
-.no-js .accordion__title:hover {
+.no-js .accordion__title2:hover {
   background-color:#ccc;
   color:#222;
 }
 @media (max-width: 48em) {
   
-  .accordion {
+  .accordion2 {
     border: 1px solid grey;
 	border-radius:10px 10px 0px 0px;
   }
   
-  .accordion__title,
-  .accordion__content { 
+  .accordion__title2,
+  .accordion__content2 { 
     float: none;
     margin: 0;
   }
   
-  .accordion__title:first-child {
+  .accordion__title2:first-child {
     border:none;
   }
   
- .accordion__title.active {
+ .accordion__title2.active {
   border-top-color:#eee;
   }
   
-  .accordion__title.active, .accordion__title:hover {
+  .accordion__title2.active, .accordion__title2:hover {
     background:#777;
   }
   
-  .accordion__title:before {
+  .accordion__title2:before {
   content:"+";
   text-align:center;
   width:2em;
   display:inline-block;
   }
- .accordion__title.active:before {
+ .accordion__title2.active:before {
   content:"-";
   }
   
@@ -3728,19 +3728,142 @@ i, cite, em, var, address, dfn {
   -webkit-overflow-scrolling: touch;
   }
 
-  .accordion__content {
+  .accordion__content2 {
     position:relative;
     overflow:hidden;
     padding:0;
   }
   
-   .no-js .accordion__content {
+   .no-js .accordion__content2 {
     padding:1em;
     overflow:auto;
     display:block;
   }
   
-  .accordion__content:after {
+  .accordion__content2:after {
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    height:50px;
+    border-radius:10px 0 0 10px / 50% 0 0 50%;
+    box-shadow:-5px 0 10px rgba(0, 0, 0, 0.5);
+    content:'';
+}
+   
+}
+/*new one*/
+.accordion1 {
+  padding: 0;
+  margin: 2em 0;
+  width: 100%;
+  overflow: hidden;
+  font-size: 1em;
+  position: relative;
+}
+
+.accordion__title1 {
+    padding: 2em 2.5em;
+    background: #fff;
+    border-top: 2px solid #eee;
+    color: #222;
+    float: left;
+    line-height: 0;
+    height: 3em;
+    cursor: pointer;
+    margin-right: .5em;
+    font-size: 17px;
+	border-radius:10px 10px 0px 0px ;
+	
+}
+
+.no-js .accordion__title1 {
+  float: none;
+  height:auto;
+  cursor:auto;
+  margin:0;
+  padding:0 2em;
+}
+
+.accordion__content1 {
+  float: right;
+  width: 100%;
+  margin: 5em 0 0 -100%;
+  padding: 3em;
+  background: #ffff;
+}
+
+.no-js .accordion__content1 {
+  float:left;
+  margin:0;
+}
+
+.accordion__title1:hover,
+.accordion__title1.active {
+  background: #474848;
+  color: white;
+}
+
+.no-js .accordion__title1:hover {
+  background-color:#ccc;
+  color:#222;
+}
+@media (max-width: 48em) {
+  
+  .accordion1 {
+    border: 1px solid grey;
+	border-radius:10px 10px 0px 0px;
+  }
+  
+  .accordion__title1,
+  .accordion__content1 { 
+    float: none;
+    margin: 0;
+  }
+  
+  .accordion__title1:first-child {
+    border:none;
+  }
+  
+ .accordion__title1.active {
+  border-top-color:#eee;
+  }
+  
+  .accordion__title1.active, .accordion__title1:hover {
+    background:#777;
+  }
+  
+  .accordion__title1:before {
+  content:"+";
+  text-align:center;
+  width:2em;
+  display:inline-block;
+  }
+ .accordion__title1.active:before {
+  content:"-";
+  }
+  
+ .overflow-scrolling {
+  overflow-y: scroll;
+  height:30em;
+  padding:1em 1em 0 1em;
+  /* Warning: momemtum scrolling seems buggy on iOS 7  */
+  -webkit-overflow-scrolling: touch;
+  }
+
+  .accordion__content1 {
+    position:relative;
+    overflow:hidden;
+    padding:0;
+  }
+  
+   .no-js .accordion__content1 {
+    padding:1em;
+    overflow:auto;
+    display:block;
+  }
+  
+  .accordion__content1:after {
     position:absolute;
     top:100%;
     left:0;
