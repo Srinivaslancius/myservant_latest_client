@@ -3630,7 +3630,7 @@ i, cite, em, var, address, dfn {
     margin-top: 0px !important;
 }
 	}
-	.accordion {
+.accordion {
   padding: 0;
   margin: 2em 0;
   width: 100%;
@@ -3640,16 +3640,18 @@ i, cite, em, var, address, dfn {
 }
 
 .accordion__title {
-  padding: 0 1em;
- 
-  border-bottom: 2px solid #eee;
-  color: #222;
-  float: left;
-  line-height: 3;
-  height: 3em;
-  cursor: pointer;
-  margin-right: 3em;
-  font-size: 16px;
+    padding: 2em 2.5em;
+    background: #fff;
+    border-top: 2px solid #eee;
+    color: #222;
+    float: left;
+    line-height: 0;
+    height: 3em;
+    cursor: pointer;
+    margin-right: .5em;
+    font-size: 17px;
+	border-radius:10px 10px 0px 0px ;
+	
 }
 
 .no-js .accordion__title {
@@ -3663,9 +3665,9 @@ i, cite, em, var, address, dfn {
 .accordion__content {
   float: right;
   width: 100%;
-  margin: 3em 0 0 -100%;
-  padding: 2em;
-
+  margin: 5em 0 0 -100%;
+  padding: 3em;
+  background: #ffff;
 }
 
 .no-js .accordion__content {
@@ -3675,7 +3677,7 @@ i, cite, em, var, address, dfn {
 
 .accordion__title:hover,
 .accordion__title.active {
-  background: silver;
+  background: #474848;
   color: white;
 }
 
@@ -3683,11 +3685,6 @@ i, cite, em, var, address, dfn {
   background-color:#ccc;
   color:#222;
 }
-
-.accordion__title.active {
-  border-bottom-color:#FE6003;
-}
-
 @media (max-width: 48em) {
   
   .accordion {
@@ -3754,5 +3751,7 @@ i, cite, em, var, address, dfn {
 }
    
 }
+
+
 
 	

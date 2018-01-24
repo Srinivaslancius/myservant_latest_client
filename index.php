@@ -156,7 +156,7 @@
 			</div><!-- /.container -->
 		</section><!-- /.flat-banner-box -->
 <!-- /.flat-banner-box -->
-<section class="flat-imagebox">
+<section class="flat-imagebox style2 background">
 			<div class="container">
 			<dl class="accordion">
   <dt class="accordion__title">New Arrivals</dt>
