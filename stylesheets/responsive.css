@@ -1089,7 +1089,7 @@
 	}
 
 	.form-login, .form-register {
-		height:420px;
+		/*! height:420px; */
 	}
 
 	.form-login .title, .form-register .title {

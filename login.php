@@ -76,7 +76,7 @@
 	<div class="row">
 			<div class="col-sm-3"></div>
        	  	<div class="col-sm-6 alert alert-success" style="display:block">
-		      <strong>Success!</strong> Your Registration Successfully Completed.
+		      <p style="text-align:center"><strong>Success!</strong> Your Registration Successfully Completed.</p>
 		    </div>
 			<div class="col-sm-3"></div>
 			</div>
@@ -86,7 +86,7 @@
 		<div class="row">
 	    <div class="col-sm-3"></div>
 	    <div class="col-sm-6 alert alert-danger" style="display:block">
-	      <strong>Failed!</strong> Your Login Failed.
+	      <p style="text-align:center"><strong>Failed!</strong> Your Login Failed.</p>
 	    </div>
 		 <div class="col-sm-3"></div>
 		 </div>

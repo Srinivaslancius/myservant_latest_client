@@ -6509,7 +6509,8 @@ table.product thead tr th:last-child {
 
 .testimonial-item .content p {
 	color:#919191;
-	padding-left:3px;
+	padding:0px 15px;
+	text-align: justify;
 }
 
 /* Flat Brand Style2

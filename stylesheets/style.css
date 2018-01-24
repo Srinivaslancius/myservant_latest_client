@@ -3689,6 +3689,7 @@ i, cite, em, var, address, dfn {
   
   .accordion {
     border: 1px solid grey;
+	border-radius:10px 10px 0px 0px;
   }
   
   .accordion__title,
@@ -3721,7 +3722,7 @@ i, cite, em, var, address, dfn {
   
  .overflow-scrolling {
   overflow-y: scroll;
-  height:11em;
+  height:30em;
   padding:1em 1em 0 1em;
   /* Warning: momemtum scrolling seems buggy on iOS 7  */
   -webkit-overflow-scrolling: touch;
