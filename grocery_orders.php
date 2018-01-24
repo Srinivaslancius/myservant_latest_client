@@ -62,35 +62,39 @@
                     </div>
                       <div class="panel-body">
                      <div class="table-responsive">	
-				<?php for($i=0; $i<4; $i++) {?>					 
+					<?php $uid=$_SESSION['user_login_session_id'];
+                    $getOrders = "SELECT * from grocery_orders WHERE user_id = '$uid' GROUP BY order_id ORDER BY id DESC"; 
+                    $getOrders1 = $conn->query($getOrders);
+                    if($getOrders1->num_rows > 0) { 
+                    while($orderData = $getOrders1->fetch_assoc()) { ?>					 
         			<table class="table" style="border:1px solid #ddd;width:100%">
 					
             		<thead>
             		  <tr>
-					  <th>Image</th>
-					  <th>NAME</th>
+					  
             			<th>Order PLACED</th>
             			<th>Order Price</th>
-            			<th>Quantity</th>
+            			<th>SHIP TO</th>
             			<th>ORDER ID</th>
 						<th>ACTION</th>
             		  </tr>
             		</thead>
             		<tbody>
             		  <tr>
-					  <td><img src="images/tomato.jpg" style="width:50px;height:50px"></td>
-					  <td>Tomatos</td>
-            			<td>2018-01-02 11:11:15	</td>
-            			<td>Rs.264</td>
-            			<td>2kg</td>
-            			<td>MYSER-FOODkej354</td>
-						<td><a href="order_details.php"><button class="button1">View Details</button></a></td>
+					  
+					  <td><?php echo $orderData['created_at']; ?>	</td>
+            			<td>Rs.<?php echo $orderData['order_total']; ?></td>
+            			<td>s<?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
+            			<td><?php echo $orderData['order_id']; ?></td>
+						<td><a href="order_details.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a></td>
             		  </tr>
             		  
             		</tbody>
 					
         	     </table>
-				 <?php } ?>
+				  <?php } } else { ?>
+                     <h3 style="text-align:center;color:#fe6003;">No Orders Found</h3>
+                <?php } ?>
         	  </div>
                       </div>
                   </div>
