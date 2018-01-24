@@ -117,7 +117,7 @@
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$row['image']; ?>"  id="output" height="60" width="60"/></td>
-                                    <td><span><a href="delete_product_images.php?product_id=<?php echo $row['id']; ?>&pid=<?php echo $pid; ?>"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a></span></td>
+                                    <td><span><a href="delete_product_images.php?product_id=<?php echo $row['id']; ?>&pid=<?php echo $pid; ?>"><i class="zmdi zmdi-delete zmdi-hc-fw" onclick="return confirm('Are you sure you want to delete?')"></i></a></span></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
