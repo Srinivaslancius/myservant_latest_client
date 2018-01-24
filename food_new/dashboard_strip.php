@@ -8,7 +8,7 @@ if($_SESSION['user_login_session_id'] == '') {
 ?>
 <ul id="cat_nav">
        <li><a href="myaccount.php" class="<?php if($page_name == 'myaccount.php') { echo "active"; } ?>"><i class="icon-user"></i> My Account</a></li>
-       <li><a href="../Services/service_orders.php" class="<?php if($page_name == 'service_orders.php') { echo "active"; } ?>"><i class="icon-cart"></i> Services Orders</a></li>
+       <li><a href="service_orders.php" class="<?php if($page_name == 'service_orders.php') { echo "active"; } ?>"><i class="icon-cart"></i> Services Orders</a></li>
        <li><a href="food_orders1.php" class="<?php if($page_name == 'food_orders1.php' || $page_name == 'order_details1.php') { echo "active"; } ?>"><i class="icon-food-1"></i> Food Orders</a></li>
        <li><a href="grocery_orders1.php" class="<?php if($page_name == 'grocery_orders1.php') { echo "active"; } ?>"><i class="icon-grocery-store"></i> Grocery Orders</a></li>
        <li><a href="grocery_wishlist.php" class="<?php if($page_name == 'grocery_wishlist.php') { echo "active"; } ?>"><i class="icon-heart-empty"></i> Wishlist Grocery</a></li>
