@@ -325,10 +325,9 @@
 }
 
 .product-box.style1 {
-	height:210px;
+	height: 250px;
 	margin-bottom:33px;
 	border-radius:10px;
-	
 }
 
 .product-box.style1:hover {
@@ -408,7 +407,7 @@
 
 .product-box .imagebox {
 	text-align:center;
-	padding:8px 16px;
+	padding: 0px 16px;
 	border:2px solid transparent;
 	position:relative;
 	z-index:99;
@@ -446,7 +445,7 @@
 .imagebox .box-image {
 	margin-bottom:5px;
 	line-height:209px;
-	height:209px;
+	height: 190px;
 }
 
 .imagebox .box-image a {
@@ -500,14 +499,14 @@
 }
 
 .imagebox .box-content .product-name {
-	min-height:63px;
-	margin-top:6px;
+	/* min-height: 32px; */
+	/* margin-top:6px; */
 }
 
 .imagebox .box-content .product-name a {
 	color:#484848;
-	font-size:16px;
-	line-height:22px;
+	font-size: 14px;
+	line-height: 22px;
 }
 
 .imagebox .box-content .product-name a:hover {
@@ -667,8 +666,8 @@
 /* Imagebox Style1 */
 .imagebox.style1 {
 	text-align:left;
-	padding:22px 17px 10px;
-	min-height:200px;
+	padding: 10px 17px 10px;
+	min-height: 200px;
 	border-radius: 10px;
 }
 
@@ -687,8 +686,8 @@
 }
 
 .imagebox.style1 .box-content .product-name {
-	min-height:73px;
-	margin-top:3px;
+	/* min-height:73px; */
+	/* margin-top:3px; */
 }
 
 .imagebox.style1 .box-content .product-name a {
@@ -854,7 +853,7 @@
 .imagebox.style1.v3 .box-price {
 	text-align:center;
 	padding:30px 2px 0 67px;
-	width:270px;
+	/*! width:270px; */
 	float:left;
 }
 
@@ -1624,8 +1623,8 @@
 
 
 .imagebox.style4 .box-image {
-	height:110px;
-	line-height:108px;
+	height: 150px;
+	line-height: 108px;
 	text-align:center;
 	margin-bottom:4px;
 }
@@ -1641,7 +1640,7 @@
 }
 
 .imagebox.style4 .box-content .product-name {
-	min-height:66px;
+	min-height: 20px;
 	margin-top:4px;
 	margin-left:2px;
 }
@@ -2125,8 +2124,8 @@ ul.flat-infomation.style1 li img {
 }
 
 .slider .slider-item .item-image {
-	padding-top:57px;
-	padding-right:75px;
+	/*! padding-top:57px; */
+	/*! padding-right:75px; */
 	position:relative;
 	float:right;
 }
@@ -2419,8 +2418,8 @@ ul.flat-infomation.style1 li img {
 }
 
 .slider .slider-item.style9 .item-image {
-	padding-top:28px;
-	padding-right:79px;
+	/*! padding-top:28px; */
+	/*! padding-right:79px; */
 }
 
 /* Button Shop */
