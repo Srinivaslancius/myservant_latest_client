@@ -44,6 +44,7 @@
                 <li class="<?php if($page_name == 'basic_settings.php') { echo "active"; } ?>"><a href="basic_settings.php">Site Level Settings</a></li>
                 <li class="<?php if($page_name == 'payment_settings.php') { echo "active"; } ?>"><a href="payment_settings.php">Payment Settings</a></li>
                 <li class="<?php if($page_name == 'Social_media_settings.php') { echo "active"; } ?>"><a href="Social_media_settings.php">Social Media Settings</a></li>
+                <li class="<?php if($page_name == 'reward_points.php') { echo "active"; } ?>"><a href="reward_points.php">Reward Points</a></li>
                 <li class="<?php if($page_name == 'reward_settings.php') { echo "active"; } ?>"><a href="reward_settings.php">Reward Settings</a></li>
               </ul>
             </li>

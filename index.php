@@ -1,12 +1,5 @@
 <?php include_once 'meta.php';?>
-<style>
-#countdown p {
-  display: inline-block;
-  padding: 5px;
-  background: #FFA500;
-  margin: 0 0 20px;
-}
-</style>
+
 <body class="header_sticky">
 	<div class="boxed">
 
@@ -368,9 +361,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 										</div><!-- /.count-down -->
 									</div><!-- /.counter-content -->
 								</div><!-- /.counter -->
-					</div>
-					</div>
-					</div>
+								</div>
+								</div>
+								</div>
 						
 
 					</div><!-- /.col-md-12 -->
