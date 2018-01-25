@@ -164,7 +164,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" data-dismiss="modal" class="btn btn-info">Continue</button>
+                                                        
                                                         <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
                                                     </div>
                                                 </div>
