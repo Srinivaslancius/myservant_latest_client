@@ -33,29 +33,39 @@
           echo "fail";
         } else  { 
           //echo "<pre>"; print_r($_POST); die;
-          $grocery_category_id = $_POST['grocery_category_id'];
-          $sub_category_name = $_POST['sub_category_name'];
-          $priority = 1;
-          $brands = implode(',',$_POST['brands']);
+          $reward_points = $_POST['reward_points'];
+          $reward_type = $_POST['reward_type'];
 
-          if($_POST['make_it_popular'] == 1) {
-            $checkboxVal = 1;
-          } else {
-            $checkboxVal = 0;
+          if($_POST['reward_type'] == 1) {
+            $category_id = '';
+            $sub_category_id = '';
+            $product_id = '';
+          } elseif($_POST['reward_type'] == 2) {
+            $category_id = $_POST['category_id'];
+            $sub_category_id = '';
+            $product_id = '';
+          } elseif($_POST['reward_type'] == 3) {
+            $category_id = $_POST['category_id'];
+            $sub_category_id = $_POST['sub_category_id'];
+            $product_id = '';
+          } elseif($_POST['reward_type'] == 4) {
+            $category_id = $_POST['category_id'];
+            $sub_category_id = $_POST['sub_category_id'];
+            $product_id = $_POST['product_id'];
           }
 
-          $sql = "INSERT INTO grocery_sub_category (`grocery_category_id`,`sub_category_name`,`priority`,`brands`,`make_it_popular`) VALUES ('$grocery_category_id','$sub_category_name','$priority','$brands','$checkboxVal')";
+          $sql = "INSERT INTO grocery_reward_settings (`reward_type`,`reward_points`,`category_id`,`sub_category_id`,`product_id`) VALUES ('$reward_type','$reward_points','$category_id','$sub_category_id','$product_id')";
           if($conn->query($sql) === TRUE){
-             echo "<script type='text/javascript'>window.location='manage_sub_categories.php?msg=success'</script>";
+             echo "<script type='text/javascript'>window.location='reward_settings.php?msg=success'</script>";
           } else {
-             echo "<script type='text/javascript'>window.location='manage_sub_categories.php?msg=fail'</script>";
+             echo "<script type='text/javascript'>window.location='reward_settings.php?msg=fail'</script>";
           }
         }
         ?>
         <div class="site-content">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="m-y-0 font_sz_view">Add Sub Categories</h3>
+                    <h3 class="m-y-0 font_sz_view">Add Reward Points</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -76,7 +86,7 @@
                             <div class="form-group category">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="cat_id" name="category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getSubCategories(this.value);" required>
+                                    <select id="cat_id" name="category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getSubCategories(this.value);" >
                                         <option value="">-- Select Category --</option>
                                         <?php $getCategories = getAllDataWithStatus('grocery_category','0');?>
                                         <?php while($row = $getCategories->fetch_assoc()) {  ?>
@@ -88,7 +98,7 @@
                             <div class="form-group sub_category">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Sub Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="sub_cat_id" name="sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getProducts(this.value);" required>
+                                    <select id="sub_cat_id" name="sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getProducts(this.value);" >
                                         <option value="">-- Select Sub Category --</option>
                                     </select>
                                 </div>
@@ -96,7 +106,7 @@
                             <div class="form-group product">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Product</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="product_id" name="product_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                                    <select id="product_id" name="product_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" >
                                         <option value="">-- Select Product --</option>
                                     </select>
                                 </div>
