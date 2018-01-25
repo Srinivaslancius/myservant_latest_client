@@ -143,7 +143,7 @@ if($OrderDetails['delivery_charges'] == '0') {
 			<p>Order Type:<?php echo $order_type; ?></p>
 			<p>Order Status: <?php echo $orderStatus['order_status']; ?></p>
 			<p>Payment Status: InProgress</p></td>
-			<td colspan="2"></td>
+			
 			<td colspan="2">
 			<h3>Shipping Address</h3>
 			<p><?php echo $OrderDetails['first_name']; ?></p>
@@ -154,12 +154,11 @@ if($OrderDetails['delivery_charges'] == '0') {
 		  </tr>
       
 		  <tr>
-			<td colspan="2"><h5>ITEM NAME</h5></td>
-			<td colspan="2"><h5>CATEGORY</h5></td>
+			<td><h5>ITEM NAME</h5></td>
+			<td><h5>CATEGORY</h5></td>
 			<td><h5>QUANTITY</h5></td>
 			<td><h5>PRICE</h5></td>
-			<td></td>
-			<td></td>
+			
 		  </tr>
      <?php $getOrders1 = "SELECT * FROM grocery_orders WHERE order_id='$order_id'";
     			$getOrdersData3 = $conn->query($getOrders1); ?>
@@ -169,19 +168,16 @@ if($OrderDetails['delivery_charges'] == '0') {
         $getItemWeights = getIndividualDetails('food_product_weights','id',$getOrdersData2['item_weight_type_id']);
       	?>
 		   <tr>
-			<td colspan="2"><p><?php echo $getProducts['product_name'] ?></p></td>
-			<td colspan="2"><p><?php echo  $getCategories['category_name']?></p></td>
+			<td><p><?php echo $getProducts['product_name'] ?></p></td>
+			<td><p><?php echo  $getCategories['category_name']?></p></td>
 			<td><p><?php echo $getOrdersData2['item_quantity'] ?></p></td>
 			<td><p><?php echo $getOrdersData2['item_price'] ?></p></td>
-			<td></td>
-			<td></td>
+			
 		  </tr>
 		  <?PHP } ?>
-		   <tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+		  <tr style="background-color:#f2f2f2">
+			<td colspan="2"></td>
+			
 			<td><p>Subtotal:</p>
 			<p>Tax:</p>
 			<p>Delivery Charges</p>
@@ -191,7 +187,7 @@ if($OrderDetails['delivery_charges'] == '0') {
 			<p style="color:#fe6003;">Rs. <?php echo $OrderDetails['service_tax'].'('.$getSiteSettingsData['service_tax'].'%)' ?></p>
 			<p style="color:#fe6003;">Rs. <?php echo $OrderDetails['delivery_charges'];  ?></p>
 			<?php $total_price = round($OrderDetails['sub_total'] + $OrderDetails['delivery_charges'] + $OrderDetails['service_tax']); ?>
-				<p style="color:#fe6003;"><?php echo $total_price;  ?></p>
+				<p style="color:#fe6003;"><?php echo $total_price;  ?></p></td>
 		  </tr>
 		</tbody>
 					

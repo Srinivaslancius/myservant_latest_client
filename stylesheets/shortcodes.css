@@ -2196,8 +2196,8 @@ ul.flat-infomation.style1 li img {
 }
 
 .slider .slider-item.style1 .item-image {
-	padding-top:124px;
-	padding-right:52px;
+	/* padding-top:124px; */
+	/* padding-right:52px; */
 }
 
 .slider .slider-item.style1 .item-image .sale-off {
@@ -2537,7 +2537,7 @@ ul.flat-infomation.style1 li img {
 
 .slider-item {
 	background-color:#fff;
-	height:481px;
+	/* height: 400px; */
 }
 
 /* Slider Item Style2 */
@@ -5395,7 +5395,7 @@ input[type="checkbox"]:checked + label:before {
 
 .table-cart tr td:nth-child(4) {
 	width:8.667%;
-	text-align:right;
+	/*text-align:right;*/
 }
 
 .table-cart tr td .img-product {
@@ -5416,11 +5416,18 @@ input[type="checkbox"]:checked + label:before {
 	padding-top:8px;
 	line-height:24px;
 }
+.table-cart tr td .weight {
+   font-size:15px;
+	color:#989898;
+	padding-top:8px;
+	line-height:24px;
+	padding-left:300px;
+}
 
 .table-cart tr td .price {
 	text-align:right;
-	line-height:64px;
-	margin-right:40px;
+	line-height:0px;
+	margin-right:90px;
 	color:#989898;
 	font-size:16px;
 	font-family:'BloggerSans';
@@ -5454,7 +5461,7 @@ input[type="checkbox"]:checked + label:before {
 	position:absolute;
 	z-index:9;
 	top:13px;
-	right:56px;
+	right: 160px;
 	padding:10px 10px;
 	cursor:pointer;
 }
@@ -5481,7 +5488,7 @@ input[type="checkbox"]:checked + label:before {
 }
 
 .table-cart tr td .quanlity input {
-	width:160px;
+	width: 160px;
 	text-align:center;
 	padding:15px 30px;
 	height:45px;
@@ -5496,6 +5503,7 @@ input[type="checkbox"]:checked + label:before {
 .table-cart tr td > span {
 	cursor:pointer;
 }
+
 
 /* Form Coupon */
 .form-coupon {
@@ -5925,7 +5933,7 @@ table.product thead tr th:last-child {
 	border-radius:8px;
 	box-shadow:0px 2px 3px 0px rgba(234, 234, 234, 1);
 	padding:44px 50px 50px 50px;
-	height:512px;
+	/* height:512px; */
 }
 
 .form-register {
@@ -7561,4 +7569,33 @@ ul.brands-tablist li.active {
 	font-size:18px;
 	font-weight:500;
 	color:#484848;
+}
+@media screen and (max-width: 480px) and (min-width: 320px){
+.table-cart tr td .weight {
+    font-size: 15px;
+    color: #989898;
+    padding-top: 8px;
+    line-height: 24px;
+    padding-left: 0px;
+}
+.table-cart tr td .price {
+    text-align: right;
+    line-height: 0px;
+    margin-right: 10px;
+    color: #989898;
+    font-size: 16px;
+    font-family: 'BloggerSans';
+}
+.table-cart tr td .name-product {
+	padding-right:10px;
+}
+
+}
+@media screen and (max-width: 960px) and (min-width: 600px){
+.table-cart tr td .weight {
+    font-size: 15px;
+    color: #989898;
+    padding-top: 8px;
+    line-height: 24px;
+    padding-left: 250px;
 }

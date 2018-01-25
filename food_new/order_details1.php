@@ -161,6 +161,9 @@ if($getOrdersData1['delivery_charges'] == '0') {
       <p><?php echo $getOrdersData1['mobile']; ?></p>
       <p><?php echo $getOrdersData1['address']; ?></p>
       <p><?php echo $getOrdersData1['postal_code']; ?></p></td>
+	  <td></td>
+      <td></td>
+	  <td></td>
 		  </tr>
       <?php $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
     $getOrdersData3 = $conn->query($getOrders1); ?>
@@ -216,6 +219,8 @@ if($getOrdersData1['delivery_charges'] == '0') {
     <p>Rs. <?php echo $getOrdersData1['discout_money']?>(<span style="color:green">Coupon Applied.</span>)</p>
     <?php } ?>
     <p>Rs. <?php echo $getOrdersData1['order_total']?></p></td>
+	<td></td>
+	<td></td>
       </tr>
 		</tbody>
 					
