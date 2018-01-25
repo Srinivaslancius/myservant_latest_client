@@ -163,13 +163,13 @@ h3,h5{
 			<td><h5>SELECTED TIME</h5></td>
 			<td></td>
       <td></td>
-      <td></td>
+    
 
 		  </tr>
 
 		   <tr>
 			<td colspan="2"><p><?php echo $getServiceNamesData['group_service_name'] ?></p></td>
-      <td colspan="2"><p><?php echo $getOrdersData1['order_price'] ?></p></td>
+      <td><p><?php echo $getOrdersData1['order_price'] ?></p></td>
       <td><p><?php echo $getOrdersData1['service_quantity'] ?></p></td>
       <td><p><?php echo $getOrdersData1['service_selected_date'] ?></p></td>
       <td><p><?php echo $getOrdersData1['service_selected_time'] ?></p></td>
@@ -178,17 +178,17 @@ h3,h5{
       <td></td>
 		  </tr>
       
-		   <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+		  <tr style="background-color:#f2f2f2">
+      <td colspan="5"></td>
+      
       <td><p>Subtotal:</p>
       <p>Tax:</p>
       <p style="color:#fe6003;">Grand Total:</p></td>
       <td><p style="color:#fe6003;">Rs. <?php echo $sub_total ?>
       <p style="color:#fe6003;">Rs. <?php echo $service_tax ?>(<?php echo $getSiteSettingsData['service_tax'] ?>%)</p>
-      <p style="color:#fe6003;">Rs. <?php echo $order_price ?></p>
+      <p style="color:#fe6003;">Rs. <?php echo $order_price ?></p></td>
+	  <td></td>
+	   <td></td>
       </tr>
 		</tbody>
 					

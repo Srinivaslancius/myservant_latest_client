@@ -162,7 +162,7 @@
 			<td><p><?php echo $getOrdersData1['service_selected_time'] ?></p></td>
 			<td></td>
 		  </tr>
-		   <tr>
+		  <tr style="background-color:#f2f2f2">
 			<td></td>
 			<td></td>
 			<td></td>

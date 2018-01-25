@@ -148,7 +148,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
 			<p>Payment Method: <?php echo $getpaymentTypes['status']; ?></p>
 			<p>Order Type: <?php echo $order_type; ?></p>
 			<p>Order Status: <?php echo $orderStatus['order_status']; ?></p>
-			<p>Payment Status: <?php echo $paymentStatus['payment_status']; ?></p>
+			<p>Payment Status: <?php echo $paymentStatus['payment_status']; ?></p></td>
 			<td colspan="2"></td>
 			<td colspan="2">
 			<h3>Shipping Address</h3><br>
@@ -157,6 +157,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
 			<p><?php echo $getOrdersData1['mobile']; ?></p>
 			<p><?php echo $getOrdersData1['address']; ?></p>
 			<p><?php echo $getOrdersData1['postal_code']; ?></p></td>
+			<td></td>
 		  </tr>
 		  <?php $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
 		$getOrdersData3 = $conn->query($getOrders1); ?>
@@ -165,11 +166,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
 	        <td colspan="2">CUSINE TYPE</td>
 	        <td>ITEM WEIGHT</td>
 	        <td>QUANTITY</td>
-	        <td>PRICE</td>
-	        
-			
-			
-			
+	        <td>PRICE</td>			
 		  </tr>
 		  <?php while($getOrdersData2 = $getOrdersData3->fetch_assoc()) { 
       	$getCategories = getIndividualDetails('food_category','id',$getOrdersData2['category_id']);
@@ -213,6 +210,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
 		<p>Rs. <?php echo $getOrdersData1['discout_money']?>(<span style="color:green">Coupon Applied.</span>)</p>
 		<?php } ?>
 		<p>Rs. <?php echo $getOrdersData1['order_total']?></p></td>
+		
       </tr>
 		</tbody>
 					

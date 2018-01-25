@@ -151,6 +151,8 @@ if($OrderDetails['delivery_charges'] == '0') {
           <p><?php echo $OrderDetails['mobile']; ?></p>
           <p><?php echo $OrderDetails['address']; ?></p>
           <p><?php echo $OrderDetails['postal_code']; ?></p></td>
+		  <td></td>
+		  <td></td>
 		  </tr>
       <?php $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
     $getOrdersData3 = $conn->query($getOrders1); ?>
@@ -178,11 +180,8 @@ if($OrderDetails['delivery_charges'] == '0') {
       <td></td>
       </tr>
       <?php  } ?>
-		   <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+	<tr style="background-color:#f2f2f2">
+      <td colspan="5"></td>
       <td><p>Subtotal:</p>
       <p>Tax:</p>
       <p>Delivery Charges</p>
@@ -192,7 +191,8 @@ if($OrderDetails['delivery_charges'] == '0') {
       <p style="color:#fe6003;">Rs. <?php echo $OrderDetails['service_tax'].'('.$getSiteSettingsData['service_tax'].'%)' ?></p>
       <p style="color:#fe6003;">Rs. <?php echo $OrderDetails['delivery_charges'];  ?></p>
       <?php $total_price = round($OrderDetails['sub_total'] + $OrderDetails['delivery_charges'] + $OrderDetails['service_tax']); ?>
-        <p style="color:#fe6003;"><?php echo $total_price;  ?></p>
+        <p style="color:#fe6003;"><?php echo $total_price;  ?></p></td>
+		<td></td>
       </tr>
 		</tbody>
 					
