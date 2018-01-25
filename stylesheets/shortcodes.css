@@ -325,10 +325,9 @@
 }
 
 .product-box.style1 {
-	height:210px;
+	height: 250px;
 	margin-bottom:33px;
 	border-radius:10px;
-	
 }
 
 .product-box.style1:hover {
@@ -408,7 +407,7 @@
 
 .product-box .imagebox {
 	text-align:center;
-	padding:8px 16px;
+	padding: 0px 16px;
 	border:2px solid transparent;
 	position:relative;
 	z-index:99;
@@ -446,7 +445,7 @@
 .imagebox .box-image {
 	margin-bottom:5px;
 	line-height:209px;
-	height:209px;
+	height: 190px;
 }
 
 .imagebox .box-image a {
@@ -500,14 +499,14 @@
 }
 
 .imagebox .box-content .product-name {
-	min-height:63px;
-	margin-top:6px;
+	/* min-height: 32px; */
+	/* margin-top:6px; */
 }
 
 .imagebox .box-content .product-name a {
 	color:#484848;
-	font-size:16px;
-	line-height:22px;
+	font-size: 14px;
+	line-height: 22px;
 }
 
 .imagebox .box-content .product-name a:hover {
@@ -667,8 +666,8 @@
 /* Imagebox Style1 */
 .imagebox.style1 {
 	text-align:left;
-	padding:22px 17px 10px;
-	min-height:200px;
+	padding: 10px 17px 10px;
+	min-height: 200px;
 	border-radius: 10px;
 }
 
@@ -687,8 +686,8 @@
 }
 
 .imagebox.style1 .box-content .product-name {
-	min-height:73px;
-	margin-top:3px;
+	/* min-height:73px; */
+	/* margin-top:3px; */
 }
 
 .imagebox.style1 .box-content .product-name a {
@@ -1641,7 +1640,7 @@
 }
 
 .imagebox.style4 .box-content .product-name {
-	min-height:66px;
+	min-height: 20px;
 	margin-top:4px;
 	margin-left:2px;
 }

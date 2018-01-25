@@ -412,6 +412,11 @@
 									<div class="product-name">
 										<a href="#" title="">Instant Coffee</a>
 									</div>
+									<div class="product_name">
+														<select class="s-w form-control" id="na1q_qty0" onchange="get_price(this.value,'na10');">
+                                                            <option value="6180">Combo Pack - Rs.2999.00 </option>
+                                                          </select>
+														</div>
 									<div class="price">
 										<span class="sale"> ₹50.00</span>
 										<span class="regular">₹ 2,999.00</span>
