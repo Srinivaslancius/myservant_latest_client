@@ -127,7 +127,7 @@
             		<tbody>
             		  <tr>
             			<td><img src="images/dashboard/wallet.png"></td>
-            			<td><b>Rs :5/-</b><br>Your Wallet Balance</td>
+            			<td><b>Rs : <?php echo $amount; ?>/-</b><br>Your Wallet Balance</td>
             			<td colspan="2"><input type="text" name="amnt" placeholder="Enter amount to be added in your wallet" required></td>						
 						<td><button class="button1" type="submit" name="submit" value="submit">Add Money to Wallet</button></td>
             		  </tr>            		  
