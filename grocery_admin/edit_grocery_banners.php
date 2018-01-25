@@ -40,6 +40,9 @@
             $category_id = $_POST['category_id'];
             $sub_category_id = $_POST['sub_category_id'];
             $product_id = $_POST['product_id'];
+            $banner_image_type = $_POST['banner_image_type'];
+            $max_percentage = $_POST['max_percentage'];
+            $min_percentage = $_POST['min_percentage'];
             $type = $_POST['type'];
             if($_FILES["web_image"]["name"]!='' || $_FILES["app_image"]["name"]!='') {
                 $web_image = uniqid().$_FILES["web_image"]["name"];
