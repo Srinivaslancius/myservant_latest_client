@@ -40,6 +40,14 @@
             $category_id = $_POST['category_id'];
             $sub_category_id = $_POST['sub_category_id'];
             $product_id = $_POST['product_id'];
+            $banner_image_type = $_POST['banner_image_type'];
+            if($banner_image_type == 0) {
+                $max_percentage = '';
+                $min_percentage = '';
+            } else {
+                $max_percentage = $_POST['max_percentage'];
+                $min_percentage = $_POST['min_percentage'];
+            }
             $type = $_POST['type'];
             if($_FILES["web_image"]["name"]!='' || $_FILES["app_image"]["name"]!='') {
                 $web_image = uniqid().$_FILES["web_image"]["name"];
@@ -51,17 +59,17 @@
                 $app_image_file = $app_image_dir . basename($app_image);
                 
                 if(move_uploaded_file($_FILES["web_image"]["tmp_name"], $web_image_file) && move_uploaded_file($_FILES["app_image"]["tmp_name"], $app_image_file)) {
-                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image', app_image = '$app_image' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } elseif($_FILES["web_image"]["name"]!='') {
                     move_uploaded_file($_FILES["web_image"]["tmp_name"], $web_image_file);
-                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } elseif($_FILES["app_image"]["name"]!='') {
                     move_uploaded_file($_FILES["app_image"]["tmp_name"], $app_image_file);
-                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', app_image = '$app_image' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } 
 
             } else{
-               $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type' WHERE id = '$banner_id' ";
+               $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                //$conn->query($sql);
             }          
             //echo $sql; die;
@@ -83,7 +91,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <?php $getBrands = getIndividualDetails('grocery_banners','id',$banner_id); ?>
+                        <?php $getBanners = getIndividualDetails('grocery_banners','id',$banner_id); ?>
                         <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Select City</label>
@@ -92,7 +100,7 @@
                                         <option value="">-- Select City --</option>
                                         <?php $getCities = getAllDataWithStatus('lkp_cities','0');?>
                                         <?php while($row = $getCities->fetch_assoc()) {  ?>
-                                            <option <?php if($row['id'] == $getBrands['lkp_city_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['city_name']; ?></option>
+                                            <option <?php if($row['id'] == $getBanners['lkp_city_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['city_name']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -100,20 +108,20 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Link</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="url" name="link" class="form-control" id="form-control-3" placeholder="Enter link" value="<?php echo $getBrands['link']; ?>" required>
+                                    <input type="url" name="link" class="form-control" id="form-control-3" placeholder="Enter link" value="<?php echo $getBanners['link']; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Title</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" name="title" class="form-control" id="form-control-3" placeholder="Enter Title" value="<?php echo $getBrands['title']; ?>" required>
+                                    <input type="text" name="title" class="form-control" id="form-control-3" placeholder="Enter Title" value="<?php echo $getBanners['title']; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Web Image</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <?php if($getBrands['web_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBrands['web_image']; ?>"  id="output" height="100" width="100"/>
+                                    <?php if($getBanners['web_image']!='') { ?>
+                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBanners['web_image']; ?>"  id="output" height="100" width="100"/>
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input class="file-upload-input" type="file" name="web_image" multiple="multiple" accept="image/*" onchange="loadFile(event)">
@@ -123,12 +131,34 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">App Image</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <?php if($getBrands['app_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_app_image/'.$getBrands['app_image']; ?>"  id="output1" height="100" width="100"/>
+                                    <?php if($getBanners['app_image']!='') { ?>
+                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_app_image/'.$getBanners['app_image']; ?>"  id="output1" height="100" width="100"/>
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input id="form-control-22" class="file-upload-input" type="file" name="app_image" accept="image/*" onchange="loadFile1(event)">
                                     </label> (width : 550px ; height : 200px)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="form-control-9">Banner Image Type</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input <?php if($getBanners['banner_image_type'] == 0) { echo 'checked' ; } ?> type="radio" name="banner_image_type" id="banner_image_type" value="0">Normal Banner
+                                    <input <?php if($getBanners['banner_image_type'] == 1) { echo 'checked' ; } ?> type="radio" name="banner_image_type" id="banner_image_type1" value="1">Offer Banner
+                                    <input type="hidden" id="banner_type" value="<?php echo $getBanners['banner_image_type']; ?>">
+                                </div>
+                            </div>
+                            <div id="offer_percentage">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="form-control-9">Minimum Offer Percentage</label>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="min_percentage" class="form-control valid_price_dec" id="min_offer_percentage" value="<?php echo $getBanners['min_percentage']; ?>" placeholder="Enter Minimum Offer Percentage" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="form-control-9">Maximum Offer Percentage</label>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="max_percentage" class="form-control valid_price_dec" id="max_offer_percentage" value="<?php echo $getBanners['max_percentage']; ?>" placeholder="Enter Maximum Offer Percentage" required>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -138,7 +168,7 @@
                                         <option value="">-- Select Type --</option>
                                         <?php $getTypes = getAllDataWithStatus('grocery_banner_types','0');?>
                                         <?php while($row = $getTypes->fetch_assoc()) {  ?>
-                                            <option <?php if($row['id'] == $getBrands['type']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['banner_type']; ?></option>
+                                            <option <?php if($row['id'] == $getBanners['type']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['banner_type']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -150,7 +180,7 @@
                                         <option value="">-- Select Category --</option>
                                         <?php $getCategories = getAllDataWithStatus('grocery_category','0');?>
                                         <?php while($row = $getCategories->fetch_assoc()) {  ?>
-                                            <option <?php if($row['id'] == $getBrands['category_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['category_name']; ?></option>
+                                            <option <?php if($row['id'] == $getBanners['category_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['category_name']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -162,7 +192,7 @@
                                         <option value="">-- Select Sub Category --</option>
                                         <?php $getSubacategories = getAllDataWithStatus('grocery_sub_category','0');?>
                                         <?php while($row = $getSubacategories->fetch_assoc()) {  ?>
-                                            <option <?php if($row['id'] == $getBrands['sub_category_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['sub_category_name']; ?></option>
+                                            <option <?php if($row['id'] == $getBanners['sub_category_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['sub_category_name']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -175,7 +205,7 @@
                                         <?php $getProducts = getAllDataWithStatus('grocery_products','0');?>
                                         <?php while($row = $getProducts->fetch_assoc()) {  
                                         $getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$row['id']); ?>
-                                            <option <?php if($row['id'] == $getBrands['product_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $getProductNames['product_name']; ?></option>
+                                            <option <?php if($row['id'] == $getBanners['product_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $getProductNames['product_name']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -197,7 +227,7 @@
     <script src="js/tables-datatables.min.js"></script>
 
     <script type="text/javascript">
-    $("#category,#sub_category,#product").hide();
+    $("#category,#sub_category,#product,#offer_percentage").hide();
       $(document).ready(function () {
         $("#type").change(function() {
             if($(this).val() == 1) {
@@ -230,6 +260,33 @@
                 $("#product").show();
                 $("#category,#sub_category").hide();
             }
+        $("#banner_image_type1").click(function() {
+            $("#offer_percentage").show();
+            $("#min_offer_percentage,#max_offer_percentage").attr("required", "true");
+        });
+        $("#banner_image_type").click(function() {
+            $("#offer_percentage").hide();
+            $("#min_offer_percentage,#max_offer_percentage").removeAttr('required');
+        });
+        //alert($('#banner_type').val());
+        if($('#banner_type').val() == 1) {
+            $("#offer_percentage").show();
+            $("#min_offer_percentage,#max_offer_percentage").attr("required", "true");
+        }
+        $("#min_offer_percentage,#max_offer_percentage").blur(function () {
+            if(parseInt($('#min_offer_percentage').val()) > parseInt($('#max_offer_percentage').val())) {
+              alert("The Maximum Percentage must be larger than the Minimum Percentage");
+              $('#min_offer_percentage').val('');
+              $('#max_offer_percentage').val('');
+              return false;
+            }
+            if(parseInt($('#min_offer_percentage').val()) == 0 && parseInt($('#max_offer_percentage').val()) == 0) {
+              alert("The Maximum Percentage and the Minimum Percentage should be greater than zero");
+              $('#min_offer_percentage').val('');
+              $('#max_offer_percentage').val('');
+              return false;
+            }
+         });
       });
     </script>
   </body>

@@ -41,6 +41,14 @@
           $sub_category_id = $_POST['sub_category_id'];
           $product_id = $_POST['product_id'];
           $type = $_POST['type'];
+          $banner_image_type = $_POST['banner_image_type'];
+          if($banner_image_type == 0) {
+                $max_percentage = '';
+                $min_percentage = '';
+            } else {
+                $max_percentage = $_POST['max_percentage'];
+                $min_percentage = $_POST['min_percentage'];
+            }
           $web_image = $_FILES["web_image"]["name"];
           $app_image = $_FILES["app_image"]["name"];
           if($web_image!='' && $app_image!='') {
@@ -52,7 +60,7 @@
             $imageFileType = pathinfo($target_file1,PATHINFO_EXTENSION);
             if (move_uploaded_file($_FILES["web_image"]["tmp_name"], $target_file)) {
                 move_uploaded_file($_FILES["app_image"]["tmp_name"], $target_file1);
-                $sql = "INSERT INTO grocery_banners (`link`,`title`,`lkp_city_id`,`category_id`,`sub_category_id`,`product_id`,`type`,`web_image`,`app_image`) VALUES ('$link','$title', '$lkp_city_id','$category_id','$sub_category_id', '$product_id','$type','$web_image', '$app_image')"; 
+                $sql = "INSERT INTO grocery_banners (`link`,`title`,`lkp_city_id`,`category_id`,`sub_category_id`,`product_id`,`type`,`web_image`,`app_image`,`banner_image_type`,`min_percentage`,`max_percentage`) VALUES ('$link','$title', '$lkp_city_id','$category_id','$sub_category_id', '$product_id','$type','$web_image', '$app_image', '$banner_image_type', '$min_percentage', '$max_percentage')"; 
                 if($conn->query($sql) === TRUE){
                    echo "<script type='text/javascript'>window.location='grocery_banners.php?msg=success'</script>";
                 } else {
@@ -114,6 +122,27 @@
                                         <input class="file-upload-input" type="file" name="app_image" multiple="multiple" accept="image/*" id="app_image" onchange="loadFile1(event)" required>
                                     </label> (width : 550px ; height : 200px)
                                 </div> 
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="form-control-9">Banner Image Type</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="radio" name="banner_image_type" id="banner_image_type" value="0">Normal Banner
+                                    <input type="radio" name="banner_image_type" id="banner_image_type1" value="1">Offer Banner
+                                </div>
+                            </div>
+                            <div id="offer_percentage">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="form-control-9">Minimum Offer Percentage</label>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="min_percentage" class="form-control valid_price_dec" id="min_offer_percentage" placeholder="Enter Minimum Offer Percentage" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="form-control-9">Maximum Offer Percentage</label>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="max_percentage" class="form-control valid_price_dec" id="max_offer_percentage" placeholder="Enter Maximum Offer Percentage" required>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Select Type</label>
@@ -220,7 +249,8 @@
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
     <script type="text/javascript">
-    $("#category,#sub_category,#product").hide();
+    $("#category,#sub_category,#product,#offer_percentage").hide();
+    $("#min_offer_percentage,#max_offer_percentage").removeAttr('required');
       $(document).ready(function () {
         $("#type").change(function() {
             if($(this).val() == 1) {
@@ -242,6 +272,14 @@
                 $(".product").attr("required", "true");
                 $(".category,.product").removeAttr('required');
             }   
+        });
+        $("#banner_image_type1").click(function() {
+            $("#offer_percentage").show();
+            $("#min_offer_percentage,#max_offer_percentage").attr("required", "true");
+        });
+        $("#banner_image_type").click(function() {
+            $("#offer_percentage").hide();
+            $("#min_offer_percentage,#max_offer_percentage").removeAttr('required');
         });
       });
     </script>

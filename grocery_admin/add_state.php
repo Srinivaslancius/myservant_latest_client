@@ -127,7 +127,7 @@
             e.preventDefault();
             if(x < max_fields_limit){ //check conditions
                 x++; //counter increment
-                $('.input_fields_container').append('<div><div class="row"><label class="col-sm-3 control-label" for="form-control-9">State</label><div class="col-sm-6 col-md-4"><input type="text" name="state_name[]" class="form-control" id="user_input" placeholder="Enter State Name" required></div><a href="#" class="remove_field btn btn-warning"><i class="zmdi zmdi-minus-circle zmdi-hc-fw"></i></a></div></div>'); //add input field
+                $('.input_fields_container').append('<div><div class="form-group"><label class="col-sm-3 control-label" for="form-control-9">State</label><div class="col-sm-6 col-md-4"><input type="text" name="state_name[]" class="form-control" id="user_input" placeholder="Enter State Name" required></div><a href="#" class="remove_field btn btn-warning"style="margin-left:15px"><i class="zmdi zmdi-minus-circle zmdi-hc-fw"></i></a></div></div>'); //add input field
             }
         });  
         $('.input_fields_container').on("click",".remove_field", function(e){ //user click on remove text links
