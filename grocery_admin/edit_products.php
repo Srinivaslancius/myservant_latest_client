@@ -45,7 +45,7 @@
             $updateProducts = "UPDATE `grocery_products` SET grocery_category_id = '$grocery_category_id',grocery_sub_category_id = '$grocery_sub_category_id', product_description = '$product_description' WHERE id = '$product_id' ";
             $result = $conn->query($updateProducts);
 
-            $deleteBrands = "DELETE * FROM grocery_product_bind_brands WHERE product_id = '$product_id'";
+            $deleteBrands = "DELETE FROM grocery_product_bind_brands WHERE product_id = '$product_id'";
             $conn->query($deleteBrands);
             $brands = $_REQUEST['brands'];
             foreach($brands as $key=>$value){
@@ -54,7 +54,7 @@
                     $sql = "INSERT INTO grocery_product_bind_brands ( `product_id`,`brand_id`) VALUES ('$product_id','$brandsType')";
                     $conn->query($sql);
                 }
-            }
+            }   
 
             $language_id = $_REQUEST['language_id'];
             foreach($language_id as $key=>$value){
@@ -67,7 +67,7 @@
                 }
             }
 
-            $deleteTags = "DELETE * FROM grocery_product_bind_tags WHERE product_id = '$product_id'";
+            $deleteTags = "DELETE FROM grocery_product_bind_tags WHERE product_id = '$product_id'";
             $conn->query($deleteTags);
             $tags = $_REQUEST['tags'];
             foreach($tags as $key=>$value){
