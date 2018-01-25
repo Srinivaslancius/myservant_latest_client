@@ -96,9 +96,9 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 										<li>
 											<a href="my_account.php" title="">My Account</a>
 										</li>
-										<li>
+										<!-- <li>
 											<a href="shop_checkout.php" title="">Checkout</a>
-										</li>
+										</li> -->
 										<li>
 											<a href="logout.php">Logout</a>
 										</li>

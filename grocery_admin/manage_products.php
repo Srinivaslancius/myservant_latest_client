@@ -217,19 +217,12 @@
                                     <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><i class="zmdi zmdi-close zmdi-hc-fw"></i></a></td>
                                         <?php } ?>
                                     <?php
-                                    $row = getIndividualDetails('grocery_products','id',$row['id']);
-                                    if($row['deal_start_date']!='0000-00-00') {
-                                    $deal_start_date = date('Y-m-d', strtotime($row['deal_start_date']));
-                                    } else {
-                                    $deal_start_date = '';
-                                    }
-                                    ?>
-                                    <?php
                                     if(!empty($_POST['date']) && !empty($_POST['date']))  {
                                         //echo "<pre>";print_r($_POST); exit;
-                                        $deal_start_date = $_POST['deal_start_date'];   
-                                        $sql="UPDATE grocery_products SET deal_start_date = '$deal_start_date' WHERE id = '".$row['id']."' ";
-                                        if($conn->query($sql) === TRUE) {
+                                        $deal_start_date = $_POST['deal_start_date']; 
+                                        $deal_date = date('Y-m-d', strtotime($deal_start_date)); 
+                                        $dealDate="UPDATE grocery_products SET deal_start_date = '$deal_date' WHERE id = '".$row['id']."' ";
+                                        if($conn->query($dealDate) === TRUE) {
                                         echo "<script type='text/javascript'>window.location='manage_products.php?msg=success'</script>"; 
                                         }
                                         exit();
@@ -249,15 +242,19 @@
                                                     </div>
                                                     <div class="modal-body">
                                                     <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
+                                                        <?php
+                                                        $todayDealDate = getIndividualDetails('grocery_products','id',$row['id']);
+                                                        if($row['deal_start_date']!='0000-00-00') {
+                                                        $deal_start_date1 = date('Y-m-d', strtotime($todayDealDate['deal_start_date']));
+                                                        } else {
+                                                        $deal_start_date1 = '';
+                                                        }
+                                                        ?>
                                                        <div id="datetimepicker1" class="input-append date">
                                                             <div class="form-group">
                                                                 <label for="form-control-5" class="col-sm-3 col-md-4 control-label">Deal Start Date</label>
                                                                 <div class="col-sm-6 col-md-5">
-                                                                    <input class="date-pick" data-format="yyyy-MM-dd hh:mm:ss" type="text" placeholder="Deal Start Date" name="deal_start_date" required="required" value="<?php echo $deal_start_date; ?>">
-                                                                    <span class="add-on">
-                                                                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                                                  </i>
-                                                                </span>
+                                                                    <input class="date-pick" data-format="yyyy-MM-dd" type="text" placeholder="Deal Start Date" name="deal_start_date" required="required" value="<?php echo $deal_start_date1; ?>">
                                                                 </div>
                                                             </div>
                                                         </div>

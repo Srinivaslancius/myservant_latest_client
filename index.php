@@ -210,7 +210,7 @@ $tagNames = $conn->query($getTags);
 										</div><!-- /.box-content -->
 										<div class="box-bottom">
 											<div class="btn-add-cart">
-												<a href="#" title="">
+												<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)">
 													<img src="images/icons/add-cart.png" alt="">Add to Cart
 												</a>
 											</div>
@@ -298,7 +298,7 @@ $getSubCat = $conn->query($getsubCats);
 									</div>
 									<div class="box-bottom">
 										<div class="btn-add-cart">
-											<a href="#" title="">
+											<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)">
 												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
@@ -315,8 +315,9 @@ $getSubCat = $conn->query($getsubCats);
 	</div>
 </section>
 
-<?php echo $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND (now() BETWEEN deal_start_date AND deal_end_date) AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)";
-$getTodayDeals1 = $conn->query($getTodayDeals); ?>
+<?php $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND deal_start_date = CURDATE() AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)";
+$getTodayDeals1 = $conn->query($getTodayDeals);
+if($getTodayDeals1->num_rows > 0) { ?>
 		<section class="flat-imagebox style1">
 			<div class="container">
 				<div class="row">
@@ -329,7 +330,9 @@ $getTodayDeals1 = $conn->query($getTodayDeals); ?>
 				<div class="row ">
 					<div class="col-md-12 owl-carousel-10">
                        <?php while($todayDeals = $getTodayDeals1->fetch_assoc()) {
+                       	$getCategoryName = getIndividualDetails('grocery_category','id',$todayDeals['grocery_category_id']);
                    		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$todayDeals['id']);
+                   		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
                    		?>
 						<div class="owl-carousel-item">
                                                     
@@ -337,24 +340,35 @@ $getTodayDeals1 = $conn->query($getTodayDeals); ?>
 								<div class="imagebox style1">
 									<div class="box-image">
 										<a href="#" title="">
-											<img src="images/product/other/s01.jpg" alt="">
+											<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 										</a>
 									</div><!-- /.box-image -->
 									<div class="box-content">
 										<div class="cat-name">
-											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
+											<a href="#" title=""><?php echo $getCategoryName['category_name']; ?></a>
 										</div>
 										<div class="product-name">
-											<a href="#" title="">Apple iPad Mini<br />G2356</a>
+											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
+										<?php 
+										 	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$todayDeals['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										 	$allGetPrices = $conn->query($getPrices);
+										 ?>
 										<div class="product_name">
-														<select class="s-w form-control" id="na1q_qty0" onchange="get_price(this.value,'na10');">
-                                                            <option value="6180">Combo Pack - Rs.2999.00 </option>
-                                                          </select>
-														</div>
+										<select class="s-w form-control" id="get_pr_price_<?php echo $prodid; ?>" onchange="get_price(this.value,'na10');">
+											<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
+                                            <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+	                                    <?php } ?>
+                                          </select>
+										</div>
+										<?php 
+										 	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$todayDeals['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										 	$allGetPrices = $conn->query($getPrices);
+										 	$getPrc1 = $allGetPrices->fetch_assoc();
+										 ?>
 										<div class="price">
-											<span class="regular">$2,999.00</span>
-											<span class="sale">$1,250.00</span>
+											<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
+											<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
 										</div>
 									</div><!-- /.box-content -->
 									<div class="box-bottom">
@@ -367,8 +381,8 @@ $getTodayDeals1 = $conn->query($getTodayDeals); ?>
 											</a>
 										</div>
 										<div class="btn-add-cart">
-											<a href="#" title="">
-												Add to Cart
+											<a href="#" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
 									</div><!-- /.box-bottom -->
@@ -381,6 +395,7 @@ $getTodayDeals1 = $conn->query($getTodayDeals); ?>
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-imagebox style1 -->
+		<?php } ?>
 
 		
 <section class="flat-imagebox style4">
@@ -557,6 +572,27 @@ $getTodayDeals1 = $conn->query($getTodayDeals); ?>
 				    $('.price').html(data);
 				  }
 				});
+			}
+			function show_cart(ProductId) {
+				var catId = $('#cat_id_'+ProductId).val();
+				var subCatId = $('#sub_cat_id_'+ProductId).val();
+				var productName = $('#pro_name_'+ProductId).val();
+				var product = $('#get_pr_price_'+ProductId).val();
+				var split = product.split(",");
+				var productWeightType = split[0];
+				var productPrice = split[1];
+				var product_quantity = 1;
+
+	   			$.ajax({
+			      type:'post',
+			      url:'save_cart.php',
+			      data:{		        
+			        productId:ProductId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
+			      },
+			      success:function(response) {
+			      	window.location.href = "shop_cart.php";
+			      }
+			    });
 			}
 		</script>
 </body>	

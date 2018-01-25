@@ -153,7 +153,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
       <p>Order Type: <?php echo $order_type; ?></p>
       <p>Order Status: <?php echo $orderStatus['order_status']; ?></p>
       <p>Payment Status: <?php echo $paymentStatus['payment_status']; ?></p></td>
-			<td colspan="2"></td>
+			<td></td>
 			<td colspan="2">
 			<h3>Shipping Address</h3>
 			<p><?php echo $getOrdersData1['first_name']; ?></p>
@@ -161,17 +161,17 @@ if($getOrdersData1['delivery_charges'] == '0') {
       <p><?php echo $getOrdersData1['mobile']; ?></p>
       <p><?php echo $getOrdersData1['address']; ?></p>
       <p><?php echo $getOrdersData1['postal_code']; ?></p></td>
+	  
 		  </tr>
       <?php $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
     $getOrdersData3 = $conn->query($getOrders1); ?>
 		  <tr>
-			<td colspan="2"><h5>ITEM NAME</h5></td>
-			<td colspan="2"><h5>CUSINE TYPE</h5></td>
+			<td><h5>ITEM NAME</h5></td>
+			<td><h5>CUSINE TYPE</h5></td>
 			<td><h5>ITEM WEIGHT</h5></td>
 			<td><h5>QUANTITY</h5></td>
 			<td><h5>PRICE</h5></td>
-			<td></td>
-      <td></td>
+			
 		  </tr>
       <?php while($getOrdersData2 = $getOrdersData3->fetch_assoc()) { 
         $getCategories = getIndividualDetails('food_category','id',$getOrdersData2['category_id']);
@@ -179,17 +179,16 @@ if($getOrdersData1['delivery_charges'] == '0') {
         $getItemWeights = getIndividualDetails('food_product_weights','id',$getOrdersData2['item_weight_type_id']);
       ?>
 		   <tr>
-			<td colspan="2"><p><?php echo $getProducts['product_name'] ?></p></td>
-			<td colspan="2"><p><?php echo  $getCategories['category_name']?></p></td>
+			<td><p><?php echo $getProducts['product_name'] ?></p></td>
+			<td><p><?php echo  $getCategories['category_name']?></p></td>
 			<td><p><?php echo $getItemWeights['weight_type'] ?></p></td>
 			<td><p><?php echo $getOrdersData2['item_quantity'] ?></p></td>
 			<td><p><?php echo $getOrdersData2['item_price'] ?></p></td>
-	     <td></td>
-      <td></td>
+	     
 		  </tr>
       <?php  } ?>
 		   <tr style="background-color:#f2f2f2">
-        <td colspan="5"></td>
+        <td colspan="3"></td>
     <td>
     <p>Subtotal:</p>
     <p>Tax:</p>
@@ -216,6 +215,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
     <p>Rs. <?php echo $getOrdersData1['discout_money']?>(<span style="color:green">Coupon Applied.</span>)</p>
     <?php } ?>
     <p>Rs. <?php echo $getOrdersData1['order_total']?></p></td>
+	
       </tr>
 		</tbody>
 					
