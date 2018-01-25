@@ -315,7 +315,7 @@ $getSubCat = $conn->query($getsubCats);
 	</div>
 </section>
 
-<?php echo $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND (now() BETWEEN deal_start_date AND deal_end_date) AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)";
+<?php $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND (now() BETWEEN deal_start_date AND deal_end_date) AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)";
 $getTodayDeals1 = $conn->query($getTodayDeals); ?>
 		<section class="flat-imagebox style1">
 			<div class="container">
