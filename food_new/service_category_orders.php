@@ -87,7 +87,8 @@
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li>Service Orders</li>
+                <li><a href="service_orders.php">Service orders</a></li>
+                <li>Service Order Details</li>
             </ul>
             
         </div>
