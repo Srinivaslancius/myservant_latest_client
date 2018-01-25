@@ -1,4 +1,12 @@
 <?php include_once 'meta.php';?>
+<style>
+#countdown p {
+  display: inline-block;
+  padding: 5px;
+  background: #FFA500;
+  margin: 0 0 20px;
+}
+</style>
 <body class="header_sticky">
 	<div class="boxed">
 
@@ -24,24 +32,24 @@
 											<input type="text" name="email" class="subscribe-email" placeholder="Your E-Mail">
 											<button type="submit"><img src="images/icons/right-2.png" alt=""></button>
 										</div>
-									</form><!-- /.subscribe-form -->
+									</form>
 									<div class="checkbox">
 										<input type="checkbox" id="popup-not-show" name="category">
 										<label for="popup-not-show">Don't show this popup again</label>
 									</div>
-								</div><!-- /.form-popup -->
-							</div><!-- /.popup-text -->
+								</div>
+							</div>
 							<div class="popup-image">
 								<img src="images/banner_boxes/popup.png" alt="">
-							</div><!-- /.popup-text -->
-						</div><!-- /.popup -->
-					</div><!-- /.col-sm-8 -->
+							</div>
+						</div>
+					</div>
 					<div class="col-sm-2">
 						
 					</div>
-				</div><!-- /.row -->
-			</div><!-- /.container -->
-		</div><!-- /.popup-newsletter -->
+				</div>
+			</div>
+		</div>
 
 		<section id="header" class="header">
 			<div class="header-top">
@@ -322,9 +330,56 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
+					
 						<div class="flat-row-title">
+						<div class="row">
+						<div class="col-md-2">
 							<h3>Today Deals</h3>
 						</div>
+							<div class="col-md-10">
+						<div class="counter">									
+									<div class="counter-content">										
+										<div class="count-down">
+											<div class="square">
+												<div class="numb">
+													14
+												</div>
+												<div class="text">
+													DAYS
+												</div>
+											</div>
+											<div class="square">
+												<div class="numb">
+													09
+												</div>
+												<div class="text">
+													HOURS
+												</div>
+											</div>
+											<div class="square">
+												<div class="numb">
+													48
+												</div>
+												<div class="text">
+													MINS
+												</div>
+											</div>
+											<div class="square">
+												<div class="numb">
+													23
+												</div>
+												<div class="text">
+													SECS
+												</div>
+											</div>
+										</div><!-- /.count-down -->
+									</div><!-- /.counter-content -->
+								</div><!-- /.counter -->
+					</div>
+					</div>
+					</div>
+						
+
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
 				<div class="row ">
@@ -533,6 +588,8 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
+	
+	
 <script>
 		if($(window).width() > 768){
 

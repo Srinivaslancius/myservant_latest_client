@@ -38,7 +38,7 @@
 .owl-carousel .owl-video-frame{position:relative;z-index:1;}
 .owl-theme .owl-dots{text-align:center;padding-top:35px;}
 .owl-theme .owl-dots .owl-dot{display:inline-block;zoom:1;*display:inline;}
-.owl-theme .owl-dots .owl-dot span{width:13px;height:13px;border-radius:50%;border:2px solid #9b9b9b;margin:6px;display:block;position:relative;-webkit-backface-visibility:visible;-webkit-transition:opacity 200ms ease;-moz-transition:opacity 200ms ease;-ms-transition:opacity 200ms ease;-o-transition:opacity 200ms ease;}
+.owl-theme .owl-dots .owl-dot span{width:13px;height:13px;border-radius:50%;border:2px solid #9b9b9b;margin:6px;display: none;position:relative;-webkit-backface-visibility:visible;-webkit-transition:opacity 200ms ease;-moz-transition:opacity 200ms ease;-ms-transition:opacity 200ms ease;-o-transition:opacity 200ms ease;}
 .owl-theme .owl-dots .owl-dot.active span:after, .owl-theme .owl-dots .owl-dot:hover span:after{content:'';position:absolute;top:2px;left:2px;background-color:#f28b00;width:5px;height:5px;border-radius:50%;}
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{border-color:#f28b00;}
 .owl-theme .owl-controls .owl-nav div{text-align:center;display:inline-block;outline:0;width:43px;text-align:center;line-height:41px;height:43px;color:#fff;top:-54px;font-size:0;margin-top:-20px;border-radius:2px;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
