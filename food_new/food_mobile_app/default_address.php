@@ -8,12 +8,12 @@ $response = array();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    if(isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id']) && !empty($_REQUEST['address_id'])) {
+    if(isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id']) ) {
 
         //$result = getAllDataWhere('food_add_address','user_id',$_REQUEST['user_id']);
         $user_id = $_REQUEST['user_id'];
         $address_id = $_REQUEST['address_id'];
-        $sqlSel ="SELECT * FROM food_add_address WHERE user_id='$user_id' AND id='$address_id' ";
+        $sqlSel ="SELECT * FROM food_add_address WHERE user_id='$user_id' AND lkp_status_id = 1 ";
         $result = $conn->query($sqlSel);
         
         if ($result->num_rows > 0) {
