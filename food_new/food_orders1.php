@@ -93,7 +93,7 @@ $getAboutData = $getAllAboutData->fetch_assoc();
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#0">Food Orders</a></li>
+                <li>Food Orders</li>
             </ul>
             
         </div>

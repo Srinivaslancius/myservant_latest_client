@@ -27,6 +27,7 @@
     height: 5px;
     border-radius: 50%;
 }
+
 </style>
 <body class="header_sticky">
 	<div class="boxed">
@@ -158,193 +159,8 @@
 <!-- /.flat-banner-box -->
 <section class="flat-imagebox style2 background">
 			<div class="container">
-			<dl class="accordion">
-  <dt class="accordion__title">New Arrivals</dt>
-  <dd class="accordion__content">
-    <div class="row">
-					<?php for($i=0; $i<4; $i++) {?>
-						<div class="col-lg-3 col-sm-6">
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/1.png" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/1.png" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-						</div>
-						<?php } ?>
-					</div>
-  </dd>
-  <dt class="accordion__title">Featured</dt>
-  <dd class="accordion__content">
-    <div class="row">
-					<?php for($i=0; $i<4; $i++) {?>
-						<div class="col-lg-3 col-sm-6">
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/03.jpg" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/03.jpg" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-						</div>
-						<?php } ?>
-					</div>
-  </dd>
-  <dt class="accordion__title"> Top Selling</dt>
-  <dd class="accordion__content">
-   <div class="row">
-					<?php for($i=0; $i<4; $i++) {?>
-						<div class="col-lg-3 col-sm-6">
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/02.jpg" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/02.jpg" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-						</div>
-						<?php } ?>
-					</div>
-  </dd>
-</dl>
-			</div>
-			</section>
+
+			<dl class="accordion2">
 <?php 
 if($_SESSION['city_name'] == '') {
     $lkp_city_id = 1;
@@ -355,204 +171,375 @@ if($_SESSION['city_name'] == '') {
 $getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id";
 $tagNames = $conn->query($getTags);
 ?>
-<!--Tabbination Starts Here for New Arrivals-->
-<section class="flat-imagebox">
-				<div class="container">
-					<div class="row">
-						<div class="product-tab">
-							<ul class="tab-list">
-								<?php while($tagNames1 = $tagNames->fetch_assoc()) { 
-								?>
-								<li class="<?php if($tagNames1['id'] == 1) { echo 'active'; } ?>"><?php echo $tagNames1['tag_name']; ?></li>
-								<?php } ?>
-							</ul>
-						</div><!-- /.product-tab -->
-					</div><!-- /.row -->
-					<div class="box-product">
-						<div class="row">
-							<?php 
-								$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = 1 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC LIMIT 0,6";
-							$getProducts1 = $conn->query($getProducts);
-							while($productDetails = $getProducts1->fetch_assoc()) { 
-								$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
-								$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
-								$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
-								$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-								$allGetPrices = $conn->query($getPrices);
-								$getPrc = $allGetPrices->fetch_assoc();
-							?> 
-							<div class="col-lg-3 col-md-3 col-sm-6">
-								<div class="product-box">
-									<div class="imagebox">
-										<div class="box-image owl-carousel-1">
-											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
-											</a>
-<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
-											</a>
-											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
-											</a>
-											
-										</div><!-- /.box-image -->
-										<div class="box-content">
-											<div class="cat-name">
-												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $categoryName['category_name']; ?></a>
-											</div>
-											<div class="product-name">
-												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
-											</div>
-											<div class="price">
-												<span class="sale"><?php echo 'Rs : ' . $getPrc['selling_price']; ?></span>
+
+<?php while($tagNames1 = $tagNames->fetch_assoc()) { ?>
+								
+  <dt class="accordion__title2"><?php echo $tagNames1['tag_name']; ?></dt>
+  <dd class="accordion__content2">
+    <div class="row">
+						<?php 
+						$tag_id =  $tagNames1['id'];
+						$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = '$tag_id' AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC LIMIT 0,6";
+						$getProducts1 = $conn->query($getProducts);
+						while($productDetails = $getProducts1->fetch_assoc()) { 
+							$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
+							$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
+							$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
+							$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+							$allGetPrices = $conn->query($getPrices);
+							$getPrc = $allGetPrices->fetch_assoc();
+						?> 
+						<div class="col-lg-3 col-sm-6">
+							<div class="product-box">
+								<div class="imagebox">
+									<span class="item-new">NEW</span>																		
+											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
+
+									<div class="box-content">
+										<div class="cat-name">
+											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
+										</div>
+									
+										<div class="price">
+											<span class="sale"><?php echo 'Rs : ' . $getPrc['selling_price']; ?></span>
 												<span class="regular"><?php echo 'Rs : ' . $getPrc['mrp_price']; ?></span>
-											</div>
-										</div><!-- /.box-content -->
-										<div class="box-bottom">
-											<div class="btn-add-cart">
-												<a href="#" title="">
-													<img src="images/icons/add-cart.png" alt="">Add to Cart
-												</a>
-											</div>
-											<div class="compare-wishlist">
-												<a href="#" class="compare" title="">
-													<img src="images/icons/compare.png" alt="">Compare
-												</a>
-												<a href="#" class="wishlist" title="">
-													<img src="images/icons/wishlist.png" alt="">Wishlist
-												</a>
-											</div>
-										</div><!-- /.box-bottom -->
-									</div><!-- /.imagebox -->
+										</div>
+									</div>
+									<div class="box-bottom">
+										<div class="btn-add-cart">
+											<a href="#" title="">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
+											</a>
+										</div>
+										
+									</div>
 								</div>
-							</div><!-- /.col-xl-2 col-md-4 col-sm-6 -->
-							<?php } ?>
-						</div><!-- /.row -->
-						<div class="row">
-							<?php 
-								$getProducts2 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = 2 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC LIMIT 0,6";
-							$getProducts3 = $conn->query($getProducts2);
-							while($productDetails1 = $getProducts3->fetch_assoc()) { 
-								$getProductName1 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails1['id']);
-								$getProductImage1 = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails1['id']);
-								$categoryName1 = getIndividualDetails('grocery_category','id',$productDetails1['grocery_category_id']);
-								$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails1['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-								$allGetPrices1 = $conn->query($getPrices1);
-								$getPrc1 = $allGetPrices1->fetch_assoc();
-							?>
-							<div class="col-xl-2 col-md-4 col-sm-6">
-								<div class="product-box">
-									<div class="imagebox">
-										<div class="box-image owl-carousel-1">
-											<a href="single_product.php?product_id=<?php echo $productDetails1['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage1['image']; ?>" alt="">
-											</a>
-											<a href="single_product.php?product_id=<?php echo $productDetails1['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage1['image']; ?>" alt="">
-											</a>
-											<a href="single_product.php?product_id=<?php echo $productDetails1['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage1['image']; ?>" alt="">
-											</a>
-										</div><!-- /.box-image -->
-										<div class="box-content">
-											<div class="cat-name">
-												<a href="single_product.php?product_id=<?php echo $productDetails1['id']; ?>" title=""><?php echo $categoryName1['category_name']; ?></a>
-											</div>
-											<div class="product-name">
-												<a href="single_product.php?product_id=<?php echo $productDetails1['id']; ?>" title=""><?php echo $getProductName1['product_name']; ?></a>
-											</div>
-											<div class="price">
-												<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
-												<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
-											</div>
-										</div><!-- /.box-content -->
-										<div class="box-bottom">
-											<div class="btn-add-cart">
-												<a href="#" title="">
-													<img src="images/icons/add-cart.png" alt="">Add to Cart
-												</a>
-											</div>
-											<div class="compare-wishlist">
-												<a href="#" class="compare" title="">
-													<img src="images/icons/compare.png" alt="">Compare
-												</a>
-												<a href="#" class="wishlist" title="">
-													<img src="images/icons/wishlist.png" alt="">Wishlist
-												</a>
-											</div>
-										</div><!-- /.box-bottom -->
-									</div><!-- /.imagebox -->
-								</div>
-							</div><!-- /.col-xl-2 col-md-4 col-sm-6 -->
-							<?php } ?>
-						</div><!-- /.row -->
-						<div class="row">
-							<?php 
-								$getProducts4 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = 3 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC LIMIT 0,6";
-							$getProducts5 = $conn->query($getProducts4);
-							while($productDetails2 = $getProducts5->fetch_assoc()) { 
-								$getProductName2 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails2['id']);
-								$getProductImage2 = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails2['id']);
-								$categoryName2 = getIndividualDetails('grocery_category','id',$productDetails2['grocery_category_id']);
-								$getPrices2 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails2['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-								$allGetPrices2 = $conn->query($getPrices2);
-								$getPrc2 = $allGetPrices2->fetch_assoc();
-							?>
-							<div class="col-xl-2 col-md-4 col-sm-6">
-								<div class="product-box">
-									<div class="imagebox">
-										<div class="box-image owl-carousel-1">
-											<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
-											</a>
-											<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
-											</a>
-											<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
-											</a>
-										</div><!-- /.box-image -->
-										<div class="box-content">
-											<div class="cat-name">
-												<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title=""><?php echo $categoryName2['category_name']; ?></a>
-											</div>
-											<div class="product-name">
-												<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title=""><?php echo $getProductName2['product_name']; ?></a>
-											</div>
-											<div class="price">
-												<span class="sale"><?php echo 'Rs : ' . $getPrc2['selling_price']; ?></span>
-												<span class="regular"><?php echo 'Rs : ' . $getPrc2['mrp_price']; ?></span>
-											</div>
-										</div><!-- /.box-content -->
-										<div class="box-bottom">
-											<div class="btn-add-cart">
-												<a href="#" title="">
-													<img src="images/icons/add-cart.png" alt="">Add to Cart
-												</a>
-											</div>
-											<div class="compare-wishlist">
-												<a href="#" class="compare" title="">
-													<img src="images/icons/compare.png" alt="">Compare
-												</a>
-												<a href="#" class="wishlist" title="">
-													<img src="images/icons/wishlist.png" alt="">Wishlist
-												</a>
-											</div>
-										</div><!-- /.box-bottom -->
-									</div><!-- /.imagebox -->
-								</div>
-							</div><!-- /.col-xl-2 col-md-4 col-sm-6 -->
-							<?php } ?>
-						</div><!-- /.row -->
-					</div><!-- /.box-product -->
-				</div><!-- /.container -->
-			</section><!-- /.flat-imagebox -->
-                   <!--Tabbination for New Arrivals Ends Here-->
+							</div>								
+						</div>
+						<?php } ?>
+					</div>
+  </dd>
+  <?php } ?>
+</dl>
+			</div>
+			</section>
+
 
 <?php 
 $getCategoriesNames = "SELECT * FROM grocery_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_category_id FROM grocery_sub_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id LIMIT 0,5";
 $getCategoriesNames1 = $conn->query($getCategoriesNames);
 ?>
+
+	<section class="flat-imagebox style2 background">
+			<div class="container">
+			<dl class="accordion1">
+			<dt class="accordion__title1">New Arrivals</dt>
+			  <dd class="accordion__content1">
+			   <div class="row">
+									<div class="col-md-3 col-sm-6">
+									
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										
+									</div><!-- /.col-md-3 col-sm-6 -->
+									<div class="col-md-6">
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:342px;height:435px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Bread&bakery </a>
+													</div>
+													
+													<div class="price">
+														<span class="sale">₹1,999.00</span>
+														<span class="regular">₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<center><div class="btn-add-cart" style="width:60%">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+													</div></center>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-3 col-sm-6">
+										
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										
+									</div><!-- /.col-md-3 col-sm-6 -->
+								</div><!-- /.row -->
+  </dd>
+  <dt class="accordion__title1">Featured</dt>
+  <dd class="accordion__content1">
+    <div class="row">
+									<div class="col-md-3 col-sm-6">
+									<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+									<div class="col-md-6">
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:342px;height:435px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Bread&bakery </a>
+													</div>
+													
+													<div class="price">
+														<span class="sale">₹1,999.00</span>
+														<span class="regular">₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<center><div class="btn-add-cart" style="width:60%">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+													</div></center>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-3 col-sm-6">
+										<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+								</div><!-- /.row -->
+  </dd>
+  <dt class="accordion__title1"> Top Selling</dt>
+  <dd class="accordion__content1">
+   <div class="row">
+									<div class="col-md-3 col-sm-6">
+									<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+									<div class="col-md-6">
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:342px;height:435px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Bread&bakery </a>
+													</div>
+													
+													<div class="price">
+														<span class="sale">₹1,999.00</span>
+														<span class="regular">₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<center><div class="btn-add-cart" style="width:60%">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+													</div></center>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-3 col-sm-6">
+										<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/b.jpg" alt="" style="width:87px;height:177px">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<!--<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>-->
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="btn-add-cart">
+														<a href="#" title="">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+													
+												</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+								</div><!-- /.row -->
+				</dd>
+				</dl>
+			</div>
+			</section>
+			
+			
+			
+			
 <!--Tabbination for Most popular product starts here -->
 <section class="flat-imagebox style2 background">
 				<div class="container">
@@ -835,12 +822,278 @@ $getCategoriesNames1 = $conn->query($getCategoriesNames);
 					</div><!-- /.row -->
 				</div><!-- /.container -->
 			</section><!-- /.flat-imagebox -->
-                         <section class="flat-imagebox style3">
+			<script type="text/javascript" src="javascript/jquery.min.js"></script>
+			<?php 
+		if($_SESSION['city_name'] == '') {
+            $lkp_city_id = 1;
+        } else {
+            $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
+			$lkp_city_id = $getCities1['id'];
+        }
+		$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND deal_start_date != '0000-00-00' AND deal_end_date != '0000-00-00' AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)";
+		$productDetails = $conn->query($getProducts); 
+		if($productDetails->num_rows > 0) {
+		?>
+            <section class="flat-imagebox style3">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="owl-carousel-2">
-						<?php for($i=0; $i<2; $i++) {?>
+						<?php 
+							while($productDetails1 = $productDetails->fetch_assoc()) { 
+							$getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails1['id']);
+							$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails1['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+						 	$allGetPrices = $conn->query($getPrices);
+						 	$getPrc1 = $allGetPrices->fetch_assoc();
+						 	$deal_start_date = $productDetails1['deal_start_date'];
+						 	$deal_end_date = date_create($productDetails1['deal_end_date']);
+						 	$getSetFormat = date_format($deal_end_date,"Y/m/d");
+						?>
+
+						<script type="text/javascript">
+						(function(factory) {
+						    "use strict";
+						    if (typeof define === "function" && define.amd) {
+						        define(["jquery"], factory);
+						    } else {
+						        factory(jQuery);
+						    }
+						})(function($) {
+							//alert();
+						    "use strict";
+						    var instances = [],
+						        matchers = [],
+						        defaultOptions = {
+						            precision: 100,
+						            elapse: true,
+						            defer: false
+						        };
+						    matchers.push(/^[0-9]*$/.source);
+						    matchers.push(/([0-9]{1,2}\/){2}[0-9]{4}( [0-9]{1,2}(:[0-9]{2}){2})?/.source);
+						    matchers.push(/[0-9]{4}([\/\-][0-9]{1,2}){2}( [0-9]{1,2}(:[0-9]{2}){2})?/.source);
+						    matchers = new RegExp(matchers.join("|"));
+
+						    function parseDateString(dateString) {
+						    	//alert(dateString);
+						        if (dateString instanceof Date) {
+						            return dateString;
+						        }
+						        if (String(dateString).match(matchers)) {
+						            if (String(dateString).match(/^[0-9]*$/)) {
+						                dateString = Number(dateString);
+						            }
+						            if (String(dateString).match(/\-/)) {
+						                dateString = String(dateString).replace(/\-/g, "/");
+						            }
+						            return new Date(dateString);
+						        } else {
+						            throw new Error("Couldn't cast `" + dateString + "` to a date object.");
+						        }
+						    }
+					    var DIRECTIVE_KEY_MAP = {
+					        Y: "years",
+					        m: "months",
+					        n: "daysToMonth",
+					        d: "daysToWeek",
+					        w: "weeks",
+					        W: "weeksToMonth",
+					        H: "hours",
+					        M: "minutes",
+					        S: "seconds",
+					        D: "totalDays",
+					        I: "totalHours",
+					        N: "totalMinutes",
+					        T: "totalSeconds"
+					    };
+
+					    function escapedRegExp(str) {
+					        var sanitize = str.toString().replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+					        return new RegExp(sanitize);
+					    }
+
+					    function strftime(offsetObject) {
+					        return function(format) {
+					            var directives = format.match(/%(-|!)?[A-Z]{1}(:[^;]+;)?/gi);
+					            if (directives) {
+					                for (var i = 0, len = directives.length; i < len; ++i) {
+					                    var directive = directives[i].match(/%(-|!)?([a-zA-Z]{1})(:[^;]+;)?/),
+					                        regexp = escapedRegExp(directive[0]),
+					                        modifier = directive[1] || "",
+					                        plural = directive[3] || "",
+					                        value = null;
+					                    directive = directive[2];
+					                    if (DIRECTIVE_KEY_MAP.hasOwnProperty(directive)) {
+					                        value = DIRECTIVE_KEY_MAP[directive];
+					                        value = Number(offsetObject[value]);
+					                    }
+					                    if (value !== null) {
+					                        if (modifier === "!") {
+					                            value = pluralize(plural, value);
+					                        }
+					                        if (modifier === "") {
+					                            if (value < 10) {
+					                                value = "0" + value.toString();
+					                            }
+					                        }
+					                        format = format.replace(regexp, value.toString());
+					                    }
+					                }
+					            }
+					            format = format.replace(/%%/, "%");
+					            return format;
+					        };
+					    }
+
+							    function pluralize(format, count) {
+							        var plural = "s",
+							            singular = "";
+							        if (format) {
+							            format = format.replace(/(:|;|\s)/gi, "").split(/\,/);
+							            if (format.length === 1) {
+							                plural = format[0];
+							            } else {
+							                singular = format[0];
+							                plural = format[1];
+							            }
+							        }
+							        if (Math.abs(count) > 1) {
+							            return plural;
+							        } else {
+							            return singular;
+							        }
+							    }
+							    var Countdown = function(el, finalDate, options) {
+							        this.el = el;
+							        this.$el = $(el);
+							        this.interval = null;
+							        this.offset = {};
+							        this.options = $.extend({}, defaultOptions);
+							        this.instanceNumber = instances.length;
+							        instances.push(this);
+							        this.$el.data("countdown-instance", this.instanceNumber);
+							        if (options) {
+							            if (typeof options === "function") {
+							                this.$el.on("update.countdown", options);
+							                this.$el.on("stoped.countdown", options);
+							                this.$el.on("finish.countdown", options);
+							            } else {
+							                this.options = $.extend({}, defaultOptions, options);
+							            }
+							        }
+							        this.setFinalDate('<?php echo $getSetFormat; ?>');
+							        //alert('<?php echo $getSetFormat; ?>');
+							        if (this.options.defer === false) {
+							            this.start();
+							        }
+							    };
+							    $.extend(Countdown.prototype, {
+							        start: function() {
+							            if (this.interval !== null) {
+							                clearInterval(this.interval);
+							            }
+							            var self = this;
+							            this.update();
+							            this.interval = setInterval(function() {
+							                self.update.call(self);
+							            }, this.options.precision);
+							        },
+							        stop: function() {
+							            clearInterval(this.interval);
+							            this.interval = null;
+							            this.dispatchEvent("stoped");
+							        },
+							        toggle: function() {
+							            if (this.interval) {
+							                this.stop();
+							            } else {
+							                this.start();
+							            }
+							        },
+							        pause: function() {
+							            this.stop();
+							        },
+							        resume: function() {
+							            this.start();
+							        },
+							        remove: function() {
+							            this.stop.call(this);
+							            instances[this.instanceNumber] = null;
+							            delete this.$el.data().countdownInstance;
+							        },
+							        setFinalDate: function(value) {
+							            this.finalDate = parseDateString(value);
+							        },
+							        update: function() {
+							            if (this.$el.closest("html").length === 0) {
+							                this.remove();
+							                return;
+							            }
+							            var hasEventsAttached = $._data(this.el, "events") !== undefined,
+							                now = new Date(),
+							                newTotalSecsLeft;
+							            newTotalSecsLeft = this.finalDate.getTime() - now.getTime();
+							            newTotalSecsLeft = Math.ceil(newTotalSecsLeft / 1e3);
+							            newTotalSecsLeft = !this.options.elapse && newTotalSecsLeft < 0 ? 0 : Math.abs(newTotalSecsLeft);
+							            if (this.totalSecsLeft === newTotalSecsLeft || !hasEventsAttached) {
+							                return;
+							            } else {
+							                this.totalSecsLeft = newTotalSecsLeft;
+							            }
+							            this.elapsed = now >= this.finalDate;
+							            this.offset = {
+							                seconds: this.totalSecsLeft % 60,
+							                minutes: Math.floor(this.totalSecsLeft / 60) % 60,
+							                hours: Math.floor(this.totalSecsLeft / 60 / 60) % 24,
+							                days: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7,
+							                daysToWeek: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7,
+							                daysToMonth: Math.floor(this.totalSecsLeft / 60 / 60 / 24 % 30.4368),
+							                weeks: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7),
+							                weeksToMonth: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7) % 4,
+							                months: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 30.4368),
+							                years: Math.abs(this.finalDate.getFullYear() - now.getFullYear()),
+							                totalDays: Math.floor(this.totalSecsLeft / 60 / 60 / 24),
+							                totalHours: Math.floor(this.totalSecsLeft / 60 / 60),
+							                totalMinutes: Math.floor(this.totalSecsLeft / 60),
+							                totalSeconds: this.totalSecsLeft
+							            };
+							            if (!this.options.elapse && this.totalSecsLeft === 0) {
+							                this.stop();
+							                this.dispatchEvent("finish");
+							            } else {
+							                this.dispatchEvent("update");
+							            }
+							        },
+							        dispatchEvent: function(eventName) {
+							            var event = $.Event(eventName + ".countdown");
+							            event.finalDate = this.finalDate;
+							            event.elapsed = this.elapsed;
+							            event.offset = $.extend({}, this.offset);
+							            event.strftime = strftime(this.offset);
+							            this.$el.trigger(event);
+							        }
+							    });
+							    $.fn.countdown = function() {
+							        var argumentsArray = Array.prototype.slice.call(arguments, 0);
+							        return this.each(function() {
+							            var instanceNumber = $(this).data("countdown-instance");
+							            if (instanceNumber !== undefined) {
+							                var instance = instances[instanceNumber],
+							                    method = argumentsArray[0];
+							                if (Countdown.prototype.hasOwnProperty(method)) {
+							                    instance[method].apply(instance, argumentsArray.slice(1));
+							                } else if (String(method).match(/^[$A-Z_][0-9A-Z_$]*$/i) === null) {
+							                    instance.setFinalDate.call(instance, method);
+							                    instance.start();
+							                } else {
+							                    $.error("Method %s does not exist on jQuery.countdown".replace(/\%s/gi, method));
+							                }
+							            } else {
+							                new Countdown(this, argumentsArray[0], argumentsArray[1]);
+							            }
+							        });
+							    };
+							});
+						</script>
 							<div class="box-counter">
 								<div class="counter">
 									<span class="special">Super Sale</span>
@@ -916,6 +1169,7 @@ $getCategoriesNames1 = $conn->query($getCategoriesNames);
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-imagebox style3 -->
+		<?php } ?>     
 			<div class="divider20"></div>
  	<section class="flat-imagebox style4">
 			<div class="container">
@@ -948,92 +1202,6 @@ $getCategoriesNames1 = $conn->query($getCategoriesNames);
 			</div><!-- /.container -->
 		</section><!-- /.flat-imagebox style4 -->
  		<div class="divider20"></div>
-
- 		<?php 
-		if($_SESSION['city_name'] == '') {
-            $lkp_city_id = 1;
-        } else {
-            $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
-			$lkp_city_id = $getCities1['id'];
-        }
-		$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND deal_start_date != '0000-00-00' AND deal_end_date != '0000-00-00' AND deal_start_time != '00:00:00' AND deal_end_time != '00:00:00' AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)";
-		$productDetails = $conn->query($getProducts); 
-		if($productDetails->num_rows > 0) {
-		?>
-		<section class="flat-imagebox">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="owl-carousel-2 style2">
-								<?php while($productDetails1 = $productDetails->fetch_assoc()) { 
-									$getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails1['id']);
-								$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails1['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-							 	$allGetPrices = $conn->query($getPrices);
-							 	$getPrc1 = $allGetPrices->fetch_assoc();
-							 	$deal_start_date = $productDetails1['deal_start_date'];
-							 	$deal_end_date = $productDetails1['deal_end_date'];
-								?>
-								<div class="box-counter style1">
-									<div class="counter">
-										<span class="special">Special Offer</span>
-										<div class="counter-content">
-											<p><?php echo $getProductNames['product_name']; ?></p>
-											<div id="timer">
-											  <div id="days"></div>
-											  <div id="hours"></div>
-											  <div id="minutes"></div>
-											  <div id="seconds"></div>
-											</div>
-										</div><!-- /.counter-content -->
-									</div><!-- /.counter -->
-									<div class="product-item">
-										<div class="imagebox style3 v1">
-											<div class="box-image save">
-												<a href="#" title="">
-													<img src="images/product/other/l06.jpg" alt="">
-												</a>
-												<span>Save $20.00</span>
-											</div><!-- /.box-image -->
-											<div class="box-content">
-												<div class="product-name">
-													<a href="#" title=""><?php echo $getProductNames['product_name']; ?></a>
-												</div>
-												<ul class="product-info">
-													<li><?php echo $productDetails1['product_description']; ?></li>
-												</ul>
-												<div class="price">
-													<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
-													<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
-												</div>
-											</div><!-- /.box-content -->
-											<div class="box-bottom">
-												<div class="btn-add-cart">
-													<a href="#" title="" onClick="show_cart()">
-														<img src="images/icons/add-cart.png" alt="">Add to Cart
-													</a>
-												</div>
-												<div class="compare-wishlist">
-													<a href="#" class="compare" title="">
-														<img src="images/icons/compare.png" alt="">Compare
-													</a>
-													<a href="#" class="wishlist" title="">
-														<img src="images/icons/wishlist.png" alt="">Wishlist
-													</a>
-												</div>
-											</div><!-- /.box-bottom -->
-										</div><!-- /.imagbox style3 -->
-									</div><!-- /.product-item -->
-									<div class="clearfix"></div>
-								</div><!-- /.box-counter -->
-								<?php } ?>
-							</div><!-- /.owl-carousel-2 -->
-						</div><!-- /.col-md-12 -->
-					</div><!-- /.row -->
-				</div><!-- /.container -->
-			</section><!-- /.flat-imagebox -->  
-			<?php } ?>     
-		
-
 
 <?php $getFreeShippingData = getIndividualDetails('grocery_content_pages','id',4);
 
@@ -1121,7 +1289,7 @@ $getReturnPolicydataData = getIndividualDetails('grocery_content_pages','id',7);
 	</div><!-- /.boxed -->
 
 		<!-- Javascript -->
-		<script type="text/javascript" src="javascript/jquery.min.js"></script>
+		
 		<script type="text/javascript" src="javascript/tether.min.js"></script>
 		<script type="text/javascript" src="javascript/bootstrap.min.js"></script>
 		<script type="text/javascript" src="javascript/waypoints.min.js"></script>
@@ -1135,101 +1303,60 @@ $getReturnPolicydataData = getIndividualDetails('grocery_content_pages','id',7);
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtRmXKclfDp20TvfQnpgXSDPjut14x5wk&region=GB"></script>
 	   	<script type="text/javascript" src="javascript/gmap3.min.js"></script>
 	   	<script type="text/javascript" src="javascript/waves.min.js"></script> 
-
+	   	
 
 		<script type="text/javascript" src="javascript/main.js"></script>
 <script>
 		if($(window).width() > 768){
 
 // Hide all but first tab content on larger viewports
-$('.accordion__content:not(:first)').hide();
+$('.accordion__content2:not(:first)').hide();
 
 // Activate first tab
-$('.accordion__title:first-child').addClass('active');
+$('.accordion__title2:first-child').addClass('active');
 
 } else {
   
 // Hide all content items on narrow viewports
-$('.accordion__content').hide();
+$('.accordion__content2').hide();
 };
 
 // Wrap a div around content to create a scrolling container which we're going to use on narrow viewports
-$( ".accordion__content" ).wrapInner( "<div class='overflow-scrolling'></div>" );
+$( ".accordion__content2" ).wrapInner( "<div class='overflow-scrolling'></div>" );
 
 // The clicking action
-$('.accordion__title').on('click', function() {
-$('.accordion__content').hide();
+$('.accordion__title2').on('click', function() {	
+$('.accordion__content2').hide();
 $(this).next().show().prev().addClass('active').siblings().removeClass('active');
 });
 
 
-		</script>
-		<script type="text/javascript">
-	function makeTimer() {
-
-		var endTime = new Date("21 January 2018 10:56:00");			
-		endTime = (Date.parse(endTime) / 1000);
-
-		var now = new Date();
-		now = (Date.parse(now) / 1000);
-
-		var timeLeft = endTime - now;
-
-		var days = Math.floor(timeLeft / 86400); 
-		var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
-		var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
-		var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
-
-		if (hours < "10") { hours = "0" + hours; }
-		if (minutes < "10") { minutes = "0" + minutes; }
-		if (seconds < "10") { seconds = "0" + seconds; }
-
-		$("#days").html(days + "<span>Days</span>");
-		$("#hours").html(hours + "<span>Hours</span>");
-		$("#minutes").html(minutes + "<span>Minutes</span>");
-		$("#seconds").html(seconds + "<span>Seconds</span>");		
-
-	}
-setInterval(function() { makeTimer(); }, 1000);
 </script>
 <script>
-function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+		if($(window).width() > 768){
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+// Hide all but first tab content on larger viewports
+$('.accordion__content1:not(:first)').hide();
+
+// Activate first tab
+$('.accordion__title1:first-child').addClass('active');
+
+} else {
+  
+// Hide all content items on narrow viewports
+$('.accordion__content1').hide();
+};
+
+// Wrap a div around content to create a scrolling container which we're going to use on narrow viewports
+$( ".accordion__content1" ).wrapInner( "<div class='overflow-scrolling'></div>" );
+
+// The clicking action
+$('.accordion__title1').on('click', function() {	
+$('.accordion__content1').hide();
+$(this).next().show().prev().addClass('active').siblings().removeClass('active');
+});
+
 </script>
-<style type="text/css">
-
-
-#days {
-  font-size: 100px;
-  color: #db4844;
-}
-#hours {
-  font-size: 100px;
-  color: #f07c22;
-}
-#minutes {
-  font-size: 100px;
-  color: #f6da74;
-}
-#seconds {
-  font-size: 50px;
-  color: #abcd58;
-}
-</style>
 
 </body>	
 </html>

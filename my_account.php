@@ -31,7 +31,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="terms&conditions.php" title="">My Account</a>
+								My Account
 								
 							</li>
 							
@@ -64,7 +64,7 @@
           <?php $getServiceOrders = getAllDataWhere('services_orders','user_id',$_SESSION['user_login_session_id']);
           $getServiceOrders1 = $getServiceOrders->num_rows; ?>
                                 <div class="col-md-4 col-sm-4">
-                                    <a href="Services/service_orders.php"><div class="box_home" id="one">
+                                    <a href="service_orders.php"><div class="box_home" id="one">
                                         
                                         <h3>Services Orders</h3>
                                         <p>
@@ -76,7 +76,7 @@
         <?php $getFoodOrders = getAllDataWhere('food_orders','user_id',$_SESSION['user_login_session_id']);
           $getFoodOrders1 = $getFoodOrders->num_rows; ?>
                                 <div class="col-sm-4">
-                                     <a href="food_new/food_orders1.php"> <div class="box_home" id="two">
+                                     <a href="food_orders.php"> <div class="box_home" id="two">
                                         
                                         <h3>Food Orders</h3>
                                         <p>

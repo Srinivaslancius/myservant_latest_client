@@ -70,7 +70,11 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="terms&conditions.php" title="">Order_details</a>
+								<a href="service_orders.php" title="">Service Orders</a>
+								<span><img src="images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-item">
+								Order_details
 								
 							</li>
 							

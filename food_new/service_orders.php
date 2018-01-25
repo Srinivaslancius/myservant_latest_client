@@ -10,7 +10,7 @@
     <!-- BASE CSS -->
     <link href="css/base.css" rel="stylesheet">
 
-		
+        
     
     <!-- SPECIFIC CSS -->
     <link href="layerslider/css/layerslider.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 .table>thead>tr>th {
     vertical-align: bottom;
     border-bottom:0px;
-	color:#fe6003;
+    color:#fe6003;
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 8px;
@@ -45,8 +45,11 @@
 }
 
 .button2 {
-	background-color:#fe6003;
+    background-color:#fe6003;
  padding: 5px 12px;
+}
+.table>thead>tr>th,.table>thead>tr>td{
+    width:20%;
 } 
 </style>
 </head>
@@ -55,30 +58,42 @@
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
 <![endif]-->
 
-	
+    <div id="preloader">
+        <div class="sk-spinner sk-spinner-wave" id="status">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div><!-- End Preload -->
 
     <!-- Header ================================================== -->
     <header>
-	  <?php include_once './header.php';?>
+      <?php include_once './header.php';?>
         </header>
     <!-- End Header =============================================== -->
-<?php $getAllAboutData = getAllDataWhere('food_content_pages','id',6);
-          $getAboutData = $getAllAboutData->fetch_assoc();
+<?php 
+if($_SESSION['user_login_session_id'] == '') {
+  header ("Location: logout.php");
+}
+$getAllAboutData = getAllDataWhere('food_content_pages','id',6);
+$getAboutData = $getAllAboutData->fetch_assoc();
 ?>
 <!-- SubHeader =============================================== -->
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
-    	<div id="sub_content">
-    	 <h1>Service Orders</h1>
+        <div id="sub_content">
+         <h1>Service Orders</h1>
          <p></p>
         </div><!-- End sub_content -->
-	</div><!-- End subheader -->
+    </div><!-- End subheader -->
 </section><!-- End section -->
     <div id="position">
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#0">Service Orders</a></li>
+                <li>Service Orders</li>
             </ul>
             
         </div>
@@ -86,52 +101,58 @@
 
 <!-- Content ================================================== -->
 <div class="container margin_60_35">
-	<div class="row">
+    <div class="row">
     
     <div class="col-md-3 col-sm-3" id="sidebar">
     <div class="theiaStickySidebar">
         <div class="box_style_1" id="faq_box">
-			<?php include_once 'dashboard_strip.php';?>
-		</div><!-- End box_style_1 -->
+            <?php include_once 'dashboard_strip.php';?>
+        </div><!-- End box_style_1 -->
         </div><!-- End theiaStickySidebar -->
      </div><!-- End col-md-3 -->
         
         <div class="col-md-9 col-sm-9">
         
-       	 
+         
          <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="nomargin_top">Service Orders</h3>
+                      <h3 class="nomargin_top">Services Orders</h3>
                     </div>
                       <div class="panel-body">
-                     <div class="table-responsive">	
-				<?php for($i=0; $i<4; $i++) {?>					 
-        			<table class="table" style="border:1px solid #ddd;width:100%">
-					
-            		<thead>
-            		  <tr>
-            			<th>ORDER PLACED</th>
-            			<th>Order Price</th>
-            			<th>SHIP TO</th>
-            			<th>ORDER ID</th>
-						<th>ACTION</th>
-            		  </tr>
-            		</thead>
-            		<tbody>
-            		  <tr>
-            			<td>2018-01-02 11:11:15	</td>
-            			<td>Rs.264</td>
-            			<td>some one</td>
-            			<td>MYSER-FOODkej354</td>
-						<td><a href="order_details1.php"><button class="button1">View Details</button></a></td>
-            		  </tr>
-            		  
-            		</tbody>
-					
-        	     </table>
-				 <?php } ?>
-        	  </div>
+                     <div class="table-responsive"> 
+                    <?php $uid=$_SESSION['user_login_session_id'];
+                    $getOrders = "SELECT * from services_orders WHERE user_id = '$uid' GROUP BY order_id ORDER BY id DESC"; 
+                    $getOrders1 = $conn->query($getOrders);
+                    if($getOrders1->num_rows > 0) { 
+                    while($orderData = $getOrders1->fetch_assoc()) { ?>              
+                    <table class="table" style="border:1px solid #ddd;width:100%">
+                    
+                    <thead>
+                      <tr>
+                        <th>ITEM PLACED</th>
+                        <th>ORDER PRICE</th>
+                        <th>SHIP TO</th>
+                        <th>ORDER ID</th>
+                        <th>ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><?php echo $orderData['created_at']; ?></td>
+                        <td>Rs.<?php echo $orderData['order_total']; ?></td>
+                        <td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
+                        <td><?php echo $orderData['order_id']; ?></td>
+                        <td><a href="view_service_order_details.php?order_id=<?php echo $orderData['id']; ?>"><button class="button1">View Details</button></a></td>
+                      </tr>
+                      
+                    </tbody>
+                    
+                </table>
+                <?php } } else { ?>
+                     <h3 style="text-align:center;color:#fe6003;">No Orders Found</h3>
+                <?php } ?>
+              </div>
                       </div>
                   </div>
                   
@@ -146,18 +167,18 @@
 <div class="high_light">
        <?php include_once 'view_restaurants.php'; ?>
       </div>
-	  
-	  <!-- Footer ================================================== -->
-	<footer>
+      
+      <!-- Footer ================================================== -->
+    <footer>
          <?php include_once 'footer.php'; ?>
-		 </footer>
+         </footer>
 <!-- End Footer =============================================== -->
 
 <div class="layer"></div><!-- Mobile menu overlay mask -->
 
 <!-- Login modal -->   
 
-	<!-- End Search Menu -->
+    <!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
 <script src="js/jquery-2.2.4.min.js"></script>
