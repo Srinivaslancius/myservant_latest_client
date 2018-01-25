@@ -18,8 +18,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     //Chedck the condioton for emptty or not        
                     $lists = array();
                     $lists["id"] = $getAddressDetails["id"];
-                    $lists["user_id"] = $getAddressDetails["user_id"];                   
-                    $lists["city_details"] = $getAddressDetails["city"] . ',' . $getAddressDetails["flat_no"] .',' . $getAddressDetails["landmark"] .',' . $getAddressDetails["street"] .', ' . $getAddressDetails["area"].',' . $getAddressDetails["mark_as"];
+                    $lists["user_id"] = $getAddressDetails["user_id"];     
+                    $lists["name"] = $getAddressDetails["name"];              
+                    $lists["address_details"] = $getAddressDetails["city"] . ',' . $getAddressDetails["state"] .',' . $getAddressDetails["landmark"] .',' . $getAddressDetails["pincode"] .', ' . $getAddressDetails["address"].',' . $getAddressDetails["location"];
+                    $lists["status"] = $getAddressDetails["lkp_status_id"];
                     
                     array_push($response["lists"], $lists);      
                 }
