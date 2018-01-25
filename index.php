@@ -309,9 +309,9 @@ $tagNames = $conn->query($getTags);
 									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
 									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
 									$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
-									$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-									$allGetPrices = $conn->query($getPrices);
-									$getPrc = $allGetPrices->fetch_assoc();
+									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									$allGetPrices1 = $conn->query($getPrices1);
+									$getPrc1 = $allGetPrices1->fetch_assoc();
 								?>
 							<div class="col-sm-6 col-lg-3">
 								<div class="product-box style4">
@@ -331,14 +331,22 @@ $tagNames = $conn->query($getTags);
 												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 											</div>
 											<div class="product_name">
-														<select class="s-w form-control" id="na1q_qty0" onchange="get_price(this.value,'na10');">
-                                                            <option value="6180">Combo Pack - Rs.2999.00 </option>
-                                                          </select>
-														</div>
+											<?php 
+											$prodid = $productDetails['id'];
+									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									 		$allGetPrices = $conn->query($getPrices);
+							 				?>
+												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control">
+												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
+			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+			                                    <?php } ?>								  
+			                                    </select>
+											</div>
+										
 											<div class="price">
-												<span class="sale"><?php echo 'Rs : ' . $getPrc['selling_price']; ?></span>
-												<?php if($getPrc['offer_type'] == 1) { ?>
-													<span class="regular"><?php echo 'Rs : ' . $getPrc['mrp_price']; ?></span>
+												<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
+												<?php if($getPrc1['offer_type'] == 1) { ?>
+													<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
 												<?php } ?>
 											</div>
 										</div><!-- /.box-content -->
@@ -396,9 +404,9 @@ $getSubCat = $conn->query($getsubCats);
 							$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
 							$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
 							$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
-							$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-							$allGetPrices = $conn->query($getPrices);
-							$getPrc = $allGetPrices->fetch_assoc();
+							$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+							$allGetPrices1 = $conn->query($getPrices1);
+							$getPrc1 = $allGetPrices1->fetch_assoc();
 						?>
 						<div class="col-lg-3 col-sm-6">
 							<div class="product-box">
@@ -411,15 +419,22 @@ $getSubCat = $conn->query($getsubCats);
 										<div class="cat-name">
 											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
-									<div class="product_name">
-														<select class="s-w form-control" id="na1q_qty0" onchange="get_price(this.value,'na10');">
-                                                            <option value="6180">Combo Pack - Rs.2999.00 </option>
-                                                          </select>
-														</div>
+										<div class="product_name">
+											<?php 
+											$prodid = $productDetails['id'];
+									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									 		$allGetPrices = $conn->query($getPrices);
+							 				?>
+											<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control">
+											<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
+		                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+		                                    <?php } ?>								  
+		                                    </select>
+										</div>
 										<div class="price">
-											<span class="sale"><?php echo 'Rs : ' . $getPrc['selling_price']; ?></span>
-											<?php if($getPrc['offer_type'] == 1) { ?>
-												<span class="regular"><?php echo 'Rs : ' . $getPrc['mrp_price']; ?></span>
+											<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
+											<?php if($getPrc1['offer_type'] == 1) { ?>
+												<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
 											<?php } ?>
 										</div>
 									</div>
@@ -667,6 +682,21 @@ $getSubCat = $conn->query($getsubCats);
 		});
 
 
+		</script>
+		<script type="text/javascript">
+			function get_price(product_id) {
+				$.ajax({
+				  type:'post',
+				  url:'get_price.php',
+				  data:{
+				     product_id:product_id,       
+				  },
+				  success:function(data) {
+				    //alert(data);
+				    $('.price').html(data);
+				  }
+				});
+			}
 		</script>
 </body>	
 </html>
