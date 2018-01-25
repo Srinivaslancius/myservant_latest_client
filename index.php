@@ -315,7 +315,8 @@ $getSubCat = $conn->query($getsubCats);
 	</div>
 </section>
 
-
+<?php echo $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND (now() BETWEEN deal_start_date AND deal_end_date) AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)";
+$getTodayDeals1 = $conn->query($getTodayDeals); ?>
 		<section class="flat-imagebox style1">
 			<div class="container">
 				<div class="row">
@@ -327,7 +328,9 @@ $getSubCat = $conn->query($getsubCats);
 				</div><!-- /.row -->
 				<div class="row ">
 					<div class="col-md-12 owl-carousel-10">
-                                            <?php for($i=0; $i<10; $i++) {?>
+                       <?php while($todayDeals = $getTodayDeals1->fetch_assoc()) {
+                   		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$todayDeals['id']);
+                   		?>
 						<div class="owl-carousel-item">
                                                     
 							<div class="product-box style1">
@@ -339,7 +342,7 @@ $getSubCat = $conn->query($getsubCats);
 									</div><!-- /.box-image -->
 									<div class="box-content">
 										<div class="cat-name">
-											<a href="#" title="">Laptops</a>
+											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
 										<div class="product-name">
 											<a href="#" title="">Apple iPad Mini<br />G2356</a>
@@ -373,7 +376,7 @@ $getSubCat = $conn->query($getsubCats);
 							</div><!-- /.product-box style1 -->
 							
 						</div><!-- /.owl-carousel-item -->
-                                            <?php } ?>
+                      <?php } ?>
 					</div>
 				</div><!-- /.row -->
 			</div><!-- /.container -->
