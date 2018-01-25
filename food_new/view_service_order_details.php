@@ -108,8 +108,8 @@ h3,h5{
                     </div>
                       <div class="panel-body">
                      <div class="table-responsive">	
-								 <?php 
-        $id = $_GET['id'];
+		<?php 
+    $id = $_GET['id'];
     $getOrdersData1 = getIndividualDetails('services_orders','id',$id);
     $ordersCount1 = getAllDataWhere('services_orders','order_id',$getOrdersData1['order_id']);
     $ordersCount2 = $ordersCount1->num_rows;
@@ -150,33 +150,34 @@ h3,h5{
       <p><?php echo $getOrdersData1['mobile'] ?></p>
       <p><?php echo $getOrdersData1['address'] ?></p>
       <p><?php echo $getPincodes['pincode'] ?></td>
-		  </tr>
-      <?php $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
-    $getOrdersData3 = $conn->query($getOrders1); ?>
-		  <tr>
-			<td colspan="2"><h5>Service Name</h5></td>
-			<td colspan="2"><h5>Cusine Type</h5></td>
-			<td><h5>Item Weight</h5></td>
-			<td><h5>Quantity</h5></td>
-			<td><h5>Price</h5></td>
-			<td></td>
+        <td></td>
+      <td></td>
       <td></td>
 		  </tr>
-      <?php while($getOrdersData2 = $getOrdersData3->fetch_assoc()) { 
-        $getCategories = getIndividualDetails('food_category','id',$getOrdersData2['category_id']);
-        $getProducts = getIndividualDetails('food_products','id',$getOrdersData2['product_id']);
-        $getItemWeights = getIndividualDetails('food_product_weights','id',$getOrdersData2['item_weight_type_id']);
-      ?>
+      
+		  <tr>
+			<td colspan="2"><h5>SERVICE NAME</h5></td>
+			<td colspan="2"><h5>ORDER PRICE</h5></td>
+			<td><h5>QUANTITY</h5></td>
+			<td><h5>SELECTED DATE</h5></td>
+			<td><h5>SELECTED TIME</h5></td>
+			<td></td>
+      <td></td>
+      <td></td>
+
+		  </tr>
+
 		   <tr>
-			<td><p><?php echo $getServiceNamesData['group_service_name'] ?></p></td>
-      <td><p><?php echo $getOrdersData1['order_price'] ?></p></td>
+			<td colspan="2"><p><?php echo $getServiceNamesData['group_service_name'] ?></p></td>
+      <td colspan="2"><p><?php echo $getOrdersData1['order_price'] ?></p></td>
       <td><p><?php echo $getOrdersData1['service_quantity'] ?></p></td>
       <td><p><?php echo $getOrdersData1['service_selected_date'] ?></p></td>
       <td><p><?php echo $getOrdersData1['service_selected_time'] ?></p></td>
 	     <td></td>
       <td></td>
+      <td></td>
 		  </tr>
-      <?php  } ?>
+      
 		   <tr>
       <td></td>
       <td></td>
@@ -185,10 +186,9 @@ h3,h5{
       <td><p>Subtotal:</p>
       <p>Tax:</p>
       <p style="color:#fe6003;">Grand Total:</p></td>
-      <td><p style="color:#fe6003;">Rs. <?php echo $sub_total ?></p>
+      <td><p style="color:#fe6003;">Rs. <?php echo $sub_total ?>
       <p style="color:#fe6003;">Rs. <?php echo $service_tax ?>(<?php echo $getSiteSettingsData['service_tax'] ?>%)</p>
-      
-        <p style="color:#fe6003;">Rs. <?php echo $order_price ?></p>
+      <p style="color:#fe6003;">Rs. <?php echo $order_price ?></p>
       </tr>
 		</tbody>
 					
