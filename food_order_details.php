@@ -144,43 +144,69 @@ if($getOrdersData1['delivery_charges'] == '0') {
 			<p>Payment Method: <?php echo $getpaymentTypes['status']; ?></p>
 			<p>Order Type: <?php echo $order_type; ?></p>
 			<p>Order Status: <?php echo $orderStatus['order_status']; ?></p>
-			<p>Payment Status: <?php echo $getOrdersData1['service_provider_note'];?></p></td>
+			<p>Payment Status: <?php echo $paymentStatus['payment_status']; ?></p>
 			<td colspan="2"></td>
 			<td colspan="2">
 			<h3>Shipping Address</h3><br>
-			<p><?php echo $getOrdersData1['first_name'] ?></p>
-			<p><?php echo $getOrdersData1['email'] ?></p>
-			<p><?php echo $getOrdersData1['mobile'] ?></p>
-			<p><?php echo $getOrdersData1['address'] ?></p>
-			<p><?php echo $getPincodes['pincode'] ?></td>
+			<p><?php echo $getOrdersData1['first_name']; ?></p>
+			<p><?php echo $getOrdersData1['email']; ?></p>
+			<p><?php echo $getOrdersData1['mobile']; ?></p>
+			<p><?php echo $getOrdersData1['address']; ?></p>
+			<p><?php echo $getOrdersData1['postal_code']; ?></p></td>
 		  </tr>
+		  <?php $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
+		$getOrdersData3 = $conn->query($getOrders1); ?>
 		  <tr>
-			<td><h5>SERVICE NAME</h5></td>
-			<td><h5>ORDER PRICE</h5></td>
-			<td><h5>QUANTITY</h5></td>
-			<td><h5>SELECTED DATE</h5></td>
-			<td><h5>SELECTED TIME</h5></td>
-		  </tr>
-		   <tr>
-			<td><p><?php echo $getServiceNamesData['group_service_name'] ?></p></td>
-			<td><p><?php echo $getOrdersData1['order_price'] ?></p></td>
-			<td><p><?php echo $getOrdersData1['service_quantity'] ?></p></td>
-			<td><p><?php echo $getOrdersData1['service_selected_date'] ?></p></td>
-			<td><p><?php echo $getOrdersData1['service_selected_time'] ?></p></td>
-		  </tr>
-		   <tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><p>Subtotal:</p>
-			<p>Tax:</p>
-			<p style="color:#fe6003;">Grand Total:</p></td>
-			<td><p style="color:#fe6003;">Rs. <?php echo $sub_total ?></p>
-			<p style="color:#fe6003;">Rs. <?php echo $service_tax ?>(<?php echo $getSiteSettingsData['service_tax'] ?>%)</p>
+			<td colspan="2">PRODUCT NAME</td>
+	        <td colspan="2">CATEGORY NAME</td>
+	        <td>ITEM WEIGHT</td>
+			<td>QUANTITY</td>
+			<td>PRICE</td>
 			
-				<p style="color:#fe6003;">Rs. <?php echo $order_price ?></p>
 		  </tr>
+		  <?php while($getOrdersData2 = $getOrdersData3->fetch_assoc()) { 
+      	$getCategories = getIndividualDetails('food_category','id',$getOrdersData2['category_id']);
+      	$getProducts = getIndividualDetails('food_products','id',$getOrdersData2['product_id']);
+      	$getItemWeights = getIndividualDetails('food_product_weights','id',$getOrdersData2['item_weight_type_id']);
+      ?>
+		   <tr>
+			<td  colspan="2"><p><?php echo $getProducts['product_name'] ?></p></td>
+			<td  colspan="2"><?php echo  $getCategories['category_name']?></td>
+	        <td><?php echo $getItemWeights['weight_type'] ?></td>
+			<td><?php echo $getOrdersData2['item_quantity'] ?></td>
+			<td><?php echo $getOrdersData2['item_price'] ?></td>
+			
+		  </tr>
+		  <?php  } ?>
+		    <tr style="background-color:#f2f2f2">
+        <td colspan="5"></td>
+		<td>
+		<p>Subtotal:</p>
+		<p>Tax:</p>
+		<?php if($getOrdersData1['delivery_charges'] != '0') { ?>
+		<p>Delivery Charges:</p>
+		<?php } ?>
+		<?php if($getAddontotalCount > 0) { ?>
+		<p>Ingredients Price:</p>
+		<?php } ?>
+		<?php if($getOrdersData1['coupen_code'] != '') { ?>
+		<p>Discount:</p>
+		<?php } ?>
+		<p style="color:#f26226">Grand Total:</p>
+		</td>
+		<td style="color:#f26226"><p>Rs. <?php echo $getOrdersData1['sub_total']?></p>
+		<p>Rs. <?php echo $service_tax.'('.$getSiteSettingsData['service_tax'].'%)' ?></p>
+		<?php if($getOrdersData1['delivery_charges'] != '0') { ?>
+		<p>Rs. <?php echo $delivery_charges?></p>
+		<?php } ?>
+		<?php if($getAddontotalCount > 0) { ?>
+		<p>Rs. <?php echo $getAdstotal?></p>
+		<?php } ?>
+		<?php if($getOrdersData1['coupen_code'] != '') { ?>
+		<p>Rs. <?php echo $getOrdersData1['discout_money']?>(<span style="color:green">Coupon Applied.</span>)</p>
+		<?php } ?>
+		<p>Rs. <?php echo $getOrdersData1['order_total']?></p></td>
+      </tr>
 		</tbody>
 					
         	</table>    
