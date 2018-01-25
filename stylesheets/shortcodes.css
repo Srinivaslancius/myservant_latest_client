@@ -1105,10 +1105,10 @@
 
 /* Counter */
 .counter {
-	width:33.333333%;
+	/* width:33.333333%; */
 	float:left;
 	position:relative;
-	padding:30px 15px 0 0;
+	/* padding:30px 15px 0 0; */
 }
 
 .counter span.special {
@@ -1127,7 +1127,7 @@
 }
 
 .counter .counter-content {
-	padding-top:132px;
+	/* padding-top:132px; */
 }
 
 .counter .counter-content p {
@@ -1378,13 +1378,13 @@
 
 /* Count Down */
 .count-down {
-	margin-top:58px;
+	margin-top: 10px;
 }
 
 .count-down .square {
 	display:inline-block;
 	width:68px;
-	margin-right:26px;
+	margin-right: 10px;
 	text-align:center;
 }
 
@@ -1393,12 +1393,12 @@
 }
 
 .count-down .square .numb {
-	width:68px;
-	height:68px;
-	line-height:68px;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
 	color: #2d2d2d;
 	text-align:center;
-	font-size:25px;
+	font-size: 20px;
 	font-family:'BloggerSans';
 	font-weight:500;
 	border:2px solid #e5e5e5;
@@ -1406,10 +1406,10 @@
 }
 
 .count-down .square .text {
-	margin-top:14px;
-	margin-left:-4px;
+	margin-top: 1px;
+	margin-left: -20px;
 	color:#f28b00;
-	font-size:20px;
+	font-size: 15px;
 	font-family:'BloggerSans';
 	font-weight:500;
 }
