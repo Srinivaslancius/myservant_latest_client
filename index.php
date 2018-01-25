@@ -332,8 +332,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 							<div class="col-md-10">
 						<div class="counter">									
 									<div class="counter-content">										
-										<div class="count-down">
-											
+										<div class="count-down">											
 											<div class="square">
 												<div class="numb">
 													09
@@ -376,8 +375,8 @@ if($getTodayDeals1->num_rows > 0) { ?>
                    		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
                    		?>
 						<div class="owl-carousel-item">
-                                                    
-							<div class="product-box style1">
+                        <input type="hidden" id="deal_date" value="<?php echo $todayDeals['deal_start_date'];?>">     
+						<div class="product-box style1">
 								<div class="imagebox style1">
 									<div class="box-image">
 										<a href="#" title="">
