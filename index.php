@@ -346,7 +346,195 @@
 				</div><!-- /.container -->
 			</section><!-- /.flat-imagebox -->
 
-			
+			<section class="flat-imagebox style2 background">
+			<div class="container">
+			<dl class="accordion1">
+  <dt class="accordion__title1">New Arrivals</dt>
+  <dd class="accordion__content1">
+    <div class="row">
+					<?php for($i=0; $i<4; $i++) {?>
+						<div class="col-lg-3 col-sm-6">
+							<div class="product-box">
+								<div class="imagebox">
+									<span class="item-new">NEW</span>																		
+											<a href="single_product.php" title="">
+												<img src="images/product/other/1.png" alt="">
+											</a>																													
+									<div class="box-content">
+										<div class="cat-name">
+											<a href="single_product.php" title="">Brue Instant</a>
+										</div>
+									
+										<div class="price">
+											<span class="sale"> ₹200.00</span>
+											<span class="regular"> ₹250.00</span>
+										</div>
+									</div>
+									<div class="box-bottom">
+										<div class="btn-add-cart">
+											<a href="#" title="">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
+											</a>
+										</div>
+										
+									</div>
+								</div>
+							</div>	
+							<div class="product-box">
+								<div class="imagebox">
+									<span class="item-new">NEW</span>																		
+											<a href="single_product.php" title="">
+												<img src="images/product/other/1.png" alt="">
+											</a>																													
+									<div class="box-content">
+										<div class="cat-name">
+											<a href="single_product.php" title="">Brue Instant</a>
+										</div>
+									
+										<div class="price">
+											<span class="sale"> ₹200.00</span>
+											<span class="regular"> ₹250.00</span>
+										</div>
+									</div>
+									<div class="box-bottom">
+										<div class="btn-add-cart">
+											<a href="#" title="">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
+											</a>
+										</div>
+										
+									</div>
+								</div>
+							</div>	
+						</div>
+						<?php } ?>
+					</div>
+  </dd>
+  <dt class="accordion__title1">Featured</dt>
+  <dd class="accordion__content1">
+    <div class="row">
+					<?php for($i=0; $i<4; $i++) {?>
+						<div class="col-lg-3 col-sm-6">
+							<div class="product-box">
+								<div class="imagebox">
+									<span class="item-new">NEW</span>																		
+											<a href="single_product.php" title="">
+												<img src="images/product/other/03.jpg" alt="">
+											</a>																													
+									<div class="box-content">
+										<div class="cat-name">
+											<a href="single_product.php" title="">Brue Instant</a>
+										</div>
+									
+										<div class="price">
+											<span class="sale"> ₹200.00</span>
+											<span class="regular"> ₹250.00</span>
+										</div>
+									</div>
+									<div class="box-bottom">
+										<div class="btn-add-cart">
+											<a href="#" title="">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
+											</a>
+										</div>
+										
+									</div>
+								</div>
+							</div>	
+							<div class="product-box">
+								<div class="imagebox">
+									<span class="item-new">NEW</span>																		
+											<a href="single_product.php" title="">
+												<img src="images/product/other/03.jpg" alt="">
+											</a>																													
+									<div class="box-content">
+										<div class="cat-name">
+											<a href="single_product.php" title="">Brue Instant</a>
+										</div>
+									
+										<div class="price">
+											<span class="sale"> ₹200.00</span>
+											<span class="regular"> ₹250.00</span>
+										</div>
+									</div>
+									<div class="box-bottom">
+										<div class="btn-add-cart">
+											<a href="#" title="">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
+											</a>
+										</div>
+										
+									</div>
+								</div>
+							</div>	
+						</div>
+						<?php } ?>
+					</div>
+  </dd>
+  <dt class="accordion__title1"> Top Selling</dt>
+  <dd class="accordion__content1">
+   <div class="row">
+					<?php for($i=0; $i<4; $i++) {?>
+						<div class="col-lg-3 col-sm-6">
+							<div class="product-box">
+								<div class="imagebox">
+									<span class="item-new">NEW</span>																		
+											<a href="single_product.php" title="">
+												<img src="images/product/other/02.jpg" alt="">
+											</a>																													
+									<div class="box-content">
+										<div class="cat-name">
+											<a href="single_product.php" title="">Brue Instant</a>
+										</div>
+									
+										<div class="price">
+											<span class="sale"> ₹200.00</span>
+											<span class="regular"> ₹250.00</span>
+										</div>
+									</div>
+									<div class="box-bottom">
+										<div class="btn-add-cart">
+											<a href="#" title="">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
+											</a>
+										</div>
+										
+									</div>
+								</div>
+							</div>	
+							<div class="product-box">
+								<div class="imagebox">
+									<span class="item-new">NEW</span>																		
+											<a href="single_product.php" title="">
+												<img src="images/product/other/02.jpg" alt="">
+											</a>																													
+									<div class="box-content">
+										<div class="cat-name">
+											<a href="single_product.php" title="">Brue Instant</a>
+										</div>
+									
+										<div class="price">
+											<span class="sale"> ₹200.00</span>
+											<span class="regular"> ₹250.00</span>
+										</div>
+									</div>
+									<div class="box-bottom">
+										<div class="btn-add-cart">
+											<a href="#" title="">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
+											</a>
+										</div>
+										
+									</div>
+								</div>
+							</div>	
+						</div>
+						<?php } ?>
+					</div>
+  </dd>
+</dl>
+			</div>
+			</section>
 
 
 		<section class="flat-imagebox style1">
@@ -543,6 +731,31 @@
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
+<script>
+		if($(window).width() > 768){
 
+		// Hide all but first tab content on larger viewports
+		$('.accordion__content1:not(:first)').hide();
+
+		// Activate first tab
+		$('.accordion__title1:first-child').addClass('active');
+
+		} else {
+		  
+		// Hide all content items on narrow viewports
+		$('.accordion__content1').hide();
+		};
+
+		// Wrap a div around content to create a scrolling container which we're going to use on narrow viewports
+		$( ".accordion__content1" ).wrapInner( "<div class='overflow-scrolling'></div>" );
+
+		// The clicking action
+		$('.accordion__title1').on('click', function() {
+		$('.accordion__content1').hide();
+		$(this).next().show().prev().addClass('active').siblings().removeClass('active');
+		});
+
+
+		</script>
 </body>	
 </html>

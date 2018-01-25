@@ -181,7 +181,7 @@
 
 .flat-row-title h3 {
 	color: #FE6003;
-	padding:15px 0;
+	padding: 30px 0;
 	font-weight:500;
 }
 
@@ -896,7 +896,7 @@
 /* Flat Imagebox Style2
 -------------------------------------------------------------- */
 .flat-imagebox.style2 {
-	padding:58px 0;
+	padding: 10px 0;
 }
 
 .flat-imagebox.style2.v1 {
