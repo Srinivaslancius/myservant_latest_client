@@ -8,7 +8,7 @@ $page_name = $parts[count($parts) - 1];
 ?>
 <ul id="cat_nav">
        <li><a href="my_account.php" class="<?php if($page_name == 'my_account.php') { echo "active"; } ?>"><i class="icon-user"></i> My Account</a></li>
-       <li><a href="service_orders.php" class="<?php if($page_name == 'service_orders.php' || $page_name == 'view_service_order_details.php') { echo "active"; } ?>"><i class="icon-cart"></i> Services Orders</a></li>
+       <li><a href="service_orders.php" class="<?php if($page_name == 'service_orders.php' || $page_name == 'view_service_order_details.php' || $page_name == 'service_category_orders.php') { echo "active"; } ?>"><i class="icon-cart"></i> Services Orders</a></li>
        <li><a href="food_orders.php" class="<?php if($page_name == 'food_orders.php' || $page_name == 'food_order_details.php' ) { echo "active"; } ?>"><i class="icon-food-1"></i> Food Orders</a></li>
        <li><a href="grocery_orders.php" class="<?php if($page_name == 'grocery_orders.php') { echo "active"; } ?>"><i class="icon-grocery-store"></i> Grocery Orders</a></li>
        <li><a href="grocery_wishlist.php" class="<?php if($page_name == 'grocery_wishlist.php') { echo "active"; } ?>"><i class="icon-heart-empty"></i> Wishlist Grocery</a></li>

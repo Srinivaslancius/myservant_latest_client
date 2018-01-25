@@ -100,7 +100,11 @@
                     </div>
                       <div class="panel-body">
                      <div class="table-responsive">	
-								 
+					<?php $order_id = $_GET['order_id'];
+		          $getOrders = "SELECT * FROM food_orders WHERE order_id='$order_id'";
+		          $groceryOrdersData = $conn->query($getOrders);
+		          $i=1;
+		        ?>	 
         			<table class="table" style="border:1px solid #ddd;width:100%">
             		<tbody>
 		  <tr>

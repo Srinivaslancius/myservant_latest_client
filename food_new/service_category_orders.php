@@ -73,13 +73,7 @@
       <?php include_once './header.php';?>
         </header>
     <!-- End Header =============================================== -->
-<?php 
-if($_SESSION['user_login_session_id'] == '') {
-  header ("Location: logout.php");
-}
-$getAllAboutData = getAllDataWhere('food_content_pages','id',6);
-$getAboutData = $getAllAboutData->fetch_assoc();
-?>
+
 <!-- SubHeader =============================================== -->
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
@@ -113,54 +107,60 @@ $getAboutData = $getAllAboutData->fetch_assoc();
         
         <div class="col-md-9 col-sm-9">
         
-         
          <div class="panel-group">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h3 class="nomargin_top">Services Orders</h3>
-                    </div>
-                      <div class="panel-body">
-                     <div class="table-responsive"> 
-                    <?php $uid=$_SESSION['user_login_session_id'];
-                    $getOrders = "SELECT * from services_orders WHERE user_id = '$uid' GROUP BY order_id ORDER BY id DESC"; 
-                    $getOrders1 = $conn->query($getOrders);
-                    if($getOrders1->num_rows > 0) { 
-                    while($orderData = $getOrders1->fetch_assoc()) { ?>              
-                    <table class="table" style="border:1px solid #ddd;width:100%">
-                    
-                    <thead>
-                      <tr>
-                        <th>ITEM PLACED</th>
-                        <th>ORDER PRICE</th>
-                        <th>SHIP TO</th>
-                        <th>ORDER ID</th>
-                        <th>ACTION</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><?php echo $orderData['created_at']; ?></td>
-                        <td>Rs.<?php echo $orderData['order_total']; ?></td>
-                        <td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
-                        <td><?php echo $orderData['order_id']; ?></td>
-                        <td><a href="service_category_orders.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a></td>
-                      </tr>
-                      
-                    </tbody>
-                    
-                </table>
-                <?php } } else { ?>
-                     <h3 style="text-align:center;color:#fe6003;">No Orders Found</h3>
-                <?php } ?>
-              </div>
-                      </div>
-                  </div>
-                  
-                </div><!-- End panel-group -->
-                
-            
-        </div><!-- End col-md-9 -->
-    </div><!-- End row -->
+            <?php 
+            $order_id = $_GET['order_id'];
+            $serviceOrders = "SELECT * FROM services_orders WHERE order_id = '$order_id' GROUP BY category_id ORDER BY id DESC"; 
+            $getServiceOrderData = $conn->query($serviceOrders);
+            $i=1;
+            while ($row = $getServiceOrderData->fetch_assoc()) { 
+            ?>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#<?php echo $row['category_id']; ?>" href="#accordion-<?php echo $row['category_id']; ?>" aria-expanded="true">
+                    <i class="zmdi zmdi-chevron-down"></i> <?php $getCatname = getIndividualDetails('services_category','id',$row['category_id']); ?><h3 class="margin-top"><?php echo $getCatname['category_name']; ?></h3>
+                </a>
+              </h4>
+            </div>
+            <div id="accordion-<?php echo $row['category_id']; ?>" class="panel-collapse collapse <?php if($i==1){ echo "in"; } ?>">
+               <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table" style="border:1px solid #ddd;width:100%">
+                          <thead>
+                              <tr>
+                                <th>ORDER SUB ID</th>
+                                <th>SERVICE NAME</th>
+                                <th>ORDER PRICE</th>
+                                <th>ORDER STATUS</th>
+                                <th>PAYMENT STATUS</th>
+                                <th>ACTION</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <?php $category_id = $row['category_id']; 
+                                $getServiceOrders1 = "SELECT * FROM services_orders WHERE order_id = '$order_id' AND category_id = '$category_id' AND lkp_payment_status_id != 3 AND lkp_order_status_id != 3 ORDER BY id DESC";
+                                $getServiceOrders = $conn->query($getServiceOrders1);
+                                while ($row = $getServiceOrders->fetch_assoc()) { 
+                                    $getServicenamesData = getIndividualDetails('services_group_service_names','id',$row['service_id']); ?>
+                              <tr>
+                                <td><?php echo $row['order_sub_id'];?></td>
+                                <td><?php echo $getServicenamesData['group_service_name'];?></td>
+                                <td><?php echo $row['order_price'];?></td>
+                                <td><?php $orderStatus = getIndividualDetails('lkp_order_status','id',$row['lkp_order_status_id']); echo $orderStatus['order_status']; ?></td>
+                                <td><?php $orderPaymentStatus = getIndividualDetails('lkp_payment_status','id',$row['lkp_payment_status_id']); echo $orderPaymentStatus['payment_status']; ?></td>
+                                <td><a href="view_service_order_details.php?id=<?php echo $row['id']; ?>"><button class="button1">View Details</button></a></td>
+                              </tr>
+                              <?php } ?>
+                          </tbody>
+                        </table>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <?php $i++; } ?>
+    </div>
+    </div><!-- End panel-group -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
 

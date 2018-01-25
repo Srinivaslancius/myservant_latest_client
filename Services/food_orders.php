@@ -34,6 +34,7 @@
     vertical-align: bottom;
     border-bottom:0px;
 	color:#fe6003;
+	font-size:13px;
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 8px;
@@ -58,7 +59,9 @@
 	background-color:#fe6003;
  padding: 5px 12px;
 } 
-
+.table>thead>tr>th,.table>thead>tr>td{
+	width:20%;
+}
 </style>
 
 </head>
@@ -101,17 +104,12 @@
 					</div>
 				<?php }?>
     	</div>
-<div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
 		<div id="position">
 			<div class="container">
 				<ul>
 					<li><a href="index.php">Home</a>
 					</li>
-					<li>My Account</li>
+					<li>Food Orders</li>
 				</ul>
 			</div>
 		</div>
@@ -128,106 +126,47 @@
         
         <div class="col-md-9 col-sm-9">
         
-       	 
          <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="nomargin_top">My Dashboard</h3>
+                      <h3 class="nomargin_top">Food Orders</h3>
                     </div>
-                    <?php $getServiceOrders = getAllDataWhere('services_orders','user_id',$_SESSION['user_login_session_id']);
-                                        $getServiceOrders1 = $getServiceOrders->num_rows; ?>
-                      <div class="panel-body">
-                            <a href="service_orders.php">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="box_home" id="one">
-                                        
-                                        <h3>Services Orders</h3>
-                                        <p>
-                                            <?php echo $getServiceOrders1; ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <?php $getFoodOrders = getAllDataWhere('food_orders','user_id',$_SESSION['user_login_session_id']);
-                                  $getFoodOrders1 = $getFoodOrders->num_rows; ?>
-                            <a href="../food_new/food_orders1.php"> 
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="box_home" id="two">
-                                        
-                                        <h3>Food Orders</h3>
-                                        <p>
-                                            <?php echo $getFoodOrders1; ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <?php $getGroceryOrders = getAllDataWhere('grocery_orders','user_id',$_SESSION['user_login_session_id']);
-                                  $getGroceryOrders1 = $getGroceryOrders->num_rows; ?>
-                            <a href="grocery_orders1.php">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="box_home" id="three">
-                                        
-                                        <h3>Grocery Orders</h3>
-                                        <p>
-                                            <?php echo $getGroceryOrders1; ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="grocery_wishlist.php">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="box_home" id="four">
-                                        
-                                        <h3>My Wishlist</h3>
-                                       
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="my_address.php">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="box_home" id="five">
-                                        
-                                        <h3>My Addresses</h3>
-                                       
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="wallet.php">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="box_home" id="six">
-                                        
-                                        <h3>Wallet</h3>
-                                       
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="update_profile.php">
-                                <div class="col-md-4 col-sm-4">
-                                     <div class="box_home" id="seven">
-                                        
-                                        <h3>Update Profile</h3>
-                                       
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="box_home" id="eight">
-                                        
-                                        <h3>Reward Points</h3>
-                                       
-                                    </div>
-                                </div>
-                            </a>
-							<a href="change_password2.php">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="box_home" id="nine">
-                                        
-                                        <h3>Change Password</h3>
-                                       
-                                    </div>
-                                </div>
-                            </a>
+                    <div class="panel-body">
+                    <div class="table-responsive">	
+					<?php $uid=$_SESSION['user_login_session_id'];
+                    $getOrders = "SELECT * from food_orders WHERE user_id = '$uid' GROUP BY order_id ORDER BY id DESC"; 
+                    $getOrders1 = $conn->query($getOrders);
+                    if($getOrders1->num_rows > 0) { 
+                    while($orderData = $getOrders1->fetch_assoc()) { ?>	
+        			<table class="table" style="border:1px solid #ddd;width:100%">
+					
+            		<thead>
+            		  <tr>
+            			<th>ITEM PLACED</th>
+            			<th>ORDER PRICE</th>
+            			<th>SHIP TO</th>
+            			<th>ORDER ID</th>
+    					<th>ACTION</th>
+            		  </tr>
+            		</thead>
+            		<tbody>
+            		  <tr>
+            			<td><?php echo $orderData['created_at']; ?></td>
+            			<td>Rs.<?php echo $orderData['order_total']; ?></td>
+            			<td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
+            			<td><?php echo $orderData['order_id']; ?></td>
+						<td><a href="view_food_order_details.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a></td>
+            		  </tr>
+            		  </tr>
+            		  
+            		</tbody>
+					
+        	     </table>
+        	     <?php } } else { ?>
+                     <h3 style="text-align:center;color:#fe6003;">No Orders Found</h3>
+                <?php } ?>
+				
+        	  </div>
                       </div>
                   </div>
                   
@@ -277,7 +216,11 @@
 			});
 		});
 	</script>
-	
+	<script>
+    jQuery('#sidebar').theiaStickySidebar({
+      additionalMarginTop: 80
+    });
+</script>
 
 </body>
 
