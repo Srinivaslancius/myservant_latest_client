@@ -275,14 +275,25 @@
 			</div><!-- /.container -->
 		</section><!-- /.flat-banner-box -->
                 
+<?php 
+if($_SESSION['city_name'] == '') {
+    $lkp_city_id = 1;
+} else {
+    $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
+	$lkp_city_id = $getCities1['id'];
+}
+$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC LIMIT 0,4";
+$tagNames = $conn->query($getTags);
+?>
 
+<?php while($tagNames1 = $tagNames->fetch_assoc()) { ?>
 		<section class="flat-imagebox">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="product-tab style2">
 								<ul class="tab-list">
-									<li class="active">New Arrivails</li>
+									<li class="active"><?php echo $tagNames1['tag_name']; ?></li>
 									
 								</ul>
 							</div><!-- /.product-tab -->
@@ -290,32 +301,40 @@
 					</div><!-- /.row -->
 					<div class="box-product">
 						<div class="row">
-                                                    <?php for($m=0; $m<8; $m++) {?>
+                             <?php 
+                            	$tagId= $tagNames1['id'];
+								$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = '$tagId' AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC LIMIT 0,8";
+									$getProducts1 = $conn->query($getProducts);
+								while($productDetails = $getProducts1->fetch_assoc()) { 
+									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
+									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
+									$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
+									$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									$allGetPrices = $conn->query($getPrices);
+									$getPrc = $allGetPrices->fetch_assoc();
+								?>
 							<div class="col-sm-6 col-lg-3">
 								<div class="product-box style4">
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
-										<div class="box-image owl-carousel-1">
+										<div class="box-image">
 											<a href="#" title="">
-												<img src="images/product/other/01.jpg" alt="">
+												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 											</a>
-											<a href="#" title="">
-												<img src="images/product/other/01.jpg" alt="">
-											</a>
-											<a href="#" title="">
-												<img src="images/product/other/01.jpg" alt="">
-											</a>
+											
 										</div><!-- /.box-image -->
 										<div class="box-content">
 											<div class="cat-name">
-												<a href="#" title="">Laptops</a>
+												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $categoryName['category_name']; ?></a>
 											</div>
 											<div class="product-name">
-												<a href="#" title="">Apple iPad Mini<br />G2356</a>
+												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 											</div>
 											<div class="price">
-												<span class="sale">$1,250.00</span>
-												<span class="regular">$2,999.00</span>
+												<span class="sale"><?php echo 'Rs : ' . $getPrc['selling_price']; ?></span>
+												<?php if($getPrc['offer_type'] == 1) { ?>
+													<span class="regular"><?php echo 'Rs : ' . $getPrc['mrp_price']; ?></span>
+												<?php } ?>
 											</div>
 										</div><!-- /.box-content -->
 										<div class="box-bottom">
@@ -337,14 +356,14 @@
 								</div>	
 								
 							</div><!-- /.col-sm-6 col-lg-3 -->
-							
-                                                    <?php } ?>
+							<?php } ?>
 						</div><!-- /.row -->
 						
 					</div><!-- /.box-product -->
 					<div class="divider10"></div>
 				</div><!-- /.container -->
-			</section><!-- /.flat-imagebox -->
+		</section><!-- /.flat-imagebox -->
+<?php } ?>
 
 			<section class="flat-imagebox style2 background">
 			<div class="container">
