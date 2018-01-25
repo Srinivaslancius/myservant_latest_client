@@ -93,16 +93,46 @@
             			<th></th>
 						<th></th>
             		  </tr>
-            		</thead>           		
+            		</thead>
+            		<?php 
+
+					if(isset($_POST["submit"]) && $_POST["submit"]!="") {
+
+						//echo "<pre>"; print_r($_POST); die;
+
+						$user_id = $_SESSION['user_login_session_id'];
+						$wallet_id = $_SESSION['wallet_id'];
+						$credit_amnt = $_POST['amnt'];						
+						$description = "Money Added in Wallet";
+						$updated_date = date('Y-m-d H:i:s', time() + 24 * 60 * 60);
+
+            			$sqlInwallet = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('$wallet_id','$user_id','$credit_amnt','$description','2','$updated_date')";
+            			if($conn->query($sqlInwallet) === TRUE) {
+            				$last_id = $conn->insert_id;
+            				header("Location: PayUMoney_form_wallet.php?key=".$last_id."");
+            			}
+            		}
+            		$user_id = $_SESSION['user_login_session_id'];
+					$wallet_id = $_SESSION['wallet_id'];
+            		$getwalletAmount = "SELECT * FROM user_wallet WHERE user_id = '$user_id' AND wallet_id = '$wallet_id'";
+            		$getwalletAmount1 = $conn->query($getwalletAmount);
+            		$getwalletAmountDetails = $getwalletAmount1->fetch_assoc();
+            		if($getwalletAmountDetails['amount'] == '') {
+            			$amount = 0;
+            		} else {
+            			$amount = $getwalletAmountDetails['amount'];
+            		}
+            		?> 
+            		<form method="post">       		
             		<tbody>
             		  <tr>
             			<td><img src="images/dashboard/wallet.png"></td>
-            			<td><b>Rs :5/-</b><br>Your Wallet Balance</td>
+            			<td><b>Rs : <?php echo $amount; ?>/-</b><br>Your Wallet Balance</td>
             			<td colspan="2"><input type="text" name="amnt" placeholder="Enter amount to be added in your wallet" required></td>						
 						<td><button class="button1" type="submit" name="submit" value="submit">Add Money to Wallet</button></td>
             		  </tr>            		  
             		</tbody>
-            	
+            		</form>
 					
         	     </table>
 				  </div>
