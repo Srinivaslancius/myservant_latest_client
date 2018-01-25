@@ -81,7 +81,7 @@ h3,h5{
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="food_orders1.php">Food Orders</a></li>
+                <li><a href="service_orders.php">Service Orders</a></li>
                 <li>Order Details</li>
             </ul>
             
@@ -104,72 +104,61 @@ h3,h5{
          <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="nomargin_top">Food Orders</h3>
+                      <h3 class="nomargin_top">Service Orders</h3>
                     </div>
                       <div class="panel-body">
                      <div class="table-responsive">	
-								 <?php $order_id = $_GET['order_id'];
+								 <?php 
+        $id = $_GET['id'];
+    $getOrdersData1 = getIndividualDetails('services_orders','id',$id);
+    $ordersCount1 = getAllDataWhere('services_orders','order_id',$getOrdersData1['order_id']);
+    $ordersCount2 = $ordersCount1->num_rows;
+    $getServiceNamesData = getIndividualDetails('services_group_service_names','id',$getOrdersData1['service_id']);
+    $getPaymentMethodData = getIndividualDetails('lkp_payment_types','id',$getOrdersData1['payment_method']);
+    $getOrderStataus = getIndividualDetails('lkp_order_status','id',$getOrdersData1['lkp_order_status_id']);
+    $getSiteSettingsData = getIndividualDetails('services_site_settings','id',1);
+    $getPincodes = getIndividualDetails('lkp_pincodes','id',$getOrdersData1['postal_code']);
+    if($getOrdersData1['coupon_code'] == '') {
+      $discount_money = 0;
+    } else {
+      $discount_money = $getOrdersData1['discount_money']/$ordersCount2;
+    }
+    if($getOrdersData1['service_price_type_id'] == 1) {
+      $service_tax = 0;
+    } else {
+      $service_tax = $getOrdersData1['order_price']*$getOrdersData1['service_quantity']*$getSiteSettingsData['service_tax']/100;
+    }
+    $order_price = ($getOrdersData1['order_price']*$getOrdersData1['service_quantity'])+($service_tax-$discount_money);
+    $sub_total = $getOrdersData1['order_price']*$getOrdersData1['service_quantity'];
+    ?>
 
-$getOrders = "SELECT * FROM food_orders WHERE order_id='$order_id'";
-$getOrdersData = $conn->query($getOrders);
-$getOrdersData1 = $getOrdersData->fetch_assoc();
-
-$getSiteSettingsData = getIndividualDetails('food_site_settings','id',1);
-
-$getRestaurants = getIndividualDetails('food_vendors','id',$getOrdersData1['restaurant_id']);
-
-$getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$getOrdersData1['payment_method']);
-
-$orderStatus = getIndividualDetails('lkp_food_order_status','id',$getOrdersData1['lkp_order_status_id']);
-
-$paymentStatus = getIndividualDetails('lkp_payment_status','id',$getOrdersData1['lkp_payment_status_id']);
-
-$getAddOnsPrice = "SELECT * FROM food_order_ingredients WHERE order_id = '$order_id'";
-$getAddontotal = $conn->query($getAddOnsPrice);
-$getAddontotalCount = $getAddontotal->num_rows;
-$getAdstotal = 0;
-while($getAdTotal = $getAddontotal->fetch_assoc()) {
-    $getAdstotal += $getAdTotal['item_ingredient_price'];
-}
-
-$service_tax = $getOrdersData1['sub_total']*$getSiteSettingsData['service_tax']/100;
-
-if($getOrdersData1['delivery_charges'] == '0') {
-  $order_type = "Take Away";
-  $delivery_charges = 0;
-} else {
-  $order_type = "Delivery";
-  $delivery_charges = $getOrdersData1['delivery_charges'];
-}
-
- ?>
         			<table class="table" style="border:1px solid #ddd;width:100%">
             		<tbody>
 		  <tr>
 			<td colspan="2" style="padding-left:20px">
 			<h3>Order Information</h3>
-			<p>Restaurant Name: <?php echo $getRestaurants['restaurant_name']; ?></p>
-      <p>Payment Method: <?php echo $getpaymentTypes['status']; ?></p>
-      <p>Order Type: <?php echo $order_type; ?></p>
-      <p>Order Status: <?php echo $orderStatus['order_status']; ?></p>
-      <p>Payment Status: <?php echo $paymentStatus['payment_status']; ?></p></td>
+			<p>Order Sub Id: <?php echo $getOrdersData1['order_sub_id'];?></p>
+      <p>Order Date:: <?php echo $getOrdersData1['created_at'];?></p>
+      <p>Payment method: <?php echo $getPaymentMethodData['status'];?></p>
+      <p>Order Status: <?php echo $getOrderStataus['order_status'];?></p>
+      <p>Note: <?php echo $getOrdersData1['service_provider_note'];?></p></td>
 			<td colspan="2"></td>
 			<td colspan="2">
 			<h3>Shipping Address</h3>
-			<p><?php echo $getOrdersData1['first_name']; ?></p>
-      <p><?php echo $getOrdersData1['email']; ?></p>
-      <p><?php echo $getOrdersData1['mobile']; ?></p>
-      <p><?php echo $getOrdersData1['address']; ?></p>
-      <p><?php echo $getOrdersData1['postal_code']; ?></p></td>
+			<p><?php echo $getOrdersData1['first_name'] ?></p>
+      <p><?php echo $getOrdersData1['email'] ?></p>
+      <p><?php echo $getOrdersData1['mobile'] ?></p>
+      <p><?php echo $getOrdersData1['address'] ?></p>
+      <p><?php echo $getPincodes['pincode'] ?></td>
 		  </tr>
       <?php $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
     $getOrdersData3 = $conn->query($getOrders1); ?>
 		  <tr>
-			<td colspan="2"><h5>ITEM NAME</h5></td>
-			<td colspan="2"><h5>CUSINE TYPE</h5></td>
-			<td><h5>ITEM WEIGHT</h5></td>
-			<td><h5>QUANTITY</h5></td>
-			<td><h5>PRICE</h5></td>
+			<td colspan="2"><h5>Service Name</h5></td>
+			<td colspan="2"><h5>Cusine Type</h5></td>
+			<td><h5>Item Weight</h5></td>
+			<td><h5>Quantity</h5></td>
+			<td><h5>Price</h5></td>
 			<td></td>
       <td></td>
 		  </tr>
@@ -179,43 +168,27 @@ if($getOrdersData1['delivery_charges'] == '0') {
         $getItemWeights = getIndividualDetails('food_product_weights','id',$getOrdersData2['item_weight_type_id']);
       ?>
 		   <tr>
-			<td colspan="2"><p><?php echo $getProducts['product_name'] ?></p></td>
-			<td colspan="2"><p><?php echo  $getCategories['category_name']?></p></td>
-			<td><p><?php echo $getItemWeights['weight_type'] ?></p></td>
-			<td><p><?php echo $getOrdersData2['item_quantity'] ?></p></td>
-			<td><p><?php echo $getOrdersData2['item_price'] ?></p></td>
+			<td><p><?php echo $getServiceNamesData['group_service_name'] ?></p></td>
+      <td><p><?php echo $getOrdersData1['order_price'] ?></p></td>
+      <td><p><?php echo $getOrdersData1['service_quantity'] ?></p></td>
+      <td><p><?php echo $getOrdersData1['service_selected_date'] ?></p></td>
+      <td><p><?php echo $getOrdersData1['service_selected_time'] ?></p></td>
 	     <td></td>
       <td></td>
 		  </tr>
       <?php  } ?>
-		   <tr style="background-color:#f2f2f2">
-        <td colspan="5"></td>
-    <td>
-    <p>Subtotal:</p>
-    <p>Tax:</p>
-    <?php if($getOrdersData1['delivery_charges'] != '0') { ?>
-    <p>Delivery Charges:</p>
-    <?php } ?>
-    <?php if($getAddontotalCount > 0) { ?>
-    <p>Ingredients Price:</p>
-    <?php } ?>
-    <?php if($getOrdersData1['coupen_code'] != '') { ?>
-    <p>Discount:</p>
-    <?php } ?>
-    <p style="color:#f26226">Grand Total:</p>
-    </td>
-    <td style="color:#f26226"><p>Rs. <?php echo $getOrdersData1['sub_total']?></p>
-    <p>Rs. <?php echo $service_tax.'('.$getSiteSettingsData['service_tax'].'%)' ?></p>
-    <?php if($getOrdersData1['delivery_charges'] != '0') { ?>
-    <p>Rs. <?php echo $delivery_charges?></p>
-    <?php } ?>
-    <?php if($getAddontotalCount > 0) { ?>
-    <p>Rs. <?php echo $getAdstotal?></p>
-    <?php } ?>
-    <?php if($getOrdersData1['coupen_code'] != '') { ?>
-    <p>Rs. <?php echo $getOrdersData1['discout_money']?>(<span style="color:green">Coupon Applied.</span>)</p>
-    <?php } ?>
-    <p>Rs. <?php echo $getOrdersData1['order_total']?></p></td>
+		   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><p>Subtotal:</p>
+      <p>Tax:</p>
+      <p style="color:#fe6003;">Grand Total:</p></td>
+      <td><p style="color:#fe6003;">Rs. <?php echo $sub_total ?></p>
+      <p style="color:#fe6003;">Rs. <?php echo $service_tax ?>(<?php echo $getSiteSettingsData['service_tax'] ?>%)</p>
+      
+        <p style="color:#fe6003;">Rs. <?php echo $order_price ?></p>
       </tr>
 		</tbody>
 					

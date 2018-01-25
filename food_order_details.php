@@ -70,7 +70,11 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="terms&conditions.php" title="">Order_details</a>
+								<a href="food_orders.php" title="">Food Orders</a>
+								<span><img src="images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-item">
+								Order_details
 								
 							</li>
 							
@@ -158,10 +162,13 @@ if($getOrdersData1['delivery_charges'] == '0') {
 		$getOrdersData3 = $conn->query($getOrders1); ?>
 		  <tr>
 			<td colspan="2">PRODUCT NAME</td>
-	        <td colspan="2">CATEGORY NAME</td>
+	        <td colspan="2">CUSINE TYPE</td>
 	        <td>ITEM WEIGHT</td>
-			<td>QUANTITY</td>
-			<td>PRICE</td>
+	        <td>QUANTITY</td>
+	        <td>PRICE</td>
+	        
+			
+			
 			
 		  </tr>
 		  <?php while($getOrdersData2 = $getOrdersData3->fetch_assoc()) { 
