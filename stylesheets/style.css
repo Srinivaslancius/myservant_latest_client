@@ -3588,6 +3588,11 @@ i, cite, em, var, address, dfn {
 	.box-cart .inner-box .dropdown-box{
 		right:0px !important;
 	}
+	.imagebox .box-image {
+    margin-bottom: 5px;
+    line-height: 209px;
+    height: auto;
+}
 }
 @media screen and (max-width: 732px) and (min-width: 408px){
 	.city-triangle{
