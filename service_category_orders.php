@@ -1,4 +1,13 @@
 <?php include_once 'meta.php';?>
+<style>
+.collapse.show {
+    display: none;
+}
+
+.collapse {
+    display: block;
+}
+</style>
 <body class="header_sticky">
   <div class="boxed">
 
@@ -53,8 +62,88 @@
         </aside>   
      </div><!-- End col-md-3 -->
         
-        <div<div class="col-md-9 col-sm-9">
+       <div class="col-md-9 col-sm-9">
         
+         <!--<div class="panel-group">
+		 <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#payment" href="#collapseOne"><h3 class="margin-top">Service Orders</h3></a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                    
+                       <div class="panel-body">
+                     <div class="table-responsive">	
+							 
+        			<table class="table" style="border:1px solid #ddd;width:100%">
+					
+            		<thead>
+            		  <tr>
+            			<th>ORDER PLACED</th>
+            			<th>Order Price</th>
+            			<th>SHIP TO</th>
+            			<th>ORDER ID</th>
+						<th>ACTION</th>
+            		  </tr>
+            		</thead>
+            		<tbody>
+            		  <tr>
+            			<td>2018-01-02 11:11:15	</td>
+            			<td>Rs.264</td>
+            			<td>some one</td>
+            			<td>MYSER-FOODkej354</td>
+						<td><a href="order_details1.php"><button class="button1">View Details</button></a></td>
+            		  </tr>
+            		  
+            		</tbody>
+					
+        	     </table>
+        	  </div>
+                      </div>
+
+                      </div>
+                    </div>
+					<div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#payment" href="#collapseTwo"><h3 class="margin-top">Service Orders</h3></a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                    
+                       <div class="panel-body">
+                     <div class="table-responsive">	
+							 
+        			<table class="table" style="border:1px solid #ddd;width:100%">
+					
+            		<thead>
+            		  <tr>
+            			<th>ORDER PLACED</th>
+            			<th>Order Price</th>
+            			<th>SHIP TO</th>
+            			<th>ORDER ID</th>
+						<th>ACTION</th>
+            		  </tr>
+            		</thead>
+            		<tbody>
+            		  <tr>
+            			<td>2018-01-02 11:11:15	</td>
+            			<td>Rs.264</td>
+            			<td>some one</td>
+            			<td>MYSER-FOODkej354</td>
+						<td><a href="order_details1.php"><button class="button1">View Details</button></a></td>
+            		  </tr>
+            		  
+            		</tbody>
+					
+        	     </table>
+        	  </div>
+                      </div>
+
+                      </div>
+                    </div>
+                  </div>-->
          <div class="panel-group">
             <?php 
             $order_id = $_GET['order_id'];

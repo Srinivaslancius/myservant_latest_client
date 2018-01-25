@@ -166,17 +166,15 @@
 			<td><p><?php echo $getOrdersData1['service_selected_time'] ?></p></td>
 			<td><p></p></td>
 		  </tr>
-		   <tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+		   <tr style="background-color:#f2f2f2">
+			<td colspan="4"></td>
+			
 			<td><p>Subtotal:</p>
 			<p>Tax:</p>
 			<p style="color:#fe6003;">Grand Total:</p></td>
 			<td><p style="color:#fe6003;">Rs. <?php echo $sub_total ?>
 			<p style="color:#fe6003;">Rs. <?php echo $service_tax ?>(<?php echo $getSiteSettingsData['service_tax'] ?>%)</p>
-			<p style="color:#fe6003;">Rs. <?php echo $order_price ?></p>
+			<p style="color:#fe6003;">Rs. <?php echo $order_price ?></p></td>
 		  </tr>
 		</tbody>
 					
