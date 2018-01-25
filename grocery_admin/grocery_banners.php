@@ -43,8 +43,8 @@
           $type = $_POST['type'];
           $banner_image_type = $_POST['banner_image_type'];
           if($banner_image_type == 0) {
-                $max_percentage = 0;
-                $min_percentage = 0;
+                $max_percentage = '';
+                $min_percentage = '';
             } else {
                 $max_percentage = $_POST['max_percentage'];
                 $min_percentage = $_POST['min_percentage'];
