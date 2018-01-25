@@ -28,7 +28,25 @@
             $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
             $lkp_city_id = $getCities1['id'];
         }
-		if($product_id = $_GET['cat_id']) {
+        if($_GET['id']) {
+        	$id = $_GET['id'];
+        	$getBanners = getIndividualDetails('grocery_banners','id',$_GET['id']);
+        	if($getBanners['type'] == 1) {
+        		$getCategories = getIndividualDetails('grocery_category','id',$getBanners['category_id']);
+				$getName = $getCategories['category_name'];
+        		$getProducts = "SELECT * from grocery_products WHERE grocery_category_id = '".$getBanners['category_id']."' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' AND (offer_percentage BETWEEN '".$getBanners['min_percentage']."' AND '".$getBanners['max_percentage']."'))";
+				$getProducts1 = $conn->query($getProducts);
+				$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_category_id = '".$getBanners['category_id']."' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' AND (offer_percentage BETWEEN '".$getBanners['min_percentage']."' AND '".$getBanners['max_percentage']."'))";
+				$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
+        	} else {
+        		$getSubCategories = getIndividualDetails('grocery_sub_category','id',$getBanners['sub_category_id']);
+				$getName = $getSubCategories['sub_category_name'];
+				$getProducts = "SELECT * from grocery_products WHERE grocery_sub_category_id = '".$getBanners['sub_category_id']."' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' AND (offer_percentage BETWEEN '".$getBanners['min_percentage']."' AND '".$getBanners['max_percentage']."'))";
+				$getProducts1 = $conn->query($getProducts);
+				$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_sub_category_id = '".$getBanners['sub_category_id']."' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' AND (offer_percentage BETWEEN '".$getBanners['min_percentage']."' AND '".$getBanners['max_percentage']."'))";
+				$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
+        	}
+		} elseif($product_id = $_GET['cat_id']) {
 			$getProducts = getIndividualDetails('grocery_category','id',$product_id);
 			$getName = $getProducts['category_name'];
 			$getProducts = "SELECT * from grocery_products WHERE grocery_category_id = $product_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')";
@@ -43,6 +61,7 @@
 			$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_sub_category_id = $product_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')";
 			$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
 		}
+		//echo $getProducts;
 		?>
 		<section class="flat-breadcrumb">
 			<div class="container">
@@ -62,6 +81,7 @@
 			</div><!-- /.container -->
 		</section><!-- /.flat-breadcrumb -->
 
+		<?php if($getProducts1->num_rows > 0) { ?>
 		<main id="shop">
 			<div class="container">
 				<div class="row">
@@ -219,6 +239,9 @@
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</main><!-- /#shop -->
+		<?php } else { ?>
+		<h1 style="text-align:center;margin:15px;color: #FE6003;">No Items Found.</h1>
+		<?php } ?>
 		<footer>
 			<?php include_once 'footer.php';?>
 		</footer><!-- /footer -->
