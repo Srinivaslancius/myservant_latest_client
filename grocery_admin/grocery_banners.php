@@ -34,7 +34,7 @@
           echo "fail";
         }else  {
           //If success
-          $link = $_POST['link'];
+          //$link = $_POST['link'];
           $title = $_POST['title'];
           $lkp_city_id = $_POST['lkp_city_id'];
           $category_id = $_POST['category_id'];
@@ -60,7 +60,7 @@
             $imageFileType = pathinfo($target_file1,PATHINFO_EXTENSION);
             if (move_uploaded_file($_FILES["web_image"]["tmp_name"], $target_file)) {
                 move_uploaded_file($_FILES["app_image"]["tmp_name"], $target_file1);
-                $sql = "INSERT INTO grocery_banners (`link`,`title`,`lkp_city_id`,`category_id`,`sub_category_id`,`product_id`,`type`,`web_image`,`app_image`,`banner_image_type`,`min_percentage`,`max_percentage`) VALUES ('$link','$title', '$lkp_city_id','$category_id','$sub_category_id', '$product_id','$type','$web_image', '$app_image', '$banner_image_type', '$min_percentage', '$max_percentage')"; 
+                $sql = "INSERT INTO grocery_banners (`title`,`lkp_city_id`,`category_id`,`sub_category_id`,`product_id`,`type`,`web_image`,`app_image`,`banner_image_type`,`min_percentage`,`max_percentage`) VALUES ('$title', '$lkp_city_id','$category_id','$sub_category_id', '$product_id','$type','$web_image', '$app_image', '$banner_image_type', '$min_percentage', '$max_percentage')"; 
                 if($conn->query($sql) === TRUE){
                    echo "<script type='text/javascript'>window.location='grocery_banners.php?msg=success'</script>";
                 } else {
@@ -93,12 +93,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Link</label>
                                 <div class="col-sm-6 col-md-4">
                                     <input type="url" name="link" class="form-control" id="form-control-3" placeholder="Enter link" required>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Title</label>
                                 <div class="col-sm-6 col-md-4">
