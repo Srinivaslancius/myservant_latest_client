@@ -185,7 +185,7 @@
                                     <th>Upload Images</th>
                                     <th>Status</th>
                                     <th>Action</th>
-                                    <!-- <th>Hot Deals</th> -->
+                                    <th>Hot Deals</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -211,13 +211,68 @@
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_products'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_products'>In Active</span>" ;} ?></td>
                                     <td> <a href="edit_products.php?product_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
 
-                                    <!-- <?php if($row['deal_start_date']!='0000-00-00 00:00:00' && $row['deal_start_time']!='0000-00-00 00:00:00' && $row['deal_end_date']!='0000-00-00 00:00:00' && $row['deal_end_time']!='0000-00-00 00:00:00') { ?>
-                                    <td><a href="edit_deal_dates.php?cid=<?php echo $row['id']; ?>" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i></a></td>
+                                    <?php if($row['deal_start_date']!='0000-00-00') { ?>
+                                    <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i></a></td>
                                     <?php } else { ?>
-                                    <td><a href="edit_deal_dates.php?cid=<?php echo $row['id']; ?>" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><i class="zmdi zmdi-close zmdi-hc-fw"></i></a></td>
-                                        <?php }?> -->
-                                   
-
+                                    <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><i class="zmdi zmdi-close zmdi-hc-fw"></i></a></td>
+                                        <?php } ?>
+                                    <?php
+                                    if(!empty($_POST['date']) && !empty($_POST['date']))  {
+                                        //echo "<pre>";print_r($_POST); exit;
+                                        $deal_start_date = $_POST['deal_start_date']; 
+                                        $deal_date = date('Y-m-d', strtotime($deal_start_date)); 
+                                        $dealDate="UPDATE grocery_products SET deal_start_date = '$deal_date' WHERE id = '".$row['id']."' ";
+                                        if($conn->query($dealDate) === TRUE) {
+                                        echo "<script type='text/javascript'>window.location='manage_products.php?msg=success'</script>"; 
+                                        }
+                                        exit();
+                                    }
+                                    ?>
+                                    <div class="col-lg-2 col-sm-4 col-xs-6 m-y-5">
+                                        <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content animated flipInX">
+                                                    <div class="modal-header bg-info">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">
+                                                                <i class="zmdi zmdi-close"></i>
+                                                            </span>
+                                                        </button>
+                                                        <h4 class="modal-title">Hot Deal Date</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
+                                                        <?php
+                                                        $todayDealDate = getIndividualDetails('grocery_products','id',$row['id']);
+                                                        if($row['deal_start_date']!='0000-00-00') {
+                                                        $deal_start_date1 = date('Y-m-d', strtotime($todayDealDate['deal_start_date']));
+                                                        } else {
+                                                        $deal_start_date1 = '';
+                                                        }
+                                                        ?>
+                                                       <div id="datetimepicker1" class="input-append date">
+                                                            <div class="form-group">
+                                                                <label for="form-control-5" class="col-sm-3 col-md-4 control-label">Deal Start Date</label>
+                                                                <div class="col-sm-6 col-md-5">
+                                                                    <input class="date-pick" data-format="yyyy-MM-dd" type="text" placeholder="Deal Start Date" name="deal_start_date" required="required" value="<?php echo $deal_start_date1; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
+                                                               <button type="submit" value="date" name="date" class="btn btn-primary">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" data-dismiss="modal" class="btn btn-info">Continue</button>
+                                                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
@@ -227,10 +282,11 @@
             </div>
             
         </div>
-        
-
     <?php include_once 'footer.php'; ?>
     <script src="js/dashboard-3.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
+    <script type="text/javascript">
+      $('input.date-pick').datepicker({minDate: 0, maxDate: "+2M"});
+    </script>
   </body>
 </html>

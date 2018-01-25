@@ -104,7 +104,7 @@ h3,h5{
          <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="nomargin_top">Food Orders</h3>
+                      <h3 class="nomargin_top">Grocery Orders</h3>
                     </div>
                       <div class="panel-body">
                      <div class="table-responsive">	

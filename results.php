@@ -31,7 +31,7 @@
         if($_GET['id']) {
         	$id = $_GET['id'];
         	$getBanners = getIndividualDetails('grocery_banners','id',$_GET['id']);
-        	if($getBanners['type'] == 1) {
+        	if($getBanners['type'] == 1 && $getBanners['min_percentage']!=0 && $getBanners['max_percentage']!=0) {
         		$getCategories = getIndividualDetails('grocery_category','id',$getBanners['category_id']);
 				$getName = $getCategories['category_name'];
         		$getProducts = "SELECT * from grocery_products WHERE grocery_category_id = '".$getBanners['category_id']."' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' AND (offer_percentage BETWEEN '".$getBanners['min_percentage']."' AND '".$getBanners['max_percentage']."'))";
