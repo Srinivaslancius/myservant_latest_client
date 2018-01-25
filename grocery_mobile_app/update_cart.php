@@ -35,7 +35,7 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['product_id']) && !empty($_RE
 
 	} else {
 
-		$delCart = "DELETE FROM food_cart WHERE id='$cart_id' ";
+		$delCart = "DELETE FROM grocery_cart WHERE user_id='$user_id' AND product_id='$product_id' AND product_weight_type='$product_weight_type' ";
 		$conn->query($delCart);
 
 		$response["success"] = 0;

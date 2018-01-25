@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     $lists = array();
                     $lists["id"] = $getAddressDetails["id"];
                     $lists["user_id"] = $getAddressDetails["user_id"];                   
-                    $lists["address_details"] = $getAddressDetails["city"] . ',' . $getAddressDetails["state"] .',' . $getAddressDetails["landmark"] .',' . $getAddressDetails["pincode"] .', ' . $getAddressDetails["address"].',' . $getAddressDetails["location"];
+                    $lists["address_details"] = $getAddressDetails["location"] . ',' . $getAddressDetails["city"] ;
                     
                     array_push($response["lists"], $lists);      
                 }
