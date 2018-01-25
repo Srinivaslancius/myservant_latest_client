@@ -854,7 +854,7 @@
 .imagebox.style1.v3 .box-price {
 	text-align:center;
 	padding:30px 2px 0 67px;
-	width:270px;
+	/*! width:270px; */
 	float:left;
 }
 
@@ -2125,8 +2125,8 @@ ul.flat-infomation.style1 li img {
 }
 
 .slider .slider-item .item-image {
-	padding-top:57px;
-	padding-right:75px;
+	/*! padding-top:57px; */
+	/*! padding-right:75px; */
 	position:relative;
 	float:right;
 }
@@ -2419,8 +2419,8 @@ ul.flat-infomation.style1 li img {
 }
 
 .slider .slider-item.style9 .item-image {
-	padding-top:28px;
-	padding-right:79px;
+	/*! padding-top:28px; */
+	/*! padding-right:79px; */
 }
 
 /* Button Shop */
