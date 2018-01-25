@@ -398,29 +398,51 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="owl-carousel-3">
-						<?php for($i=0; $i<12; $i++) {?>
+						<?php 
+                            	
+								$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND grocery_category_id = '" . $productDetails['grocery_category_id'] . "' AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC LIMIT 0,8";
+									$getProducts1 = $conn->query($getProducts);
+								while($productDetails = $getProducts1->fetch_assoc()) { 
+									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
+									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
+									$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
+									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									$allGetPrices1 = $conn->query($getPrices1);
+									$getPrc1 = $allGetPrices1->fetch_assoc();
+								?>
 							<div class="imagebox style4">
 								<div class="box-image">
 									<a href="#" title="">
-										<img src="images/product/other/1.png" alt="">
+										<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 									</a>
 								</div><!-- /.box-image -->
 								<div class="box-content">
 									<div class="cat-name">
-										<a href="#" title="">Bru</a>
+										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $categoryName['category_name']; ?></a>
 									</div>
 									<div class="product-name">
-										<a href="#" title="">Instant Coffee</a>
+										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 									</div>
+									
 									<div class="product_name">
-														<select class="s-w form-control" id="na1q_qty0" onchange="get_price(this.value,'na10');">
-                                                            <option value="6180">Combo Pack - Rs.2999.00 </option>
-                                                          </select>
-														</div>
-									<div class="price">
-										<span class="sale"> ₹50.00</span>
-										<span class="regular">₹ 2,999.00</span>
-									</div>
+											<?php 
+											$prodid = $productDetails['id'];
+									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									 		$allGetPrices = $conn->query($getPrices);
+							 				?>
+												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control">
+												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
+			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+			                                    <?php } ?>								  
+			                                    </select>
+											</div>
+										
+											<div class="price">
+												<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
+												<?php if($getPrc1['offer_type'] == 1) { ?>
+													<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
+												<?php } ?>
+											</div>
 								</div><!-- /.box-content -->
 							</div><!-- /.imagebox style4 -->
 							<?php } ?>
