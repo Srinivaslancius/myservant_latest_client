@@ -5,7 +5,7 @@ include "../../admin_includes/common_functions.php";
 //Set Array for list
 $response = array();
 
-if (isset($_REQUEST['userId']) && !empty($_REQUEST['itemId']) && !empty($_REQUEST['itemWeightTypeId']) && !empty($_REQUEST['itemQuantity']) ) {
+if (isset($_REQUEST['userId']) && !empty($_REQUEST['itemId']) && !empty($_REQUEST['itemWeightTypeId'])  ) {
 	//echo "<pre>"; print_r($_REQUEST); die;
 
 	$user_id = $_REQUEST['userId'];
@@ -33,7 +33,7 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['itemId']) && !empty($_REQUES
 
 	} else {
 
-		$delCart = "DELETE FROM food_cart WHERE id='$cart_id' ";
+		$delCart = "DELETE FROM food_cart WHERE user_id='$user_id' AND food_item_id='$itemId' AND item_weight_type_id='$itemWeightTypeId' ";
 		$conn->query($delCart);
 
 		$response["success"] = 0;
