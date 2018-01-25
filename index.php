@@ -60,171 +60,29 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="slider owl-carousel-11">
+								<?php $getBanners = "SELECT * FROM grocery_banners WHERE lkp_status_id = 0";
+								$getBannersData = $conn->query($getBanners);
+								while($getBannersData1 = $getBannersData->fetch_assoc()) { 
+									if($getBannersData1['type'] == 1) {
+										$banner_id = $getBannersData1['category_id'];
+									} else {
+										$banner_id = $getBannersData1['sub_category_id'];
+									}
+								if($getBannersData1['banner_image_type'] == 1) { ?>
 								<div class="slider-item style1">
-									<div class="item-text">
-										<div class="header-item">
-											<p>Enhanced Technology</p>
-											<h2 class="name">HARMAN <span>KARDON</span></h2>
-											<p>The ship set ground on the shore of this uncharted desert isle <br />
-											with Gilligan the Skipper too the millionaire and his story.</p>
-										</div>
-										<div class="content-item">
-											<div class="price">
-												<span class="sale">$3.256.25</span>
-												<span class="btn-shop">
-													<a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-												</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="regular">
-												$2.500.99
-											</div>
-										</div>
-									</div>
 									<div class="item-image">
-										<div class="sale-off">
-											60 % <span>sale</span>
-										</div>
-										<img src="images/slider/05.png" alt="">
+										<a href="results.php?id=<?php echo $getBannersData1['id']; ?>"><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
+								<?php } else { ?>
 								<div class="slider-item style1">
-									<div class="item-text">
-										<div class="header-item">
-											<p>Enhanced Technology</p>
-											<h2 class="name">SMART <span>TV</span></h2>
-											<p>The ship set ground on the shore of this uncharted desert isle
-											with Gilligan the Skipper too the millionaire and his story.</p>
-										</div>
-										<div class="content-item">
-											<div class="price">
-												<span class="sale">$1.589.99</span>
-												<span class="btn-shop">
-													<a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-												</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="regular">
-												$2.500.99
-											</div>
-										</div>
-									</div>
 									<div class="item-image">
-										<img src="images/slider/01.png" alt="">
+										<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt="">
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
-								<div class="slider-item style1">
-									<div class="item-text">
-										<div class="header-item">
-											<p>Enhanced Technology</p>
-											<h2 class="name">SMART <span>TV</span></h2>
-											<p>The ship set ground on the shore of this uncharted desert isle
-											with Gilligan the Skipper too the millionaire and his story.</p>
-										</div>
-										<div class="content-item">
-											<div class="price">
-												<span class="sale">$1.589.99</span>
-												<span class="btn-shop">
-													<a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-												</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="regular">
-												$2.500.99
-											</div>
-										</div>
-									</div>
-									<div class="item-image">
-										<img src="images/slider/02.png" alt="">
-									</div>
-									<div class="clearfix"></div>
-								</div><!-- /.slider-item style1 -->
-								<div class="slider-item style1">
-									<div class="item-text">
-										<div class="header-item">
-											<p>Enhanced Technology</p>
-											<h2 class="name">HARMAN <span>KARDON</span></h2>
-											<p>The ship set ground on the shore of this uncharted desert isle <br />
-											with Gilligan the Skipper too the millionaire and his story.</p>
-										</div>
-										<div class="content-item">
-											<div class="price">
-												<span class="sale">$3.256.25</span>
-												<span class="btn-shop">
-													<a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-												</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="regular">
-												$2.500.99
-											</div>
-										</div>
-									</div>
-									<div class="item-image">
-										<div class="sale-off">
-											60 % <span>sale</span>
-										</div>
-										<img src="images/slider/05.png" alt="">
-									</div>
-									<div class="clearfix"></div>
-								</div><!-- /.slider-item style1 -->
-								<div class="slider-item style1">
-									<div class="item-text">
-										<div class="header-item">
-											<p>Enhanced Technology</p>
-											<h2 class="name">SMART <span>TV</span></h2>
-											<p>The ship set ground on the shore of this uncharted desert isle
-											with Gilligan the Skipper too the millionaire and his story.</p>
-										</div>
-										<div class="content-item">
-											<div class="price">
-												<span class="sale">$1.589.99</span>
-												<span class="btn-shop">
-													<a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-												</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="regular">
-												$2.500.99
-											</div>
-										</div>
-									</div>
-									<div class="item-image">
-										<img src="images/slider/01.png" alt="">
-									</div>
-									<div class="clearfix"></div>
-								</div><!-- /.slider-item style1 -->
-								<div class="slider-item style1">
-									<div class="item-text">
-										<div class="header-item">
-											<p>Enhanced Technology</p>
-											<h2 class="name">HARMAN <span>KARDON</span></h2>
-											<p>The ship set ground on the shore of this uncharted desert isle <br />
-											with Gilligan the Skipper too the millionaire and his story.</p>
-										</div>
-										<div class="content-item">
-											<div class="price">
-												<span class="sale">$3.256.25</span>
-												<span class="btn-shop">
-													<a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-												</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="regular">
-												$2.500.99
-											</div>
-										</div>
-									</div>
-									<div class="item-image">
-										<div class="sale-off">
-											60 % <span>sale</span>
-										</div>
-										<img src="images/slider/05.png" alt="">
-									</div>
-									<div class="clearfix"></div>
-								</div><!-- /.slider-item style1 -->
+								<?php } } ?>
 							</div>
 						</div>
 					</div><!-- /.row -->
@@ -309,9 +167,9 @@ $tagNames = $conn->query($getTags);
 									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
 									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
 									$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
-									$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-									$allGetPrices = $conn->query($getPrices);
-									$getPrc = $allGetPrices->fetch_assoc();
+									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									$allGetPrices1 = $conn->query($getPrices1);
+									$getPrc1 = $allGetPrices1->fetch_assoc();
 								?>
 							<div class="col-sm-6 col-lg-3">
 								<div class="product-box style4">
@@ -331,14 +189,22 @@ $tagNames = $conn->query($getTags);
 												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 											</div>
 											<div class="product_name">
-														<select class="s-w form-control" id="na1q_qty0" onchange="get_price(this.value,'na10');">
-                                                            <option value="6180">Combo Pack - Rs.2999.00 </option>
-                                                          </select>
-														</div>
+											<?php 
+											$prodid = $productDetails['id'];
+									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									 		$allGetPrices = $conn->query($getPrices);
+							 				?>
+												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control">
+												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
+			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+			                                    <?php } ?>								  
+			                                    </select>
+											</div>
+										
 											<div class="price">
-												<span class="sale"><?php echo 'Rs : ' . $getPrc['selling_price']; ?></span>
-												<?php if($getPrc['offer_type'] == 1) { ?>
-													<span class="regular"><?php echo 'Rs : ' . $getPrc['mrp_price']; ?></span>
+												<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
+												<?php if($getPrc1['offer_type'] == 1) { ?>
+													<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
 												<?php } ?>
 											</div>
 										</div><!-- /.box-content -->
@@ -396,9 +262,9 @@ $getSubCat = $conn->query($getsubCats);
 							$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
 							$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
 							$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
-							$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-							$allGetPrices = $conn->query($getPrices);
-							$getPrc = $allGetPrices->fetch_assoc();
+							$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+							$allGetPrices1 = $conn->query($getPrices1);
+							$getPrc1 = $allGetPrices1->fetch_assoc();
 						?>
 						<div class="col-lg-3 col-sm-6">
 							<div class="product-box">
@@ -411,15 +277,22 @@ $getSubCat = $conn->query($getsubCats);
 										<div class="cat-name">
 											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
-									<div class="product_name">
-														<select class="s-w form-control" id="na1q_qty0" onchange="get_price(this.value,'na10');">
-                                                            <option value="6180">Combo Pack - Rs.2999.00 </option>
-                                                          </select>
-														</div>
+										<div class="product_name">
+											<?php 
+											$prodid = $productDetails['id'];
+									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									 		$allGetPrices = $conn->query($getPrices);
+							 				?>
+											<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control">
+											<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
+		                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+		                                    <?php } ?>								  
+		                                    </select>
+										</div>
 										<div class="price">
-											<span class="sale"><?php echo 'Rs : ' . $getPrc['selling_price']; ?></span>
-											<?php if($getPrc['offer_type'] == 1) { ?>
-												<span class="regular"><?php echo 'Rs : ' . $getPrc['mrp_price']; ?></span>
+											<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
+											<?php if($getPrc1['offer_type'] == 1) { ?>
+												<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
 											<?php } ?>
 										</div>
 									</div>
@@ -667,6 +540,21 @@ $getSubCat = $conn->query($getsubCats);
 		});
 
 
+		</script>
+		<script type="text/javascript">
+			function get_price(product_id) {
+				$.ajax({
+				  type:'post',
+				  url:'get_price.php',
+				  data:{
+				     product_id:product_id,       
+				  },
+				  success:function(data) {
+				    //alert(data);
+				    $('.price').html(data);
+				  }
+				});
+			}
 		</script>
 </body>	
 </html>

@@ -19,7 +19,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		    	$lists["restaurantDesc"] = strip_tags($row["description"]);		 
 		    	$lists["restaurantAddress"] = strip_tags($row["restaurant_address"]);	   	
 		    	$lists["restaurantTimings"] = strip_tags($row["working_timings"]);
-		    	$lists["restaurantLogo"] = $base_url."uploads/food_vendor_logo/".$row["logo"];			
+		    	$lists["restaurantLogo"] = $base_url."uploads/food_vendor_logo/".$row["logo"];	
+		    	$getRestLocation = getIndividualDetails('lkp_locations','id',$row['location']);
+		    	$lists["location_name"] = $getRestLocation["location_name"];
+		    			
 		    	array_push($response["lists"], $lists);		
 			}
 			
