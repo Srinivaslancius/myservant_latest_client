@@ -11,10 +11,8 @@ if (isset($_REQUEST['user_id']) && !empty($_REQUEST['address_id']) && !empty($_R
 	$user_id = $_REQUEST['user_id'];
 	//$cart_id = $_REQUEST['cartId'];	
 	$address_id = $_REQUEST['address_id'];	 
-
-	$updateq1 = "UPDATE food_add_address SET lkp_status_id = 0 ";
-	$conn->query($updateq1);
-	$updateq = "UPDATE food_add_address SET lkp_status_id = 1 WHERE user_id='$user_id' AND id='$address_id' ";
+	
+	$updateq = "DELETE FROM food_add_address WHERE user_id='$user_id' AND id='$address_id' ";
 	if($conn->query($updateq) === TRUE) {
 	    
 	    $response["success"] = 0;

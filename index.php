@@ -340,14 +340,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 						<div class="counter">									
 									<div class="counter-content">										
 										<div class="count-down">
-											<div class="square">
-												<div class="numb">
-													14
-												</div>
-												<div class="text">
-													DAYS
-												</div>
-											</div>
+											
 											<div class="square">
 												<div class="numb">
 													09

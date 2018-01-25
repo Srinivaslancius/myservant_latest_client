@@ -23,6 +23,8 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['product_id']) && !empty($_RE
 		    $response["cartCount"] = $getCartFoodData->num_rows;
 		    $response["product_weight_type"] = $_REQUEST['product_weight_type'];
 			$response["product_id"] = $_REQUEST['product_id'];
+			$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$_REQUEST['product_id']);
+			$lists["productImage"] = $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'];
 		    $response["success"] = 0;
 		    $response["message"] = "Success";
 		} else {
