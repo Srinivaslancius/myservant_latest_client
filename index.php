@@ -365,54 +365,53 @@ $tagNames = $conn->query($getTags);
 		</section><!-- /.flat-imagebox -->
 <?php } ?>
 
-			<section class="flat-imagebox style2 background">
-			<div class="container">
-			<dl class="accordion1">
-  <dt class="accordion__title1">New Arrivals</dt>
-  <dd class="accordion__content1">
-    <div class="row">
-					<?php for($i=0; $i<4; $i++) {?>
+<?php 
+if($_SESSION['city_name'] == '') {
+    $lkp_city_id = 1;
+} else {
+    $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
+	$lkp_city_id = $getCities1['id'];
+}
+$getsubCats = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND make_it_popular=1 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC LIMIT 0,6";
+$getSubCat = $conn->query($getsubCats);
+?>
+
+<section class="flat-imagebox style2 background">
+	<div class="container">
+		<dl class="accordion1">
+		<?php while($getSubCatnames = $getSubCat->fetch_assoc()) { ?>
+		  <dt class="accordion__title1"><?php echo $getSubCatnames['sub_category_name']; ?></dt>
+		  <dd class="accordion__content1">
+    		<div class="row">
+						<?php 
+							$subCAtId = $getSubCatnames['id'];
+							$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 0,8";
+							$getProducts1 = $conn->query($getProducts);
+							while($productDetails = $getProducts1->fetch_assoc()) { 
+							$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
+							$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
+							$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
+							$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+							$allGetPrices = $conn->query($getPrices);
+							$getPrc = $allGetPrices->fetch_assoc();
+						?>
 						<div class="col-lg-3 col-sm-6">
 							<div class="product-box">
 								<div class="imagebox">
 									<span class="item-new">NEW</span>																		
 											<a href="single_product.php" title="">
-												<img src="images/product/other/1.png" alt="">
+												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 											</a>																													
 									<div class="box-content">
 										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
+											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
 									
 										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/1.png" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
+											<span class="sale"><?php echo 'Rs : ' . $getPrc['selling_price']; ?></span>
+											<?php if($getPrc['offer_type'] == 1) { ?>
+												<span class="regular"><?php echo 'Rs : ' . $getPrc['mrp_price']; ?></span>
+											<?php } ?>
 										</div>
 									</div>
 									<div class="box-bottom">
@@ -428,132 +427,11 @@ $tagNames = $conn->query($getTags);
 						</div>
 						<?php } ?>
 					</div>
-  </dd>
-  <dt class="accordion__title1">Featured</dt>
-  <dd class="accordion__content1">
-    <div class="row">
-					<?php for($i=0; $i<4; $i++) {?>
-						<div class="col-lg-3 col-sm-6">
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/03.jpg" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/03.jpg" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-						</div>
-						<?php } ?>
-					</div>
-  </dd>
-  <dt class="accordion__title1"> Top Selling</dt>
-  <dd class="accordion__content1">
-   <div class="row">
-					<?php for($i=0; $i<4; $i++) {?>
-						<div class="col-lg-3 col-sm-6">
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/02.jpg" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-							<div class="product-box">
-								<div class="imagebox">
-									<span class="item-new">NEW</span>																		
-											<a href="single_product.php" title="">
-												<img src="images/product/other/02.jpg" alt="">
-											</a>																													
-									<div class="box-content">
-										<div class="cat-name">
-											<a href="single_product.php" title="">Brue Instant</a>
-										</div>
-									
-										<div class="price">
-											<span class="sale"> ₹200.00</span>
-											<span class="regular"> ₹250.00</span>
-										</div>
-									</div>
-									<div class="box-bottom">
-										<div class="btn-add-cart">
-											<a href="#" title="">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-										
-									</div>
-								</div>
-							</div>	
-						</div>
-						<?php } ?>
-					</div>
-  </dd>
-</dl>
-			</div>
-			</section>
+  			</dd> 
+  			<?php } ?>
+		</dl>
+	</div>
+</section>
 
 
 		<section class="flat-imagebox style1">
