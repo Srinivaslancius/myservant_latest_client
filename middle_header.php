@@ -66,7 +66,7 @@
 												</div>
 												<div class="info-product">
 													<div class="name">
-														<?php echo wordwrap($getProductName['product_name'],30,"<br>\n"); ?>
+														<?php echo wordwrap($getProductName['product_name'],25,"<br>\n"); ?>
 													</div>
 													<div class="price">
 														<span><?php echo $getCartItems['product_quantity']; ?> x</span>
