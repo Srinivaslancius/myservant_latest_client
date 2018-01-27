@@ -2,15 +2,19 @@
 <style>
 
 #div1{
-width:90%;
+width:50%;
 height:auto;
 display:none;
 background: rgba(0,0,0,0.8);
 border:1px solid #DCDCDC;
-border-radius:30px;
+border-radius:10px;
 padding:20px;
-z-index:999;
+z-index:9999;
 position:absolute;
+ left: 50%;
+ top: 50%; 
+    margin-top: -200px;   
+    margin-left: -300px;
 }
 
 </style>
@@ -255,12 +259,7 @@ position:absolute;
 									<?php for($i=0; $i<12; $i++) {?>
 										<div class="col-lg-4 col-sm-6">
 											<div class="product-box">
-											<div id="div1">
-								
-					<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-					<p style="color:white">Product Name : Instant Brue</p>
-					
-					</div>
+											
 												<div class="imagebox">
 												
 														<a href="single_product.php" title="">
@@ -354,6 +353,12 @@ position:absolute;
 										<?php } ?>
 										<div style="height: 9px;"></div>
 									</div>
+									<div id="div1">
+								
+											<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+											<p style="color:white">Product Name : Instant Brue</p>
+											
+											</div>
 								</div>
 							</div><!-- /.wrap-imagebox -->
 							<div class="blog-pagination">
