@@ -1,5 +1,19 @@
 <?php include_once 'meta.php';?>
+<style>
 
+#div1{
+width:90%;
+height:auto;
+display:none;
+background: rgba(0,0,0,0.8);
+border:1px solid #DCDCDC;
+border-radius:30px;
+padding:20px;
+z-index:999;
+position:absolute;
+}
+
+</style>
 <body class="header_sticky">
 	<div class="boxed">
 
@@ -173,6 +187,10 @@ $tagNames = $conn->query($getTags);
 								?>
 							<div class="col-sm-6 col-lg-3">
 								<div class="product-box style4">
+									<div id="div1" class="popup_<?php echo $productDetails['id']; ?>">
+										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+										<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+									</div>
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
@@ -194,14 +212,14 @@ $tagNames = $conn->query($getTags);
 									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
 									 		$allGetPrices = $conn->query($getPrices);
 							 				?>
-												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control">
+												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control" data-product-id="<?php echo $prodid; ?>">
 												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
 			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
 			                                    <?php } ?>								  
 			                                    </select>
 											</div>
 										
-											<div class="price">
+											<div class="price_<?php echo $productDetails['id']; ?>">
 												<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
 												<?php if($getPrc1['offer_type'] == 1) { ?>
 													<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
@@ -320,6 +338,10 @@ $getSubCat = $conn->query($getsubCats);
 						?>
 						<div class="col-lg-3 col-sm-6">
 							<div class="product-box">
+								<div id="div1" class="popup_<?php echo $productDetails['id']; ?>">
+									<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+									<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+								</div>
 								<div class="imagebox">
 									<span class="item-new">NEW</span>																		
 											<a href="single_product.php" title="">
@@ -335,13 +357,13 @@ $getSubCat = $conn->query($getsubCats);
 									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
 									 		$allGetPrices = $conn->query($getPrices);
 							 				?>
-											<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control">
+											<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control" data-product-id="<?php echo $prodid; ?>">
 											<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
 		                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
 		                                    <?php } ?>								  
 		                                    </select>
 										</div>
-										<div class="price">
+										<div class="price_<?php echo $productDetails['id']; ?>">
 											<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
 											<?php if($getPrc1['offer_type'] == 1) { ?>
 												<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
@@ -428,6 +450,10 @@ if($getTodayDeals1->num_rows > 0) { ?>
 						<div class="owl-carousel-item">
                         <input type="hidden" id="deal_date" value="<?php echo $todayDeals['deal_start_date'];?>">     
 						<div class="product-box style1">
+							<div id="div1" class="popup_<?php echo $todayDeals['id']; ?>">
+								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+								<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+							</div>
 								<div class="imagebox style1">
 									<div class="box-image">
 										<a href="#" title="">
@@ -446,7 +472,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 										 	$allGetPrices = $conn->query($getPrices);
 										 ?>
 										<div class="product_name">
-										<select class="s-w form-control" id="get_pr_price_<?php echo $prodid; ?>" onchange="get_price(this.value,'na10');">
+										<select class="s-w form-control" id="get_pr_price_<?php echo $prodid; ?>" onchange="get_price(this.value,'na10');" data-product-id="<?php echo $prodid; ?>">
 											<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
                                             <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
 	                                    <?php } ?>
@@ -457,7 +483,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 										 	$allGetPrices = $conn->query($getPrices);
 										 	$getPrc1 = $allGetPrices->fetch_assoc();
 										 ?>
-										<div class="price">
+										<div class="price_<?php echo $todayDeals['id']; ?>">
 											<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
 											<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
 										</div>
@@ -654,6 +680,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		</script>
 		<script type="text/javascript">
 			function get_price(product_id) {
+				//alert(product_id);
+				var pro_id = $('#get_pr_price_'+product_id).data("product-id");
+				alert(pro_id);
 				$.ajax({
 				  type:'post',
 				  url:'get_price.php',
@@ -662,7 +691,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				  },
 				  success:function(data) {
 				    //alert(data);
-				    $('.price').html(data);
+				    $('.price_'+product_id).html(data);
 				  }
 				});
 			}
@@ -684,6 +713,10 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
+			      	$(".popup_"+ProductId).fadeIn(1000);
+			      	setTimeout(function() {
+					    $(".popup_"+ProductId).fadeOut('fast');
+					}, 2000);
 			      }
 			    });
 			    $.ajax({
