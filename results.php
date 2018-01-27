@@ -162,12 +162,28 @@
 													<input type="hidden" id="sub_cat_id_<?php echo $getProductDetails['id']; ?>" value="<?php echo $getProductDetails['grocery_sub_category_id']; ?>">
 													<input type="hidden" id="pro_name_<?php echo $getProductDetails['id']; ?>" value="<?php echo $getProductNames['product_name']; ?>">
 													<div class="box-bottom">
-														<div class="btn-add-cart">
-															<a href="#" title="" onClick="show_cart(<?php echo $getProductDetails['id']; ?>)">
-																<img src="images/icons/add-cart.png" alt="">Add to Cart
-															</a>
+													<div class="row">
+														<div class="col-sm-5 col-xs-12">
+														<div class="quanlity">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														</div>							
 														</div>
-														
+														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
+														<div class="btn-add-cart mrgn_lft">
+														<a href="#" title="" onClick="show_cart(<?php echo $getProductDetails['id']; ?>)"style="width:115%">
+														<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+														</div>
+														</div>
+														</div>
+														<div class="compare-wishlist">
+														<a href="#" class="compare" title="">
+															<img src="images/icons/compare.png" alt="">Compare
+														</a>
+														<a href="#" class="wishlist" title="">
+															<img src="images/icons/wishlist.png" alt="">Wishlist
+														</a>
+														</div>
 													</div><!-- /.box-bottom -->
 												</div><!-- /.imagebox -->
 											</div>
