@@ -235,7 +235,7 @@ $tagNames = $conn->query($getTags);
 												</div>
 												<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 													<div class="btn-add-cart mrgn_lft">
-														<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
+														<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
 															<img src="images/icons/add-cart.png" alt="">Add to Cart
 														</a>
 													</div>
@@ -372,7 +372,7 @@ $getSubCat = $conn->query($getsubCats);
 									</div>
 									<div class="box-bottom">
 										<div class="btn-add-cart">
-											<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)">
+											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)">
 												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
@@ -499,7 +499,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											</a>
 										</div>
 										<div class="btn-add-cart">
-											<a href="#" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
+											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
 												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
