@@ -7,9 +7,9 @@ height:auto;
 display:none;
 background: rgba(0,0,0,0.8);
 border:1px solid #DCDCDC;
-border-radius:10px;
+border-radius:30px;
 padding:20px;
-z-index:9999;
+z-index:999;
 position:absolute;
 }
 
@@ -391,8 +391,7 @@ $getSubCat = $conn->query($getsubCats);
 										$subCAtId = $getSubCatnames['id'];
 										$getProducts2 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 2,3";
 										$getProducts2 = $conn->query($getProducts2);
-										$productDetails2 = $getProducts2->fetch_assoc();
-										//while() { 
+										while($productDetails2 = $getProducts2->fetch_assoc()) { 
 										$getProductName2 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails2['id']);
 										$getProductImage2 = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails2['id']);
 										$categoryName2 = getIndividualDetails('grocery_category','id',$productDetails2['grocery_category_id']);
@@ -451,6 +450,7 @@ $getSubCat = $conn->query($getsubCats);
 											</div><!-- /.imagebox style2 -->
 										</div><!-- /.product-box -->
 									</div><!-- /.col-md-6 -->
+									<?php } ?>
 									<div class="col-md-3 col-sm-6">
 										<?php 
 										$subCAtId = $getSubCatnames['id'];
@@ -679,23 +679,19 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
 											<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
 										</div>
-										<div class="quanlity">
-										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
-										</div>
 									</div><!-- /.box-content -->
-									<div class="box-bottom">																			
-										
-										<div class="btn-add-cart">
-											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
+									<div class="box-bottom">
 										<div class="compare-wishlist">
 											<a href="#" class="compare" title="">
 												<img src="images/icons/compare.png" alt="">Compare
 											</a>
 											<a href="#" class="wishlist" title="">
 												<img src="images/icons/wishlist.png" alt="">Wishlist
+											</a>
+										</div>
+										<div class="btn-add-cart">
+											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
 									</div><!-- /.box-bottom -->
@@ -909,7 +905,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".popup_"+ProductId).fadeIn(2000);
+			      	$(".popup_"+ProductId).fadeIn(1000);
 			      	setTimeout(function() {
 					    $(".popup_"+ProductId).fadeOut('fast');
 					}, 2000);
