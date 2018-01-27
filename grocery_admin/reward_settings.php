@@ -101,7 +101,7 @@
                                 <div class="col-sm-6 col-md-4">
                                     <select id="sub_cat_id" name="sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getProducts(this.value);" >
                                         <option value="">-- Select Sub Category --</option>
-                                        <option <?php if($rewardSettings['sub_category_id'] == 0) { echo "Selected"; } ?> value="0" >All</option>
+                                        <option <?php if($rewardSettings['sub_category_id'] == 'all') { echo "Selected"; } ?> value="all" >All</option>
                                         <?php $getSubCategories = getAllDataWithStatus('grocery_sub_category','0');?>
                                         <?php while($row = $getSubCategories->fetch_assoc()) {  ?>
                                             <option <?php if($row['id'] == $rewardSettings['sub_category_id']) { echo "Selected"; }?> value="<?php echo $row['id']; ?>" ><?php echo $row['sub_category_name']; ?></option>
@@ -114,7 +114,7 @@
                                 <div class="col-sm-6 col-md-4">
                                     <select id="product_id" name="product_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" >
                                         <option value="">-- Select Product --</option>
-                                        <option <?php if($rewardSettings['product_id'] == 0) { echo "Selected"; } ?> value="0" >All</option>
+                                        <option <?php if($rewardSettings['product_id'] == 'all') { echo "Selected"; } ?> value="all" >All</option>
                                         <?php $geyProducts = getAllDataWithStatus('grocery_products','0');?>
                                         <?php while($row = $geyProducts->fetch_assoc()) {  
                                             $getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$row['id']);
