@@ -115,8 +115,8 @@
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="#" title="">
-									<img src="images/banner_boxes/3.jpg" alt="" width="360px" height="200px">
+								<a href="http://testproject.cmrenterprises.co.in/grcry/food_new/index.php" title="" target="_blank">
+									<img src="images/banner_boxes/6.jpeg" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
 						</div><!-- /.banner-box -->
@@ -124,8 +124,8 @@
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="#" title="">
-									<img src="images/banner_boxes/4.jpg" alt="" width="360px" height="200px">
+								<a href="http://testproject.cmrenterprises.co.in/grcry/Services/index.php" title="" target="_blank">
+									<img src="images/banner_boxes/5.jpeg" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
 						</div><!-- /.banner-box -->
