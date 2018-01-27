@@ -128,6 +128,7 @@
                                     <th>Brands Applicable</th>
                                     <!-- <th>Priority</th> -->
                                     <th>Status</th>
+                                    <th>Make It Popular</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -174,6 +175,7 @@
                                     <!-- End Popup -->
                                     <!-- <td><?php echo $row['priority']; ?></td>-->
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_sub_category'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_sub_category'>In Active</span>" ;} ?></td>
+                                    <td><?php if ($row['make_it_popular']==1) { echo "<span class='label label-outline-success check_make_it_active open_cursor' data-incId=".$row['id']." data-status=".$row['make_it_popular']." data-tbname='grocery_sub_category'><i class='zmdi zmdi-thumb-up zmdi-hc-fw'></i></span>" ;} else { echo "<span class='label label-outline-info check_make_it_active open_cursor' data-status=".$row['make_it_popular']." data-incId=".$row['id']." data-tbname='grocery_sub_category'><i class='zmdi zmdi-thumb-down zmdi-hc-fw'></i></span>" ;} ?></td>
                                     <td> <a href="edit_grocery_sub_category.php?sub_category_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp;<!--  <a href="delete.php?id=<?php echo $row['id']; ?>&table=<?php echo "grocery_sub_category" ?>"><i class="zmdi zmdi-delete zmdi-hc-fw" onclick="return confirm('Are you sure you want to delete?')"></i></a> --></td>
                                 </tr>
                                 <?php $i++; } ?>
@@ -187,5 +189,31 @@
     <script src="js/dashboard-3.min.js"></script>
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
+
+    <script type="text/javascript">
+    $(".check_make_it_active").click(function(){
+          var check_active_id = $(this).attr("data-incId");
+          var table_name = $(this).attr("data-tbname");
+          var current_status = $(this).attr("data-status");
+          if(current_status == 0) {
+            send_status = 1;
+          } else {
+            send_status = 0;
+          }
+          $.ajax({
+            type:"post",
+            url:"changemakeitstatus.php",
+            data:"check_active_id="+check_active_id+"&table_name="+table_name+"&send_status="+send_status,
+            success:function(result){  
+              if(result ==1) {
+                //alert("Your Status Updated!");
+                //location.reload();
+                window.location = "?msg=success";
+              }
+            }
+          });
+        }); 
+
+    </script>
   </body>
 </html>

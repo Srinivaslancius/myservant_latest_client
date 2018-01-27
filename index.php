@@ -90,8 +90,7 @@
 				</div><!-- /.container -->
 			</section><!-- /.flat-slider -->
 
-
-		<section class="flat-row flat-banner-box">
+			<section class="flat-row flat-banner-box">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
@@ -245,6 +244,49 @@ $tagNames = $conn->query($getTags);
 				</div><!-- /.container -->
 		</section><!-- /.flat-imagebox -->
 <?php } ?>
+
+<section class="flat-row flat-banner-box">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="banner-box">
+							<div class="inner-box">
+								<a href="#" title="">
+									<img src="images/banner_boxes/3.jpg" alt="" width="360px" height="200px">
+								</a>
+							</div><!-- /.inner-box -->
+						</div><!-- /.banner-box -->
+					</div><!-- /.col-md-4 -->
+					<div class="col-md-3">
+						<div class="banner-box">
+							<div class="inner-box">
+								<a href="#" title="">
+									<img src="images/banner_boxes/4.jpg" alt="" width="360px" height="200px">
+								</a>
+							</div><!-- /.inner-box -->
+						</div><!-- /.banner-box -->
+					</div><!-- /.col-md-4 -->
+					<div class="col-md-3">
+						<div class="banner-box">
+							<div class="inner-box">
+								<a href="http://testproject.cmrenterprises.co.in/grcry/food_new/index.php" title="" target="_blank">
+									<img src="images/banner_boxes/6.jpeg" alt="" width="360px" height="200px">
+								</a>
+							</div><!-- /.inner-box -->
+						</div><!-- /.banner-box -->
+					</div><!-- /.col-md-4 -->
+					<div class="col-md-3">
+						<div class="banner-box">
+							<div class="inner-box">
+								<a href="http://testproject.cmrenterprises.co.in/grcry/Services/index.php" title="" target="_blank">
+									<img src="images/banner_boxes/5.jpeg" alt="" width="360px" height="200px">
+								</a>
+							</div><!-- /.inner-box -->
+						</div><!-- /.banner-box -->
+					</div><!-- /.col-md-4 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.flat-banner-box -->
 
 <?php 
 if($_SESSION['city_name'] == '') {
@@ -641,9 +683,20 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			        productId:ProductId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
-			      	window.location.href = "shop_cart.php";
+			      	//window.location.href = "shop_cart.php";
 			      }
 			    });
+			    $.ajax({
+				  type:'post',
+				  url:'header_cart_page.php',
+				  data:{
+				     cart_id:ProductId,
+				  },
+				  success:function(data) {
+				    $('.header_cart').html(data);
+				  }
+
+				 });
 			}
 		</script>
 </body>	

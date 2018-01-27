@@ -42,7 +42,7 @@ echo '<a href="#" title="">
 				</div>
 				<div class="info-product">
 					<div class="name">
-						'.$getProductName['product_name'].'
+						'.wordwrap($getProductName['product_name'],30,"<br>\n").'
 					</div>
 					<div class="price">
 						<span>'.$getCartItems['product_quantity'].' x</span>
