@@ -214,7 +214,7 @@ $tagNames = $conn->query($getTags);
 							 				?>
 												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control" data-product-id="<?php echo $prodid; ?>">
 												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
-			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>,<?php echo $prodid; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
 			                                    <?php } ?>								  
 			                                    </select>
 											</div>
@@ -227,19 +227,19 @@ $tagNames = $conn->query($getTags);
 											</div>
 										</div><!-- /.box-content -->
 										<div class="box-bottom">
-										<div class="row">
-										<div class="col-sm-5 col-xs-12">
-										<div class="quanlity">
-										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
-											</div>							
-										</div>
-										<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
-											<div class="btn-add-cart mrgn_lft">
-												<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
-													<img src="images/icons/add-cart.png" alt="">Add to Cart
-												</a>
-											</div>
-											</div>
+											<div class="row">
+												<div class="col-sm-5 col-xs-12">
+													<div class="quanlity">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px">
+													</div>							
+												</div>
+												<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
+													<div class="btn-add-cart mrgn_lft">
+														<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+												</div>
 											</div>
 											<div class="compare-wishlist">
 												<a href="#" class="compare" title="">
@@ -681,17 +681,20 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript">
 			function get_price(product_id) {
 				//alert(product_id);
-				var pro_id = $('#get_pr_price_'+product_id).data("product-id");
-				alert(pro_id);
+				//var pro_id = $(this).attr("data-product-id");
+				//alert(pro_id);
+				var split = product_id.split(",");
+				var productId = split[2];	
+				var productWeightType = split[0];				
 				$.ajax({
 				  type:'post',
 				  url:'get_price.php',
 				  data:{
-				     product_id:product_id,       
+				     product_id:productWeightType,       
 				  },
 				  success:function(data) {
 				    //alert(data);
-				    $('.price_'+product_id).html(data);
+				    $('.price_'+productId).html(data);
 				  }
 				});
 			}
@@ -703,8 +706,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = 1;
-
+				var product_quantity = $('#product_quantity_'+ProductId).val();
 	   			$.ajax({
 			      type:'post',
 			      url:'save_cart.php',
