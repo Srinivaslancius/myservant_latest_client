@@ -214,7 +214,7 @@ $tagNames = $conn->query($getTags);
 							 				?>
 												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control" data-product-id="<?php echo $prodid; ?>">
 												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
-			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>,<?php echo $prodid; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
 			                                    <?php } ?>								  
 			                                    </select>
 											</div>
@@ -227,19 +227,19 @@ $tagNames = $conn->query($getTags);
 											</div>
 										</div><!-- /.box-content -->
 										<div class="box-bottom">
-											<div class="row">
-												<div class="col-sm-5 col-xs-12">
-													<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px">
-													</div>							
-												</div>
-												<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
-													<div class="btn-add-cart mrgn_lft">
-														<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
-															<img src="images/icons/add-cart.png" alt="">Add to Cart
-														</a>
-													</div>
-												</div>
+										<div class="row">
+										<div class="col-sm-5 col-xs-12">
+										<div class="quanlity">
+										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+											</div>							
+										</div>
+										<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
+											<div class="btn-add-cart mrgn_lft">
+												<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
+													<img src="images/icons/add-cart.png" alt="">Add to Cart
+												</a>
+											</div>
+											</div>
 											</div>
 											<div class="compare-wishlist">
 												<a href="#" class="compare" title="">
@@ -323,7 +323,155 @@ $getSubCat = $conn->query($getsubCats);
 		<?php while($getSubCatnames = $getSubCat->fetch_assoc()) { ?>
 		  <dt class="accordion__title1"><?php echo $getSubCatnames['sub_category_name']; ?></dt>
 		  <dd class="accordion__content1">
-    		<div class="row">
+		  <div class="row">
+									<div class="col-md-3 col-sm-6">
+									<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/l05.jpg" alt="">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="row">
+														<div class="col-sm-5 col-xs-12">
+														<div class="quanlity">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														</div>							
+														</div>
+														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
+														<div class="btn-add-cart mrgn_lft">
+															<a href="#" title="" style="width:115%;font-size: 13px;">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+														</div>
+														</div>
+														</div>
+														<div class="compare-wishlist">
+														<a href="#" class="compare" title="">
+															<img src="images/icons/compare.png" alt="">Compare
+														</a>
+														<a href="#" class="wishlist" title="">
+															<img src="images/icons/wishlist.png" alt="">Wishlist
+														</a>
+														</div>
+													</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+									<div class="col-md-6">
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/l01.jpg" alt="">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">Bread&bakery </a>
+													</div>
+													<div class="product-name">
+														<a href="#" title="">Beats Solo<br>HD</a>
+													</div>
+													<div class="price">
+														<span class="sale">₹1,999.00</span>
+														<span class="regular">₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="row">
+														<div class="col-sm-5 col-xs-12">
+														<div class="quanlity">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px;text-align:center">
+														</div>							
+														</div>
+														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
+														<div class="btn-add-cart mrgn_lft">
+															<a href="#" title="" style="width:100%">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+														</div>
+														</div>
+														</div>
+														<div class="compare-wishlist">
+														<a href="#" class="compare" title="">
+															<img src="images/icons/compare.png" alt="">Compare
+														</a>
+														<a href="#" class="wishlist" title="">
+															<img src="images/icons/wishlist.png" alt="">Wishlist
+														</a>
+														</div>
+													</div><!-- /.box-bottom -->
+												
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-3 col-sm-6">
+										<?php for($i=0; $i<2; $i++) {?>
+										<div class="product-box">
+											<div class="imagebox style2">
+												<div class="box-image">
+													<a href="single_product.php" title="">
+														<img src="images/product/other/l04.jpg" alt="">
+													</a>
+												</div><!-- /.box-image -->
+												<div class="box-content">
+													<div class="cat-name">
+														<a href="#" title="">bread</a>
+													</div>
+													<div class="product-name">
+														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+													</div>
+													<div class="price">
+														<span class="sale"> ₹1,250.00</span>
+														<span class="regular"> ₹2,999.00</span>
+													</div>
+												</div><!-- /.box-content -->
+												<div class="box-bottom">
+													<div class="row">
+														<div class="col-sm-5 col-xs-12">
+														<div class="quanlity">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														</div>							
+														</div>
+														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
+														<div class="btn-add-cart mrgn_lft">
+															<a href="#" title="" style="width:115%;font-size: 13px;">
+															<img src="images/icons/add-cart.png" alt="" >Add to Cart
+														</a>
+														</div>
+														</div>
+														</div>
+														<div class="compare-wishlist">
+														<a href="#" class="compare" title="">
+															<img src="images/icons/compare.png" alt="">Compare
+														</a>
+														<a href="#" class="wishlist" title="">
+															<img src="images/icons/wishlist.png" alt="">Wishlist
+														</a>
+														</div>
+													</div><!-- /.box-bottom -->
+											</div><!-- /.imagebox style2 -->
+										</div><!-- /.product-box -->
+										<?php } ?>
+									</div><!-- /.col-md-3 col-sm-6 -->
+								</div><!-- /.row -->
+    		<!--<div class="row">
 						<?php 
 							$subCAtId = $getSubCatnames['id'];
 							$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 0,8";
@@ -382,7 +530,7 @@ $getSubCat = $conn->query($getsubCats);
 							</div>	
 						</div>
 						<?php } ?>
-					</div>
+					</div>-->
   			</dd> 
   			<?php } ?>
 		</dl>
@@ -681,20 +829,17 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript">
 			function get_price(product_id) {
 				//alert(product_id);
-				//var pro_id = $(this).attr("data-product-id");
-				//alert(pro_id);
-				var split = product_id.split(",");
-				var productId = split[2];	
-				var productWeightType = split[0];				
+				var pro_id = $('#get_pr_price_'+product_id).data("product-id");
+				alert(pro_id);
 				$.ajax({
 				  type:'post',
 				  url:'get_price.php',
 				  data:{
-				     product_id:productWeightType,       
+				     product_id:product_id,       
 				  },
 				  success:function(data) {
 				    //alert(data);
-				    $('.price_'+productId).html(data);
+				    $('.price_'+product_id).html(data);
 				  }
 				});
 			}
@@ -706,7 +851,8 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = $('#product_quantity_'+ProductId).val();
+				var product_quantity = 1;
+
 	   			$.ajax({
 			      type:'post',
 			      url:'save_cart.php',
