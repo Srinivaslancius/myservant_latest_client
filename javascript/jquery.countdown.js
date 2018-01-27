@@ -108,7 +108,8 @@
             return singular;
         }
     }
-	var dealDate = $("#deal_date").val();
+	var count_down_date = $("#count_down_date").val();
+    //alert(count_down_date);
     var Countdown = function(el, finalDate, options) {
         this.el = el;
         this.$el = $(el);
@@ -127,7 +128,7 @@
                 this.options = $.extend({}, defaultOptions, options);
             }
         }
-        this.setFinalDate('2018/01/26');
+        this.setFinalDate(count_down_date);
         if (this.options.defer === false) {
             this.start();
         }

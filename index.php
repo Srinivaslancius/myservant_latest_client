@@ -448,7 +448,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
                    		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
                    		?>
 						<div class="owl-carousel-item">
-                        <input type="hidden" id="deal_date" value="<?php echo $todayDeals['deal_start_date'];?>">     
+                        <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
 						<div class="product-box style1">
 							<div id="div1" class="popup_<?php echo $todayDeals['id']; ?>">
 								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
