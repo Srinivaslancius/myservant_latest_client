@@ -135,6 +135,9 @@
 									while($getProductDetails = $getProducts1->fetch_assoc()) { 
 										$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$getProductDetails['id']);
 										$getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductDetails['id']);
+										$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										$allGetPrices1 = $conn->query($getPrices1);
+										$getPrc1 = $allGetPrices1->fetch_assoc();
 									?>	
 										<div class="col-lg-4 col-sm-6">
 											<div class="product-box">
@@ -156,6 +159,12 @@
                                                             <option value="<?php echo $getPricesDetails['id']; ?>,<?php echo $getPricesDetails['selling_price']; ?>"><?php echo $getPricesDetails['weight_type']; ?> - Rs.<?php echo $getPricesDetails['selling_price']; ?> </option>
                                                             <?php } ?>
                                                           </select>
+														</div>
+														<div class="price_<?php echo $productDetails['id']; ?>">
+															<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
+															<?php if($getPrc1['offer_type'] == 1) { ?>
+																<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
+															<?php } ?>
 														</div>
 													</div><!-- /.box-content -->
 													<input type="hidden" id="cat_id_<?php echo $getProductDetails['id']; ?>" value="<?php echo $getProductDetails['grocery_category_id']; ?>">
