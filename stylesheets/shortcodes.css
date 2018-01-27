@@ -7617,3 +7617,9 @@ height: 100px;
    margin-right: 20px;
 }
 }
+@media screen and (max-width: 640px) and (min-width: 360px){
+	.imagebox .box-content .product-name {
+    min-height: 32px !important;
+    margin-top: 16px !important;
+}
+}
