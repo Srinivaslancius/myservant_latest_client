@@ -209,10 +209,19 @@ $tagNames = $conn->query($getTags);
 											</div>
 										</div><!-- /.box-content -->
 										<div class="box-bottom">
+										<div class="row">
+										<div class="col-sm-5 col-xs-12">
+										<div class="quanlity">
+										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+											</div>							
+										</div>
+										<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 											<div class="btn-add-cart">
-												<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)">
+												<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
 													<img src="images/icons/add-cart.png" alt="">Add to Cart
 												</a>
+											</div>
+											</div>
 											</div>
 											<div class="compare-wishlist">
 												<a href="#" class="compare" title="">

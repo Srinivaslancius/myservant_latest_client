@@ -137,9 +137,9 @@
 							</table>
 						</div><!-- /.table-cart -->
 					</div><!-- /.col-lg-8 -->
-					<div class="col-lg-7">
+					<div class="col-lg-7 col-md-7">
 					</div>
-					<div class="col-lg-5">
+					<div class="col-lg-5 col-md-5">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
                             <form action="#" method="get" accept-charset="utf-8">

@@ -1220,7 +1220,7 @@
 	}
 
 	.owl-carousel-3 .imagebox.style4 {
-		height:300px;
+		/*! height:300px; */
 	}
 
 	.counter.style1.v2, .bestsellers, .featured, .hot-sale,
@@ -1735,7 +1735,7 @@
 	}
 
 	.owl-carousel-3 .imagebox.style4 {
-		height:200px;
+		/*! height:200px; */
 	}
 
 	.slider .slider-item.style10 .item-text .header-item h2 {

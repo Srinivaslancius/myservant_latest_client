@@ -432,7 +432,7 @@
 
 /* Product Box Style4 */
 .product-box.style4 {
-	border:1px solid #e5e5e5;
+	/*! border:1px solid #e5e5e5; */
 	border-radius:4px;
 	margin-bottom:30px;
 }
@@ -1583,7 +1583,7 @@
 
 /* Imagebox Style4 */
 .imagebox.style4 {
-	padding:29px 16px 20px;
+	padding:15px 16px 15px;
 	text-align:left;
 	border:2px solid #e5e5e5;
 	border-radius:8px;
@@ -7572,7 +7572,7 @@ ul.brands-tablist li.active {
 }
 @media screen and (max-width: 480px) and (min-width: 320px){
 .table-cart tr td .weight {
-    font-size: 15px;
+    font-size: 13px;
     color: #989898;
     padding-top: 8px;
     line-height: 24px;
@@ -7583,13 +7583,19 @@ ul.brands-tablist li.active {
     line-height: 0px;
     margin-right: 10px;
     color: #989898;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'BloggerSans';
 }
 .table-cart tr td .name-product {
 	padding-right:10px;
+	font-size:13px;
 }
-
+.imagebox.style4 .box-image {
+height: 100px;
+}
+.owl-carousel-3.owl-theme .owl-controls .owl-nav div.owl-prev, .owl-carousel-3.owl-theme .owl-controls .owl-nav div.owl-next {
+	margin-top: -20px;
+}
 }
 @media screen and (max-width: 960px) and (min-width: 600px){
 .table-cart tr td .weight {
@@ -7597,5 +7603,9 @@ ul.brands-tablist li.active {
     color: #989898;
     padding-top: 8px;
     line-height: 24px;
-    padding-left: 250px;
+  
+}
+.table-cart tr td .price {
+   margin-right: 20px;
+}
 }
