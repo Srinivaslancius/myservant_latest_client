@@ -410,7 +410,7 @@
 									$allGetPrices1 = $conn->query($getPrices1);
 									$getPrc1 = $allGetPrices1->fetch_assoc();
 								?>
-							<div class="imagebox style4">
+							<div class="imagebox style4 bx_height">
 								<div class="box-image">
 									<a href="#" title="">
 										<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
@@ -444,6 +444,7 @@
 												<?php } ?>
 											</div>
 								</div><!-- /.box-content -->
+								
 							</div><!-- /.imagebox style4 -->
 							<?php } ?>
 						</div><!-- /.owl-carousel-3 -->
