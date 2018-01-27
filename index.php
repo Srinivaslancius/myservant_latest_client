@@ -468,6 +468,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
 										<?php 
+											$prodid = $todayDeals['id'];
 										 	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$todayDeals['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
 										 	$allGetPrices = $conn->query($getPrices);
 										 ?>
