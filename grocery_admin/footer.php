@@ -74,6 +74,31 @@
             }
           });
         }); 
+        //Make it popular active
+        $(".check_make_it_active").click(function(){
+          var check_active_id = $(this).attr("data-incId");
+          var table_name = $(this).attr("data-tbname");
+          var current_status = $(this).attr("data-status");
+          if(current_status == 0) {
+            send_status = 1;
+          } else {
+            send_status = 0;
+          }
+          $.ajax({
+            type:"post",
+            url:"changemakeitstatus.php",
+            data:"check_active_id="+check_active_id+"&table_name="+table_name+"&send_status="+send_status,
+            success:function(result){  
+              if(result ==1) {
+                //alert("Your Status Updated!");
+                //location.reload();
+                window.location = "?msg=success";
+              }
+            }
+          });
+        }); 
+
+    
       //Set time for messge notifications
       $(document).ready(function () {
         setTimeout(function () {
