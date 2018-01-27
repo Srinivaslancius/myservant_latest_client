@@ -355,6 +355,17 @@ $getSubCat = $conn->query($getsubCats);
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 													</div>
+													<div class="product_name">
+														<?php 
+														$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+							 							$getProductPrices = $conn->query($getPrices);
+														?> 
+														<select  onchange="get_price(this.value,'na10');" class="s-w form-control" id="get_pr_price_<?php echo $productDetails['id']; ?>">
+															<?php while($getPricesDetails = $getProductPrices->fetch_assoc()) { ?>
+                                                            <option value="<?php echo $getPricesDetails['id']; ?>,<?php echo $getPricesDetails['selling_price']; ?>,<?php echo $productDetails['id']; ?>"><?php echo $getPricesDetails['weight_type']; ?> - Rs.<?php echo $getPricesDetails['selling_price']; ?> </option>
+                                                            <?php } ?>
+                                                          </select>
+													</div>
 													<div class="price">
 														<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
 														<?php if($getPrc1['offer_type'] == 1) { ?>
@@ -423,6 +434,17 @@ $getSubCat = $conn->query($getsubCats);
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName2['product_name']; ?></a>
 													</div>
+													<div class="product_name">
+														<?php 
+														$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails2['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+							 							$getProductPrices = $conn->query($getPrices);
+														?> 
+														<select  onchange="get_price(this.value,'na10');" class="s-w form-control" id="get_pr_price_<?php echo $productDetails2['id']; ?>">
+															<?php while($getPricesDetails = $getProductPrices->fetch_assoc()) { ?>
+                                                            <option value="<?php echo $getPricesDetails['id']; ?>,<?php echo $getPricesDetails['selling_price']; ?>,<?php echo $productDetails2['id']; ?>"><?php echo $getPricesDetails['weight_type']; ?> - Rs.<?php echo $getPricesDetails['selling_price']; ?> </option>
+                                                            <?php } ?>
+                                                          </select>
+													</div>
 													<div class="price">
 														<span class="sale"><?php echo 'Rs : ' . $getPrc2['selling_price']; ?></span>
 														<?php if($getPrc2['offer_type'] == 1) { ?>
@@ -488,6 +510,17 @@ $getSubCat = $conn->query($getsubCats);
 													</div>
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName3['product_name']; ?></a>
+													</div>
+													<div class="product_name">
+														<?php 
+														$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails3['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+							 							$getProductPrices = $conn->query($getPrices);
+														?> 
+														<select  onchange="get_price(this.value,'na10');" class="s-w form-control" id="get_pr_price_<?php echo $productDetails3['id']; ?>">
+															<?php while($getPricesDetails = $getProductPrices->fetch_assoc()) { ?>
+                                                            <option value="<?php echo $getPricesDetails['id']; ?>,<?php echo $getPricesDetails['selling_price']; ?>,<?php echo $productDetails3['id']; ?>"><?php echo $getPricesDetails['weight_type']; ?> - Rs.<?php echo $getPricesDetails['selling_price']; ?> </option>
+                                                            <?php } ?>
+                                                          </select>
 													</div>
 													<div class="price">
 														<span class="sale"><?php echo 'Rs : ' . $getPrc3['selling_price']; ?></span>

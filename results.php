@@ -1,4 +1,17 @@
 <?php include_once 'meta.php';?>
+<style>
+#div1{
+width:90%;
+height:auto;
+display:none;
+background: rgba(0,0,0,0.8);
+border:1px solid #DCDCDC;
+border-radius:10px;
+padding:20px;
+z-index:9999;
+position:absolute;
+}
+</style>
 <body class="header_sticky">
 	<div class="boxed">
 
@@ -141,6 +154,10 @@
 									?>	
 										<div class="col-lg-4 col-sm-6">
 											<div class="product-box">
+												<div id="div1" class="cart_popup_<?php echo $getProductDetails['id']; ?>">
+													<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+													<p style="color:white">Product Name : <?php echo $getProductNames['product_name']; ?></p>
+												</div>
 												<div class="imagebox">
 														<a href="single_product.php?product_id=<?php echo $getProductDetails['id'];?>" title="">
 															<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="" style="width:264px; height:210px">
@@ -179,7 +196,7 @@
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-														<a href="#" title="" onClick="show_cart(<?php echo $getProductDetails['id']; ?>)"style="width:115%">
+														<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $getProductDetails['id']; ?>)" style="width:115%">
 														<img src="images/icons/add-cart.png" alt="">Add to Cart
 														</a>
 														</div>
@@ -333,6 +350,10 @@
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
+			      	$(".cart_popup_"+ProductId).fadeIn(2000);
+			      	setTimeout(function() {
+					    $(".cart_popup_"+ProductId).fadeOut('fast');
+					}, 2000);
 			      }
 			    });
 			    $.ajax({
