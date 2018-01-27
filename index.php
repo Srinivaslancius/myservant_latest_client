@@ -343,7 +343,7 @@ $getSubCat = $conn->query($getsubCats);
                                                             <?php } ?>
                                                           </select>
 													</div>
-													<div class="price">
+													<div class="price_<?php echo $productDetails['id']; ?>">
 														<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
 														<?php if($getPrc1['offer_type'] == 1) { ?>
 															<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
@@ -422,7 +422,7 @@ $getSubCat = $conn->query($getsubCats);
                                                             <?php } ?>
                                                           </select>
 													</div>
-													<div class="price">
+													<div class="price_<?php echo $productDetails2['id']; ?>">
 														<span class="sale"><?php echo 'Rs : ' . $getPrc2['selling_price']; ?></span>
 														<?php if($getPrc2['offer_type'] == 1) { ?>
 															<span class="regular"><?php echo 'Rs : ' . $getPrc2['mrp_price']; ?></span>
@@ -499,7 +499,7 @@ $getSubCat = $conn->query($getsubCats);
                                                             <?php } ?>
                                                           </select>
 													</div>
-													<div class="price">
+													<div class="price_<?php echo $productDetails3['id']; ?>">
 														<span class="sale"><?php echo 'Rs : ' . $getPrc3['selling_price']; ?></span>
 														<?php if($getPrc3['offer_type'] == 1) { ?>
 															<span class="regular"><?php echo 'Rs : ' . $getPrc3['mrp_price']; ?></span>
