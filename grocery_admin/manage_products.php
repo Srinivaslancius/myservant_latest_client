@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/cosmos.min.css">
     <link rel="stylesheet" href="css/application.min.css">
+	<style>
+	#ui-datepicker-div{
+		top:146.483px !important;
+	}
+	</style>
   </head>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
     <div class="site-overlay"></div>
@@ -250,14 +255,14 @@
                                                         $deal_start_date1 = '';
                                                         }
                                                         ?>
-                                                       <div id="datetimepicker1" class="input-append date">
+                                                      
                                                             <div class="form-group">
                                                                 <label for="form-control-5" class="col-sm-3 col-md-4 control-label">Deal Start Date</label>
                                                                 <div class="col-sm-6 col-md-5">
                                                                     <input class="date-pick" data-format="yyyy-MM-dd" type="text" placeholder="Deal Start Date" name="deal_start_date" required="required" value="<?php echo $deal_start_date1; ?>">
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                       
                                                         <div class="form-group">
                                                             <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                                                                <button type="submit" value="date" name="date" class="btn btn-primary">Submit</button>
@@ -265,8 +270,7 @@
                                                         </div>
                                                     </form>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" data-dismiss="modal" class="btn btn-info">Continue</button>
+                                                    <div class="modal-footer">                                                        
                                                         <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
                                                     </div>
                                                 </div>
