@@ -325,12 +325,23 @@ $getSubCat = $conn->query($getsubCats);
 		  <dd class="accordion__content1">
 		  <div class="row">
 									<div class="col-md-3 col-sm-6">
-									<?php for($i=0; $i<2; $i++) {?>
+									<?php 
+										$subCAtId = $getSubCatnames['id'];
+										$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 0,2";
+										$getProducts1 = $conn->query($getProducts);
+										while($productDetails = $getProducts1->fetch_assoc()) { 
+										$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
+										$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
+										$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
+										$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										$allGetPrices1 = $conn->query($getPrices1);
+										$getPrc1 = $allGetPrices1->fetch_assoc();
+									?>
 										<div class="product-box">
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php" title="">
-														<img src="images/product/other/l05.jpg" alt="">
+														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
@@ -338,11 +349,13 @@ $getSubCat = $conn->query($getsubCats);
 														<a href="#" title="">bread</a>
 													</div>
 													<div class="product-name">
-														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 													</div>
 													<div class="price">
-														<span class="sale"> ₹1,250.00</span>
-														<span class="regular"> ₹2,999.00</span>
+														<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
+														<?php if($getPrc1['offer_type'] == 1) { ?>
+															<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
+														<?php } ?>
 													</div>
 												</div><!-- /.box-content -->
 												<div class="box-bottom">
@@ -354,7 +367,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="#" title="" style="width:115%;font-size: 13px;">
+															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" title="" style="width:115%;font-size: 13px;">
 															<img src="images/icons/add-cart.png" alt="" >Add to Cart
 														</a>
 														</div>
@@ -373,12 +386,27 @@ $getSubCat = $conn->query($getsubCats);
 										</div><!-- /.product-box -->
 										<?php } ?>
 									</div><!-- /.col-md-3 col-sm-6 -->
+
+									<?php 
+										$subCAtId = $getSubCatnames['id'];
+										$getProducts2 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 2,3";
+										$getProducts2 = $conn->query($getProducts2);
+										$productDetails2 = $getProducts2->fetch_assoc();
+										//while() { 
+										$getProductName2 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails2['id']);
+										$getProductImage2 = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails2['id']);
+										$categoryName2 = getIndividualDetails('grocery_category','id',$productDetails2['grocery_category_id']);
+										$getPrices2 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails2['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										$allGetPrices2 = $conn->query($getPrices2);
+										$getPrc2 = $allGetPrices2->fetch_assoc();
+									?>
+
 									<div class="col-md-6">
 										<div class="product-box">
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php" title="">
-														<img src="images/product/other/l01.jpg" alt="">
+														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
@@ -386,11 +414,13 @@ $getSubCat = $conn->query($getsubCats);
 														<a href="#" title="">Bread&bakery </a>
 													</div>
 													<div class="product-name">
-														<a href="#" title="">Beats Solo<br>HD</a>
+														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName2['product_name']; ?></a>
 													</div>
 													<div class="price">
-														<span class="sale">₹1,999.00</span>
-														<span class="regular">₹2,999.00</span>
+														<span class="sale"><?php echo 'Rs : ' . $getPrc2['selling_price']; ?></span>
+														<?php if($getPrc2['offer_type'] == 1) { ?>
+															<span class="regular"><?php echo 'Rs : ' . $getPrc2['mrp_price']; ?></span>
+														<?php } ?>
 													</div>
 												</div><!-- /.box-content -->
 												<div class="box-bottom">
@@ -402,7 +432,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="#" title="" style="width:100%">
+															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails2['id']; ?>)" title="" style="width:100%">
 															<img src="images/icons/add-cart.png" alt="" >Add to Cart
 														</a>
 														</div>
@@ -422,12 +452,23 @@ $getSubCat = $conn->query($getsubCats);
 										</div><!-- /.product-box -->
 									</div><!-- /.col-md-6 -->
 									<div class="col-md-3 col-sm-6">
-										<?php for($i=0; $i<2; $i++) {?>
+										<?php 
+										$subCAtId = $getSubCatnames['id'];
+										$getProducts3 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 3,5";
+										$getProducts3 = $conn->query($getProducts3);
+										while($productDetails3 = $getProducts3->fetch_assoc()) { 
+										$getProductName3 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails3['id']);
+										$getProductImage3 = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails3['id']);
+										$categoryName3 = getIndividualDetails('grocery_category','id',$productDetails3['grocery_category_id']);
+										$getPrices3 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails3['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										$allGetPrices3 = $conn->query($getPrices3);
+										$getPrc3 = $allGetPrices3->fetch_assoc();
+									?>
 										<div class="product-box">
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php" title="">
-														<img src="images/product/other/l04.jpg" alt="">
+														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage3['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
@@ -435,11 +476,13 @@ $getSubCat = $conn->query($getsubCats);
 														<a href="#" title="">bread</a>
 													</div>
 													<div class="product-name">
-														<a href="#" title="">Apple iPad Mini<br />G2356</a>
+														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName3['product_name']; ?></a>
 													</div>
 													<div class="price">
-														<span class="sale"> ₹1,250.00</span>
-														<span class="regular"> ₹2,999.00</span>
+														<span class="sale"><?php echo 'Rs : ' . $getPrc3['selling_price']; ?></span>
+														<?php if($getPrc3['offer_type'] == 1) { ?>
+															<span class="regular"><?php echo 'Rs : ' . $getPrc3['mrp_price']; ?></span>
+														<?php } ?>
 													</div>
 												</div><!-- /.box-content -->
 												<div class="box-bottom">
@@ -451,7 +494,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="#" title="" style="width:115%;font-size: 13px;">
+															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails3['id']; ?>)" title="" style="width:115%;font-size: 13px;">
 															<img src="images/icons/add-cart.png" alt="" >Add to Cart
 														</a>
 														</div>
