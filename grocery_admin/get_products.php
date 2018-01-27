@@ -6,6 +6,7 @@ if(!empty($_POST["sub_cat_id"])) {
 	$results = $conn->query($query);
 ?>
 	<option value="">-- Select Product --</option>
+	<option value="0">All</option>
 <?php
 	foreach($results as $products) {
 		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$products['id']);
