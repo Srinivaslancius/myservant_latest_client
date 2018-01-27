@@ -7,9 +7,9 @@ height:auto;
 display:none;
 background: rgba(0,0,0,0.8);
 border:1px solid #DCDCDC;
-border-radius:30px;
+border-radius:10px;
 padding:20px;
-z-index:999;
+z-index:9999;
 position:absolute;
 }
 
@@ -636,19 +636,23 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
 											<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
 										</div>
+										<div class="quanlity">
+										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+										</div>
 									</div><!-- /.box-content -->
-									<div class="box-bottom">
+									<div class="box-bottom">																			
+										
+										<div class="btn-add-cart">
+											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
+												<img src="images/icons/add-cart.png" alt="">Add to Cart
+											</a>
+										</div>
 										<div class="compare-wishlist">
 											<a href="#" class="compare" title="">
 												<img src="images/icons/compare.png" alt="">Compare
 											</a>
 											<a href="#" class="wishlist" title="">
 												<img src="images/icons/wishlist.png" alt="">Wishlist
-											</a>
-										</div>
-										<div class="btn-add-cart">
-											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
 									</div><!-- /.box-bottom -->
@@ -862,7 +866,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".popup_"+ProductId).fadeIn(1000);
+			      	$(".popup_"+ProductId).fadeIn(2000);
 			      	setTimeout(function() {
 					    $(".popup_"+ProductId).fadeOut('fast');
 					}, 2000);
