@@ -90,8 +90,7 @@
 				</div><!-- /.container -->
 			</section><!-- /.flat-slider -->
 
-
-		<section class="flat-row flat-banner-box">
+			<section class="flat-row flat-banner-box">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
@@ -210,10 +209,19 @@ $tagNames = $conn->query($getTags);
 											</div>
 										</div><!-- /.box-content -->
 										<div class="box-bottom">
+										<div class="row">
+										<div class="col-sm-5 col-xs-12">
+										<div class="quanlity">
+										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+											</div>							
+										</div>
+										<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 											<div class="btn-add-cart">
-												<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)">
+												<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
 													<img src="images/icons/add-cart.png" alt="">Add to Cart
 												</a>
+											</div>
+											</div>
 											</div>
 											<div class="compare-wishlist">
 												<a href="#" class="compare" title="">
@@ -236,6 +244,49 @@ $tagNames = $conn->query($getTags);
 				</div><!-- /.container -->
 		</section><!-- /.flat-imagebox -->
 <?php } ?>
+
+<section class="flat-row flat-banner-box">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="banner-box">
+							<div class="inner-box">
+								<a href="#" title="">
+									<img src="images/banner_boxes/3.jpg" alt="" width="360px" height="200px">
+								</a>
+							</div><!-- /.inner-box -->
+						</div><!-- /.banner-box -->
+					</div><!-- /.col-md-4 -->
+					<div class="col-md-3">
+						<div class="banner-box">
+							<div class="inner-box">
+								<a href="#" title="">
+									<img src="images/banner_boxes/4.jpg" alt="" width="360px" height="200px">
+								</a>
+							</div><!-- /.inner-box -->
+						</div><!-- /.banner-box -->
+					</div><!-- /.col-md-4 -->
+					<div class="col-md-3">
+						<div class="banner-box">
+							<div class="inner-box">
+								<a href="http://testproject.cmrenterprises.co.in/grcry/food_new/index.php" title="" target="_blank">
+									<img src="images/banner_boxes/6.jpeg" alt="" width="360px" height="200px">
+								</a>
+							</div><!-- /.inner-box -->
+						</div><!-- /.banner-box -->
+					</div><!-- /.col-md-4 -->
+					<div class="col-md-3">
+						<div class="banner-box">
+							<div class="inner-box">
+								<a href="http://testproject.cmrenterprises.co.in/grcry/Services/index.php" title="" target="_blank">
+									<img src="images/banner_boxes/5.jpeg" alt="" width="360px" height="200px">
+								</a>
+							</div><!-- /.inner-box -->
+						</div><!-- /.banner-box -->
+					</div><!-- /.col-md-4 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.flat-banner-box -->
 
 <?php 
 if($_SESSION['city_name'] == '') {
@@ -632,9 +683,20 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			        productId:ProductId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
-			      	window.location.href = "shop_cart.php";
+			      	//window.location.href = "shop_cart.php";
 			      }
 			    });
+			    $.ajax({
+				  type:'post',
+				  url:'header_cart_page.php',
+				  data:{
+				     cart_id:ProductId,
+				  },
+				  success:function(data) {
+				    $('.header_cart').html(data);
+				  }
+
+				 });
 			}
 		</script>
 </body>	

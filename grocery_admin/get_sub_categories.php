@@ -6,7 +6,7 @@ if(!empty($_POST["cat_id"])) {
 	$results = $conn->query($query);
 ?>
 	<option value="">-- Select Sub Category --</option>
-	<option value="0">All</option>
+	<option value="all">All</option>
 <?php
 	foreach($results as $subcategories) {
 ?>
