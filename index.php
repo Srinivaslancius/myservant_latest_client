@@ -187,7 +187,7 @@ $tagNames = $conn->query($getTags);
 								?>
 							<div class="col-sm-6 col-lg-3">
 								<div class="product-box style4">
-									<div id="div1" class="popup_<?php echo $productDetails['id']; ?>">
+									<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
 										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
 										<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
 									</div>
@@ -214,7 +214,7 @@ $tagNames = $conn->query($getTags);
 							 				?>
 												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control" data-product-id="<?php echo $prodid; ?>">
 												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
-			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>,<?php echo $prodid; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
 			                                    <?php } ?>								  
 			                                    </select>
 											</div>
@@ -338,6 +338,10 @@ $getSubCat = $conn->query($getsubCats);
 										$getPrc1 = $allGetPrices1->fetch_assoc();
 									?>
 										<div class="product-box">
+											<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php" title="">
@@ -346,7 +350,7 @@ $getSubCat = $conn->query($getsubCats);
 												</div><!-- /.box-image -->
 												<div class="box-content">
 													<div class="cat-name">
-														<a href="#" title="">bread</a>
+														<a href="#" title=""><?php echo $categoryName['category_name']; ?></a>
 													</div>
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
@@ -362,7 +366,7 @@ $getSubCat = $conn->query($getsubCats);
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
 														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px">
 														</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
@@ -403,6 +407,10 @@ $getSubCat = $conn->query($getsubCats);
 
 									<div class="col-md-6">
 										<div class="product-box">
+											<div id="div1" class="cart_popup_<?php echo $productDetails2['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php" title="">
@@ -411,7 +419,7 @@ $getSubCat = $conn->query($getsubCats);
 												</div><!-- /.box-image -->
 												<div class="box-content">
 													<div class="cat-name">
-														<a href="#" title="">Bread&bakery </a>
+														<a href="#" title=""><?php echo $categoryName2['category_name']; ?></a>
 													</div>
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName2['product_name']; ?></a>
@@ -426,28 +434,27 @@ $getSubCat = $conn->query($getsubCats);
 												<div class="box-bottom">
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
-														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px;text-align:center">
-														</div>							
+															<div class="quanlity">
+															<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails2['id']; ?>" type="number" style="height:45px;text-align:center">
+															</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
-														<div class="btn-add-cart mrgn_lft">
-															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails2['id']; ?>)" title="" style="width:100%">
-															<img src="images/icons/add-cart.png" alt="" >Add to Cart
-														</a>
+															<div class="btn-add-cart mrgn_lft">
+																<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails2['id']; ?>)" title="" style="width:100%">
+																	<img src="images/icons/add-cart.png" alt="" >Add to Cart
+																</a>
+															</div>
 														</div>
-														</div>
-														</div>
-														<div class="compare-wishlist">
-														<a href="#" class="compare" title="">
-															<img src="images/icons/compare.png" alt="">Compare
-														</a>
-														<a href="#" class="wishlist" title="">
-															<img src="images/icons/wishlist.png" alt="">Wishlist
-														</a>
-														</div>
-													</div><!-- /.box-bottom -->
-												
+													</div>
+													<div class="compare-wishlist">
+													<a href="#" class="compare" title="">
+														<img src="images/icons/compare.png" alt="">Compare
+													</a>
+													<a href="#" class="wishlist" title="">
+														<img src="images/icons/wishlist.png" alt="">Wishlist
+													</a>
+													</div>
+												</div><!-- /.box-bottom -->
 											</div><!-- /.imagebox style2 -->
 										</div><!-- /.product-box -->
 									</div><!-- /.col-md-6 -->
@@ -465,6 +472,10 @@ $getSubCat = $conn->query($getsubCats);
 										$getPrc3 = $allGetPrices3->fetch_assoc();
 									?>
 										<div class="product-box">
+											<div id="div1" class="cart_popup_<?php echo $productDetails3['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php" title="">
@@ -473,7 +484,7 @@ $getSubCat = $conn->query($getsubCats);
 												</div><!-- /.box-image -->
 												<div class="box-content">
 													<div class="cat-name">
-														<a href="#" title="">bread</a>
+														<a href="#" title=""><?php echo $categoryName3['category_name']; ?></a>
 													</div>
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName3['product_name']; ?></a>
@@ -489,7 +500,7 @@ $getSubCat = $conn->query($getsubCats);
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
 														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails3['id']; ?>" type="number" style="height:45px">
 														</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
@@ -641,7 +652,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 						<div class="owl-carousel-item">
                         <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
 						<div class="product-box style1">
-							<div id="div1" class="popup_<?php echo $todayDeals['id']; ?>">
+							<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">
 								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
 								<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
 							</div>
@@ -664,9 +675,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 										 	$allGetPrices = $conn->query($getPrices);
 										 ?>
 										<div class="product_name">
-										<select class="s-w form-control" id="get_pr_price_<?php echo $prodid; ?>" onchange="get_price(this.value,'na10');" data-product-id="<?php echo $prodid; ?>">
+										<select class="s-w form-control" id="get_pr_price_<?php echo $prodid; ?>" onchange="get_price(this.value,'na10');">
 											<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
-                                            <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+                                            <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>,<?php echo $prodid; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
 	                                    <?php } ?>
                                           </select>
 										</div>
@@ -680,7 +691,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
 										</div>
 										<div class="quanlity">
-										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $todayDeals['id']; ?>" type="number" style="height:45px">
 										</div>
 									</div><!-- /.box-content -->
 									<div class="box-bottom">																			
@@ -877,17 +888,18 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript">
 			function get_price(product_id) {
 				//alert(product_id);
-				var pro_id = $('#get_pr_price_'+product_id).data("product-id");
-				alert(pro_id);
+				var split = product_id.split(",");
+				var productId = split[2];	
+				var productWeightType = split[0];				
 				$.ajax({
 				  type:'post',
 				  url:'get_price.php',
 				  data:{
-				     product_id:product_id,       
+				     product_id:productWeightType,       
 				  },
 				  success:function(data) {
 				    //alert(data);
-				    $('.price_'+product_id).html(data);
+				    $('.price_'+productId).html(data);
 				  }
 				});
 			}
@@ -899,7 +911,8 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = 1;
+				var product_quantity = $('#product_quantity_'+ProductId).val();
+				//alert(product_quantity);
 
 	   			$.ajax({
 			      type:'post',
@@ -909,9 +922,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".popup_"+ProductId).fadeIn(2000);
+			      	$(".cart_popup_"+ProductId).fadeIn(2000);
 			      	setTimeout(function() {
-					    $(".popup_"+ProductId).fadeOut('fast');
+					    $(".cart_popup_"+ProductId).fadeOut('fast');
 					}, 2000);
 			      }
 			    });
