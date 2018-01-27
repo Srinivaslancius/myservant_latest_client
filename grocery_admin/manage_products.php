@@ -265,8 +265,7 @@
                                                         </div>
                                                     </form>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" data-dismiss="modal" class="btn btn-info">Continue</button>
+                                                    <div class="modal-footer">                                                        
                                                         <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
                                                     </div>
                                                 </div>
