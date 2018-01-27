@@ -227,19 +227,19 @@ $tagNames = $conn->query($getTags);
 											</div>
 										</div><!-- /.box-content -->
 										<div class="box-bottom">
-										<div class="row">
-										<div class="col-sm-5 col-xs-12">
-										<div class="quanlity">
-										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
-											</div>							
-										</div>
-										<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
-											<div class="btn-add-cart mrgn_lft">
-												<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
-													<img src="images/icons/add-cart.png" alt="">Add to Cart
-												</a>
-											</div>
-											</div>
+											<div class="row">
+												<div class="col-sm-5 col-xs-12">
+													<div class="quanlity">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px">
+													</div>							
+												</div>
+												<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
+													<div class="btn-add-cart mrgn_lft">
+														<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
+															<img src="images/icons/add-cart.png" alt="">Add to Cart
+														</a>
+													</div>
+												</div>
 											</div>
 											<div class="compare-wishlist">
 												<a href="#" class="compare" title="">
@@ -520,7 +520,7 @@ $getSubCat = $conn->query($getsubCats);
 									</div>
 									<div class="box-bottom">
 										<div class="btn-add-cart">
-											<a href="#" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)">
+											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)">
 												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
@@ -596,7 +596,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
                    		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
                    		?>
 						<div class="owl-carousel-item">
-                        <input type="hidden" id="deal_date" value="<?php echo $todayDeals['deal_start_date'];?>">     
+                        <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
 						<div class="product-box style1">
 							<div id="div1" class="popup_<?php echo $todayDeals['id']; ?>">
 								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
@@ -616,6 +616,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
 										<?php 
+											$prodid = $todayDeals['id'];
 										 	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$todayDeals['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
 										 	$allGetPrices = $conn->query($getPrices);
 										 ?>
@@ -646,7 +647,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											</a>
 										</div>
 										<div class="btn-add-cart">
-											<a href="#" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
+											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
 												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>

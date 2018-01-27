@@ -165,7 +165,7 @@
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
 														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $getProductDetails['id']; ?>" type="number" style="height:45px">
 														</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
@@ -296,7 +296,7 @@
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = 1;
+				var product_quantity = $('#product_quantity_'+ProductId).val();
 
 	   			$.ajax({
 			      type:'post',
@@ -305,9 +305,20 @@
 			        productId:ProductId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
-			      	window.location.href = "shop_cart.php";
+			      	//window.location.href = "shop_cart.php";
 			      }
 			    });
+			    $.ajax({
+				  type:'post',
+				  url:'header_cart_page.php',
+				  data:{
+				     cart_id:ProductId,
+				  },
+				  success:function(data) {
+				    $('.header_cart').html(data);
+				  }
+
+				 });
 			}
 			function show_cart1(productId) {
 				var catId = $('#cat_id1_'+productId).val();
@@ -317,7 +328,7 @@
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = 1;
+				var product_quantity = $('#product_quantity_'+productId).val();
 
 	   			$.ajax({
 			      type:'post',
@@ -326,9 +337,20 @@
 			        productId:productId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
-			      	window.location.href = "shop_cart.php";
+			      	//window.location.href = "shop_cart.php";
 			      }
 			    });
+			    $.ajax({
+				  type:'post',
+				  url:'header_cart_page.php',
+				  data:{
+				     cart_id:productId,
+				  },
+				  success:function(data) {
+				    $('.header_cart').html(data);
+				  }
+
+				 });
 			}
 		</script>
 		<script type="text/javascript">
