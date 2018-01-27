@@ -214,7 +214,7 @@ $tagNames = $conn->query($getTags);
 							 				?>
 												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control" data-product-id="<?php echo $prodid; ?>">
 												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
-			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>,<?php echo $prodid; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
 			                                    <?php } ?>								  
 			                                    </select>
 											</div>
@@ -681,17 +681,20 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript">
 			function get_price(product_id) {
 				//alert(product_id);
-				var pro_id = $('#get_pr_price_'+product_id).data("product-id");
-				alert(pro_id);
+				//var pro_id = $(this).attr("data-product-id");
+				//alert(pro_id);
+				var split = product_id.split(",");
+				var productId = split[2];	
+				var productWeightType = split[0];				
 				$.ajax({
 				  type:'post',
 				  url:'get_price.php',
 				  data:{
-				     product_id:product_id,       
+				     product_id:productWeightType,       
 				  },
 				  success:function(data) {
 				    //alert(data);
-				    $('.price_'+product_id).html(data);
+				    $('.price_'+productId).html(data);
 				  }
 				});
 			}
