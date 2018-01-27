@@ -404,7 +404,7 @@ $getSubCat = $conn->query($getsubCats);
 
 									<?php 
 										$subCAtId = $getSubCatnames['id'];
-										$getProducts2 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 2,3";
+										$getProducts2 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 2,1";
 										$getProducts2 = $conn->query($getProducts2);
 										while($productDetails2 = $getProducts2->fetch_assoc()) { 
 										$getProductName2 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails2['id']);
@@ -483,7 +483,7 @@ $getSubCat = $conn->query($getsubCats);
 									<div class="col-md-3 col-sm-6">
 										<?php 
 										$subCAtId = $getSubCatnames['id'];
-										$getProducts3 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 3,5";
+										$getProducts3 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 3,2";
 										$getProducts3 = $conn->query($getProducts3);
 										while($productDetails3 = $getProducts3->fetch_assoc()) { 
 										$getProductName3 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails3['id']);
