@@ -7,9 +7,9 @@ height:auto;
 display:none;
 background: rgba(0,0,0,0.8);
 border:1px solid #DCDCDC;
-border-radius:30px;
+border-radius:10px;
 padding:20px;
-z-index:999;
+z-index:9999;
 position:absolute;
 }
 
