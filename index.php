@@ -263,45 +263,22 @@ $tagNames = $conn->query($getTags);
 		</section><!-- /.flat-imagebox -->
 <?php } ?>
 
+<?php $getOfferModules = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id DESC LIMIT 4";
+$getOfferModules1 = $conn->query($getOfferModules); ?>
 <section class="flat-row flat-banner-box">
 			<div class="container">
 				<div class="row">
+					<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="#" title="">
-									<img src="images/banner_boxes/3.jpg" alt="" width="360px" height="200px">
+								<a href="<?php echo $getOfferModulesData['link'] ?>" title="" target="_blank">
+									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOfferModulesData['image'] ?>" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
 						</div><!-- /.banner-box -->
 					</div><!-- /.col-md-4 -->
-					<div class="col-md-3">
-						<div class="banner-box">
-							<div class="inner-box">
-								<a href="#" title="">
-									<img src="images/banner_boxes/4.jpg" alt="" width="360px" height="200px">
-								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
-					<div class="col-md-3">
-						<div class="banner-box">
-							<div class="inner-box">
-								<a href="http://testproject.cmrenterprises.co.in/grcry/food_new/index.php" title="" target="_blank">
-									<img src="images/banner_boxes/6.jpeg" alt="" width="360px" height="200px">
-								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
-					<div class="col-md-3">
-						<div class="banner-box">
-							<div class="inner-box">
-								<a href="http://testproject.cmrenterprises.co.in/grcry/Services/index.php" title="" target="_blank">
-									<img src="images/banner_boxes/5.jpeg" alt="" width="360px" height="200px">
-								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
+					<?php } ?>
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-banner-box -->
