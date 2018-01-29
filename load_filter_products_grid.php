@@ -69,7 +69,7 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
                 <div class="row">
                     <div class="col-sm-5">
                         <div class="quanlity" style="margin-top:5px">
-                            <input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_'.$getProductsData1['id'].'" type="number" style="height:45px">
+                            <input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity1_'.$getProductsData1['id'].'" type="number" style="height:45px">
                         </div>
                     </div>
                     <div class="col-sm-7">

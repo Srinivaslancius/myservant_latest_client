@@ -340,7 +340,7 @@ position:absolute;
 													<div class="row">
 													<div class="col-sm-5">
 														<div class="quanlity" style="margin-top:5px">
-															<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $getProductsData1['id']; ?>" type="number" style="height:45px">
+															<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity1_<?php echo $getProductsData1['id']; ?>" type="number" style="height:45px">
 														</div>
 													</div>
 													<div class="col-sm-7">
@@ -445,8 +445,8 @@ position:absolute;
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = $('#product_quantity_'+productId).val();
-				//alert(productPrice);
+				var product_quantity = $('#product_quantity1_'+productId).val();
+				//alert(product_quantity);
 	   			$.ajax({
 			      type:'post',
 			      url:'save_cart.php',
