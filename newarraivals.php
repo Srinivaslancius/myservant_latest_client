@@ -88,8 +88,8 @@
 										<ul class="box-checkbox scroll">
 											<?php while($getAllBrandsNames = $getAllBrands->fetch_assoc() ) { ?>
 											<li class="check-box">
-												<input type="checkbox" id="checkbox1" name="brands_filt[]" class="brand_filters" value="<?php echo $getAllBrandsNames['id']; ?>">
-												<label for="checkbox1"><?php echo $getAllBrandsNames['brand_name']; ?></label>
+												<input type="checkbox" id="checkbox<?php echo $getAllBrandsNames['id']; ?>" name="brands_filt[]" class="brand_filters" value="<?php echo $getAllBrandsNames['id']; ?>">
+												<label for="checkbox<?php echo $getAllBrandsNames['id']; ?>"><?php echo $getAllBrandsNames['brand_name']; ?></label>
 											</li>	
 											<?php } ?>									
 										</ul>
@@ -303,7 +303,7 @@
 													<div class="row">
 													<div class="col-sm-5">
 													<div class="quanlity" style="margin-top:5px">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity" type="number" style="height:45px">
 														</div>
 													</div>
 													<div class="col-sm-7">
