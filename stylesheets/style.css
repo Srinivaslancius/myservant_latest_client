@@ -3672,7 +3672,7 @@ i, cite, em, var, address, dfn {
 .accordion__content1 {
   float: right;
   width: 100%;
-  margin: 5em 0 0 -100%;
+  margin: 5em 0 3em -100%;
   padding: 3em;
   background: #ffff;
 }

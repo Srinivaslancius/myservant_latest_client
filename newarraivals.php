@@ -248,9 +248,7 @@
 														</div>
 														</div>
 														<div class="compare-wishlist">
-														<a href="#" class="compare" title="">
-															<img src="images/icons/compare.png" alt="">Compare
-														</a>
+														
 														<a href="#" class="wishlist" title="">
 															<img src="images/icons/wishlist.png" alt="">Wishlist
 														</a>
