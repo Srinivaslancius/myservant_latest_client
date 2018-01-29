@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+error_reporting(1);
 include_once('../admin_includes/config.php');
 include_once('../admin_includes/common_functions.php');
 //session_start();
@@ -20,6 +20,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	    //Assign the current timestamp as the user's
 		//latest activity
 		$_SESSION['last_action'] = time();
+		//Save log data here
+		saveAdminLogs('3',$_SESSION['grocery_admin_user_id']);//3- for grocery
 	    if(isset($_SESSION["grocery_admin_user_name"])) {
 		    echo "<script type='text/javascript'>window.location='dashboard.php'</script>";
 		}

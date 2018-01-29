@@ -178,7 +178,7 @@
               </a>
             </li>
 
-            <li><a href="#">
+            <li class="<?php if($page_name == 'admin_logs.php') { echo "active"; } ?>"><a href="admin_logs.php">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-dot-circle-alt"></i>
                 </span>

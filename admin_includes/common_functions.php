@@ -1,7 +1,7 @@
 <?php
     
     //common function for web / android /ios user registration
-     function saveUser($user_full_name, $user_email, $user_mobile, $user_password,$lkp_status_id,$login_count,$last_login_visit,$lkp_register_device_type_id,$user_login_type,$mobile_token,$user_register_service_id,$created_at) {
+    function saveUser($user_full_name, $user_email, $user_mobile, $user_password,$lkp_status_id,$login_count,$last_login_visit,$lkp_register_device_type_id,$user_login_type,$mobile_token,$user_register_service_id,$created_at) {
         //Save data into users table
         global $conn;
         $created_at = date("Y-m-d h:i:s");
@@ -211,4 +211,36 @@
             return 0;
         }
     }
+
+
+    function saveAdminLogs($service_id,$user_id) {
+        //Save data into logs table
+        global $conn;   
+        $remote_addr = $_SERVER['REMOTE_ADDR'];
+        $message = 'Grocery Admin Login';
+        $log_start_date = date("Y-m-d h:i:s");
+
+       $sqlIns = "INSERT INTO admin_log_history (remote_addr,message,log_start_date,service_id,user_id) VALUES ('$remote_addr','$message','$log_start_date','$service_id','$user_id')";
+        if ($conn->query($sqlIns) === TRUE) {
+            return 1;
+        } else {
+            return 0;
+        } 
+    }
+
+    function updateAdminLogs($service_id,$user_id) {
+        //Update User Log end time
+        global $conn;
+        $log_end_date = date("Y-m-d h:i:s");
+
+        $getAdminLRec = "SELECT * FROM admin_log_history WHERE service_id='$service_id' AND user_id ='$user_id' ORDER BY log_id DESC LIMIT 1";
+        $geLaRec = $conn->query($getAdminLRec);
+        $getRecRecord = $geLaRec->fetch_assoc();
+        $getLogId= $getRecRecord['log_id'];
+        $updateLog= "UPDATE admin_log_history SET log_end_date='$log_end_date' WHERE user_id='$user_id' AND service_id='$service_id' AND log_id='$getLogId' ";
+        $conn->query($updateLog);
+        return $getLogId;
+    }
+
+
 ?>
