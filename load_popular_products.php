@@ -37,11 +37,18 @@ $getProductImages = getIndividualDetails('grocery_product_bind_images','product_
 $img = $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'];
 $getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price ";
 $getProductPrices = $conn->query($getPrices);
+$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price  ";
+$getProductPrices1 = $conn->query($getPrices1);
+$getPricesDetails1 = $getProductPrices1->fetch_assoc();
 echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getProductsData['grocery_category_id'].'">
     <input type="hidden" id="sub_cat_id_'.$getProductsData['id'].'" value="'.$getProductsData['grocery_sub_category_id'].'">
     <input type="hidden" id="pro_name_'.$getProductsData['id'].'" value="'.$getProductNames['product_name'].'">';
  echo '<div class="col-lg-4 col-md-4 col-sm-6" >
         <div class="product-box">
+            <div id="div1" class="cart_popup_'.$getProductsData['id'].'">
+                <p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+                <p style="color:white">Product Name : '.$getProductNames['product_name'].'</p>
+            </div>
             <div class="imagebox">
                     <a href="single_product.php?product_id='.$getProductsData['id'].'" title="">
                         <img src="'.$img.'" alt="" style="width:264px; height:210px">
@@ -52,12 +59,18 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
                         <a href="single_product.php?product_id='.$getProductsData['id'].'" title="">'.$getProductNames['product_name'].'</a>
                     </div>
                     <div class="product_name">
-                    <select class="s-w form-control" id="get_pr_price_'.$getProductsData['id'].'">;';
+                    <select onchange="get_price(this.value);" class="s-w form-control" id="get_pr_price_'.$getProductsData['id'].'">;';
                         while($getPricesDetails = $getProductPrices->fetch_assoc()) {
                             echo'<option value="'.$getPricesDetails['id'].','.$getPricesDetails['selling_price'].'">'.$getPricesDetails['weight_type'].' - Rs.'.$getPricesDetails['selling_price'].' </option>';
                         }
                     echo'</select>
                     </div>
+                    <div class="price_'.$getProductsData['id'].'">
+                        <span class="sale">Rs: '.$getPricesDetails1['selling_price'].'</span>';
+                        if($getPricesDetails1['offer_type'] == 1) {
+                            echo'<span class="regular">Rs: '.$getPricesDetails1['selling_price'].'</span>';
+                        }
+                    echo'</div>
                 </div>
                 <div class="box-bottom">
                     <div class="row">
