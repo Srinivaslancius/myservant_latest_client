@@ -242,9 +242,6 @@ $tagNames = $conn->query($getTags);
 												</div>
 											</div>
 											<div class="compare-wishlist">
-												<a href="#" class="compare" title="">
-													<img src="images/icons/compare.png" alt="">Compare
-												</a>
 												<a href="#" class="wishlist" title="">
 													<img src="images/icons/wishlist.png" alt="">Wishlist
 												</a>
@@ -366,9 +363,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														</div>
 														<div class="compare-wishlist">
-														<a href="#" class="compare" title="">
-															<img src="images/icons/compare.png" alt="">Compare
-														</a>
+														
 														<a href="#" class="wishlist" title="">
 															<img src="images/icons/wishlist.png" alt="">Wishlist
 														</a>
@@ -445,9 +440,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 													</div>
 													<div class="compare-wishlist">
-													<a href="#" class="compare" title="">
-														<img src="images/icons/compare.png" alt="">Compare
-													</a>
+													
 													<a href="#" class="wishlist" title="">
 														<img src="images/icons/wishlist.png" alt="">Wishlist
 													</a>
@@ -522,9 +515,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														</div>
 														<div class="compare-wishlist">
-														<a href="#" class="compare" title="">
-															<img src="images/icons/compare.png" alt="">Compare
-														</a>
+														
 														<a href="#" class="wishlist" title="">
 															<img src="images/icons/wishlist.png" alt="">Wishlist
 														</a>
@@ -707,9 +698,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 									</div><!-- /.box-content -->
 									<div class="box-bottom">
 										<div class="compare-wishlist">
-											<a href="#" class="compare" title="">
-												<img src="images/icons/compare.png" alt="">Compare
-											</a>
+											
 											<a href="#" class="wishlist" title="">
 												<img src="images/icons/wishlist.png" alt="">Wishlist
 											</a>
