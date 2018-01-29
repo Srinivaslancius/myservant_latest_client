@@ -204,7 +204,7 @@
             </div>
             <div class="panel panel-default panel-table m-b-0">
                 <div class="panel-heading">
-                    <h3 class="m-t-0 m-b-5 font_sz_view">View Brands</h3>
+                    <h3 class="m-t-0 m-b-5 font_sz_view">View Banners</h3>
                     
                 </div>
                 <div class="panel-body">
@@ -215,7 +215,6 @@
                                     <th>S.no</th>
                                     <!-- <th>Brand Id</th> -->
                                     <th>Title</th>
-                                    <th>Link</th>
                                     <th>Web Image</th>
                                     <th>App Image</th>
                                     <th>City</th>
@@ -230,7 +229,6 @@
                                     <td><?php echo $i; ?></td>
                                     <!-- <td>Brnd345</td> -->
                                     <td><?php echo $row['title']; ?></td>
-                                    <td><?php echo $row['link']; ?></td>
                                     <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$row['web_image'] ?>" width="100" height="100"></td>
                                     <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_app_image/'.$row['app_image'] ?>" width="100" height="100"></td>
                                     <td><?php $getCities = getAllData('grocery_lkp_cities'); while($getCitiesData = $getCities->fetch_assoc()) { if($row['lkp_city_id'] == $getCitiesData['id']) { echo $getCitiesData['city_name']; } } ?></td>
@@ -280,6 +278,20 @@
         $("#banner_image_type").click(function() {
             $("#offer_percentage").hide();
             $("#min_offer_percentage,#max_offer_percentage").removeAttr('required');
+        });
+        $("#min_offer_percentage,#max_offer_percentage").blur(function () {
+            if(parseInt($('#min_offer_percentage').val()) > parseInt($('#max_offer_percentage').val())) {
+              alert("The Maximum Percentage must be larger than the Minimum Percentage");
+              $('#min_offer_percentage').val('');
+              $('#max_offer_percentage').val('');
+              return false;
+            }
+            if(parseInt($('#min_offer_percentage').val()) == 0 && parseInt($('#max_offer_percentage').val()) == 0) {
+              alert("The Maximum Percentage and the Minimum Percentage should be greater than zero");
+              $('#min_offer_percentage').val('');
+              $('#max_offer_percentage').val('');
+              return false;
+            }
         });
       });
     </script>

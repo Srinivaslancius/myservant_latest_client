@@ -104,31 +104,26 @@ position:absolute;
 				</div><!-- /.container -->
 			</section><!-- /.flat-slider -->
 
+			<?php $getOffers = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 2";
+			$getOffers1 = $conn->query($getOffers); ?>
 			<section class="flat-row flat-banner-box">
 			<div class="container">
 				<div class="row">
+					<?php while($getOffersData = $getOffers1->fetch_assoc()) { ?>
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="#" title="">
-									<img src="images/banner_boxes/3.jpg" alt="" width="360px" height="200px">
+								<a href="results.php?offer_id=<?php echo $getOffersData['id']; ?>" title="">
+									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOffersData['image'] ?>" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
 						</div><!-- /.banner-box -->
 					</div><!-- /.col-md-4 -->
+					<?php } ?>
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="#" title="">
-									<img src="images/banner_boxes/4.jpg" alt="" width="360px" height="200px">
-								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
-					<div class="col-md-3">
-						<div class="banner-box">
-							<div class="inner-box">
-								<a href="http://testproject.cmrenterprises.co.in/grcry/food_new/index.php" title="" target="_blank">
+								<a href="http://testproject.cmrenterprises.co.in/grcry/food_new/index.php" title="">
 									<img src="images/banner_boxes/6.jpeg" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
@@ -137,7 +132,7 @@ position:absolute;
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="http://testproject.cmrenterprises.co.in/grcry/Services/index.php" title="" target="_blank">
+								<a href="http://testproject.cmrenterprises.co.in/grcry/Services/index.php" title="">
 									<img src="images/banner_boxes/5.jpeg" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
@@ -260,7 +255,7 @@ $tagNames = $conn->query($getTags);
 		</section><!-- /.flat-imagebox -->
 <?php } ?>
 
-<?php $getOfferModules = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id DESC LIMIT 4";
+<?php $getOfferModules = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 2,6";
 $getOfferModules1 = $conn->query($getOfferModules); ?>
 <section class="flat-row flat-banner-box">
 			<div class="container">
@@ -269,7 +264,7 @@ $getOfferModules1 = $conn->query($getOfferModules); ?>
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="<?php echo $getOfferModulesData['link'] ?>" title="" target="_blank">
+								<a href="results.php?offer_id=<?php echo $getOfferModulesData['id']; ?>" title="">
 									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOfferModulesData['image'] ?>" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
