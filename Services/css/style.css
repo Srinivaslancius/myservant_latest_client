@@ -5139,10 +5139,6 @@ a#phone, a#email_footer {
         width:100% !important;
         height:160px !important;
     }
-    .layerslider{
-        width:100% !important;
-        height:100% !important;
-    }
    
     .carousel-control.right{
         padding-left:0px !important;
@@ -5213,7 +5209,7 @@ padding: 0px 30px 0 0px !important;
   @media screen and (max-width: 568px) and (min-width: 320px){
 
 #layerslider{
-	padding-top:40px !important;
+	padding-top:49px !important;
 }
 
   }
@@ -5229,7 +5225,7 @@ padding: 0px 30px 0 0px !important;
   }
   #layerslider{
 	width:100%;
-	padding-top:40px !important;
+	padding-top:98px !important;
 }
 .carousel-control.right{
 	margin-right:20px !important;
@@ -5257,7 +5253,7 @@ padding: 0px 30px 0 0px !important;
 }
 #layerslider{
 	width:100%;
-	padding:0px !important;
+	padding-top:51px !important;
 }
 ul#top_tools{
 	right: -60px;
@@ -5269,7 +5265,7 @@ ul#top_tools{
 	@media screen and (max-width: 732px) and (min-width: 412px){
 		#layerslider{
 	width:100%;
-	padding-top:40px !important;
+	padding-top:45px !important;
 }
 	}
 	.container.carousel1{
@@ -5334,5 +5330,8 @@ ul#top_tools{
 }
 .icon_display
 {
-   width: 60% !important;
+   width: 100px !important;
+}
+#layerslider{
+	padding-top:80px;
 }

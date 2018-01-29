@@ -133,7 +133,7 @@
 									    <div class="col-md-9 col-sm-9 col-xs-6">
                                         <h3 style="color:#fe6003">Tomato</h3>
                                         <div class="type">
-                                               <p>1kg(approx 13 to 14 nos)</p>
+                                               <p style="margin-bottom:10px">1kg(approx 13 to 14 nos)</p>
 											   <p><b>₹ 2.00</b></p>
                                         </div>
 										</div>

@@ -101,8 +101,8 @@ position:absolute;
 										<ul class="box-checkbox scroll">
 											<?php while($getAllBrandsNames = $getAllBrands->fetch_assoc() ) { ?>
 											<li class="check-box">
-												<input type="checkbox" id="checkbox<?php echo $getAllBrandsNames['id']; ?>" name="brands_filt[]" class="brand_filters" value="<?php echo $getAllBrandsNames['id']; ?>">
-												<label for="checkbox<?php echo $getAllBrandsNames['id']; ?>"><?php echo $getAllBrandsNames['brand_name']; ?></label>
+												<input type="checkbox" id="checkbox1" name="brands_filt[]" class="brand_filters" value="<?php echo $getAllBrandsNames['id']; ?>">
+												<label for="checkbox1"><?php echo $getAllBrandsNames['brand_name']; ?></label>
 											</li>	
 											<?php } ?>									
 										</ul>
@@ -214,7 +214,7 @@ position:absolute;
 									$getPrc1 = $allGetPrices1->fetch_assoc();
 									?>
 									<input type="hidden" id="row_no" value="10">
-										<div class="col-lg-4 col-md-4 col-sm-6" >
+										<div class="col-lg-4 col-md-6 col-sm-6" >
 											<div class="product-box">
 												<div id="div1" class="cart_popup_<?php echo $getProductsData['id']; ?>">
 													<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
@@ -339,8 +339,8 @@ position:absolute;
 														</div>
 													<div class="row">
 													<div class="col-sm-5">
-													<div class="quanlity" style="margin-top:5px">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $getProductsData1['id']; ?>" type="number" style="height:45px">
+														<div class="quanlity" style="margin-top:5px">
+															<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $getProductsData1['id']; ?>" type="number" style="height:45px">
 														</div>
 													</div>
 													<div class="col-sm-7">
