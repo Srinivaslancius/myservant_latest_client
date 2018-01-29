@@ -114,25 +114,24 @@
 							$cartTotal = 0; $service_tax = 0; $cartSubTotal=0;
                            while ($getSubCats = $cartSubCat->fetch_assoc()) { ?>
 				<div class="col-md-12 back_white mtop10 padd0">
+                                    
                                     <div class="col-md-12 padd0">
-                                    	<?php $subCatName = getIndividualDetails('services_sub_category','id',$getSubCats['service_sub_category_id']); ?>
-                                        <div class="col-md-6 col-sm-6"><h4><?php echo $subCatName['sub_category_name']; ?></h4></div>
-                                        <div class="col-md-3 col-sm-3"><h4>Select Date </h4></div>
-                                        <div class="col-md-3 col-sm-3"><h4>Select Time </h4></div>
-                                    </div>
-                                    <div class="col-md-12 padd0">
+									<?php $subCatName = getIndividualDetails('services_sub_category','id',$getSubCats['service_sub_category_id']); ?>
                                         <div class="col-md-6 col-sm-6">
+										<h4><?php echo $subCatName['sub_category_name']; ?></h4>
                                             <p>*Select Same date and time for all the same category orders</p>
                                         </div>
                                         <div class="col-md-3 col-sm-3">
+										<h4>Select Date </h4>
                                             <input class="date-pick form-control" type="text" 
                                              id="sel_date_<?php echo $subCatName['id']; ?>" readonly onChange="selectDate(<?php echo $subCatName['id']; ?>)">
                                         </div>
                                         <div class="col-md-3 col-sm-3">
+										<h4>Select Time </h4>
                                             <input class="time-pick form-control" type="text"  id="sel_time_<?php echo $subCatName['id']; ?>" onChange="selectTime(<?php echo $subCatName['id']; ?>)">
                                         </div>
                                        
-                                    </div>
+                                    </div><br>
                                         
 					<table class="table table-striped cart-list add_bottom_30">
 						<thead>

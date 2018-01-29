@@ -97,18 +97,30 @@ display: none;
 }
 @media only screen and (max-width: 480px) {
 	#layerslider{
-		margin-top:60px !important;
+		margin-top:67px !important;
 	}
 }
  @media screen and (max-width: 1024px) and (min-width: 768px){
 	 #layerslider{
   width:100% !important;
-  margin-top:70px;
+  padding-top:145px !important;
   }
  }
  #layerslider{
-	 padding-top:70px;
- }</style>
+	 padding-top:129px;
+ }
+  @media screen and (max-width: 960px) and (min-width: 600px){
+	  #layerslider{
+	 padding-top:99px !important;
+ }
+  }
+  @media screen and (max-width: 732px) and (min-width: 412px){
+	  #layerslider{
+	  padding-top:45px !important;
+	  }
+  }
+ 
+ </style>
 </head>
 
 <body>
