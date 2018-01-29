@@ -52,10 +52,19 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
                         }
                       echo'</select>
                     </div>
-                <div class="btn-add-cart">
-                    <a href="#" title="" onClick="show_cart1('.$getProductsData1['id'].')">
-                        <img src="images/icons/add-cart.png" alt="">Add to Cart
-                    </a>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="quanlity" style="margin-top:5px">
+                            <input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity" type="number" style="height:45px">
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="btn-add-cart mrgn_lft" style="margin-top:-20px;margin-left:-20px">
+                            <a href="#" title="" onClick="show_cart1('.$getProductsData1['id'].')">
+                                <img src="images/icons/add-cart.png" alt="">Add to Cart
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="compare-wishlist">
                     <a href="#" class="wishlist" title="">
