@@ -224,6 +224,10 @@
                                                             <?php } ?>
                                                         </select>
 														</div>
+														<div class="price">
+															<span class="sale"> ₹200.00</span>
+															<span class="regular"> ₹250.00</span>
+														</div>
 													</div><!-- /.box-content -->
 													<input type="hidden" id="cat_id_<?php echo $getProductsData['id']; ?>" value="<?php echo $getProductsData['grocery_category_id']; ?>">
 													<input type="hidden" id="sub_cat_id_<?php echo $getProductsData['id']; ?>" value="<?php echo $getProductsData['grocery_sub_category_id']; ?>">
@@ -299,6 +303,11 @@
                                                             	<option value="<?php echo $getPricesDetails2['id']; ?>,<?php echo $getPricesDetails2['selling_price']; ?>"><?php echo $getPricesDetails2['weight_type']; ?> - Rs.<?php echo $getPricesDetails2['selling_price']; ?> </option>
                                                             <?php } ?>
                                                           </select>
+														  
+														</div>
+														<div class="price">
+															<span class="sale"> ₹200.00</span>
+															<span class="regular"> ₹250.00</span>
 														</div>
 													<div class="row">
 													<div class="col-sm-5">
