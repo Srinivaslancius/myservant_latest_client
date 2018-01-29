@@ -396,7 +396,7 @@
 			        productId:ProductId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
-			      	window.location.href = "shop_cart.php";
+			      	//window.location.href = "shop_cart.php";
 			      }
 			    });
 			}
@@ -418,7 +418,7 @@
 			        productId:productId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
-			      	window.location.href = "shop_cart.php";
+			      	//window.location.href = "shop_cart.php";
 			      }
 			    });
 			}
