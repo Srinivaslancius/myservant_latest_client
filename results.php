@@ -148,7 +148,7 @@ position:absolute;
 									while($getProductDetails = $getProducts1->fetch_assoc()) { 
 										$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$getProductDetails['id']);
 										$getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductDetails['id']);
-										$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price ";
 										$allGetPrices1 = $conn->query($getPrices1);
 										$getPrc1 = $allGetPrices1->fetch_assoc();
 									?>	
@@ -168,7 +168,7 @@ position:absolute;
 														</div>
 														<div class="product_name">
 														<?php 
-														$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+														$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price ";
 							 							$getProductPrices = $conn->query($getPrices);
 														?> 
 														<select  onchange="get_price(this.value,'na10');" class="s-w form-control" id="get_pr_price_<?php echo $getProductDetails['id']; ?>">
@@ -220,7 +220,7 @@ position:absolute;
 										$getProductImages1 = getIndividualDetails('grocery_product_bind_images','product_id',$getProductsTotalDetails2['id']);
 										$getProductNames1 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductsTotalDetails2['id']);
 									?>
-									<?php $productPrice = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsTotalDetails2['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									<?php $productPrice = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsTotalDetails2['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price ";
 			 							$productPrice1 = $conn->query($productPrice);
 			 							$productPrice2 = $productPrice1->fetch_assoc();
 			 						?>
@@ -251,7 +251,8 @@ position:absolute;
 												<div class="box-price">
 													<div class="product_name">
 														<?php 
-														 $getProductPrices1 = getAllDataWhereWithActive('grocery_product_bind_weight_prices','product_id',$getProductsTotalDetails2['id']);
+														$getDet = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsTotalDetails2['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price ";
+							 							$getProductPrices1 = $conn->query($getDet);
 														?> 
 														<select class="s-w form-control" id="get_pr_price1_<?php echo $getProductsTotalDetails2['id']; ?>" onchange="get_price(this.value,'na10');">
                                                             <?php while($getPrices1 = $getProductPrices1->fetch_assoc()) { ?>
@@ -260,13 +261,15 @@ position:absolute;
                                                           </select>
 														</div>
 														<div class="price_<?php echo $getProductsTotalDetails2['id']; ?>">
-															<span class="sale"> ₹200.00</span>
-															<span class="regular"> ₹250.00</span>
+															<span class="sale"><?php echo 'Rs : ' . $productPrice2['selling_price']; ?></span>
+															<?php if($productPrice2['offer_type'] == 1) { ?>
+																<span class="regular"><?php echo 'Rs : ' . $productPrice2['mrp_price']; ?></span>
+															<?php } ?>
 														</div>
 														<div class="row">
 													<div class="col-sm-5">
 													<div class="quanlity" style="margin-top:5px">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $getProductsTotalDetails2['id']; ?>" type="number" style="height:45px">
 														</div>
 													</div>
 													<div class="col-sm-7">

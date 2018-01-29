@@ -53,6 +53,9 @@ $getProductNames1 = getIndividualDetails('grocery_product_name_bind_languages','
 $getProductImages1 = getIndividualDetails('grocery_product_bind_images','product_id',$getProductsData1['id']);
  $getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData1['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price  ";
 $getProductPrices = $conn->query($getPrices);
+$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData1['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price  ";
+$getProductPrices1 = $conn->query($getPrices1);
+$getPricesDetails1 = $getProductPrices1->fetch_assoc();
 $img = $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages1['image'];
 echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$getProductsData1['grocery_category_id'].'">
     <input type="hidden" id="sub_cat_id1_'.$getProductsData1['id'].'" value="'.$getProductsData1['grocery_sub_category_id'].'">
@@ -79,16 +82,22 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
             </div>
             <div class="box-price">
                 <div class="product_name">
-                    <select class="s-w form-control" id="get_pr_price1_'.$getProductsData1['id'].'">;';
+                    <select onchange="get_price(this.value);" class="s-w form-control" id="get_pr_price1_'.$getProductsData1['id'].'">;';
                         while($getPricesDetails = $getProductPrices->fetch_assoc()) {
                             echo'<option value="'.$getPricesDetails['id'].','.$getPricesDetails['selling_price'].'">'.$getPricesDetails['weight_type'].' - Rs.'.$getPricesDetails['selling_price'].' </option>';
                         }
                       echo'</select>
                     </div>
+                    <div class="price_'.$getProductsData1['id'].'">
+                        <span class="sale">Rs: '.$getPricesDetails1['selling_price'].'</span>';
+                        if($getPricesDetails1['offer_type'] == 1) { 
+                            echo'<span class="regular">Rs: '.$getPricesDetails1['selling_price'].'</span>';
+                        }
+                    echo'</div>
                 <div class="row">
                     <div class="col-sm-5">
                         <div class="quanlity" style="margin-top:5px">
-                            <input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity" type="number" style="height:45px">
+                            <input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_'.$getProductsData1['id'].'" type="number" style="height:45px">
                         </div>
                     </div>
                     <div class="col-sm-7">

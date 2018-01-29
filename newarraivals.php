@@ -196,6 +196,9 @@
 									while($getProductsData = $getProducts1->fetch_assoc()) {
 									$getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductsData['id']);
 									$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$getProductsData['id']);
+									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id'ORDER BY selling_price";
+									$allGetPrices1 = $conn->query($getPrices1);
+									$getPrc1 = $allGetPrices1->fetch_assoc();
 									?>
 									<input type="hidden" id="row_no" value="10">
 										<div class="col-lg-4 col-md-4 col-sm-6" >
@@ -215,18 +218,20 @@
 														</div>
 														<div class="product_name">
 														<?php 
-														$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price DESC ";
+														$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price";
 							 							$getProductPrices = $conn->query($getPrices);
 														?>
-														<select class="s-w form-control" id="get_pr_price_<?php echo $getProductsData['id']; ?>">;
+														<select onchange="get_price(this.value,'na10');" class="s-w form-control" id="get_pr_price_<?php echo $getProductsData['id']; ?>">;
                                                             	<?php while($getPricesDetails = $getProductPrices->fetch_assoc()) { ?>
-                                                            	<option value="<?php echo $getPricesDetails['id']; ?>,<?php echo $getPricesDetails['selling_price']; ?>"><?php echo $getPricesDetails['weight_type']; ?> - Rs.<?php echo $getPricesDetails['selling_price']; ?> </option>
+                                                            	<option value="<?php echo $getPricesDetails['id']; ?>,<?php echo $getPricesDetails['selling_price']; ?>,<?php echo $getProductsData['id']; ?>"><?php echo $getPricesDetails['weight_type']; ?> - Rs.<?php echo $getPricesDetails['selling_price']; ?> </option>
                                                             <?php } ?>
                                                         </select>
 														</div>
-														<div class="price">
-															<span class="sale"> ₹200.00</span>
-															<span class="regular"> ₹250.00</span>
+														<div class="price_<?php echo $getProductsData['id']; ?>">
+															<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
+															<?php if($getPrc1['offer_type'] == 1) { ?>
+																<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
+															<?php } ?>
 														</div>
 													</div><!-- /.box-content -->
 													<input type="hidden" id="cat_id_<?php echo $getProductsData['id']; ?>" value="<?php echo $getProductsData['grocery_category_id']; ?>">
@@ -236,19 +241,18 @@
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
 														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity"type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $getProductsData['id']; ?>" type="number" style="height:45px">
 														</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="#" title="" onClick="show_cart(<?php echo $getProductsData['id']; ?>)"style="width:115%">
+															<a href="#" title="" onClick="show_cart(<?php echo $getProductsData['id']; ?>)" style="width:115%">
 																<img src="images/icons/add-cart.png" alt="">Add to Cart
 															</a>
 														</div>
 														</div>
 														</div>
 														<div class="compare-wishlist">
-														
 														<a href="#" class="wishlist" title="">
 															<img src="images/icons/wishlist.png" alt="">Wishlist
 														</a>
@@ -265,7 +269,10 @@
 										$getProducts11 = $conn->query($getProducts1);
 									while($getProductsData1 = $getProducts11->fetch_assoc()) {
 									$getProductNames1 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductsData1['id']);
-									$getProductImages1 = getIndividualDetails('grocery_product_bind_images','product_id',$getProductsData1['id']); ?>
+									$getProductImages1 = getIndividualDetails('grocery_product_bind_images','product_id',$getProductsData1['id']);
+									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData1['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									$allGetPrices1 = $conn->query($getPrices1);
+									$getPrc2 = $allGetPrices1->fetch_assoc(); ?>
 										<div class="product-box style3">
 											<div class="imagebox style1 v3">
 												<div class="box-image">
@@ -298,19 +305,21 @@
 														?>
 															<select class="s-w form-control" id="get_pr_price1_<?php echo $getProductsData1['id']; ?>" onchange="get_price(this.value);">';
                                                             	<?php while($getPricesDetails2 = $getProductPrices2->fetch_assoc()) { ?>
-                                                            	<option value="<?php echo $getPricesDetails2['id']; ?>,<?php echo $getPricesDetails2['selling_price']; ?>"><?php echo $getPricesDetails2['weight_type']; ?> - Rs.<?php echo $getPricesDetails2['selling_price']; ?> </option>
+                                                            	<option value="<?php echo $getPricesDetails2['id']; ?>,<?php echo $getPricesDetails2['selling_price']; ?>,<?php echo $getProductsData1['id']; ?>"><?php echo $getPricesDetails2['weight_type']; ?> - Rs.<?php echo $getPricesDetails2['selling_price']; ?> </option>
                                                             <?php } ?>
                                                           </select>
 														  
 														</div>
-														<div class="price">
-															<span class="sale"> ₹200.00</span>
-															<span class="regular"> ₹250.00</span>
+														<div class="price_<?php echo $getProductsData1['id']; ?>">
+															<span class="sale"><?php echo 'Rs : ' . $getPrc2['selling_price']; ?></span>
+															<?php if($getPrc2['offer_type'] == 1) { ?>
+																<span class="regular"><?php echo 'Rs : ' . $getPrc2['mrp_price']; ?></span>
+															<?php } ?>
 														</div>
 													<div class="row">
 													<div class="col-sm-5">
 													<div class="quanlity" style="margin-top:5px">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity" type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $getProductsData1['id']; ?>" type="number" style="height:45px">
 														</div>
 													</div>
 													<div class="col-sm-7">
@@ -377,7 +386,7 @@
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = 1;
+				var product_quantity = $('#product_quantity_'+ProductId).val();;
 				//alert(productWeightType);
 
 	   			$.ajax({
@@ -400,7 +409,7 @@
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = 1;
+				var product_quantity = $('#product_quantity_'+productId).val();;
 				//alert(productPrice);
 	   			$.ajax({
 			      type:'post',
@@ -470,17 +479,19 @@
 		</script>
 		<script type="text/javascript">
 			function get_price(product_id) {
-				alert();
+				//alert(product_id);
+				var split = product_id.split(",");
+				var productId = split[2];	
+				var productWeightType = split[0];				
 				$.ajax({
 				  type:'post',
 				  url:'get_price.php',
 				  data:{
-				     product_id:product_id,       
+				     product_id:productWeightType,       
 				  },
 				  success:function(data) {
 				    //alert(data);
-				    $('#pro_price_').val($('#pro_price').val());
-				    $('#pro_weight_type_id_').val($('#pro_weight_type_id').val());
+				    $('.price_'+productId).html(data);
 				  }
 				});
 			}
