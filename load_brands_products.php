@@ -40,6 +40,10 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
     <input type="hidden" id="pro_name_'.$getProductsData['id'].'" value="'.$getProductNames['product_name'].'">';
  echo '<div class="col-lg-4 col-md-4 col-sm-6" >
         <div class="product-box">
+            <div id="div1" class="cart_popup_'.$getProductsData['id'].'">
+                <p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+                <p style="color:white">Product Name : '.$getProductNames['product_name'].'</p>
+            </div>
             <div class="imagebox">
                     <a href="single_product.php?product_id='.$getProductsData['id'].'" title="">
                         <img src="'.$img.'" alt="" style="width:264px; height:210px">

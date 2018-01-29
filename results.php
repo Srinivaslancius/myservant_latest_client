@@ -227,8 +227,12 @@ position:absolute;
 
 									<input type="hidden" id="cat_id1_<?php echo $getProductsTotalDetails2['id']; ?>" value="<?php echo $getProductsTotalDetails2['grocery_category_id']; ?>">
 									<input type="hidden" id="sub_cat_id1_<?php echo $getProductsTotalDetails2['id']; ?>" value="<?php echo $getProductsTotalDetails2['grocery_sub_category_id']; ?>">
-									<input type="hidden" id="pro_name1_<?php echo $getProductsTotalDetails2['id']; ?>" value="<?php echo $getProductNames['product_name']; ?>">
+									<input type="hidden" id="pro_name1_<?php echo $getProductsTotalDetails2['id']; ?>" value="<?php echo $getProductNames1['product_name']; ?>">
 										<div class="product-box style3">
+											<div id="div1" class="cart_popup_<?php echo $getProductsTotalDetails2['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductNames1['product_name']; ?></p>
+											</div>
 											<div class="imagebox style1 v3">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $getProductsTotalDetails2['id'];?>" title="">
@@ -274,7 +278,7 @@ position:absolute;
 													</div>
 													<div class="col-sm-7">
 													<div class="btn-add-cart mrgn_lft" style="margin-top:-20px;margin-left:-20px">
-														<a href="#" title="" onClick="show_cart(<?php echo $getProductsTotalDetails2['id']; ?>)">
+														<a href="javascript:void(0)" title="" onClick="show_cart1(<?php echo $getProductsTotalDetails2['id']; ?>)">
 															<img src="images/icons/add-cart.png" alt="">Add to Cart
 														</a>
 													</div>
@@ -406,6 +410,10 @@ position:absolute;
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
+			      	$(".cart_popup_"+productId).fadeIn(2000);
+			      	setTimeout(function() {
+					    $(".cart_popup_"+productId).fadeOut('fast');
+					}, 2000);
 			      }
 			    });
 			    $.ajax({

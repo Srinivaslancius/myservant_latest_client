@@ -1,4 +1,17 @@
 <?php include_once 'meta.php';?>
+<style>
+#div1{
+width:90%;
+height:auto;
+display:none;
+background: rgba(0,0,0,0.8);
+border:1px solid #DCDCDC;
+border-radius:10px;
+padding:20px;
+z-index:9999;
+position:absolute;
+}
+</style>
 <body class="header_sticky">
 	<div class="boxed style2">
 
@@ -203,6 +216,10 @@
 									<input type="hidden" id="row_no" value="10">
 										<div class="col-lg-4 col-md-4 col-sm-6" >
 											<div class="product-box">
+												<div id="div1" class="cart_popup_<?php echo $getProductsData['id']; ?>">
+													<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+													<p style="color:white">Product Name : <?php echo $getProductNames['product_name']; ?></p>
+												</div>
 												<div class="imagebox">
 												
 														<a href="single_product.php?product_id=<?php echo $getProductsData['id'];?>" title="">
@@ -246,7 +263,7 @@
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="#" title="" onClick="show_cart(<?php echo $getProductsData['id']; ?>)" style="width:115%">
+															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $getProductsData['id']; ?>)" style="width:115%">
 																<img src="images/icons/add-cart.png" alt="">Add to Cart
 															</a>
 														</div>
@@ -274,6 +291,10 @@
 									$allGetPrices1 = $conn->query($getPrices1);
 									$getPrc2 = $allGetPrices1->fetch_assoc(); ?>
 										<div class="product-box style3">
+											<div id="div1" class="cart_popup_<?php echo $getProductsData1['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductNames1['product_name']; ?></p>
+											</div>
 											<div class="imagebox style1 v3">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $getProductsData1['id'];?>" title="">
@@ -324,7 +345,7 @@
 													</div>
 													<div class="col-sm-7">
 													<div class="btn-add-cart mrgn_lft" style="margin-top:-20px;margin-left:-20px">
-														<a href="#" title="" onClick="show_cart1(<?php echo $getProductsData1['id']; ?>)">
+														<a href="javascript:void(0)" title="" onClick="show_cart1(<?php echo $getProductsData1['id']; ?>)">
 															<img src="images/icons/add-cart.png" alt="">Add to Cart
 														</a>
 													</div>
@@ -397,8 +418,23 @@
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
+			      	$(".cart_popup_"+ProductId).fadeIn(2000);
+			      	setTimeout(function() {
+					    $(".cart_popup_"+ProductId).fadeOut('fast');
+					}, 2000);
 			      }
 			    });
+			    $.ajax({
+				  type:'post',
+				  url:'header_cart_page.php',
+				  data:{
+				     cart_id:ProductId,
+				  },
+				  success:function(data) {
+				    $('.header_cart').html(data);
+				  }
+
+				 });
 			}
 
 			function show_cart1(productId) {
@@ -409,7 +445,7 @@
 				var split = product.split(",");
 				var productWeightType = split[0];
 				var productPrice = split[1];
-				var product_quantity = $('#product_quantity_'+productId).val();;
+				var product_quantity = $('#product_quantity_'+productId).val();
 				//alert(productPrice);
 	   			$.ajax({
 			      type:'post',
@@ -419,8 +455,23 @@
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
+			      	$(".cart_popup_"+productId).fadeIn(2000);
+			      	setTimeout(function() {
+					    $(".cart_popup_"+productId).fadeOut('fast');
+					}, 2000);
 			      }
 			    });
+			    $.ajax({
+				  type:'post',
+				  url:'header_cart_page.php',
+				  data:{
+				     cart_id:productId,
+				  },
+				  success:function(data) {
+				    $('.header_cart').html(data);
+				  }
+
+				 });
 			}
 		</script>
 		<script type="text/javascript">
