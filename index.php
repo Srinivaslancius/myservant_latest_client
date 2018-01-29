@@ -185,7 +185,7 @@ $tagNames = $conn->query($getTags);
 									$allGetPrices1 = $conn->query($getPrices1);
 									$getPrc1 = $allGetPrices1->fetch_assoc();
 								?>
-							<div class="col-sm-6 col-lg-3">
+							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
 									<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
 										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>

@@ -2401,7 +2401,7 @@ ul.flat-infomation.style1 li img {
 /* Slider Item Style9 */
 .slider .slider-item.style9 {
 	background:#f5f5f5;
-	height:256px;
+	/*! height:256px; */
 }
 
 .slider .slider-item.style9:before {
@@ -7644,13 +7644,87 @@ height: 100px;
 .table-cart tr td .price {
    margin-right: 20px;
 }
+.imagebox .box-bottom .btn-add-cart a img {
+    padding-right: 0px;
+}
+.imagebox.style1.v3 .box-price {
+   
+    padding: 0px 0px 0 55px !important;
+}
 }
 @media screen and (max-width: 640px) and (min-width: 360px){
 	.imagebox .box-content .product-name {
     min-height: 32px !important;
     margin-top: 16px !important;
 }
+.imagebox .box-content .cat-name a {
+	margin-top:50px;
 }
+.imagebox.style1.v3 .box-content .product-name {
+	margin-top:0px !important;
+}
+
 .imagebox.style4.bx_height{
 	min-height:360px !important;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px){
+	.imagebox.style1.v3 .box-price .btn-add-cart a {
+		font-size: 12px;
+		padding: 0 2px 0 2px;
+	}
+	.imagebox.style1.v3 .box-price .btn-add-cart a img {
+    padding-right: 12px;
+    padding-left: 5px;
+}
+.imagebox .box-bottom .btn-add-cart a {
+	font-size:12px !important;
+}
+.imagebox .box-bottom .btn-add-cart a img {
+    padding-right: 5px !important;
+    padding-left: 5px;
+}
+.button12{
+	font-size:12px !important;
+}
+.button1 {
+	padding: 2px 3px !important;
+	font-size: 11px !important;
+	width:100%;
+}
+}
+@media screen and (max-width: 736px) and (min-width: 414px){
+.product_name {
+	margin-top:20px;
+}
+.imagebox .box-content .cat-name a{
+	padding-top:80px;
+}
+.imagebox .box-content .cat-name a::before, .imagebox .box-content .cat-name a::after {
+    width: 20%;
+    margin-top: 40px;
+}
+.product_name {
+	margin-top:0px;
+	margin-bottom:0px;
+}
+}
+@media screen and (max-width: 667px) and (min-width: 375px){
+	.imagebox .box-content .cat-name a{
+		margin-top:80px;
+	}
+	.imagebox.style1.v3 .box-content .product-name {  
+    margin-top: 0px !important;
+}
+}
+@media screen and (max-width: 732px) and (min-width: 412px){
+.imagebox .box-content .cat-name a {
+    margin-top: 50px;
+}	
+}
+@media screen and (max-width: 1366px) and (min-width: 768px){
+.imagebox.style1.v3 .box-price {
+    text-align: center;
+padding: 0px;
+}
 }
