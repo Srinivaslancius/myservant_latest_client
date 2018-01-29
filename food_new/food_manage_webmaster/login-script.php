@@ -20,6 +20,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	    //Assign the current timestamp as the user's
 		//latest activity
 		$_SESSION['last_action'] = time();
+		saveAdminLogs('2',$_SESSION['food_admin_user_id']);//2- for food
 	    if(isset($_SESSION["food_admin_user_name"])) {
 		    echo "<script type='text/javascript'>window.location='dashboard.php'</script>";
 		}
