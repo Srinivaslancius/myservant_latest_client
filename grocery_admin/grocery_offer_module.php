@@ -33,16 +33,25 @@
           echo "fail";
         } else  { 
 
-            //echo "<pre>"; print_r($_POST); die;     
-            $link = $_REQUEST['link'];
+            //echo "<pre>"; print_r($_POST); die;  
             $name = $_REQUEST['name'];
-            //$lkp_status_id = $_REQUEST['lkp_status_id'];
+            $offer_type = $_POST['offer_type'];
+            $offer_level = $_POST['offer_level'];
+            if($offer_type == 0) {
+                $max_offer_percentage = '';
+                $min_offer_percentage = '';
+            } else {
+                $max_offer_percentage = $_POST['max_offer_percentage'];
+                $min_offer_percentage = $_POST['min_offer_percentage'];
+            }
+            $category_id = $_POST['category_id'];
+            $sub_category_id = $_POST['sub_category_id'];
             if($_FILES["image"]["name"]!='') {
                 $image = uniqid().$_FILES["image"]["name"];
                 $target_dir = "uploads/grocery_offer_module_image/";
                 $target_file = $target_dir . basename($image);
                 move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-                $sql = "INSERT INTO grocery_offer_module (`name`,`image`, `link`) VALUES ('$name', '$image', '$link')";
+                $sql = "INSERT INTO grocery_offer_module (`name`,`image`, `offer_type`, `offer_level`, `category_id`, `sub_category_id`, `min_offer_percentage`, `max_offer_percentage`) VALUES ('$name', '$image', '$offer_type', '$offer_level', '$category_id', '$sub_category_id', '$min_offer_percentage', '$max_offer_percentage')";
                 $result = $conn->query($sql);
             }
            
@@ -78,12 +87,62 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Link</label>
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Offer Type</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="url" class="form-control" id="form-control-3" placeholder="Enter Link" name="link" required>
+                                    <input type="radio" name="offer_type" id="banner_image_type" value="0">Normal
+                                    <input type="radio" name="offer_type" id="banner_image_type1" value="1">Offer
                                 </div>
                             </div>
-                             
+                            <div id="offer_percentage">
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Minimum Offer Percentage</label>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="min_offer_percentage" class="form-control valid_price_dec" id="min_offer_percentage" placeholder="Enter Minimum Offer Percentage">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Maximum Offer Percentage</label>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="max_offer_percentage" class="form-control valid_price_dec" id="max_offer_percentage" placeholder="Enter Maximum Offer Percentage">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Select Type</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <select id="type" name="offer_level" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }">
+                                        <option value="">-- Select Type --</option>
+                                        <?php $getTypes = getAllDataWithStatus('grocery_banner_types','0');?>
+                                        <?php while($row = $getTypes->fetch_assoc()) {  ?>
+                                            <option value="<?php echo $row['id']; ?>" ><?php echo $row['banner_type']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="category">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Select Category</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <select id="form-control-1" name="category_id" class="form-control category" data-plugin="select2" data-options="{ theme: bootstrap }">
+                                        <option value="">-- Select Category --</option>
+                                        <?php $getCategories = getAllDataWithStatus('grocery_category','0');?>
+                                        <?php while($row = $getCategories->fetch_assoc()) {  ?>
+                                            <option value="<?php echo $row['id']; ?>" ><?php echo $row['category_name']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="sub_category">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Select Sub Category</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <select id="form-control-1" name="sub_category_id" class="form-control sub_category" data-plugin="select2" data-options="{ theme: bootstrap }">
+                                        <option value="">-- Select Sub Category --</option>
+                                        <?php $getSubacategories = getAllDataWithStatus('grocery_sub_category','0');?>
+                                        <?php while($row = $getSubacategories->fetch_assoc()) {  ?>
+                                            <option value="<?php echo $row['id']; ?>" ><?php echo $row['sub_category_name']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                                     <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
@@ -96,7 +155,7 @@
 
              <div class="panel panel-default panel-table m-b-0">
                 <div class="panel-heading">
-                    <h3 class="m-t-0 m-b-5 font_sz_view">View Brand Logo</h3>
+                    <h3 class="m-t-0 m-b-5 font_sz_view">View Offers</h3>
                     
                 </div>
                 <div class="panel-body">
@@ -107,7 +166,6 @@
                                     <th>S.no</th>
                                     <th>Name</th>
                                     <th>Image</th>
-                                    <th>Link</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -119,7 +177,6 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $row['name']; ?></td>
                                     <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$row['image']; ?>"  id="output" height="60" width="60"/></td>
-                                    <td><?php echo $row['link']; ?></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_offer_module'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_offer_module'>In Active</span>" ;} ?></td>
                                     <td> <a href="edit_grocery_offer_module.php?offer_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
                                 </tr>
@@ -135,5 +192,54 @@
         <script src="js/dashboard-3.min.js"></script>
         <script src="js/forms-plugins.min.js"></script>
         <script src="js/tables-datatables.min.js"></script>
+        <script type="text/javascript">
+    $("#category,#sub_category,#product,#offer_percentage").hide();
+    $("#min_offer_percentage,#max_offer_percentage").removeAttr('required');
+      $(document).ready(function () {
+        $("#type").change(function() {
+            if($(this).val() == 1) {
+                $("#category").show();
+                $("#sub_category,#product").hide();
+                $('.category').val("");
+                $(".category").attr("required", "true");
+                $(".sub_category,.product").removeAttr('required');
+            } else if($(this).val() == 2) {
+                $("#sub_category").show();
+                $("#category,#product").hide();
+                $('.sub_category').val("");
+                $(".sub_category").attr("required", "true");
+                $(".category,.product").removeAttr('required');
+            } else {
+                $("#product").show();
+                $("#category,#sub_category").hide();
+                $('.product').val("");
+                $(".product").attr("required", "true");
+                $(".category,.product").removeAttr('required');
+            }   
+        });
+        $("#banner_image_type1").click(function() {
+            $("#offer_percentage").show();
+            $("#min_offer_percentage,#max_offer_percentage").attr("required", "true");
+        });
+        $("#banner_image_type").click(function() {
+            $("#offer_percentage").hide();
+            $("#min_offer_percentage,#max_offer_percentage").removeAttr('required');
+        });
+        $("#min_offer_percentage,#max_offer_percentage").blur(function () {
+            if(parseInt($('#min_offer_percentage').val()) > parseInt($('#max_offer_percentage').val())) {
+              alert("The Maximum Percentage must be larger than the Minimum Percentage");
+              $('#min_offer_percentage').val('');
+              $('#max_offer_percentage').val('');
+              return false;
+            }
+            if(parseInt($('#min_offer_percentage').val()) == 0 && parseInt($('#max_offer_percentage').val()) == 0) {
+              alert("The Maximum Percentage and the Minimum Percentage should be greater than zero");
+              $('#min_offer_percentage').val('');
+              $('#max_offer_percentage').val('');
+              return false;
+            }
+        });
+      });
+    </script>
   </body>
 </html>

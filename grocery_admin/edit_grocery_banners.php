@@ -34,7 +34,6 @@
           echo "fail";
         } else  {
             //echo "<pre>"; print_r($_FILES); die;
-            $link = $_POST['link'];
             $title = $_POST['title'];
             $lkp_city_id = $_POST['lkp_city_id'];
             $category_id = $_POST['category_id'];
@@ -59,17 +58,17 @@
                 $app_image_file = $app_image_dir . basename($app_image);
                 
                 if(move_uploaded_file($_FILES["web_image"]["tmp_name"], $web_image_file) && move_uploaded_file($_FILES["app_image"]["tmp_name"], $app_image_file)) {
-                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } elseif($_FILES["web_image"]["name"]!='') {
                     move_uploaded_file($_FILES["web_image"]["tmp_name"], $web_image_file);
-                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } elseif($_FILES["app_image"]["name"]!='') {
                     move_uploaded_file($_FILES["app_image"]["tmp_name"], $app_image_file);
-                    $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } 
 
             } else{
-               $sql = "UPDATE `grocery_banners` SET link = '$link',title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
+               $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                //$conn->query($sql);
             }          
             //echo $sql; die;
@@ -87,7 +86,7 @@
         <div class="site-content">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="m-y-0 font_sz_view">Edit Brands</h3>
+                    <h3 class="m-y-0 font_sz_view">Edit Banners</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -103,12 +102,6 @@
                                             <option <?php if($row['id'] == $getBanners['lkp_city_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['city_name']; ?></option>
                                         <?php } ?>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="form-control-9">Link</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <input type="url" name="link" class="form-control" id="form-control-3" placeholder="Enter link" value="<?php echo $getBanners['link']; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group">
