@@ -255,13 +255,13 @@ position:absolute;
 														<?php 
 														 $getProductPrices1 = getAllDataWhereWithActive('grocery_product_bind_weight_prices','product_id',$getProductsTotalDetails2['id']);
 														?> 
-														<select class="s-w form-control" id="get_pr_price1_<?php echo $getProductsTotalDetails2['id']; ?>" onchange="get_price1(this.value,'na10');">
+														<select class="s-w form-control" id="get_pr_price1_<?php echo $getProductsTotalDetails2['id']; ?>" onchange="get_price(this.value,'na10');">
                                                             <?php while($getPrices1 = $getProductPrices1->fetch_assoc()) { ?>
-                                                            <option value="<?php echo $getPrices1['id']; ?>,<?php echo $getPrices1['selling_price']; ?>"><?php echo $getPrices1['weight_type']; ?> - Rs.<?php echo $getPrices1['selling_price']; ?> </option>
+                                                            <option value="<?php echo $getPrices1['id']; ?>,<?php echo $getPrices1['selling_price']; ?>,<?php echo $getProductsTotalDetails2['id']; ?>"><?php echo $getPrices1['weight_type']; ?> - Rs.<?php echo $getPrices1['selling_price']; ?> </option>
                                                             <?php } ?>
                                                           </select>
 														</div>
-														<div class="price">
+														<div class="price_<?php echo $getProductsTotalDetails2['id']; ?>">
 															<span class="sale"> ₹200.00</span>
 															<span class="regular"> ₹250.00</span>
 														</div>
