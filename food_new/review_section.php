@@ -205,10 +205,12 @@
 
             if($getData->num_rows > 0) {
               while($row = $getData->fetch_assoc() ) {
+                $getRestName= getIndividualDetails('food_vendors','id',$row['restaurant_id']);
           ?>
 				  <div class="row">
             <div class="col-sm-4">
               <h2><?php echo $row['rating_number']; ?>  <span style="font-size:20px;"><i class="icon_star voted"></i></span></h2>
+              <p style="text-indent:8px"><b>Restaurant Name: </b> <span><?php echo $getRestName['restaurant_name']; ?></span></p>
               <p style="text-indent:8px"><b><?php echo $getDisplayOrderDetails['first_name']; ?> :</b> <span> <?php echo $row['created']; ?></span></p>
               <?php 
                 $avgRating = 0;
