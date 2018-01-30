@@ -95,9 +95,15 @@
 		</div><!-- End box_style_1 -->
         </div><!-- End theiaStickySidebar -->
      </div><!-- End col-md-3 -->
-        
+        <link href="css/rating.css" rel="stylesheet" type="text/css">
         <div class="col-md-9 col-sm-9">
-        
+        <?php 
+            $uid=$_SESSION['user_login_session_id'];
+            $oid=$_GET['order_id'];
+            $getOrders = "SELECT * from food_orders WHERE user_id = '$uid' AND order_id='$oid' GROUP BY order_id "; 
+            $getOrders1 = $conn->query($getOrders);
+            $getDisplayOrderDetails = $getOrders1->fetch_assoc();
+        ?>
        	 
          <div class="panel-group">
                   <div class="panel panel-default">
@@ -105,24 +111,40 @@
                       <h3 class="nomargin_top">Add a review</h3>
                     </div>
                       <div class="panel-body">
-                 <form method="post">
+                 <form method="post" action="add_review.php">
                   <div class="col-md-12 col-sm-12">				 
 				  <div class="col-md-6 col-sm-6">
-				  <div class="form-group">
-				 <div class="rating"><span style="color:black;margin-right:10px"> Add Your Rating: </span> <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i></div>
-				</div>
+  				  <div class="form-group">
+      				<div class="rating">
+                  <span style="color:black;margin-right:10px"> Add Your Rating: </span>  
+                  <input name="rating" value="0" id="rating_star" type="hidden" postID="1" />
+              </div>
+  				  </div>
+
+        <?php $getRestName= getIndividualDetails('food_vendors','id',$getDisplayOrderDetails['restaurant_id']); ?>
+
+        <div class="form-group">
+          <label for="email">Restaurant Name</label>
+          <input type="text" class="form-control" id="rest_name" name="rest_name" placeholder="Restaurant Name" value="<?php echo $getRestName['restaurant_name']; ?>" required readonly>
+          <span id="input_status" style="color: red;"></span>
+        </div>
+
+        <input type="hidden" value="<?php echo $getDisplayOrderDetails['restaurant_id']; ?>" name="restaurant_id">
+        <input type="hidden" value="<?php echo $getDisplayOrderDetails['user_id']; ?>" name="user_id">
+        <input type="hidden" value="<?php echo $getDisplayOrderDetails['order_id']; ?>" name="order_id">
+
 					<div class="form-group">
 						<label for="first-name">Name</label>
-						<input type="text" class="form-control"  name="user_full_name" id="first-name" placeholder="Name" value="<?php echo $userData['user_full_name']; ?>" required>
+						<input type="text" class="form-control"  name="first_name" id="first-name" placeholder="Name" value="<?php echo $getDisplayOrderDetails['first_name']; ?>" readonly required>
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="user_email" name="user_email" placeholder="Email" value="<?php echo $userData['user_email']; ?>" onkeyup="checkEmail();"  required>
+						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="user_email" name="user_email" placeholder="Email" value="<?php echo $getDisplayOrderDetails['email']; ?>" onkeyup="checkEmail();"  required readonly>
             <span id="input_status" style="color: red;"></span>
 					</div>
 					 <div class="form-group">
 						 <label for="text">Message:</label>                
-                    <p> <textarea class="form-control" name="message_contact" rows="4" id="comment" placeholder="Message*" ></textarea></p>
+                    <p> <textarea class="form-control" name="message_contact" rows="4" id="comment" placeholder="Message*" required></textarea></p>
 					</div>
 					<div class="form-group">
 						<button class="button1" type="submit" name="update">Add Review</button>					
@@ -165,6 +187,20 @@
 <script src="js/common_scripts_min.js"></script>
 <script src="js/functions.js"></script>
 <script src="assets/validate.js"></script>
+
+<script type="text/javascript" src="js/rating.js"></script>
+<script language="javascript" type="text/javascript">
+$(function() {
+    $("#rating_star").spaceo_rating_widget({
+        starLength: '5',
+        initialValue: '',
+        callbackFunctionName: 'processRating',
+        imageDirectory: 'img/',
+        inputAttr: 'post_id'
+    });
+});
+
+</script>
 
 <!-- SPECIFIC SCRIPTS -->
 <script src="js/theia-sticky-sidebar.js"></script>
