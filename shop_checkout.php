@@ -248,11 +248,19 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php $cartTotal = 0;
+											<?php 
+												$cartTotal = 0;
+												$getPushProductIds = array();
+												$getPushSubcatIds = array();
+												$getPushcatIds = array();
 												while ($getCartItems = $cartItems->fetch_assoc()) { 
 												$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
 												$cartTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
 												$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getCartItems['product_id']);
+												//Values push to sinlge variable
+												array_push($getPushProductIds, $getCartItems['product_id']);
+												array_push($getPushSubcatIds, $getCartItems['sub_category_id']);
+												array_push($getPushcatIds, $getCartItems['category_id']);
 											?>
 											<input type="hidden" name='category_id[]' type='text' value='<?php echo $getCartItems['category_id'];?>'>
 											<input type="hidden" name='sub_cat_id[]' type='text' value='<?php echo $getCartItems['sub_category_id'];?>'>
@@ -323,65 +331,109 @@
 												<td class="price-total">Rs . <?php echo $orderTotalwithoutWallet; ?></td>
 											</tr>
 											<?php } ?>
-											<?php $transaction_amount = 0; $rewardPoints = 0;
+											<?php 
+
+											$transaction_amount = 0; $rewardPoints = 0;
 											$user_id = $_SESSION['user_login_session_id'];
 											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
-											$rewardSettings = getAllDataWhere('grocery_reward_settings','lkp_status_id',0);
-						        			while ($rewardSettingsData = $rewardSettings->fetch_assoc()) {
-						        				if($rewardSettingsData['reward_type'] == 1) { 
-						        					$reward_amount = $rewardSettingsData['reward_points']/$getRewardPointsdata['transaction_amount'];
-													$rewardPoints = $reward_amount*$cartTotal;
-												} elseif($rewardSettingsData['reward_type'] == 2) { 
-													$reward_amount = $rewardSettingsData['reward_points']/$getRewardPointsdata['transaction_amount'];
-													$getProducts = getAllDataWhere('grocery_cart','category_id',$rewardSettingsData['category_id']);
-													if($getProducts->num_rows > 0) {
-														while ($product_price = $getProducts->fetch_assoc()) {
-															$transaction_amount += $product_price['product_price']*$product_price['product_quantity'];
-														}
-														$rewardPoints = $reward_amount*$transaction_amount;
-													} else {
-														$rewardPoints = ($getRewardPointsdata['reward_points']/$getRewardPointsdata['transaction_amount'])*$cartTotal;
+											//echo $getRewardPointsdata['reward_status'];
+											if($getRewardPointsdata['reward_status'] == 0) {
+												//0-Rewards Yes
+												//echo "<pre>"; print_r($getPushProductIds); //This is multiple product ids set sinlge variable
+												$implodeProIds = implode(",",$getPushProductIds);
+												$getProductRewards = "SELECT * FROM grocery_reward_settings WHERE product_id IN ($implodeProIds) AND reward_type = 4 AND lkp_status_id = 0";
+												$getAllProIds=$conn->query($getProductRewards);
+												//Productd check rewards
+												if($getAllSubcatIds->num_rows > 0) {
+													while($getRewd = $getAllProIds->fetch_assoc() ) {
+														$proId= $getRewd['product_id'];
+														$reward_points= $getRewd['reward_points'];
+														//Check if product exists
+														$getAllPrIds = "SELECT * FROM grocery_cart WHERE product_id='$proId' AND user_id='$user_id' ";
+														$getProInfo = $conn->query($getAllPrIds);
+														while ($product_price = $getProInfo->fetch_assoc()) {
+															$totalProductPrice += $product_price['product_price']*$product_price['product_quantity'];
+														}	
+														//Check if product if not exists
+														$rewardPointsRewdSettings = ($totalProductPrice/$getRewardPointsdata['transaction_amount'])*$reward_points;
 													}
-												} elseif($rewardSettingsData['reward_type'] == 3) { 
-													$reward_amount = $rewardSettingsData['reward_points']/$getRewardPointsdata['transaction_amount'];
-													if($rewardSettingsData['sub_category_id'] == 'all') {
-														$getProducts = getAllDataWhere('grocery_cart','category_id',$rewardSettingsData['category_id']);
-													} else {
-														$getProducts = getAllDataWhere('grocery_cart','sub_category_id',$rewardSettingsData['sub_category_id']);
-													}
-													if($getProducts->num_rows > 0) {
-														while ($product_price = $getProducts->fetch_assoc()) {
-															$transaction_amount += $product_price['product_price']*$product_price['product_quantity'];
-														}
-														$rewardPoints = $reward_amount*$transaction_amount;
-													} else {
-														$rewardPoints = ($getRewardPointsdata['reward_points']/$getRewardPointsdata['transaction_amount'])*$cartTotal;
-													}
-												} elseif($rewardSettingsData['reward_type'] == 4) { 
-													$reward_amount = $rewardSettingsData['reward_points']/$getRewardPointsdata['transaction_amount'];
-													if($rewardSettingsData['product_id'] == 'all') {
-														$getProducts = getAllDataWhere('grocery_cart','sub_category_id',$rewardSettingsData['sub_category_id']);
-													} else {
-														$getProducts = getAllDataWhere('grocery_cart','product_id',$rewardSettingsData['product_id']);
-													}
-													if($getProducts->num_rows > 0) {
-														while ($product_price = $getProducts->fetch_assoc()) {
-															$transaction_amount += $product_price['product_price']*$product_price['product_quantity'];
-														}
-														$rewardPoints = $reward_amount*$transaction_amount;
-													} else {
-														$rewardPoints = ($getRewardPointsdata['reward_points']/$getRewardPointsdata['transaction_amount'])*$cartTotal;
-													}
+												} else {
+													$rewardPointsRewdSettings=0;
 												}
-												echo $rewardPoints.",";
-						        			}
-											?>
-											<?php if($getRewardPointsdata['reward_status'] == 0) { ?>
-											<tr>
-												<td>Reward Points</td>
-												<td class="reward-points"><?php echo $rewardPoints; ?></td>
-											</tr>
+												//Subcategory checking rewards
+												$implodeSubcatsIds = implode(",",$getPushSubcatIds);
+												$getSubcatRewards = "SELECT * FROM grocery_reward_settings WHERE sub_category_id IN ($implodeSubcatsIds) AND reward_type = 3 AND lkp_status_id = 0";
+												$getAllSubcatIds=$conn->query($getSubcatRewards);
+												if($getAllSubcatIds->num_rows > 0) {
+													while($getSubcatRewd = $getAllSubcatIds->fetch_assoc() ) {
+														$reward_points1= $getSubcatRewd['reward_points'];
+														$subId= $getSubcatRewd['sub_category_id'];
+
+														$getAllSubcatIds1 = "SELECT * FROM grocery_cart WHERE sub_category_id='$subId' AND user_id='$user_id' ";
+														$getSubcatInfo = $conn->query($getAllSubcatIds1);
+														while ($subcat_id = $getSubcatInfo->fetch_assoc()) {
+															$totalSubcatProPrice += $subcat_id['product_price']*$subcat_id['product_quantity'];
+														}	
+														//Check if product if not exists
+														$rewardPointsRewdSettings1 = ($totalSubcatProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points1;
+													}
+												} else {
+													$rewardPointsRewdSettings1 = 0;
+												}
+												//Category checking rewards
+												$implodeCatsIds = implode(",",$getPushcatIds);
+												$getCategoryRewards = "SELECT * FROM grocery_reward_settings WHERE category_id IN ($implodeCatsIds) AND reward_type = 2 AND lkp_status_id = 0";
+												$getAllCatIds=$conn->query($getCategoryRewards);
+												if($getAllCatIds->num_rows > 0) {
+													while($getCatRewd = $getAllCatIds->fetch_assoc() ) {
+														$reward_points2= $getCatRewd['reward_points'];
+														$catId= $getCatRewd['category_id'];
+
+														$getAllCatIds1 = "SELECT * FROM grocery_cart WHERE category_id='$catId' AND user_id='$user_id' ";
+														$getCatInfo = $conn->query($getAllCatIds1);
+														while ($catIds = $getCatInfo->fetch_assoc()) {
+															$totalCatProPrice += $catIds['product_price']*$catIds['product_quantity'];
+														}	
+														//Check if product if not exists
+														$rewardPointsRewdSettings2 = ($totalCatProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points2;
+													}
+												} else {
+													$rewardPointsRewdSettings2 = 0;
+												}
+
+												//global if not exists product,cat and subcat
+												echo $getGolbalRewards = "SELECT * FROM grocery_reward_settings WHERE category_id NOT IN ($implodeCatsIds) AND product_id NOT IN ($implodeProIds) AND sub_category_id NOT IN ($implodeSubcatsIds) AND lkp_status_id = 0";
+												$getGolbalRewardsAll=$conn->query($getGolbalRewards);
+												if($getGolbalRewardsAll->num_rows > 0) {
+													while($getGlobalRewd = $getGolbalRewardsAll->fetch_assoc() ) {
+														$reward_points3= $getGlobalRewd['reward_points'];
+
+														$getGlobalall = "SELECT * FROM grocery_cart WHERE category_id='$catId' AND user_id='$user_id' ";
+														$getGlobalInfo = $conn->query($getGlobalall);
+														while ($getGlobalData = $getGlobalInfo->fetch_assoc()) {
+															$totalglobalProPrice += $getGlobalData['product_price']*$getGlobalData['product_quantity'];
+														}	
+														//Check if product if not exists
+														$rewardPointsRewdSettings3 = ($totalglobalProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points3;
+													}
+												} else {
+													$rewardPointsRewdSettings2 = 0;
+												}
+
+												?>
+
+												<tr>
+													<td>Reward Points</td>
+													<td class="reward-points"><?php echo $rewardPointsRewdSettings+$rewardPointsRewdSettings1+$rewardPointsRewdSettings2+$rewardPointsRewdSettings3; ?></td>
+												</tr>
+
+											<?php } else { //1-Rewards No?>
+												<tr>
+													<td>Reward Points</td>
+													<td class="reward-points">0</td>
+												</tr>
 											<?php } ?>
+											
 										</tbody>
 									</table>
 									<div class="btn-radio style2">
