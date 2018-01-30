@@ -114,42 +114,15 @@
                       <h3 class="nomargin_top">Add a review</h3>
                     </div>
                       <div class="panel-body">
-
                  <form method="post" action="add_review.php">
-                  <div class="col-md-12 col-sm-12">				 
-
-				<div class="col-md-6 col-sm-6">
-				<div class="row">
-				<div class="col-sm-7">
-				<div class="box_style_2">
-                <h2 class="inner" style="font-size:18px">Based on 3 reviews</h2>
-                <h1 style="text-align:center">4.3</h1>
-				<h4 style="text-align:center">Average score</h4>
-				</div>
-				</div>
-				<div class="col-sm-5">
-				 <div class="rating" style="font-size:20px;margin-top:50px"> <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i></div>
-				 </div>
-				 </div>
-				  <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <span style="color:black"> 1 </span></div>
-				  
-				   <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 2 </span></div>
-				   
-				<div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 3 </span> </div>
-				
-				<div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 4 </span></div>
-				
-				<div class="rating"> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 5 </span></div>
-				  </div>				  
-
-				  <div class="col-md-6 col-sm-6">
+                  <div class="col-md-12 col-sm-12">				
+				  <div class="col-md-5 col-sm-5">
   				  <div class="form-group">
       				<div class="rating">
-                  <span style="color:black;margin-right:10px"> Add Your Rating: </span>  
+                  <span style="color:black;margin-left:10px;font-size:20px"> Add Your Rating</span>  
                   <input name="rating" value="0" id="rating_star" type="hidden" postID="1" />
-              </div>
+				</div>
   				  </div>
-
         <?php $getRestName= getIndividualDetails('food_vendors','id',$getDisplayOrderDetails['restaurant_id']); ?>
 
         <div class="form-group">
@@ -179,8 +152,35 @@
 						<button class="button1" type="submit" name="update">Add Review</button>					
 					</div>						
                   </div>
+				   <div class="col-md-1 col-sm-1">
+				   </div>
+				  <div class="col-md-6 col-sm-6">
+				<div class="row">
+				<div class="col-sm-7">
+				<div class="box_style_2" style="margin-top:20px">
+                <h2 class="inner" style="font-size:18px">Based on 3 reviews</h2>
+                <h1 style="text-align:center">4.3</h1>
+				<h4 style="text-align:center">Average score</h4>
+				</div>
+				</div>
+				<div class="col-sm-5">
+				 <div class="rating" style="font-size:20px;margin-top:50px"> <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i></div>
+				 </div>
+				 </div>
+				  <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <span style="color:black"> 5 </span></div>
+				  
+				   <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 4 </span></div>
+				   
+				<div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 3 </span> </div>
+				
+				<div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 2 </span></div>
+				
+				<div class="rating"> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 1 </span></div>
+				  </div>
+				 </div>
 				  <h3>Reviews</h3>
 				  <div class="row">
+				  
 				  <div class="col-sm-10">
 				  <p style="text-indent:8px"><b>Ali Tufan :</b> <span> April 3, 2016</span></p>
 				  </div>
