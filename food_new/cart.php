@@ -176,7 +176,7 @@ td{
 							<th>ADDON</th>
 							<th>QUANTITY</th>
 							<th>TOTAL</th>
-							<th class="visible-xs">REMOVE</th>
+							<th>REMOVE</th>
 						</tr>
 					</thead>
 					<tbody>

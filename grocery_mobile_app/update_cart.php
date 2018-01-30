@@ -1,11 +1,11 @@
 <?php 
 error_reporting(1);
-include "../../admin_includes/config.php";
-include "../../admin_includes/common_functions.php";
+include "../admin_includes/config.php";
+include "../admin_includes/common_functions.php";
 //Set Array for list
 $response = array();
 
-if (isset($_REQUEST['userId']) && !empty($_REQUEST['product_id']) && !empty($_REQUEST['product_weight_type'])) {
+if (isset($_REQUEST['userId']) && !empty($_REQUEST['product_id']) && !empty($_REQUEST['product_weight_type']) && !empty($_REQUEST['product_price'])) {
 	//echo "<pre>"; print_r($_REQUEST); die;
 
 	$user_id = $_REQUEST['userId'];
@@ -15,7 +15,7 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['product_id']) && !empty($_RE
 	$product_weight_type = $_REQUEST['product_weight_type'];
 	$product_price = $_REQUEST['product_price'];
 	
-	if($item_quantity != 0 ) {
+	if($product_quantity != 0 ) {
 
 		$updateq = "UPDATE grocery_cart SET product_quantity = '$product_quantity' WHERE user_id='$user_id' AND product_id='$product_id' AND product_weight_type='$product_weight_type' AND product_price='$product_price' ";
 		if($conn->query($updateq) === TRUE) {
@@ -36,7 +36,7 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['product_id']) && !empty($_RE
 
 	} else {
 
-		$delCart = "DELETE FROM grocery_cart WHERE user_id='$user_id' AND product_id='$product_id' AND product_weight_type='$product_weight_type' ";
+		$delCart = "DELETE FROM grocery_cart WHERE user_id='$user_id' AND product_id='$product_id' AND product_weight_type='$product_weight_type' AND product_price='$product_price' ";
 		$conn->query($delCart);
 
 		$response["success"] = 0;

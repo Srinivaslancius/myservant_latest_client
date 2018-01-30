@@ -143,7 +143,8 @@ $getAboutData = $getAllAboutData->fetch_assoc();
             			<td>Rs.<?php echo $orderData['order_total']; ?></td>
             			<td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
             			<td><?php echo $orderData['order_id']; ?></td>
-						<td><a href="order_details1.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a></td>
+						<td><a href="order_details1.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a>
+						<a href="review_section.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1"> Add Reviews</button></a></td>
             		  </tr>
             		  
             		</tbody>
