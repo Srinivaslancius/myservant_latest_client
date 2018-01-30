@@ -13,10 +13,11 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['product_id']) && !empty($_RE
 	$product_quantity = $_REQUEST['product_quantity'];	 
 	$product_id = $_REQUEST['product_id'];
 	$product_weight_type = $_REQUEST['product_weight_type'];
+	$product_price = $_REQUEST['product_price'];
 	
 	if($item_quantity != 0 ) {
 
-		$updateq = "UPDATE grocery_cart SET product_quantity = '$product_quantity' WHERE user_id='$user_id' AND product_id='$product_id' AND product_weight_type='$product_weight_type' ";
+		$updateq = "UPDATE grocery_cart SET product_quantity = '$product_quantity' WHERE user_id='$user_id' AND product_id='$product_id' AND product_weight_type='$product_weight_type' AND product_price='$product_price' ";
 		if($conn->query($updateq) === TRUE) {
 
 		    $getCartFoodData = getAllDataWhere('grocery_cart','user_id',$user_id); 

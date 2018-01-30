@@ -246,7 +246,7 @@
                                                         <h4 class="modal-title">Hot Deal Date</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
+                                                    
                                                         <?php
                                                         $todayDealDate = getIndividualDetails('grocery_products','id',$row['id']);
                                                         if($row['deal_start_date']!='0000-00-00' && $row['deal_start_date']!='') {
@@ -255,7 +255,7 @@
                                                         $deal_start_date1 = '';
                                                         }
                                                         ?>
-                                                      
+                                                      <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
                                                             <div class="form-group">
                                                                 <label for="form-control-5" class="col-sm-3 col-md-4 control-label">Deal Start Date</label>
                                                                 <div class="col-sm-6 col-md-5">

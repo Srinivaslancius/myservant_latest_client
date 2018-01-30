@@ -18,14 +18,12 @@
 			</ul>
 		</div>
 		</form>
-		<!-- <div class="filter_type">
+		 <div class="filter_type">
 			<h6>Rating</h6>
 			<ul>
 				<li><label class="checkb"><input type="checkbox"><span class="checkmark1"></span><span class="rating">
 				<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i>
 				</span></label></li>
-				
-				
 				<li><label class="checkb"><input type="checkbox"><span class="checkmark1"></span><span class="rating">
 				<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
 				</span></label></li>
@@ -39,6 +37,19 @@
 				<i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i>
 				</span></label></li>
 			</ul>
-		</div> -->
+		</div> 
+
+		<form id="price_filter" method="post">
+		<div class="filter_type">
+			<h6>Budget</h6>
+			<ul class="nomargin">
+                <li><label class=""><div class="icheckbox_square-grey" style="position: relative;"><input class="price_filt" style="position: absolute; opacity: 0;" type="checkbox" name="price_filt[]" value="1"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div><i class="icon-rupee"></i></label></li>
+                <li><label class=""><div class="icheckbox_square-grey" style="position: relative;"><input class="price_filt" style="position: absolute; opacity: 0;" type="checkbox" name="price_filt[]" value="2"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div><i class="icon-rupee"></i><i class="icon-rupee"></i></label></li>
+                <li><label class=""><div class="icheckbox_square-grey" style="position: relative;"><input class="price_filt" style="position: absolute; opacity: 0;" type="checkbox" name="price_filt[]" value="3"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div><i class="icon-rupee"></i><i class="icon-rupee"></i><i class="icon-rupee"></i></label></li>
+                <li><label class=""><div class="icheckbox_square-grey" style="position: relative;"><input class="price_filt" style="position: absolute; opacity: 0;" type="checkbox" name="price_filt[]" value="4"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div><i class="icon-rupee"></i><i class="icon-rupee"></i><i class="icon-rupee"></i><i class="icon-rupee"></i></label></li>
+			</ul>
+		</div>
+		</form>
+
 	</div><!--End collapse -->
 </div><!--End filters col-->

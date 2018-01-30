@@ -44,10 +44,10 @@
     if(isset($_POST['searchKey'])) {
         $searchParms = $_POST['searchKey'];
         //$getSearchResults = getSearchResults('food_vendors',$searchParms);
-        $getRes = "SELECT * FROM food_vendors WHERE `lkp_status_id`= '0' AND  (restaurant_address LIKE '%$searchParms%' OR  pincode LIKE '%$searchParms%') AND id IN (SELECT restaurant_id FROM food_products WHERE lkp_status_id = 0) ORDER BY id DESC LIMIT 4";
+        $getRes = "SELECT * FROM food_vendors WHERE `lkp_status_id`= '0' AND  (restaurant_address LIKE '%$searchParms%' OR  pincode LIKE '%$searchParms%') AND id IN (SELECT restaurant_id FROM food_products WHERE lkp_status_id = 0) ORDER BY id DESC LIMIT 8";
         $getSearchResults = $conn->query($getRes);        
     } else {
-        $getSearchResults = getAllRestaruntsWithProducts('0','0','4');
+        $getSearchResults = getAllRestaruntsWithProducts('0','0','8');
     }
     $getResultsCount = $getSearchResults->num_rows;
 ?>
@@ -131,7 +131,7 @@
 		<div class="col-md-3 col-sm-3">
 		</div>
 		<div class="col-md-9 col-sm-9">
-		<?php if($getResultsCount >= 4) { ?>
+		<?php if($getResultsCount >= 8) { ?>
                 <center><a class="btn_1 load_more">Load More</a></center>
             <?php } ?>
 		</div>	
@@ -193,6 +193,23 @@ $(document).on('change','.check_cousin_type',function(){
    });
   return false;
 });
+
+$(document).on('change','.price_filt',function(){   
+   var url = "price_filters.php";
+   $.ajax({
+     type: "POST",
+     url: url,
+     data: $("#price_filter").serialize(),
+     success: function(data)
+     {                  
+        //alert(data);
+        $('.ajax_result').html(data);
+        $('#get_total_res').html($('#get_res_cnt').val() + " Results in your zone");
+     }               
+   });
+  return false;
+});
+
 </script>
 <script>
     $(document).ready(function() {
