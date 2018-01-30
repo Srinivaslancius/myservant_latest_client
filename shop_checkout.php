@@ -401,25 +401,6 @@
 													$rewardPointsRewdSettings2 = 0;
 												}
 
-												//global if not exists product,cat and subcat
-												echo $getGolbalRewards = "SELECT * FROM grocery_reward_settings WHERE category_id NOT IN ($implodeCatsIds) AND product_id NOT IN ($implodeProIds) AND sub_category_id NOT IN ($implodeSubcatsIds) AND lkp_status_id = 0";
-												$getGolbalRewardsAll=$conn->query($getGolbalRewards);
-												if($getGolbalRewardsAll->num_rows > 0) {
-													while($getGlobalRewd = $getGolbalRewardsAll->fetch_assoc() ) {
-														$reward_points3= $getGlobalRewd['reward_points'];
-
-														$getGlobalall = "SELECT * FROM grocery_cart WHERE category_id='$catId' AND user_id='$user_id' ";
-														$getGlobalInfo = $conn->query($getGlobalall);
-														while ($getGlobalData = $getGlobalInfo->fetch_assoc()) {
-															$totalglobalProPrice += $getGlobalData['product_price']*$getGlobalData['product_quantity'];
-														}	
-														//Check if product if not exists
-														$rewardPointsRewdSettings3 = ($totalglobalProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points3;
-													}
-												} else {
-													$rewardPointsRewdSettings2 = 0;
-												}
-
 												?>
 
 												<tr>
