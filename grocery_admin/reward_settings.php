@@ -75,7 +75,6 @@
                                 <div class="col-sm-6 col-md-4">
                                     <select id="reward_type" name="reward_type" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
                                         <option value="">-- Reward Type --</option>
-                                        <option value="1" >Global</option>
                                         <option value="2" >Category</option>
                                         <option value="3" >Sub Category</option>
                                         <option value="4" >Product</option>
@@ -153,7 +152,7 @@
                                 <?php while ($row = $getOffers->fetch_assoc()) { ?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
-                                    <td><?php if($row['reward_type'] == 1) { echo 'Global' ; } elseif($row['reward_type'] == 2) { echo 'Category' ; } elseif($row['reward_type'] == 3) { echo 'Sub Category' ; } else { echo 'Product' ; } ?></td>
+                                    <td><?php if($row['reward_type'] == 2) { echo 'Category' ; } elseif($row['reward_type'] == 3) { echo 'Sub Category' ; } else { echo 'Product' ; } ?></td>
                                     <td><?php echo $transactionAmount['transaction_amount']; ?></td>
                                     <td><?php echo $row['reward_points']; ?></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_reward_settings'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_reward_settings'>In Active</span>" ;} ?></td>

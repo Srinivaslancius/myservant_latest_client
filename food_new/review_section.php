@@ -105,13 +105,23 @@
             $getOrders1 = $conn->query($getOrders);
             $getDisplayOrderDetails = $getOrders1->fetch_assoc();
         ?>
-       	 
+       	<?php
+          $getRating = "SELECT * FROM food_order_rating WHERE user_id='$uid' AND order_id='$oid' "; 
+          $getRating1 = $conn->query($getRating); ?>
+      
          <div class="panel-group">
                   <div class="panel panel-default">
+                    <?php if($getRating1->num_rows == 0) { ?>
                     <div class="panel-heading">
                       <h3 class="nomargin_top">Add a review</h3>
                     </div>
-                      <div class="panel-body">
+                    <?php } else { ?>
+                    <div class="panel-heading">
+                      <h3 class="nomargin_top">View review</h3>
+                    </div>
+                    <?php } ?>
+                    <div class="panel-body">
+                      <?php if($getRating1->num_rows == 0) { ?>
                  <form method="post" action="add_review.php">
                   <div class="col-md-12 col-sm-12">				
 				  <div class="col-md-5 col-sm-5">
@@ -163,13 +173,17 @@
 				<div class="col-sm-7">
 				<div class="box_style_2" style="margin-top:20px">
           <h2 class="inner" style="font-size:18px">Based on <?php echo $getFetchRate['totalCount']; ?> reviews</h2>
-          <h1 style="text-align:center"><?php echo ($getFetchRate['totalRating']/$getFetchRate['totalCount']); ?></h1>
+          <?php if($getFetchRate['totalCount'] == 0) { ?>
+            <h1 style="text-align:center">0</h1>
+          <?php } else { ?>
+            <h1 style="text-align:center"><?php echo ($getFetchRate['totalRating']/$getFetchRate['totalCount']); ?></h1>
+          <?php } ?>
 				<h4 style="text-align:center">Average Score</h4>
 				</div>
 				</div>
-				<div class="col-sm-5">
+				<!-- <div class="col-sm-5">
 				 <div class="rating" style="font-size:20px;margin-top:50px"> <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i></div>
-				 </div>
+				 </div> -->
 				 </div>
 				  <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <span style="color:black"> 5 </span></div>
 				  
@@ -182,7 +196,9 @@
 				<div class="rating"> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 1 </span></div>
 				  </div>
 				 </div>
-				  <h3>Reviews</h3>
+         </form>
+         <?php } else { ?>
+				  <!-- <h3>Reviews</h3> -->
           <?php 
           $getDataAll = "SELECT * FROM food_order_rating WHERE user_id='$uid' AND order_id='$oid' "; 
           $getData = $conn->query($getDataAll);
@@ -191,22 +207,33 @@
               while($row = $getData->fetch_assoc() ) {
           ?>
 				  <div class="row">
-  				  <div class="col-sm-10">
-  				  <p style="text-indent:8px"><b><?php echo $getDisplayOrderDetails['first_name']; ?> :</b> <span> <?php echo $row['created']; ?></span></p>
-  				  </div>
-  				   
+            <div class="col-sm-4">
+              <h2><?php echo $row['rating_number']; ?>  <span style="font-size:20px;"><i class="icon_star voted"></i></span></h2>
+              <p style="text-indent:8px"><b><?php echo $getDisplayOrderDetails['first_name']; ?> :</b> <span> <?php echo $row['created']; ?></span></p>
+              <?php 
+                $avgRating = 0;
+                $avgRating +=($row['rating_number']/$getData->num_rows); 
+              ?>
+              <p style="text-align:justify"><?php echo $row['message']; ?></p>
+              <?php } } else { ?>
+                  <strong>No Reviews Found</strong>
+              <?php } ?>
+              <?php //echo $avgRating;?>
+            </div>
+  				  <div class="col-sm-4">
+              <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <span style="color:black"> 5 </span></div>
+              
+               <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 4 </span></div>
+               
+            <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 3 </span> </div>
+            
+            <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 2 </span></div>
+            
+            <div class="rating"> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <i class="icon_star mrgn_rgt"></i> <span style="color:black"> 1 </span></div>
+          </div>
+  				<?php } ?> 
 				  </div>
-          <?php 
-            $avgRating = 0;
-            $avgRating +=($row['rating_number']/$getData->num_rows); 
-          ?>
-				  <p style="text-align:justify"><?php echo $row['message']; ?></p>
-          <?php } } else { ?>
-              <strong>No Reviews Found</strong>
-          <?php } ?>
-          <?php //echo $avgRating;?>
-            </div>        
-          </form>
+            </div> 
                       </div>
                   </div>
                   

@@ -144,7 +144,14 @@ $getAboutData = $getAllAboutData->fetch_assoc();
             			<td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
             			<td><?php echo $orderData['order_id']; ?></td>
 						<td><a href="order_details1.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a>
-						<a href="review_section.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1"> Add Reviews</button></a></td>
+                        <?php $oid = $orderData['order_id'];
+                            $getRating = "SELECT * FROM food_order_rating WHERE user_id='$uid' AND order_id='$oid' "; 
+                            $getRating1 = $conn->query($getRating);
+                        if($getRating1->num_rows == 0) { ?>
+						  <a href="review_section.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1"> Add Reviews</button></a></td>
+                        <?php } else { ?>
+                           <a href="review_section.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1"> View Reviews</button></a></td> 
+                        <?php } ?>
             		  </tr>
             		  
             		</tbody>
