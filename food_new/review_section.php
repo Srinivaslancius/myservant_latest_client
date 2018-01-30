@@ -48,9 +48,7 @@
 	background-color:#fe6003;
  padding: 5px 12px;
 } 
-.rating .mrgn_rgt{
-	margin-right:10px !important;
-}
+
 </style>
 </head>
 <body>
