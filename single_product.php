@@ -307,13 +307,13 @@
 							</div>
 							<form action="#" method="get" accept-charset="utf-8">
 								<div class="review-form-name">
-									<input type="text" name="name-author" value="" placeholder="Name">
+									<input type="text" name="name-author" value="" placeholder="Name" required>
 								</div>
 								<div class="review-form-email">
-									<input type="text" name="email-author" value="" placeholder="Email">
+									<input type="email" name="email-author" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="" placeholder="Email" required>
 								</div>
 								<div class="review-form-comment">
-									<textarea name="review-text" placeholder="Your Name"></textarea>
+									<textarea name="review-text" placeholder="Your Message" required></textarea>
 								</div>
 								<div class="btn-submit">
 									<button type="submit">Add Review</button>
