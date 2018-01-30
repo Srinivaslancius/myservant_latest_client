@@ -37,18 +37,9 @@ if(isset($_POST['ratings']) && $_POST['ratings']!='' ) {
 										</div>
                                         <div class="type" style="text-align:justify">
                                             <?php echo substr($getResults['description'], 0,150); ?>
-                                        </div>   
-                                        <?php 
-                                            $getDataAll1 = "SELECT SUM(rating_number) as totalRating, COUNT(rating_number) as totalCount FROM food_order_rating WHERE restaurant_id = '".$getResults['restaurant_id']."' "; 
-                                            $getData1 = $conn->query($getDataAll1);
-                                            $getFetchRate = $getData1->fetch_assoc();
-                                            $rating_count = $getFetchRate['totalRating']/$getFetchRate['totalCount'];
-                                        ?>                                    
+                                        </div>                                       
                                         <div class="rating">
-                                            <?php for($i=1; $i<$rating_count; $i++) { ?>
-                                                <i class="icon_star voted"></i> 
-                                            <?php } ?>
-                                            (<small><a href="#0">98 reviews</a></small>)  
+                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)  
                                         </div><br>
 										<a href="view_rest_menu.php?key=<?php echo encryptPassword($getResults['id']);?>" class="btn_1 visible-xs" style="padding:10px">View Menu</a>
                                 </div>
