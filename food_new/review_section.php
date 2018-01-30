@@ -47,9 +47,6 @@
 .button2 {
 	background-color:#fe6003;
  padding: 5px 12px;
-}
-.table>thead>tr>th,.table>thead>tr>td{
-    width:20%;
 } 
 </style>
 </head>
@@ -58,33 +55,21 @@
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
 <![endif]-->
 
-	<div id="preloader">
-        <div class="sk-spinner sk-spinner-wave" id="status">
-            <div class="sk-rect1"></div>
-            <div class="sk-rect2"></div>
-            <div class="sk-rect3"></div>
-            <div class="sk-rect4"></div>
-            <div class="sk-rect5"></div>
-        </div>
-    </div><!-- End Preload -->
+	
 
     <!-- Header ================================================== -->
     <header>
 	  <?php include_once './header.php';?>
         </header>
     <!-- End Header =============================================== -->
-<?php 
-if($_SESSION['user_login_session_id'] == '') {
-  header ("Location: logout.php");
-}
-$getAllAboutData = getAllDataWhere('food_content_pages','id',6);
-$getAboutData = $getAllAboutData->fetch_assoc();
+<?php $getAllAboutData = getAllDataWhere('food_content_pages','id',6);
+          $getAboutData = $getAllAboutData->fetch_assoc();
 ?>
 <!-- SubHeader =============================================== -->
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
     	<div id="sub_content">
-    	 <h1>Food Orders</h1>
+    	 <h1>Review Section</h1>
          <p></p>
         </div><!-- End sub_content -->
 	</div><!-- End subheader -->
@@ -93,7 +78,7 @@ $getAboutData = $getAllAboutData->fetch_assoc();
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li>Food Orders</li>
+                <li><a href="#0">Review Section</a></li>
             </ul>
             
         </div>
@@ -117,43 +102,37 @@ $getAboutData = $getAllAboutData->fetch_assoc();
          <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="nomargin_top">Food Orders</h3>
+                      <h3 class="nomargin_top">Add a review</h3>
                     </div>
                       <div class="panel-body">
-                     <div class="table-responsive">	
-				    <?php $uid=$_SESSION['user_login_session_id'];
-                    $getOrders = "SELECT * from food_orders WHERE user_id = '$uid' GROUP BY order_id ORDER BY id DESC"; 
-                    $getOrders1 = $conn->query($getOrders);
-                    if($getOrders1->num_rows > 0) { 
-                    while($orderData = $getOrders1->fetch_assoc()) { ?>				 
-        			<table class="table" style="border:1px solid #ddd;width:100%">
-					
-            		<thead>
-            		  <tr>
-            			<th>ITEM PLACED</th>
-            			<th>ORDER PRICE</th>
-            			<th>SHIP TO</th>
-            			<th>ORDER ID</th>
-    					<th>ACTION</th>
-            		  </tr>
-            		</thead>
-            		<tbody>
-            		  <tr>
-            			<td><?php echo $orderData['created_at']; ?></td>
-            			<td>Rs.<?php echo $orderData['order_total']; ?></td>
-            			<td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
-            			<td><?php echo $orderData['order_id']; ?></td>
-						<td><a href="order_details1.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a>
-						<a href="review_section.php"><button class="button1"> Add Reviews</button></a></td>
-            		  </tr>
-            		  
-            		</tbody>
-					
-        	    </table>
-				<?php } } else { ?>
-                     <h3 style="text-align:center;color:#fe6003;">No Orders Found</h3>
-                <?php } ?>
-        	  </div>
+                 <form method="post">
+                  <div class="col-md-12 col-sm-12">				 
+				  <div class="col-md-6 col-sm-6">
+				  <div class="form-group">
+				 <div class="rating"><span style="color:black;margin-right:10px"> Add Your Rating: </span> <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i></div>
+				</div>
+					<div class="form-group">
+						<label for="first-name">Name</label>
+						<input type="text" class="form-control"  name="user_full_name" id="first-name" placeholder="Name" value="<?php echo $userData['user_full_name']; ?>" required>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="user_email" name="user_email" placeholder="Email" value="<?php echo $userData['user_email']; ?>" onkeyup="checkEmail();"  required>
+            <span id="input_status" style="color: red;"></span>
+					</div>
+					 <div class="form-group">
+						 <label for="text">Message:</label>                
+                    <p> <textarea class="form-control" name="message_contact" rows="4" id="comment" placeholder="Message*" ></textarea></p>
+					</div>
+					<div class="form-group">
+						<button class="button1" type="submit" name="update">Add Review</button>					
+					</div>						
+                  </div>
+				  <div class="col-md-6 col-sm-6">
+				  </div>
+                               
+                   </div>        
+          </form>
                       </div>
                   </div>
                   
