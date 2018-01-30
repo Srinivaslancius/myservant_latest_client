@@ -31,7 +31,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		    	//get products weights and product weight type names with prices
 		    	$getPriceDetails = getAllDataWhere('grocery_product_bind_weight_prices','product_id',$productId);
 		    	$getPriceDet = array();
-		    	while($getPriceDet = $getPriceDetails->fetch_assoc()) {
+		    	while($getPriceDet = $getPriceDetails->fetch_assoc()) {		    		
+		    		$lists["offer_type"] .=  $getPriceDet['offer_type'] .",";
+		    		$lists["offer_percentage"] .=  $getPriceDet['offer_percentage'] .",";
+		    		$lists["mrp_price"] .=  $getPriceDet['mrp_price'] .",";
 		    		$lists["sellingPrice"] .=  $getPriceDet['selling_price'] .",";
 		    		$lists["priceTypeId"] .=  $getPriceDet['id'] .",";			    	
 		    		$lists["weightType"] .=  $getPriceDet['weight_type'] .",";		    		

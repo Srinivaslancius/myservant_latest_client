@@ -152,13 +152,19 @@
                   </div>
 				   <div class="col-md-1 col-sm-1">
 				   </div>
+
+        <?php 
+            $getDataAll1 = "SELECT SUM(rating_number) as totalRating, COUNT(rating_number) as totalCount FROM food_order_rating WHERE user_id='$uid' AND order_id='$oid' "; 
+            $getData1 = $conn->query($getDataAll1);
+            $getFetchRate = $getData1->fetch_assoc();
+        ?>
 				  <div class="col-md-6 col-sm-6">
 				<div class="row">
 				<div class="col-sm-7">
 				<div class="box_style_2" style="margin-top:20px">
-                <h2 class="inner" style="font-size:18px">Based on 3 reviews</h2>
-                <h1 style="text-align:center">4.3</h1>
-				<h4 style="text-align:center">Average score</h4>
+          <h2 class="inner" style="font-size:18px">Based on <?php echo $getFetchRate['totalCount']; ?> reviews</h2>
+          <h1 style="text-align:center"><?php echo ($getFetchRate['totalRating']/$getFetchRate['totalCount']); ?></h1>
+				<h4 style="text-align:center">Average Score</h4>
 				</div>
 				</div>
 				<div class="col-sm-5">
@@ -177,27 +183,29 @@
 				  </div>
 				 </div>
 				  <h3>Reviews</h3>
+          <?php 
+          $getDataAll = "SELECT * FROM food_order_rating WHERE user_id='$uid' AND order_id='$oid' "; 
+          $getData = $conn->query($getDataAll);
+
+            if($getData->num_rows > 0) {
+              while($row = $getData->fetch_assoc() ) {
+          ?>
 				  <div class="row">
-				  
-				  <div class="col-sm-10">
-				  <p style="text-indent:8px"><b>Ali Tufan :</b> <span> April 3, 2016</span></p>
+  				  <div class="col-sm-10">
+  				  <p style="text-indent:8px"><b><?php echo $getDisplayOrderDetails['first_name']; ?> :</b> <span> <?php echo $row['created']; ?></span></p>
+  				  </div>
+  				   
 				  </div>
-				   <div class="col-sm-2">
-				  <div class="rating" style="padding-top:0px"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i></div>
-				  </div>
-				  </div>
-				  <p style="text-align:justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-				  <div class="row">
-				  <div class="col-sm-10">
-				  <p style="text-indent:8px"><b>Ali Tufan :</b> <span> April 3, 2016</span></p>
-				  </div>
-				   <div class="col-sm-2">
-				  <div class="rating" style="padding-top:0px"> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star voted"></i> <i class="icon_star mrgn_rgt"></i></div>
-				  </div>
-				  </div>
-				  <p style="text-align:justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                               
-                   </div>        
+          <?php 
+            $avgRating = 0;
+            $avgRating +=($row['rating_number']/$getData->num_rows); 
+          ?>
+				  <p style="text-align:justify"><?php echo $row['message']; ?></p>
+          <?php } } else { ?>
+              <strong>No Reviews Found</strong>
+          <?php } ?>
+          <?php //echo $avgRating;?>
+            </div>        
           </form>
                       </div>
                   </div>
