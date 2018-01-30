@@ -78,7 +78,10 @@ background-color:white;
 border-color:white;
 font-size:13px;
 }
-
+ul#cat_nav li a.active, ul#cat_nav li a:hover {
+    background: #f9f9f9;
+    color: #111;
+}
 </style>
 </head>
 
