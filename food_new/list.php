@@ -210,6 +210,22 @@ $(document).on('change','.price_filt',function(){
   return false;
 });
 
+$(document).on('change','.ratings',function(){   
+   var url = "rating_filters.php";
+   $.ajax({
+     type: "POST",
+     url: url,
+     data: $("#rating-filters").serialize(),
+     success: function(data)
+     {                  
+        //alert(data);
+        $('.ajax_result').html(data);
+        $('#get_total_res').html($('#get_res_cnt').val() + " Results in your zone");
+     }               
+   });
+  return false;
+});
+
 </script>
 <script>
     $(document).ready(function() {
