@@ -22,7 +22,7 @@ if (isset($_REQUEST['userId'])  ) {
 			$lists["product_name"] = $row["product_name"];
 			$lists["sub_category_id"] =  $row['sub_category_id'];
 	    	$lists["product_weight_type"] =  $row['product_weight_type'];	
-	    	$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$_REQUEST['product_id']);
+	    	$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$row["product_id"]);
 			$lists["productImage"] = $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'];
 
 			array_push($response["lists"], $lists);
