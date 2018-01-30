@@ -323,6 +323,65 @@
 												<td class="price-total">Rs . <?php echo $orderTotalwithoutWallet; ?></td>
 											</tr>
 											<?php } ?>
+											<?php $transaction_amount = 0; $rewardPoints = 0;
+											$user_id = $_SESSION['user_login_session_id'];
+											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
+											$rewardSettings = getAllDataWhere('grocery_reward_settings','lkp_status_id',0);
+						        			while ($rewardSettingsData = $rewardSettings->fetch_assoc()) {
+						        				if($rewardSettingsData['reward_type'] == 1) { 
+						        					$reward_amount = $rewardSettingsData['reward_points']/$getRewardPointsdata['transaction_amount'];
+													$rewardPoints = $reward_amount*$cartTotal;
+												} elseif($rewardSettingsData['reward_type'] == 2) { 
+													$reward_amount = $rewardSettingsData['reward_points']/$getRewardPointsdata['transaction_amount'];
+													$getProducts = getAllDataWhere('grocery_cart','category_id',$rewardSettingsData['category_id']);
+													if($getProducts->num_rows > 0) {
+														while ($product_price = $getProducts->fetch_assoc()) {
+															$transaction_amount += $product_price['product_price']*$product_price['product_quantity'];
+														}
+														$rewardPoints = $reward_amount*$transaction_amount;
+													} else {
+														$rewardPoints = ($getRewardPointsdata['reward_points']/$getRewardPointsdata['transaction_amount'])*$cartTotal;
+													}
+												} elseif($rewardSettingsData['reward_type'] == 3) { 
+													$reward_amount = $rewardSettingsData['reward_points']/$getRewardPointsdata['transaction_amount'];
+													if($rewardSettingsData['sub_category_id'] == 'all') {
+														$getProducts = getAllDataWhere('grocery_cart','category_id',$rewardSettingsData['category_id']);
+													} else {
+														$getProducts = getAllDataWhere('grocery_cart','sub_category_id',$rewardSettingsData['sub_category_id']);
+													}
+													if($getProducts->num_rows > 0) {
+														while ($product_price = $getProducts->fetch_assoc()) {
+															$transaction_amount += $product_price['product_price']*$product_price['product_quantity'];
+														}
+														$rewardPoints = $reward_amount*$transaction_amount;
+													} else {
+														$rewardPoints = ($getRewardPointsdata['reward_points']/$getRewardPointsdata['transaction_amount'])*$cartTotal;
+													}
+												} elseif($rewardSettingsData['reward_type'] == 4) { 
+													$reward_amount = $rewardSettingsData['reward_points']/$getRewardPointsdata['transaction_amount'];
+													if($rewardSettingsData['product_id'] == 'all') {
+														$getProducts = getAllDataWhere('grocery_cart','sub_category_id',$rewardSettingsData['sub_category_id']);
+													} else {
+														$getProducts = getAllDataWhere('grocery_cart','product_id',$rewardSettingsData['product_id']);
+													}
+													if($getProducts->num_rows > 0) {
+														while ($product_price = $getProducts->fetch_assoc()) {
+															$transaction_amount += $product_price['product_price']*$product_price['product_quantity'];
+														}
+														$rewardPoints = $reward_amount*$transaction_amount;
+													} else {
+														$rewardPoints = ($getRewardPointsdata['reward_points']/$getRewardPointsdata['transaction_amount'])*$cartTotal;
+													}
+												}
+												echo $rewardPoints.",";
+						        			}
+											?>
+											<?php if($getRewardPointsdata['reward_status'] == 0) { ?>
+											<tr>
+												<td>Reward Points</td>
+												<td class="reward-points"><?php echo $rewardPoints; ?></td>
+											</tr>
+											<?php } ?>
 										</tbody>
 									</table>
 									<div class="btn-radio style2">
