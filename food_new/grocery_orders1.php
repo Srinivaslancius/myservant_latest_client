@@ -128,7 +128,10 @@
                         <td>Rs.<?php echo $orderData['order_total']; ?></td>
                         <td>s<?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
                         <td><?php echo $orderData['order_id']; ?></td>
-                        <td><a href="grocery_order_details.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a></td>
+                        <td><a href="grocery_order_details.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a>
+                        <?php if($orderData['assign_delivery_id'] == '0' || $orderData['assign_delivery_id'] == '') { ?>
+                        <a href="cancel_order.php?order_id=<?php echo $orderData['order_id']; ?>&table=<?php echo 'food_orders'; ?>" onclick="return confirm('Are you sure you want to cancel?')"><button class="button1">Cancel Order</button></a></td>
+                        <?php } ?>
             		  </tr>
             		  
             		</tbody>
