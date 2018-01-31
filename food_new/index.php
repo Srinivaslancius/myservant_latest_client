@@ -154,7 +154,7 @@
             <div class="col-md-6 col-sm-6">
                
                 <a href="view_rest_menu.php?key=<?php echo encryptPassword($getMostPopualrRestaurants['id']);?>" class="strip_list">
-                    <div class="ribbon_1">Popular</div>
+                    <?php if($getMostPopualrRestaurants['make_it_popular'] == '1') { ?><div class="ribbon_1">Popular</div><?php } ?>
                     <div class="desc">
                         <div class="thumb_strip">
                             <?php if($getMostPopualrRestaurants['logo']!='') { ?>

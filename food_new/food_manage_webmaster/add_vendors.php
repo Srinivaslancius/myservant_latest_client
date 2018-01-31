@@ -19,10 +19,12 @@
     $password = encryptPassword($_POST['password']);
     $working_timings = $_POST['working_timings'];
     $min_delivery_time = $_POST['min_delivery_time'];
+    $closing_time = date("H:i:s",strtotime($_POST['closing_time']));
     //$delivery_charges = $_POST['delivery_charges'];
     $lkp_state_id = $_POST['lkp_state_id'];
     $lkp_district_id = $_POST['lkp_district_id'];
     $lkp_city_id = $_POST['lkp_city_id'];
+    $make_it_popular = $_POST['make_it_popular'];
     $location = $_POST['location'];
     $created_at = date("Y-m-d h:i:s");
     $fileToUpload =$_FILES['fileToUpload']['name'];
@@ -47,7 +49,7 @@
        $logoname=md5($encname).'.'.$logoxptype;
        $vendorLogopath="../../uploads/food_vendor_logo/".$logoname;
        //Vendor banner update
-       $vendorBanner=$_FILES['vendor_banner']['name']; 
+       $vendorBanner=$_FILES['vendor_banner']['name'];
        $expBanner=explode('.',$vendorBanner);
        $bannerType=$expBanner[1];
        $date1 = date('m/d/Yh:i:sa', time());
@@ -60,7 +62,7 @@
 
             move_uploaded_file($_FILES["vendor_banner"]["tmp_name"],$vendorbannerpath);
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$vendorLogopath);
-           $sql = "INSERT INTO food_vendors (`vendor_name`, `vendor_id`,`vendor_email`, `vendor_mobile`, `description`,  `password`, `working_timings`,`min_delivery_time`, `lkp_state_id`,`lkp_district_id`, `lkp_city_id`,`location`, `logo`, `restaurant_name`,`restaurant_address`,`delivery_type_id`,`created_at`,`pincode`,`meta_title`,`meta_keywords`,`meta_desc`,`vendor_banner`) VALUES ('$vendor_name','$vendor_id','$vendor_email','$vendor_mobile', '$description','$password','$working_timings','$min_delivery_time','$lkp_state_id','$lkp_district_id','$lkp_city_id','$location','$logoname','$restaurant_name','$restaurant_address','$delivery_type_id','$created_at','$pincode','$meta_title','$meta_keywords','$meta_desc','$bannerName')";
+           $sql = "INSERT INTO food_vendors (`vendor_name`, `vendor_id`,`vendor_email`, `vendor_mobile`, `description`,  `password`, `working_timings`,`min_delivery_time`,`closing_time`, `lkp_state_id`,`lkp_district_id`, `lkp_city_id`,`location`, `logo`, `restaurant_name`,`restaurant_address`,`delivery_type_id`,`created_at`,`pincode`,`meta_title`,`meta_keywords`,`meta_desc`,`vendor_banner`,`make_it_popular`) VALUES ('$vendor_name','$vendor_id','$vendor_email','$vendor_mobile', '$description','$password','$working_timings','$min_delivery_time','$closing_time','$lkp_state_id','$lkp_district_id','$lkp_city_id','$location','$logoname','$restaurant_name','$restaurant_address','$delivery_type_id','$created_at','$pincode','$meta_title','$meta_keywords','$meta_desc','$bannerName','$make_it_popular')";
 
             if($conn->query($sql) === TRUE){
               $last_id = $conn->insert_id;
@@ -176,6 +178,11 @@
                     <input type="text" name="min_delivery_time" class="form-control" id="form-control-2" placeholder="Minimum Delivery Time" data-error="Please enter Minimum Delivery Time" required>
                     <div class="help-block with-errors"></div>
                   </div>
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Closing Time</label>
+                    <input class="time-pick form-control" type="text" name="closing_time" id="form-control-2" placeholder="Closing Time" data-error="Please enter Closing Time" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
                   <!-- <div class="form-group">
                     <label for="form-control-2" class="control-label">Delivery charges</label>
                     <input type="text" name="delivery_charges" class="form-control valid_price_dec" id="form-control-2" placeholder="Delivery charges" data-error="Please enter Delivery charges" required>
@@ -255,6 +262,11 @@
                     <textarea name="meta_desc" class="form-control" id="category_description" placeholder="Description" data-error="This field is required." required></textarea>
                     <div class="help-block with-errors"></div>
                   </div>
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Make It Popular</label>
+                    <input type="checkbox" name="make_it_popular" value="1">
+                    <div class="help-block with-errors"></div>
+                  </div>
                   
                   <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
@@ -277,15 +289,24 @@
     }
 </style>
 <script type="text/javascript">
-      
-      function checkPasswordMatch() {
-        var password = $("#password").val();
-        var confirmPassword = $("#confirm_password").val();
-        if (confirmPassword != password) {
-            $("#divCheckPasswordMatch").html("Passwords do not match!");
-            $("#confirm_password").val("");
-        } else {
-            $("#divCheckPasswordMatch").html("");
-        }
+  function checkPasswordMatch() {
+    var password = $("#password").val();
+    var confirmPassword = $("#confirm_password").val();
+    if (confirmPassword != password) {
+        $("#divCheckPasswordMatch").html("Passwords do not match!");
+        $("#confirm_password").val("");
+    } else {
+        $("#divCheckPasswordMatch").html("");
     }
-    </script>
+}
+</script>
+<script type="text/javascript" src="../../Services/js/jquery.timepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="../../Services/css/jquery.timepicker.css" />
+<script>
+  $('input.time-pick').timepicker({   
+    // 'minTime': '<?php echo $min_time; ?>',
+    // 'maxTime': '7:30pm',
+    'step': 60,
+      //'showDuration': true
+  });
+</script>

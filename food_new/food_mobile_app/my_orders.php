@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					$lists = array();					
 			    	$lists["orderIncId"]   = $orderData["id"];			    	
 			    	$lists["orderDate"] = $orderData["created_at"];
-			    	$lists["totalAmount"] = $orderData["order_total"];
+			    	$lists["totalAmount"] = round($orderData["order_total"]);
 			    	$lists["itemCount"] = $getOrdersData3->num_rows;	
 			    	$getRestaurants = getIndividualDetails('food_vendors','id',$orderData['restaurant_id']);
 			    	$lists["restaurantLogo"] = $base_url."uploads/food_vendor_logo/".$getRestaurants["logo"];
