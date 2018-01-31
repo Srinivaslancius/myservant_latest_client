@@ -39,8 +39,8 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['itemId']) && !empty($_REQUES
 		$conn->query($delCart);
 
 		$getSelQu = "SELECT * FROM food_cart WHERE user_id='$user_id' ";
-		    $getCartFoodData = $conn->query($getSelQu);
-		    $response["cartCount"] = $getCartFoodData->num_rows;
+	    $getCartFoodData = $conn->query($getSelQu);
+	    $response["cartCount"] = $getCartFoodData->num_rows;
 
 		$response["success"] = 0;
 		$response["message"] = "Delete Item Successfully";
