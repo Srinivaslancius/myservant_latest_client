@@ -63,8 +63,9 @@
             foreach($language_id as $key=>$value){
                 if(!empty($value)) {
                     $product_name = $_REQUEST['product_name'][$key]; 
-                    $product_lang_ids = $_REQUEST['language_id'][$key];         
-                    $sql = "INSERT INTO grocery_product_name_bind_languages ( `product_id`,`product_name`, `product_languages_id`) VALUES ('$last_id','$product_name', '$product_lang_ids')";
+                    $product_lang_ids = $_REQUEST['language_id'][$key];
+                    $search_tags = $_REQUEST['search_tags'];
+                    $sql = "INSERT INTO grocery_product_name_bind_languages ( `product_id`,`product_name`, `product_languages_id`, `search_tags`) VALUES ('$last_id','$product_name', '$product_lang_ids', '$search_tags')";
                     $conn->query($sql);
                 }
             }
@@ -161,7 +162,13 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>                            
+                            </div>  
+                            <div class="form-group">
+                                <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Search Tags</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags"></textarea>
+                                </div>
+                            </div>                          
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                                     <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
