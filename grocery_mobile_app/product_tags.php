@@ -15,10 +15,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			while($getProductDetails = $getProducts1->fetch_assoc()) {
 
 				$lists = array();
-				$lists["productId"] = $getProductDetails["id"];
-		    	$lists["search_tags"] = $getProductDetails['search_tags']; 	
-				//Chedck the condioton for emptty or not		
-		    	array_push($response["lists"], $lists);		
+				//$lists["productId"] = $getProductDetails["id"];
+				$splittedstring=explode(",",$getProductDetails['search_tags']);
+				foreach ($splittedstring as $key => $value) {
+					 if(!empty($value)){
+					 	//echo "splittedstring[".$key."] = ".$value."<br>";
+					 	$lists["search_tags"] = $value; 
+					 	array_push($response["lists"], $lists);
+					 }				
+				}		
 			}			
 			$response["success"] = 0;
 			$response["message"] = "Success";	
