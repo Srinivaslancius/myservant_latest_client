@@ -8,48 +8,18 @@ $lists = array();
 $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-	if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId']) && !empty($_REQUEST['orderId']) )  {
+	if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId']) && !empty($_REQUEST['orderNo']) )  {
 
-		$order_id = $_REQUEST['orderId'];
-		$orderData = getIndividualDetails('food_orders','order_id',$order_id);
-        $getRestaurants = getIndividualDetails('food_vendors','id',$orderData['restaurant_id']);
-        $getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$orderData['payment_method']);
-        $orderStatus = getIndividualDetails('lkp_food_order_status','id',$orderData['lkp_order_status_id']);
-        $paymentStatus = getIndividualDetails('lkp_payment_status','id',$orderData['lkp_payment_status_id']);
-        $getSiteSettingsData = getIndividualDetails('food_site_settings','id',1);
-        $service_tax = $orderData['sub_total']*$getSiteSettingsData['service_tax']/100;
-        $getAddOnsPrice = "SELECT * FROM food_order_ingredients WHERE order_id = '$order_id'";
-        $getAddontotal = $conn->query($getAddOnsPrice);
-        $getAddontotalCount = $getAddontotal->num_rows;
-        $getAdstotal = 0;
-        while($getAdTotal = $getAddontotal->fetch_assoc()) {
-            $getAdstotal += $getAdTotal['item_ingredient_price'];
-        }
-        if($orderData['delivery_charges'] == '0') {
-          $order_type = "Take Away";
-        } else {
-          $order_type = "Delivery";
-        }
-
-        $lists["restaurantName"] = $getRestaurants['restaurant_name']; 
-        $lists["paymentMethod"] = $getpaymentTypes['status'];
-        $lists["orderType"] = $order_type;
-        $lists["orderStatus"] = $orderStatus['order_status'];
-        $lists["paymentStatus"] = $paymentStatus['payment_status'];
-        $lists["restaurantName"] = $orderData['first_name'] . ',' . $orderData['email'] . ','. $orderData['mobile'] . ',' . $orderData['address'] . ','. $orderData['postal_code'];
-
-        if($orderData['delivery_charges'] != '0') {
-        	$lists["deliveryCharges"] = $orderData['delivery_charges'];
-        }
-
-        if($getAddontotalCount > 0) {
-        	$lists["getAdonstotal"] = $getAdstotal;
-        }
-
-        $lists["orderTotal"] = $orderData['order_total'];
-
+		$order_id = $_REQUEST['orderNo'];
         $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
         $getOrdersData3 = $conn->query($getOrders1);
+        $response["lists"] = array();
+        $orderData = getIndividualDetails('food_orders','order_id',$order_id);
+        $response["delivery_charges"] = $orderData["delivery_charges"];
+        $response["service_tax"] = $orderData["service_tax"];
+        $response["orderTotal"] = $orderData["order_total"];
+        $response["totalItemCount"] = $getOrdersData3->num_rows;
+        $response["order_date"] = $orderData["created_at"];
         while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {
         	$lists = array();
         	$getCategories = getIndividualDetails('food_category','id',$getOrdersData2['category_id']);
@@ -58,8 +28,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $lists["productName"] = $getProducts["product_name"];
             $lists["categoryName"] = $getCategories["category_name"];
             $lists["weightType"] = $getItemWeights["weight_type"];
-            $lists["itemQuantity"] = $getProducts["item_quantity"];
-            $lists["itemPrice"] = $getProducts["item_price"];
+            $lists["itemQuantity"] = $getOrdersData2["item_quantity"];
+            $lists["itemPrice"] = $getOrdersData2["item_price"];
             array_push($response["lists"], $lists);	
         }       
 		

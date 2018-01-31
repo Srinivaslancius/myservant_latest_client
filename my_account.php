@@ -60,42 +60,42 @@
                       <h3 class="nomargin_top">My Dashbaord</h3>
                     </div>
                       <div class="panel-body">
-					  <div class="row">
-          <?php $getServiceOrders = getAllDataWhere('services_orders','user_id',$_SESSION['user_login_session_id']);
-          $getServiceOrders1 = $getServiceOrders->num_rows; ?>
-                                <div class="col-md-4 col-sm-4">
-                                    <a href="service_orders.php"><div class="box_home" id="one">
-                                        
-                                        <h3>Services Orders</h3>
-                                        <p>
-                                            <?php echo $getServiceOrders1; ?>
-                                        </p>
-                                    </div> </a>
-                                </div>
-                           
-        <?php $getFoodOrders = getAllDataWhere('food_orders','user_id',$_SESSION['user_login_session_id']);
-          $getFoodOrders1 = $getFoodOrders->num_rows; ?>
-                                <div class="col-sm-4">
-                                     <a href="food_orders.php"> <div class="box_home" id="two">
-                                        
-                                        <h3>Food Orders</h3>
-                                        <p>
-                                            <?php echo $getFoodOrders1; ?>
-                                        </p>
-                                    </div> </a>
-                                </div>
-                           
-        <?php $getGroceryOrders = getAllDataWhere('grocery_orders','user_id',$_SESSION['user_login_session_id']);
-          $getGroceryOrders1 = $getGroceryOrders->num_rows; ?>                   
-                                <div class="col-sm-4">
-                                     <a href="grocery_orders.php"><div class="box_home" id="three">
-                                        
-                                        <h3>Grocery Orders</h3>
-                                        <p>
-                                            <?php echo $getGroceryOrders1; ?>
-                                        </p>
-                                    </div> </a>
-                                </div>
+            					  <div class="row">
+                        <?php $getServiceOrders = "SELECT * FROM services_orders WHERE user_id = '".$_SESSION['user_login_session_id']."' GROUP BY order_id";
+                        $getServiceOrders1 = $conn->query($getServiceOrders);
+                        $getServiceOrdersCount = $getServiceOrders1->num_rows; ?>
+                          <div class="col-md-4 col-sm-4">
+                              <a href="service_orders.php"><div class="box_home" id="one">
+                                  
+                                  <h3>Services Orders</h3>
+                                  <p>
+                                      <?php echo $getServiceOrdersCount; ?>
+                                  </p>
+                              </div> </a>
+                          </div>
+                          <?php $getFoodOrders = "SELECT * FROM food_orders WHERE user_id = '".$_SESSION['user_login_session_id']."' GROUP BY order_id";
+                            $getFoodOrders1 = $conn->query($getFoodOrders);
+                            $getFoodOrdersCount = $getFoodOrders1->num_rows; ?>
+                            <div class="col-sm-4">
+                                 <a href="food_orders.php"> <div class="box_home" id="two">
+                                    <h3>Food Orders</h3>
+                                    <p>
+                                        <?php echo $getFoodOrdersCount; ?>
+                                    </p>
+                                </div> </a>
+                            </div>
+                            <?php $getGroceryOrders = "SELECT * FROM grocery_orders WHERE user_id = '".$_SESSION['user_login_session_id']."' GROUP BY order_id";
+                            $getGroceryOrders1 = $conn->query($getGroceryOrders);
+                            $getGroceryOrdersCount = $getGroceryOrders1->num_rows; ?>                 
+                            <div class="col-sm-4">
+                                 <a href="grocery_orders.php"><div class="box_home" id="three">
+                                    
+                                    <h3>Grocery Orders</h3>
+                                    <p>
+                                        <?php echo $getGroceryOrdersCount; ?>
+                                    </p>
+                                </div> </a>
+                            </div>
                            
 							
                           

@@ -132,7 +132,7 @@ $getAboutData = $getAllAboutData->fetch_assoc();
             		  <tr>
             			<th>ITEM PLACED</th>
             			<th>ORDER PRICE</th>
-            			<th>SHIP TO</th>
+            			<!-- <th>SHIP TO</th> -->
             			<th>ORDER ID</th>
     					<th>ACTION</th>
             		  </tr>
@@ -141,10 +141,21 @@ $getAboutData = $getAllAboutData->fetch_assoc();
             		  <tr>
             			<td><?php echo $orderData['created_at']; ?></td>
             			<td>Rs.<?php echo $orderData['order_total']; ?></td>
-            			<td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
+            			<!-- <td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td> -->
             			<td><?php echo $orderData['order_id']; ?></td>
 						<td><a href="order_details1.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a>
-						<a href="review_section.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1"> Add Reviews</button></a></td>
+                        <?php $oid = $orderData['order_id'];
+                            $getRating = "SELECT * FROM food_order_rating WHERE user_id='$uid' AND order_id='$oid' "; 
+                            $getRating1 = $conn->query($getRating);
+                        if($orderData['lkp_order_status_id'] != 6) {
+                        if($getRating1->num_rows == 0) { ?>
+						  <a href="review_section.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1"> Add Reviews</button></a>
+                        <?php } else { ?>
+                           <a href="review_section.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1"> View Reviews</button></a>
+                        <?php } ?>
+                        <?php if($orderData['assign_delivery_id'] == '0' || $orderData['assign_delivery_id'] == '') { ?>
+                        <a href="cancel_order.php?order_id=<?php echo $orderData['order_id']; ?>" onclick="return confirm('Are you sure you want to cancel?')"><button class="button1">Cancel Order</button></a></td>
+                        <?php } } ?>
             		  </tr>
             		  
             		</tbody>

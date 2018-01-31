@@ -17,14 +17,20 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		if ($getOrders1->num_rows > 0) {
 				$response["lists"] = array();				
 				while($orderData = $getOrders1->fetch_assoc()) {
-					$getCatName = getIndividualDetails('food_category','id',$row['category_id']);
-					//Chedck the condioton for emptty or not		
+					//$getCatName = getIndividualDetails('food_category','id',$row['category_id']);
+					//Chedck the condioton for emptty or not	
+					$order_id = $orderData["order_id"];	
+					$getOrders2 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
+        			$getOrdersData3 = $conn->query($getOrders2);
 					$lists = array();					
 			    	$lists["orderIncId"]   = $orderData["id"];			    	
 			    	$lists["orderDate"] = $orderData["created_at"];
-			    	$lists["orderTotalPrice"] = $orderData["order_total"];
-			    	$lists["address"] = $orderData["address"];
-			    	$lists["orderId"] = $orderData["order_id"];
+			    	$lists["totalAmount"] = $orderData["order_total"];
+			    	$lists["itemCount"] = $getOrdersData3->num_rows;	
+			    	$getRestaurants = getIndividualDetails('food_vendors','id',$orderData['restaurant_id']);
+			    	$lists["restaurantLogo"] = $base_url."uploads/food_vendor_logo/".$getRestaurants["logo"];
+			    	$lists["restarauntName"] = $getRestaurants["restaurant_name"];
+			    	$lists["orderNo"] = $orderData["order_id"];
 			    	
 			    	array_push($response["lists"], $lists);		
 				}
