@@ -359,6 +359,7 @@ td{
             <?php } else { ?>
               <a class="btn_full" href="checkout.php">Order now</a>
             <?php } ?>
+            <a class="btn_full" href="clearcart.php">Clear Cart</a>
 						<a class="btn_full_outline" href="index.php"><i class="icon-right"></i> Continue</a>
 					</div>
 				</div>
