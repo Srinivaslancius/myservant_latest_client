@@ -1,5 +1,6 @@
 <?php
 ob_start(); 
+include "admin_includes/config.php";
 $odi = $_GET['odi'];
 $pay_stau = $_GET['pay_stau'];
 
@@ -119,11 +120,11 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         </tr>
         <tr>
           <td>Success URI: </td>
-          <td colspan="3"><input name="surl" value="https://palle2patnam.com/lancius/myservant/ordersuccess.php?odi=<?php echo $odi; ?>&pay_stau=1" size="64" /></td>
+          <td colspan="3"><input name="surl" value="<?php echo $base_url; ?>ordersuccess.php?odi=<?php echo $odi; ?>&pay_stau=1" size="64" /></td>
         </tr>
         <tr>
           <td>Failure URI: </td>
-          <td colspan="3"><input name="furl" value="https://palle2patnam.com/lancius/myservant/orderfailure.php?odi=<?php echo $odi; ?>&pay_stau=3" size="64" /></td>
+          <td colspan="3"><input name="furl" value="<?php echo $base_url; ?>orderfailure.php?odi=<?php echo $odi; ?>&pay_stau=3" size="64" /></td>
         </tr>
 
         <tr>
