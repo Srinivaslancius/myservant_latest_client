@@ -232,8 +232,9 @@
                                     if(!empty($_POST['date']) && !empty($_POST['date']))  {
                                         //echo "<pre>";print_r($_POST); exit;
                                         $deal_start_date = $_POST['deal_start_date']; 
+                                        $id = $_POST['id'];
                                         $deal_date = date('Y-m-d', strtotime($deal_start_date)); 
-                                        $dealDate="UPDATE grocery_products SET deal_start_date = '$deal_date' WHERE id = '".$row['id']."' ";
+                                        $dealDate="UPDATE grocery_products SET deal_start_date = '$deal_date' WHERE id = '$id' ";
                                         if($conn->query($dealDate) === TRUE) {
                                         echo "<script type='text/javascript'>window.location='manage_products.php?msg=success'</script>"; 
                                         }
@@ -266,6 +267,7 @@
                                                             <div class="form-group">
                                                                 <label for="form-control-5" class="col-sm-3 col-md-4 control-label">Deal Start Date</label>
                                                                 <div class="col-sm-6 col-md-5">
+                                                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                                                     <input class="date-pick" data-format="yyyy-MM-dd" type="text" placeholder="Deal Start Date" name="deal_start_date" required="required" value="<?php echo $deal_start_date1; ?>">
                                                                 </div>
                                                             </div>
