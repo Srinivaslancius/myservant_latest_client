@@ -332,7 +332,7 @@
 	<?php //$getCurMinTime = date("h:ia"); ?>
 	<?php 	
 	$cur_time=date("ha");
-	$duration='+720 minutes';
+	$duration='+180 minutes';
 	$min_time= date('ha', strtotime($duration, strtotime($cur_time)));
 	?>
     <script>
