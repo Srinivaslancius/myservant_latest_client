@@ -1,17 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from big-bang-studio.com/cosmos/pages-invoice.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Aug 2017 10:14:32 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="">
+    <title>Cosmos</title>
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/vendor.min.css">
+    <link rel="stylesheet" href="css/cosmos.min.css">
+    <link rel="stylesheet" href="css/application.min.css">
+  </head>
+
 <?php
 error_reporting(0);
 include_once('../../admin_includes/config.php');
 include_once('../../admin_includes/common_functions.php');
 
 $id = $_GET['order_id'];
-
 $getOrders = "SELECT * FROM services_orders WHERE order_id='$id'";
 $getOrdersData = $conn->query($getOrders);
 $getOrdersData1 = $getOrdersData->fetch_assoc();
-
 $getPaymentMethod = getAllDataWhere('lkp_payment_types','id',$getOrdersData1['payment_method']); 
 $getPaymentMethodData = $getPaymentMethod->fetch_assoc();
-
 $getSiteSettingsData = getIndividualDetails('services_site_settings','id',1);
 
 //below condition for check service type prices fixed or variant for payment gateway display
@@ -30,101 +45,123 @@ $discount_money = $getOrdersData1['discount_money'].'(<span style="color:green">
 	$discount_money = 0;
 }
 
-$content .='<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>ORDER INFORMATION</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container" style="margin-top:20px;width:1000px;">         
-  <table class="table" style="border:1px solid gray">
-    <thead>
-      <tr style="background-color:#f2f2f2">
-        <th colspan="2"></th>
-        <th colspan="2"><h4 style="color:#f26226">ORDER INFORMATION</h4></th>		
-		<th colspan="2"></th>	
-      </tr>
-    </thead>
-    <tbody>
-    <tr style="font-size:12px;">
-      <td>Name:<br>
-	Mobile:<br>
-	Email:<br>
-	Address:<br>
-	Postal Code:</td>
-	  <td>'.$getOrdersData1['first_name'].'<br>
-	 '.$getOrdersData1['mobile'].'<br>
-	  '.$getOrdersData1['email'].'<br>
-	    '.$getOrdersData1['address'].'<br>
-		'.$getOrdersData1['postal_code'].'
-		 </td>
-		 <td></td>	
-	  <td>Order ID:<br>
-	 Created at:<br>
-	  Payment Method:
-	 
-	  </td>
-	  <td colspan="2">'.$getOrdersData1['order_id'].'<br>
-	 '.$getOrdersData1['created_at'].'<br>
-	 '.$getPaymentMethodData['status'].'
-	  
-	  </td>
-      </tr><br><br>
-      <tr style="color:#f26226;font-size:12px">
-        <td>Service Name</td>
-        <td>Service Price</td>
-        <td>Quantity</td>
-		<td>Selected Date</td>
-		<td>Selected Time</td>
-		<td>Order Price</td>
-      </tr>';
-      $getOrders1 = "SELECT * FROM services_orders WHERE order_id='$id'";
-	$getOrdersData3 = $conn->query($getOrders1);
-
-      while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {
-      	$getServiceNames = getAllDataWhere('services_group_service_names','id',$getOrdersData2['service_id']); 
-		$getServiceNamesData = $getServiceNames->fetch_assoc();
-$content .='<tr style="font-size:12px">
-        <td>'.wordwrap($getServiceNamesData['group_service_name'],20,"<br>\n",TRUE).'</td>
-        <td>'.wordwrap($getOrdersData2['service_price'],22,"<br>\n",TRUE).'</td>
-        <td>'.$getOrdersData2['service_quantity'].'</td>
-		<td>'.$getOrdersData2['service_selected_date'].'</td>
-		<td>'.$getOrdersData2['service_selected_time'].'</td>
-		<td>'.$getOrdersData2['order_price'].'</td>
-      </tr><br>';
-  }
-  $content .= '
-	   <tr style="background-color:#f2f2f2;font-size:12px">
-        <td colspan="4"></td>
-		<td>
-		Subtotal:<br>
-		Discount Money:<br>
-		Tax:<br>
-		<span style="color:#f26226">Grand Total:</span>
-		</td>
-		<td style="color:#f26226;font-size:12px">'.$getOrdersData1['sub_total'].'<br>
-		Rs.'.$discount_money.'<br>
-		Rs.'.$service_tax.'('.$getSiteSettingsData['service_tax'].'%)<br>
-		'.$getOrdersData1['order_total'].'</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-</body>
-</html>
-';
-
-//echo $content; die;
-
-require_once('html2pdf/html2pdf.class.php');
-
-
-$html2pdf = new HTML2PDF('P', array(450,250), 'en', true, 'UTF-8', array(30, 30, 40, 40));
-$html2pdf->pdf->SetDisplayMode('fullpage');
-$html2pdf->WriteHTML($content);
-$html2pdf->Output($getOrdersData1['order_id'].'.pdf');
 ?>
+  <body class="layout layout-header-fixed layout-left-sidebar-fixed">
+    <div class="site-overlay"></div>
+    
+    <div class="site-main">      
+     
+      <div class="site-content">
+        <div class="panel panel-default m-b-0">
+          <div class="panel-heading">
+            <h3 class="m-y-0">Invoice</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row m-b-30">
+              <div class="col-sm-6">                
+                <p><strong>Customer Address</strong></p>
+                <p><?php echo $getOrdersData1['first_name']; ?>
+                  <br><?php echo $getOrdersData1['email']; ?>
+                  <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getOrdersData1['postal_code']; ?></p>
+                <p class="m-b-0">Mobile: <?php echo $getOrdersData1['mobile']; ?></p>
+              </div>
+              <div class="col-sm-6">                
+                <p><strong>Order Info</strong></p>
+                <p>Order Id: <?php echo $getOrdersData1['order_id']; ?>
+                  <br>Order Date:<?php echo $getOrdersData1['created_at']; ?>
+                  <br>Payment Mode :<?php echo $getPaymentMethodData['status']; ?></p>               
+              </div>
+            </div>
+            <table class="table table-bordered m-b-30">
+              <thead>
+                <tr>
+                  <th>
+                    S.No
+                  </th>
+                  <th>
+                    Service Name
+                  </th>
+                  <th>
+                    Service Price
+                  </th>
+                  <th>
+                    Quantity
+                  </th>                
+                  <th>
+                    Selected Date
+                  </th>
+                  <th>
+                    Selected Time
+                  </th>
+                  <th>
+                    Service Total
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+              	<?php 
+              		$i=1;
+	              	$getOrders1 = "SELECT * FROM services_orders WHERE order_id='$id'";
+					$getOrdersData3 = $conn->query($getOrders1);
+					while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {
+					$getServiceNames = getAllDataWhere('services_group_service_names','id',$getOrdersData2['service_id']); 
+					$getServiceNamesData = $getServiceNames->fetch_assoc();
+              	?>
+                <tr>
+                  <td><?php echo $i; ?></td>
+                  <td><?php echo wordwrap($getServiceNamesData['group_service_name'],20,"<br>\n",TRUE); ?></td>
+                  <td><?php echo wordwrap($getOrdersData2['service_price'],22,"<br>\n",TRUE); ?></td>
+                  <td><?php echo $getOrdersData2['service_quantity']; ?></td>
+                  <td><?php echo $getOrdersData2['service_selected_date']; ?></td>                  
+                  <td><?php echo $getOrdersData2['service_selected_time']; ?></td>
+                  <td><?php echo $getOrdersData2['order_price']; ?></td>
+                </tr>  
+                <?php $i++; } ?>              
+                <tr>
+                  <td scope="row" colspan="6">
+                    <div class="text-right">
+                      Subtotal                      
+                      <br> Discount
+                      <br> Service Tax
+                      <br>
+                      <strong>TOTAL</strong>
+                    </div>
+                  </td>
+                  <td>
+                    Rs .<?php echo $getOrdersData1['sub_total']; ?>
+                    <br>Rs .<?php echo $discount_money; ?>
+                    <br> Rs .<?php echo $service_tax; ?> ( <?php echo $getSiteSettingsData['service_tax']; ?> % )
+                    <br>
+                    <strong>Rs .<?php echo $getOrdersData1['order_total']; ?></strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          
+          </div>
+          <div class="panel-footer text-right">
+            <button type="button" class="btn btn-primary btn-labeled" onclick="myFunction()">Print
+              <span class="btn-label btn-label-right p-x-10">
+                <i class="zmdi zmdi-print"></i>
+              </span>
+            </button>
+            
+          </div>
+        </div>
+      </div>
+      <div class="site-footer">
+        2017 © LANCIUS IT SOLUTIONS
+      </div>
+    </div>
+    <script src="js/vendor.min.js"></script>
+    <script src="js/cosmos.min.js"></script>
+    <script src="js/application.min.js"></script>
+  </body>
+  	<script>
+	function myFunction() {
+	    window.print();
+	}
+	</script>
+
+</html>
