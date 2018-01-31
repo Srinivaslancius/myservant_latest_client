@@ -37,8 +37,11 @@
                     <td><?php echo $row['email'];?></td>
                     <td><?php echo $row['created_at'];?></td>
                     <td><?php $adminServiceTypes = getIndividualDetails('lkp_food_order_status','id',$row['lkp_order_status_id']); echo $adminServiceTypes['order_status']; ?></td>
-                    <td><?php if ($row['vendor_order_status']==1) { echo "<span class='label label-outline-success check_active1 open_cursor' data-incId=".$row['id']." style='border-color:#7d57c1;color:#7d57c1' data-status=".$row['vendor_order_status']." data-tbname='food_orders'>Confirm Order</span>" ;} else { echo "<span class='label label-outline-info check_active1 open_cursor' style='border-color:green;color:green'php data-status=".$row['vendor_order_status']." data-incId=".$row['order_id']." data-tbname='food_orders'>Confirmed</span>" ;} ?></td>
-                    <?php if($row['vendor_order_status'] != 2) { ?>
+                    <td><?php if($row['lkp_order_status_id'] != 6) {  if ($row['vendor_order_status']==1) { echo "<span class='label label-outline-success check_active1 open_cursor' data-incId=".$row['id']." style='border-color:#7d57c1;color:#7d57c1' data-status=".$row['vendor_order_status']." data-tbname='food_orders'>Confirm Order</span>" ;} else { echo "<span class='label label-outline-info check_active1 open_cursor' style='border-color:green;color:green'php data-status=".$row['vendor_order_status']." data-incId=".$row['order_id']." data-tbname='food_orders'>Confirmed</span>" ; } } else { echo '--' ; }?></td>
+                    <?php 
+                    if($row['lkp_order_status_id'] == 6) { ?>
+                      <td> -- </td>
+                    <?php } elseif($row['vendor_order_status'] != 2) { ?>
                      <td>Assign To</td>
                      <?php } elseif($row['assign_delivery_id'] == '0' || $row['assign_delivery_id'] == '') { ?>
                      <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>">Assign To</a></td>

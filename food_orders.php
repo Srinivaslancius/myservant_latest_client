@@ -74,7 +74,7 @@
 					  
             			<th>Order PLACED</th>
             			<th>Order Price</th>
-            			<th>SHIP TO</th>
+            			<!-- <th>SHIP TO</th> -->
             			<th>ORDER ID</th>
 						<th>ACTION</th>
             		  </tr>
@@ -84,9 +84,14 @@
 					  
 					  <td><?php echo $orderData['created_at']; ?>	</td>
             			<td>Rs.<?php echo $orderData['order_total']; ?></td>
-            			<td>s<?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
+            			<!-- <td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td> -->
             			<td><?php echo $orderData['order_id']; ?></td>
-						<td><a href="food_order_details.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a></td>
+						<td><a href="food_order_details.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a>
+						<?php 
+                        if($orderData['lkp_order_status_id'] != 6) {
+                        if($orderData['assign_delivery_id'] == '0' || $orderData['assign_delivery_id'] == '') { ?>
+                        <a href="food_new/cancel_order.php?order_id=<?php echo $orderData['order_id']; ?>" onclick="return confirm('Are you sure you want to cancel?')"><button class="button1">Cancel Order</button></a></td>
+                        <?php } } ?>
             		  </tr>
             		  
             		</tbody>

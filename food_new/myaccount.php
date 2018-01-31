@@ -79,37 +79,40 @@
 					  <a href="../Services/service_orders.php">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="box_home" id="one">
-                                        <?php $getServiceOrders = getAllDataWhere('services_orders','user_id',$_SESSION['user_login_session_id']);
-                                        $getServiceOrders1 = $getServiceOrders->num_rows; ?>
+                                        <?php $getServiceOrders = "SELECT * FROM services_orders WHERE user_id = '".$_SESSION['user_login_session_id']."' GROUP BY order_id";
+                                        $getServiceOrders1 = $conn->query($getServiceOrders);
+                                        $getServiceOrdersCount = $getServiceOrders1->num_rows; ?>
                                         <h3>Services Orders</h3>
                                         <p>
-                                             <?php echo $getServiceOrders1; ?>
+                                             <?php echo $getServiceOrdersCount; ?>
                                         </p>
                                     </div>
                                 </div>
                             </a>
-                            <?php $getFoodOrders = getAllDataWhere('food_orders','user_id',$_SESSION['user_login_session_id']);
-                                  $getFoodOrders1 = $getFoodOrders->num_rows; ?>
+                            <?php $getFoodOrders = "SELECT * FROM food_orders WHERE user_id = '".$_SESSION['user_login_session_id']."' GROUP BY order_id";
+                            $getFoodOrders1 = $conn->query($getFoodOrders);
+                            $getFoodOrdersCount = $getFoodOrders1->num_rows; ?>
                             <a href="food_orders1.php"> 
                                 <div class="col-md-4 col-sm-4">
                                     <div class="box_home" id="two">
                                         
                                         <h3>Food Orders</h3>
                                         <p>
-                                            <?php echo $getFoodOrders1; ?>
+                                            <?php echo $getFoodOrdersCount; ?>
                                         </p>
                                     </div>
                                 </div>
                             </a>
-                            <?php $getGroceryOrders = getAllDataWhere('grocery_orders','user_id',$_SESSION['user_login_session_id']);
-                                  $getGroceryOrders1 = $getGroceryOrders->num_rows; ?>
+                            <?php $getGroceryOrders = "SELECT * FROM grocery_orders WHERE user_id = '".$_SESSION['user_login_session_id']."' GROUP BY order_id";
+                            $getGroceryOrders1 = $conn->query($getGroceryOrders);
+                            $getGroceryOrdersCount = $getGroceryOrders1->num_rows; ?>
                             <a href="grocery_orders1.php">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="box_home" id="three">
                                         
                                         <h3>Grocery Orders</h3>
                                         <p>
-                                             <?php echo $getGroceryOrders1; ?>
+                                             <?php echo $getGroceryOrdersCount; ?>
                                         </p>
                                     </div>
                                 </div>
