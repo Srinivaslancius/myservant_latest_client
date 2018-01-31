@@ -137,7 +137,7 @@
                           $groceryOrdersData1 = $conn->query($groceryOrders1);
                           $i=1; ?>
                           <?php while($OrderDetails = $groceryOrdersData1->fetch_assoc()) { 
-                          $getProducts = getIndividualDetails('grocery_product_name_bind_languages','order_id',$OrderDetails['order_id']);
+                          $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
                           $getProducts1 = getIndividualDetails('grocery_product_bind_images','product_id',$OrderDetails['product_id']);
                           ?>
                           <div class="col-md-12 fr1 padd0">
