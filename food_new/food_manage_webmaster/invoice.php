@@ -51,12 +51,13 @@ if($getOrdersData1['delivery_charges'] == '0') {
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
     <div class="site-overlay"></div>
     
-    <div class="site-main">      
+    <div class="site-main">     
      
       <div class="site-content">
         <div class="panel panel-default m-b-0">
           <div class="panel-heading">
             <h3 class="m-y-0">Invoice</h3>
+            <center><img src="<?php echo $base_url . 'uploads/food_logo/'.$getSiteSettingsData['logo'] ?>" class="logo-responsive" ></center>
           </div>
           <div class="panel-body">
             <div class="row m-b-30">
@@ -134,11 +135,10 @@ if($getOrdersData1['delivery_charges'] == '0') {
                       <?php } ?>   
                       <?php if($getOrdersData1['delivery_charges'] != '0') { ?>
                       	<br>Delivery Charges:
-                      <?php } ?> 
-                      <?php if($getOrdersData1['coupen_code'] != '') { ?>              
+                      <?php } ?>                       
+                      <br> Service Tax<?php if($getOrdersData1['coupen_code'] != '') { ?>              
                       	<br> Discount
                       <?php } ?>
-                      <br> Service Tax
                       <br>
                       <strong>TOTAL</strong>
                     </div>
