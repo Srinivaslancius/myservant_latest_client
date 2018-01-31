@@ -42,9 +42,6 @@
 	/*box-shadow: 0 0 2px #E50F0F;*/
 	cursor: pointer;
 }
-.search-box:not(:valid) ~ .close-icon {
-	display: none;
-}
 .form-control-feedback {
     position:absolute;
     top: 0;
@@ -58,7 +55,7 @@
     pointer-events: auto;
 	 cursor: pointer;
 }
-.search-box:focus {
+.form-control:focus {
 	box-shadow: 0 0 15px 5px #b0e0ee;
 	border: 2px solid #bebede;
 }
@@ -312,11 +309,19 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php $cartTotal = 0;
+											<?php 
+												$cartTotal = 0;
+												$getPushProductIds = array();
+												$getPushSubcatIds = array();
+												$getPushcatIds = array();
 												while ($getCartItems = $cartItems->fetch_assoc()) { 
 												$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
 												$cartTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
 												$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getCartItems['product_id']);
+												//Values push to sinlge variable
+												array_push($getPushProductIds, $getCartItems['product_id']);
+												array_push($getPushSubcatIds, $getCartItems['sub_category_id']);
+												array_push($getPushcatIds, $getCartItems['category_id']);
 											?>
 											<input type="hidden" name='category_id[]' type='text' value='<?php echo $getCartItems['category_id'];?>'>
 											<input type="hidden" name='sub_cat_id[]' type='text' value='<?php echo $getCartItems['sub_category_id'];?>'>
@@ -347,6 +352,8 @@
 									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
 									<input type="hidden" name="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>" id="delivery_charges">
+									<input type="hidden" name="discount_money" value="0" id="discount_money">
+									<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
 									<table>
 										<tbody>	
 											<tr>
@@ -370,7 +377,11 @@
 	                                            <td>Money in Your Wallet</td>
 	                                            <td class="subtotal">Rs . <?php echo $getWalletAmount['amount']; ?></td>
 	                                        </tr>
-	                                        <?php } ?>								
+	                                        <?php } ?>	
+	                                        <tr id="discount_price">
+								                <td>Discount<span style="color:green">(Coupon Applied.)</td> 
+								                <td><span id="discount_price1" class="pull-right"></span></td>
+								            </tr>							
 											<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
 											<tr>
 												<td>Total</td>
@@ -379,47 +390,128 @@
 											<?php } else if($getWalletAmount['amount'] > 0) { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total">Rs . <?php echo $orderTotal; ?></td>
+												<td class="price-total cart_total2">Rs . <?php echo round($orderTotal); ?></td>
 											</tr>
 											<?php } else { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total">Rs . <?php echo $orderTotalwithoutWallet; ?></td>
+												<td class="price-total cart_total2">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
 											</tr>
 											<?php } ?>
+											
+											<?php
+											$transaction_amount = 0; $rewardPoints = 0;
+											$user_id = $_SESSION['user_login_session_id'];
+											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
+											//echo $getRewardPointsdata['reward_status'];
+											if($getRewardPointsdata['reward_status'] == 0) {
+												//0-Rewards Yes
+												//echo "<pre>"; print_r($getPushProductIds); //This is multiple product ids set sinlge variable
+												$implodeProIds = implode(",",$getPushProductIds);
+												$getProductRewards = "SELECT * FROM grocery_reward_settings WHERE product_id IN ($implodeProIds) AND reward_type = 4 AND lkp_status_id = 0";
+												$getAllProIds=$conn->query($getProductRewards);
+												//Productd check rewards
+												if($getAllSubcatIds->num_rows > 0) {
+													while($getRewd = $getAllProIds->fetch_assoc() ) {
+														$proId= $getRewd['product_id'];
+														$reward_points= $getRewd['reward_points'];
+														//Check if product exists
+														$getAllPrIds = "SELECT * FROM grocery_cart WHERE product_id='$proId' AND user_id='$user_id' ";
+														$getProInfo = $conn->query($getAllPrIds);
+														while ($product_price = $getProInfo->fetch_assoc()) {
+															$totalProductPrice += $product_price['product_price']*$product_price['product_quantity'];
+														}	
+														//Check if product if not exists
+														$rewardPointsRewdSettings = ($totalProductPrice/$getRewardPointsdata['transaction_amount'])*$reward_points;
+													}
+												} else {
+													$rewardPointsRewdSettings=0;
+												}
+												//Subcategory checking rewards
+												$implodeSubcatsIds = implode(",",$getPushSubcatIds);
+												$getSubcatRewards = "SELECT * FROM grocery_reward_settings WHERE sub_category_id IN ($implodeSubcatsIds) AND reward_type = 3 AND lkp_status_id = 0";
+												$getAllSubcatIds=$conn->query($getSubcatRewards);
+												if($getAllSubcatIds->num_rows > 0) {
+													while($getSubcatRewd = $getAllSubcatIds->fetch_assoc() ) {
+														$reward_points1= $getSubcatRewd['reward_points'];
+														$subId= $getSubcatRewd['sub_category_id'];
+
+														$getAllSubcatIds1 = "SELECT * FROM grocery_cart WHERE sub_category_id='$subId' AND user_id='$user_id' ";
+														$getSubcatInfo = $conn->query($getAllSubcatIds1);
+														while ($subcat_id = $getSubcatInfo->fetch_assoc()) {
+															$totalSubcatProPrice += $subcat_id['product_price']*$subcat_id['product_quantity'];
+														}	
+														//Check if product if not exists
+														$rewardPointsRewdSettings1 = ($totalSubcatProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points1;
+													}
+												} else {
+													$rewardPointsRewdSettings1 = 0;
+												}
+												//Category checking rewards
+												$implodeCatsIds = implode(",",$getPushcatIds);
+												$getCategoryRewards = "SELECT * FROM grocery_reward_settings WHERE category_id IN ($implodeCatsIds) AND reward_type = 2 AND lkp_status_id = 0";
+												$getAllCatIds=$conn->query($getCategoryRewards);
+												if($getAllCatIds->num_rows > 0) {
+													while($getCatRewd = $getAllCatIds->fetch_assoc() ) {
+														$reward_points2= $getCatRewd['reward_points'];
+														$catId= $getCatRewd['category_id'];
+
+														$getAllCatIds1 = "SELECT * FROM grocery_cart WHERE category_id='$catId' AND user_id='$user_id' ";
+														$getCatInfo = $conn->query($getAllCatIds1);
+														while ($catIds = $getCatInfo->fetch_assoc()) {
+															$totalCatProPrice += $catIds['product_price']*$catIds['product_quantity'];
+														}	
+														//Check if product if not exists
+														$rewardPointsRewdSettings2 = ($totalCatProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points2;
+													}
+												} else {
+													$rewardPointsRewdSettings2 = 0;
+												}
+
+												?>
+
+												<tr>
+													<td>Reward Points</td>
+													<td class="reward-points"><?php echo $rewardPointsRewdSettings+$rewardPointsRewdSettings1+$rewardPointsRewdSettings2+$rewardPointsRewdSettings3; ?></td>
+												</tr>
+
+											<?php } else { //1-Rewards No?>
+												<tr>
+													<td>Reward Points</td>
+													<td class="reward-points">0</td>
+												</tr>
+											<?php } ?>
+											
 										</tbody>
 									</table>
+									<div class="row">
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-8 col-xs-8">
+													<div class="field-group has-feedback has-clear twof" style="width:260px;margin-left:40px;margin-top:4px">
+								      					<input autocomplete="off" type="text" name="coupon_code" value="" placeholder="Coupon Code" class="form-control" id="coupon_code" style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;text-transform:uppercase">
+								      					<button class="form-control-clear close-icon form-control-feedback hidden" type="reset"></button>
+								    				</div>
+												</div>
+												<div class="col-sm-4 col-xs-4">
+													<div class="field-group btn-field" style="margin-right:40px">
+														<button type="button" class="button1 btn_cart_outine apply_coupon" style="padding:0px 20px;border-top-left-radius: 0px;border-bottom-left-radius: 0px">Apply</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- Coupon -->
 									<div class="btn-radio style2">
-										
-									<div class="radio-info">
-										<input type="radio" id="cash-delivery" name="pay_mn" value="1" required>
-										<label for="cash-delivery">COD</label>
-									</div>
-									<div class="radio-info">
-										<input type="radio" id="online_payment" name="pay_mn" value="2" required>
-										<label for="online_payment">Online payment</label>
-									</div>
-										
+										<div class="radio-info">
+											<input type="radio" id="cash-delivery" name="pay_mn" value="1" required>
+											<label for="cash-delivery">COD</label>
+										</div>
+										<div class="radio-info">
+											<input type="radio" id="online_payment" name="pay_mn" value="2" required>
+											<label for="online_payment">Online payment</label>
+										</div>
 									</div><!-- /.btn-radio style2 -->
-									<div class="row">
-									<div class="form-group">
-									<div class="row">
-									<div class="col-sm-8 col-xs-8">
-									<div class="field-group has-feedback has-clear twof" style="width:260px;margin-left:40px;margin-top:4px">
-								      <input autocomplete="off" type="text" name="coupon_code"value="" placeholder="Coupon Code" class="form-control" id="coupon_code" style="border-top-right-radius: 0px;
-										border-bottom-right-radius: 0px;text-transform:uppercase">
-								      <button class="form-control-clear close-icon form-control-feedback hidden" type="reset"></button>
-								    </div>
-									</div>
-									<div class="col-sm-4 col-xs-4">
-									<div class="field-group btn-field" style="margin-right:40px">
-										<button type="button" class="button1 btn_cart_outine apply_coupon" style="padding:0px 20px;border-top-left-radius: 0px;
-										border-bottom-left-radius: 0px">Apply</button>
-									</div>
-									</div>
-								</div>
-								</div>
-					</div><!-- Edn options 2 -->
+									
 									<div class="checkbox">
 										<input type="checkbox" id="checked-order" name="checked-order" checked>
 										<label for="checked-order">I’ve read and accept the terms & conditions *</label>
@@ -577,52 +669,55 @@
 			});
 		    </script>
 
-<script type="text/javascript">
-$('#discount_price').hide();
-    $(".apply_coupon").click(function(){
-        var coupon_code = $("#coupon_code").val();
-        var order_total = $('#order_total').val();
-        $.ajax({
-           type: "POST",
-           url: "apply_coupon.php",
-           data: "coupon_code="+coupon_code+"&cart_total="+order_total,
-           success: function(value){
-           		if(value == 0) {
-           			alert('Please Enter Valid Coupon');
-           			$("#coupon_code").val('');
-           		} else if(value == 1) {
-           			alert('Enter Coupon is not valid for this Service');
-           			$("#coupon_code").val('');
-           		} else{
-           			$('#coupon_code').attr('readonly','true');
-           			$(".apply_coupon").hide();
-           			var data = value.split(",");
-	          		$('.cart_total2').html(data[0]);
-		            $('#order_total').val(data[0]);
-               		$('#discount_price').show();
-               		$('#discount_price1').html(data[1]);
-               		$('#discount_money').val(data[2]);
-               		$('#coupon_code_type').val(data[3]);
-               	}
-        	}
-        });
-
-        $('.has-clear input[type="text"]').on('input propertychange', function() {            	
-		  var $this = $(this);
-		  var visible = Boolean($this.val());
-		  $this.siblings('.form-control-clear').toggleClass('hidden', !visible);
-		}).trigger('propertychange');
-
-		$('.form-control-clear').click(function() {
-			$('#coupon_code').removeAttr("readonly");
-		    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
-		    $(".apply_coupon").show();
-		    $('.cart_total2').html(order_total);
-			$('#order_total').val(order_total);
+			<script type="text/javascript">
 			$('#discount_price').hide();
-			$('#discount_money,#coupon_code_type').val('');
-		});	
-	});
-</script>
+			$('.close-icon').hide();
+			    $(".apply_coupon").click(function(){
+			        var coupon_code = $("#coupon_code").val();
+			        var order_total = $('#order_total').val();
+			        $.ajax({
+			           type: "POST",
+			           url: "apply_coupon.php",
+			           data: "coupon_code="+coupon_code+"&cart_total="+order_total,
+			           success: function(value){
+			           		if(value == 0) {
+			           			alert('Please Enter Valid Coupon');
+			           			$("#coupon_code").val('');
+			           		} else if(value == 1) {
+			           			alert('Enter Coupon is not valid for this Service');
+			           			$("#coupon_code").val('');
+			           		} else{
+			           			$('#coupon_code').attr('readonly','true');
+			           			$(".apply_coupon").hide();
+			           			var data = value.split(",");
+				          		$('.cart_total2').html("Rs. "+Math.round(data[0]));
+					            $('#order_total').val(Math.round(data[0]));
+			               		$('#discount_price').show();
+			               		$('.close-icon').show();
+			               		$('#discount_price1').html("Rs. "+data[1]);
+			               		$('#discount_money').val(data[2]);
+			               		$('#coupon_code_type').val(data[3]);
+			               	}
+			        	}
+			        });
+
+			        $('.has-clear input[type="text"]').on('input propertychange', function() {            	
+					  var $this = $(this);
+					  var visible = Boolean($this.val());
+					  $this.siblings('.form-control-clear').toggleClass('hidden', !visible);
+					}).trigger('propertychange');
+
+					$('.form-control-clear').click(function() {
+						$('#coupon_code').removeAttr("readonly");
+					    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
+					    $(".apply_coupon").show();
+					    $('.cart_total2').html("Rs. "+order_total);
+						$('#order_total').val(order_total);
+						$('#discount_price').hide();
+						$('.close-icon').hide();
+						$('#discount_money,#coupon_code_type').val('');
+					});	
+				});
+			</script>
 </body>	
 </html>
