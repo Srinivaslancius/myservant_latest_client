@@ -127,7 +127,8 @@ if($getOrdersData1['delivery_charges'] == '0') {
                       <?php if($getOrdersData1['delivery_charges'] != '0') { ?>
                       	<br>Delivery Charges:
                       <?php } ?>                       
-                      <br> Service Tax<?php if($getOrdersData1['coupen_code'] != '') { ?>              
+                      <br> Service Tax
+                      <?php if($getOrdersData1['coupen_code'] != '') { ?>              
                       	<br> Discount
                       <?php } ?>
                       <br>

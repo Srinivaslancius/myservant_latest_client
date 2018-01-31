@@ -117,7 +117,7 @@
 				$random1 = substr($string1,0,3);
 				$string2 = str_shuffle('1234567890');
 				$random2 = substr($string2,0,3);
-				$contstr = "MYSER-FOOD";
+				$contstr = "MYSER-GR";
 				$order_id = $contstr.$random1.$random2;
 				$service_tax = $_POST["service_tax"];
 				$itemCount = count($_POST["product_id"]);
