@@ -344,8 +344,8 @@ position:absolute;
 														</div>
 													</div>
 													<div class="col-sm-7">
-													<div class="btn-add-cart mrgn_lft" style="margin-top:-20px;margin-left:-20px">
-														<a href="javascript:void(0)" title="" onClick="show_cart1(<?php echo $getProductsData1['id']; ?>)">
+													<div class="btn-add-cart mrgn_lft" style="margin-top:-20px;margin-left:-20px;">
+														<a href="javascript:void(0)" title="" onClick="show_cart1(<?php echo $getProductsData1['id']; ?>)" style="width:100%">
 															<img src="images/icons/add-cart.png" alt="">Add to Cart
 														</a>
 													</div>
