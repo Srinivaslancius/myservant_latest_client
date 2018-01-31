@@ -286,10 +286,18 @@ if($_SESSION['session_restaurant_id']!= $getRestKey) {
 								$getOnloadProductCount = 0;
 							}
 							?>
-
+							<?php 
+							$closing_time = $getFoodSiteSettingsData['closing_time'];
+							$getVendorTimings = getIndividualDetails('food_vendors','id',$getRestKey);
+							$date = date("H:i:s",strtotime($getVendorTimings['closing_time'])-($closing_time * 60));
+							?>
 							<!-- <a href="#0" class="remove_item"> <i class="icon_minus_alt remove_cart_item" data-key="<?php echo $productId; ?>" data-key-check="remove"></i> <a/><span id="cart_count_inc_<?php echo $productId; ?>"> <?php echo $getOnloadProductCount; ?> </span>
 							<a href="#0" class="remove_item"> <i class="icon_plus_alt2 add_cart_item" data-key="<?php echo $productId; ?>"></i> <a/> -->
-							 <a class="btn_full" onClick = "add_cart_item(<?php echo $productId; ?>);" style="padding:8px 0px">Add to cart</a><!--<i class="icon_plus_alt2" onClick = "add_cart_item(<?php echo $productId; ?>);" ></i>-->
+							<?php if($date <= date("H:i:s")) { ?>
+							<a class="btn_full" style="padding:8px 0px;background-color: #d4d4d4"">Add to cart</a>
+							<?php } else { ?>
+							<a class="btn_full" onClick = "add_cart_item(<?php echo $productId; ?>);" style="padding:8px 0px">Add to cart</a><!--<i class="icon_plus_alt2" onClick = "add_cart_item(<?php echo $productId; ?>);" ></i>-->
+							<?php } ?>
 						</td>
 						
 					</tr>

@@ -84,7 +84,16 @@ if(isset($_POST['item_name']) && $_POST['item_name']!='' ) {
                 $getOnloadProductCount = 0;
             }
             ?>
+            <?php 
+            $closing_time = $getFoodSiteSettingsData['closing_time'];
+            $getVendorTimings = getIndividualDetails('food_vendors','id',$getRestaurantId);
+            $date = date("H:i:s",strtotime($getVendorTimings['closing_time'])-($closing_time * 60));
+            ?>
+            <?php if($date <= date("H:i:s")) { ?>
+            <a class="btn_full" style="padding:8px 0px;background-color: #d4d4d4"">Add to cart</a>
+            <?php } else { ?>
             <a class="btn_full" onClick = "add_cart_item(<?php echo $productId; ?>);" style="padding:8px 0px">Add to cart</a>
+            <?php } ?>
         </td>
         
     </tr>
