@@ -43,11 +43,10 @@
             $grocery_category_id = $_REQUEST['grocery_category_id'];
             $grocery_sub_category_id = $_REQUEST['grocery_sub_category_id'];
             $product_description = $_REQUEST['product_description'];
-            $search_tags = $_REQUEST['search_tags'];
             $tags = $_REQUEST['tags'];      
             $created_at = date("Y-m-d h:i:s");      
 
-            $sql = "INSERT INTO grocery_products (`grocery_category_id`, `grocery_sub_category_id`, `product_description`, `search_tags`, `created_at` ) VALUES ('$grocery_category_id', '$grocery_sub_category_id', '$product_description', '$search_tags', '$created_at')";
+            $sql = "INSERT INTO grocery_products (`grocery_category_id`, `grocery_sub_category_id`, `product_description`, `created_at` ) VALUES ('$grocery_category_id', '$grocery_sub_category_id', '$product_description', '$created_at')";
             $result = $conn->query($sql);
             $last_id = $conn->insert_id;
 
@@ -64,8 +63,9 @@
             foreach($language_id as $key=>$value){
                 if(!empty($value)) {
                     $product_name = $_REQUEST['product_name'][$key]; 
-                    $product_lang_ids = $_REQUEST['language_id'][$key];         
-                    $sql = "INSERT INTO grocery_product_name_bind_languages ( `product_id`,`product_name`, `product_languages_id`) VALUES ('$last_id','$product_name', '$product_lang_ids')";
+                    $product_lang_ids = $_REQUEST['language_id'][$key];
+                    $search_tags = $_REQUEST['search_tags'];
+                    $sql = "INSERT INTO grocery_product_name_bind_languages ( `product_id`,`product_name`, `product_languages_id`, `search_tags`) VALUES ('$last_id','$product_name', '$product_lang_ids', '$search_tags')";
                     $conn->query($sql);
                 }
             }

@@ -39,10 +39,10 @@
             $grocery_category_id = $_REQUEST['grocery_category_id'];
             $grocery_sub_category_id = $_REQUEST['grocery_sub_category_id'];
             $product_description = $_REQUEST['product_description'];
-            $tags = $_REQUEST['tags'];   
-            $search_tags = $_REQUEST['search_tags'];
+            $tags = $_REQUEST['tags'];      
+            $created_at = date("Y-m-d h:i:s");      
 
-            $updateProducts = "UPDATE `grocery_products` SET grocery_category_id = '$grocery_category_id',grocery_sub_category_id = '$grocery_sub_category_id', product_description = '$product_description', search_tags = '$search_tags' WHERE id = '$product_id' ";
+            $updateProducts = "UPDATE `grocery_products` SET grocery_category_id = '$grocery_category_id',grocery_sub_category_id = '$grocery_sub_category_id', product_description = '$product_description' WHERE id = '$product_id' ";
             $result = $conn->query($updateProducts);
 
             $deleteBrands = "DELETE FROM grocery_product_bind_brands WHERE product_id = '$product_id'";
@@ -61,8 +61,9 @@
                 if(!empty($value)) {
                     $product_name = $_REQUEST['product_name'][$key]; 
                     $product_lang_ids = $_REQUEST['language_id'][$key];
+                    $search_tags = $_REQUEST['search_tags'];
                     $id = $_REQUEST['id'][$key];
-                    $updateNames = "UPDATE `grocery_product_name_bind_languages` SET product_name = '$product_name' WHERE product_id = '$product_id' AND product_languages_id = '$product_lang_ids'  AND id = '$id' " ;  
+                    $updateNames = "UPDATE `grocery_product_name_bind_languages` SET product_name = '$product_name',search_tags = '$search_tags' WHERE product_id = '$product_id' AND product_languages_id = '$product_lang_ids'  AND id = '$id' " ;  
                     $conn->query($updateNames);
                 }
             }
@@ -173,13 +174,18 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>  
+                            </div> 
+                            <?php 
+                            $search_tags = "SELECT * FROM grocery_product_name_bind_languages WHERE product_id = '$product_id'";
+                                $search_tags1 = $conn->query($search_tags);
+                                $search_tags2 = $search_tags1->fetch_assoc();
+                            ?>  
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Search Tags</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags"><?php echo $getProducts['search_tags']; ?></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags"><?php echo $search_tags2['search_tags']; ?></textarea>
                                 </div>
-                            </div>                          
+                            </div>                         
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                                     <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
