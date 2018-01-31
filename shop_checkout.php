@@ -1,4 +1,68 @@
 <?php include_once 'meta.php';?>
+<style>
+#options_2 label {
+    font-size: 12px;
+    padding-top: 5px;
+}
+::-ms-clear {
+	  display: none;
+	}
+
+	.form-control-clear {
+	  z-index: 10;
+	  pointer-events: auto;
+	  cursor: pointer;
+	}
+	.close-icon {
+	border:1px solid transparent;
+	background-color: transparent;
+	display: inline-block;
+	vertical-align: middle;
+  outline: 0;
+  cursor: pointer;
+}
+.close-icon:after {
+	content: "X";
+	display: block;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	/*background-color: #FA9595;*/
+	z-index:1;
+	right: 0px;
+	top: 0px;
+	bottom: 50px;
+	margin: auto;
+	padding: 2px;
+	/*border-radius: 50%;*/
+	text-align: center;
+	color: black;
+	font-weight: normal;
+	font-size: 12px;
+	/*box-shadow: 0 0 2px #E50F0F;*/
+	cursor: pointer;
+}
+.search-box:not(:valid) ~ .close-icon {
+	display: none;
+}
+.form-control-feedback {
+    position:absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 54px;
+    text-align: center;
+    pointer-events: auto;
+	 cursor: pointer;
+}
+.form-control:focus {
+	box-shadow: 0 0 15px 5px #b0e0ee;
+	border: 2px solid #bebede;
+}
+</style>
 <body class="header_sticky">
 	<div class="boxed">
 
@@ -337,6 +401,25 @@
 									</div>
 										
 									</div><!-- /.btn-radio style2 -->
+									<div class="row">
+									<div class="form-group">
+									<div class="row">
+									<div class="col-sm-8 col-xs-8">
+									<div class="field-group has-feedback has-clear twof" style="width:260px;margin-left:40px;margin-top:4px">
+								      <input autocomplete="off" type="text" name="coupon_code"value="" placeholder="Coupon Code" class="form-control" id="coupon_code" style="border-top-right-radius: 0px;
+										border-bottom-right-radius: 0px;text-transform:uppercase">
+								      <button class="form-control-clear close-icon form-control-feedback hidden" type="reset"></button>
+								    </div>
+									</div>
+									<div class="col-sm-4 col-xs-4">
+									<div class="field-group btn-field" style="margin-right:40px">
+										<button type="button" class="button1 btn_cart_outine apply_coupon" style="padding:0px 20px;border-top-left-radius: 0px;
+										border-bottom-left-radius: 0px">Apply</button>
+									</div>
+									</div>
+								</div>
+								</div>
+					</div><!-- Edn options 2 -->
 									<div class="checkbox">
 										<input type="checkbox" id="checked-order" name="checked-order" checked>
 										<label for="checked-order">I’ve read and accept the terms & conditions *</label>
@@ -494,5 +577,52 @@
 			});
 		    </script>
 
+<script type="text/javascript">
+$('#discount_price').hide();
+    $(".apply_coupon").click(function(){
+        var coupon_code = $("#coupon_code").val();
+        var order_total = $('#order_total').val();
+        $.ajax({
+           type: "POST",
+           url: "apply_coupon.php",
+           data: "coupon_code="+coupon_code+"&cart_total="+order_total,
+           success: function(value){
+           		if(value == 0) {
+           			alert('Please Enter Valid Coupon');
+           			$("#coupon_code").val('');
+           		} else if(value == 1) {
+           			alert('Enter Coupon is not valid for this Service');
+           			$("#coupon_code").val('');
+           		} else{
+           			$('#coupon_code').attr('readonly','true');
+           			$(".apply_coupon").hide();
+           			var data = value.split(",");
+	          		$('.cart_total2').html(data[0]);
+		            $('#order_total').val(data[0]);
+               		$('#discount_price').show();
+               		$('#discount_price1').html(data[1]);
+               		$('#discount_money').val(data[2]);
+               		$('#coupon_code_type').val(data[3]);
+               	}
+        	}
+        });
+
+        $('.has-clear input[type="text"]').on('input propertychange', function() {            	
+		  var $this = $(this);
+		  var visible = Boolean($this.val());
+		  $this.siblings('.form-control-clear').toggleClass('hidden', !visible);
+		}).trigger('propertychange');
+
+		$('.form-control-clear').click(function() {
+			$('#coupon_code').removeAttr("readonly");
+		    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
+		    $(".apply_coupon").show();
+		    $('.cart_total2').html(order_total);
+			$('#order_total').val(order_total);
+			$('#discount_price').hide();
+			$('#discount_money,#coupon_code_type').val('');
+		});	
+	});
+</script>
 </body>	
 </html>
