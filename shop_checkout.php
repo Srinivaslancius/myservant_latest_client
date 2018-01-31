@@ -484,23 +484,23 @@
 											
 										</tbody>
 									</table>
-									<div class="row">
+									
 										<div class="form-group">
 											<div class="row">
-												<div class="col-sm-8 col-xs-8">
-													<div class="field-group has-feedback has-clear twof" style="width:260px;margin-left:40px;margin-top:4px">
-								      					<input autocomplete="off" type="text" name="coupon_code" value="" placeholder="Coupon Code" class="form-control" id="coupon_code" style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;text-transform:uppercase">
+												<div class="col-md-8 col-sm-8 col-xs-8">
+													<div class="field-group has-feedback has-clear twof" style="width:118%;margin-top:4px">
+								      					<input autocomplete="off" type="text" name="coupon_code" value="" placeholder="Coupon Code" class="form-control pad_wdth" id="coupon_code" style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;text-transform:uppercase">
 								      					<button class="form-control-clear close-icon form-control-feedback hidden" type="reset"></button>
 								    				</div>
 												</div>
-												<div class="col-sm-4 col-xs-4">
-													<div class="field-group btn-field" style="margin-right:40px">
-														<button type="button" class="button1 btn_cart_outine apply_coupon" style="padding:0px 20px;border-top-left-radius: 0px;border-bottom-left-radius: 0px">Apply</button>
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<div class="field-group btn-field">
+														<button type="button" class="button1 bdr_rds btn_cart_outine apply_coupon" style="padding:0px 20px;border-top-left-radius: 0px;border-bottom-left-radius: 0px">Apply</button>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div><!-- Coupon -->
+									
 									<div class="btn-radio style2">
 										<div class="radio-info">
 											<input type="radio" id="cash-delivery" name="pay_mn" value="1" required>
