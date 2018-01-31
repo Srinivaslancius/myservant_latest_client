@@ -411,9 +411,9 @@ if($_SESSION['user_login_session_id'] == '') {
 							<label class="radiob"><input type="radio" value="2" checked name="dev_type" class="check_dev_type" id="del_check" data-pri-key="<?php echo $cartTotal;?>">Delivery
 							<span class="checkmark"></span></label>
 						</div>
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+						<!-- <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
 							<label class="radiob"><input type="radio" value="1" name="dev_type" class="check_dev_type" id="take_away_check" data-pri-key="<?php echo $cartTotal; ?>">Take Away<span class="checkmark"></span></label>
-						</div>
+						</div> -->
 					</div><!-- Edn options 2 -->					
 					<hr>
 					<table class="table table_summary">
@@ -600,10 +600,10 @@ $('#discount_price').hide();
            			$('#coupon_code').attr('readonly','true');
            			$(".apply_coupon").hide();
            			var data = value.split(",");
-	          		$('.cart_total2').html(data[0]);
+	          		$('.cart_total2').html("Rs. "+data[0]);
 		            $('#order_total').val(data[0]);
                		$('#discount_price').show();
-               		$('#discount_price1').html(data[1]);
+               		$('#discount_price1').html("Rs. "+data[1]);
                		$('#discount_money').val(data[2]);
                		$('#coupon_code_type').val(data[3]);
                	}
@@ -620,7 +620,7 @@ $('#discount_price').hide();
 			$('#coupon_code').removeAttr("readonly");
 		    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
 		    $(".apply_coupon").show();
-		    $('.cart_total2').html(order_total);
+		    $('.cart_total2').html("Rs. "+order_total);
 			$('#order_total').val(order_total);
 			$('#discount_price').hide();
 			$('#discount_money,#coupon_code_type').val('');

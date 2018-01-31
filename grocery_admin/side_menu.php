@@ -123,7 +123,8 @@
               </a>
             </li>
            
-            <li><a href="#">
+            <li class="<?php if($page_name == 'grocery_coupons.php' || $page_name == 'edit_grocery_coupons.php') { echo "active"; } ?>">
+              <a href="grocery_coupons.php">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-dot-circle-alt"></i>
                 </span>
