@@ -82,10 +82,17 @@
 								<td></td>
 								<td style="font-size:14px;color:#fe6003">Rs : <?php echo $delivery_charges; ?>/-</td>
 							  </tr>
+							  <?php if($getPlaceOrders['discout_money']) { ?>
+							  <tr>
+								<td style="font-size:14px;color:#fe6003">Discount Amount</td>
+								<td></td>
+								<td style="font-size:14px;color:#fe6003">Rs : <?php echo $getPlaceOrders['discout_money']; ?>/-</td>
+							  </tr>
+							  <?php } ?>
 							  <tr style="background-color:black">
 								<td style="font-size:14px;color:#fff">Total</td>
 								<td></td>
-								<td style="font-size:14px;color:#fff">Rs : <?php echo $order_total; ?>/-</td>
+								<td style="font-size:14px;color:#fff">Rs : <?php echo round($order_total); ?>/-</td>
 							  </tr>
 							</tbody>
 						  </table>

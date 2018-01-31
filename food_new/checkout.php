@@ -405,16 +405,16 @@ if($_SESSION['user_login_session_id'] == '') {
 					<?php } ?>					
 					</tbody>
 					</table>
-					<hr>
+					<!-- <hr>
 					<div class="row" id="options_2">
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
 							<label class="radiob"><input type="radio" value="2" checked name="dev_type" class="check_dev_type" id="del_check" data-pri-key="<?php echo $cartTotal;?>">Delivery
 							<span class="checkmark"></span></label>
 						</div>
-						<!-- <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
 							<label class="radiob"><input type="radio" value="1" name="dev_type" class="check_dev_type" id="take_away_check" data-pri-key="<?php echo $cartTotal; ?>">Take Away<span class="checkmark"></span></label>
-						</div> -->
-					</div><!-- Edn options 2 -->					
+						</div>
+					</div> --><!-- Edn options 2 -->					
 					<hr>
 					<table class="table table_summary">
 					<tbody>
