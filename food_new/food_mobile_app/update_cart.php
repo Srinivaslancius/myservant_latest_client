@@ -14,12 +14,14 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['itemId']) && !empty($_REQUES
 	$itemId = $_REQUEST['itemId'];
 	$itemWeightTypeId = $_REQUEST['itemWeightTypeId'];
 	
-	if($item_quantity != 0 ) {
+	if($item_quantity!= 0 ) {
 
 		$updateq = "UPDATE food_cart SET item_quantity = '$item_quantity' WHERE user_id='$user_id' AND food_item_id='$itemId' AND item_weight_type_id='$itemWeightTypeId' ";
 		if($conn->query($updateq) === TRUE) {
 
-		    $getCartFoodData = getAllDataWhere('food_cart','user_id',$user_id); 
+		    //$getCartFoodData = getAllDataWhere('food_cart','user_id',$user_id); 
+		    $getSelQu = "SELECT * FROM food_cart WHERE user_id='$user_id' ";
+		    $getCartFoodData = $conn->query($getSelQu);
 		    $response["cartCount"] = $getCartFoodData->num_rows;
 		    $response["itemWeightTypeId"] = $_REQUEST['itemWeightTypeId'];
 			$response["itemId"] = $_REQUEST['itemId'];
@@ -36,8 +38,12 @@ if (isset($_REQUEST['userId']) && !empty($_REQUEST['itemId']) && !empty($_REQUES
 		$delCart = "DELETE FROM food_cart WHERE user_id='$user_id' AND food_item_id='$itemId' AND item_weight_type_id='$itemWeightTypeId' ";
 		$conn->query($delCart);
 
+		$getSelQu = "SELECT * FROM food_cart WHERE user_id='$user_id' ";
+		    $getCartFoodData = $conn->query($getSelQu);
+		    $response["cartCount"] = $getCartFoodData->num_rows;
+
 		$response["success"] = 0;
-		$response["message"] = "Success";
+		$response["message"] = "Delete Item Successfully";
 	}
 	 
           
