@@ -23,6 +23,7 @@ if (isset($_REQUEST['userId'])  ) {
 			$restName= getIndividualDetails('food_vendors','id',$row['restaurant_id']);
 			$lists["restaurantName"] = $restName["restaurant_name"];
 			$lists["restaurantLogo"] = $base_url."uploads/food_vendor_logo/".$restName["logo"];
+			$lists["restaurantAddress"] = $restName["restaurant_address"];
 			$proName= getIndividualDetails('food_products','id',$row['food_item_id']);
 			$lists["productName"] = $proName['product_name'];		
 			$getPriceDetails = getIndividualDetails('food_product_weight_prices','weight_type_id',$row["item_weight_type_id"]);	
