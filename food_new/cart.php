@@ -100,7 +100,7 @@ th{
 	font-size:14px;
 }
 td{
-	font-size:15px;
+	font-size:14px;
 }
 
 @media only screen and (max-width: 480px) {
@@ -218,7 +218,7 @@ td{
               }
               ?>
 
-               <a href="#" data-toggle="modal" data-target="#<?php echo $getCartItems['id']; ?>"> <i class="icon_plus_alt2" style="font-size:22px;margin-left:10px;color:#fe6003;"></i></a>
+               <a href="#" data-toggle="modal" data-target="#<?php echo $getCartItems['id']; ?>"> <i class="icon_plus_alt2" style="font-size:20px;margin-left:10px;color:#fe6003;"></i></a>
 							<div class="modal fade" id="<?php echo $getCartItems['id']; ?>" role="dialog">
 								<div class="modal-dialog modal-lg">
 									<div class="modal-content">
@@ -295,7 +295,7 @@ td{
 					<!--<td style="padding-left:30px;padding-right:30px"> <?php echo $getCartItems['item_quantity']; ?></td>-->
 						<td id="item_inc_price_<?php echo $getCartItems['id']; ?>">Rs. <?php echo $getCartItems['item_price']*$getCartItems['item_quantity']+$getAdstotalPrice; ?> /-</td>
 						<?php $cartTotal += $getCartItems['item_price']*$getCartItems['item_quantity']; ?>
-						<td> <i class="icon-trash" onclick="deleteCartItem(<?php echo $getCartItems['id']; ?>);" style="font-size:22px;color:#fe6003;margin-left:10px"></li></td>
+						<td> <i class="icon-trash" onclick="deleteCartItem(<?php echo $getCartItems['id']; ?>);" style="font-size:20px;color:#fe6003;margin-left:10px"></li></td>
 					</tr>
                      <?php } ?>
 					</tbody>

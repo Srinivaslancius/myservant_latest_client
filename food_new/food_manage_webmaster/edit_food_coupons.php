@@ -37,9 +37,9 @@ $id = $_GET['coupon_id'];
                     <input type="hidden" id="column_name" value="coupon_code">
                   </div>
                   <div class="form-group">
-                    <label for="form-control-3" class="control-label">Choose Admin Service Types</label>
+                    <label for="form-control-3" class="control-label">Choose Price Types</label>
                     <select id="form-control-3" name="price_type_id" class="custom-select" data-error="This field is required." required>
-                      <option value="">Select Admin Service Types</option>
+                      <option value="">Select Price Types</option>
                       <option <?php if($getFoodCouponsData['price_type_id'] == 1) { echo "Selected"; } ?> value="1">Price</option>
                       <option <?php if($getFoodCouponsData['price_type_id'] == 2) { echo "Selected"; } ?> value="2">Percentage</option>
                    </select>

@@ -1,4 +1,65 @@
 <?php include_once 'meta.php';?>
+<style>
+#options_2 label {
+    font-size: 12px;
+    padding-top: 5px;
+}
+::-ms-clear {
+	  display: none;
+	}
+
+	.form-control-clear {
+	  z-index: 10;
+	  pointer-events: auto;
+	  cursor: pointer;
+	}
+	.close-icon {
+	border:1px solid transparent;
+	background-color: transparent;
+	display: inline-block;
+	vertical-align: middle;
+  outline: 0;
+  cursor: pointer;
+}
+.close-icon:after {
+	content: "X";
+	display: block;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	/*background-color: #FA9595;*/
+	z-index:1;
+	right: 0px;
+	top: 0px;
+	bottom: 50px;
+	margin: auto;
+	padding: 2px;
+	/*border-radius: 50%;*/
+	text-align: center;
+	color: black;
+	font-weight: normal;
+	font-size: 12px;
+	/*box-shadow: 0 0 2px #E50F0F;*/
+	cursor: pointer;
+}
+.form-control-feedback {
+    position:absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 54px;
+    text-align: center;
+    pointer-events: auto;
+	 cursor: pointer;
+}
+.form-control:focus {
+	box-shadow: 0 0 15px 5px #b0e0ee;
+	border: 2px solid #bebede;
+}
+</style>
 <body class="header_sticky">
 	<div class="boxed">
 
@@ -291,6 +352,8 @@
 									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
 									<input type="hidden" name="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>" id="delivery_charges">
+									<input type="hidden" name="discount_money" value="0" id="discount_money">
+									<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
 									<table>
 										<tbody>	
 											<tr>
@@ -314,7 +377,11 @@
 	                                            <td>Money in Your Wallet</td>
 	                                            <td class="subtotal">Rs . <?php echo $getWalletAmount['amount']; ?></td>
 	                                        </tr>
-	                                        <?php } ?>								
+	                                        <?php } ?>	
+	                                        <tr id="discount_price">
+								                <td>Discount<span style="color:green">(Coupon Applied.)</td> 
+								                <td><span id="discount_price1" class="pull-right"></span></td>
+								            </tr>							
 											<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
 											<tr>
 												<td>Total</td>
@@ -323,16 +390,16 @@
 											<?php } else if($getWalletAmount['amount'] > 0) { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total">Rs . <?php echo $orderTotal; ?></td>
+												<td class="price-total cart_total2">Rs . <?php echo round($orderTotal); ?></td>
 											</tr>
 											<?php } else { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total">Rs . <?php echo $orderTotalwithoutWallet; ?></td>
+												<td class="price-total cart_total2">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
 											</tr>
 											<?php } ?>
-											<?php 
-
+											
+											<?php
 											$transaction_amount = 0; $rewardPoints = 0;
 											$user_id = $_SESSION['user_login_session_id'];
 											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
@@ -417,18 +484,34 @@
 											
 										</tbody>
 									</table>
+									<div class="row">
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-8 col-xs-8">
+													<div class="field-group has-feedback has-clear twof" style="width:260px;margin-left:40px;margin-top:4px">
+								      					<input autocomplete="off" type="text" name="coupon_code" value="" placeholder="Coupon Code" class="form-control" id="coupon_code" style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;text-transform:uppercase">
+								      					<button class="form-control-clear close-icon form-control-feedback hidden" type="reset"></button>
+								    				</div>
+												</div>
+												<div class="col-sm-4 col-xs-4">
+													<div class="field-group btn-field" style="margin-right:40px">
+														<button type="button" class="button1 btn_cart_outine apply_coupon" style="padding:0px 20px;border-top-left-radius: 0px;border-bottom-left-radius: 0px">Apply</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- Coupon -->
 									<div class="btn-radio style2">
-										
-									<div class="radio-info">
-										<input type="radio" id="cash-delivery" name="pay_mn" value="1" required>
-										<label for="cash-delivery">COD</label>
-									</div>
-									<div class="radio-info">
-										<input type="radio" id="online_payment" name="pay_mn" value="2" required>
-										<label for="online_payment">Online payment</label>
-									</div>
-										
+										<div class="radio-info">
+											<input type="radio" id="cash-delivery" name="pay_mn" value="1" required>
+											<label for="cash-delivery">COD</label>
+										</div>
+										<div class="radio-info">
+											<input type="radio" id="online_payment" name="pay_mn" value="2" required>
+											<label for="online_payment">Online payment</label>
+										</div>
 									</div><!-- /.btn-radio style2 -->
+									
 									<div class="checkbox">
 										<input type="checkbox" id="checked-order" name="checked-order" checked>
 										<label for="checked-order">I’ve read and accept the terms & conditions *</label>
@@ -586,5 +669,55 @@
 			});
 		    </script>
 
+			<script type="text/javascript">
+			$('#discount_price').hide();
+			$('.close-icon').hide();
+			    $(".apply_coupon").click(function(){
+			        var coupon_code = $("#coupon_code").val();
+			        var order_total = $('#order_total').val();
+			        $.ajax({
+			           type: "POST",
+			           url: "apply_coupon.php",
+			           data: "coupon_code="+coupon_code+"&cart_total="+order_total,
+			           success: function(value){
+			           		if(value == 0) {
+			           			alert('Please Enter Valid Coupon');
+			           			$("#coupon_code").val('');
+			           		} else if(value == 1) {
+			           			alert('Enter Coupon is not valid for this Service');
+			           			$("#coupon_code").val('');
+			           		} else{
+			           			$('#coupon_code').attr('readonly','true');
+			           			$(".apply_coupon").hide();
+			           			var data = value.split(",");
+				          		$('.cart_total2').html("Rs. "+Math.round(data[0]));
+					            $('#order_total').val(Math.round(data[0]));
+			               		$('#discount_price').show();
+			               		$('.close-icon').show();
+			               		$('#discount_price1').html("Rs. "+data[1]);
+			               		$('#discount_money').val(data[2]);
+			               		$('#coupon_code_type').val(data[3]);
+			               	}
+			        	}
+			        });
+
+			        $('.has-clear input[type="text"]').on('input propertychange', function() {            	
+					  var $this = $(this);
+					  var visible = Boolean($this.val());
+					  $this.siblings('.form-control-clear').toggleClass('hidden', !visible);
+					}).trigger('propertychange');
+
+					$('.form-control-clear').click(function() {
+						$('#coupon_code').removeAttr("readonly");
+					    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
+					    $(".apply_coupon").show();
+					    $('.cart_total2').html("Rs. "+order_total);
+						$('#order_total').val(order_total);
+						$('#discount_price').hide();
+						$('.close-icon').hide();
+						$('#discount_money,#coupon_code_type').val('');
+					});	
+				});
+			</script>
 </body>	
 </html>

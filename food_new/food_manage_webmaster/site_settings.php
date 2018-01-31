@@ -17,6 +17,7 @@
     $mobile = $_POST['mobile'];    
     $footer_text = $_POST['footer_text'];
     $open_timings = $_POST['open_timings'];
+    $closing_time = $_POST['closing_time'];
     $address = $_POST['address'];
     $delivery_charges = $_POST['delivery_charges'];
     $paytm = $_POST['paytm'];
@@ -36,7 +37,7 @@
         $getImgUnlink = getImageUnlink('logo','food_site_settings','id',$id,$target_dir);
         //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
         if (move_uploaded_file($_FILES["logo"]["tmp_name"], $target_file)) {
-            $sql = "UPDATE `food_site_settings` SET admin_title = '$admin_title',from_email = '$from_email',orders_email ='$orders_email', contact_email = '$contact_email', delivery_charges = '$delivery_charges', google_analytics_code ='$google_analytics_code', service_tax = '$service_tax',email='$email', mobile='$mobile', logo = '$logo',footer_text='$footer_text', address='$address', paytm='$paytm' WHERE id = '$id' ";
+            $sql = "UPDATE `food_site_settings` SET admin_title = '$admin_title',from_email = '$from_email',orders_email ='$orders_email', contact_email = '$contact_email', delivery_charges = '$delivery_charges',closing_time = '$closing_time', google_analytics_code ='$google_analytics_code', service_tax = '$service_tax',email='$email', mobile='$mobile', logo = '$logo',footer_text='$footer_text', address='$address', paytm='$paytm' WHERE id = '$id' ";
             if($conn->query($sql) === TRUE){
                echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
             } else {
@@ -47,7 +48,7 @@
             echo "Sorry, there was an error uploading your file.";
         }
     }  else {
-        $sql = "UPDATE `food_site_settings` SET admin_title = '$admin_title', from_email = '$from_email', orders_email ='$orders_email', contact_email = '$contact_email', delivery_charges = '$delivery_charges', google_analytics_code ='$google_analytics_code', service_tax = '$service_tax', email='$email', mobile='$mobile',footer_text='$footer_text', address='$address', paytm='$paytm' WHERE id = '$id' ";
+        $sql = "UPDATE `food_site_settings` SET admin_title = '$admin_title', from_email = '$from_email', orders_email ='$orders_email', contact_email = '$contact_email', delivery_charges = '$delivery_charges',closing_time = '$closing_time', google_analytics_code ='$google_analytics_code', service_tax = '$service_tax', email='$email', mobile='$mobile',footer_text='$footer_text', address='$address', paytm='$paytm' WHERE id = '$id' ";
         if($conn->query($sql) === TRUE){
            echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
         } else {
@@ -97,7 +98,7 @@
                   </div>
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Mobile</label>
-                    <input type="text" name="mobile" class="form-control" id="form-control-2"  placeholder="Mobile" data-error="Please enter valid Mobile." value="<?php echo $getSiteSettingsData['mobile'];?>" onkeypress="return isNumberKey(event)" maxlength="10" pattern="[0-9]{10}" required>
+                    <input type="text" name="mobile" class="form-control valid_mobile_num" id="form-control-2"  placeholder="Mobile" data-error="Please enter valid Mobile." value="<?php echo $getSiteSettingsData['mobile'];?>" maxlength="10" pattern="[0-9]{10}" required>
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
@@ -123,6 +124,11 @@
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Delivery Charges</label>
                     <input type="text" name="delivery_charges" class="form-control" id="form-control-2" placeholder="Delivery Charges" data-error="Please enter Delivery Charges." value="<?php echo $getSiteSettingsData['delivery_charges'];?>" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Closing Time(In Minutes only)</label>
+                    <input type="text" name="closing_time" class="form-control valid_mobile_num" id="form-control-2" placeholder="Closing Time" data-error="Please enter Closing Time." value="<?php echo $getSiteSettingsData['closing_time'];?>" required>
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
