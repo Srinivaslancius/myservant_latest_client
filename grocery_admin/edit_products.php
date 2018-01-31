@@ -39,10 +39,10 @@
             $grocery_category_id = $_REQUEST['grocery_category_id'];
             $grocery_sub_category_id = $_REQUEST['grocery_sub_category_id'];
             $product_description = $_REQUEST['product_description'];
-            $tags = $_REQUEST['tags'];      
-            $created_at = date("Y-m-d h:i:s");      
+            $tags = $_REQUEST['tags'];   
+            $search_tags = $_REQUEST['search_tags'];
 
-            $updateProducts = "UPDATE `grocery_products` SET grocery_category_id = '$grocery_category_id',grocery_sub_category_id = '$grocery_sub_category_id', product_description = '$product_description' WHERE id = '$product_id' ";
+            $updateProducts = "UPDATE `grocery_products` SET grocery_category_id = '$grocery_category_id',grocery_sub_category_id = '$grocery_sub_category_id', product_description = '$product_description', search_tags = '$search_tags' WHERE id = '$product_id' ";
             $result = $conn->query($updateProducts);
 
             $deleteBrands = "DELETE FROM grocery_product_bind_brands WHERE product_id = '$product_id'";
@@ -173,7 +173,13 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>                            
+                            </div>  
+                            <div class="form-group">
+                                <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Search Tags</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags"><?php echo $getProducts['search_tags']; ?></textarea>
+                                </div>
+                            </div>                          
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                                     <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
