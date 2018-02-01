@@ -108,7 +108,7 @@
     $OrderDetails = $groceryOrdersData1->fetch_assoc();
     $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1);
 
-    $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
+    
 
     $getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$OrderDetails['payment_method']);
 
@@ -138,7 +138,6 @@ if($OrderDetails['delivery_charges'] == '0') {
 		  <tr>
 			<td colspan="2" style="padding-left:20px">
 			<h3>Order Information</h3><br>
-			<p>Item Name: <?php echo $getProducts['product_name'] ?></p>
 			<p>Payment Method:<?php echo $getpaymentTypes['status']; ?></p>
 			<p>Order Type:<?php echo $order_type; ?></p>
 			<p>Order Status: <?php echo $orderStatus['order_status']; ?></p>
@@ -163,6 +162,7 @@ if($OrderDetails['delivery_charges'] == '0') {
      <?php $getOrders1 = "SELECT * FROM grocery_orders WHERE order_id='$order_id'";
     			$getOrdersData3 = $conn->query($getOrders1); ?>
     	<?php while($getOrdersData2 = $getOrdersData3->fetch_assoc()) { 
+    		$getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getOrdersData2['product_id']);
         $getCategories = getIndividualDetails('grocery_category','id',$getOrdersData2['category_id']);
         $getProducts1 = getIndividualDetails('grocery_products','id',$getOrdersData2['product_id']);
         $getItemWeights = getIndividualDetails('food_product_weights','id',$getOrdersData2['item_weight_type_id']);
@@ -187,7 +187,7 @@ if($OrderDetails['delivery_charges'] == '0') {
 			<p style="color:#fe6003;">Rs. <?php echo $OrderDetails['service_tax'].'('.$getSiteSettingsData['service_tax'].'%)' ?></p>
 			<p style="color:#fe6003;">Rs. <?php echo $OrderDetails['delivery_charges'];  ?></p>
 			<?php $total_price = round($OrderDetails['sub_total'] + $OrderDetails['delivery_charges'] + $OrderDetails['service_tax']); ?>
-				<p style="color:#fe6003;"><?php echo $total_price;  ?></p></td>
+				<p style="color:#fe6003;">Rs. <?php echo $total_price;  ?></p></td>
 		  </tr>
 		</tbody>
 					

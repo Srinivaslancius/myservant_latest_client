@@ -172,7 +172,7 @@
 			<p style="color:#fe6003;">Grand Total:</p></td>
 			<td><p style="color:#fe6003;">Rs. <?php echo $sub_total ?></p>
 			<p style="color:#fe6003;">Rs. <?php echo $service_tax ?>(<?php echo $getSiteSettingsData['service_tax'] ?>%)</p>
-			
+
 				<p style="color:#fe6003;">Rs. <?php echo $order_price ?></p>
 		  </tr>
 		</tbody>
