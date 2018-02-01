@@ -58,7 +58,7 @@
         }       
     }
     ?>
-		<section class="flat-tracking background">
+		<section class="flat-tracking background" style="padding-bottom:30px">
 			<div class="container">
 				<div class="row">
 				<div class="col-md-1">
