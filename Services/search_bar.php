@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-9 col-sm-9 col-xs-7 padd0">
             <div class="nav-searchfield-outer">
-            <input type="text" autocomplete="off" name="service_name" class="service_name" placeholder=" Search your related service" id="twotabsearchtextbox" style="width:700px; line-height:30px; border:1px solid white">
+            <input type="text" autocomplete="off" name="service_name" class="service_name" placeholder=" Search your related service" id="twotabsearchtextbox" style="width:700px; line-height:30px; border:1px solid white;background-color:white">
             </div>
            <div class="nav-submit-button">
                 <button type="submit" class="btn btn-default bttn_st" name="search" style="height:40px;border-radius: 1px;border-color:#fe6003;color:black;padding:2px 20px">Submit</button>
@@ -76,6 +76,9 @@ $("#searchDropdownBox").change(function(){
       color: #888;
       background-color: #FFFF;
     line-height:10px !important;
+  }
+  .service_name.tt-query{
+	  background-color:white !important;
   }
 </style>
 <script>

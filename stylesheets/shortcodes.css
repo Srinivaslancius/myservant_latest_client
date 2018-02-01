@@ -499,8 +499,8 @@
 }
 
 .imagebox .box-content .product-name {
-	/* min-height: 32px; */
-	/* margin-top:6px; */
+	min-height: 32px;
+	margin-top:6px;
 }
 
 .imagebox .box-content .product-name a {
