@@ -24,17 +24,28 @@ if (isset($_REQUEST['userId'])  ) {
 	    	$lists["product_weight_type"] =  $row['product_weight_type'];	
 	    	$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$row["product_id"]);
 			$lists["productImage"] = $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'];
+
+			$product_id = $row["product_id"];
+			$weighTypeId = $row["product_weight_type"];
+
+			$getWeightTypes = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id='$product_id' AND weight_type='$weighTypeId' ";
+			$getPriceDetails = $conn->query($getWeightTypes);
+			$getPriceDet = $getPriceDetails->fetch_assoc();
+			$lists["offer_percentage"] = $getPriceDet["offer_percentage"];
+			$lists["mrp_price"] = $getPriceDet["mrp_price"];
+			$lists["selling_price"] = $getPriceDet["selling_price"];
+			$lists["weight_type"] = $getPriceDet["weight_type"];
 			//get products weights and product weight type names with prices
-	    	$getPriceDetails = getAllDataWhere('grocery_product_bind_weight_prices','product_id',$row["product_id"]);
-	    	$getPriceDet = array();
-	    	while($getPriceDet = $getPriceDetails->fetch_assoc()) {		    		
+	    	//$getPriceDetails = getAllDataWhere('grocery_product_bind_weight_prices','product_id',$row["product_id"]);
+	    	//$getPriceDet = array();
+	    	/*while($getPriceDet = $getPriceDetails->fetch_assoc()) {		    		
 	    		$lists["offer_type"] .=  $getPriceDet['offer_type'] .",";
 	    		$lists["offer_percentage"] .=  $getPriceDet['offer_percentage'] .",";
 	    		$lists["mrp_price"] .=  $getPriceDet['mrp_price'] .",";
 	    		$lists["sellingPrice"] .=  $getPriceDet['selling_price'] .",";
 	    		$lists["priceTypeId"] .=  $getPriceDet['id'] .",";			    	
 	    		$lists["weightType"] .=  $getPriceDet['weight_type'] .",";		    		
-	    	}
+	    	}*/
 
 			array_push($response["lists"], $lists);
 		}
