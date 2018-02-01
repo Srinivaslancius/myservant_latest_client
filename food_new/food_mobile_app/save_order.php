@@ -5,7 +5,13 @@ include "../../admin_includes/common_functions.php";
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-	if (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id']) && !empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty($_REQUEST['email']) && !empty($_REQUEST['mobile']) && !empty($_REQUEST['state']) && !empty($_REQUEST['district']) && !empty($_REQUEST['city']) && !empty($_REQUEST['postal_code']) && !empty($_REQUEST['location']) && !empty($_REQUEST['address']) ) {
+	if (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])  ) {
+
+		$user_id = $_REQUEST['user_id'];
+		$getDefAddress = "SELECT * FROM food_add_address WHERE user_id='$user_id' ";
+		$getAdd = $conn->query($getDefAddress);		
+		$getAddress = $getAdd['address_order'];		
+		$pincode = $getAdd['pcode_order'];
 
 		$payment_status = 2; //In progress
 		$country = 99;
@@ -51,9 +57,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			$string2 = str_shuffle('1234567890');
 			$random2 = substr($string2,0,3);
 			$date = date("ymdhis");
-			$contstr = "MYSER-SERVICES";
+			$contstr = "MYSER-FOOD";
 			$sub_order_id = $contstr.$random1.$random2.$date;
-			$orders = "INSERT INTO food_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `country`, `postal_code`, `city`, `order_note`, `category_id`, `product_id`, `item_weight_type_id`, `order_vendor_price`, `item_price`, `item_quantity`,`restaurant_id`, `sub_total`, `order_total`, `payment_method`,`lkp_payment_status_id`,`delivery_type_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`, `created_at`) VALUES ('$user_id','".$_REQUEST["firstname_order"]."','".$_REQUEST["lastname_order"]."', '".$_REQUEST["email_order"]."','".$_REQUEST["tel_order"]."','".$_REQUEST["address_order"]."','$country','".$food_category_id[$i] . "','" . $food_item_id[$i] . "','" . $item_weight_type_id[$i] . "','".$getItemPriceDatils['vendor_price']."','" . $item_price[$i] . "','" . $item_quantity[$i] . "','".$_REQUEST["restaurant_id"]."','".$_REQUEST["sub_total"]."','".$_REQUEST["order_total"]."','$payment_group','$payment_status','$dev_type','".$_REQUEST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$order_date')";				
+			$orders = "INSERT INTO food_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `country`, `postal_code`, `city`, `order_note`, `category_id`, `product_id`, `item_weight_type_id`, `order_vendor_price`, `item_price`, `item_quantity`,`restaurant_id`, `sub_total`, `order_total`, `payment_method`,`lkp_payment_status_id`,`delivery_type_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`, `created_at`) VALUES ('$user_id','".$_REQUEST["firstname_order"]."','".$_REQUEST["lastname_order"]."', '".$_REQUEST["email_order"]."','".$_REQUEST["tel_order"]."','".$getAddress."','$country','".$food_category_id[$i] . "','" . $food_item_id[$i] . "','" . $item_weight_type_id[$i] . "','".$getItemPriceDatils['vendor_price']."','" . $item_price[$i] . "','" . $item_quantity[$i] . "','".$_REQUEST["restaurant_id"]."','".$_REQUEST["sub_total"]."','".$_REQUEST["order_total"]."','$payment_group','$payment_status','$dev_type','".$_REQUEST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$order_date')";				
 
 			if ($conn->query($orders) === TRUE) {
 	            // check the conditions for query success or not

@@ -41,7 +41,21 @@
 				<input type="hidden" name="category_id" value="<?php echo $_GET['cat_id']; ?>">
 			 <?php } elseif($_GET['sub_cat_id']) { ?>
 				<input type="hidden" name="sub_category_id" value="<?php echo $_GET['sub_cat_id']; ?>">
-			<?php } ?>			
+			<?php } elseif($_GET['offer_id']) { 
+				$getOffers = getIndividualDetails('grocery_offer_module','id',$_GET['offer_id']);
+				if($getOffers['offer_level'] == 1) { ?>
+					<input type="hidden" name="category_id" value="<?php echo $getOffers['category_id']; ?>">
+				<?php } elseif($getOffers['offer_level'] == 2) { ?>
+					<input type="hidden" name="sub_category_id" value="<?php echo $getOffers['sub_category_id']; ?>">
+				<?php } ?>
+			<?php } elseif($_GET['id']) { 
+				$getBanners = getIndividualDetails('grocery_banners','id',$_GET['id']);
+				if($getBanners['type'] == 1) { ?>
+					<input type="hidden" name="category_id" value="<?php echo $getBanners['category_id']; ?>">
+				<?php } elseif($getBanners['type'] == 2) { ?>
+					<input type="hidden" name="sub_category_id" value="<?php echo $getBanners['sub_category_id']; ?>">
+				<?php } ?>
+			<?php } ?>	
 				<ul class="box-checkbox scroll">
 					<?php while($getAllBrandsNames = $getAllBrands->fetch_assoc() ) { ?>
 					<li class="check-box">
@@ -66,7 +80,21 @@
 				<input type="hidden" name="category_id" value="<?php echo $_GET['cat_id']; ?>">
 			 <?php } elseif($_GET['sub_cat_id']) { ?>
 				<input type="hidden" name="sub_category_id" value="<?php echo $_GET['sub_cat_id']; ?>">
-			<?php } ?>			
+			<?php } elseif($_GET['offer_id']) { 
+				$getOffers1 = getIndividualDetails('grocery_offer_module','id',$_GET['offer_id']);
+				if($getOffers1['offer_level'] == 1) { ?>
+					<input type="hidden" name="category_id" value="<?php echo $getOffers1['category_id']; ?>">
+				<?php } elseif($getOffers1['offer_level'] == 2) { ?>
+					<input type="hidden" name="sub_category_id" value="<?php echo $getOffers1['sub_category_id']; ?>">
+				<?php } ?>
+			<?php } elseif($_GET['id']) { 
+				$getBanners1 = getIndividualDetails('grocery_banners','id',$_GET['id']);
+				if($getBanners1['type'] == 1) { ?>
+					<input type="hidden" name="category_id" value="<?php echo $getBanners1['category_id']; ?>">
+				<?php } elseif($getBanners1['type'] == 2) { ?>
+					<input type="hidden" name="sub_category_id" value="<?php echo $getBanners1['sub_category_id']; ?>">
+				<?php } ?>
+			<?php } ?>
 				<ul class="box-checkbox scroll">
 					<li class="check-box check_price_type">
 						<input type="checkbox" id="check1" name="product_price[]" value="0 - 500">
