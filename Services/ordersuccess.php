@@ -18,7 +18,7 @@ if(isset($_GET["odi"]) && $_GET["odi"]!="") {
 		//$to = "srinivas@lanciussolutions.com";
 		$to = $getUserEmail['user_email'];
 		$from = $getSiteSettingsData["orders_email"];
-		$subject = "Myservent - Services ";
+		$subject = "Myservent - Order ";
 		$message = '';
 		$message .= '<body>
 			<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
@@ -39,13 +39,13 @@ if(isset($_GET["odi"]) && $_GET["odi"]!="") {
 
 		//echo $message; die;
 		//$sendMail = sendEmail($to,$subject,$message,$from);
-		$name = "My Servant";
+		$name = "My Servant - Services";
 		$mail = sendEmail($to,$subject,$message,$from,$name);
 
 		//$to = "srinivas@lanciussolutions.com";
 		$to = $getSiteSettingsData["orders_email"];
 		$from = $getSiteSettingsData["orders_email"];
-		$subject = "Myservent - Services ";
+		$subject = "Myservent - Order ";
 		$message = '';
 		$message .= '<body>
 			<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
@@ -66,7 +66,7 @@ if(isset($_GET["odi"]) && $_GET["odi"]!="") {
 
 		//echo $message; die;
 		//$sendMail = sendEmail($to,$subject,$message,$from);
-		$name = "My Servant";
+		$name = "My Servant - Services";
 		$mail = sendEmail($to,$subject,$message,$from,$name);
 
 	}
