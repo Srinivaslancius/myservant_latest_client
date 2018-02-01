@@ -99,7 +99,7 @@
 						</div>
 						<div class="img_container padd15">
                         
-                        	<img src="<?php echo $base_url . 'uploads/services_brand_logos/'.$getServiceBrandsData['brand_logo'] ?>" style="width:64px; height:64px;" class="img-responsive" alt="<?php echo $getServiceBrandsData['title']; ?>">
+                        	<img src="<?php echo $base_url . 'uploads/services_brand_logos/'.$getServiceBrandsData['brand_logo'] ?>" style="width:100px; height:64px;" class="img-responsive" alt="<?php echo $getServiceBrandsData['title']; ?>">
 						
 						</div>
 						<div class="tour_title">

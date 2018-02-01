@@ -500,7 +500,7 @@
 
 .imagebox .box-content .product-name {
 	min-height: 32px;
-	margin-top:6px;
+	/*! margin-top:6px; */
 }
 
 .imagebox .box-content .product-name a {
