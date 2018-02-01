@@ -155,8 +155,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $getAdminUsers = getAllDataWithActiveRecent('admin_users'); $i=1; ?>
-                                <?php while ($row = $getAdminUsers->fetch_assoc()) { ?>
+        <?php $i=1; $getAdminUsers = "SELECT * FROM admin_users WHERE lkp_admin_service_type_id = 3 ORDER BY lkp_status_id, id DESC"; 
+        $getAdminUsersData = $conn->query($getAdminUsers);
+        ?>
+                                
+                                <?php while ($row = $getAdminUsersData->fetch_assoc()) { ?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $row['admin_name']; ?></td>

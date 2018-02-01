@@ -659,9 +659,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 										</a>
 									</div><!-- /.box-image -->
 									<div class="box-content">
-										<div class="cat-name">
+										<!--<div class="cat-name">
 											<a href="#" title=""><?php echo $getCategoryName['category_name']; ?></a>
-										</div>
+										</div>-->
 										<div class="product-name">
 											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
