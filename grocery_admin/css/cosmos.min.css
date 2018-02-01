@@ -18090,8 +18090,8 @@ fieldset[disabled] .btn-dribbble:hover {
     line-height: 50px;
     height: 50px;
     padding: 0 15px;
-    position: absolute;
-    right: 0
+    /* position: absolute; */
+    right: 0;
 }
 
 @media (min-width:768px) {
