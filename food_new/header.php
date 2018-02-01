@@ -20,7 +20,7 @@ if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id
               <div class="col-md-1">
 			</div>			  
                 <div class="col-md-8 col-sm-8 col-xs-12">
-                    <p><span style="margin-right:10px"><i class="icon-location"></i>Vijayawada </span>
+                    <p><span style="margin-right:10px" id="location"><i class="icon-location"></i>Vijayawada </span>
 					<span> <select style="background-color:transparent;color:white">
 					<option style="color:black">English</option>
 					<option style="color:black">Hindi</option>
