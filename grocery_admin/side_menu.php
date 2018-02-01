@@ -4,7 +4,13 @@
     $page_name = $parts[count($parts) - 1];
 ?>
 <ul class="sidebar-menu">
-            <li class="menu-title">Dashboard</li>
+            <li class="<?php if($page_name == 'dashboard.php') { echo "active"; } ?>"><a href="dashboard.php">
+                <span class="menu-icon">
+                  <i class="zmdi zmdi-home"></i>
+                </span>
+                <span class="menu-text">Dashboard</span>
+              </a>
+            </li>
             <li class="with-sub">
               <a href="#" aria-haspopup="true">
                 <span class="menu-icon">

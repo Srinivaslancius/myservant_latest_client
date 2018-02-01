@@ -64,6 +64,11 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 								<h3>Quick Links</h3>
 							</div>
 							<ul class="cat-list-ft">
+
+								<li>
+									<a href="javascript:void(0)" title="" id="myBtn">Refear a friend</a>
+								</li>
+
 								<li>
 									<a href="about.php" title="">About us</a>
 								</li>
@@ -165,4 +170,31 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 			</div><!-- /.container -->
 			<?php include "search_js_script.php"; ?>
 			<!-- This Script For validations -->
+			<script type="text/javascript">
+			$(document).ready(function () {      
+			    $("#myBtn").click(function(){
+			         $('#myModal').modal('show');
+			    });
+			});
+			</script>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">			                
+			                 <h4 class="modal-title" id="myModalLabel">Refer a friend</h4>
+			            </div>
+			            <div class="modal-body">
+			            	<form method="POST">
+			            		<input type="text" name="">
+			            	</form>
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			                <button type="button" class="btn btn-primary">Save changes</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>			
+
 			<script type="text/javascript" src="javascript/check_number_validations.js"></script>
