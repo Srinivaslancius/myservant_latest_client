@@ -582,7 +582,7 @@ position:absolute;
 	      type: 'post',
 	      url: 'load_popular_products.php',
 	      data: {
-	       popStatus:popStatus,
+	       popularity:popStatus,
 	      },
 	      success: function (response) {
 	      //alert(response);
@@ -594,7 +594,7 @@ position:absolute;
 	      type: 'post',
 	      url: 'load_popular_products_grid.php',
 	      data: {
-	       popStatus:popStatus,
+	       popularity:popStatus,
 	      },
 	      success: function (response) {
 	      //alert(response);

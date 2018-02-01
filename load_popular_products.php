@@ -2,9 +2,9 @@
 include "admin_includes/config.php";
 include "admin_includes/common_functions.php";
 //echo "<pre>"; print_r($_POST); die;
-if(isset($_POST['popStatus']) ) {
+if(isset($_POST['popularity']) ) {
 
-$popStatus = $_POST['popStatus'];
+$popularity = $_POST['popularity'];
 
 if($_SESSION['city_name'] == '') {
     $lkp_city_id = 1;
@@ -13,23 +13,43 @@ if($_SESSION['city_name'] == '') {
     $lkp_city_id = $getCities1['id'];
 }
 
-if($popStatus == 'recent') {
+if($popularity == 'recent') {
+    if(isset($_POST['category_id'])) {
+        $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id) AND grocery_category_id = '".$_POST['category_id']."'  ORDER BY id DESC ";
+    } elseif (isset($_POST['sub_category_id'])) {
+        $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id) AND grocery_sub_category_id = '".$_POST['sub_category_id']."' ORDER BY id DESC ";
+    } else {
+        $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)  ORDER BY id DESC ";
+    }
 
-    $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)  ORDER BY id DESC ";
+} elseif($popularity == 'low_high') {
+    if(isset($_POST['category_id'])) {
+        $getProducts = "SELECT grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_weight_prices LEFT JOIN grocery_products ON grocery_products.id = grocery_product_bind_weight_prices.id WHERE grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.lkp_status_id=0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' AND grocery_products.grocery_category_id = '".$_POST['category_id']."' GROUP BY grocery_product_bind_weight_prices.product_id ORDER BY grocery_product_bind_weight_prices.selling_price ASC";
+    } elseif (isset($_POST['sub_category_id'])) {
+        $getProducts = "SELECT grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_weight_prices LEFT JOIN grocery_products ON grocery_products.id = grocery_product_bind_weight_prices.id WHERE grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.lkp_status_id=0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' AND grocery_products.grocery_sub_category_id = '".$_POST['sub_category_id']."' GROUP BY grocery_product_bind_weight_prices.product_id ORDER BY grocery_product_bind_weight_prices.selling_price ASC";
+    } else {
+        $getProducts = "SELECT grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_weight_prices LEFT JOIN grocery_products ON grocery_products.id = grocery_product_bind_weight_prices.id WHERE grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.lkp_status_id=0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' GROUP BY grocery_product_bind_weight_prices.product_id ORDER BY grocery_product_bind_weight_prices.selling_price ASC";
+    }
 
-} elseif($popStatus == 'low_high') {
-
-    $getProducts = "SELECT grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_weight_prices LEFT JOIN grocery_products ON grocery_products.id = grocery_product_bind_weight_prices.id WHERE grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.lkp_status_id=0 AND lkp_city_id = '$lkp_city_id' GROUP BY grocery_product_bind_weight_prices.product_id ORDER BY grocery_product_bind_weight_prices.selling_price ASC";
-
-} elseif($popStatus == 'high_low') {
-
-    $getProducts = "SELECT grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_weight_prices LEFT JOIN grocery_products ON grocery_products.id = grocery_product_bind_weight_prices.id WHERE grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.lkp_status_id=0 AND lkp_city_id = '$lkp_city_id' GROUP BY grocery_product_bind_weight_prices.product_id ORDER BY grocery_product_bind_weight_prices.selling_price DESC";
+} elseif($popularity == 'high_low') {
+    if(isset($_POST['category_id'])) {
+        $getProducts = "SELECT grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_weight_prices LEFT JOIN grocery_products ON grocery_products.id = grocery_product_bind_weight_prices.id WHERE grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.lkp_status_id=0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' AND grocery_products.grocery_category_id = '".$_POST['category_id']."' GROUP BY grocery_product_bind_weight_prices.product_id ORDER BY grocery_product_bind_weight_prices.selling_price DESC";
+    } elseif (isset($_POST['sub_category_id'])) {
+        $getProducts = "SELECT grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_weight_prices LEFT JOIN grocery_products ON grocery_products.id = grocery_product_bind_weight_prices.id WHERE grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.lkp_status_id=0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' AND grocery_products.grocery_sub_category_id = '".$_POST['sub_category_id']."' GROUP BY grocery_product_bind_weight_prices.product_id ORDER BY grocery_product_bind_weight_prices.selling_price DESC";
+    } else {
+        $getProducts = "SELECT grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_weight_prices LEFT JOIN grocery_products ON grocery_products.id = grocery_product_bind_weight_prices.id WHERE grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.lkp_status_id=0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' GROUP BY grocery_product_bind_weight_prices.product_id ORDER BY grocery_product_bind_weight_prices.selling_price DESC";
+    }
 
 } else {
-
-    $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id) ORDER BY id DESC ";
+    if(isset($_POST['category_id'])) {
+        $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id) AND grocery_category_id = '".$_POST['category_id']."'  ORDER BY id DESC ";
+    } elseif (isset($_POST['sub_category_id'])) {
+        $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id) AND grocery_sub_category_id = '".$_POST['sub_category_id']."' ORDER BY id DESC ";
+    } else {
+        $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id) ORDER BY id DESC ";
+    }
 }
-//echo $getProducts; die;
+//echo $getProducts;
 $getProducts1 = $conn->query($getProducts);
 while($getProductsData = $getProducts1->fetch_assoc()) {
 $getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductsData['id']);

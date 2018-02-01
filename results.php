@@ -143,22 +143,43 @@ position:absolute;
 										</li>
 									</ul>
 									<div class="sort">
-										<div class="popularity">
-											<select name="popularity">
-												<option value="">Sort by popularity</option>
-												<option value="">Recent</option>
-												<option value="">Price low to high</option>
-												<option value="">Sort by popularity</option>
-											</select>
-										</div>
-										<!-- <div class="showed">
-											<select name="showed">
-												<option value="">Show 20</option>
-												<option value="">Show 15</option>
-												<option value="">Show 10</option>
-												<option value="">Show 15</option>
-											</select>
-										</div> -->
+										<form id="popularity">
+											<?php if($_GET['cat_id']) { ?>
+												<input type="hidden" name="category_id" value="<?php echo $_GET['cat_id']; ?>">
+											 <?php } elseif($_GET['sub_cat_id']) { ?>
+												<input type="hidden" name="sub_category_id" value="<?php echo $_GET['sub_cat_id']; ?>">
+											<?php } elseif($_GET['offer_id']) { 
+												$getOffers = getIndividualDetails('grocery_offer_module','id',$_GET['offer_id']);
+												if($getOffers['offer_level'] == 1) { ?>
+													<input type="hidden" name="category_id" value="<?php echo $getOffers['category_id']; ?>">
+												<?php } elseif($getOffers['offer_level'] == 2) { ?>
+													<input type="hidden" name="sub_category_id" value="<?php echo $getOffers['sub_category_id']; ?>">
+												<?php } ?>
+											<?php } elseif($_GET['id']) { 
+												$getBanners = getIndividualDetails('grocery_banners','id',$_GET['id']);
+												if($getBanners['type'] == 1) { ?>
+													<input type="hidden" name="category_id" value="<?php echo $getBanners['category_id']; ?>">
+												<?php } elseif($getBanners['type'] == 2) { ?>
+													<input type="hidden" name="sub_category_id" value="<?php echo $getBanners['sub_category_id']; ?>">
+												<?php } ?>
+											<?php } ?>
+											<div class="popularity">
+												<select name="popularity" onChange="loadPopularity(this.value)">
+													<option value="">Sort by popularity</option>
+													<option value="recent">Sort by recent</option>
+													<option value="low_high">Price low to high</option>
+													<option value="high_low">Price high to low</option>
+												</select>
+											</div>
+											<!-- <div class="showed">
+												<select name="showed">
+													<option value="">Show 20</option>
+													<option value="">Show 15</option>
+													<option value="">Show 10</option>
+													<option value="">Show 15</option>
+												</select>
+											</div> -->
+										</form>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -447,6 +468,28 @@ position:absolute;
 				  }
 
 				 });
+			}
+			function loadPopularity(popStatus) {
+
+				$.ajax({
+			      type: 'post',
+			      url: 'load_popular_products.php',
+			      data: $("#popularity").serialize(),
+			      success: function (response) {
+			      //alert(response);
+			      $('#all_rows').html(response);		  
+			      }
+				});
+
+				$.ajax({
+			      type: 'post',
+			      url: 'load_popular_products_grid.php',
+			      data: $("#popularity").serialize(),
+			      success: function (response) {
+			      //alert(response);
+			      $('#all_rows_grid').html(response);		  
+			      }
+				});
 			}
 		</script>
 		<script type="text/javascript">
