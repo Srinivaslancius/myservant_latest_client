@@ -105,7 +105,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
 	              	$getOrders1 = "SELECT * FROM grocery_orders WHERE order_id='$order_id'";
 					$getOrdersData3 = $conn->query($getOrders1);
 					while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {					
-			      	$getProducts = getIndividualDetails('grocery_product_name_bind_languages','id',$getOrdersData2['product_id']);
+			      	$getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getOrdersData2['product_id']);
 			      	$getItemWeights = getIndividualDetails('grocery_product_bind_weight_prices','id',$getOrdersData2['item_weight_type_id']);					
               $getProducts1 = getIndividualDetails('grocery_product_bind_images','product_id',$getOrdersData2['product_id']);
               	?>
