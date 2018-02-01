@@ -46,13 +46,13 @@ $message .= '<body>
 //echo $message; die;
 
 //$sendMail = sendEmail($to,$subject,$message,$email_contact);
-$name = "My Servant";
+$name = "My Servant - Services";
 $from = $email_contact;
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";  
-$headers .= 'From: '.$name.'<'.$from.'>'. "\r\n";
-if(mail($to, $subject, $message, $headers)) {
-	echo  "<script>alert('Thank You For Your feedback');window.location.href('contactus.php');</script>";
+$resultEmail = sendEmail($to,$subject,$message,$from,$name);
+if($resultEmail == 0) {
+    echo  "<script>alert('Thank You For Your feedback');window.location.href('contactus.php');</script>";
+} else {
+    echo "Mail Sent Failed";
 }
 
 }

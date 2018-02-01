@@ -9,6 +9,7 @@
 
 <?php 
 	error_reporting(0);
+	$getSiteSettings1 = getIndividualDetails('grocery_site_settings','id','1');
 	if(isset($_POST['submit']))  { 
 	    //Login here
 	    $user_email = $_POST['login_email'];
@@ -19,7 +20,7 @@
 	    	//$pwd = decryptPassword($getUserForgotPassword['user_password']);
 	    	$userId = encryptPassword($getUserForgotPassword['id']);
             $to = $user_email;
-            $subject =  "User Forgot Password";
+            $subject =  "Myservant - User Forgot Password";
             $message = '';
             $message .= '<body>
 			<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
@@ -43,15 +44,11 @@
 			</body>';
 
 			//echo $message; die;
-			$name = "My Servant";
-			$from = $getSiteSettingsData["from_email"];
-			$headers = "MIME-Version: 1.0" . "\r\n";
-			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";  
-			$headers .= 'From: '.$name.'<'.$from.'>'. "\r\n";
-            mail($to, $subject, $message, $headers);
-
+			$name = "My Servant - Serives";
+			$from = $getSiteSettings1["forgot_password_email"];
+			$resultEmail = sendEmail($to,$subject,$message,$from,$name);
 		        echo  "<script>alert('Password Sent To Your Email,Please Check.');window.location='login.php';</script>";
-		    } else {
+	    } else {
 	    	echo "<script>alert('Your Entered Email Not Found');</script>";
 	    }
 	}
