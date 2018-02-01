@@ -117,7 +117,7 @@
           </div>
 
           <div class="row">
-          <?php $getAllGroceryOrders = "SELECT * FROM grocery_orders GROUP BY order_id ORDER BY id DESC";
+          <?php $getAllGroceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 GROUP BY order_id ORDER BY id DESC";
           $getGroceryOrders = $conn->query($getAllGroceryOrders);
           $getGroceryOrdersCount = $getGroceryOrders->num_rows;?>
           <a href="view_orders.php">
