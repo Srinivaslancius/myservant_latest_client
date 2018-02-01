@@ -85,7 +85,7 @@
 					 
             			<td><?php echo $orderData['created_at']; ?>	</td>
             			<td>Rs.<?php echo $orderData['order_total']; ?></td>
-            			<td>s<?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
+            			<td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
             			<td><?php echo $orderData['order_id']; ?></td>
 						<td><a href="service_category_orders.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a></td>
             		  </tr>

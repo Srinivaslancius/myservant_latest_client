@@ -195,9 +195,9 @@ $tagNames = $conn->query($getTags);
 											
 										</div><!-- /.box-image -->
 										<div class="box-content">
-											<div class="cat-name">
+											<!--<div class="cat-name">
 												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $categoryName['category_name']; ?></a>
-											</div>
+											</div>-->
 											<div class="product-name">
 												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 											</div>
@@ -318,9 +318,9 @@ $getSubCat = $conn->query($getsubCats);
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
-													<div class="cat-name">
+													<!--<div class="cat-name">
 														<a href="#" title=""><?php echo $categoryName['category_name']; ?></a>
-													</div>
+													</div>-->
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 													</div>
@@ -395,9 +395,9 @@ $getSubCat = $conn->query($getsubCats);
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
-													<div class="cat-name">
+													<!--<div class="cat-name">
 														<a href="#" title=""><?php echo $categoryName2['category_name']; ?></a>
-													</div>
+													</div>-->
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName2['product_name']; ?></a>
 													</div>
@@ -470,9 +470,9 @@ $getSubCat = $conn->query($getsubCats);
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
-													<div class="cat-name">
+													<!--<div class="cat-name">
 														<a href="#" title=""><?php echo $categoryName3['category_name']; ?></a>
-													</div>
+													</div>-->
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName3['product_name']; ?></a>
 													</div>
@@ -659,9 +659,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 										</a>
 									</div><!-- /.box-image -->
 									<div class="box-content">
-										<div class="cat-name">
+										<!--<div class="cat-name">
 											<a href="#" title=""><?php echo $getCategoryName['category_name']; ?></a>
-										</div>
+										</div>-->
 										<div class="product-name">
 											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
