@@ -221,7 +221,9 @@ if (isset($_POST['cart_id'])){
             
         </div>';
     } else {
-    echo'<p style="text-align:center; color:#f26226">No Items In Your Cart</p>
-        <center><a href="index.php" style="color:#f26226">Click here for Items</a></center>';
+    echo'<center><img src="img/cart.png"></center>
+      <p style="text-align:center;font-size:20px;margin-top:10px">Your shopping cart is currently empty</p>     
+      <p style="text-align:center;margin:15px">Please click on the Continue Shopping button below for items</p>
+        <center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>';
     }
 }
