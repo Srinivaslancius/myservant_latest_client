@@ -24,7 +24,7 @@ $getPricesDetails1 = $getProductPrices1->fetch_assoc();
 echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getProductsData['grocery_category_id'].'">
     <input type="hidden" id="sub_cat_id_'.$getProductsData['id'].'" value="'.$getProductsData['grocery_sub_category_id'].'">
     <input type="hidden" id="pro_name_'.$getProductsData['id'].'" value="'.$getProductNames['product_name'].'">';
- echo '<div class="col-lg-4 col-md-4 col-sm-6" >
+ echo '<div class="col-lg-4 col-md-6 col-sm-6" >
         <div class="product-box">
             <div class="imagebox">
                     <a href="single_product.php?product_id='.$getProductsData['id'].'" title="">

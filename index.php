@@ -190,7 +190,7 @@ $tagNames = $conn->query($getTags);
 										<span class="item-new">NEW</span>
 										<div class="box-image">
 											<a href="#" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
+												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="" style="width:264px;height:210px">
 											</a>
 											
 										</div><!-- /.box-image -->
@@ -198,7 +198,7 @@ $tagNames = $conn->query($getTags);
 											<!--<div class="cat-name">
 												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $categoryName['category_name']; ?></a>
 											</div>-->
-											<div class="product-name">
+											<div class="product-name" style="margin-top:25px">
 												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 											</div>
 											<div class="product_name">
