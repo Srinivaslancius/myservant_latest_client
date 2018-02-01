@@ -151,14 +151,14 @@ position:absolute;
 												<option value="">Sort by popularity</option>
 											</select>
 										</div>
-										<div class="showed">
+										<!-- <div class="showed">
 											<select name="showed">
 												<option value="">Show 20</option>
 												<option value="">Show 15</option>
 												<option value="">Show 10</option>
 												<option value="">Show 15</option>
 											</select>
-										</div>
+										</div> -->
 									</div>
 									<div class="clearfix"></div>
 								</div>

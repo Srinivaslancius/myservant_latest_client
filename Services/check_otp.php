@@ -40,7 +40,7 @@ if(!empty($_POST['user_mobile']) && !empty($_POST['mobile_otp']))  {
 		//$to = "srinivas@lanciussolutions.com";
 		$to = $dataem;
 		//$from = $getSiteSettingsData1["email"];
-		$subject = "Myservent - Services ";
+		$subject = "Myservent - Registration Mail ";
 		$message = '';		
 		$message .= '<body>
 			<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
@@ -62,13 +62,9 @@ if(!empty($_POST['user_mobile']) && !empty($_POST['mobile_otp']))  {
 
 		//echo $message; die;
 		//$sendMail = sendEmail($to,$subject,$message,$from);
-		$name = "My Servant";
+		$name = "My Servant - Services";
 		$from = $getSiteSettingsData["from_email"];
-		$headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";  
-        $headers .= 'From: '.$name.'<'.$from.'>'. "\r\n";
-        mail($to, $subject, $message, $headers);
-
+		$resultEmail = sendEmail($to,$subject,$message,$from,$name);
 		echo $getnoRows;
 	} else {
 		echo $getnoRows;

@@ -163,7 +163,7 @@ $('#verify_otp').on('click', function () {
             $('#mobile_otp').val('');
           } else {
             //Success
-            alert("OTP verified");
+            alert("Your Registration Successfully Completed");
             if (checkout_key == '') {
                 window.location.href = 'index.php';
             } else {
