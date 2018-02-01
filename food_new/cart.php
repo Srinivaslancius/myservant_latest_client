@@ -364,11 +364,20 @@ td{
 					</div>
 				</div>
 			</div>
+			
 			<?php }  else { ?>
+			<div class="row">
+			<div class="col-sm-4">
+			</div>
+			<div class="col-sm-4">
     			<center><img src="img/cart.png"></center>
       <p style="text-align:center;font-size:20px;margin-top:10px">Your shopping cart is currently empty</p>     
       <p style="text-align:center;margin:15px">Please click on the 'Continue Shopping' button below for items</p>
-        <center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
+        <center><a href="index.php"><button type="submit" class="btn btn-submit" style="background-color:#f26226;color:white;width:50%">Continue Shopping</button></a></center>
+		</div>
+		<div class="col-sm-4">
+			</div>
+		</div>
     		<?php } ?>
             
 		</div><!-- End row -->
