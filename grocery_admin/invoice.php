@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="">
-    <title>Cosmos</title>
+    <title>MYSERVANT</title>
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet">
@@ -18,43 +18,39 @@
 
 <?php
 error_reporting(0);
-include_once('../../admin_includes/config.php');
-include_once('../../admin_includes/common_functions.php');
+include_once('../admin_includes/config.php');
+include_once('../admin_includes/common_functions.php');
 
-$id = $_GET['order_id'];
-$getOrders = "SELECT * FROM services_orders WHERE order_id='$id'";
+$order_id = $_GET['order_id'];
+
+$getOrders = "SELECT * FROM grocery_orders WHERE order_id='$order_id'";
 $getOrdersData = $conn->query($getOrders);
 $getOrdersData1 = $getOrdersData->fetch_assoc();
-$getPaymentMethod = getAllDataWhere('lkp_payment_types','id',$getOrdersData1['payment_method']); 
-$getPaymentMethodData = $getPaymentMethod->fetch_assoc();
-$getSiteSettingsData = getIndividualDetails('services_site_settings','id',1);
 
-//below condition for check service type prices fixed or variant for payment gateway display
-$getPriceType = "SELECT * FROM services_orders WHERE service_price_type_id=2 AND order_id='$id' ";
-$getCount = $conn->query($getPriceType);
+$getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1);
+$getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$getOrdersData1['payment_method']);
+$orderStatus = getIndividualDetails('lkp_order_status','id',$getOrdersData1['lkp_order_status_id']);
+$paymentStatus = getIndividualDetails('lkp_payment_status','id',$getOrdersData1['lkp_payment_status_id']);
 
-if($getCount->num_rows == 0) {
 $service_tax = $getOrdersData1['sub_total']*$getSiteSettingsData['service_tax']/100;
+if($getOrdersData1['delivery_charges'] == '0') {
+	$order_type = "Take Away";
+	$delivery_charges = 0;
 } else {
-	$service_tax = 0;
+	$order_type = "Delivery";
+	$delivery_charges = $getOrdersData1['delivery_charges'];
 }
-
-if($getOrdersData1['discount_money'] != 0) {
-$discount_money = $getOrdersData1['discount_money'].'(<span style="color:green">Coupon Applied Successfully.</span>)';
-} else {
-	$discount_money = 0;
-}
-
 ?>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
     <div class="site-overlay"></div>
     
-    <div class="site-main">      
+    <div class="site-main">     
      
       <div class="site-content">
         <div class="panel panel-default m-b-0">
           <div class="panel-heading">
             <h3 class="m-y-0">Invoice</h3>
+            <center><img src="<?php echo $base_url . 'grocery_admin/uploads/logo/'.$getSiteSettingsData['logo'] ?>" class="logo-responsive" ></center>
           </div>
           <div class="panel-body">
             <div class="row m-b-30">
@@ -68,8 +64,12 @@ $discount_money = $getOrdersData1['discount_money'].'(<span style="color:green">
               <div class="col-sm-6">                
                 <p><strong>Order Info</strong></p>
                 <p>Order Id: <?php echo $getOrdersData1['order_id']; ?>
-                  <br>Order Date:<?php echo $getOrdersData1['created_at']; ?>
-                  <br>Payment Mode :<?php echo $getPaymentMethodData['status']; ?></p>               
+                  <br>Restaurant Name: <?php echo $getRestaurants['restaurant_name']; ?>
+                  <br>Order Date: <?php echo $getOrdersData1['created_at']; ?>
+                  <br>Order Status : <?php echo $orderStatus['order_status']; ?> 
+                  <br>Payment Status : <?php echo $paymentStatus['payment_status']; ?>
+                  <br>Payment Method: <?php echo $getpaymentTypes['status']; ?>
+              	</p>               
               </div>
             </div>
             <table class="table table-bordered m-b-30">
@@ -79,22 +79,22 @@ $discount_money = $getOrdersData1['discount_money'].'(<span style="color:green">
                     S.No
                   </th>
                   <th>
-                    Service Name
+                    Product Name
                   </th>
                   <th>
-                    Service Price
+                    Product Image
                   </th>
                   <th>
-                    Quantity
+                    Product Weight
                   </th>                
                   <th>
-                    Selected Date
+                    Quantity
                   </th>
                   <th>
-                    Selected Time
+                    Item Price
                   </th>
                   <th>
-                    Service Total
+                    Item Total
                   </th>
                 </tr>
               </thead>
@@ -102,36 +102,49 @@ $discount_money = $getOrdersData1['discount_money'].'(<span style="color:green">
               <tbody>
               	<?php 
               		$i=1;
-	              	$getOrders1 = "SELECT * FROM services_orders WHERE order_id='$id'";
+	              	$getOrders1 = "SELECT * FROM grocery_orders WHERE order_id='$order_id'";
 					$getOrdersData3 = $conn->query($getOrders1);
-					while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {
-					$getServiceNames = getAllDataWhere('services_group_service_names','id',$getOrdersData2['service_id']); 
-					$getServiceNamesData = $getServiceNames->fetch_assoc();
+					while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {					
+			      	$getProducts = getIndividualDetails('grocery_product_name_bind_languages','id',$getOrdersData2['product_id']);
+			      	$getItemWeights = getIndividualDetails('grocery_product_bind_weight_prices','id',$getOrdersData2['item_weight_type_id']);					
+              $getProducts1 = getIndividualDetails('grocery_product_bind_images','product_id',$getOrdersData2['product_id']);
               	?>
                 <tr>
                   <td><?php echo $i; ?></td>
-                  <td><?php echo wordwrap($getServiceNamesData['group_service_name'],20,"<br>\n",TRUE); ?></td>
-                  <td><?php echo wordwrap($getOrdersData2['service_price'],22,"<br>\n",TRUE); ?></td>
-                  <td><?php echo $getOrdersData2['service_quantity']; ?></td>
-                  <td><?php echo $getOrdersData2['service_selected_date']; ?></td>                  
-                  <td><?php echo $getOrdersData2['service_selected_time']; ?></td>
-                  <td><?php echo $getOrdersData2['order_price']; ?></td>
+                  <td><?php echo $getProducts['product_name'] ?></td>     
+                  <td><img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProducts1['image'] ?>" width="70px" height="70px"></td>             
+                  <td><?php echo $getItemWeights['weight_type']; ?></td>
+                  <td><?php echo $getOrdersData2['item_quantity']; ?></td>                  
+                  <td><?php echo $getOrdersData2['item_price']; ?></td>
+                  <td><?php echo $getOrdersData2['item_price']*$getOrdersData2['item_quantity']; ?></td>
                 </tr>  
                 <?php $i++; } ?>              
                 <tr>
                   <td scope="row" colspan="6">
                     <div class="text-right">
-                      Subtotal                      
-                      <br> Discount
+                      Subtotal    
+                        
+                      <?php if($getOrdersData1['delivery_charges'] != '0') { ?>
+                      	<br>Delivery Charges:
+                      <?php } ?>                       
                       <br> Service Tax
+                      <?php if($getOrdersData1['coupen_code'] != '') { ?>              
+                      	<br> Discount
+                      <?php } ?>
                       <br>
                       <strong>TOTAL</strong>
                     </div>
                   </td>
                   <td>
                     Rs .<?php echo $getOrdersData1['sub_total']; ?>
-                    <br>Rs .<?php echo $discount_money; ?>
+                    
+                    <?php if($getOrdersData1['delivery_charges'] != '0') { ?>
+                    	<br>Rs. <?php echo $delivery_charges?>
+                    <?php } ?>
                     <br> Rs .<?php echo $service_tax; ?> ( <?php echo $getSiteSettingsData['service_tax']; ?> % )
+                    <?php if($getOrdersData1['coupen_code'] != '') { ?>
+                    	<br>Rs .Rs. <?php echo $getOrdersData1['discout_money']?>(<span style="color:green">Coupon Applied.</span>)
+                    <?php } ?>                    
                     <br>
                     <strong>Rs .<?php echo $getOrdersData1['order_total']; ?></strong>
                   </td>

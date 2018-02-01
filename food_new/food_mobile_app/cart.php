@@ -29,6 +29,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			//$response["cartId"] = $conn->insert_id;
 			$response["itemWeightTypeId"] = $_REQUEST['itemWeightTypeId'];
 			$response["itemId"] = $_REQUEST['itemId'];
+			$getRestaurants = getIndividualDetails('food_vendors','id',$restaurant_id);
+	    	$lists["restaurantLogo"] = $base_url."uploads/food_vendor_logo/".$getRestaurants["logo"];
+	    	$lists["restarauntName"] = $getRestaurants["restaurant_name"];
 		    $response["success"] = 0;
 		    $response["message"] = "Success";
 		} else {

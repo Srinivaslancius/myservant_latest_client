@@ -15,6 +15,7 @@ if (isset($_REQUEST['userId'])  ) {
 		while($row = $getCartFoodData->fetch_assoc()) {
 			$lists = array();
 			$lists["cartId"] = $row["id"];	
+			$lists["cartCount"] = $getCartFoodData->num_rows;
 			$lists["productId"]    = $row["food_item_id"];
 			$lists["itemQuantity"] = $row["item_quantity"];	
 			$lists["itemPrice"] = $row["item_price"];	
@@ -22,6 +23,8 @@ if (isset($_REQUEST['userId'])  ) {
 			$lists["restaurantId"] = $row["restaurant_id"];
 			$restName= getIndividualDetails('food_vendors','id',$row['restaurant_id']);
 			$lists["restaurantName"] = $restName["restaurant_name"];
+			$lists["restaurantLogo"] = $base_url."uploads/food_vendor_logo/".$restName["logo"];
+			$lists["restaurantAddress"] = $restName["restaurant_address"];
 			$proName= getIndividualDetails('food_products','id',$row['food_item_id']);
 			$lists["productName"] = $proName['product_name'];		
 			$getPriceDetails = getIndividualDetails('food_product_weight_prices','weight_type_id',$row["item_weight_type_id"]);	

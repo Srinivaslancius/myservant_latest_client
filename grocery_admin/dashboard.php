@@ -28,170 +28,171 @@
       <div class="site-right-sidebar">
         <?php include_once './right_slide_toggle.php';?>
       </div>
+      <?php $getUsers = "SELECT * FROM users WHERE lkp_admin_service_type_id = 3 ORDER BY lkp_status_id, id DESC";
+          $getUsersData = $conn->query($getUsers);
+          $getUsersCount = $getUsersData->num_rows;?>
+
+          <?php $getUsers1 = "SELECT * FROM users WHERE lkp_status_id =0 AND lkp_admin_service_type_id = 3 ORDER BY lkp_status_id, id DESC";
+          $getUsersData1 = $conn->query($getUsers1);
+          $getUsersCount1 = $getUsersData1->num_rows;?>
+
+          <?php $getUsers2 = "SELECT * FROM users WHERE lkp_status_id =1 AND lkp_admin_service_type_id = 3 ORDER BY lkp_status_id, id DESC";
+          $getUsersData2 = $conn->query($getUsers2);
+          $getUsersCount2 = $getUsersData2->num_rows;?>
       <div class="site-content">
+
         <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="widget widget-tile-1 m-b-30">
-              <div class="p-t-20 p-x-20">
-                <div class="wt-title">New users
+          <a href="users.php">
+          <div class="col-md-4 col-sm-5">
+            <div class="widget widget-tile-2 bg-danger m-b-30">
+              <div class="wt-content p-a-20 p-b-50">
+                <div class="wt-title">Customers
                   <span class="t-caret text-success">
                     <i class="zmdi zmdi-caret-up"></i>
                   </span>
                 </div>
-                <div class="wt-text">Updated today at 14:57</div>
-                <div class="wt-number">175</div>
+                <div class="wt-number"><?php echo $getUsersCount ?><br></div>
+                Active :  &nbsp;<?php echo $getUsersCount1?> &nbsp;&nbsp;&nbsp; In Active :  &nbsp;<?php echo $getUsersCount2?>
               </div>
-              <canvas id="tile-chart-1"></canvas>
               <div class="wt-icon">
                 <i class="zmdi zmdi-accounts"></i>
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="widget widget-tile-1 m-b-30">
-              <div class="p-t-20 p-x-20">
-                <div class="wt-title">Sales
+          </a>
+          <?php $getAllGroceryDeliveryBoys = "SELECT * FROM grocery_delivery_boys ORDER BY lkp_status_id, id DESC";
+          $getGroceryDeliveryBoys = $conn->query($getAllGroceryDeliveryBoys);
+          $getGroceryDeliveryBoysCount = $getGroceryDeliveryBoys->num_rows;?>
+        
+          <?php $getAllGroceryDeliveryBoys1 = "SELECT * FROM grocery_delivery_boys WHERE lkp_status_id =0 ORDER BY lkp_status_id, id DESC";
+          $getGroceryDeliveryBoys1 = $conn->query($getAllGroceryDeliveryBoys1);
+          $getGroceryDeliveryBoysCount1 = $getGroceryDeliveryBoys1->num_rows;?>
+
+          <?php $getAllGroceryDeliveryBoys2 = "SELECT * FROM grocery_delivery_boys WHERE lkp_status_id =1 ORDER BY lkp_status_id, id DESC";
+          $getGroceryDeliveryBoys2 = $conn->query($getAllGroceryDeliveryBoys2);
+          $getGroceryDeliveryBoysCount2 = $getGroceryDeliveryBoys2->num_rows;?>
+          <a href="delivery_boys.php">
+          <div class="col-md-4 col-sm-5">
+            <div class="widget widget-tile-2 bg-primary m-b-30">
+              <div class="wt-content p-a-20 p-b-50">
+                <div class="wt-title">Delivery Boys
                   <span class="t-caret text-success">
                     <i class="zmdi zmdi-caret-up"></i>
                   </span>
                 </div>
-                <div class="wt-text">+17% from previous period</div>
-                <div class="wt-number">$ 47,855</div>
+                <div class="wt-number"><?php echo $getGroceryDeliveryBoysCount ?></div>
+                Active :  &nbsp;<?php echo $getGroceryDeliveryBoysCount1?> &nbsp;&nbsp;&nbsp; In Active :  &nbsp;<?php echo $getGroceryDeliveryBoysCount2?>
               </div>
-              <canvas id="tile-chart-2"></canvas>
               <div class="wt-icon">
-                <i class="zmdi zmdi-shopping-basket"></i>
+                <i class="zmdi zmdi-accounts"></i>
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="widget widget-tile-1 m-b-30">
-              <div class="p-t-20 p-x-20">
-                <div class="wt-title">Subscriptions
-                  <span class="t-caret text-danger">
-                    <i class="zmdi zmdi-caret-down"></i>
-                  </span>
-                </div>
-                <div class="wt-text">Calculated in last 7 days</div>
-                <div class="wt-number">693</div>
+          </a>
+          <?php $getAdminUsers = "SELECT * FROM admin_users WHERE lkp_admin_service_type_id = 3 ORDER BY lkp_status_id,id DESC";
+          $getAdminUsersData = $conn->query($getAdminUsers);
+          $getAdminusersCount = $getAdminUsersData->num_rows;?>
+
+          <?php $getAdminUsers1 = "SELECT * FROM admin_users WHERE lkp_status_id =0 AND lkp_admin_service_type_id = 3 ORDER BY lkp_status_id,id DESC";
+          $getAdminUsersData1 = $conn->query($getAdminUsers1);
+          $getAdminusersCount1 = $getAdminUsersData1->num_rows;?>
+
+          <?php $getAdminUsers2 = "SELECT * FROM admin_users WHERE lkp_status_id =1 AND lkp_admin_service_type_id = 3 ORDER BY lkp_status_id,id DESC";
+          $getAdminUsersData2 = $conn->query($getAdminUsers2);
+          $getAdminusersCount2 = $getAdminUsersData2->num_rows;?>
+          <a href="admin_users.php">
+          <div class="col-md-4 col-sm-5">
+            <div class="widget widget-tile-2 bg-warning m-b-30">
+              <div class="wt-content p-a-20 p-b-50">
+                <div class="wt-title">Admin Users</div>
+                <div class="wt-number"><?php echo $getAdminusersCount ?></div>
+                 Active :  &nbsp;<?php echo $getAdminusersCount1?> &nbsp;&nbsp;&nbsp; In Active :  &nbsp;<?php echo $getAdminusersCount2?>
               </div>
-              <canvas id="tile-chart-3"></canvas>
               <div class="wt-icon">
-                <i class="zmdi zmdi-email-open text-success"></i>
+                <i class="zmdi zmdi-accounts"></i>
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="widget widget-tile-1 m-b-30">
-              <div class="p-t-20 p-x-20">
-                <div class="wt-title">CPU usage
-                  <span class="t-caret text-success">
-                    <i class="zmdi zmdi-caret-up"></i>
-                  </span>
-                </div>
-                <div class="wt-text">Updated: 09:26 AM</div>
-                <div class="wt-number">75%</div>
-              </div>
-              <canvas id="tile-chart-4"></canvas>
-            </div>
+        </a>
           </div>
-        </div>
-        <div class="widget widget-tabs">
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="active">
-              <a href="#tab-1" data-toggle="tab" role="tab">Recent Sales</a>
-            </li>
-            <li class="nav-item">
-              <a href="#">Traffic Source</a>
-            </li>
-            <li class="nav-item">
-              <a href="#">Activity Log</a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab-1" role="tabpanel">
-              <div class="p-a-20">
-                <div id="multiple" style="height: 350px"></div>
+
+          <div class="row">
+          <?php $getAllGroceryOrders = "SELECT * FROM grocery_orders GROUP BY order_id ORDER BY id DESC";
+          $getGroceryOrders = $conn->query($getAllGroceryOrders);
+          $getGroceryOrdersCount = $getGroceryOrders->num_rows;?>
+          <a href="view_orders.php">
+          <div class="col-md-4 col-sm-5">
+            <div class="widget widget-tile-2 bg-warning m-b-30">
+              <div class="wt-content p-a-20 p-b-50">
+                <div class="wt-title">Orders</div>
+                <div class="wt-number"><?php echo $getGroceryOrdersCount ?></div>
               </div>
-              <div class="p-a-20 wt-footer">
-                <div class="row text-center">
-                  <div class="col-sm-3 col-xs-6">
-                    <h4 class="m-b-0">$ 89.34</h4>
-                    <p class="text-muted">Daily Sales</p>
-                  </div>
-                  <div class="col-sm-3 col-xs-6">
-                    <h4 class="m-b-0">$ 498.00</h4>
-                    <p class="text-muted">Weekly Sales</p>
-                  </div>
-                  <div class="col-sm-3 col-xs-6">
-                    <h4 class="m-b-0">$ 34,903</h4>
-                    <p class="text-muted">Monthly Sales</p>
-                  </div>
-                  <div class="col-sm-3 col-xs-6">
-                    <h4 class="m-b-0">$ 98,343.49</h4>
-                    <p class="text-muted">Yearly Sales</p>
-                  </div>
-                </div>
+              <div class="wt-icon">
+                <i class="zmdi zmdi-accounts"></i>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="panel panel-default panel-table">
+          </a>
+          </div>
+          
+
+         <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
               <div class="panel-heading">
                 <div class="panel-tools">
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-refresh"></i>
-                  </a>
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-close"></i>
-                  </a>
                 </div>
-                <h3 class="panel-title">Tickets</h3>
-                <div class="panel-subtitle">+9 today</div>
+                <h3 class="panel-title">Users</h3>
+                <div class="panel-subtitle">Users count based on register device type</div>
               </div>
+              <?php $getAndroidUsers = "SELECT * FROM users WHERE lkp_register_device_type_id = 2 AND lkp_admin_service_type_id = 3";
+              $getAndroidUsers1 = $conn->query($getAndroidUsers);
+              $getAndroidUsersCount = $getAndroidUsers1->num_rows; ?>
+              <?php $getIosUsers = "SELECT * FROM users WHERE lkp_register_device_type_id = 3 AND lkp_admin_service_type_id = 3";
+              $getIosUsers1 = $conn->query($getIosUsers);
+              $getIosUsersCount = $getIosUsers1->num_rows; ?>
+              <?php $getWindowsUsers = "SELECT * FROM users WHERE lkp_register_device_type_id = 1 AND lkp_admin_service_type_id = 3";
+              $getWindowsUsers1 = $conn->query($getWindowsUsers);
+              $getWindowsUsersCount = $getWindowsUsers1->num_rows; ?>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <i class="zmdi zmdi-circle text-primary"></i>
+                    </td>
+                    <td>Android</td>
+                    <td><?php echo $getAndroidUsersCount; ?></td>
+                    <td class="text-center">
+                    </td>
+                    <td class="text-right">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="zmdi zmdi-circle text-warning"></i>
+                    </td>
+                    <td>iOS</td>
+                    <td><?php echo $getIosUsersCount; ?></td>
+                    <td class="text-center">
+                    </td>
+                    <td class="text-right">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="zmdi zmdi-circle text-danger"></i>
+                    </td>
+                    <td>Web Users</td>
+                    <td><?php echo $getWindowsUsersCount; ?></td>
+                    <td class="text-center">
+                    </td>
+                    <td class="text-right">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
               <div class="panel-body">
-                <div class="text-center m-b-30">
-                  <div class="btn-group btn-group-sm" data-toggle="buttons">
-                    <label class="btn btn-default active">
-                      <input type="radio" name="buttonRadios" id="buttonRadios1" autocomplete="off" checked="checked"> Complete
-                    </label>
-                    <label class="btn btn-default">
-                      <input type="radio" name="buttonRadios" id="buttonRadios2" autocomplete="off"> Open
-                    </label>
-                  </div>
-                </div>
-                <div id="chart-line" style="height: 218px"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <div class="panel-tools">
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-refresh"></i>
-                  </a>
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-close"></i>
-                  </a>
-                </div>
-                <h3 class="panel-title">Conversions</h3>
-                <div class="panel-subtitle">+36 today</div>
-              </div>
-              <div class="panel-body">
-                <div class="text-center m-b-30">
-                  <div class="btn-group btn-group-sm" data-toggle="buttons">
-                    <label class="btn btn-default active">
-                      <input type="radio" name="buttonRadios" id="buttonRadios1" autocomplete="off" checked="checked"> Corporate
-                    </label>
-                    <label class="btn btn-default">
-                      <input type="radio" name="buttonRadios" id="buttonRadios2" autocomplete="off"> Retail
-                    </label>
-                  </div>
-                </div>
-                <div id="chart-donut" style="height: 218px"></div>
+                <div id="donut1" style="height: 215px"></div>
               </div>
             </div>
           </div>
@@ -199,376 +200,81 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <div class="panel-tools">
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-refresh"></i>
-                  </a>
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-close"></i>
-                  </a>
                 </div>
-                <h3 class="panel-title">Latest activity</h3>
-                <div class="panel-subtitle">Lorem ipsum dolor sit amet</div>
+                <h3 class="panel-title">Top Categories</h3>
+                <div class="panel-subtitle"></div>
               </div>
               <div class="panel-body">
-                <p>Jonathan Mel
-                  <span class="pull-right text-muted">80%</span>
-                </p>
-                <div class="progress progress-xs m-b-20">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                    <span class="sr-only">80% Complete (success)</span>
-                  </div>
-                </div>
-                <p>Landon Graham
-                  <span class="pull-right text-muted">57%</span>
-                </p>
-                <div class="progress progress-xs m-b-20">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-                    <span class="sr-only">57% Complete (success)</span>
-                  </div>
-                </div>
-                <p>Ron Carran
-                  <span class="pull-right text-muted">60%</span>
-                </p>
-                <div class="progress progress-xs m-b-20">
-                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                    <span class="sr-only">60% Complete (success)</span>
-                  </div>
-                </div>
-                <p>Vance Osborn
-                  <span class="pull-right text-muted">23%</span>
-                </p>
-                <div class="progress progress-xs m-b-20">
-                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 23%">
-                    <span class="sr-only">23% Complete (success)</span>
-                  </div>
-                </div>
-                <p>Wolfe Stevie
-                  <span class="pull-right text-muted">45%</span>
-                </p>
-                <div class="progress progress-xs m-b-20">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                    <span class="sr-only">45% Complete (success)</span>
-                  </div>
+                <div class="chart-wrapper">
+                  <canvas id="pie-canvas3"  style="height: 345px"></canvas>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <div class="panel-tools">
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-refresh"></i>
-                  </a>
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-close"></i>
-                  </a>
-                </div>
-                <h3 class="panel-title">Recent purchases</h3>
-                <div class="panel-subtitle">+23% from previous period</div>
-              </div>
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Country</th>
-                      <th>Users</th>
-                      <th>Clicks</th>
-                      <th>Sales</th>
-                      <th style="width: 5%"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <span class="flag-icon flag-icon-us"></span>
-                      </td>
-                      <td>USA</td>
-                      <td>30%
-                        <span class="text-success">
-                          <i class="zmdi zmdi-arrow-right-top"></i>
-                        </span>
-                      </td>
-                      <td>930</td>
-                      <td>34</td>
-                      <td class="actions">
-                        <a href="#">
-                          <i class="zmdi zmdi-more"></i>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span class="flag-icon flag-icon-gb"></span>
-                      </td>
-                      <td>Germany</td>
-                      <td>25%
-                        <span class="text-success">
-                          <i class="zmdi zmdi-arrow-right-top"></i>
-                        </span>
-                      </td>
-                      <td>1023</td>
-                      <td>26</td>
-                      <td class="actions">
-                        <a href="#">
-                          <i class="zmdi zmdi-more"></i>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="warning">
-                      <td>
-                        <span class="flag-icon flag-icon-us"></span>
-                      </td>
-                      <td>USA</td>
-                      <td>17%
-                        <span class="text-danger">
-                          <i class="zmdi zmdi-arrow-left-bottom"></i>
-                        </span>
-                      </td>
-                      <td>1560</td>
-                      <td>87</td>
-                      <td class="actions">
-                        <a href="#">
-                          <i class="zmdi zmdi-more"></i>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span class="flag-icon flag-icon-fr"></span>
-                      </td>
-                      <td>France</td>
-                      <td>36%
-                        <span class="text-success">
-                          <i class="zmdi zmdi-arrow-right-top"></i>
-                        </span>
-                      </td>
-                      <td>2500</td>
-                      <td>148</td>
-                      <td class="actions">
-                        <a href="#">
-                          <i class="zmdi zmdi-more"></i>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="warning">
-                      <td>
-                        <span class="flag-icon flag-icon-pl"></span>
-                      </td>
-                      <td>Poland</td>
-                      <td>12%
-                        <span class="text-danger">
-                          <i class="zmdi zmdi-arrow-left-bottom"></i>
-                        </span>
-                      </td>
-                      <td>1460</td>
-                      <td>75</td>
-                      <td class="actions">
-                        <a href="#">
-                          <i class="zmdi zmdi-more"></i>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span class="flag-icon flag-icon-no"></span>
-                      </td>
-                      <td>Norway</td>
-                      <td>24%
-                        <span class="text-success">
-                          <i class="zmdi zmdi-arrow-right-top"></i>
-                        </span>
-                      </td>
-                      <td>987</td>
-                      <td>14</td>
-                      <td class="actions">
-                        <a href="#">
-                          <i class="zmdi zmdi-more"></i>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span class="flag-icon flag-icon-ru"></span>
-                      </td>
-                      <td>Russia</td>
-                      <td>33%
-                        <span class="text-success">
-                          <i class="zmdi zmdi-arrow-right-top"></i>
-                        </span>
-                      </td>
-                      <td>1750</td>
-                      <td>77</td>
-                      <td class="actions">
-                        <a href="#">
-                          <i class="zmdi zmdi-more"></i>
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          
           </div>
-          <div class="col-md-6">
-            <div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <div class="panel-tools">
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-download"></i>
-                  </a>
-                  <a href="#" class="tools-icon">
-                    <i class="zmdi zmdi-close"></i>
-                  </a>
-                </div>
-                <h3 class="panel-title">Recent orders</h3>
-                <div class="panel-subtitle">+17% from previous period</div>
-              </div>
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th style="width: 32px"></th>
-                      <th style="width: 32px"></th>
-                      <th>Name</th>
-                      <th>Dynamics</th>
-                      <th>Amount</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="text-center">
-                        <label class="custom-control custom-control-primary custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" name="custom" checked="checked">
-                          <span class="custom-control-indicator"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <img class="img-circle" src="img/avatars/1.jpg" alt="" width="32" height="32">
-                      </td>
-                      <td>Airi Satou</td>
-                      <td>
-                        <span data-chart="peity" data-type="line">5,3,9,6,5,9,7,3,5,2</span>
-                      </td>
-                      <td>$162,700</td>
-                      <td>
-                        <span class="label label-outline-success">Active</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="custom-control custom-control-primary custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" name="custom">
-                          <span class="custom-control-indicator"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <img class="img-circle" src="img/avatars/2.jpg" alt="" width="32" height="32">
-                      </td>
-                      <td>Angelica Ramos</td>
-                      <td>
-                        <span data-chart="peity" data-type="line">5,3,9,6,5,9,7,3,5,2</span>
-                      </td>
-                      <td>$98,300</td>
-                      <td>
-                        <span class="label label-outline-info">Expired</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="custom-control custom-control-primary custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" name="custom" checked="checked">
-                          <span class="custom-control-indicator"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <img class="img-circle" src="img/avatars/3.jpg" alt="" width="32" height="32">
-                      </td>
-                      <td>Angelica Ramos</td>
-                      <td>
-                        <span data-chart="peity" data-type="line">5,3,9,6,5,9,7,3,5,2</span>
-                      </td>
-                      <td>$98,300</td>
-                      <td>
-                        <span class="label label-outline-info">Expired</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="custom-control custom-control-primary custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" name="custom" checked="checked">
-                          <span class="custom-control-indicator"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <img class="img-circle" src="img/avatars/4.jpg" alt="" width="32" height="32">
-                      </td>
-                      <td>Ashton Cox</td>
-                      <td>
-                        <span data-chart="peity" data-type="line">5,3,9,6,5,9,7,3,5,2</span>
-                      </td>
-                      <td>$47,000</td>
-                      <td>
-                        <span class="label label-outline-info">Expired</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="custom-control custom-control-primary custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" name="custom">
-                          <span class="custom-control-indicator"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <img class="img-circle" src="img/avatars/5.jpg" alt="" width="32" height="32">
-                      </td>
-                      <td>Bradley Greer</td>
-                      <td>
-                        <span data-chart="peity" data-type="line">5,3,9,6,5,9,7,3,5,2</span>
-                      </td>
-                      <td>$250,600</td>
-                      <td>
-                        <span class="label label-outline-success">Active</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">
-                        <label class="custom-control custom-control-primary custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" name="custom">
-                          <span class="custom-control-indicator"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <img class="img-circle" src="img/avatars/6.jpg" alt="" width="32" height="32">
-                      </td>
-                      <td>Brenden Wagner</td>
-                      <td>
-                        <span data-chart="peity" data-type="line">5,3,9,6,5,9,7,3,5,2</span>
-                      </td>
-                      <td>$125,000</td>
-                      <td>
-                        <span class="label label-outline-success">Active</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+        
+  
       </div>
-      <div class="site-footer">
-        2017 © Cosmos
-      </div>
-    </div>
-    <script src="js/vendor.min.js"></script>
-    <script src="js/cosmos.min.js"></script>
-    <script src="js/application.min.js"></script>
+      <?php include_once 'footer.php'; ?>
+    
     <script src="js/dashboard-3.min.js"></script>
+    <script type="text/javascript">
+    "use strict";!function(a){new Chart(a("#infoblock-chart-1"),{type:"line",data:{labels:["January","February","March","April","May","June","July"],datasets:[{label:"Dataset",data:[45,40,30,20,25,35,50],fill:!0,backgroundColor:"#e53935",borderColor:"#e53935",borderWidth:2,borderCapStyle:"butt",borderDash:[],borderDashOffset:0,borderJoinStyle:"miter",pointBorderColor:"#e53935",pointBackgroundColor:"#fff",pointBorderWidth:2,pointHoverRadius:4,pointHoverBackgroundColor:"#e53935",pointHoverBorderColor:"#fff",pointHoverBorderWidth:2,pointRadius:[0,4,4,4,4,4,0],pointHitRadius:10,spanGaps:!1}]},options:{scales:{xAxes:[{display:!1}],yAxes:[{display:!1,ticks:{min:0,max:60}}]},legend:{display:!1}}}),new Chart(a("#infoblock-chart-2"),{type:"line",data:{labels:["January","February","March","April","May","June","July"],datasets:[{label:"Dataset",data:[30,22,18,25,40,55,60],fill:!0,backgroundColor:"#7d57c1",borderColor:"#7d57c1",borderWidth:2,borderCapStyle:"butt",borderDash:[],borderDashOffset:0,borderJoinStyle:"miter",pointBorderColor:"#7d57c1",pointBackgroundColor:"#fff",pointBorderWidth:2,pointHoverRadius:4,pointHoverBackgroundColor:"#7d57c1",pointHoverBorderColor:"#fff",pointHoverBorderWidth:2,pointRadius:[0,4,4,4,4,4,0],pointHitRadius:10,spanGaps:!1}]},options:{scales:{xAxes:[{display:!1}],yAxes:[{display:!1,ticks:{min:0,max:60}}]},legend:{display:!1}}}),a('[data-chart="peity"]').each(function(){var b=a(this).attr("data-type");a(this).peity(b)}),Morris.Donut({element:"donut1",data:[{label:"Android",value:<?php echo $getAndroidUsersCount; ?>},{label:"iOS",value:<?php echo $getIosUsersCount; ?>},{label:"WebUsers",value:<?php echo $getWindowsUsersCount; ?>}],resize:!0,colors:["#1d87e4","#faa800","#e53935"]}),a("#vector-map").vectorMap({map:"world_en",backgroundColor:null,borderColor:null,borderOpacity:.5,borderWidth:1,color:"#1d87e4",enableZoom:!0,hoverColor:"#1d87e4",hoverOpacity:.7,normalizeFunction:"linear",selectedColor:"#faa800",selectedRegions:["au","ca","de","br","in"],showTooltip:!0});for(var b=[],c=0;c<=6;c+=1)b.push([c,parseInt(20*Math.random())]);for(var d=[],e=0;e<=6;e+=1)d.push([e,parseInt(20*Math.random())]);var f=[{label:"Data One",data:b,bars:{order:1}},{label:"Data Two",data:d,bars:{order:2}}];a.plot(a("#chart-bar"),f,{bars:{show:!0,barWidth:.2,fill:1},series:{stack:0},grid:{color:"#aaa",hoverable:!0,borderWidth:0,labelMargin:5,backgroundColor:"#fff"},legend:{show:!1},colors:["#faa800","#34a853"],tooltip:!0,tooltipOpts:{content:"%s : %y.0",shifts:{x:-30,y:-50}}}),a(function(){function b(){for(d.length>0&&(d=d.slice(1));d.length<e;){var a=d.length>0?d[d.length-1]:50,b=a+10*Math.random()-5;b<5?b=5:b>95&&(b=95),d.push(b)}for(var c=[],f=0;f<d.length;++f)c.push([f,d[f]]);return c}function c(){g.setData([b()]),g.draw(),setTimeout(c,f)}var d=[],e=300,f=60,g=a.plot("#realtime",[b()],{series:{shadowSize:0},yaxis:{min:0,max:100},xaxis:{min:0,max:300},colors:["#7d57c1"],grid:{color:"#aaa",hoverable:!0,borderWidth:0,backgroundColor:"#fff"},tooltip:!0,tooltipOpts:{content:"Y: %y",defaultTheme:!1}});c()})}(jQuery);
+
+    </script>
+
+    <script src="js/charts-flot.min.js"></script>
+    <script>
+    function createChart(id, type, options) {
+      var data = {
+        labels: [ <?php $getOrders =  $conn->query("SELECT * FROM grocery_orders GROUP BY category_id");
+          while ($getOrdersData = $getOrders->fetch_assoc()) {
+            $category_id1 = $getOrdersData['category_id']; 
+            $getCategoriesNames = $conn->query("SELECT * FROM grocery_category WHERE id = '$category_id1'");
+            $getCategoriesNames1 = $getCategoriesNames->fetch_assoc();
+            echo "'".$getCategoriesNames1['category_name'] . "'".','; } ?> ],
+        datasets: [
+          {
+            label: 'My First dataset',
+            data: [<?php $getOrders1 =  $conn->query("SELECT * FROM grocery_orders GROUP BY category_id");
+                        while ($getOrdersCount = $getOrders1->fetch_assoc()) {
+                          $category_id = $getOrdersCount['category_id']; 
+                          $getCategories1 = $conn->query("SELECT * FROM grocery_orders WHERE category_id = '$category_id'");
+                          $noRows = $getCategories1->num_rows;
+                          echo $noRows.','; }
+                          ?>],
+            backgroundColor: [
+              '#4D4D4D',
+              '#5DA5DA',
+              '#FAA43A',
+              '#60BD68',
+              '#F17CB0',
+              '#B2912F',
+              '#36A2EB',
+              '#DECF3F'
+            ]
+          }
+        ]
+      };
+
+      new Chart(document.getElementById(id), {
+        type: type,
+        data: data,
+        options: options
+      });
+    }
+
+    ['pie'].forEach(function (type) {
+      createChart(type + '-canvas3', type, {
+        responsive: true,
+        maintainAspectRatio: false,
+        pieceLabel: {
+          render: 'percentage',
+        }
+      });
+    });
+  </script>
   </body>
 
 <!-- Mirrored from big-bang-studio.com/cosmos/dashboard-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Aug 2017 10:13:38 GMT -->

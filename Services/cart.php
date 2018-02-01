@@ -337,10 +337,41 @@
 	?>
     <script>
     
-	$('input.date-pick').datepicker({minDate: 0, maxDate: "+2M"});
+	$('input.date-pick').datepicker({
+		minDate: 0, maxDate: "+2M",
+
+		onSelect: function (dateText, inst) {
+        var d = new Date();
+  		var month = d.getMonth()+1;
+  		var day = d.getDate();
+  		var today = (month<10 ? '0' : '') + month + "/" 
+              + (day<10 ? '0' : '') + day + '/'
+              + d.getFullYear();
+        //alert(today);
+	     if(today == dateText) {
+	     	//alert("success");
+	     	$('input.time-pick').timepicker({		
+				'minTime': '<?php echo $min_time; ?>',
+			    'maxTime': '11:30pm',
+			    'step': 30,
+			    
+			    //'showDuration': true
+			});
+	     } else {
+	     	//alert("fail");
+	     	$('input.time-pick').timepicker({		
+				'minTime': '7:30am',
+			    'maxTime': '11:30pm',
+			    'step': 30,
+			    
+			    //'showDuration': true
+			});
+	     }
+      	}
+	});
 	$('input.time-pick').timepicker({		
 		'minTime': '<?php echo $min_time; ?>',
-	    'maxTime': '7:30pm',
+	    'maxTime': '11:30pm',
 	    'step': 30,
 	    
 	    //'showDuration': true
