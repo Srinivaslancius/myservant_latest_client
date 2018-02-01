@@ -20,6 +20,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				foreach ($splittedstring as $key => $value) {
 					 if(!empty($value)){
 					 	//echo "splittedstring[".$key."] = ".$value."<br>";
+					 	$lists["productId"] = $getProductDetails["id"];
+					 	$getProductcat = getIndividualDetails('grocery_products','id',$getProductDetails["id"]);
+					 	$lists["catId"] = $getProductcat["grocery_category_id"];
+					 	$lists["subCatId"] = $getProductcat["grocery_sub_category_id"];
 					 	$lists["search_tags"] = $value; 
 					 	array_push($response["lists"], $lists);
 					 }				
