@@ -175,7 +175,7 @@ $tagNames = $conn->query($getTags);
 								?>
 							<input type="hidden" id="cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_category_id']; ?>">
 							<input type="hidden" id="sub_cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
-							<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductNames['product_name']; ?>">
+							<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
 									<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
@@ -304,7 +304,7 @@ $getSubCat = $conn->query($getsubCats);
 									?>
 										<input type="hidden" id="cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_category_id']; ?>">
 										<input type="hidden" id="sub_cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
-										<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductNames['product_name']; ?>">
+										<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 										<div class="product-box">
 											<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
 												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
@@ -382,7 +382,7 @@ $getSubCat = $conn->query($getsubCats);
 									?>
 									<input type="hidden" id="cat_id_<?php echo $productDetails2['id']; ?>" value="<?php echo $productDetails2['grocery_category_id']; ?>">
 									<input type="hidden" id="sub_cat_id_<?php echo $productDetails2['id']; ?>" value="<?php echo $productDetails2['grocery_sub_category_id']; ?>">
-									<input type="hidden" id="pro_name_<?php echo $productDetails2['id']; ?>" value="<?php echo $getProductNames['product_name']; ?>">
+									<input type="hidden" id="pro_name_<?php echo $productDetails2['id']; ?>" value="<?php echo $getProductName2['product_name']; ?>">
 									<div class="col-md-6">
 										<div class="product-box">
 											<div id="div1" class="cart_popup_<?php echo $productDetails2['id']; ?>">
@@ -461,7 +461,7 @@ $getSubCat = $conn->query($getsubCats);
 									?>
 										<input type="hidden" id="cat_id_<?php echo $productDetails3['id']; ?>" value="<?php echo $productDetails3['grocery_category_id']; ?>">
 										<input type="hidden" id="sub_cat_id_<?php echo $productDetails3['id']; ?>" value="<?php echo $productDetails3['grocery_sub_category_id']; ?>">
-										<input type="hidden" id="pro_name_<?php echo $productDetails3['id']; ?>" value="<?php echo $getProductNames['product_name']; ?>">
+										<input type="hidden" id="pro_name_<?php echo $productDetails3['id']; ?>" value="<?php echo $getProductName3['product_name']; ?>">
 										<div class="product-box">
 											<div id="div1" class="cart_popup_<?php echo $productDetails3['id']; ?>">
 												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
@@ -651,7 +651,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
                    		?>
                    		<input type="hidden" id="cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_category_id']; ?>">
 						<input type="hidden" id="sub_cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_sub_category_id']; ?>">
-						<input type="hidden" id="pro_name_<?php echo $todayDeals['id']; ?>" value="<?php echo $getProductNames['product_name']; ?>">
+						<input type="hidden" id="pro_name_<?php echo $todayDeals['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 						<div class="owl-carousel-item">
                         <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
 						<div class="product-box style1">
