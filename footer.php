@@ -98,7 +98,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							</div>
 							<ul>
 								<li>
-									<a href="myaccount.php" title="">
+									<a href="my_account.php" title="">
 										My Account
 									</a>
 								</li>
