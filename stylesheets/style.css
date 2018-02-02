@@ -3404,10 +3404,10 @@ ol.comment-list li.comment .comment-text .comment-content p {
 
 .btn-info {
     color: #fff;
-    background-color: #fe6003 !important;
-    border-color: #fe6003 !important;
-	font-size:15px;
-	padding:9px 10px
+    background-color: #fe6003;
+    border-color: #fe6003;
+    font-size:15px;
+    padding:9px 10px;
 }
 .form-control1{
 	height:45px !important;
@@ -3785,7 +3785,19 @@ width:260px !important;
 }
    
 }
-
-
+.btn-info.twi_ter{
+	font-size:15px !important;
+	width:100% !important;
+	color:white !important;
+	border-color: #5bc0de!important;
+	background-color:#5bc0de!important;
+	
+}
+.btn-primary.fac_book{
+	font-size:15px!important;
+	padding:9px 27px!important;
+	color:white!important;
+	width:100%!important;
+}
 
 	
