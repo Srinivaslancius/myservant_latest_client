@@ -924,6 +924,8 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			        productId:ProductId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
+			      	alert(response);
+			      	return false;
 			      	//window.location.href = "shop_cart.php";
 			      	$(".cart_popup_"+ProductId).fadeIn(2000);
 			      	setTimeout(function() {
