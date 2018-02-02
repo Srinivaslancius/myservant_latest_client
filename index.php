@@ -83,21 +83,14 @@ position:absolute;
 									} else {
 										$banner_id = $getBannersData1['sub_category_id'];
 									}
-								if($getBannersData1['banner_image_type'] == 1) { ?>
+								?>
 								<div class="slider-item style1">
 									<div class="item-image">
 										<a href="results.php?id=<?php echo $getBannersData1['id']; ?>"><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
-								<?php } else { ?>
-								<div class="slider-item style1">
-									<div class="item-image">
-										<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt="">
-									</div>
-									<div class="clearfix"></div>
-								</div><!-- /.slider-item style1 -->
-								<?php } } ?>
+								<?php } ?>
 							</div>
 						</div>
 					</div><!-- /.row -->
@@ -180,6 +173,9 @@ $tagNames = $conn->query($getTags);
 									$allGetPrices1 = $conn->query($getPrices1);
 									$getPrc1 = $allGetPrices1->fetch_assoc();
 								?>
+							<input type="hidden" id="cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_category_id']; ?>">
+							<input type="hidden" id="sub_cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
+							<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
 									<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
@@ -306,6 +302,9 @@ $getSubCat = $conn->query($getsubCats);
 										$allGetPrices1 = $conn->query($getPrices1);
 										$getPrc1 = $allGetPrices1->fetch_assoc();
 									?>
+										<input type="hidden" id="cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_category_id']; ?>">
+										<input type="hidden" id="sub_cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
+										<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 										<div class="product-box">
 											<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
 												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
@@ -381,7 +380,9 @@ $getSubCat = $conn->query($getsubCats);
 										$allGetPrices2 = $conn->query($getPrices2);
 										$getPrc2 = $allGetPrices2->fetch_assoc();
 									?>
-
+									<input type="hidden" id="cat_id_<?php echo $productDetails2['id']; ?>" value="<?php echo $productDetails2['grocery_category_id']; ?>">
+									<input type="hidden" id="sub_cat_id_<?php echo $productDetails2['id']; ?>" value="<?php echo $productDetails2['grocery_sub_category_id']; ?>">
+									<input type="hidden" id="pro_name_<?php echo $productDetails2['id']; ?>" value="<?php echo $getProductName2['product_name']; ?>">
 									<div class="col-md-6">
 										<div class="product-box">
 											<div id="div1" class="cart_popup_<?php echo $productDetails2['id']; ?>">
@@ -458,6 +459,9 @@ $getSubCat = $conn->query($getsubCats);
 										$allGetPrices3 = $conn->query($getPrices3);
 										$getPrc3 = $allGetPrices3->fetch_assoc();
 									?>
+										<input type="hidden" id="cat_id_<?php echo $productDetails3['id']; ?>" value="<?php echo $productDetails3['grocery_category_id']; ?>">
+										<input type="hidden" id="sub_cat_id_<?php echo $productDetails3['id']; ?>" value="<?php echo $productDetails3['grocery_sub_category_id']; ?>">
+										<input type="hidden" id="pro_name_<?php echo $productDetails3['id']; ?>" value="<?php echo $getProductName3['product_name']; ?>">
 										<div class="product-box">
 											<div id="div1" class="cart_popup_<?php echo $productDetails3['id']; ?>">
 												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
@@ -645,6 +649,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
                    		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$todayDeals['id']);
                    		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
                    		?>
+                   		<input type="hidden" id="cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_category_id']; ?>">
+						<input type="hidden" id="sub_cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_sub_category_id']; ?>">
+						<input type="hidden" id="pro_name_<?php echo $todayDeals['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 						<div class="owl-carousel-item">
                         <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
 						<div class="product-box style1">
@@ -654,7 +661,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 							</div>
 								<div class="imagebox style1">
 									<div class="box-image">
-										<a href="#" title="">
+										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
 											<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 										</a>
 									</div><!-- /.box-image -->
@@ -663,7 +670,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											<a href="#" title=""><?php echo $getCategoryName['category_name']; ?></a>
 										</div>-->
 										<div class="product-name">
-											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
+											<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
 										<?php 
 											$prodid = $todayDeals['id'];
