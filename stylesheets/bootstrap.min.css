@@ -2250,8 +2250,8 @@ a.btn.disabled,fieldset[disabled] a.btn {
 }
 .btn-primary {
  color:#fff;
- background-color:#0275d8;
- border-color:#0275d8
+ background-color: #3B5998;
+ border-color: #3B5998;
 }
 .btn-primary:hover {
  color:#fff;
@@ -2298,8 +2298,8 @@ a.btn.disabled,fieldset[disabled] a.btn {
 }
 .btn-info {
  color:#fff;
- background-color:#5bc0de;
- border-color:#5bc0de
+ /* background-color:#5bc0de; */
+ /* border-color:#5bc0de; */
 }
 .btn-info:hover {
  color:#fff;
