@@ -899,7 +899,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				var productWeightType = split[0];
 				var productPrice = split[1];
 				var product_quantity = $('#product_quantity_'+ProductId).val();
-				alert(product_quantity);
+				//alert(product_quantity);
 
 	   			$.ajax({
 			      type:'post',
