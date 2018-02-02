@@ -98,9 +98,15 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							</div>
 							<ul>
 								<li>
-									<a href="my_account.php" title="">
-										My Account
-									</a>
+									<?php if($_SESSION['user_login_session_id'] =='') { ?>
+										<a href="login.php" title="">
+											My Account
+										</a>
+									<?php } else { ?>
+										<a href="my_account.php" title="">
+											My Account
+										</a>
+									<?php } ?>
 								</li>
 								<li>
 									<a href="trackorder.php" title="">
