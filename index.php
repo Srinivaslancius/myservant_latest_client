@@ -142,7 +142,7 @@ if($_SESSION['city_name'] == '') {
     $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
 	$lkp_city_id = $getCities1['id'];
 }
-$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC LIMIT 0,4";
+$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
 $tagNames = $conn->query($getTags);
 ?>
 
@@ -185,7 +185,7 @@ $tagNames = $conn->query($getTags);
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
-											<a href="#" title="">
+											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
 												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="" style="width:264px;height:210px">
 											</a>
 											
@@ -312,7 +312,7 @@ $getSubCat = $conn->query($getsubCats);
 											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
-													<a href="single_product.php" title="">
+													<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
 														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
@@ -391,7 +391,7 @@ $getSubCat = $conn->query($getsubCats);
 											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
-													<a href="single_product.php" title="">
+													<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title="">
 														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
@@ -400,7 +400,7 @@ $getSubCat = $conn->query($getsubCats);
 														<a href="#" title=""><?php echo $categoryName2['category_name']; ?></a>
 													</div>-->
 													<div class="product-name">
-														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName2['product_name']; ?></a>
+														<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title=""><?php echo $getProductName2['product_name']; ?></a>
 													</div>
 													<div class="product_name">
 														<?php 
@@ -469,7 +469,7 @@ $getSubCat = $conn->query($getsubCats);
 											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
-													<a href="single_product.php" title="">
+													<a href="single_product.php?product_id=<?php echo $productDetails3['id']; ?>" title="">
 														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage3['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
@@ -478,7 +478,7 @@ $getSubCat = $conn->query($getsubCats);
 														<a href="#" title=""><?php echo $categoryName3['category_name']; ?></a>
 													</div>-->
 													<div class="product-name">
-														<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName3['product_name']; ?></a>
+														<a href="single_product.php?product_id=<?php echo $productDetails3['id']; ?>" title=""><?php echo $getProductName3['product_name']; ?></a>
 													</div>
 													<div class="product_name">
 														<?php 
@@ -690,8 +690,10 @@ if($getTodayDeals1->num_rows > 0) { ?>
 										 	$getPrc1 = $allGetPrices->fetch_assoc();
 										 ?>
 										<div class="price_<?php echo $todayDeals['id']; ?>">
-											<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
 											<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
+											<?php if($getPrc1['offer_type'] == 1) { ?>
+												<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
+											<?php } ?>
 										</div>
 
 										<div class="quanlity">

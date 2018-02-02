@@ -315,6 +315,7 @@
 												$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
 												$cartTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
 												$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getCartItems['product_id']);
+												$reward_points += $getCartItems['reward_points']*$getCartItems['product_quantity']; 
 											?>
 											<input type="hidden" name='category_id[]' type='text' value='<?php echo $getCartItems['category_id'];?>'>
 											<input type="hidden" name='sub_cat_id[]' type='text' value='<?php echo $getCartItems['sub_category_id'];?>'>
@@ -393,21 +394,12 @@
 											<?php } ?>
 											
 											<?php
-											$transaction_amount = 0; $rewardPoints = 0;
-											$user_id = $_SESSION['user_login_session_id'];
 											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
-											//echo $getRewardPointsdata['reward_status'];
+											//If reward status is yes
 											if($getRewardPointsdata['reward_status'] == 0) { ?>
-
 												<tr>
 													<td>Reward Points</td>
-													<td class="reward-points"><?php echo $rewardPointsRewdSettings+$rewardPointsRewdSettings1+$rewardPointsRewdSettings2+$rewardPointsRewdSettings3; ?></td>
-												</tr>
-
-											<?php } else { //1-Rewards No?>
-												<tr>
-													<td>Reward Points</td>
-													<td class="reward-points">0</td>
+													<td class="reward-points"><?php echo round($reward_points); ?></td>
 												</tr>
 											<?php } ?>
 											

@@ -40,21 +40,21 @@ if($getCountSel->num_rows > 0) {
 		$getAllProIds=$conn->query($getProductRewards);
 		$getRewd = $getAllProIds->fetch_assoc();
 		if($getAllProIds->num_rows > 0) {
-			$rewardPointsRewdSettings = round(($product_price/$getRewardPointsdata['transaction_amount'])*$getRewd['reward_points']);
+			$rewardPointsRewdSettings = ($product_price/$getRewardPointsdata['transaction_amount'])*$getRewd['reward_points'];
 		} else { 
 			$getSubcatRewards = "SELECT * FROM grocery_reward_settings WHERE sub_category_id = '$sub_category_id' AND product_id != '$product_id' AND reward_type = 3 AND lkp_status_id = 0";
 			$getAllSubcatIds=$conn->query($getSubcatRewards);
 			$getSubcatRewd = $getAllSubcatIds->fetch_assoc();
 			if($getAllSubcatIds->num_rows > 0) {
-				$rewardPointsRewdSettings = round(($product_price/$getRewardPointsdata['transaction_amount'])*$getSubcatRewd['reward_points']);
+				$rewardPointsRewdSettings = ($product_price/$getRewardPointsdata['transaction_amount'])*$getSubcatRewd['reward_points'];
 			} else {
 				$getCategoryRewards = "SELECT * FROM grocery_reward_settings WHERE category_id = '$category_id' AND sub_category_id != '$sub_category_id' AND product_id != '$product_id' AND reward_type = 2 AND lkp_status_id = 0";
 				$getAllCatIds=$conn->query($getCategoryRewards);
 				$getCatRewd = $getAllCatIds->fetch_assoc();
 				if($getAllCatIds->num_rows > 0) {
-					$rewardPointsRewdSettings = round(($product_price/$getRewardPointsdata['transaction_amount'])*$getCatRewd['reward_points']);
+					$rewardPointsRewdSettings = ($product_price/$getRewardPointsdata['transaction_amount'])*$getCatRewd['reward_points'];
 				} else {
-					$rewardPointsRewdSettings = round(($product_price/$getRewardPointsdata['transaction_amount'])*$getRewardPointsdata['reward_points']);
+					$rewardPointsRewdSettings = ($product_price/$getRewardPointsdata['transaction_amount'])*$getRewardPointsdata['reward_points'];
 				}
 			}
 		}
