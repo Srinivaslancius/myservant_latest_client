@@ -140,7 +140,7 @@ line-height:10px;
 	      $pincode = $_POST['pincode'];
 	      $last_name = $_POST['last_name'];
 	      $address = $_POST['address'];
-	      $created_at = date("ymdhis");
+	      $created_at = date("Y-m-d h:i:s");
 	      $sql1 = "INSERT INTO add_user_address (`user_id`,`name`,`email`,`mobile`,`last_name`,`city`,`pincode`,`address`,`created_at`) VALUES ('$user_id','$name','$email','$mobile','$last_name','$city','$pincode','$address','$created_at')";
 	      if($conn->query($sql1) === TRUE){             
 	         echo "<script type='text/javascript'>window.location='my_address.php?succ=log-success'</script>";
