@@ -5943,11 +5943,11 @@ table.product thead tr th:last-child {
 .form-login .title,
 .form-register .title {
 	text-align:center;
-	margin-bottom:97px;
+	margin-bottom: 80px;
 }
 
 .form-register .title {
-	margin-bottom:88px;
+	margin-bottom: 85px;
 	padding-right:8px;
 }
 

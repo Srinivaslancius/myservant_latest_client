@@ -311,17 +311,10 @@
 										<tbody>
 											<?php 
 												$cartTotal = 0;
-												$getPushProductIds = array();
-												$getPushSubcatIds = array();
-												$getPushcatIds = array();
 												while ($getCartItems = $cartItems->fetch_assoc()) { 
 												$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
 												$cartTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
 												$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getCartItems['product_id']);
-												//Values push to sinlge variable
-												array_push($getPushProductIds, $getCartItems['product_id']);
-												array_push($getPushSubcatIds, $getCartItems['sub_category_id']);
-												array_push($getPushcatIds, $getCartItems['category_id']);
 											?>
 											<input type="hidden" name='category_id[]' type='text' value='<?php echo $getCartItems['category_id'];?>'>
 											<input type="hidden" name='sub_cat_id[]' type='text' value='<?php echo $getCartItems['sub_category_id'];?>'>
@@ -404,71 +397,7 @@
 											$user_id = $_SESSION['user_login_session_id'];
 											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
 											//echo $getRewardPointsdata['reward_status'];
-											if($getRewardPointsdata['reward_status'] == 0) {
-												//0-Rewards Yes
-												//echo "<pre>"; print_r($getPushProductIds); //This is multiple product ids set sinlge variable
-												$implodeProIds = implode(",",$getPushProductIds);
-												$getProductRewards = "SELECT * FROM grocery_reward_settings WHERE product_id IN ($implodeProIds) AND reward_type = 4 AND lkp_status_id = 0";
-												$getAllProIds=$conn->query($getProductRewards);
-												//Productd check rewards
-												if($getAllSubcatIds->num_rows > 0) {
-													while($getRewd = $getAllProIds->fetch_assoc() ) {
-														$proId= $getRewd['product_id'];
-														$reward_points= $getRewd['reward_points'];
-														//Check if product exists
-														$getAllPrIds = "SELECT * FROM grocery_cart WHERE product_id='$proId' AND user_id='$user_id' ";
-														$getProInfo = $conn->query($getAllPrIds);
-														while ($product_price = $getProInfo->fetch_assoc()) {
-															$totalProductPrice += $product_price['product_price']*$product_price['product_quantity'];
-														}	
-														//Check if product if not exists
-														$rewardPointsRewdSettings = ($totalProductPrice/$getRewardPointsdata['transaction_amount'])*$reward_points;
-													}
-												} else {
-													$rewardPointsRewdSettings=0;
-												}
-												//Subcategory checking rewards
-												$implodeSubcatsIds = implode(",",$getPushSubcatIds);
-												$getSubcatRewards = "SELECT * FROM grocery_reward_settings WHERE sub_category_id IN ($implodeSubcatsIds) AND reward_type = 3 AND lkp_status_id = 0";
-												$getAllSubcatIds=$conn->query($getSubcatRewards);
-												if($getAllSubcatIds->num_rows > 0) {
-													while($getSubcatRewd = $getAllSubcatIds->fetch_assoc() ) {
-														$reward_points1= $getSubcatRewd['reward_points'];
-														$subId= $getSubcatRewd['sub_category_id'];
-
-														$getAllSubcatIds1 = "SELECT * FROM grocery_cart WHERE sub_category_id='$subId' AND user_id='$user_id' ";
-														$getSubcatInfo = $conn->query($getAllSubcatIds1);
-														while ($subcat_id = $getSubcatInfo->fetch_assoc()) {
-															$totalSubcatProPrice += $subcat_id['product_price']*$subcat_id['product_quantity'];
-														}	
-														//Check if product if not exists
-														$rewardPointsRewdSettings1 = ($totalSubcatProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points1;
-													}
-												} else {
-													$rewardPointsRewdSettings1 = 0;
-												}
-												//Category checking rewards
-												$implodeCatsIds = implode(",",$getPushcatIds);
-												$getCategoryRewards = "SELECT * FROM grocery_reward_settings WHERE category_id IN ($implodeCatsIds) AND reward_type = 2 AND lkp_status_id = 0";
-												$getAllCatIds=$conn->query($getCategoryRewards);
-												if($getAllCatIds->num_rows > 0) {
-													while($getCatRewd = $getAllCatIds->fetch_assoc() ) {
-														$reward_points2= $getCatRewd['reward_points'];
-														$catId= $getCatRewd['category_id'];
-
-														$getAllCatIds1 = "SELECT * FROM grocery_cart WHERE category_id='$catId' AND user_id='$user_id' ";
-														$getCatInfo = $conn->query($getAllCatIds1);
-														while ($catIds = $getCatInfo->fetch_assoc()) {
-															$totalCatProPrice += $catIds['product_price']*$catIds['product_quantity'];
-														}	
-														//Check if product if not exists
-														$rewardPointsRewdSettings2 = ($totalCatProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points2;
-													}
-												} else {
-													$rewardPointsRewdSettings2 = 0;
-												}
-
-												?>
+											if($getRewardPointsdata['reward_status'] == 0) { ?>
 
 												<tr>
 													<td>Reward Points</td>

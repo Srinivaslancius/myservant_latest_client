@@ -97,10 +97,25 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-login">
-							<div class="title">
-								<h3>Login</h3>
+							<div class="title" style="margin-bottom:60px">
+								<h3>Login</h3><br>
+								<hr>
 							</div>
+							<div class="row">
+							<div class="col-md-1">
+							</div>
+                            <div class="col-md-5 col-sm-6">
+                                <a href="#" class="btn btn-primary fac_book"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+                            </div>
+                            <div class="col-md-5 col-sm-6">
+                                <a href="#" class="btn btn-info twi_ter"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+                            </div>
+							<div class="col-md-1">
+							</div>
+                            </div> <!-- end row --><br>
+							<div style="text-align:center">(OR)</div>
 							<form  method="POST" id="form-login" accept-charset="utf-8" autocomplete="off">
+							
 								<div class="form-box">
 									<label for="name-login">Username or email address * </label>
 									<input type="text" id="user_email1" name="user_email" placeholder="Email" required>
@@ -119,8 +134,9 @@
 					</div><!-- /.col-md-6 -->
 					<div class="col-md-6">
 						<div class="form-register">
-							<div class="title">
-								<h3>Register</h3>
+						<div class="title" style="margin-bottom:60px">
+								<h3>Register</h3><br>
+								<hr>
 							</div>
 							<form method="post" action="mobile_otp.php" id="form-register" accept-charset="utf-8" autocomplete="off">
 								<div class="form-box">
