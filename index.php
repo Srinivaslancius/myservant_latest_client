@@ -149,7 +149,7 @@ if($_SESSION['city_name'] == '') {
     $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
 	$lkp_city_id = $getCities1['id'];
 }
-$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC LIMIT 0,4";
+$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
 $tagNames = $conn->query($getTags);
 ?>
 
