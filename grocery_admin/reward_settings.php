@@ -141,6 +141,9 @@
                                 <tr>
                                     <th>S.no</th>
                                     <th>Reward Type</th>
+                                    <th>Category</th>
+                                    <th>Sub Category</th>
+                                    <th>Product</th>
                                     <th>Transaction Amount</th>
                                     <th>Reward Points</th>
                                     <th>Status</th>
@@ -153,6 +156,9 @@
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php if($row['reward_type'] == 2) { echo 'Category' ; } elseif($row['reward_type'] == 3) { echo 'Sub Category' ; } else { echo 'Product' ; } ?></td>
+                                    <td><?php if($row['category_id'] != '') { $getCategory = getIndividualDetails('grocery_category','id',$row['category_id']); echo $getCategory['category_name']; } else { echo '--' ; } ?></td>
+                                    <td><?php if($row['sub_category_id'] != '') { $getCategory = getIndividualDetails('grocery_sub_category','id',$row['sub_category_id']); echo $getCategory['sub_category_name']; } else { echo '--' ; } ?></td>
+                                    <td><?php if($row['product_id'] != '') { $getCategory = getIndividualDetails('grocery_product_name_bind_languages','product_id',$row['product_id']); echo $getCategory['product_name']; } else { echo '--' ; } ?></td>
                                     <td><?php echo $transactionAmount['transaction_amount']; ?></td>
                                     <td><?php echo $row['reward_points']; ?></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_reward_settings'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_reward_settings'>In Active</span>" ;} ?></td>
