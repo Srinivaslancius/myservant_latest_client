@@ -268,7 +268,7 @@
                 $("#category,#sub_category").hide();
                 $('.product').val("");
                 $(".product").attr("required", "true");
-                $(".category,.product").removeAttr('required');
+                $(".category,.sub_category").removeAttr('required');
             }   
         });
         $("#banner_image_type1").click(function() {

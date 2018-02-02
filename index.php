@@ -83,21 +83,14 @@ position:absolute;
 									} else {
 										$banner_id = $getBannersData1['sub_category_id'];
 									}
-								if($getBannersData1['banner_image_type'] == 1) { ?>
+								?>
 								<div class="slider-item style1">
 									<div class="item-image">
 										<a href="results.php?id=<?php echo $getBannersData1['id']; ?>"><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
-								<?php } else { ?>
-								<div class="slider-item style1">
-									<div class="item-image">
-										<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt="">
-									</div>
-									<div class="clearfix"></div>
-								</div><!-- /.slider-item style1 -->
-								<?php } } ?>
+								<?php } ?>
 							</div>
 						</div>
 					</div><!-- /.row -->
@@ -654,7 +647,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 							</div>
 								<div class="imagebox style1">
 									<div class="box-image">
-										<a href="#" title="">
+										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
 											<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 										</a>
 									</div><!-- /.box-image -->
@@ -663,7 +656,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											<a href="#" title=""><?php echo $getCategoryName['category_name']; ?></a>
 										</div>-->
 										<div class="product-name">
-											<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
+											<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 										</div>
 										<?php 
 											$prodid = $todayDeals['id'];
@@ -906,7 +899,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				var productWeightType = split[0];
 				var productPrice = split[1];
 				var product_quantity = $('#product_quantity_'+ProductId).val();
-				//alert(product_quantity);
+				alert(product_quantity);
 
 	   			$.ajax({
 			      type:'post',
