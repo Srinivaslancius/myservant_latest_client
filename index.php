@@ -142,7 +142,7 @@ if($_SESSION['city_name'] == '') {
     $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
 	$lkp_city_id = $getCities1['id'];
 }
-$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC LIMIT 0,4";
+$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
 $tagNames = $conn->query($getTags);
 ?>
 
@@ -924,6 +924,8 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			        productId:ProductId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
+			      	alert(response);
+			      	return false;
 			      	//window.location.href = "shop_cart.php";
 			      	$(".cart_popup_"+ProductId).fadeIn(2000);
 			      	setTimeout(function() {
