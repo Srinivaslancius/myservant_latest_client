@@ -74,7 +74,7 @@
       $pincode = $_POST['pincode'];
       $last_name = $_POST['last_name'];
       $address = $_POST['address'];
-      $created_at = date("ymdhis");
+      $created_at = date("Y-m-d h:i:s");
       $sql1 = "INSERT INTO add_user_address (`user_id`,`name`,`email`,`mobile`,`last_name`,`city`,`pincode`,`address`,`created_at`) VALUES ('$user_id','$name','$email','$mobile','$last_name','$city','$pincode','$address','$created_at')";
       if($conn->query($sql1) === TRUE){             
          echo "<script type='text/javascript'>window.location='my_address.php?succ=log-success'</script>";
@@ -135,10 +135,12 @@
 					<!---start-->
 					<?php
 					$user_id = $_SESSION["user_login_session_id"];
-          $getAddress = getAllDataWhereWithActive('add_user_address','user_id',$user_id);
-					if($getAddress->num_rows) { ?>
+
+          $getAllCustomerAddress = "SELECT * FROM add_user_address WHERE user_id = '$user_id'";
+          $getCustomerAddress = $conn->query($getAllCustomerAddress);
+					if($getCustomerAddress->num_rows) { ?>
 					<div class="panel-body address">
-						<?php while($getAddressDetails = $getAddress->fetch_assoc()) { ?>
+						<?php while($getAddressDetails = $getCustomerAddress->fetch_assoc()) { ?>
 	                    <div class="strip_list wow fadeIn" data-wow-delay="0.1s" style="min-height:180px">                  
 	                        <div class="col-md-9 col-sm-9">
 	                            <h3 style="color:#fe6003">Address </h3>

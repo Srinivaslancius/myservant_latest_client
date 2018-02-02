@@ -220,10 +220,12 @@ line-height:10px;
 				<!---start-->
 				<?php
 				$user_id = $_SESSION["user_login_session_id"];
-				$getAddress = getAllDataWhereWithActive('add_user_address','user_id',$user_id);
-				if($getAddress->num_rows) { ?>
+				$getAllCustomerAddress = "SELECT * FROM add_user_address WHERE user_id = '$user_id'";
+				$getCustomerAddress = $conn->query($getAllCustomerAddress);
+
+				if($getCustomerAddress->num_rows) { ?>
 	              <div class="panel-body address">
-	              	<?php while($getAddressDetails = $getAddress->fetch_assoc()) { ?>
+	              	<?php while($getAddressDetails = $getCustomerAddress->fetch_assoc()) { ?>
 				  <div class="strip_list wow fadeIn" data-wow-delay="0.1s" style="min-height:200px">                  
 	                    <div class="col-md-9 col-sm-9">
 	                        <h3 style="color:#fe6003">Address</h3>
