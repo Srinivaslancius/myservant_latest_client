@@ -86,7 +86,7 @@
 							<?php echo $conversionAmount; ?>
 						</div>					
 					</div>
-					<button class="button1" type="submit" name="convert" title="">Convert</button>
+					<button class="button1" type="submit" name="convert" title="">Add To Wallet</button>
               	</div>
             </div>
         </div><!-- End panel-group -->
@@ -125,7 +125,7 @@
         $(".button1").click(function(){
         	var conversionAmount = $("#conversion_amount").val();
         	var reward_points = $("#reward_points").val();
-            if(confirm('Are You Sure You Want to Convert?', function(input){var str = input === true ? 'Ok' : 'Cancel'; 
+            if(confirm('Are You Sure You Want to Add in Your Aallet?', function(input){var str = input === true ? 'Ok' : 'Cancel'; 
                 if(str == 'Ok') {
                     $.ajax({
                        type: "POST",
