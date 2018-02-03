@@ -233,8 +233,12 @@ $tagNames = $conn->query($getTags);
 												</div>
 											</div>
 											<div class="compare-wishlist">
-												<a href="#" class="wishlist" title="">
-													<img src="images/icons/wishlist.png" alt="">Wishlist
+												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+													<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
+														<img src="images/icons/wishlist.png" alt="">Wishlist
+													<?php } else { ?>
+														<img src="images/icons/1.png" alt="">Wishlist
+													<?php } ?>
 												</a>
 											</div>
 										</div><!-- /.box-bottom -->

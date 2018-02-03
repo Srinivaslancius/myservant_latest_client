@@ -203,4 +203,28 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 			    </div>
 			</div>			
 
+
+			<script type="text/javascript">
+			function addWishList(productId) {
+
+				//alert(productId);
+				var weightType= $('#get_pr_price_'+productId).val();	
+				//alert(weightType);
+				var split = weightType.split(",");				
+				var productWeightType = split[0];			
+				//alert(productWeightType);
+				$.ajax({
+				  type:'post',
+				  url:'save_wish_list.php',
+				  data:{
+				     product_id:productId,productWeightType:productWeightType,       
+				  },
+				  success:function(data) {
+				    alert(data);				    
+				  }
+				});
+
+			}
+			</script>
+
 			<script type="text/javascript" src="javascript/check_number_validations.js"></script>
