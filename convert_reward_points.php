@@ -83,7 +83,7 @@
 							Conversion Amount
 						</div>
 						<div class="col-sm-4">
-							<?php echo $conversionAmount; ?>
+							Rs. <?php echo $conversionAmount; ?>
 						</div>					
 					</div>
 					<button class="button1" type="submit" name="convert" title="">Add To Wallet</button>
