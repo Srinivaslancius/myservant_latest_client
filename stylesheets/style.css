@@ -3799,5 +3799,31 @@ width:260px !important;
 	color:white!important;
 	width:100%!important;
 }
-
+.box-image .img_whgt{
+	width:240px!important;
+	height:146px !important;
+}
+	.box-image .img_htwdth{
+		width:342px !important; 
+		height:430px !important;
+	}
 	
+	.box-image .T_wdht{
+		width:153px !important;
+		height:122px !important;
+	}
+	.imagebox .s_wdht{
+		width:128px !important;
+		height:130px !important;
+	}
+	.imagebox .img_wiht{
+		width:264px !important;
+		height:210px !important;
+	}
+	.box-image .n_wdht{
+		width:227px !important;
+	height:227px !important;
+	}
+	.box-image .ht_wd{
+		height:130px !important;
+	}

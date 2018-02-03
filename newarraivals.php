@@ -223,7 +223,7 @@ position:absolute;
 												<div class="imagebox">
 												
 														<a href="single_product.php?product_id=<?php echo $getProductsData['id'];?>" title="">
-															<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="" style="width:264px; height:210px">
+															<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 														</a>
 														
 													<div class="box-content">

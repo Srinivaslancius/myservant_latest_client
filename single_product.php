@@ -413,7 +413,7 @@
 							<div class="imagebox style4 bx_height">
 								<div class="box-image">
 									<a href="#" title="">
-										<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
+										<img class="s_wdht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 									</a>
 								</div><!-- /.box-image -->
 								<div class="box-content">

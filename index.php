@@ -186,7 +186,7 @@ $tagNames = $conn->query($getTags);
 										<span class="item-new">NEW</span>
 										<div class="box-image">
 											<a href="#" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="" style="width:264px;height:210px">
+												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 											</a>
 											
 										</div><!-- /.box-image -->
@@ -313,7 +313,7 @@ $getSubCat = $conn->query($getsubCats);
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php" title="">
-														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
+														<img class="img_whgt"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
@@ -345,7 +345,7 @@ $getSubCat = $conn->query($getsubCats);
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
 														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px;padding:15px">
 														</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
@@ -392,7 +392,7 @@ $getSubCat = $conn->query($getsubCats);
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php" title="">
-														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
+														<img class="img_htwdth"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
@@ -468,7 +468,7 @@ $getSubCat = $conn->query($getsubCats);
 												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
 											</div>
 											<div class="imagebox style2">
-												<div class="box-image">
+												<div class="box-image img_whgt">
 													<a href="single_product.php" title="">
 														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage3['image']; ?>" alt="">
 													</a>
@@ -502,7 +502,7 @@ $getSubCat = $conn->query($getsubCats);
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
 														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails3['id']; ?>" type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails3['id']; ?>" type="number" style="height:45px;padding:15px">
 														</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
@@ -662,7 +662,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 								<div class="imagebox style1">
 									<div class="box-image">
 										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
-											<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
+											<img class="T_wdht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 										</a>
 									</div><!-- /.box-image -->
 									<div class="box-content">
