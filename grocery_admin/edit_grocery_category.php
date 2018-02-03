@@ -115,7 +115,7 @@
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input id="form-control-22" class="file-upload-input" type="file" name="category_web_image" accept="image/*" onchange="loadFile(event)">
-                                    </label>
+                                    </label> (width : 24px ; height : 24px)
                                 </div>
                             </div>
                             <div class="form-group">

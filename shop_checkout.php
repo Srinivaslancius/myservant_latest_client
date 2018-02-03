@@ -121,6 +121,8 @@
 				$order_id = $contstr.$random1.$random2;
 				$service_tax = $_POST["service_tax"];
 				$itemCount = count($_POST["product_id"]);
+				$reward_points = $_POST["reward_points"];
+				$product_reward_points = $_POST["product_reward_points"];
 				//Saving user id and coupon id
 				$user_id = $_SESSION['user_login_session_id'];
 				$payment_status = 2; //In progress
@@ -153,7 +155,7 @@
 					$date = date("ymdhis");
 					$contstr = "MYSERVANT-GR";
 					$sub_order_id = $contstr.$random1.$random2.$date;
-					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date')";
+					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`, `reward_points`, `product_reward_points`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date','$reward_points','" . $_POST["product_reward_points"][$i] . "')";
 					$groceryOrders = $conn->query($orders);
 				} 
 				if($payment_group == 1) {
@@ -310,24 +312,20 @@
 										</thead>
 										<tbody>
 											<?php 
-												$cartTotal = 0;
-												$getPushProductIds = array();
-												$getPushSubcatIds = array();
-												$getPushcatIds = array();
+												$cartTotal = 0; $reward_points = 0;
 												while ($getCartItems = $cartItems->fetch_assoc()) { 
 												$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
 												$cartTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
 												$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getCartItems['product_id']);
-												//Values push to sinlge variable
-												array_push($getPushProductIds, $getCartItems['product_id']);
-												array_push($getPushSubcatIds, $getCartItems['sub_category_id']);
-												array_push($getPushcatIds, $getCartItems['category_id']);
+												$reward_points += $getCartItems['reward_points']*$getCartItems['product_quantity'];
+												$product_reward_points = $getCartItems['reward_points']*$getCartItems['product_quantity'];
 											?>
 											<input type="hidden" name='category_id[]' type='text' value='<?php echo $getCartItems['category_id'];?>'>
 											<input type="hidden" name='sub_cat_id[]' type='text' value='<?php echo $getCartItems['sub_category_id'];?>'>
 											<input type="hidden" name='product_id[]' type='text' value='<?php echo $getCartItems['product_id'];?>'>
 											<input type="hidden" name='product_weight[]' type='text' value='<?php echo $getCartItems['product_weight_type'];?>'>
 											<input type="hidden" name='product_quantity[]' type='text' value='<?php echo $getCartItems['product_quantity'];?>'>
+											<input type="hidden" name='product_reward_points[]' type='text' value='<?php echo $product_reward_points;?>'>
 											<tr>
 												<td><?php echo $getProductName['product_name']; ?></td>
 												<input type="hidden" name="product_name" value="<?php echo $getProductName['product_name']; ?>">
@@ -354,6 +352,8 @@
 									<input type="hidden" name="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>" id="delivery_charges">
 									<input type="hidden" name="discount_money" value="0" id="discount_money">
 									<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
+									<input type="hidden" name="reward_points" value="<?php echo round($reward_points); ?>">
+
 									<table>
 										<tbody>	
 											<tr>
@@ -400,85 +400,12 @@
 											<?php } ?>
 											
 											<?php
-											$transaction_amount = 0; $rewardPoints = 0;
-											$user_id = $_SESSION['user_login_session_id'];
 											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
-											//echo $getRewardPointsdata['reward_status'];
-											if($getRewardPointsdata['reward_status'] == 0) {
-												//0-Rewards Yes
-												//echo "<pre>"; print_r($getPushProductIds); //This is multiple product ids set sinlge variable
-												$implodeProIds = implode(",",$getPushProductIds);
-												$getProductRewards = "SELECT * FROM grocery_reward_settings WHERE product_id IN ($implodeProIds) AND reward_type = 4 AND lkp_status_id = 0";
-												$getAllProIds=$conn->query($getProductRewards);
-												//Productd check rewards
-												if($getAllSubcatIds->num_rows > 0) {
-													while($getRewd = $getAllProIds->fetch_assoc() ) {
-														$proId= $getRewd['product_id'];
-														$reward_points= $getRewd['reward_points'];
-														//Check if product exists
-														$getAllPrIds = "SELECT * FROM grocery_cart WHERE product_id='$proId' AND user_id='$user_id' ";
-														$getProInfo = $conn->query($getAllPrIds);
-														while ($product_price = $getProInfo->fetch_assoc()) {
-															$totalProductPrice += $product_price['product_price']*$product_price['product_quantity'];
-														}	
-														//Check if product if not exists
-														$rewardPointsRewdSettings = ($totalProductPrice/$getRewardPointsdata['transaction_amount'])*$reward_points;
-													}
-												} else {
-													$rewardPointsRewdSettings=0;
-												}
-												//Subcategory checking rewards
-												$implodeSubcatsIds = implode(",",$getPushSubcatIds);
-												$getSubcatRewards = "SELECT * FROM grocery_reward_settings WHERE sub_category_id IN ($implodeSubcatsIds) AND reward_type = 3 AND lkp_status_id = 0";
-												$getAllSubcatIds=$conn->query($getSubcatRewards);
-												if($getAllSubcatIds->num_rows > 0) {
-													while($getSubcatRewd = $getAllSubcatIds->fetch_assoc() ) {
-														$reward_points1= $getSubcatRewd['reward_points'];
-														$subId= $getSubcatRewd['sub_category_id'];
-
-														$getAllSubcatIds1 = "SELECT * FROM grocery_cart WHERE sub_category_id='$subId' AND user_id='$user_id' ";
-														$getSubcatInfo = $conn->query($getAllSubcatIds1);
-														while ($subcat_id = $getSubcatInfo->fetch_assoc()) {
-															$totalSubcatProPrice += $subcat_id['product_price']*$subcat_id['product_quantity'];
-														}	
-														//Check if product if not exists
-														$rewardPointsRewdSettings1 = ($totalSubcatProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points1;
-													}
-												} else {
-													$rewardPointsRewdSettings1 = 0;
-												}
-												//Category checking rewards
-												$implodeCatsIds = implode(",",$getPushcatIds);
-												$getCategoryRewards = "SELECT * FROM grocery_reward_settings WHERE category_id IN ($implodeCatsIds) AND reward_type = 2 AND lkp_status_id = 0";
-												$getAllCatIds=$conn->query($getCategoryRewards);
-												if($getAllCatIds->num_rows > 0) {
-													while($getCatRewd = $getAllCatIds->fetch_assoc() ) {
-														$reward_points2= $getCatRewd['reward_points'];
-														$catId= $getCatRewd['category_id'];
-
-														$getAllCatIds1 = "SELECT * FROM grocery_cart WHERE category_id='$catId' AND user_id='$user_id' ";
-														$getCatInfo = $conn->query($getAllCatIds1);
-														while ($catIds = $getCatInfo->fetch_assoc()) {
-															$totalCatProPrice += $catIds['product_price']*$catIds['product_quantity'];
-														}	
-														//Check if product if not exists
-														$rewardPointsRewdSettings2 = ($totalCatProPrice/$getRewardPointsdata['transaction_amount'])*$reward_points2;
-													}
-												} else {
-													$rewardPointsRewdSettings2 = 0;
-												}
-
-												?>
-
+											//If reward status is yes
+											if($getRewardPointsdata['reward_status'] == 0) { ?>
 												<tr>
 													<td>Reward Points</td>
-													<td class="reward-points"><?php echo $rewardPointsRewdSettings+$rewardPointsRewdSettings1+$rewardPointsRewdSettings2+$rewardPointsRewdSettings3; ?></td>
-												</tr>
-
-											<?php } else { //1-Rewards No?>
-												<tr>
-													<td>Reward Points</td>
-													<td class="reward-points">0</td>
+													<td class="reward-points"><?php echo round($reward_points); ?></td>
 												</tr>
 											<?php } ?>
 											

@@ -104,6 +104,36 @@
                     <div class="panel-heading">
                       <h3 class="nomargin_top">Update Profile</h3>
                     </div>
+                    <?php
+        if (!isset($_POST['submit']))  {
+         
+        } else  {
+
+          $uid = $_SESSION["user_login_session_id"];
+        $user_full_name = $_POST["user_full_name"];
+        $user_email = $_POST["user_email"];
+        $user_mobile = $_POST["user_mobile"];
+
+            $sql1 = "UPDATE users SET user_full_name = '$user_full_name', user_email = '$user_email', user_mobile = '$user_mobile' WHERE  id = '$uid'";
+        if($conn->query($sql1) === TRUE){             
+          echo "<script type='text/javascript'>window.location='update_profile.php?succ=log-success'</script>";
+        }  else { 
+          header('Location: update_profile.php?err=log-fail');
+        }
+        }
+        ?><?php if(isset($_GET['succ']) && $_GET['succ'] == 'log-success' ) {  ?>                
+            <div class="alert alert-success" style="top:10px; display:block" id="set_valid_msg">
+              <strong>Success!</strong> Your Data Updated Successfully.
+            </div>               
+       <?php }?>
+
+        <?php if(isset($_GET['err']) && $_GET['err'] == 'log-fail' ) {  ?>            
+          <div class="alert alert-danger" style="top:10px; display:block" id="set_valid_msg">
+            <strong>Failed!</strong> Data Updation Failed.
+          </div>     
+        <?php } 
+          $uid = $_SESSION["user_login_session_id"];
+          $userData = getIndividualDetails('users','id',$uid); ?>
                       <div class="panel-body">
                  <form method="post">
                   <div class="col-md-12 col-sm-12">				 
@@ -123,7 +153,7 @@
             <span id="input_status1" style="color: red;"></span>
 					</div>
 					<div class="form-group">
-						<button class="button1" type="submit" name="update">Update</button>					
+						<button class="button1" type="submit" name="submit">Update</button>					
 					</div>						
                   </div>
 				  <div class="col-md-6 col-sm-6">

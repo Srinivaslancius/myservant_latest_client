@@ -35,6 +35,29 @@
 		    }
 		}
 	?>
+
+	<?php
+//Convert JSON data into PHP variable
+$userData = json_decode($_POST['userData']);
+if(!empty($userData)){
+    $oauth_provider = $_POST['oauth_provider'];
+    //Check whether user data already exists in database
+    $prevQuery = "SELECT * FROM users WHERE oauth_provider = '".$oauth_provider."' AND oauth_uid = '".$userData->id."'";
+
+    $prevResult = $db->query($prevQuery);
+    if($prevResult->num_rows > 0){ 
+        //Update user data if already exists
+        $query = "UPDATE users SET first_name = '".$userData->first_name."', last_name = '".$userData->last_name."', email = '".$userData->email."', gender = '".$userData->gender."', locale = '".$userData->locale."', picture = '".$userData->picture->data->url."', link = '".$userData->link."', modified = '".date("Y-m-d H:i:s")."' WHERE oauth_provider = '".$oauth_provider."' AND oauth_uid = '".$userData->id."'";
+        $update = $db->query($query);
+    }else{
+        //Insert user data
+        $query = "INSERT INTO users SET oauth_provider = '".$oauth_provider."', oauth_uid = '".$userData->id."', first_name = '".$userData->first_name."', last_name = '".$userData->last_name."', email = '".$userData->email."', gender = '".$userData->gender."', locale = '".$userData->locale."', picture = '".$userData->picture->data->url."', link = '".$userData->link."', created = '".date("Y-m-d H:i:s")."', modified = '".date("Y-m-d H:i:s")."'";
+        $insert = $db->query($query);
+    }
+}
+?>
+
+
     <!-- GOOGLE WEB FONT -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic,300,300italic' rel='stylesheet' type='text/css'>
 
@@ -120,10 +143,11 @@
 			<div class="feature">
 				<form method="POST" class="popup-form" autocomplete="off">
 				<center> <h2 class="nomargin_top" style="color:#f26226">Login</h2></center>
+				
 					<hr class="more_margin">
 					<div class="row">
 					<div class="col-sm-6 col-xs-6">
-					  <button type="button" class="btn btn-primary"><span class=" icon-facebook-1"></span>Facebook</button>
+					  <button type="button" class="btn btn-primary" href="javascript:void(0);" onclick="fbLogin()" ><span class=" icon-facebook-1"></span>Facebook</button>
 					</div>
 					<div class="col-sm-6 col-xs-6">
 					<button type="button" class="btn btn-info"><span class="icon-twitter-2"></span>Twitter</button>
@@ -261,6 +285,75 @@
 
     
 <?php include "search_js_script.php"; ?>
+
+<div id="userData"></div>
+
+<script>
+window.fbAsyncInit = function() {
+    // FB JavaScript SDK configuration and setup
+    FB.init({
+      appId      : '200024284069568', // FB App ID
+      cookie     : true,  // enable cookies to allow the server to access the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.11' // use graph api version 2.8
+    });
+    
+    // Check whether the user already logged in
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //display user data
+            getFbUserData();
+        }
+    });
+};
+
+// Load the JavaScript SDK asynchronously
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+// Facebook login with JavaScript SDK
+function fbLogin() {
+    FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+            getFbUserData();
+        } else {
+            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        }
+    }, {scope: 'email'});
+}
+
+// Fetch the user profile data from facebook
+function getFbUserData(){
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+    function (response) {
+        document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
+        document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
+        document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
+        document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Gender:</b> '+response.gender+'</p><p><b>Locale:</b> '+response.locale+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p><p><b>FB Profile:</b> <a target="_blank" href="'+response.link+'">click to view profile</a></p>';
+        saveUserData(response);
+    });
+}
+
+function saveUserData(userData){
+    $.post('index.php', {oauth_provider:'facebook',userData: JSON.stringify(userData)}, function(data){ return true; });
+}
+
+// Logout from facebook
+function fbLogout() {
+    FB.logout(function() {
+        document.getElementById('fbLink').setAttribute("onclick","fbLogin()");
+        document.getElementById('fbLink').innerHTML = '<img src="fblogin.png"/>';
+        document.getElementById('userData').innerHTML = '';
+        document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
+    });
+}
+</script>
 
 </body>
 </html>
