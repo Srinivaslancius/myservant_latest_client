@@ -30,7 +30,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		    	$lists["productName"] = $getProductNames['product_name']; 	
 		    	$lists["productImage"] = $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'];		
 		    	//get products weights and product weight type names with prices
-		    	$getPriceDetails = getAllDataWhere('grocery_product_bind_weight_prices','product_id',$productId);
+		    	//$getPriceDetails = getAllDataWhere('grocery_product_bind_weight_prices','product_id',$productId);
+		    	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productId."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+				$getPriceDetails = $conn->query($getPrices);
+
 		    	$getPriceDet = array();
 		    	while($getPriceDet = $getPriceDetails->fetch_assoc()) {		    		
 		    		$lists["offer_type"] .=  $getPriceDet['offer_type'] .",";
