@@ -7,7 +7,7 @@ $lists = array();
 $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-        $getProducts = "SELECT * FROM grocery_product_name_bind_languages WHERE product_id IN (SELECT id FROM grocery_products WHERE `lkp_status_id`= 0) ORDER BY id DESC";
+        $getProducts = "SELECT * FROM grocery_product_name_bind_languages WHERE product_id IN (SELECT id FROM grocery_products WHERE `lkp_status_id`= 0) GROUP BY product_id ORDER BY id DESC";
 		$getProducts1 = $conn->query($getProducts);
 		if ($getProducts1->num_rows > 0) {
 
@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					 if(!empty($value)){
 					 	//echo "splittedstring[".$key."] = ".$value."<br>";
 					 	$lists["productId"] = $getProductDetails["id"];
-					 	$getProductcat = getIndividualDetails('grocery_products','id',$getProductDetails["id"]);
+					 	$getProductcat = getIndividualDetails('grocery_products','id',$getProductDetails["product_id"]);
 					 	$lists["catId"] = $getProductcat["grocery_category_id"];
 					 	$lists["subCatId"] = $getProductcat["grocery_sub_category_id"];
 					 	$lists["search_tags"] = $value; 
