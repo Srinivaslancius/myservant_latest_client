@@ -207,6 +207,7 @@
     </script>
     <script type="text/javascript">
         $("#category,#sub_category").hide();
+        $(".category,.sub_category").removeAttr('required');
         $(document).ready(function () {
         $("#coupon_type").change(function() {
             if($(this).val() == 1) {
