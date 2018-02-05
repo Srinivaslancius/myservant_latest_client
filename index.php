@@ -104,7 +104,7 @@ position:absolute;
 				<div class="row">
 			<div class="col-md-12">
 				<div class="flat-row-title">
-					<h3>Offers</h3>
+					<h3><?php echo $getSiteSettingsData1['offers_heading1']; ?></h3>
 				</div>
 			</div><!-- /.col-md-12 -->
 		</div><!-- /.row -->
@@ -269,7 +269,7 @@ $getOfferModules1 = $conn->query($getOfferModules); ?>
 				<div class="row">
 			<div class="col-md-12">
 				<div class="flat-row-title">
-					<h3>Offers</h3>
+					<h3><?php echo $getSiteSettingsData1['offers_heading2']; ?></h3>
 				</div>
 			</div><!-- /.col-md-12 -->
 		</div><!-- /.row -->
