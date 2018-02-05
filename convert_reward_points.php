@@ -61,56 +61,50 @@
      		while ($getRewards1 = $getRewards->fetch_assoc()) {
      			$totalRewards += $getRewards1['product_reward_points'];
      		}
+     		$conversionAmount = ($getRewardAmount['amount_credits']*round($totalRewards))/$getRewardAmount['for_reward_points'];
      		?>
+     		<input type="hidden" id="conversion_amount" value="<?php echo $conversionAmount; ?>">
+     		<input type="hidden" id="reward_points" value="<?php echo round($totalRewards); ?>">
           	<div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="nomargin_top" style="color:#fe6003;">Grocery Orders</h3>
                 </div>
               	<div class="panel-body">
-				  	<div class="row" style="padding:10px 60px 50px 60px">
-						<div class="col-sm-4">
-							<h4 style="margin-left:10px;color:#fe6003">Rewards</h4><br>
-							<a href="" class="notif"><span class="badge1"><?php echo round($totalRewards); ?></span></a>
-						</div>
-						<div class="col-sm-4">
-							<h4 style="color:#fe6003;color:#fe6003">For Rewards</h4><br>
-							<a href="" class="notif1"><span class="badge1"><?php echo $getRewardAmount['for_reward_points']; ?></span></a>
-						</div>
-						<div class="col-sm-4">
-							<h4 style="margin-left:20px;color:#fe6003">Total</h4><br>
-							<a href="" class="notif2"><span class="badge1"><?php echo $getRewardAmount['amount_credits']; ?></span></a>
-						</div>
-                 	</div>
-                 	<div class="row">
+            		<div class="row">
 					<div class="col-sm-4">
 					</div>
+						<div class="col-sm-6">
+						<div class="row">
+					<div class="col-sm-8">
+					Total Reward Points
+					</div>
 					<div class="col-sm-4">
-					
-						<a href="convert_reward_points.php"><button class="button1" type="submit" name="" title="" style="padding: 2px 20px;">Convert Rewards into Amount</button></a>
+							<?php echo round($totalRewards); ?>
 						</div>
+							
+							</div>
+						</div>
+						
+					<div class="col-sm-2">
+					</div>						
+					</div>
+					<div class="row">
 					<div class="col-sm-4">
-					</div>                 		
-                 	</div>
-            		<!-- <div class="table-responsive">						
-    					<table class="table" style="border:1px solid #ddd;width:100%">					
-        					<thead>
-        		  				<tr>
-        							<th>ORDER ID</th>
-        							<th>PRODUCTS</th>
-			            			<th>SOMTHING</th>
-			            			<th>REWARD GAME</th>						
-        		  				</tr>
-        					</thead>
-        					<tbody>
-        		  				<tr>
-			            			<td>Somthing</td>
-			            			<td>Somthing</td>
-			            			<td>Somthing</td>
-			            			<td>Somthing</td>
-        		  				</tr>
-        					</tbody>
-    	     			</table>
-    	  			</div> -->
+					</div>
+						<div class="col-sm-6">
+						<div class="row">
+					<div class="col-sm-8">
+						Conversion Amount
+					</div>
+						<div class="col-sm-4">
+							Rs. <?php echo $conversionAmount; ?>
+						</div>
+						</div>
+					</div>	
+					<div class="col-sm-2">
+					</div>							
+					</div><br>
+					<center><button class="button1" type="submit" name="convert" title="" style="padding: 2px 25px;">Add To Wallet</button></center>
               	</div>
             </div>
         </div><!-- End panel-group -->
@@ -145,5 +139,31 @@
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 		<script type="text/javascript" src="javascript/main.js"></script>
 
+		<script type="text/javascript">
+        $(".button1").click(function(){
+        	var conversionAmount = $("#conversion_amount").val();
+        	var reward_points = $("#reward_points").val();
+            if(confirm('Are You Sure You Want to Add in Your Aallet?', function(input){var str = input === true ? 'Ok' : 'Cancel'; 
+                if(str == 'Ok') {
+                    $.ajax({
+                       type: "POST",
+                       url: "conver_amount.php",
+                       data: {
+				            conversionAmount:conversionAmount,reward_points:reward_points,
+				        },
+                       success: function(result){
+                        if(result == 1) {	
+                            alert('Amount Credited In Your Wallet');
+                        } else {
+                            alert('Amount not Credited In Your Wallet');
+                            return false;
+                        }
+                     }
+                    });
+                }
+            }))  
+            return false;
+        });
+        </script>
 </body>	
 </html>

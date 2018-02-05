@@ -102,6 +102,13 @@ position:absolute;
 			<section class="flat-row flat-banner-box">
 			<div class="container">
 				<div class="row">
+			<div class="col-md-12">
+				<div class="flat-row-title">
+					<h3><?php echo $getSiteSettingsData1['offers_heading1']; ?></h3>
+				</div>
+			</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
+				<div class="row">
 					<?php while($getOffersData = $getOffers1->fetch_assoc()) { ?>
 					<div class="col-md-3">
 						<div class="banner-box">
@@ -185,8 +192,8 @@ $tagNames = $conn->query($getTags);
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
-											<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
-												<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="" style="width:264px;height:210px">
+										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
+												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="" style="width:264px;height:210px">
 											</a>
 											
 										</div><!-- /.box-image -->
@@ -233,8 +240,12 @@ $tagNames = $conn->query($getTags);
 												</div>
 											</div>
 											<div class="compare-wishlist">
-												<a href="#" class="wishlist" title="">
-													<img src="images/icons/wishlist.png" alt="">Wishlist
+												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+													<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
+														<img src="images/icons/wishlist.png" alt="">Wishlist
+													<?php } else { ?>
+														<img src="images/icons/1.png" alt="">Wishlist
+													<?php } ?>
 												</a>
 											</div>
 										</div><!-- /.box-bottom -->
@@ -255,6 +266,13 @@ $tagNames = $conn->query($getTags);
 $getOfferModules1 = $conn->query($getOfferModules); ?>
 <section class="flat-row flat-banner-box">
 			<div class="container">
+				<div class="row">
+			<div class="col-md-12">
+				<div class="flat-row-title">
+					<h3><?php echo $getSiteSettingsData1['offers_heading2']; ?></h3>
+				</div>
+			</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
 				<div class="row">
 					<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
 					<div class="col-md-3">
@@ -313,7 +331,8 @@ $getSubCat = $conn->query($getsubCats);
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
-														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
+														<img class="img_whgt" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
+
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
@@ -345,7 +364,7 @@ $getSubCat = $conn->query($getsubCats);
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
 														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px;padding:15px">
 														</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
@@ -392,7 +411,8 @@ $getSubCat = $conn->query($getsubCats);
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title="">
-														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
+														<img class="img_htwdth" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage2['image']; ?>" alt="">
+
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
@@ -468,8 +488,9 @@ $getSubCat = $conn->query($getsubCats);
 												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
 											</div>
 											<div class="imagebox style2">
-												<div class="box-image">
+												<div class="box-image img_whgt">
 													<a href="single_product.php?product_id=<?php echo $productDetails3['id']; ?>" title="">
+
 														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage3['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
@@ -502,7 +523,7 @@ $getSubCat = $conn->query($getsubCats);
 													<div class="row">
 														<div class="col-sm-5 col-xs-12">
 														<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails3['id']; ?>" type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails3['id']; ?>" type="number" style="height:45px;padding:15px">
 														</div>							
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
@@ -662,7 +683,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 								<div class="imagebox style1">
 									<div class="box-image">
 										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
-											<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
+											<img class="T_wdht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 										</a>
 									</div><!-- /.box-image -->
 									<div class="box-content">

@@ -181,8 +181,7 @@
             <div class="clear_fix"></div>
             <div class="panel panel-default panel-table m-b-0">
                 <div class="panel-heading">
-                    <h3 class="m-t-0 m-b-5 font_sz_view">View Products</h3>
-                    
+                    <h3 class="m-t-0 m-b-5 font_sz_view">View Products</h3>                    
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -241,8 +240,13 @@
                                         }
                                         exit();
                                     }
+
                                     ?> -->
                                     <!-- <div class="col-lg-2 col-sm-4 col-xs-6 m-y-5">
+
+                                    ?>
+                                   <!-- <div class="col-lg-2 col-sm-4 col-xs-6 m-y-5">
+
                                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content animated flipInX">

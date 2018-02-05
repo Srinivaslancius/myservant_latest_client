@@ -67,7 +67,7 @@
 /* Flat Banner Box
 -------------------------------------------------------------- */
 .flat-banner-box {
-	padding:30px 0 10px;
+	/* padding: 30px 0 10px; */
 }
 
 /* Banner Box */
@@ -180,7 +180,7 @@
 }
 
 .flat-row-title h3 {
-	color: #FE6003;
+	color: #2d2d2d;
 	padding: 30px 0;
 	font-weight:500;
 }
@@ -7599,7 +7599,7 @@ ul.brands-tablist li.active {
 	margin-top:20px;
 }
 .imagebox.style4.bx_height{
-	min-height:360px !important;
+	min-height: 330px !important;
 }
 @media screen and (max-width: 480px) and (min-width: 320px){
 .table-cart tr td .weight {
@@ -7640,7 +7640,10 @@ margin-left:0px !important;
 }
 .imagebox .box-content .product-name {
     min-height: 32px;
-    margin-top: 15px;
+  
+}
+.btn-primary.fac_book{
+	margin-bottom:10px !important;
 }
 }
 @media screen and (max-width: 960px) and (min-width: 600px){

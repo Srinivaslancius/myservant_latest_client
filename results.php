@@ -201,7 +201,7 @@ position:absolute;
 												</div>
 												<div class="imagebox">
 														<a href="single_product.php?product_id=<?php echo $getProductDetails['id'];?>" title="">
-															<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="" style="width:264px; height:210px">
+															<img class="img_wiht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="" style="width:264px; height:210px">
 														</a>
 													<div class="box-content">
 														<div class="product-name">
@@ -277,7 +277,7 @@ position:absolute;
 											<div class="imagebox style1 v3">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $getProductsTotalDetails2['id'];?>" title="">
-														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages1['image'] ?>" alt="" style="width:264px; height:210px">
+														<img class="n_wdht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages1['image'] ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
