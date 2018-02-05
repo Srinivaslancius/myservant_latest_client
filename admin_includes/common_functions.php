@@ -139,6 +139,14 @@
         return $result;
     }
 
+     function getWishListCount($table,$user_id,$product_id)  {
+        global $conn;
+        $sql="select * from `$table` WHERE `user_id` = '$user_id' AND product_id='$product_id' ";
+        $result = $conn->query($sql);
+        $noRows = $result->num_rows;
+        return $noRows;
+    }
+
     function getAllDataWithStatusLimit($table,$status,$minlimit,$maxlimit)  {
         global $conn;
         if($minlimit!='' && $maxlimit!='') {
