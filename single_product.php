@@ -443,6 +443,23 @@
 													<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
 												<?php } ?>
 											</div>
+											<div class="compare-wishlist">
+												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+													<?php if(!isset($_SESSION['user_login_session_id'])) { 
+														?>
+														<img src="images/icons/wishlist.png" alt="">Wishlist
+													<?php } else { 
+														$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$productDetails['id']);
+														?>
+														<?php if($getCountWishLsit == 0) { ?>
+															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $productDetails['id']; ?>" alt="">Wishlist
+														<?php } else {  ?>
+															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $productDetails['id']; ?>">Wishlist
+														<?php } ?>
+														
+													<?php } ?>
+												</a>
+											</div>
 								</div><!-- /.box-content -->
 								
 							</div><!-- /.imagebox style4 -->
