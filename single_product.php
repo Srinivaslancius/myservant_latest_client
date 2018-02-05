@@ -152,8 +152,22 @@
 										<a style="cursor:pointer" onClick="show_cart(<?php echo $product_id; ?>)"><img src="images/icons/add-cart.png" alt="">Add to Cart</a>
 									</div>
 									<div class="compare-wishlist">
-										<a href="compare.html" class="wishlist" title=""><img src="images/icons/wishlist.png" alt="">Wishlist</a>
-									</div>
+												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+													<?php if(!isset($_SESSION['user_login_session_id'])) { 
+														?>
+														<img src="images/icons/wishlist.png" alt="">Wishlist
+													<?php } else { 
+														$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$productDetails['id']);
+														?>
+														<?php if($getCountWishLsit == 0) { ?>
+															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $productDetails['id']; ?>" alt="">Wishlist
+														<?php } else {  ?>
+															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $productDetails['id']; ?>">Wishlist
+														<?php } ?>
+														
+													<?php } ?>
+												</a>
+											</div>
 								</div><!-- /.box-cart -->
 								<div class="social-single">
 									<span>SHARE</span>
@@ -437,12 +451,13 @@
 			                                    </select>
 											</div>
 										
-											<div class="price">
+											<div class="price_<?php echo $productDetails['id']; ?>">
 												<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
 												<?php if($getPrc1['offer_type'] == 1) { ?>
 													<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
 												<?php } ?>
 											</div>
+											
 								</div><!-- /.box-content -->
 								
 							</div><!-- /.imagebox style4 -->
