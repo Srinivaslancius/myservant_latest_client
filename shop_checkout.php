@@ -426,6 +426,9 @@
 													</div>
 												</div>
 											</div>
+											<div class="row">
+												<span id="coupon_status" style="color: red;"></span>
+											</div>
 										</div>
 									
 									<div class="btn-radio style2">
@@ -608,12 +611,19 @@
 			           data: "coupon_code="+coupon_code+"&cart_total="+order_total,
 			           success: function(value){
 			           		if(value == 0) {
-			           			alert('Please Enter Valid Coupon');
+			           			$('#coupon_status').html("<span>Please Enter Valid Coupon.</span>");
+			           			//alert('Please Enter Valid Coupon');
 			           			$("#coupon_code").val('');
 			           		} else if(value == 1) {
-			           			alert('Enter Coupon is not valid for this Service');
+			           			$('#coupon_status').html("<span>Enter Coupon is not valid for this Service.</span>");
+			           			//alert('Enter Coupon is not valid for this Service');
+			           			$("#coupon_code").val('');
+			           		} else if(value == 2) {
+			           			$('#coupon_status').html("<span>Already Used.</span>");
+			           			//alert('Enter Coupon is not valid for this Service');
 			           			$("#coupon_code").val('');
 			           		} else{
+			           			$('#coupon_status').html("");
 			           			$('#coupon_code').attr('readonly','true');
 			           			$(".apply_coupon").hide();
 			           			var data = value.split(",");
