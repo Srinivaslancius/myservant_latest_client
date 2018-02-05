@@ -120,8 +120,12 @@
                     </div>
                       <div class="panel-body">
                       	
-						<?php $getProducts = "SELECT * FROM grocery_save_wishlist WHERE user_id='$user_id' AND  product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0) ORDER BY id DESC ";
+						<?php 
+						$user_id = $_SESSION['user_login_session_id'];
+
+						$getProducts = "SELECT * FROM grocery_save_wishlist WHERE user_id='$user_id' AND  product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0) ORDER BY id DESC ";
                       		$getProducts1 = $conn->query($getProducts);
+                      		if($getProducts1->num_rows > 0) {
 								while($productDetails = $getProducts1->fetch_assoc()) { 
 									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['product_id']);
 									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['product_id']);
@@ -178,6 +182,9 @@
 							</div>
 						</div><!-- End strip_list-->
 						<?php } ?>
+						<?php } else { ?>
+				       <h3 style="text-align:center">No Items Found</h3>
+				       <?php } ?>
                       </div>
                   </div>
                   
