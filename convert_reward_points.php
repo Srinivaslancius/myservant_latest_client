@@ -71,22 +71,40 @@
                 </div>
               	<div class="panel-body">
             		<div class="row">
-						<div class="col-sm-4">
-							Total Reward Points
-						</div>
-						<div class="col-sm-4">
+					<div class="col-sm-4">
+					</div>
+						<div class="col-sm-6">
+						<div class="row">
+					<div class="col-sm-8">
+					Total Reward Points
+					</div>
+					<div class="col-sm-4">
 							<?php echo round($totalRewards); ?>
-						</div>					
+						</div>
+							
+							</div>
+						</div>
+						
+					<div class="col-sm-2">
+					</div>						
 					</div>
 					<div class="row">
-						<div class="col-sm-4">
-							Conversion Amount
-						</div>
+					<div class="col-sm-4">
+					</div>
+						<div class="col-sm-6">
+						<div class="row">
+					<div class="col-sm-8">
+						Conversion Amount
+					</div>
 						<div class="col-sm-4">
 							Rs. <?php echo $conversionAmount; ?>
-						</div>					
-					</div>
-					<button class="button1" type="submit" name="convert" title="">Add To Wallet</button>
+						</div>
+						</div>
+					</div>	
+					<div class="col-sm-2">
+					</div>							
+					</div><br>
+					<center><button class="button1" type="submit" name="convert" title="" style="padding: 2px 25px;">Add To Wallet</button></center>
               	</div>
             </div>
         </div><!-- End panel-group -->
