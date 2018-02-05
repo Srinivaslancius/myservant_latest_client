@@ -55,6 +55,14 @@
               </ul>
             </li>
 
+            <li class="<?php if($page_name == 'manage_time_slots.php' || $page_name == 'edit_manage_time_slots.php') { echo "active"; } ?>"><a href="manage_time_slots.php">
+                <span class="menu-icon">
+                  <i class="zmdi zmdi-alarm-check zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">Manage Time Slots</span>
+              </a>
+            </li>
+
             <li class="<?php if($page_name == 'content_page.php' || $page_name == 'edit_content_pages.php') { echo "active"; } ?>"><a href="content_page.php">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-info zmdi-hc-fw"></i>
