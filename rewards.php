@@ -86,7 +86,7 @@
 					</div>
 					<div class="col-sm-4">
 					
-						<a href="convert_reward_points.php"><button class="button1" type="submit" name="" title="">Convert Rewards into Amount</button></a>
+						<a href="convert_reward_points.php"><button class="button1" type="submit" name="" title="" style="padding: 2px 20px;">Convert Rewards into Amount</button></a>
 						</div>
 					<div class="col-sm-4">
 					</div>                 		

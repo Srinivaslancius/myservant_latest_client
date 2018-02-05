@@ -223,11 +223,12 @@
                                     <td> <a href="edit_products.php?product_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
 
                                     <?php if($row['deal_start_date']!='0000-00-00' && $row['deal_start_date']!='') { ?>
-                                    <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i></a></td>
+                                    <td> <a href="edit_deal_date.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i></a></td>
+                            
                                     <?php } else { ?>
-                                    <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><i class="zmdi zmdi-close zmdi-hc-fw"></i></a></td>
-                                        <?php } ?>
-                                    <?php
+                                    <td> <a href="edit_deal_date.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-close zmdi-hc-fw"></i></a></td>
+                                    <?php } ?>
+                                    <!-- <?php
                                     if(!empty($_POST['date']) && !empty($_POST['date']))  {
                                         //echo "<pre>";print_r($_POST); exit;
                                         $deal_start_date = $_POST['deal_start_date']; 
@@ -239,8 +240,13 @@
                                         }
                                         exit();
                                     }
+
+                                    ?> -->
+                                    <!-- <div class="col-lg-2 col-sm-4 col-xs-6 m-y-5">
+
                                     ?>
                                    <!-- <div class="col-lg-2 col-sm-4 col-xs-6 m-y-5">
+
                                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content animated flipInX">

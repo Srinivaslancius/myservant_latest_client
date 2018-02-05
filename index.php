@@ -102,6 +102,13 @@ position:absolute;
 			<section class="flat-row flat-banner-box">
 			<div class="container">
 				<div class="row">
+			<div class="col-md-12">
+				<div class="flat-row-title">
+					<h3><?php echo $getSiteSettingsData1['offers_heading1']; ?></h3>
+				</div>
+			</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
+				<div class="row">
 					<?php while($getOffersData = $getOffers1->fetch_assoc()) { ?>
 					<div class="col-md-3">
 						<div class="banner-box">
@@ -259,6 +266,13 @@ $tagNames = $conn->query($getTags);
 $getOfferModules1 = $conn->query($getOfferModules); ?>
 <section class="flat-row flat-banner-box">
 			<div class="container">
+				<div class="row">
+			<div class="col-md-12">
+				<div class="flat-row-title">
+					<h3><?php echo $getSiteSettingsData1['offers_heading2']; ?></h3>
+				</div>
+			</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
 				<div class="row">
 					<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
 					<div class="col-md-3">
