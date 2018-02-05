@@ -128,9 +128,7 @@
                       	$getSql2 = $getSql1->fetch_assoc();
                       	//echo $getSql2['user_id'];
                       	?>
-
-
-                      	<?php $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0  AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC ";
+						<?php $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0  AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC ";
                       		$getProducts1 = $conn->query($getProducts);
 								while($productDetails = $getProducts1->fetch_assoc()) { 
 									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
