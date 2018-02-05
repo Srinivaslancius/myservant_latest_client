@@ -37,6 +37,7 @@
           $price_type_id = $_POST['price_type_id'];
           $discount_price = $_POST['discount_price'];
           $coupon_type = $_POST['coupon_type'];
+          $coupon_description = $_POST['coupon_description'];
           $coupon_start_date = date('y-m-d',strtotime($_POST['coupon_start_date']));
           $coupon_end_date = date('y-m-d',strtotime($_POST['coupon_end_date']));
           if($coupon_type == 1) {
@@ -46,7 +47,7 @@
             $category_id = '';
             $sub_category_id = $_POST['sub_category_id'];
           }
-          $sql = "INSERT INTO grocery_coupons (`coupon_code`, `price_type_id`, `discount_price`, `coupon_type`, `coupon_start_date`, `coupon_end_date`, `category_id`, `sub_category_id`) VALUES (UPPER('$coupon_code'), '$price_type_id', '$discount_price', '$coupon_type', '$coupon_start_date', '$coupon_end_date', '$category_id', '$sub_category_id')";
+          $sql = "INSERT INTO grocery_coupons (`coupon_code`, `price_type_id`, `discount_price`, `coupon_type`, `coupon_start_date`, `coupon_end_date`, `category_id`, `sub_category_id`, `coupon_description`) VALUES (UPPER('$coupon_code'), '$price_type_id', '$discount_price', '$coupon_type', '$coupon_start_date', '$coupon_end_date', '$category_id', '$sub_category_id', '$coupon_description')";
           if($conn->query($sql) === TRUE){
              echo "<script type='text/javascript'>window.location='grocery_coupons.php?msg=success'</script>";
           } else {
@@ -66,7 +67,7 @@
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Coupon Code</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" style="text-transform:uppercase" name="coupon_code" class="form-control" id="user_input" onkeyup="checkUserAvailTest()" placeholder="Enter Coupon Code" required>
+                                    <input type="text" style="text-transform:uppercase" name="coupon_code" class="form-control" id="user_input" onblur="checkUserAvailTest()" placeholder="Enter Coupon Code" required>
                                     <span id="input_status" style="color: red;"></span>
                                     <input type="hidden" id="table_name" value="grocery_coupons">
                                     <input type="hidden" id="column_name" value="coupon_code">
@@ -134,6 +135,12 @@
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Coupon End Date</label>
                                 <div class="col-sm-6 col-md-4">
                                     <input class="date-pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Coupon End Date" name="coupon_end_date" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Coupon Description</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <textarea name="coupon_description" class="form-control" placeholder="Coupon Description" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
