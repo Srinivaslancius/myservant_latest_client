@@ -610,6 +610,7 @@
 			           url: "apply_coupon.php",
 			           data: "coupon_code="+coupon_code+"&cart_total="+order_total,
 			           success: function(value){
+			           	//alert(value);
 			           		if(value == 0) {
 			           			$('#coupon_status').html("<span>Please Enter Valid Coupon.</span>");
 			           			//alert('Please Enter Valid Coupon');
