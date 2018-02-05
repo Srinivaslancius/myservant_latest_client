@@ -119,7 +119,18 @@
                       <h3 class="nomargin_top">Wish List</h3>
                     </div>
                       <div class="panel-body">
-					  <?php for($i=0; $i<3; $i++) {?>
+                      	
+						<?php $getProducts = "SELECT * FROM grocery_save_wishlist WHERE user_id='$user_id' AND  product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0) ORDER BY id DESC ";
+                      		$getProducts1 = $conn->query($getProducts);
+								while($productDetails = $getProducts1->fetch_assoc()) { 
+									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['product_id']);
+									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['product_id']);
+									$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
+									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['product_id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									$allGetPrices1 = $conn->query($getPrices1);
+									$getPrc1 = $allGetPrices1->fetch_assoc();
+                      	?>
+					  
                     <div class="strip_list wow fadeIn" data-wow-delay="0.1s" style="min-height:150px">
 				<div class="row">					
                             <div class="col-md-9 col-sm-9">
@@ -127,14 +138,20 @@
 								 <div class="row">
 								  <div class="col-md-3 col-sm-3 col-xs-6">
                                         <div class="thumb_strip">
-                                            <a href="#"><img src="images/tomato.jpg" alt="Tomato" style="width:100px;height:100px"></a>
+                                            <a href="#"><img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="<?php echo $getProductName['product_name']; ?>" style="width:100px;height:100px"></a>
                                         </div>
                                        </div>
 									    <div class="col-md-9 col-sm-9 col-xs-6">
-                                        <h3 style="color:#fe6003">Tomato</h3>
+                                        <h3 style="color:#fe6003"><?php echo $getProductName['product_name']; ?></h3>
                                         <div class="type">
-                                               <p style="margin-bottom:10px">1kg(approx 13 to 14 nos)</p>
-											   <p><b>₹ 2.00</b></p>
+                                               <!-- <p style="margin-bottom:10px">1kg(approx 13 to 14 nos)</p> -->
+                                               <?php 
+											$prodid = $productDetails['product_id'];
+									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									 		$allGetPrices = $conn->query($getPrices);
+									 		$getPrc = $allGetPrices->fetch_assoc();
+							 				?>
+											   <p><b>Rs.<?php echo $getPrc['selling_price']; ?></b></p>
                                         </div>
 										</div>
                                     </div>   
@@ -147,7 +164,7 @@
 								<div class="col-sm-8 col-xs-12">
                                         <div>
 										<a href="#"><button class="button12">Add to Cart</button></a>
-                                           
+                                         <a href="#"><button class="button12">Remove</button></a> 
                                       </div> 
 								</div>
 								<div class="col-sm-4 col-xs-12">

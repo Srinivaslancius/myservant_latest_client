@@ -128,13 +128,13 @@
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Coupon Start Date</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input class="date-pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Coupon Start Date" name="coupon_start_date" required="required">
+                                    <input class="start-date-pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Coupon Start Date" name="coupon_start_date" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Coupon End Date</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input class="date-pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Coupon End Date" name="coupon_end_date" required="required">
+                                    <input class="end-date-pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Coupon End Date" name="coupon_end_date" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -203,10 +203,20 @@
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
     <script type="text/javascript">
-      $('input.date-pick').datepicker({minDate: 0, maxDate: "+2M"});
+    $('.start-date-pick').datepicker({numberOfMonths: 2,
+        onSelect: function(selected) {
+            $(".end-date-pick").datepicker("option","minDate", selected)
+        }
+    });
+    $('.end-date-pick').datepicker({numberOfMonths: 2,
+        onSelect: function(selected) {
+            $(".start-date-pick").datepicker("option","maxDate", selected)
+        }
+    });
     </script>
     <script type="text/javascript">
         $("#category,#sub_category").hide();
+        $(".category,.sub_category").removeAttr('required');
         $(document).ready(function () {
         $("#coupon_type").change(function() {
             if($(this).val() == 1) {
