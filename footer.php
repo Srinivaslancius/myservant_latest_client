@@ -233,7 +233,14 @@ if(isset($_POST['submit'])) {
 				     product_id:productId,productWeightType:productWeightType,       
 				  },
 				  success:function(data) {
-				    alert(data);				    
+				    if(data == 1) {
+				    	alert("Added to your Wishlist");
+				    	$('#change_wishlist_img_'+productId).attr('src', "images/icons/1.png");
+				    	
+				    } else {
+				    	alert("Removed from your Wishlist");
+				    	$('#change_wishlist_img_'+productId).attr('src', "images/icons/wishlist.png");
+				    }
 				  }
 				});
 

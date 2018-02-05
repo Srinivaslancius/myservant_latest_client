@@ -248,9 +248,9 @@ $tagNames = $conn->query($getTags);
 														$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$productDetails['id']);
 														?>
 														<?php if($getCountWishLsit == 0) { ?>
-															<img src="images/icons/wishlist.png" alt="">Wishlist
+															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $productDetails['id']; ?>" alt="">Wishlist
 														<?php } else {  ?>
-															<img src="images/icons/1.png" alt="">Wishlist
+															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $productDetails['id']; ?>">Wishlist
 														<?php } ?>
 														
 													<?php } ?>
