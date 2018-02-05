@@ -186,20 +186,20 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			    <div class="modal-dialog">
-			        <div class="modal-content">
-			            <div class="modal-header">			                
-			                 <h4 class="modal-title" id="myModalLabel">Refer a friend</h4>
-			            </div>
-			            <div class="modal-body">
-			            	<form method="POST">
-			            		<input type="text" name="">
-			            	</form>
-			            </div>
-			            <div class="modal-footer">
-			                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			                <button type="button" class="btn btn-primary">Save changes</button>
-			            </div>
-			        </div>
+			    	<form method="POST">
+				        <div class="modal-content">
+				            <div class="modal-header">			                
+				                 <h4 class="modal-title" id="myModalLabel">Refer a friend</h4>
+				            </div>
+				            <div class="modal-body">
+			            		<input type="email" name="refered_email">
+				            </div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				                <button type="button" class="btn btn-primary">Save changes</button>
+				            </div>
+				        </div>
+				    </form>
 			    </div>
 			</div>			
 
