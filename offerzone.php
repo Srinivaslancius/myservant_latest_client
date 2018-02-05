@@ -12,7 +12,19 @@ padding:20px;
 z-index:9999;
 position:absolute;
 }
-
+.div2{
+	width:280px;
+	height:auto;
+display:none;
+background: rgba(0,0,0,0.8);
+border:1px solid #DCDCDC;
+border-radius:10px;
+padding:20px;
+z-index:9999;
+position:fixed;
+top:50%;
+left:50%;
+}
 </style>
 <body class="header_sticky">
 	<div class="boxed">
@@ -294,9 +306,13 @@ position:absolute;
 																<img src="images/icons/add-cart.png" alt="">Add to Cart
 															</a>
 														</div>
+														<div class="compare-wishlist">
 														
+														<a href="javascript:void(0)" class="wishlist" title="">
+															<img src="images/icons/wishlist.png" alt="">Wishlist
+														</a>
+													</div>
 													</div><!-- /.box-bottom -->
-													
 													
 												</div><!-- /.imagebox -->
 											</div>
@@ -390,11 +406,16 @@ position:absolute;
 						</div><!-- /.main-shop -->
 					</div><!-- /.col-lg-9 col-md-8 -->
 					
+													
 				</div><!-- /.row -->
 				
 			</div><!-- /.container -->
 		</main><!-- /#shop -->
 		<footer>
+		<div class="div2 wow fadeInUp">								
+		<p style="color:white"><img src="images/right.png" alt="" style="margin-right:10px;width:21px;height:19px"> ITEM ADDED TO YOUR WISHLIST</p>
+		
+		</div>
 			<?php include_once 'footer.php';?>
 		</footer><!-- /footer -->
 
@@ -427,6 +448,14 @@ position:absolute;
 $(document).ready(function(){
     $(".btn-add-cart").click(function(){
         $("#div1").fadeIn(2000).addClass('animated fadeInUp').animate({fontSize: '14px'}, "fast");
+       	       
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $(".compare-wishlist").click(function(){
+        $(".div2").fadeIn(500).addClass('animated fadeInUp');
        	       
     });
 });
