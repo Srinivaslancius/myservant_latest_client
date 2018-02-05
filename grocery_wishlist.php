@@ -119,22 +119,14 @@
                       <h3 class="nomargin_top">Wish List</h3>
                     </div>
                       <div class="panel-body">
-                      	<?php 
-                      	$user_id = $_SESSION['user_login_session_id'];
-                      	//echo "<script>alert('$user_id')</script>";
-
-                      	$getSql = "SELECT * FROM grocery_save_wishlist WHERE user_id='$user_id'";
-                      	$getSql1 = $conn->query($getSql);
-                      	$getSql2 = $getSql1->fetch_assoc();
-                      	//echo $getSql2['user_id'];
-                      	?>
-						<?php $getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0  AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC ";
+                      	
+						<?php $getProducts = "SELECT * FROM grocery_save_wishlist WHERE user_id='$user_id' AND  product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0) ORDER BY id DESC ";
                       		$getProducts1 = $conn->query($getProducts);
 								while($productDetails = $getProducts1->fetch_assoc()) { 
-									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
-									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
+									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['product_id']);
+									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['product_id']);
 									$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
-									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['product_id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
 									$allGetPrices1 = $conn->query($getPrices1);
 									$getPrc1 = $allGetPrices1->fetch_assoc();
                       	?>
@@ -154,7 +146,7 @@
                                         <div class="type">
                                                <!-- <p style="margin-bottom:10px">1kg(approx 13 to 14 nos)</p> -->
                                                <?php 
-											$prodid = $productDetails['id'];
+											$prodid = $productDetails['product_id'];
 									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
 									 		$allGetPrices = $conn->query($getPrices);
 									 		$getPrc = $allGetPrices->fetch_assoc();
