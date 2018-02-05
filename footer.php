@@ -3,6 +3,19 @@
 
 <?php $getSiteSettings1 = getAllDataWhere('grocery_site_settings','id','1'); 
 $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
+<?php 
+if(isset($_POST['submit'])) {
+	$refer_email = $_POST['refer_email'];
+	$user_id = $_SESSION['user_login_session_id'];
+	$getEmail = getAllDataWhere('users','user_email',$refer_email);
+	if($getEmail->num_rows > 0) {
+		echo "<script>alert('You Can't refered this Mail');</script>";
+	} else {
+		$sql = "INSERT INTO grocery_refer_a_friend (`refered_user_id`,`refer_email_id`) VALUES ('$user_id','$refer_email')";
+  		$result = $conn->query($sql);
+	}
+}
+?>
 
 				<div class="row">
 					<div class="col-lg-3 col-md-6">
@@ -192,11 +205,11 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 				                 <h4 class="modal-title" id="myModalLabel">Refer a friend</h4>
 				            </div>
 				            <div class="modal-body">
-			            		<input type="email" name="refered_email">
+			            		<input type="email" name="refer_email" required>
 				            </div>
 				            <div class="modal-footer">
 				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				                <button type="button" class="btn btn-primary">Save changes</button>
+				                <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
 				            </div>
 				        </div>
 				    </form>
