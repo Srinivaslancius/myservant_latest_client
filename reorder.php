@@ -23,7 +23,16 @@ while ($OrderDetails = $groceryOrdersData1->fetch_assoc()) {
 	$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
 	$product_name = $getProductName['product_name'];
 
-	$saveItems = "INSERT INTO `grocery_cart`(`user_id`, `session_cart_id`, `category_id`, `sub_category_id`, `product_id`, `product_name`, `product_price`, `product_weight_type`,`product_quantity`, `lkp_city_id`, `created_at`,`device_id`,`reward_points`) VALUES ('$user_id','$session_cart_id','$category_id','$sub_category_id','$product_id','$product_name','$product_price','$product_weight_type','$product_quantity','$city_id','$created_at','$device_id','')";
+	$selCnt = "SELECT * FROM grocery_cart WHERE product_id='$product_id' AND product_weight_type = '$product_weight_type' AND session_cart_id='$session_cart_id' AND user_id = '$user_id' ";
+	$getCountSel = $conn->query($selCnt);
+	$getQun = $getCountSel->fetch_assoc();
+
+	if($getCountSel->num_rows > 0) {
+		$product_quantity = $getQun['product_quantity']+1;
+		$saveItems = "UPDATE grocery_cart SET product_quantity='$product_quantity' WHERE product_id='$product_id' AND product_weight_type = '$product_weight_type' AND session_cart_id='$session_cart_id'";
+	} else {
+		$saveItems = "INSERT INTO `grocery_cart`(`user_id`, `session_cart_id`, `category_id`, `sub_category_id`, `product_id`, `product_name`, `product_price`, `product_weight_type`,`product_quantity`, `lkp_city_id`, `created_at`,`device_id`,`reward_points`) VALUES ('$user_id','$session_cart_id','$category_id','$sub_category_id','$product_id','$product_name','$product_price','$product_weight_type','$product_quantity','$city_id','$created_at','$device_id','')";
+	}
 	$saveCart = $conn->query($saveItems);
 }
 //echo $saveItems; die;
