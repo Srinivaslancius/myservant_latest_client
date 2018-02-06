@@ -138,7 +138,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Product Description</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="product_description"></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="product_description" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -166,7 +166,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Search Tags</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags"></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags" required></textarea>
                                 </div>
                             </div>                          
                             <div class="form-group">
