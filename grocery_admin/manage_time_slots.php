@@ -35,25 +35,40 @@
         } else  { 
 
             //echo "<pre>"; print_r($_POST); die;
-            $name = $_REQUEST['name'];            
-            $image = $_REQUEST['image'];
-            $testimonial = $_REQUEST['testimonial'];
+            $start_time = $_REQUEST['start_time'];            
+            $end_time = $_REQUEST['end_time'];            
+            $slot_length = $getSiteSettingsData['slot_length'];
             $lkp_status_id = $_REQUEST['lkp_status_id'];
+            $booking_per_slot = $_REQUEST['booking_per_slot'];
 
-            if($_FILES["image"]["name"]!='') {
-                $image = uniqid().$_FILES["image"]["name"];
-                $target_dir = "uploads/grocery_testimonials/";
-                $target_file = $target_dir . basename($image);
-                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-                $sql = "INSERT INTO grocery_testimonials (`name`, `image`, `testimonial`, `lkp_status_id`) VALUES ('$name', '$image', '$testimonial', '$lkp_status_id')";
-            } 
-            
-            $result = $conn->query($sql);
+            // Create $slots array of the booking times
+            for($i = strtotime($start_time); $i<= strtotime($end_time); $i = $i + $slot_length * 60) {
+                $slots[] = date("g:i A", $i);  
+            }   
+
+            // Loop through the $slots array and create the booking table
+            $last_key = end(array_keys($slots));
+            foreach($slots as $i => $start) {
+                // Calculate finish time
+                if ($i == $last_key) {
+                    // last element
+                } else {
+                    // not last element
+                    $finish_time = strtotime($start) + $slot_length * 60; 
+                    $total_slot_time = $start . " - " . date("g:i A", $finish_time);
+
+                    $start_time1 = $start;
+                    $end_time1 = date("g:i A", $finish_time);
+
+                    $sql = "INSERT INTO grocery_manage_time_slots (`start_time`, `end_time`, `lkp_status_id`, `total_slot_time`, `booking_per_slot`) VALUES ('$start_time1', '$end_time1', '$lkp_status_id', '$total_slot_time', '$booking_per_slot')";
+                    $result = $conn->query($sql);
+                }        
+            } // Close foreach      
            
             if( $result == 1){
-                echo "<script type='text/javascript'>window.location='testimonials.php?msg=success'</script>";
+                echo "<script type='text/javascript'>window.location='manage_time_slots.php?msg=success'</script>";
             } else {
-                echo "<script type='text/javascript'>window.location='testimonials.php?msg=fail'</script>";
+                echo "<script type='text/javascript'>window.location='manage_time_slots.php?msg=fail'</script>";
             }
         }
         ?>
@@ -71,7 +86,7 @@
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Start Time</label>
                                 <div class="col-sm-6 col-md-4">
                                     <div class='input-group date' id='datetimepicker1'>
-                                        <input type='text' class="form-control" placeholder="Start Time"/>
+                                        <input type='text' class="form-control" name="start_time" placeholder="Start Time"/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
@@ -82,7 +97,7 @@
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">End Time</label>
                                 <div class="col-sm-6 col-md-4">
                                     <div class='input-group date' id='datetimepicker2'>
-                                        <input type='text' class="form-control"  placeholder="End Time" />
+                                        <input type='text' class="form-control" name="end_time" placeholder="End Time" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
@@ -90,23 +105,10 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Lunch Break From</label>
+                             <div class="form-group">
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Booking Per Slot</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" class="form-control" id="form-control-3" placeholder="Lunch Break From" name="lunch_break_from" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Lunch Break To</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <input type="text" class="form-control" id="form-control-3" placeholder="Lunch Break To" name="lunch_break_to" required="required">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Slot Length (Mins)</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <input type="text" class="form-control" id="form-control-3" placeholder="Slot Length (Mins)" name="slot_length" required="required">
+                                    <input type="text" class="form-control" id="form-control-3" placeholder="Booking Per Slot" name="booking_per_slot" required="required">
                                 </div>
                             </div>
                             
@@ -144,21 +146,31 @@
                             <thead>
                                 <tr>
                                     <th>S.no</th>
-                                    <th>Name</th>
-                                    <th>Image</th>
+                                    <!-- <th>Start Time</th>
+                                    <th>End Time</th> -->                                                 
+                                    <th>Total Slots</th>
+                                    <th>Booking Per Slot</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $getTestimonials = getAllDataWithActiveRecent('grocery_testimonials'); $i=1; ?>
-                                <?php while ($row = $getTestimonials->fetch_assoc()) { ?>
+                                <?php
+                                 //$getManageTimeSlots = getAllDataWithActiveRecent('grocery_manage_time_slots'); $i=1; 
+
+                                $getManageTimeSlots1= "SELECT * FROM grocery_manage_time_slots ORDER BY id ASC";
+                                $getManageTimeSlots = $conn->query($getManageTimeSlots1);
+                                $i=1;
+                                ?>
+                                <?php while ($row = $getManageTimeSlots->fetch_assoc()) { ?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
-                                    <td><?php echo $row['name']; ?></td>
-                                    <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_testimonials/'.$row['image']; ?>"  id="output" height="60" width="60"/></td>
-                                    <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_testimonials'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_testimonials'>In Active</span>" ;} ?></td>
-                                    <td> <a href="edit_testimonials.php?cid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
+                                    <!-- <td><?php echo $row['start_time']; ?></td>
+                                    <td><?php echo $row['end_time']; ?></td> -->
+                                    <td><?php echo $row['total_slot_time']; ?></td>
+                                    <td><?php echo $row['booking_per_slot']; ?></td>
+                                    <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_manage_time_slots'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_manage_time_slots'>In Active</span>" ;} ?></td>
+                                    <td></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
@@ -181,7 +193,7 @@
 
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1,#datetimepicker2').datetimepicker({
+            $('#datetimepicker1,#datetimepicker2,#datetimepicker3,#datetimepicker4').datetimepicker({
                 format: 'HH:mm',
                 stepping: 30
             });
