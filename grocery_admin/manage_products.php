@@ -138,13 +138,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Product Description</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="product_description"></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="product_description" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="form-control-1" class="col-sm-3 col-md-4 control-label">Brands Applicable</label>
                                     <div class="col-sm-6 col-md-4">
-                                        <select id="form-control-2" name="brands[]" class="form-control" data-plugin="select2" multiple="multiple" >
+                                        <select id="form-control-2" name="brands[]" class="form-control" data-plugin="select2" multiple="multiple" required>
                                             <?php $getBrands = getAllDataWithStatus('grocery_brands','0');
                                             while($row = $getBrands->fetch_assoc()) {  ?>
                                                 <option value="<?php echo $row['id']; ?>" ><?php echo $row['brand_name']; ?></option>
@@ -155,7 +155,7 @@
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Tags</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="form-control-2" name="tags[]" class="form-control" data-plugin="select2" multiple="multiple" >
+                                    <select id="form-control-2" name="tags[]" class="form-control" data-plugin="select2" multiple="multiple" required>
                                         <?php $getTags = getAllDataWithStatus('grocery_tags','0');
                                         while($row = $getTags->fetch_assoc()) {  ?>
                                             <option value="<?php echo $row['id']; ?>" ><?php echo $row['tag_name']; ?></option>
@@ -166,7 +166,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Search Tags</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags"></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags" required></textarea>
                                 </div>
                             </div>                          
                             <div class="form-group">

@@ -118,7 +118,7 @@
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Reward Points</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" name="reward_points" class="form-control" id="form-control-3" placeholder="Enter Reward Points" required>
+                                    <input type="text" name="reward_points" class="form-control valid_price_dec" id="form-control-3" placeholder="Enter Reward Points" required>
                                 </div>
                             </div>
                             <div class="form-group">

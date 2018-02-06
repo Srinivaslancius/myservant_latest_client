@@ -97,20 +97,20 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Minimum Offer Percentage</label>
                                     <div class="col-sm-6 col-md-4">
-                                        <input type="text" name="min_offer_percentage" class="form-control valid_price_dec" id="min_offer_percentage" placeholder="Enter Minimum Offer Percentage">
+                                        <input type="text" name="min_offer_percentage" class="form-control valid_price_dec" id="min_offer_percentage" placeholder="Enter Minimum Offer Percentage" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Maximum Offer Percentage</label>
                                     <div class="col-sm-6 col-md-4">
-                                        <input type="text" name="max_offer_percentage" class="form-control valid_price_dec" id="max_offer_percentage" placeholder="Enter Maximum Offer Percentage">
+                                        <input type="text" name="max_offer_percentage" class="form-control valid_price_dec" id="max_offer_percentage" placeholder="Enter Maximum Offer Percentage" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Select Type</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="type" name="offer_level" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }">
+                                    <select id="type" name="offer_level" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
                                         <option value="">-- Select Type --</option>
                                         <?php $getTypes = getAllDataWithStatus('grocery_banner_types','0');?>
                                         <?php while($row = $getTypes->fetch_assoc()) {  ?>
@@ -122,7 +122,7 @@
                             <div class="form-group" id="category">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Select Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="form-control-1" name="category_id" class="form-control category" data-plugin="select2" data-options="{ theme: bootstrap }">
+                                    <select id="form-control-1" name="category_id" class="form-control category" data-plugin="select2" data-options="{ theme: bootstrap }" required>
                                         <option value="">-- Select Category --</option>
                                         <?php $getCategories = getAllDataWithStatus('grocery_category','0');?>
                                         <?php while($row = $getCategories->fetch_assoc()) {  ?>
@@ -134,7 +134,7 @@
                             <div class="form-group" id="sub_category">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Select Sub Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="form-control-1" name="sub_category_id" class="form-control sub_category" data-plugin="select2" data-options="{ theme: bootstrap }">
+                                    <select id="form-control-1" name="sub_category_id" class="form-control sub_category" data-plugin="select2" data-options="{ theme: bootstrap }" required>
                                         <option value="">-- Select Sub Category --</option>
                                         <?php $getSubacategories = getAllDataWithStatus('grocery_sub_category','0');?>
                                         <?php while($row = $getSubacategories->fetch_assoc()) {  ?>
