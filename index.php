@@ -75,7 +75,14 @@ position:absolute;
 					<div class="row">
 						<div class="col-md-12">
 							<div class="slider owl-carousel-11">
-								<?php $getBanners = "SELECT * FROM grocery_banners WHERE lkp_status_id = 0";
+								<?php 
+								if($_SESSION['city_name'] == '') {
+								    $lkp_city_id = 1;
+								} else {
+								    $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
+									$lkp_city_id = $getCities1['id'];
+								}
+								$getBanners = "SELECT * FROM grocery_banners WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id'";
 								$getBannersData = $conn->query($getBanners);
 								while($getBannersData1 = $getBannersData->fetch_assoc()) { 
 									if($getBannersData1['type'] == 1) {
@@ -149,7 +156,7 @@ if($_SESSION['city_name'] == '') {
     $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
 	$lkp_city_id = $getCities1['id'];
 }
-$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
+$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC";
 $tagNames = $conn->query($getTags);
 ?>
 
@@ -170,7 +177,7 @@ $tagNames = $conn->query($getTags);
 						<div class="row">
                              <?php 
                             	$tagId= $tagNames1['id'];
-								$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = '$tagId' AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = 1)) ORDER BY id DESC LIMIT 0,8";
+								$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = '$tagId' AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC LIMIT 0,8";
 									$getProducts1 = $conn->query($getProducts);
 								while($productDetails = $getProducts1->fetch_assoc()) { 
 									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
@@ -304,7 +311,7 @@ if($_SESSION['city_name'] == '') {
     $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
 	$lkp_city_id = $getCities1['id'];
 }
-$getsubCats = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND make_it_popular=1 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC LIMIT 0,6";
+$getsubCats = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND make_it_popular=1 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC LIMIT 0,6";
 $getSubCat = $conn->query($getsubCats);
 ?>
 
@@ -318,7 +325,7 @@ $getSubCat = $conn->query($getsubCats);
 									<div class="col-md-3 col-sm-6">
 									<?php 
 										$subCAtId = $getSubCatnames['id'];
-										$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 0,2";
+										$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC LIMIT 0,2";
 										$getProducts1 = $conn->query($getProducts);
 										while($productDetails = $getProducts1->fetch_assoc()) { 
 										$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
@@ -408,7 +415,7 @@ $getSubCat = $conn->query($getsubCats);
 
 									<?php 
 										$subCAtId = $getSubCatnames['id'];
-										$getProducts2 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 2,1";
+										$getProducts2 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC LIMIT 2,1";
 										$getProducts2 = $conn->query($getProducts2);
 										while($productDetails2 = $getProducts2->fetch_assoc()) { 
 										$getProductName2 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails2['id']);
@@ -488,7 +495,7 @@ $getSubCat = $conn->query($getsubCats);
 									<div class="col-md-3 col-sm-6">
 										<?php 
 										$subCAtId = $getSubCatnames['id'];
-										$getProducts3 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' ORDER BY id DESC LIMIT 3,2";
+										$getProducts3 = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id ='$subCAtId' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC LIMIT 3,2";
 										$getProducts3 = $conn->query($getProducts3);
 										while($productDetails3 = $getProducts3->fetch_assoc()) { 
 										$getProductName3 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails3['id']);
@@ -631,7 +638,7 @@ $getSubCat = $conn->query($getsubCats);
 	</div>
 </section>
 
-<?php $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND deal_start_date = CURDATE() AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)";
+<?php $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND deal_start_date = CURDATE() AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')";
 $getTodayDeals1 = $conn->query($getTodayDeals);
 if($getTodayDeals1->num_rows > 0) { ?>
 		<section class="flat-imagebox style1">

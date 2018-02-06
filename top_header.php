@@ -1,7 +1,11 @@
 <?php
 if(isset($_POST['submit'])) {
-	$getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_POST['city_area']);
-	$_SESSION['city_name'] = $_POST['city_area'];
+	$getCities1 = getAllDataWhere('grocery_lkp_cities','city_name',$_POST['city_area']);
+	if($getCities1->num_rows > 0) {
+		$_SESSION['city_name'] = $_POST['city_area'];
+	} else {
+		$_SESSION['city_name'] = '';
+	}
 } 
 if($_SESSION['city_name'] == '') {
 	$_SESSION['city_name'] = 'Vijayawada';
