@@ -178,7 +178,7 @@
                 <span class="menu-text">Refer A Friend</span>
               </a>
             </li>
-            <li><a href="#">
+            <!-- <li><a href="#">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-notifications zmdi-hc-fw"></i>
                 </span>
@@ -191,7 +191,7 @@
                 </span>
                 <span class="menu-text">Packages</span>
               </a>
-            </li>
+            </li> -->
 
             <li class="<?php if($page_name == 'admin_logs.php') { echo "active"; } ?>"><a href="admin_logs.php">
                 <span class="menu-icon">
