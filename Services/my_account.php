@@ -177,12 +177,19 @@
                                     </div>
                                 </div>
                             </a>
+                            <?php 
+
+                  $getWishListOrders = "SELECT * FROM grocery_save_wishlist WHERE user_id = '".$_SESSION['user_login_session_id']."'";
+                  $getWishListOrders1 = $conn->query($getWishListOrders);
+                  $getWishListOrdersCount = $getWishListOrders1->num_rows; ?> 
                             <a href="grocery_wishlist.php">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="box_home" id="four">
                                         
                                         <h3>My Wishlist</h3>
                                        
+                                        <?php echo $getWishListOrdersCount; ?>
+                                    
                                     </div>
                                 </div>
                             </a>

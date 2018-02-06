@@ -46,6 +46,9 @@
                 $app_logo_dir = "uploads/grocery_brands_app_logo/";
                 $app_logo_file = $app_logo_dir . basename($app_logo);
                 //$getImgUnlink = getImageUnlink('app_logo','grocery_brands_app_logo','id',$brand_id,$app_logo_dir);
+                if(move_uploaded_file($_FILES["web_logo"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["app_logo"]["tmp_name"], $app_logo_file)) {
+                    $sql = "UPDATE `grocery_brands` SET brand_name = '$brand_name', web_logo = '$web_logo', app_logo = '$app_logo' WHERE id = '$brand_id' ";
+                }
                 if(move_uploaded_file($_FILES["web_logo"]["tmp_name"], $target_file)) {
                    // move_uploaded_file($_FILES["web_logo"]["tmp_name"], $target_file);
                     $sql = "UPDATE `grocery_brands` SET brand_name = '$brand_name', web_logo = '$web_logo' WHERE id = '$brand_id' ";

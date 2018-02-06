@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Pin code</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" name="pincode[]" class="form-control" id="form-control-3" placeholder="Enter Pin Code" required>
+                                    <input type="text" name="pincode[]" class="form-control valid_mobile_num" id="form-control-3" placeholder="Enter Pin Code" minlength="6" maxlength="6" required>
                                 </div>
                                 <div class="col-sm-3 col-md-3">
                                     <span><button type="button" class="btn btn-success add_more_button"> <i class="zmdi zmdi-plus-circle zmdi-hc-fw"></i></button></span>

@@ -109,12 +109,12 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Priority</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" name="priority" class="form-control" id="form-control-3" placeholder="Enter Priority" required>
+                                    <input type="text" name="priority" class="form-control valid_mobile_num" id="form-control-3" placeholder="Enter Priority" required>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                                     <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>

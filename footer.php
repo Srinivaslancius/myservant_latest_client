@@ -79,7 +79,7 @@ if(isset($_POST['submit'])) {
 							<ul class="cat-list-ft">
 
 								<li>
-									<a href="javascript:void(0)" title="" id="myBtn">Refear a friend</a>
+									<a href="javascript:void(0)" title="" id="myBtn">Refer a friend</a>
 								</li>
 
 								<li>
@@ -205,7 +205,7 @@ if(isset($_POST['submit'])) {
 				                 <h4 class="modal-title" id="myModalLabel">Refer a friend</h4>
 				            </div>
 				            <div class="modal-body">
-			            		<input type="email" name="refer_email" required>
+			            		<input type="email" name="refer_email" placeholder="please enter email" required>
 				            </div>
 				            <div class="modal-footer">
 				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -240,6 +240,33 @@ if(isset($_POST['submit'])) {
 				    } else {
 				    	alert("Removed from your Wishlist");
 				    	$('#change_wishlist_img_'+productId).attr('src', "images/icons/wishlist.png");
+				    }
+				  }
+				});
+
+			}
+			function addWishList1(ProductId) {
+
+				//alert(ProductId);
+				var weightType= $('#get_pr_price1_'+ProductId).val();	
+				//alert(weightType);
+				var split = weightType.split(",");				
+				var productWeightType = split[0];			
+				//alert(productWeightType);
+				$.ajax({
+				  type:'post',
+				  url:'save_wish_list.php',
+				  data:{
+				     product_id:ProductId,productWeightType:productWeightType,       
+				  },
+				  success:function(data) {
+				    if(data == 1) {
+				    	alert("Added to your Wishlist");
+				    	$('#change_wishlist_img1_'+ProductId).attr('src', "images/icons/1.png");
+				    	
+				    } else {
+				    	alert("Removed from your Wishlist");
+				    	$('#change_wishlist_img1_'+ProductId).attr('src', "images/icons/wishlist.png");
 				    }
 				  }
 				});

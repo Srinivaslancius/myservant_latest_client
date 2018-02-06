@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="form-control-9">Pincode</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" class="form-control" id="form-control-3" placeholder="Enter Pincode" name="pincode" required value="<?php echo $getPincodes['pincode']; ?>">
+                                    <input type="text" class="form-control valid_mobile_num" id="form-control-3" placeholder="Enter Pincode" name="pincode" required minlength="6" maxlength="6" value="<?php echo $getPincodes['pincode']; ?>">
                                 </div>
                             </div>
                             <div class="form-group">

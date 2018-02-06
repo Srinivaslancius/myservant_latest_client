@@ -75,8 +75,9 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Product Image</label>
                                     <div class="col-sm-6 col-md-2">
+                                        <img id="output1" height="100" width="100"/>
                                         <label class="btn btn-default file-upload-btn">Choose file...
-                                            <input id="form-control-22" class="file-upload-input" type="file" name="product_images[]" accept="image/*" required>
+                                            <input id="form-control-22" class="file-upload-input" type="file" name="product_images[]" accept="image/*" onchange="loadFile1(event)" required>
                                         </label> (width : 420px ; height : 420px)
                                     </div>
                                     <div class="col-sm-6 col-md-2">

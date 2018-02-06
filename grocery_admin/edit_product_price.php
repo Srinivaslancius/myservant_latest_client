@@ -108,7 +108,7 @@
                                     <div class="form-group offer_price" style="display:none">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Percentage</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control valid_mobile_num" name="offer_percentage" onChange="calculatePrice()" value="<?php echo $getPrices['offer_percentage']; ?>" id="offer_per" placeholder="Offer Percentage (%)" >
+                                            <input type="text" class="form-control valid_mobile_num" name="offer_percentage" onChange="calculatePrice()" value="<?php echo $getPrices['offer_percentage']; ?>" id="offer_per" onblur="getPricePercentage();" placeholder="Offer Percentage (%)" >
                                         </div>
                                     </div>
 
@@ -193,28 +193,25 @@
             return false;
         }                    
     }
-
-    function getPrice1(Price,getIncValue) {
-
-        if($('#setRaioVal_'+getIncValue).val()!='') {            
-            if($('#setRaioVal_'+getIncValue).val() == 0){         
-                $('#selling_price_'+getIncValue).val(Price);    
+    function getPricePercentage() {
+        var price = $('#mrp_price').val();
+        if($('#setRaioVal').val()!='') {
+            if($('#setRaioVal').val() == 0){         
+                $('#selling_price').val(Price);        
             } else {
                 //Calculation for selling price            
-                var OfferPer = $('#offer_per_'+getIncValue).val();                
+                var OfferPer = $('#offer_per').val();
                 if(OfferPer!='') {
-                    var SellingPrice = Price-(Price*(OfferPer/100)); 
-                    $('#selling_price_'+getIncValue).val(SellingPrice);              
+                    var SellingPrice = price-(price*(OfferPer/100)); 
+                    $('#selling_price').val(SellingPrice);              
                 } else {
-                    $('#selling_price_'+getIncValue).val('');
-                    $('#mrp_price_'+getIncValue).val('');
+                    $('#mrp_price, #selling_price').val('');
                     alert("Please enter offer price");
                     return false;
                 }                          
             }
         } else {
-            $('#selling_price_'+getIncValue).val('');
-            $('#mrp_price_'+getIncValue).val('');
+            $('#mrp_price, #selling_price').val('');
             alert("Please select offer type ");
             return false;
         }
