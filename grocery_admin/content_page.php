@@ -58,7 +58,7 @@
         ?>
 
         <div class="site-content">
-            <div class="panel panel-default">
+            <!-- <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="m-y-0 font_sz_view">Content Page</h3>
                 </div>
@@ -95,7 +95,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="panel panel-default panel-table m-b-0">
                 <div class="panel-heading">
