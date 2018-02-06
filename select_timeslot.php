@@ -49,7 +49,7 @@
                                             <tr>
                                                 <td><p style="text-align: left">Date :    21-01-2018 (Tomorrow) <br>Time Slot :    10:00 AM To 12:00 AM</p></td>
                                                 <td>
-                                            		<input type="text" id="datepicker" name="slot_date" class="slot_date">
+                                            		<input type="text" id="datepicker" name="slot_date" class="slot_date" readonly>
                                         		</td>
 
                                         		<?php 
@@ -259,7 +259,7 @@
 				autoclose: true,
 				maxDate: "+2M",
 					onSelect: function (dateText, inst) {
-				        alert(dateText);
+				        //alert(dateText);
 				    },
 				});
 
@@ -273,11 +273,11 @@
 				autoclose: true,
 				maxDate: "+2M",
 					onSelect: function (dateText, inst) {
-				        alert(dateText);
+				        //alert(dateText);
 				    },
 				});
             }
-		  	
+		  	$('#datepicker').datepicker('setDate', today);
 		});
 		</script>
 		  
