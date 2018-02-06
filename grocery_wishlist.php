@@ -89,7 +89,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="terms&conditions.php" title="">Wish List</a>
+								Wish List
 								
 							</li>
 							
@@ -146,7 +146,8 @@
                                         </div>
                                        </div>
 									    <div class="col-md-9 col-sm-9 col-xs-6">
-                                        <h3 style="color:#fe6003"><?php echo $getProductName['product_name']; ?></h3>
+									    <h3 style="color:#fe6003"><a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a></h3>	
+                                        <!-- <h3 style="color:#fe6003"><?php echo $getProductName['product_name']; ?></h3> -->
                                         <div class="type">
                                                <!-- <p style="margin-bottom:10px">1kg(approx 13 to 14 nos)</p> -->
                                                <?php 
@@ -155,6 +156,7 @@
 									 		$allGetPrices = $conn->query($getPrices);
 									 		$getPrc = $allGetPrices->fetch_assoc();
 							 				?>
+							 				<p><b><?php echo $getPrc['weight_type']; ?></b></p>
 											   <p><b>Rs.<?php echo $getPrc['selling_price']; ?></b></p>
                                         </div>
 										</div>
@@ -167,8 +169,7 @@
 								<div class="row">
 								<div class="col-sm-8 col-xs-12">
                                         <div>
-										<a href="#"><button class="button12">Add to Cart</button></a>
-                                         <a href="#"><button class="button12">Remove</button></a> 
+                                         <a href=""><button class="button12" onclick="removeIngItem(<?php echo $productDetails['product_id']; ?>);">Remove</button></a> 
                                       </div> 
 								</div>
 								<div class="col-sm-4 col-xs-12">
@@ -222,5 +223,22 @@
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 		<script type="text/javascript" src="javascript/main.js"></script>
 
+		<script>
+function removeIngItem(ingUniqId) {
+
+ 
+  $.ajax({
+      type:'post',
+      url:'delete_wish_list_items.php',
+      data:{
+         ingUniqId : ingUniqId,        
+      },
+      success:function(response) {
+        location.reload();
+      }
+    });
+
+}
+</script>
 </body>	
 </html>
