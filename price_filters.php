@@ -58,6 +58,7 @@ $getProductPrices = $conn->query($getPrices);
 $getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price  ";
 $getProductPrices1 = $conn->query($getPrices1);
 $getPricesDetails1 = $getProductPrices1->fetch_assoc();
+$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$getProductsData['id']);
 echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getProductsData['grocery_category_id'].'">
     <input type="hidden" id="sub_cat_id_'.$getProductsData['id'].'" value="'.$getProductsData['grocery_sub_category_id'].'">
     <input type="hidden" id="pro_name_'.$getProductsData['id'].'" value="'.$getProductNames['product_name'].'">';
@@ -105,10 +106,22 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
                             </div>
                         </div>
                     </div>
-                    <div class="compare-wishlist">
-                        <a href="#" class="wishlist" title="">
-                            <img src="images/icons/wishlist.png" alt="">Wishlist
-                        </a>
+                    <div class="compare-wishlist">';
+                        if(!isset($_SESSION['user_login_session_id'])) { 
+                            echo'<a  class="wishlist" href="login.php"></a>';
+                        } else { 
+                        echo'<a class="wishlist" onClick="addWishList('.$getProductsData['id'].')" href="javascript:void(0)" >';
+                        }
+                        if(!isset($_SESSION['user_login_session_id'])) { 
+                            echo'<img src="images/icons/wishlist.png" alt="">Wishlist';
+                        } else {
+                            if($getCountWishLsit == 0) {
+                                echo'<img src="images/icons/wishlist.png" id="change_wishlist_img_'.$getProductsData['id'].'" alt="">Wishlist';
+                            } else {
+                                echo'<img src="images/icons/1.png" alt="" id="change_wishlist_img_'.$getProductsData['id'].'">Wishlist';
+                            }
+                        }
+                        echo'</a>
                     </div>
                 </div>
             </div>

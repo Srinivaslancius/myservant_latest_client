@@ -336,13 +336,21 @@ position:absolute;
 													</div>
 													</div>
 													</div>
-													
 													<div class="compare-wishlist">
-														
-														<a href="#" class="wishlist" title="">
-															<img src="images/icons/wishlist.png" alt="">Wishlist
+														<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList1(<?php echo $getProductsTotalDetails2['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+															<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
+																<img src="images/icons/wishlist.png" alt="">Wishlist
+															<?php } else { 
+																$getCountWishLsit1 = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$getProductsTotalDetails2['id']);
+																?>
+																<?php if($getCountWishLsit1 == 0) { ?>
+																	<img src="images/icons/wishlist.png" id="change_wishlist_img1_<?php echo $getProductsTotalDetails2['id']; ?>" alt="">Wishlist
+																<?php } else {  ?>
+																	<img src="images/icons/1.png" alt="" id="change_wishlist_img1_<?php echo $getProductsTotalDetails2['id']; ?>">Wishlist
+																<?php } ?>
+															<?php } ?>
 														</a>
-														</div>
+													</div>
 												</div><!-- /.box-price -->
 											</div><!-- /.imagebox -->
 										</div><!-- /.product-box -->

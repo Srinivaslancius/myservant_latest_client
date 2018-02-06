@@ -114,10 +114,22 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
                         </div>
                     </div>
                 </div>
-                <div class="compare-wishlist">
-                    <a href="#" class="wishlist" title="">
-                        <img src="images/icons/wishlist.png" alt="">Wishlist
-                    </a>
+                <div class="compare-wishlist">';
+                    if(!isset($_SESSION['user_login_session_id'])) { 
+                        echo'<a  class="wishlist" href="login.php"></a>';
+                    } else { 
+                    echo'<a  class="wishlist" onClick="addWishList1('.$getProductsData1['id'].')" href="javascript:void(0)" >';
+                    }
+                        if(!isset($_SESSION['user_login_session_id'])) {
+                            echo'<img src="images/icons/wishlist.png" alt="">Wishlist';
+                        } else { 
+                            if($getCountWishLsit1 == 0) {
+                                echo'<img src="images/icons/wishlist.png" id="change_wishlist_img1_'.$getProductsData1['id'].'" alt="">Wishlist';
+                            } else { 
+                                echo'<img src="images/icons/1.png" alt="" id="change_wishlist_img1_'.$getProductsData1['id'].'">Wishlist';
+                            }
+                        }
+                    echo'</a>
                 </div>
             </div><!-- /.box-price -->
         </div><!-- /.imagebox -->
