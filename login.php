@@ -139,6 +139,7 @@
 								<hr>
 							</div>
 							<form method="post" action="mobile_otp.php" id="form-register" accept-charset="utf-8" autocomplete="off">
+								<input type="hidden" value="<?php echo $_GET['cart_id']?>" name="checkout_key">
 								<div class="form-box">
 									<label for="password-register">Name</label>
 									<input type="text" name="user_name"  id="user_name" placeholder="Name" required>

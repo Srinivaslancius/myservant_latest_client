@@ -98,7 +98,27 @@
 							</div><!-- /.tracking-content -->
 						</div><!-- /.order-tracking -->
 					</div><!-- /.col-md-12 -->
-                                        <div class="col-lg-4">
+					<?php 
+					if($_SESSION['CART_TEMP_RANDOM'] == "") {
+				        $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
+				    }
+				    $session_cart_id = $_SESSION['CART_TEMP_RANDOM'];
+				    if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') {
+				        $user_session_id = $_SESSION['user_login_session_id'];
+				        $cartItems1 = "SELECT * FROM grocery_cart WHERE (user_id = '$user_session_id' OR session_cart_id='$session_cart_id') AND product_quantity!='0'";
+				        $cartItems = $conn->query($cartItems1);
+				    } else {
+				      $cartItems1 = "SELECT * FROM grocery_cart WHERE  product_quantity!='0' AND session_cart_id='$session_cart_id' ";
+				      $cartItems = $conn->query($cartItems1);
+				    }
+					$cartTotal = 0;
+					while ($getCartItems = $cartItems->fetch_assoc()) { 
+						$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
+						$cartTotal = $getCartItems['product_price']*$getCartItems['product_quantity'];
+						$subTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
+					}
+					?>
+                    <div class="col-lg-4">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
                             <form action="#" method="get" accept-charset="utf-8">
@@ -106,33 +126,26 @@
                                     <tbody>
                                         <tr>
                                             <td>Subtotal</td>
-                                            <td class="subtotal"> ₹2,589.00</td>
+                                            <td class="subtotal" id="subtotal">Rs . <?php echo $subTotal; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Shipping</td>
-                                            <td class="btn-radio">
-                                                <div class="radio-info">
-                                                    <input type="radio" id="flat-rate" checked name="radio-flat-rate">
-                                                    <label for="flat-rate">Flat Rate: <span> ₹3.00</span></label>
-                                                </div>
-                                                <div class="radio-info">
-                                                    <input type="radio" id="free-shipping" name="radio-flat-rate">
-                                                    <label for="free-shipping">Free Shipping</label>
-                                                </div>
-                                                <div class="btn-shipping">
-                                                    <a href="#" title="">Calculate Shipping</a>
-                                                </div>
-                                            </td><!-- /.btn-radio -->
+                                            <td>GST(<?php echo $getSiteSettingsData1['service_tax']; ?>%)</td>
+                                            <?php $service_tax += ($getSiteSettingsData1['service_tax']/100)*$subTotal; ?>
+                                            <td class="subtotal" id="serviceTax1">Rs . <?php echo $service_tax; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Delivery Charges</td>
+                                            <td class="subtotal">Rs . <?php echo $getSiteSettingsData1['delivery_charges']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td class="price-total"> ₹1,591.00</td>
+                                            <td class="price-total" id="ordertotal">Rs. <?php echo round($subTotal+$service_tax+$getSiteSettingsData1['delivery_charges']); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
                                     
-                                    <a href="#" class="checkout" title="">Next</a>
+                                    <a href="shop_checkout.php" class="checkout" title="">Next</a>
                                 </div><!-- /.btn-cart-totals -->
                             </form><!-- /form -->
                         </div><!-- /.cart-totals -->

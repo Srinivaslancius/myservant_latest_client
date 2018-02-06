@@ -187,7 +187,7 @@
                                     <?php if(!isset($_SESSION['user_login_session_id'])) { ?>
                                     	<a href="login.php?cart_id=<?php echo encryptPassword(1);?>" class="update" style="background-color:#2d2d2d !important;">Proceed To Checkout</a>
                                     <?php } else { ?>
-                                    	<a href="shop_checkout.php" class="update" style="background-color:#2d2d2d !important;">Proceed To Checkout</a>
+                                    	<a href="select_timeslot.php" class="update" style="background-color:#2d2d2d !important;">Proceed To Checkout</a>
                                     <?php } ?>
                                     <a href="index.php" class="checkout" title="">Continue Shopping</a>
                                 </div><!-- /.btn-cart-totals -->
