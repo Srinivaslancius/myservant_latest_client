@@ -8,19 +8,20 @@ if($_SESSION['CART_TEMP_RANDOM'] == "") {
     $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
 }
 $session_cart_id = $_SESSION['CART_TEMP_RANDOM'];
-$groceryOrders1 = "SELECT * FROM grocery_orders WHERE  order_id = '$order_id' AND user_id = '$user_id' AND product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0)"; 
+$groceryOrders1 = "SELECT * FROM grocery_orders WHERE  order_id = '$order_id' AND user_id = '$user_id' AND product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0))"; 
 $groceryOrdersData1 = $conn->query($groceryOrders1);
 while ($OrderDetails = $groceryOrdersData1->fetch_assoc()) {
 	$category_id = $OrderDetails['category_id'];
 	$sub_category_id = $OrderDetails['sub_cat_id'];
 	$product_id = $OrderDetails['product_id'];
-	$product_price = $OrderDetails['item_price'];
 	$product_quantity = $OrderDetails['item_quantity'];
-	$product_weight_type = $OrderDetails['item_weight_type_id'];
 	$created_at = date('Y-m-d H:i:s', time() + 24 * 60 * 60);
 	$city_id = 1;
 	$device_id = 1;
 	$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
+	$getProductPrice = getIndividualDetails('grocery_product_bind_weight_prices','product_id',$OrderDetails['product_id']);
+	$product_weight_type = $getProductPrice['id'];
+	$product_price = $getProductPrice['selling_price'];
 	$product_name = $getProductName['product_name'];
 
 	$selCnt = "SELECT * FROM grocery_cart WHERE product_id='$product_id' AND product_weight_type = '$product_weight_type' AND session_cart_id='$session_cart_id' AND user_id = '$user_id' ";
