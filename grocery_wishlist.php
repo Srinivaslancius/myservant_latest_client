@@ -142,7 +142,7 @@
 								 <div class="row">
 								  <div class="col-md-3 col-sm-3 col-xs-6">
                                         <div class="thumb_strip">
-                                            <a href="#"><img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="<?php echo $getProductName['product_name']; ?>" style="width:100px;height:100px"></a>
+                                            <a href=""><img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="<?php echo $getProductName['product_name']; ?>" style="width:100px;height:100px"></a>
                                         </div>
                                        </div>
 									    <div class="col-md-9 col-sm-9 col-xs-6">
