@@ -56,6 +56,7 @@ $getProductPrices = $conn->query($getPrices);
 $getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData1['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price  ";
 $getProductPrices1 = $conn->query($getPrices1);
 $getPricesDetails1 = $getProductPrices1->fetch_assoc();
+$getCountWishLsit1 = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$getProductsData1['id']);
 $img = $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages1['image'];
 echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$getProductsData1['grocery_category_id'].'">
     <input type="hidden" id="sub_cat_id1_'.$getProductsData1['id'].'" value="'.$getProductsData1['grocery_sub_category_id'].'">
