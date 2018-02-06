@@ -88,10 +88,13 @@
             			<td><?php echo $orderData['order_id']; ?></td>
 						<td><a href="order_details.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">View Details</button></a>
 						<?php 
-                        if($orderData['lkp_order_status_id'] != 3) {
+                        if($orderData['lkp_order_status_id'] != 3 && $orderData['lkp_order_status_id'] != 2) {
                         if($orderData['assign_delivery_id'] == '0' || $orderData['assign_delivery_id'] == '') { ?>
-                        <a href="cancel_order.php?order_id=<?php echo $orderData['order_id']; ?>" onclick="return confirm('Are you sure you want to cancel?')"><button class="button1">Cancel Order</button></a></td>
+                        <a href="cancel_order.php?order_id=<?php echo $orderData['order_id']; ?>" onclick="return confirm('Are you sure you want to cancel?')"><button class="button1">Cancel Order</button></a>
                         <?php } } ?>
+                        <?php if($orderData['lkp_order_status_id'] == 2 || $orderData['lkp_payment_status_id'] == 1) { ?>
+                        <a href="reorder.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1">Re Order</button></td>
+                        <?php } ?>
             		  </tr>
             		  
             		</tbody>
