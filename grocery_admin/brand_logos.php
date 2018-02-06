@@ -70,8 +70,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Brand Logo</label>
                                 <div class="col-sm-6 col-md-4">
+                                    <img id="output" height="100" width="100"/>
                                     <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input id="form-control-22" class="file-upload-input" type="file" name="brand_logo" accept="image/*" required> 
+                                        <input id="form-control-22" class="file-upload-input" type="file" name="brand_logo" accept="image/*" required onchange="loadFile(event)"> 
                                     </label> (width : 150px ; height : 150px)
                                 </div>
                             </div>
