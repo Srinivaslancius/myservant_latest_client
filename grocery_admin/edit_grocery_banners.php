@@ -240,7 +240,7 @@
                 $("#category,#sub_category").hide();
                 $('.product').val("");
                 $(".product").attr("required", "true");
-                $(".category,.product").removeAttr('required');
+                $(".category,.sub_category").removeAttr('required');
             }   
         });
             if($('#type').val() == 1) {

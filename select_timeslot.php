@@ -27,15 +27,17 @@
 
 		<section class="flat-tracking">
 			<div class="container-fluid">
+			<form action="shop_checkout.php" method="post" accept-charset="utf-8">
 				<div class="row">
+				
 					<div class="col-lg-8">
 						<div class="order-tracking">
 							<div class="title">
-								<h3>Select Your Time Slot</h3>
+								<h2>Select Your Time Slot</h2>
 								
-							</div><!-- /.title -->
+							</div><!-- /.title --><br>
 							<div class="tracking-content">
-								<form action="#" method="get" accept-charset="utf-8">
+								
                                                                     
                                     <table class="table">
                                             <thead>
@@ -70,17 +72,17 @@
                                         			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
                                         		?>
 			                                        <td>
-			                                        	<select name="slot_timings" style="border: 1px solid #ccc;">
+			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings">
 															<?php 
 																while($row1 = $getTotalTimeSlots1->fetch_assoc()) {  	
 															?>
-																<option value="<?php echo $row1['total_slot_time']; ?>">Tomorrow - <?php echo $row1['total_slot_time']; ?></option>
+																<option value="<?php echo $row1['total_slot_time']; ?>"><?php echo $row1['total_slot_time']; ?></option>
 															<?php } ?>
 														</select>
 			                                        </td>
 			                                    <?php } else { ?>
 			                                    	<td>
-			                                        	<select name="slot_timings" style="border: 1px solid #ccc;">
+			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings">
 															<?php 
 																while($row = $getTotalTimeSlots->fetch_assoc()) {  	
 															?>
@@ -94,7 +96,7 @@
                                         </tbody>
                                             </tbody>
                                         </table>
-								</form><!-- /.form -->
+								
 							</div><!-- /.tracking-content -->
 						</div><!-- /.order-tracking -->
 					</div><!-- /.col-md-12 -->
@@ -121,7 +123,7 @@
                     <div class="col-lg-4">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
-                            <form action="#" method="get" accept-charset="utf-8">
+                            
                                 <table>
                                     <tbody>
                                         <tr>
@@ -144,13 +146,13 @@
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
-                                    
-                                    <a href="shop_checkout.php" class="checkout" title="">Next</a>
+                                    <center><button type="submit" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center>
                                 </div><!-- /.btn-cart-totals -->
-                            </form><!-- /form -->
+                            
                         </div><!-- /.cart-totals -->
                     </div>
 				</div><!-- /.row -->
+				</form><!-- /form -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-tracking -->
 
@@ -272,7 +274,19 @@
 				autoclose: true,
 				maxDate: "+2M",
 					onSelect: function (dateText, inst) {
-				        //alert(dateText);
+				        //alert("su");
+				        $.ajax({
+	                        type:"POST",
+	                        url:"get_slot_timings.php",
+	                        data:{
+							     dateText:dateText,
+							 },
+	                        success: function(result)
+	                        {
+	                           //alert("result");
+	                           $("#slot_timings").html(result);
+	                        }
+                    	});
 				    },
 				});
 
@@ -286,7 +300,19 @@
 				autoclose: true,
 				maxDate: "+2M",
 					onSelect: function (dateText, inst) {
-				        //alert(dateText);
+				        //alert("su1");
+					        $.ajax({
+	                        type:"POST",
+	                        url:"get_slot_timings.php",
+	                        data:{
+							     dateText:dateText,
+							 },
+	                        success: function(result)
+	                        {
+	                           //alert("result");
+	                           $("#slot_timings").html(result);
+	                        }
+                    	});
 				    },
 				});
             }

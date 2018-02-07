@@ -37,6 +37,9 @@
 			$getSearchData1 = $conn->query($getSearchData);
 			$getSearchDetails = $getSearchData1->fetch_assoc(); 
 			$product_id =  $getSearchDetails['product_id'];        
+	    } elseif(isset($_GET['id'])) {
+	    	$bannerProducts = getIndividualDetails('grocery_banners','id',$_GET['id']);
+	    	$product_id = $bannerProducts['product_id'];
 	    } else {
 			$product_id = $_GET['product_id']; 
 		}
