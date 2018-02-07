@@ -85,13 +85,13 @@
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Offer Start Date</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input class="start-date-pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Offer Start Date" name="offer_start_date" required="required">
+                                    <input class="start_date_pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Offer Start Date" name="offer_start_date" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Offer End Date</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input class="end-date-pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Offer End Date" name="offer_end_date" required="required">
+                                    <input class="end_date_pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Offer End Date" name="offer_end_date" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -176,14 +176,14 @@
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
     <script type="text/javascript">
-    $('.start-date-pick').datepicker({numberOfMonths: 2,
+    $('.start_date_pick').datepicker({numberOfMonths: 2,
         onSelect: function(selected) {
-            $(".end-date-pick").datepicker("option","minDate", selected)
+            $(".end_date_pick").datepicker("option","minDate", selected)
         }
     });
-    $('.end-date-pick').datepicker({numberOfMonths: 2,
+    $('.end_date_pick').datepicker({numberOfMonths: 2,
         onSelect: function(selected) {
-            $(".start-date-pick").datepicker("option","maxDate", selected)
+            $(".start_date_pick").datepicker("option","maxDate", selected)
         }
     });
     $("#min_offer_percentage,#max_offer_percentage").blur(function () {
