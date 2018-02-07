@@ -1,5 +1,5 @@
 <?php include_once 'meta.php';?>
-<body class="header_sticky">
+<body class="header_sticky" onload="getDateTime()">
 	<div class="boxed">
 
 		<div class="overlay"></div>
@@ -49,15 +49,16 @@
                                             </thead>
                                         <tbody>
                                             <tr>
-                                                <td><p style="text-align: left">Date :    21-01-2018 (Tomorrow) <br>Time Slot :    10:00 AM To 12:00 AM</p></td>
+                                                <td><p style="text-align: left">Date :    <span id="date"></span> <br>Time Slot :    <span id="time"></span> </p></td>
                                                 <td>
                                             		<input type="text" id="datepicker" name="slot_date" class="slot_date" readonly>
                                         		</td>
 
                                         		<?php 
 
+                                        		$getDuration = getIndividualDetails('grocery_manage_time_slots','lkp_status_id',0);
                                         		$cur_time=date("Y-m-d H:i:s");
-												$duration='+'.$getSiteSettingsData1['booking_time_gap'].' minutes';
+												$duration='+'.$getDuration['booking_time_gap'].' minutes';
 												$getCurTime = date('g:i A', strtotime($duration, strtotime($cur_time)));
 
                                         		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND end_time > '$getCurTime' ";
@@ -319,7 +320,14 @@
 		  	$('#datepicker').datepicker('setDate', today);
 		});
 		</script>
-		  
+		<script>
+		function getDateTime() {
+			var date = $('#datepicker').val();
+			var time = $('#slot_timings').val();
+		    $("#date").html(date);
+		    $("#time").html(time);
+		}
+		</script>  
 		  
 
 </body>	
