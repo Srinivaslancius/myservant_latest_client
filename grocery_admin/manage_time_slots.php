@@ -46,6 +46,8 @@
                 $slots[] = date("g:i A", $i);  
             }   
 
+            $deletetimeSlot = "DELETE FROM grocery_manage_time_slots";
+            $conn->query($deletetimeSlot);
             // Loop through the $slots array and create the booking table
             $last_key = end(array_keys($slots));
             foreach($slots as $i => $start) {
@@ -109,19 +111,6 @@
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Booking Per Slot</label>
                                 <div class="col-sm-6 col-md-4">
                                     <input type="text" class="form-control" id="form-control-3" placeholder="Booking Per Slot" name="booking_per_slot" required="required">
-                                </div>
-                            </div>
-                            
-                            <?php $getStatus = getAllData('lkp_status');?>
-                            <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Status</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <select id="lkp_status_id" name="lkp_status_id" class="form-control" required>
-                                        <option value="">-- Select Status --</option>
-                                         <?php while($row = $getStatus->fetch_assoc()) {  ?>
-                                              <option value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
-                                          <?php } ?>
-                                    </select>
                                 </div>
                             </div>
 
