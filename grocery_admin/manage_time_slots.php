@@ -180,7 +180,7 @@
                                     <td><?php echo $row['total_slot_time']; ?></td>
                                     <td><?php echo $row['booking_per_slot']; ?></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_manage_time_slots'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_manage_time_slots'>In Active</span>" ;} ?></td>
-                                    <td></td>
+                                    <td><a href="edit_manage_time_slots.php?tid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
