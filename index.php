@@ -517,10 +517,10 @@ $getSubCat = $conn->query($getsubCats);
 												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
 											</div>
 											<div class="imagebox style2">
-												<div class="box-image img_whgt">
+												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails3['id']; ?>" title="">
 
-														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage3['image']; ?>" alt="">
+														<img class="img_whgt"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage3['image']; ?>" alt="">
 													</a>
 												</div><!-- /.box-image -->
 												<div class="box-content">
