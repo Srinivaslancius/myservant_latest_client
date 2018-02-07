@@ -14,7 +14,7 @@ if($getToday == $_POST['dateText']) {
     $duration='+'.$getSiteSettingsData1['booking_time_gap'].' minutes';
     $getCurTime = date('g:i A', strtotime($duration, strtotime($cur_time)));
 
-    $query = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND end_time > '$getCurTime' ";
+    $query = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND start_time > '$getCurTime' ";
     $results = $conn->query($query);
 } else {
 

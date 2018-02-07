@@ -374,7 +374,7 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td>Delivery Date</td>
-	                                            <td class="subtotal" id="serviceTax1"><?php echo $_POST['slot_date']; ?></td>
+	                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_POST['slot_date']); ?></td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td>Delivery Slot</td>

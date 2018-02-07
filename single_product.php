@@ -1,4 +1,26 @@
 <?php include_once 'meta.php';?>
+<style>
+#div1{
+width:80%;
+height:auto;
+display:none;
+background: rgba(0,0,0,0.8);
+border:1px solid #DCDCDC;
+border-radius:10px;
+padding:20px;
+z-index:9999;
+position:absolute;
+margin-top:100px;
+margin-left:50px;
+}
+@media screen and (max-width: 480px) and (min-width: 320px){
+	#div1{
+margin-top:0px !important;
+margin-left:0px !important;
+width:100% !important;
+	}
+}
+</style>
 <body class="header_sticky">
 	<div class="boxed style2">
 
@@ -79,6 +101,10 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="flexslider">
+						<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
+						<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+						<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+					</div>
 							<ul class="slides">
 								<?php while($productImage = $getProductImages->fetch_assoc()) { ?>
 							    <li data-thumb="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$productImage['image'] ?>">
@@ -88,8 +114,11 @@
 							    <?php } ?>
 							   
 							</ul><!-- /.slides -->
+							
 						</div><!-- /.flexslider -->
+						
 					</div><!-- /.col-md-6 -->
+					
 					<div class="col-md-6">
 						<div class="product-detail">
 							<div class="header-detail">
@@ -150,6 +179,7 @@
 										<!--<span class="btn-up"></span>-->
 									</div>
 								</div><!-- /.quanlity-box -->
+								
 								<div class="box-cart style2">
 									<div class="btn-add-cart">
 										<a style="cursor:pointer" onClick="show_cart(<?php echo $product_id; ?>)"><img src="images/icons/add-cart.png" alt="">Add to Cart</a>
@@ -211,7 +241,14 @@
 						</div><!-- /.product-detail -->
 
 					</div><!-- /.col-md-6 -->
-				</div><!-- /.row -->
+				<div class="col-sm-4">
+				</div>
+				<div class="col-sm-4">
+				
+				</div>
+				<div class="col-sm-4">
+				</div>
+				</div>
 			</div><!-- /.container -->
 		</section><!-- /.flat-product-detail -->
 
@@ -521,10 +558,24 @@
 			        productId:productId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
-			      	window.location.href = "shop_cart.php";
+			      	//window.location.href = "shop_cart.php";
+			      	$(".cart_popup_"+ProductId).fadeIn(2000);
+			      	setTimeout(function() {
+					    $(".cart_popup_"+ProductId).fadeOut('fast');
+					}, 2000);
 			      }
 			    }); 
+	   			$.ajax({
+				  type:'post',
+				  url:'header_cart_page.php',
+				  data:{
+				     cart_id:ProductId,
+				  },
+				  success:function(data) {
+				    $('.header_cart').html(data);
+				  }
 
+				 });
 			}
 		</script>
 		<script type="text/javascript">
