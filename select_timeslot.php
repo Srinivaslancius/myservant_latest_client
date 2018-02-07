@@ -301,7 +301,7 @@
 				maxDate: "+2M",
 					onSelect: function (dateText, inst) {
 				        //alert("su1");
-					        $.ajax({
+					    $.ajax({
 	                        type:"POST",
 	                        url:"get_slot_timings.php",
 	                        data:{
