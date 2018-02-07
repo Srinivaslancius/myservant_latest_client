@@ -19,7 +19,8 @@ if (!isset($_POST['submit']))  {
   $total_no_of_emp = $_POST['total_no_of_emp'];
   $description = $_POST['description'];
   $certification = $_POST['certification'];
-  
+  $landline_number = $_POST['landline_number'];
+  $website = $_POST['website'];
   
   $contact_numbers = $_POST['contact_numbers'];
   $email_id = $_POST['email_id'];
@@ -58,7 +59,7 @@ if (!isset($_POST['submit']))  {
     $specialization_name1 = 0;
   }
   
-   $service_provider = "UPDATE service_provider_registration SET name = '$name',email ='$email',mobile_number ='$mobile_number',lkp_state_id ='$lkp_state_id',lkp_district_id ='$lkp_district_id',lkp_city_id ='$lkp_city_id',lkp_pincode_id ='$lkp_pincode_id',lkp_location_id ='$lkp_location_id',address = '$address' WHERE id = '$id'";
+   $service_provider = "UPDATE service_provider_registration SET name = '$name',email ='$email',mobile_number ='$mobile_number',lkp_state_id ='$lkp_state_id',lkp_district_id ='$lkp_district_id',lkp_city_id ='$lkp_city_id',lkp_pincode_id ='$lkp_pincode_id',lkp_location_id ='$lkp_location_id',address = '$address',website = '$website',landline_number='$landline_number'  WHERE id = '$id'";
     $result1 = $conn->query($service_provider);
 
   if($service_provider_type_id == 'Business') {
