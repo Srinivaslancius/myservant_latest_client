@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				//Chedck the condioton for emptty or not		
 				$lists = array();
 		    	$lists["offerId"] = $row["id"];
-		    	//$lists["title"] = $row["title"];		    	
+		    	$lists["name"] = $row["name"];		    	
 		    	$lists["offerImage"] = $base_url."grocery_admin/uploads/grocery_offer_module_image/".$row["image"];			
 		    	array_push($response["lists"], $lists);		
 			}

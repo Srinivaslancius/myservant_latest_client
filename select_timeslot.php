@@ -61,7 +61,7 @@
 												$duration='+'.$getDuration['booking_time_gap'].' minutes';
 												$getCurTime = date('H:i:00', strtotime($duration, strtotime($cur_time)));
 
-                                        		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND end_time > '$getCurTime' ";
+                                        		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND start_time > '$getCurTime' ";
                                         		$getTotalTimeSlots = $conn->query($getTimeSlots);
                                         		$gettotalSlt = $getTotalTimeSlots->num_rows;
 
