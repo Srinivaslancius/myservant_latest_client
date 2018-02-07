@@ -171,32 +171,25 @@
 	  				?>
             		<?php 
             		$uid = $_SESSION["user_login_session_id"];
-            		//echo "<script>alert('$uid')</script>";
             		$UpdateWallet = "SELECT * FROM user_wallet_transactions WHERE user_id='$uid' AND credit_amnt!=0";
             		$UpDateWallet1 = $conn->query($UpdateWallet);
-            		 
+            		?>
+            		<tbody>
+            		<?php if($UpDateWallet1->num_rows > 0) { 
             		while($UpDateWallet2 = $UpDateWallet1->fetch_assoc()) {
-
             		$getUserDetails = getIndividualDetails('users','id',$UpDateWallet2['user_id']);
-
-            		/*$getPaymentsStatus = getIndividualDetails('lkp_payment_status','id',$UpDateWallet2['	lkp_payment_status_id']);*/
             		$PaymentStatus = getIndividualDetails('lkp_payment_status','id',$UpDateWallet2['lkp_payment_status_id']);
             		?>
-
-            		<tbody>
-            		<?php if($UpDateWallet1->num_rows > 0) {  ?>
             		  <tr style="border-bottom:1px solid #ddd">
-            		  	
             			<td><b><?php echo $getUserDetails['user_full_name']; ?></b></td>
-            			<td><?php echo $UpDateWallet2['credit_amnt']; ?> </td>
+            			<td>Rs. <?php echo $UpDateWallet2['credit_amnt']; ?> </td>
 						<td><?php echo $PaymentStatus['payment_status']; ?></td>
 						<td><?php echo $UpDateWallet2['transaction_id']; ?></td>
 						<td><?php echo $UpDateWallet2['description']; ?></td>
 						<td><?php echo $UpDateWallet2['updated_date']; ?></td>
-						
             		  </tr>
-            		 <?php } else { ?>
-				       <h3 style="text-align:center">No Details Found</h3>
+            		 <?php } } else { ?>
+				       <tr><td><h3 style="text-align:center">No Details Found</h3></td></tr>
 				       <?php } ?>
 					  <!--<tr>
             			<td><b>Cashback Received</b><br>paytm for Order #CASH-676607643 Paytm Cash Txn ID 17376641204 2018-01-09 09:39:13 PM</td>
@@ -205,10 +198,7 @@
 						<td>SUCCESS</td>
 						<td>Order #4419408824 of Reacharge of Airtel Mobile 730214...(Promocode:GETS)</td>
             		  </tr>-->
-            		  
             		</tbody>
-					<?php } ?>
-						
         	     </table>
 				 
 										
@@ -232,31 +222,26 @@
             		</thead>
             		<?php 
             		$uid = $_SESSION["user_login_session_id"];
-            		//echo "<script>alert('$uid')</script>";
             		$UpdateWallets = "SELECT * FROM user_wallet_transactions WHERE user_id='$uid' AND debit_amnt!=0";
             		$UpDateWallets1 = $conn->query($UpdateWallets);
-            		
-            		while($UpDateWallets2 = $UpDateWallets1->fetch_assoc()) {
-
-            		$getUserDetails1 = getIndividualDetails('users','id',$UpDateWallets2['user_id']);
-
-            		$PaymentStatus1 = getIndividualDetails('lkp_payment_status','id',$UpDateWallets2['lkp_payment_status_id']);
             		?>
             		<tbody>
-            		<?php if($UpDateWallets1->num_rows > 0) {  ?>
+            		<?php if($UpDateWallets1->num_rows > 0) { 
+            		while($UpDateWallets2 = $UpDateWallets1->fetch_assoc()) {
+            		$getUserDetails1 = getIndividualDetails('users','id',$UpDateWallets2['user_id']);
+            		$PaymentStatus1 = getIndividualDetails('lkp_payment_status','id',$UpDateWallets2['lkp_payment_status_id']);
+            		?>
             		  <tr style="border-bottom:1px solid #ddd">
-            		  	
             			<td><b><?php echo $getUserDetails1['user_full_name']; ?></b></td>
-            			<td><?php echo $UpDateWallets2['debit_amnt']; ?> </td>
+            			<td>Rs. <?php echo $UpDateWallets2['debit_amnt']; ?> </td>
 						<td><?php echo $PaymentStatus1['payment_status']; ?></td>
 						<td><?php echo $UpDateWallets2['transaction_id']; ?></td>
 						<td><?php echo $UpDateWallets2['description']; ?></td>
 						<td><?php echo $UpDateWallets2['updated_date']; ?></td>
-						
             		  </tr>
-            		  <?php } else { ?>
-				       <h3 style="text-align:center">No Details Found</h3>
-				       <?php } ?>
+            		  <?php } } else { ?>
+            		  <tr><td><h3 style="text-align:center">No Details Found</h3></td></tr>
+				       <?php }?>
 					  <!--<tr>
             			<td><b>Cashback Received</b><br>paytm for Order #CASH-676607643 Paytm Cash Txn ID 17376641204 2018-01-09 09:39:13 PM</td>
             			<td></td>
@@ -264,10 +249,7 @@
 						<td>SUCCESS</td>
 						<td>Order #4419408824 of Reacharge of Airtel Mobile 730214...(Promocode:GETS)</td>
             		  </tr>-->
-            		  
             		</tbody>
-					<?php } ?>
-					
         	     </table>
 				 
 										
