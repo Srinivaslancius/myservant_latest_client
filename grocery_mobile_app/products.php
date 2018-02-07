@@ -10,8 +10,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	if (isset($_REQUEST['cityId']) ) {
 
         $lkp_city_id = $_REQUEST['cityId'];
-        $catId = $_REQUEST['catId'];
-        $subCatId = $_REQUEST['subCatId'];
+        $catId = $_REQUEST['categoryId'];
+        $subCatId = $_REQUEST['subCategoryId'];
         $offerId = $_REQUEST['offerId'];
 
         if($catId!='' && $catId!=0) {
