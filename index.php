@@ -85,19 +85,22 @@ position:absolute;
 								$getBanners = "SELECT * FROM grocery_banners WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id'";
 								$getBannersData = $conn->query($getBanners);
 								while($getBannersData1 = $getBannersData->fetch_assoc()) { 
-									if($getBannersData1['type'] == 1) {
-										$banner_id = $getBannersData1['category_id'];
-									} else {
-										$banner_id = $getBannersData1['sub_category_id'];
-									}
+								if($getBannersData1['type'] == 3) {
 								?>
+								<div class="slider-item style1">
+									<div class="item-image">
+										<a href="single_product.php?id=<?php echo $getBannersData1['id']; ?>"><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
+									</div>
+									<div class="clearfix"></div>
+								</div><!-- /.slider-item style1 -->
+								<?php } else { ?>
 								<div class="slider-item style1">
 									<div class="item-image">
 										<a href="results.php?id=<?php echo $getBannersData1['id']; ?>"><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
-								<?php } ?>
+								<?php } } ?>
 							</div>
 						</div>
 					</div><!-- /.row -->

@@ -27,15 +27,17 @@
 
 		<section class="flat-tracking">
 			<div class="container-fluid">
+			<form action="#" method="get" accept-charset="utf-8">
 				<div class="row">
+				
 					<div class="col-lg-8">
 						<div class="order-tracking">
 							<div class="title">
-								<h3>Select Your Time Slot</h3>
+								<h2>Select Your Time Slot</h2>
 								
-							</div><!-- /.title -->
+							</div><!-- /.title --><br>
 							<div class="tracking-content">
-								<form action="#" method="get" accept-charset="utf-8">
+								
                                                                     
                                     <table class="table">
                                             <thead>
@@ -94,7 +96,7 @@
                                         </tbody>
                                             </tbody>
                                         </table>
-								</form><!-- /.form -->
+								
 							</div><!-- /.tracking-content -->
 						</div><!-- /.order-tracking -->
 					</div><!-- /.col-md-12 -->
@@ -121,7 +123,7 @@
                     <div class="col-lg-4">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
-                            <form action="#" method="get" accept-charset="utf-8">
+                            
                                 <table>
                                     <tbody>
                                         <tr>
@@ -145,12 +147,13 @@
                                 </table>
                                 <div class="btn-cart-totals">
                                     
-                                    <a href="shop_checkout.php" class="checkout" title="">Next</a>
+                                    <center><a href="shop_checkout.php"> <button type="button" class="checkout" title="" style="background-color: #f92400;width:100%">Next</button></a></center>
                                 </div><!-- /.btn-cart-totals -->
-                            </form><!-- /form -->
+                            
                         </div><!-- /.cart-totals -->
                     </div>
 				</div><!-- /.row -->
+				</form><!-- /form -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-tracking -->
 
