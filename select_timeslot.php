@@ -72,17 +72,17 @@
                                         			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
                                         		?>
 			                                        <td>
-			                                        	<select name="slot_timings" style="border: 1px solid #ccc;">
+			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings">
 															<?php 
 																while($row1 = $getTotalTimeSlots1->fetch_assoc()) {  	
 															?>
-																<option value="<?php echo $row1['total_slot_time']; ?>">Tomorrow - <?php echo $row1['total_slot_time']; ?></option>
+																<option value="<?php echo $row1['total_slot_time']; ?>"><?php echo $row1['total_slot_time']; ?></option>
 															<?php } ?>
 														</select>
 			                                        </td>
 			                                    <?php } else { ?>
 			                                    	<td>
-			                                        	<select name="slot_timings" style="border: 1px solid #ccc;">
+			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings">
 															<?php 
 																while($row = $getTotalTimeSlots->fetch_assoc()) {  	
 															?>
@@ -275,7 +275,19 @@
 				autoclose: true,
 				maxDate: "+2M",
 					onSelect: function (dateText, inst) {
-				        //alert(dateText);
+				        //alert("su");
+				        $.ajax({
+	                        type:"POST",
+	                        url:"get_slot_timings.php",
+	                        data:{
+							     dateText:dateText,
+							 },
+	                        success: function(result)
+	                        {
+	                           //alert("result");
+	                           $("#slot_timings").html(result);
+	                        }
+                    	});
 				    },
 				});
 
@@ -289,7 +301,19 @@
 				autoclose: true,
 				maxDate: "+2M",
 					onSelect: function (dateText, inst) {
-				        //alert(dateText);
+				        //alert("su1");
+					        $.ajax({
+	                        type:"POST",
+	                        url:"get_slot_timings.php",
+	                        data:{
+							     dateText:dateText,
+							 },
+	                        success: function(result)
+	                        {
+	                           //alert("result");
+	                           $("#slot_timings").html(result);
+	                        }
+                    	});
 				    },
 				});
             }
