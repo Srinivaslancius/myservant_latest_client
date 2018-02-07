@@ -129,6 +129,8 @@
 				$country = 99;		
 				$_SESSION['order_last_session_id'] = $order_id;
 				$delivery_charges = $_POST["delivery_charges"];
+				$delivery_date = date("Y-m-d",strtotime($_POST["delivery_slot_date"]));
+				$delivery_time = $_POST["delivery_time"];
 
 				if($_SESSION['CART_TEMP_RANDOM'] == "") {
 			        $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
@@ -155,7 +157,7 @@
 					$date = date("ymdhis");
 					$contstr = "MYSERVANT-GR";
 					$sub_order_id = $contstr.$random1.$random2.$date;
-					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`, `reward_points`, `product_reward_points`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date','$reward_points','" . $_POST["product_reward_points"][$i] . "')";
+					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`,`delivery_slot_date`,`delivery_time`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`, `reward_points`, `product_reward_points`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges','$delivery_date','$delivery_time', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date','$reward_points','" . $_POST["product_reward_points"][$i] . "')";
 					$groceryOrders = $conn->query($orders);
 				} 
 				if($payment_group == 1) {
@@ -350,6 +352,8 @@
 									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
 									<input type="hidden" name="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>" id="delivery_charges">
+									<input type="hidden" name="delivery_slot_date" value="<?php echo $_POST['slot_date']; ?>">
+									<input type="hidden" name="delivery_time" value="<?php echo $_POST['slot_timings']; ?>">
 									<input type="hidden" name="discount_money" value="0" id="discount_money">
 									<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
 									<input type="hidden" name="reward_points" value="<?php echo round($reward_points); ?>">
@@ -367,6 +371,14 @@
 	                                        <tr>
 	                                            <td>Delivery Charges</td>
 	                                            <td class="subtotal">Rs . <?php echo $getSiteSettingsData1['delivery_charges']; ?></td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td>Delivery Date</td>
+	                                            <td class="subtotal" id="serviceTax1"><?php echo $_POST['slot_date']; ?></td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td>Delivery Slot</td>
+	                                            <td class="subtotal" id="serviceTax1"><?php echo $_POST['slot_timings']; ?></td>
 	                                        </tr>
 	                                        <tr>
 												<td>Order Total</td>
