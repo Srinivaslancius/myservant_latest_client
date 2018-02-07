@@ -1,4 +1,17 @@
 <?php include_once 'meta.php';?>
+<style>
+#div1{
+width:90%;
+height:auto;
+display:none;
+background: rgba(0,0,0,0.8);
+border:1px solid #DCDCDC;
+border-radius:10px;
+padding:20px;
+z-index:9999;
+position:absolute;
+}
+</style>
 <body class="header_sticky">
 	<div class="boxed style2">
 
@@ -150,6 +163,10 @@
 										<!--<span class="btn-up"></span>-->
 									</div>
 								</div><!-- /.quanlity-box -->
+								<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
+									<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+									<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+								</div>
 								<div class="box-cart style2">
 									<div class="btn-add-cart">
 										<a style="cursor:pointer" onClick="show_cart(<?php echo $product_id; ?>)"><img src="images/icons/add-cart.png" alt="">Add to Cart</a>
@@ -521,10 +538,24 @@
 			        productId:productId,catId:catId,subCatId:subCatId,product_name:productName,productPrice:productPrice,productWeightType:productWeightType,product_quantity:product_quantity,
 			      },
 			      success:function(response) {
-			      	window.location.href = "shop_cart.php";
+			      	//window.location.href = "shop_cart.php";
+			      	$(".cart_popup_"+ProductId).fadeIn(2000);
+			      	setTimeout(function() {
+					    $(".cart_popup_"+ProductId).fadeOut('fast');
+					}, 2000);
 			      }
 			    }); 
+	   			$.ajax({
+				  type:'post',
+				  url:'header_cart_page.php',
+				  data:{
+				     cart_id:ProductId,
+				  },
+				  success:function(data) {
+				    $('.header_cart').html(data);
+				  }
 
+				 });
 			}
 		</script>
 		<script type="text/javascript">
