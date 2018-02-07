@@ -202,7 +202,7 @@
 
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1,#datetimepicker2,#datetimepicker3,#datetimepicker4').datetimepicker({
+            $('#datetimepicker1,#datetimepicker2').datetimepicker({
                 format: 'HH:mm',
                 stepping: 30
             });
