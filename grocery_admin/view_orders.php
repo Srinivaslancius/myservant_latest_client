@@ -103,7 +103,8 @@
                            </div>
                             <div class="col-md-6">
                               <h3 class="m-t-0 m-b-5 font_sz_view">Delivery Details</h3>
-                              <!-- <p>Delivery Date: <?php echo $row['delivery_date'];?></p> -->
+                              <p>Delivery Date: <?php echo changeDateFormat($row['delivery_slot_date']);?></p>
+                              <p>Delivery Time: <?php echo $row['delivery_time'];?></p>
                               <p>Mode of Payment : <?php $getGroceryPaymentsTypes = getAllData('lkp_payment_types');
                               while($getPaymentsTypes = $getGroceryPaymentsTypes->fetch_assoc()) { if($row['payment_method'] == $getPaymentsTypes['id']) { echo $getPaymentsTypes['status']; } } ?></p>
                               <p>Payment Status : <?php $getGroceryPaymentsStatus = getAllData('lkp_payment_status');
