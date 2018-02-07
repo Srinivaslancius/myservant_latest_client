@@ -64,7 +64,7 @@
 		        $updateCart = "UPDATE `grocery_cart` SET user_id='".$_SESSION['user_login_session_id']."' WHERE session_cart_id = '".$_SESSION['CART_TEMP_RANDOM']."'";
 				$updateCart1 = $conn->query($updateCart);
 		        if($cart_id == 1) {
-		        	header('Location: shop_checkout.php');
+		        	header('Location: select_timeslot.php');
 		        } elseif($_GET['err']!='') { header('Location: index.php'); exit; } else { header('Location: index.php'); exit; }
 		    } else {
 		    	header('Location: login.php?err=log-fail');
