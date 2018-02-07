@@ -7,14 +7,25 @@ $lists = array();
 $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-	if (isset($_REQUEST['cityId']) && !empty($_REQUEST['catId']) && !empty($_REQUEST['subCatId']) ) {
+	if (isset($_REQUEST['cityId']) ) {
 
         $lkp_city_id = $_REQUEST['cityId'];
         $catId = $_REQUEST['catId'];
         $subCatId = $_REQUEST['subCatId'];
+        $offerId = $_REQUEST['offerId'];
 
-		$getProducts = "SELECT * from grocery_products WHERE grocery_sub_category_id = $subCatId AND grocery_category_id ='$catId' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')";
+        if($catId!='' && $catId!=0) {
+
+        	$getProducts = "SELECT * from grocery_products WHERE grocery_category_id ='$catId' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')";
 			$getProducts1 = $conn->query($getProducts);
+        } elseif($subCatId!='' && $subCatId!=0) {
+
+        	$getProducts = "SELECT * from grocery_products WHERE grocery_sub_category_id = $subCatId  AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')";
+			$getProducts1 = $conn->query($getProducts);
+        } elseif($offerId!='' && $offerId!=0) {
+
+        }
+		
 		if ($getProducts1->num_rows > 0) {
 
 			$response["lists"] = array();
