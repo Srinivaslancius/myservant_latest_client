@@ -145,8 +145,8 @@
 						<div class="product-wrap">
 							<div class="product-tab style1">
 								<ul class="tab-list">
-									<li class="active">Somthing</li>
-									<li>Somthing</li>
+									<li class="active">Credit Amount</li>
+									<li>Debit Amount</li>
 									
 								</ul><!-- /.tab-list -->
 							</div><!-- /.product-tab style1 -->
@@ -158,19 +158,38 @@
             		<thead>
             		  <tr>
             			<th>MERCHANT NAME</th>
-            			<th>WITHDRAWAL</th>
-            			<th>DEPOSIT</th>
+            			<th>CREDIT AMOUNT</th>
             			<th>STATUS</th>
+            			<th>TRANSACTION ID</th>
 						<th>COMMENT</th>
+						<th>DATE</th>
             		  </tr>
             		</thead>
+            		<?php if($_SESSION['user_login_session_id'] == '') {
+	      				header ("Location: logout.php");
+	  				}
+	  				?>
+            		<?php 
+            		$uid = $_SESSION["user_login_session_id"];
+            		//echo "<script>alert('$uid')</script>";
+            		$UpdateWallet = "SELECT * FROM user_wallet_transactions WHERE user_id='$uid'";
+            		$UpDateWallet1 = $conn->query($UpdateWallet);
+            		if($UpDateWallet1->num_rows > 0) {
+            		while($UpDateWallet2 = $UpDateWallet1->fetch_assoc()) {
+
+            		$getUserDetails = getIndividualDetails('users','id',$UpDateWallet2['user_id']);
+
+            		/*$getPaymentsStatus = getIndividualDetails('lkp_payment_status','id',$UpDateWallet2['	lkp_payment_status_id']);*/
+            		$PaymentStatus = getIndividualDetails('lkp_payment_status','id',$UpDateWallet2['lkp_payment_status_id']);
+            		?>
             		<tbody>
             		  <tr style="border-bottom:1px solid #ddd">
-            			<td><b>Cashback Received</b><br>paytm for Order #CASH-676607643 Paytm Cash Txn ID 17376641204 2018-01-09 09:39:13 PM</td>
-            			<td></td>
-            			<td>Rs : 5/-</td>
-						<td>SUCCESS</td>
-						<td>Order #4419408824 of Reacharge of Airtel Mobile 730214...(Promocode:GETS)</td>
+            			<td><b><?php echo $getUserDetails['user_full_name']; ?></b></td>
+            			<td><?php echo $UpDateWallet2['credit_amnt']; ?> </td>
+						<td><?php echo $PaymentStatus['payment_status']; ?></td>
+						<td><?php echo $UpDateWallet2['transaction_id']; ?></td>
+						<td><?php echo $UpDateWallet2['description']; ?></td>
+						<td><?php echo $UpDateWallet2['updated_date']; ?></td>
             		  </tr>
 					  <!--<tr>
             			<td><b>Cashback Received</b><br>paytm for Order #CASH-676607643 Paytm Cash Txn ID 17376641204 2018-01-09 09:39:13 PM</td>
@@ -181,7 +200,10 @@
             		  </tr>-->
             		  
             		</tbody>
-					
+					<?php } ?>
+						<?php } else { ?>
+				       <h3 style="text-align:center">No Items Found</h3>
+				       <?php } ?>
         	     </table>
 				 
 										
@@ -196,19 +218,33 @@
             		<thead>
             		  <tr>
             			<th>MERCHANT NAME</th>
-            			<th>WITHDRAWAL</th>
-            			<th>DEPOSIT</th>
+            			<th>DEBIT AMOUNT</th>
             			<th>STATUS</th>
+            			<th>TRANSACTION ID</th>
 						<th>COMMENT</th>
+						<th>DATE</th>
             		  </tr>
             		</thead>
+            		<?php 
+            		$uid = $_SESSION["user_login_session_id"];
+            		//echo "<script>alert('$uid')</script>";
+            		$UpdateWallets = "SELECT * FROM user_wallet_transactions WHERE user_id='$uid'";
+            		$UpDateWallets1 = $conn->query($UpdateWallets);
+            		if($UpDateWallets1->num_rows > 0) {
+            		while($UpDateWallets2 = $UpDateWallets1->fetch_assoc()) {
+
+            		$getUserDetails1 = getIndividualDetails('users','id',$UpDateWallets2['user_id']);
+
+            		$PaymentStatus1 = getIndividualDetails('lkp_payment_status','id',$UpDateWallets2['lkp_payment_status_id']);
+            		?>
             		<tbody>
             		  <tr style="border-bottom:1px solid #ddd">
-            			<td><b>Cashback Received</b><br>paytm for Order #CASH-676607643 Paytm Cash Txn ID 17376641204 2018-01-09 09:39:13 PM</td>
-            			<td></td>
-            			<td>Rs : 5/-</td>
-						<td>SUCCESS</td>
-						<td>Order #4419408824 of Reacharge of Airtel Mobile 730214...(Promocode:GETS)</td>
+            			<td><b><?php echo $getUserDetails1['user_full_name']; ?></b></td>
+            			<td><?php echo $UpDateWallets2['debit_amnt']; ?> </td>
+						<td><?php echo $PaymentStatus1['payment_status']; ?></td>
+						<td><?php echo $UpDateWallets2['transaction_id']; ?></td>
+						<td><?php echo $UpDateWallets2['description']; ?></td>
+						<td><?php echo $UpDateWallets2['updated_date']; ?></td>
             		  </tr>
 					  <!--<tr>
             			<td><b>Cashback Received</b><br>paytm for Order #CASH-676607643 Paytm Cash Txn ID 17376641204 2018-01-09 09:39:13 PM</td>
@@ -219,7 +255,10 @@
             		  </tr>-->
             		  
             		</tbody>
-					
+					<?php } ?>
+						<?php } else { ?>
+				       <h3 style="text-align:center">No Items Found</h3>
+				       <?php } ?>
         	     </table>
 				 
 										
