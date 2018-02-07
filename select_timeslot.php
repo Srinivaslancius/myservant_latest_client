@@ -27,7 +27,7 @@
 
 		<section class="flat-tracking">
 			<div class="container-fluid">
-			<form action="#" method="get" accept-charset="utf-8">
+			<form action="shop_checkout.php" method="post" accept-charset="utf-8">
 				<div class="row">
 				
 					<div class="col-lg-8">
@@ -146,8 +146,7 @@
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
-                                    
-                                    <center><a href="shop_checkout.php"> <button type="button" class="checkout" title="" style="background-color: #f92400;width:100%">Next</button></a></center>
+                                    <center><button type="submit" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center>
                                 </div><!-- /.btn-cart-totals -->
                             
                         </div><!-- /.cart-totals -->
