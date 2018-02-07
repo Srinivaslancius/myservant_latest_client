@@ -236,6 +236,12 @@
         } 
     }
 
+    function changeDateFormat($date) {
+        //Save data into logs table
+        $yrdata= strtotime($date);
+        return date('M d , Y', $yrdata);
+    }
+
     function updateAdminLogs($service_id,$user_id) {
         //Update User Log end time
         global $conn;
