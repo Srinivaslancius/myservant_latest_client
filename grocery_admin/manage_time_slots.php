@@ -39,7 +39,7 @@
 
             $startTime = $_REQUEST['start_time'];            
             $endTime = $_REQUEST['end_time'];
-            $duration = '120';
+            $duration = $_REQUEST['slot_length'];
             $start = new DateTime($startTime);
             $end = new DateTime($endTime);
             $interval = new DateInterval("PT" . $duration. "M");
