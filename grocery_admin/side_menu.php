@@ -192,6 +192,13 @@
                 <span class="menu-text">Packages</span>
               </a>
             </li> -->
+            <li class="<?php if($page_name == 'mobile_push_notifications.php') { echo "active"; } ?>"><a href="mobile_push_notifications.php">
+                <span class="menu-icon">
+                  <i class="zmdi zmdi-account-box-mail zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">Mobile Push Notifications</span>
+              </a>
+            </li>
 
             <li class="<?php if($page_name == 'admin_logs.php') { echo "active"; } ?>"><a href="admin_logs.php">
                 <span class="menu-icon">

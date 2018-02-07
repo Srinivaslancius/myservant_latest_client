@@ -29,7 +29,7 @@ $getCountSel = $conn->query($selCnt);
 $getQun = $getCountSel->fetch_assoc();
 
 if($getCountSel->num_rows > 0) {
-	$product_quantity = $getQun['product_quantity']+1;
+	$product_quantity = $getQun['product_quantity']+$_POST['product_quantity'];
 	$saveItems = "UPDATE grocery_cart SET product_quantity='$product_quantity' WHERE product_id='$product_id' AND product_weight_type = '$product_weight_type' AND session_cart_id='$session_cart_id'"; 	
 
 } else {
