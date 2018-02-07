@@ -10,8 +10,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	if (isset($_REQUEST['cityId']) ) {
 
         $lkp_city_id = $_REQUEST['cityId'];
-        $catId = $_REQUEST['categoryId'];
-        $subCatId = $_REQUEST['subCategoryId'];
+        $catId = $_REQUEST['catId'];
+        $subCatId = $_REQUEST['subCatId'];
         $offerId = $_REQUEST['offerId'];
 
         if($catId!='' && $catId!=0) {
@@ -24,6 +24,29 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			$getProducts1 = $conn->query($getProducts);
         } elseif($offerId!='' && $offerId!=0) {
 
+        	$offerProducts = getIndividualDetails('grocery_offer_module','id',$offerId);
+		    $min_percentage = $offerProducts['min_offer_percentage'];
+		    $max_percentage = $offerProducts['max_offer_percentage'];
+		    $type = $offerProducts['offer_level'];
+		    $offer_type = $offerProducts['offer_type'];
+		    $category_id = $offerProducts['category_id'];
+        	$sub_category_id = $offerProducts['sub_category_id'];
+        	if($offer_type == 1) {
+        		$offer_percentage = ' AND (offer_percentage BETWEEN '.$min_percentage.' AND '.$max_percentage.')';
+        	} else {
+        		$offer_percentage = '';
+        	}
+        	if($type == 1) {
+        		$getCategories = getIndividualDetails('grocery_category','id',$category_id);
+				$getName = $getCategories['category_name'];
+        		$getProducts = "SELECT * from grocery_products WHERE grocery_category_id = '$category_id' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' $offer_percentage) ORDER BY id DESC";
+				$getProducts1 = $conn->query($getProducts);				
+        	} else {
+        		$getSubCategories = getIndividualDetails('grocery_sub_category','id',$sub_category_id);
+				$getName = $getSubCategories['sub_category_name'];
+				$getProducts = "SELECT * from grocery_products WHERE grocery_sub_category_id = '$sub_category_id' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' $offer_percentage) ORDER BY id DESC";
+				$getProducts1 = $conn->query($getProducts);				
+        	}
         }
 		
 		if ($getProducts1->num_rows > 0) {
