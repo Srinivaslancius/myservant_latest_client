@@ -189,7 +189,7 @@
 						<td><?php echo $UpDateWallet2['updated_date']; ?></td>
             		  </tr>
             		 <?php } } else { ?>
-				       <tr><td colspan="6"><h3>No Details Found</h3></td></tr>
+				       <tr><td colspan="6" style="text-align:center"><h3>No Details Found</h3></td></tr>
 				       <?php } ?>
 					  <!--<tr>
             			<td><b>Cashback Received</b><br>paytm for Order #CASH-676607643 Paytm Cash Txn ID 17376641204 2018-01-09 09:39:13 PM</td>
