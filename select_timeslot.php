@@ -57,9 +57,9 @@
                                         		<?php 
 
                                         		$getDuration = getIndividualDetails('grocery_manage_time_slots','lkp_status_id',0);
-                                        		$cur_time=date("Y-m-d H:i:s");
+                                        		$cur_time=date("Y-m-d H:i:00");
 												$duration='+'.$getDuration['booking_time_gap'].' minutes';
-												$getCurTime = date('g:i A', strtotime($duration, strtotime($cur_time)));
+												$getCurTime = date('H:i:00', strtotime($duration, strtotime($cur_time)));
 
                                         		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND end_time > '$getCurTime' ";
                                         		$getTotalTimeSlots = $conn->query($getTimeSlots);
