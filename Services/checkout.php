@@ -303,6 +303,7 @@ background-color: #fe6003;
                                         <aside class="col-md-5">
 					<div class="box_style_1">
 						<h3 class="inner">- Summary -</h3>
+						<div class="table-responsive">
 						<table class="table table_summary">
                                                     <thead>
                                                         <tr>
@@ -391,6 +392,7 @@ background-color: #fe6003;
                                                                 <input type="hidden" name="order_total" id="order_total" value="<?php echo $cartTotal1+$service_tax; ?>">
                                                                 </tfoot>    
 						</table>
+						</div>
 						
 						
 					</div>

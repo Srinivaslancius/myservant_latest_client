@@ -34,37 +34,45 @@
           echo "fail";
         } else  { 
 
-            //echo "<pre>"; print_r($_POST); die;
-            $start_time = $_REQUEST['start_time'];            
-            $end_time = $_REQUEST['end_time'];
-            $booking_per_slot = $_REQUEST['booking_per_slot'];
-            $slot_length = $_REQUEST['slot_length'];
-            $booking_time_gap = $_REQUEST['booking_time_gap'];
-            // Create $slots array of the booking times
-            for($i = strtotime($start_time); $i<= strtotime($end_time); $i = $i + $slot_length * 60) {
-                $slots[] = date("g:i A", $i);  
-            }   
-
             $deletetimeSlot = "DELETE FROM grocery_manage_time_slots";
             $conn->query($deletetimeSlot);
-            // Loop through the $slots array and create the booking table
-            $last_key = end(array_keys($slots));
-            foreach($slots as $i => $start) {
-                // Calculate finish time
-                if ($i == $last_key) {
-                    // last element
-                } else {
-                    // not last element
-                    $finish_time = strtotime($start) + $slot_length * 60; 
-                    $total_slot_time = $start . " - " . date("g:i A", $finish_time);
 
-                    $start_time1 = $start;
-                    $end_time1 = date("g:i A", $finish_time);
+            $startTime = $_REQUEST['start_time'];            
+            $endTime = $_REQUEST['end_time'];
+            $duration = '120';
+            $start = new DateTime($startTime);
+            $end = new DateTime($endTime);
+            $interval = new DateInterval("PT" . $duration. "M");
+            $period = new DatePeriod($start, $interval, $end);
+            $periods = array();
+            $slots = array();
+            $slot_counter = 0;
+            foreach ($period as $dt) {
+                $slots[] = $dt;
+            }
+            foreach ($slots as $key => $dt) {
+              $slot_counter++;
+              if($slot_counter == count($slots)) {
+                $current = $end;
+              } else if($slot_counter <= count($slots)) {
+                $current = $slots[$key+1];  
+              }
+              $previous = $slots[$key];
+              $periods[] = array('slot_timing' => $previous->format('g:i A') . ' - ' . $current->format('g:i A'));
 
-                    $sql = "INSERT INTO grocery_manage_time_slots (`start_time`, `end_time`, `slot_length`, `total_slot_time`, `booking_time_gap`) VALUES ('$start_time1', '$end_time1', '$slot_length', '$total_slot_time', '$booking_time_gap')";
-                    $result = $conn->query($sql);
-                }        
-            } // Close foreach      
+              $start_time1= $previous->format('H:i A');
+              $end_time1= $current->format('H:i A');
+
+              $total_slot_time = $previous->format('g:i A') . ' - ' . $current->format('g:i A');
+
+              $booking_per_slot = $_REQUEST['booking_per_slot'];
+              $slot_length = $_REQUEST['slot_length'];
+              $booking_time_gap = $_REQUEST['booking_time_gap'];
+
+              $sql = "INSERT INTO grocery_manage_time_slots (`start_time`, `end_time`, `slot_length`, `total_slot_time`, `booking_time_gap`) VALUES ('$start_time1', '$end_time1', '$slot_length', '$total_slot_time', '$booking_time_gap')";
+              $result = $conn->query($sql);
+
+            }   
            
             if( $result == 1){
                 echo "<script type='text/javascript'>window.location='manage_time_slots.php?msg=success'</script>";
