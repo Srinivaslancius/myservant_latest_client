@@ -3803,12 +3803,12 @@ width:90%;
 }
    
 }
-.btn-info.twi_ter{
+.btn-danger.twi_ter{
 	font-size:15px !important;
 	width:100% !important;
 	color:white !important;
-	border-color: #5bc0de!important;
-	background-color:#5bc0de!important;
+	border-color: #d34836!important;
+	background-color:#d34836!important;
 	
 }
 .btn-primary.fac_book{

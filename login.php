@@ -108,7 +108,7 @@
                                 <a href="#" class="btn btn-primary fac_book"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
                             </div>
                             <div class="col-md-5 col-sm-6">
-                                <a href="#" class="btn btn-info twi_ter"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+                                <a href="#" class="btn btn-danger twi_ter"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a>
                             </div>
 							<div class="col-md-1">
 							</div>
