@@ -133,7 +133,7 @@ position:absolute;
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="http://testproject.cmrenterprises.co.in/grcry/food_new/index.php" title="">
+								<a href="<?php echo $base_url; ?>food_new/index.php" title="">
 									<img src="images/banner_boxes/6.jpeg" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
@@ -142,7 +142,7 @@ position:absolute;
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
-								<a href="http://testproject.cmrenterprises.co.in/grcry/Services/index.php" title="">
+								<a href="<?php echo $base_url; ?>Services/index.php" title="">
 									<img src="images/banner_boxes/5.jpeg" alt="" width="360px" height="200px">
 								</a>
 							</div><!-- /.inner-box -->
