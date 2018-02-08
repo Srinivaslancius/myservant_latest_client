@@ -44,6 +44,7 @@
 		error_reporting(0);
 		
 		$cart_id = decryptPassword($_GET['cart_id']);
+		$offer_id = decryptPassword($_GET['offer_id']);
 		if(isset($_POST['login']))  { 
 		    //Login here
 
@@ -65,7 +66,9 @@
 				$updateCart1 = $conn->query($updateCart);
 		        if($cart_id == 1) {
 		        	header('Location: select_timeslot.php');
-		        } elseif($_GET['err']!='') { header('Location: index.php'); exit; } else { header('Location: index.php'); exit; }
+		        } elseif($offer_id == 1) {
+		        	header("Location:offerzone.php");
+		    	} elseif($_GET['err']!='') { header('Location: index.php'); exit; } else { header('Location: index.php'); exit; }
 		    } else {
 		    	header('Location: login.php?err=log-fail');
 		    }
@@ -140,6 +143,7 @@
 							</div>
 							<form method="post" action="mobile_otp.php" id="form-register" accept-charset="utf-8" autocomplete="off">
 								<input type="hidden" value="<?php echo $_GET['cart_id']?>" name="checkout_key">
+								<input type="hidden" value="<?php echo $_GET['offer_id']?>" name="offer_checkout_key">
 								<div class="form-box">
 									<label for="password-register">Name</label>
 									<input type="text" name="user_name"  id="user_name" placeholder="Name" required>

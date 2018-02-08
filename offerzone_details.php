@@ -47,7 +47,7 @@
 		<section class="main-blog">
 			<div class="container">
 			<center> <h2 style="text-align:center">Get discount up to <?php echo $offerZone['min_offer_percentage'];?>%</h2><br>
-			<button type="submit" class="contact" style="background-color:#f92400" data-toggle="modal" data-target="#myModal1">BOOK NOW</button></center><br>
+			<a href="offerzone_checkout.php?offer_id=<?php echo $offerZone['id'];?>"><button type="submit" class="contact" style="background-color:#f28b00" data-toggle="modal" data-target="#myModal1">BOOK NOW</button></center></a><br>
 			<div class="row">
 			
 			<div class="col-sm-1">
@@ -82,47 +82,24 @@
 			<div class="col-sm-1">
 			</div>
 			</div>
-       </div>
-	    <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-        
-          <center><h4 class="modal-title" style="font-size:23px">Disclaimer</h4></center>
-		   <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>By clicking on the hyper-link, you will be leaving ICICIBank.com and entering website operated by other parties. ICICI Bank does not control or endorse such websites, and bears no responsibility for them.</p>
-        </div>
-        <div class="modal-footer">
-          <center> <button type="submit" class="contact" style="background-color:#f92400">CLICK TO PROCEED</button></center>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  <div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-        
-          <center><h4 class="modal-title" style="font-size:23px">Disclaimer</h4></center>
-		   <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>By clicking on the hyper-link, you will be leaving ICICIBank.com and entering website operated by other parties. ICICI Bank does not control or endorse such websites, and bears no responsibility for them.</p>
-        </div>
-        <div class="modal-footer">
-          <center> <button type="submit" class="contact" style="background-color:#f92400">CLICK TO PROCEED</button></center>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+       	</div>
+	    <!-- <div class="modal fade" id="myModal" role="dialog">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		        
+		          <center><h4 class="modal-title" style="font-size:23px">Disclaimer</h4></center>
+				   <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          <p>By clicking on the hyper-link, you will be leaving ICICIBank.com and entering website operated by other parties. ICICI Bank does not control or endorse such websites, and bears no responsibility for them.</p>
+		        </div>
+		        <div class="modal-footer">
+		          <center> <button type="submit" class="contact" style="background-color:#f92400">CLICK TO PROCEED</button></center>
+		        </div>
+		      </div>
+		    </div>
+	  	</div> -->
 		</section><!-- /.main-blog -->
    
 		

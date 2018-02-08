@@ -28,6 +28,13 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 		$conn->query($insertTransaction);
 	}
 
+	//Saving data into reward transactions
+	$transation_status = "Credited reward points at the time of placing order";
+	$order_date = date('Y-m-d H:i:s', time() + 24 * 60 * 60);
+	$reward_points = $getWalletAmount['reward_points'];
+	$reward_points = "INSERT INTO grocery_reward_transactions (`user_id`, `order_id`, `transation_status`, `credit_reward_points`, `created_at`) VALUES ('$user_id','$order_id','$transation_status','$reward_points','$order_date')";
+	$conn->query($reward_points);
+
 	//after placing order that item will delete in cart
 	if($_SESSION['CART_TEMP_RANDOM'] == "") {
         $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();

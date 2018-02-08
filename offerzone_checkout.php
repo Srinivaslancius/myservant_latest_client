@@ -111,11 +111,11 @@
 			if(isset($_POST["submit"]) && $_POST["submit"]!="") {
 				
 				//Save Order function here
-				$coupon_code = $_POST["coupon_code"];
-				$coupon_code_type = $_POST["coupon_code_type"];
-				$discount_money = $_POST["discount_money"];
+				$user_first_name = $_POST["user_first_name"];
+				$user_last_name = $_POST["user_last_name"];
+				$user_email = $_POST["user_email"];
 				//echo "<pre>"; print_r($_POST); die;
-				$payment_group = $_POST["pay_mn"];
+				$user_phone = $_POST["user_phone"];
 				$order_date = date("Y-m-d h:i:s");
 				$string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
 				$random1 = substr($string1,0,3);
@@ -123,56 +123,20 @@
 				$random2 = substr($string2,0,3);
 				$contstr = "MYSER-GR";
 				$order_id = $contstr.$random1.$random2;
-				$service_tax = $_POST["service_tax"];
-				$itemCount = count($_POST["product_id"]);
-				$reward_points = $_POST["reward_points"];
-				$product_reward_points = $_POST["product_reward_points"];
-				//Saving user id and coupon id
+				$offer_id = $_GET['offer_id'];
+				$offer_reward_points = $_POST["offer_reward_points"];
+				$offer_end_date = $_POST["offer_end_date"];
+				//Saving user id 
 				$user_id = $_SESSION['user_login_session_id'];
-				$payment_status = 2; //In progress
-				$country = 99;		
-				$_SESSION['order_last_session_id'] = $order_id;
-				$delivery_charges = $_POST["delivery_charges"];
-				$delivery_date = date("Y-m-d",strtotime($_POST["delivery_slot_date"]));
-				$delivery_time = $_POST["delivery_time"];
 
-				if($_SESSION['CART_TEMP_RANDOM'] == "") {
-			        $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
-			    }
-			    $session_cart_id = $_SESSION['CART_TEMP_RANDOM'];
-			    if($_POST['walletid'] == 1) {
-				    $wallet_id = $_SESSION['wallet_id'];
-				    if($_POST['wallet_amount'] > $_POST['order_total_without_wallet']) {
-				    	$wallet_amount = $_POST["order_total_without_wallet"];
-				    } else {
-				    	$wallet_amount = $_POST['wallet_amount'];
-				    }
-				} else {
-					$wallet_id = '';
-				    $wallet_amount = '';
+				$orders = "INSERT INTO grocery_offer_zone_orders (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_phone`, `order_id`, `offer_id`, `offer_reward_points`, `offer_end_date`, `created_at`) VALUES ('$user_id','$user_first_name','$user_last_name','$user_email','$user_phone','$order_id','$offer_id','$offer_reward_points','$offer_end_date','$order_date')";
+				$groceryOrders = $conn->query($orders);
+				$transation_status = "Debited Reward Points to purchase coupon";
+				$reward_points = "INSERT INTO grocery_reward_transactions (`user_id`, `order_id`, `transation_status`, `debit_reward_points`, `created_at`) VALUES ('$user_id','$order_id','$transation_status','$offer_reward_points','$order_date')";
+				$result = $conn->query($reward_points);
+				if($result === TRUE) {
+					header ("Location: logout.php");
 				}
-
-				for($i=0;$i<$itemCount;$i++) {
-					//Generate sub randon id
-					$string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
-					$random1 = substr($string1,0,3);
-					$string2 = str_shuffle('1234567890');
-					$random2 = substr($string2,0,3);
-					$date = date("ymdhis");
-					$contstr = "MYSERVANT-GR";
-					$sub_order_id = $contstr.$random1.$random2.$date;
-					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`,`delivery_slot_date`,`delivery_time`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`, `reward_points`, `product_reward_points`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges','$delivery_date','$delivery_time', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date','$reward_points','" . $_POST["product_reward_points"][$i] . "')";
-					$groceryOrders = $conn->query($orders);
-				} 
-				if($payment_group == 1) {
-					//cod 
-					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=2");				
-				} elseif ($payment_group == 2) {
-					//online 
-					header("Location: PayUMoney_form.php?odi=".$order_id."&pay_stau=2");
-				} else {
-					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
-				}			
 			}
 			?>
 
@@ -202,65 +166,62 @@
 										<div class="field-row">
 											<p class="field-one-half">
 												<label for="first-name">First Name *</label>
-												<input type="text" id="first-name" name="first_name" placeholder="First name" required value="<?php echo $getUser['user_full_name']; ?>">
+												<input type="text" id="first-name" name="user_first_name" placeholder="First name" required value="<?php echo $getUser['user_full_name']; ?>">
 											</p>
 											<p class="field-one-half">
 												<label for="last-name">Last Name *</label>
-												<input type="text" id="last-name" name="last_name" placeholder="Last name" required>
+												<input type="text" id="last-name" name="user_last_name" placeholder="Last name" required>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label for="email-address">Email Address *</label>
-												<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required>
+												<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="user_email" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required>
 											</p>
 											<p class="field-one-half">
 												<label for="phone">Phone *</label>
-												<input type="text" id="phone" name="mobile" maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required>
+												<input type="text" id="phone" name="user_phone" maxlength="10" pattern="[0-9]{10}" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required>
 											</p>
 											<div class="clearfix"></div>
 										</div>
-										
-										<!-- <div class="checkbox">
-											<input type="checkbox" id="create-account" name="create-account" checked>
-											<label for="create-account">Create an account?</label>
-										</div> -->
 									</div><!-- /.fields-content -->
 								</div><!-- /.billing-fields -->
 							</div><!-- /.box-checkout -->
 						</div><!-- /.col-md-7 -->
-						<?php
-						    if($_SESSION['CART_TEMP_RANDOM'] == "") {
-						        $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
-						    }
-						    $session_cart_id = $_SESSION['CART_TEMP_RANDOM'];
-						    if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') {
-						        $user_session_id = $_SESSION['user_login_session_id'];
-						        $cartItems1 = "SELECT * FROM grocery_cart WHERE (user_id = '$user_session_id' OR session_cart_id='$session_cart_id') AND product_quantity!='0'";
-						        $cartItems = $conn->query($cartItems1);
-						    } else {
-						      $cartItems1 = "SELECT * FROM grocery_cart WHERE  product_quantity!='0' AND session_cart_id='$session_cart_id' ";
-						      $cartItems = $conn->query($cartItems1);
-						    } 
-						?>
+						<?php 
+				        $id = $_GET['offer_id'];
+				        $user_id = $_SESSION['user_login_session_id'];
+				        $offerZone = getIndividualDetails('grocery_offer_zone','id',$id); 
+				        $getRewards1 = "SELECT * FROM grocery_reward_transactions WHERE user_id = '$user_id' ";
+			     		$getRewards = $conn->query($getRewards1);
+			     		while ($getRewards1 = $getRewards->fetch_assoc()) {
+			     			$credit_reward_points += $getRewards1['credit_reward_points'];
+			     			$debit_reward_points += $getRewards1['debit_reward_points'];
+			     		}
+			     		$totalRewards = $credit_reward_points - $debit_reward_points;
+			     		?>
+				        <input type="hidden" name="offer_reward_points" value="<?php echo $offerZone['offer_reward_points'];?>">
+				        <input type="hidden" name="offer_end_date" value="<?php echo $offerZone['offer_end_date'];?>">
 						<div class="col-md-5">
 							<div class="cart-totals style2">						
-								<h3>Sample Heading</h3>
+								<!-- <h3>Sample Heading</h3> -->
 								<div class="row">
 								<div class="col-sm-3">
-								<img src="images/product/other/sta.jpg">
+								<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$offerZone['offer_image'] ?>">
 								</div>
 								<div class="col-sm-9">
-								<h4>Strawberries</h4>								
-								<p style="margin-top:10px">Product Price : 600/-</p>								
+								<!-- <h4>Strawberries</h4> -->								
+								<!-- <p style="margin-top:10px">Product Price : 600/-</p> -->
 								</div>								
 								</div><br>
-								<p style="text-align:justify"><b>Description:</b> The garden strawberry is a widely grown hybrid species of the genus Fragaria, collectively known as the strawberries. It is cultivated worldwide for its fruit.</p><br>
-								<p><b>Your Reward Points : 400</b></p>
-									<div class="btn-order">									
-										<input type="submit" name="submit" value="Place Order" class="order">
-									</div><!-- /.btn-order -->
+								<p style="text-align:justify"><b>Description:</b> <?php echo $offerZone['offer_description'];?></p><br>
+								<p><b>Minimum Reward points to purchase this coupon : <?php echo $offerZone['offer_reward_points'];?></b></p>
+								<?php if($totalRewards > $offerZone['offer_reward_points']) { ?>
+								<div class="btn-order">
+									<input type="submit" name="submit" value="Place Order" class="order">
+								</div><!-- /.btn-order -->
+								<?php } ?>
 							</div><!-- /.cart-totals style2 -->
 						</div><!-- /.col-md-5 -->
 					</div><!-- /.row -->

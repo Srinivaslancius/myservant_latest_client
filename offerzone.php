@@ -125,7 +125,11 @@
     							<div class="text"><h4 style="margin-bottom:18px">Get Discount upto</h4>
 									<h3 style="color:white;margin-bottom:15px;font-size:20px"><?php echo $row['min_offer_percentage'];?>%</h3>
 									<!-- <p style="font-size:13px;margin-bottom:15px;">Pay Using ICICI Bank<br>Netbanking, or Cards</p> -->
+									<?php if(isset($_SESSION['user_login_session_id'])) { ?>
 									<a href="offerzone_details.php?id=<?php echo $row['id'];?>"><button class="button" style="font-size:15px">SEE FULL DETAILS</button></a>
+									<?php } else { ?>
+									<a href="login.php?offer_id=<?php echo encryptPassword(1);?>"><button class="button" style="font-size:15px">SEE FULL DETAILS</button></a>
+									<?php } ?>
 								</div>				
   							</div>
       					</div>

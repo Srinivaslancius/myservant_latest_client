@@ -58,12 +58,14 @@
      	<div class="panel-group">
      		<?php
      		$user_id = $_SESSION['user_login_session_id'];
-     		$getRewards1 = "SELECT * FROM grocery_orders WHERE user_id = '$user_id' AND lkp_order_status_id = 2 AND lkp_payment_status_id = 1";
+     		$getRewards1 = "SELECT * FROM grocery_reward_transactions WHERE user_id = '$user_id' ";
      		$getRewards = $conn->query($getRewards1);
-     		$getRewardAmount = getIndividualDetails('grocery_reward_points','id',1);
      		while ($getRewards1 = $getRewards->fetch_assoc()) {
-     			$totalRewards += $getRewards1['product_reward_points'];
+     			$credit_reward_points += $getRewards1['credit_reward_points'];
+     			$debit_reward_points += $getRewards1['debit_reward_points'];
      		}
+     		$totalRewards = $credit_reward_points - $debit_reward_points;
+     		$getRewardAmount = getIndividualDetails('grocery_reward_points','id',1);
      		?>
           	<div class="panel panel-default">
                 <div class="panel-heading">
@@ -87,10 +89,11 @@
                  	<div class="row">
 					<div class="col-sm-4">
 					</div>
+					<?php if($totalRewards > 0) { ?>
 					<div class="col-sm-4">
-					
 						<a href="convert_reward_points.php"><button class="button1" type="submit" name="" title="" style="padding: 2px 20px;">Convert Rewards into Amount</button></a>
-						</div>
+					</div>
+					<?php } ?>
 					<div class="col-sm-4">
 					</div>                 		
                  	</div>
