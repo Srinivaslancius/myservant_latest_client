@@ -300,6 +300,7 @@
 		<script type="text/javascript">
 			function minAmount() {
 				if($(".wallet_amount").val() < 100) {
+					alert("Minimum Rs. 100 need to add in Wallet");
 					$(".wallet_amount").val('');
 				}
 			}
