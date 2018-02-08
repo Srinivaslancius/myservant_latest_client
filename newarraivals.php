@@ -11,6 +11,24 @@ padding:20px;
 z-index:9999;
 position:absolute;
 }
+#div2{
+width:400px;
+height:auto;
+display:none;
+background: rgba(0,0,0,0.8);
+border:1px solid #DCDCDC;
+border-radius:10px;
+padding:20px;
+z-index:9999;
+position:absolute;
+margin-top:70px;
+}
+@media screen and (max-width: 480px) and (min-width: 320px){
+	#div2{
+width:93% !important;
+margin-top:0px !important;
+padding:10px !important;
+}
 </style>
 <body class="header_sticky">
 	<div class="boxed style2">
@@ -303,16 +321,18 @@ position:absolute;
 									$allGetPrices1 = $conn->query($getPrices1);
 									$getPrc2 = $allGetPrices1->fetch_assoc(); ?>
 										<div class="product-box style3">
-											<div id="div1" class="cart_popup_<?php echo $getProductsData1['id']; ?>">
-												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductNames1['product_name']; ?></p>
-											</div>
+											
 											<div class="imagebox style1 v3">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $getProductsData1['id'];?>" title="">
 														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages1['image'] ?>" alt="" style="width:264px; height:210px">
 													</a>
+													
 												</div><!-- /.box-image -->
+												<div id="div2" class="cart_popup_<?php echo $getProductsData1['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductNames1['product_name']; ?></p>
+											</div>
 												<div class="box-content">
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $getProductsData1['id'];?>" title=""><?php echo $getProductNames1['product_name']; ?></a>
@@ -325,6 +345,7 @@ position:absolute;
 															<?php echo $getProductNames1['product_description']; ?>
 														</p>
 													</div>
+													
 												</div><!-- /.box-content -->
 												<input type="hidden" id="cat_id1_<?php echo $getProductsData1['id']; ?>" value="<?php echo $getProductsData1['grocery_category_id']; ?>">
 												<input type="hidden" id="sub_cat_id1_<?php echo $getProductsData1['id']; ?>" value="<?php echo $getProductsData1['grocery_sub_category_id']; ?>">
