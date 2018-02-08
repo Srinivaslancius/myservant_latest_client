@@ -56,35 +56,15 @@
                         <?php $getTimeslots = getIndividualDetails('grocery_manage_time_slots','id',$tid); ?>
                         <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Start Time</label>
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Total Slot Time</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input readonly type='text' class="form-control" name="start_time" placeholder="Start Time" value="<?php echo $getTimeslots['start_time']; ?>"/>
+                                    <input readonly type='text' class="form-control" name="total_slot_time" placeholder="Total Slot Time" value="<?php echo $getTimeslots['total_slot_time']; ?>"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">End Time</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <input readonly type='text' class="form-control" name="end_time" placeholder="End Time" value="<?php echo $getTimeslots['end_time']; ?>" />
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Booking Per Slot</label>
                                 <div class="col-sm-6 col-md-4">
                                     <input type="text" class="form-control" id="form-control-3" placeholder="Booking Per Slot" name="booking_per_slot" required="required" value="<?php echo $getTimeslots['booking_per_slot']; ?>">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Slot Length (Mins)</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <input readonly type="text" class="form-control valid_mobile_num" id="form-control-3" placeholder="Slot Length (Mins)" name="slot_length" required="required" value="<?php echo $getTimeslots['slot_length']; ?>">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Booking Time Gap (Mins)</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <input readonly type="text" class="form-control valid_mobile_num" id="form-control-3" placeholder="Booking Time Gap(Mins)" name="booking_time_gap" required="required" value="<?php echo $getTimeslots['booking_time_gap']; ?>">
                                 </div>
                             </div>
 
