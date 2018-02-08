@@ -221,58 +221,7 @@
 											</p>
 											<div class="clearfix"></div>
 										</div>
-										<div class="field-row">
-											<p class="field-one-half">
-												<label>State *</label>
-												<?php $getStates = getAllDataWithStatus('grocery_lkp_states','0'); ?>
-												<select name="lkp_state_id" id="lkp_state_id" onChange="getDistricts(this.value);" required>
-													<option value="">Select State</option>
-													<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
-													<option value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
-													<?php } ?>
-												</select>
-											</p>
-											<p class="field-one-half">
-												<label>District *</label>
-												<select name="lkp_district_id" id="lkp_district_id" placeholder="District" onChange="getCities(this.value);" required>
-													<option value="">Select District</option>
-												</select>
-											</p>
-											<div class="clearfix"></div>
-										</div>
-										<div class="field-row">
-											<p class="field-one-half">
-												<label>City *</label>
-												<select name="lkp_city_id" id="lkp_city_id" placeholder="City" onChange="getPincodes(this.value);" required>
-													<option value="">Select City</option>
-												</select>
-											</p>
-											<p class="field-one-half">
-												<label>Pincode *</label>
-												<select name="lkp_pincode_id" id="lkp_pincode_id" onChange="getAreas(this.value);" placeholder="Zip / Postal Code" required>
-													<option value="">Select Pincode</option>
-												</select>
-											</p>
-											<div class="clearfix"></div>
-										</div>
-										<div class="field-row">
-											<p class="field-one-half">
-												<label>Location *</label>
-												<select name="lkp_area_id" id="lkp_area_id" placeholder="Location" required>
-											<option value="">Select Location</option>
-												</select>
-											</p>
-											<div class="clearfix"></div>
-										</div>
-										<div class="field-row">
-											<label for="address">Address *</label>
-											<input type="text" id="address" name="address" placeholder="Street address">
-											<!-- <input type="text" id="address-2" name="address" placeholder="Apartment, suite, unit etc. (optional)"> -->
-										</div>
-										<div class="field-row">
-											<label for="address">Order Note</label>
-											<textarea style="height:150px" placeholder="Order Note...." name="order_note" id="order_note"></textarea>
-										</div>
+										
 										<!-- <div class="checkbox">
 											<input type="checkbox" id="create-account" name="create-account" checked>
 											<label for="create-account">Create an account?</label>
@@ -297,171 +246,18 @@
 						?>
 						<div class="col-md-5">
 							<div class="cart-totals style2">						
-								<h3>Your Order</h3>
-								<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
-								?>
-								<input type="hidden" name="wallet_amount" id="wallet_amount" value="<?php echo $getWalletAmount['amount']; ?>">
-								<?php if($getWalletAmount['amount'] > 0) { ?>
-								<div class="btn-radio style2">
-									<div class="radio-info">
-										<input type="radio" class="radio-button" id="wallet_id" name="walletid" value="1" checked>
-										<label for="wallet_id">Wallet</label>
-									</div>
+								<h3>Sample Heading</h3>
+								<div class="row">
+								<div class="col-sm-3">
+								<img src="images/product/other/sta.jpg">
 								</div>
-								<?php } ?>
-									<table class="product">
-										<thead>
-											<tr>
-												<th>Product</th>
-												<th>Total</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php 
-												$cartTotal = 0; $reward_points = 0;
-												while ($getCartItems = $cartItems->fetch_assoc()) { 
-												$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
-												$cartTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
-												$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getCartItems['product_id']);
-												$reward_points += $getCartItems['reward_points']*$getCartItems['product_quantity'];
-												$product_reward_points = $getCartItems['reward_points']*$getCartItems['product_quantity'];
-											?>
-											<input type="hidden" name='category_id[]' type='text' value='<?php echo $getCartItems['category_id'];?>'>
-											<input type="hidden" name='sub_cat_id[]' type='text' value='<?php echo $getCartItems['sub_category_id'];?>'>
-											<input type="hidden" name='product_id[]' type='text' value='<?php echo $getCartItems['product_id'];?>'>
-											<input type="hidden" name='product_weight[]' type='text' value='<?php echo $getCartItems['product_weight_type'];?>'>
-											<input type="hidden" name='product_quantity[]' type='text' value='<?php echo $getCartItems['product_quantity'];?>'>
-											<input type="hidden" name='product_reward_points[]' type='text' value='<?php echo $product_reward_points;?>'>
-											<tr>
-												<td><?php echo $getProductName['product_name']; ?></td>
-												<input type="hidden" name="product_name" value="<?php echo $getProductName['product_name']; ?>">
-												<input type="hidden" name="product_price[]" value="<?php echo $getCartItems['product_price']; ?>">
-												<input type="hidden" name="sub_total" value="<?php echo $cartTotal; ?>">			
-												<td>Rs . <?php echo $getCartItems['product_price'] ?> * <?php echo $getCartItems['product_quantity']; ?></td>
-											</tr>
-											<?php } ?>									
-										</tbody>
-									</table><!-- /.product -->
-									
-									<?php 
-									$service_tax += ($getSiteSettingsData1['service_tax']/100)*$cartTotal;
-									$orderTotal = round($cartTotal+$service_tax+$getSiteSettingsData1['delivery_charges']-$getWalletAmount['amount']);
-									$orderTotalwithoutWallet = round($cartTotal+$service_tax+$getSiteSettingsData1['delivery_charges']);
-									?>
-									<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
-									<input type="hidden" id="order_total" name="order_total" value="<?php echo 0; ?>">
-									<?php } else { ?>
-									<input type="hidden" id="order_total" name="order_total" value="<?php echo $orderTotal; ?>">
-									<?php } ?>
-									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
-									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
-									<input type="hidden" name="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>" id="delivery_charges">
-									<input type="hidden" name="delivery_slot_date" value="<?php echo $_POST['slot_date']; ?>">
-									<input type="hidden" name="delivery_time" value="<?php echo $_POST['slot_timings']; ?>">
-									<input type="hidden" name="discount_money" value="0" id="discount_money">
-									<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
-									<input type="hidden" name="reward_points" value="<?php echo round($reward_points); ?>">
-
-									<table>
-										<tbody>	
-											<tr>
-	                                            <td>Sub Total</td>
-	                                            <td class="subtotal" id="serviceTax1">Rs . <?php echo $cartTotal; ?></td>
-	                                        </tr>
-											<tr>
-	                                            <td>GST(<?php echo $getSiteSettingsData1['service_tax']; ?>%)</td>
-	                                            <td class="subtotal" id="serviceTax1">Rs . <?php echo $service_tax; ?></td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td>Delivery Charges</td>
-	                                            <td class="subtotal">Rs . <?php echo $getSiteSettingsData1['delivery_charges']; ?></td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td>Delivery Date</td>
-	                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_POST['slot_date']); ?></td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td>Delivery Slot</td>
-	                                            <td class="subtotal" id="serviceTax1"><?php echo $_POST['slot_timings']; ?></td>
-	                                        </tr>
-	                                        <tr>
-												<td>Order Total</td>
-												<td class="subtotal">Rs . <?php echo $orderTotalwithoutWallet; ?></td>
-											</tr>
-	                                        <?php if($getWalletAmount['amount'] > 0) { ?>
-	                                        <tr id="wallet">
-	                                            <td>Money in Your Wallet</td>
-	                                            <td class="subtotal">Rs . <?php echo $getWalletAmount['amount']; ?></td>
-	                                        </tr>
-	                                        <?php } ?>	
-	                                        <tr id="discount_price">
-								                <td>Discount<span style="color:green">(Coupon Applied.)</td> 
-								                <td><span id="discount_price1" class="pull-right"></span></td>
-								            </tr>							
-											<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
-											<tr>
-												<td>Total</td>
-												<td class="price-total">Rs . <?php echo 0; ?></td>
-											</tr>
-											<?php } else if($getWalletAmount['amount'] > 0) { ?>
-											<tr>
-												<td>Total</td>
-												<td class="price-total cart_total2">Rs . <?php echo round($orderTotal); ?></td>
-											</tr>
-											<?php } else { ?>
-											<tr>
-												<td>Total</td>
-												<td class="price-total cart_total2">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
-											</tr>
-											<?php } ?>
-											
-											<?php
-											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
-											//If reward status is yes
-											if($getRewardPointsdata['reward_status'] == 0) { ?>
-												<tr>
-													<td>Reward Points</td>
-													<td class="reward-points"><?php echo round($reward_points); ?></td>
-												</tr>
-											<?php } ?>
-											
-										</tbody>
-									</table>
-									
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-8 col-sm-8 col-xs-8">
-													<div class="field-group has-feedback has-clear twof" style="width:118%;margin-top:4px">
-								      					<input autocomplete="off" type="text" name="coupon_code" value="" placeholder="Coupon Code" class="form-control pad_wdth" id="coupon_code" style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;text-transform:uppercase">
-								      					<button class="form-control-clear close-icon form-control-feedback hidden" type="reset"></button>
-								    				</div>
-												</div>
-												<div class="col-md-4 col-sm-4 col-xs-4">
-													<div class="field-group btn-field">
-														<button type="button" class="button1 bdr_rds btn_cart_outine apply_coupon" style="padding:0px 20px;border-top-left-radius: 0px;border-bottom-left-radius: 0px">Apply</button>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<span id="coupon_status" style="color: red;"></span>
-											</div>
-										</div>
-									
-									<div class="btn-radio style2">
-										<div class="radio-info">
-											<input type="radio" id="cash-delivery" name="pay_mn" value="1" required>
-											<label for="cash-delivery">COD</label>
-										</div>
-										<div class="radio-info">
-											<input type="radio" id="online_payment" name="pay_mn" value="2" required>
-											<label for="online_payment">Online payment</label>
-										</div>
-									</div><!-- /.btn-radio style2 -->
-									
-									<div class="checkbox">
-										<input type="checkbox" id="checked-order" name="checked-order" checked>
-										<label for="checked-order">I’ve read and accept the terms & conditions *</label>
-									</div><!-- /.checkbox -->
+								<div class="col-sm-9">
+								<h4>Strawberries</h4>								
+								<p style="margin-top:10px">Product Price : 600/-</p>								
+								</div>								
+								</div><br>
+								<p style="text-align:justify"><b>Description:</b> The garden strawberry is a widely grown hybrid species of the genus Fragaria, collectively known as the strawberries. It is cultivated worldwide for its fruit.</p><br>
+								<p><b>Your Reward Points : 400</b></p>
 									<div class="btn-order">									
 										<input type="submit" name="submit" value="Place Order" class="order">
 									</div><!-- /.btn-order -->
