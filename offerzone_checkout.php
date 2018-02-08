@@ -126,17 +126,45 @@
 				$offer_id = $_GET['offer_id'];
 				$offer_reward_points = $_POST["offer_reward_points"];
 				$offer_end_date = $_POST["offer_end_date"];
+				$offer_code = $_POST["offer_code"];
 				//Saving user id 
 				$user_id = $_SESSION['user_login_session_id'];
 
 				$orders = "INSERT INTO grocery_offer_zone_orders (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_phone`, `order_id`, `offer_id`, `offer_reward_points`, `offer_end_date`, `created_at`) VALUES ('$user_id','$user_first_name','$user_last_name','$user_email','$user_phone','$order_id','$offer_id','$offer_reward_points','$offer_end_date','$order_date')";
 				$groceryOrders = $conn->query($orders);
 				$transation_status = "Debited Reward Points to purchase coupon";
-				$reward_points = "INSERT INTO grocery_reward_transactions (`user_id`, `order_id`, `transation_status`, `debit_reward_points`, `created_at`) VALUES ('$user_id','$order_id','$transation_status','$offer_reward_points','$order_date')";
+				$reward_points = "INSERT INTO grocery_reward_transactions (`user_id`, `offerzone_purchase_id`, `transation_status`, `debit_reward_points`, `created_at`) VALUES ('$user_id','$order_id','$transation_status','$offer_reward_points','$order_date')";
 				$result = $conn->query($reward_points);
 				if($result === TRUE) {
-					header ("Location: logout.php");
+					header ("Location: thank_you.php");
 				}
+				$dataem = $_POST["user_email"];
+				//$to = "srinivas@lanciussolutions.com";
+				$to = $dataem;
+				$from = $getSiteSettings1["orders_email"];
+				$subject = "My Servent - Offer Coupon ";
+				$message = '';
+				$message .= '<body>
+					<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
+					<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
+					 <center><img src='.$base_url . "grocery_admin/uploads/logo/".$getSiteSettings1["logo"].' class="logo-responsive"></center>
+					</header>
+					<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
+					  <h1 style="color:#fe6003">Greetings From Myservant</h1>
+					  <p>Dear <span style="color:#fe6003;">'.$first_name.'</span>, Thank you for Purchasing Coupons.  myservant.com!</p>
+						<p>Your Offer Coupon Code is: <span style="color:#fe6003;">'.$offer_code.'</span></p>
+						<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
+						<p>Warm Regards,<br>The Myservant Team </p>
+					</article>
+					<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettings1['footer_text'].'</footer>
+					</div>
+
+					</body>';
+
+				//echo $message; die;
+				//$sendMail = sendEmail($to,$subject,$message,$from);
+				$name = "My Servant - Grocery";
+				$mail = sendEmail($to,$subject,$message,$from,$name);
 			}
 			?>
 
@@ -203,6 +231,7 @@
 			     		?>
 				        <input type="hidden" name="offer_reward_points" value="<?php echo $offerZone['offer_reward_points'];?>">
 				        <input type="hidden" name="offer_end_date" value="<?php echo $offerZone['offer_end_date'];?>">
+				        <input type="hidden" name="offer_code" value="<?php echo $offerZone['offer_code'];?>">
 						<div class="col-md-5">
 							<div class="cart-totals style2">						
 								<!-- <h3>Sample Heading</h3> -->

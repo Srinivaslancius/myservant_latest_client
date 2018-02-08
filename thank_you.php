@@ -15,6 +15,12 @@
 			</div><!-- /.header-bottom -->
 		</section><!-- /#header -->
 
+		<?php
+		header( "refresh:10;url=index.php" );
+		if($_SESSION['user_login_session_id'] == '') {
+		    header ("Location: logout.php");
+		} 
+		?>
 		<section class="flat-error">
 			<div class="container">
 				<div class="row">
@@ -25,11 +31,9 @@
 							<div class="header-error" style="margin-bottom:30px">
 								<img src="images/right.png" class="img-responsive" style="width:150px;height:150px">
 								<h1>Thank You !</h1>
-								<h4>Your Order has been received</h4>
+								<h4>Check your email now, your Discount Coupon should already be there! Happy Shopping.</h4>
 							</div><!-- /.header-error -->
-							
-							
-					</div><!-- /.col-md-8 -->
+						</div><!-- /.col-md-8 -->
 					<div class="col-md-2 col-sm-2">
 					</div><!-- /.col-md-2 -->
 				</div><!-- /.row -->
