@@ -108,72 +108,27 @@
 			<div class="col-sm-8">
 			<h2 style="text-align:center">Goomo flights offer - Get discount up to Rs.15,000</h2><br>
 			<center> <button type="submit" class="contact" style="background-color:#f92400" data-toggle="modal" data-target="#myModal1">BOOK NOW</button></center><br>
-			<p>ICICI Bank in association with Goomo brings to you an exclusive offer on domestic and international flight bookings.</p>
-			<p>Get instant discount up to Rs.15,000 on flight bookings.</p>
-			<p><b>Offer Details:</b></p>
-			<p style="font-size:15px;margin:7px 0px"><b>Domestic Flights:</b></p>
-			<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Discount</th>
-        <th>Booking Amount</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Rs.400	</td>
-        <td>Rs.3,000 - Rs.6,999</td>
-       
-      </tr>
-      <tr>
-        <td>Rs.800</td>
-        <td>Rs.7,000 - Rs.9,999	</td>
-      
-      </tr>
-      <tr>
-        <td>Rs.1,000</td>
-        <td>Rs.10,000 - Rs.19,999</td>
-       
-      </tr>
-    </tbody>
-  </table>
-  <p style="font-size:15px;margin:7px 0px"><b>Domestic Flights:</b></p>
-  	<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Discount</th>
-        <th>Booking Amount</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Rs.400	</td>
-        <td>Rs.3,000 - Rs.6,999</td>
-       
-      </tr>
-      <tr>
-        <td>Rs.800</td>
-        <td>Rs.7,000 - Rs.9,999	</td>
-      
-      </tr>
-      <tr>
-        <td>Rs.1,000</td>
-        <td>Rs.10,000 - Rs.19,999</td>
-       
-      </tr>
-    </tbody>
-  </table>
-  <p><b>Steps to avail the offer:</b></p>
-  <ul>
-  <li>Log on to goomo.com</li>
-   <li>Log on to goomo.com</li>
-    <li>Log on to goomo.com</li>
-	</ul>
-	<p style="font-size:15px">Offer valid till January 31, 2018.</p><br>
-  
-  <button type="submit" class="contact" style="background-color:#f92400" data-toggle="modal" data-target="#myModal">BOOK NOW</button>
+			<p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.</p>
+			<div class="row">
+			<div class="col-sm-3">
+			<p>Start Date :</p>
+			</div>
+			<div class="col-sm-9">
+			<p>13/02/2018</p>
+			</div>
+			<div class="col-sm-3">
+			<p>End Date :</p>
+			</div>
+			<div class="col-sm-9">
+			<p>13/02/2018</p>
+			</div>
+			<div class="col-sm-3">
+			<p>Some Ratio :</p>
+			</div>
+			<div class="col-sm-9">
+			<p>100%</p>
+			</div>
+			</div>			
 			</div>
 			<div class="col-sm-2">
 			</div>
