@@ -40,39 +40,42 @@
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-slider -->
-                
+        
+        <?php 
+        $id = $_GET['id'];
+        $offerZone = getIndividualDetails('grocery_offer_zone','id',$id); ?>        
 		<section class="main-blog">
 			<div class="container">
-			<center> <h2 style="text-align:center">Goomo flights offer - Get discount up to Rs.15,000</h2><br>
+			<center> <h2 style="text-align:center">Get discount up to <?php echo $offerZone['min_offer_percentage'];?>%</h2><br>
 			<button type="submit" class="contact" style="background-color:#f92400" data-toggle="modal" data-target="#myModal1">BOOK NOW</button></center><br>
 			<div class="row">
 			
 			<div class="col-sm-1">
 			</div>
 			<div class="col-sm-4">
-			<img src="images/slider/1.jpg">
+			<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$offerZone['offer_image'] ?>">
 			</div>
 			<div class="col-sm-6">
 			
-			<p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.</p>
+			<p style="text-align:justify"><?php echo $offerZone['offer_description'];?></p>
 			<div class="row">
 			<div class="col-sm-3">
 			<p>Start Date :</p>
 			</div>
 			<div class="col-sm-9">
-			<p>13/02/2018</p>
+			<p><?php echo changeDateFormat($offerZone['offer_start_date']);?></p>
 			</div>
 			<div class="col-sm-3">
 			<p>End Date :</p>
 			</div>
 			<div class="col-sm-9">
-			<p>13/02/2018</p>
+			<p><?php echo changeDateFormat($offerZone['offer_end_date']);?></p>
 			</div>
 			<div class="col-sm-3">
-			<p>Some Ratio :</p>
+			<p>Reward Points :</p>
 			</div>
 			<div class="col-sm-9">
-			<p>100%</p>
+			<p>To Purchase this coupon minimum <?php echo $offerZone['offer_reward_points'];?> reward points required.</p>
 			</div>
 			</div>			
 			</div>
