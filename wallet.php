@@ -128,7 +128,7 @@
             		  <tr>
             			<td><img src="images/dashboard/wallet.png"></td>
             			<td><b>Rs : <?php echo $amount; ?>/-</b><br>Your Wallet Balance</td>
-            			<td colspan="2"><input type="text" class="valid_mobile_num" name="amnt" placeholder="Enter amount to be added in your wallet" required></td>						
+            			<td colspan="2"><input type="text" class="valid_mobile_num wallet_amount" name="amnt" placeholder="Enter amount to be added in your wallet" onblur="minAmount()" required></td>						
 						<td><button class="button1" type="submit" name="submit" value="submit">Add Money to Wallet</button></td>
             		  </tr>            		  
             		</tbody>
@@ -297,6 +297,12 @@
 	   	<script type="text/javascript" src="javascript/waves.min.js"></script>
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 		<script type="text/javascript" src="javascript/main.js"></script>
-
+		<script type="text/javascript">
+			function minAmount() {
+				if($(".wallet_amount").val() < 100) {
+					$(".wallet_amount").val('');
+				}
+			}
+		</script>
 </body>	
 </html>
