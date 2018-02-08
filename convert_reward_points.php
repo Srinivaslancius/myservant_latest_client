@@ -56,7 +56,9 @@
     <div class="col-sm-9">       	 
          
      	<div class="panel-group">
-     		<?php $getRewards = getAllDataWhere('grocery_orders','user_id',$_SESSION['user_login_session_id']);
+     		<?php $user_id = $_SESSION['user_login_session_id'];
+     		$getRewards1 = "SELECT * FROM grocery_orders WHERE user_id = '$user_id' AND lkp_order_status_id = 2";
+     		$getRewards = $conn->query($getRewards1);
      		$getRewardAmount = getIndividualDetails('grocery_reward_points','id',1);
      		while ($getRewards1 = $getRewards->fetch_assoc()) {
      			$totalRewards += $getRewards1['product_reward_points'];

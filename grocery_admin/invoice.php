@@ -64,7 +64,8 @@ if($getOrdersData1['delivery_charges'] == '0') {
               <div class="col-sm-6">                
                 <p><strong>Order Info</strong></p>
                 <p>Order Id: <?php echo $getOrdersData1['order_id']; ?>
-                  <br>Restaurant Name: <?php echo $getRestaurants['restaurant_name']; ?>
+                  <br>Delivery Slot Date: <?php echo changeDateFormat($getOrdersData1['delivery_slot_date']);?>
+                  <br>Delivery Slot Time: <?php echo $getOrdersData1['delivery_time'];?>
                   <br>Order Date: <?php echo $getOrdersData1['created_at']; ?>
                   <br>Order Status : <?php echo $orderStatus['order_status']; ?> 
                   <br>Payment Status : <?php echo $paymentStatus['payment_status']; ?>
