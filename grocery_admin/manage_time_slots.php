@@ -39,7 +39,8 @@
 
             $startTime = $_REQUEST['start_time'];            
             $endTime = $_REQUEST['end_time'];
-            $duration = '120';
+            $duration = $_REQUEST['slot_length'];
+            $booking_per_slot = $_REQUEST['booking_per_slot'];
             $start = new DateTime($startTime);
             $end = new DateTime($endTime);
             $interval = new DateInterval("PT" . $duration. "M");
@@ -69,7 +70,7 @@
               $slot_length = $_REQUEST['slot_length'];
               $booking_time_gap = $_REQUEST['booking_time_gap'];
 
-              $sql = "INSERT INTO grocery_manage_time_slots (`start_time`, `end_time`, `slot_length`, `total_slot_time`, `booking_time_gap`) VALUES ('$start_time1', '$end_time1', '$slot_length', '$total_slot_time', '$booking_time_gap')";
+              $sql = "INSERT INTO grocery_manage_time_slots (`start_time`, `end_time`, `slot_length`, `booking_per_slot`, `total_slot_time`, `booking_time_gap`) VALUES ('$start_time1', '$end_time1', '$slot_length', '$booking_per_slot', '$total_slot_time', '$booking_time_gap')";
               $result = $conn->query($sql);
 
             }   
@@ -114,12 +115,12 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Booking Per Slot</label>
                                 <div class="col-sm-6 col-md-4">
                                     <input type="text" class="form-control" id="form-control-3" placeholder="Booking Per Slot" name="booking_per_slot" required="required">
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Slot Length (Mins)</label>
@@ -158,7 +159,7 @@
                                     <!-- <th>Start Time</th>
                                     <th>End Time</th> -->                                                 
                                     <th>Total Slots</th>
-                                    <!-- <th>Booking Per Slot</th> -->
+                                    <th>Booking Per Slot</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -177,9 +178,9 @@
                                     <!-- <td><?php echo $row['start_time']; ?></td>
                                     <td><?php echo $row['end_time']; ?></td> -->
                                     <td><?php echo $row['total_slot_time']; ?></td>
-                                    <!-- <td><?php echo $row['booking_per_slot']; ?></td> -->
+                                    <td><?php echo $row['booking_per_slot']; ?></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_manage_time_slots'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_manage_time_slots'>In Active</span>" ;} ?></td>
-                                    <td></td>
+                                    <td><a href="edit_manage_time_slots.php?tid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
@@ -202,7 +203,7 @@
 
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1,#datetimepicker2,#datetimepicker3,#datetimepicker4').datetimepicker({
+            $('#datetimepicker1,#datetimepicker2').datetimepicker({
                 format: 'HH:mm',
                 stepping: 30
             });

@@ -251,11 +251,11 @@ if (!isset($_POST['submit']))  {
 					 <p style="margin-top:8px">Morning:</p>
 					</div>
 					<div class="col-sm-4">
-                   <input type="text" name="working_hours" class="form-control service_provider_business valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Morning Timings">
+                   <input type="text" name="working_hours" class="form-control service_provider_business valid_mobile_num" id="form-control-2" placeholder="Morning Time" data-error="Please enter Morning Timings" required>
                     <div class="help-block with-errors"></div>
 					</div>
 					<div class="col-sm-5">
-                  <select name="strat_time" class="form-control" id="sel1">
+                  <select name="strat_time" class="form-control" id="sel1" required>
 					<option value="1">AM</option>
           <option value="2">PM</option>
 				  </select>
@@ -270,11 +270,11 @@ if (!isset($_POST['submit']))  {
 					 <p style="margin-top:8px">Evening:</p>
 					</div>
 					<div class="col-sm-4">
-                   <input type="text" name="evening_hours" class="form-control service_provider_business valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Working Hours">
+                   <input type="text" name="evening_hours" class="form-control service_provider_business valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Evening Hours" required>
                     <div class="help-block with-errors"></div>
 					</div>
 					<div class="col-sm-5">
-                  <select name="night_time" class="form-control" id="sel1">
+                  <select name="night_time" class="form-control" id="sel1" required>
 					<option value="1">AM</option>
           <option value="2">PM</option>
 				  </select>
@@ -342,11 +342,11 @@ if (!isset($_POST['submit']))  {
                    <p style="margin-top:8px">Morning:</p>
                   </div>
                   <div class="col-sm-4">
-                   <input type="text" name="working_hours1" class="form-control service_provider_personal valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Morning Timings">
+                   <input type="text" name="working_hours1" class="form-control service_provider_personal valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Morning Timings" required>
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="col-sm-5">
-                          <select name="strat_time1" class="form-control" id="sel1">
+                          <select name="strat_time1" class="form-control" id="sel1" required>
                   <option value="1">AM</option>
                   <option value="2">PM</option>
                   </select>
@@ -361,11 +361,11 @@ if (!isset($_POST['submit']))  {
                    <p style="margin-top:8px">Evening:</p>
                   </div>
                   <div class="col-sm-4">
-                           <input type="text" name="evening_hours1" class="form-control service_provider_personal valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Working Hours">
+                           <input type="text" name="evening_hours1" class="form-control service_provider_personal valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Evening Hours" required>
                             <div class="help-block with-errors"></div>
                   </div>
                   <div class="col-sm-5">
-                          <select name="night_time1" class="form-control" id="sel2">
+                          <select name="night_time1" class="form-control" id="sel2" required>
                   <option value="1">AM</option>
                   <option value="2">PM</option>
                   </select>

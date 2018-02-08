@@ -62,7 +62,7 @@ if (!isset($_POST['submit']))  {
   //echo "fail";
 
 }else  {
-
+//echo "<script>alert('hai')</script>";
   //If success
   //echo "<pre>";print_r($_POST);exit;
   $name = $_POST['name'];
@@ -77,8 +77,16 @@ if (!isset($_POST['submit']))  {
   $total_no_of_emp = $_POST['total_no_of_emp'];
   $description = $_POST['description'];
   $certification = $_POST['certification'];
+
   $working_hours = $_POST['working_hours'];
+  $strat_time = $_POST['strat_time'];
+  $evening_hours = $_POST['evening_hours'];
+  $night_time = $_POST['night_time'];
+
   $working_hours1 = $_POST['working_hours1'];
+  $strat_time1 = $_POST['strat_time1'];
+  $evening_hours1 = $_POST['evening_hours1'];
+  $night_time1 = $_POST['night_time1'];
   $contact_numbers = $_POST['contact_numbers'];
   $email_id = $_POST['email_id'];
 
@@ -119,7 +127,7 @@ if (!isset($_POST['submit']))  {
       $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-          $sql = "INSERT INTO service_provider_business_registration (`service_provider_registration_id`,`service_provider_type_id`, `company_name`,`est_year`, `total_no_of_emp`, `description`, `certification`, `working_hours`, `contact_numbers`, `email_id`, `sub_category_id`, `specialization_name`, `associate_or_not`,`logo`) VALUES ('$last_id','$service_provider_type_id', '$company_name', '$est_year', '$total_no_of_emp', '$description', '$certification', '$working_hours', '$contact_numbers', '$email_id','$sub_category_id', '$specialization_name', '$associate_or_not','$fileToUpload')"; 
+          $sql = "INSERT INTO service_provider_business_registration (`service_provider_registration_id`,`service_provider_type_id`, `company_name`,`est_year`, `total_no_of_emp`, `description`, `certification`, `working_hours`, `contact_numbers`, `email_id`, `sub_category_id`, `specialization_name`, `associate_or_not`,`logo`, `strat_time`,`evening_hours`,`night_time`) VALUES ('$last_id','$service_provider_type_id', '$company_name', '$est_year', '$total_no_of_emp', '$description', '$certification', '$working_hours', '$contact_numbers', '$email_id','$sub_category_id', '$specialization_name', '$associate_or_not','$fileToUpload','$strat_time','$evening_hours','$night_time')"; 
           $res = $conn->query($sql);
       }
     }
@@ -132,7 +140,7 @@ if (!isset($_POST['submit']))  {
       $imageFileType = pathinfo($target_file1,PATHINFO_EXTENSION);
 
       if (move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1)) {
-          $sql1 = "INSERT INTO service_provider_personal_registration (`service_provider_registration_id`,`service_provider_type_id`, `experience`,`image`, `working_hours`, `sub_category_id`, `specialization_name`) VALUES ('$last_id','$service_provider_type_id', '$experience', '$fileToUpload1', '$working_hours1','$sub_category_id1', '$specialization_name1')"; 
+          $sql1 = "INSERT INTO service_provider_personal_registration (`service_provider_registration_id`,`service_provider_type_id`, `experience`,`image`, `working_hours`, `sub_category_id`, `specialization_name` , `strat_time`,`evening_hours`,`night_time`) VALUES ('$last_id','$service_provider_type_id', '$experience', '$fileToUpload1', '$working_hours1','$sub_category_id1', '$specialization_name1' ,'$strat_time1','$evening_hours1','$night_time1')";
           $res = $conn->query($sql1);
       }
     }
@@ -421,9 +429,9 @@ if (!isset($_POST['submit']))  {
                       <!--- //if associate value = 0 (Yes) & if associate value = 1 (No) -->
                         <h4>Associate with us</h4>
                         <label>
-                          <input type="radio" value="0" name="associate_or_not" required/>&nbsp;Yes</label>&nbsp;&nbsp;
+                          <input type="radio" value="0" name="associate_or_not" class="service_provider_business" required/>&nbsp;Yes</label>&nbsp;&nbsp;
                         <label>
-                          <input type="radio" value="1" name="associate_or_not" required/>&nbsp;No</label>
+                          <input type="radio" value="1" name="associate_or_not" class="service_provider_business" required/>&nbsp;No</label>
                   </div>
                       </div>
                   </div>
@@ -439,11 +447,11 @@ if (!isset($_POST['submit']))  {
 					 <p style="margin-top:8px">Morning:</p>
 					</div>
 					<div class="col-sm-4">
-                   <input type="text" name="working_hours" class="form-control service_provider_business valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Morning Timings">
+                   <input type="text" name="working_hours1" class="form-control service_provider_personal valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Morning Timings">
                     <div class="help-block with-errors"></div>
 					</div>
 					<div class="col-sm-4">
-                  <select name="strat_time" class="form-control" id="sel1">
+                  <select name="strat_time1" class="form-control" id="sel1">
 					<option value="1">AM</option>
 					<option value="2">PM</option>
 				  </select>
@@ -457,11 +465,11 @@ if (!isset($_POST['submit']))  {
 					 <p style="margin-top:8px">Evening:</p>
 					</div>
 					<div class="col-sm-4">
-                   <input type="text" name="evening_hours" class="form-control service_provider_business valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Working Hours">
+                   <input type="text" name="evening_hours1" class="form-control service_provider_personal valid_mobile_num" id="form-control-2" placeholder="Time" data-error="Please enter Working Hours">
                     <div class="help-block with-errors"></div>
 					</div>
 					<div class="col-sm-4">
-                  <select name="night_time" class="form-control" id="sel1">
+                  <select name="night_time1" class="form-control" id="sel1">
 					<option value="1">AM</option>
           <option value="2">PM</option>
 				  </select>
@@ -525,7 +533,7 @@ if (!isset($_POST['submit']))  {
 				</div>
                  <div class="col-sm-5 col-md-5">
                         <div class="main_title">
-				<h2>Benefits</h2>
+				<!-- <h2>Benefits</h2> -->
 				
 			</div>
                     </div> 
