@@ -1,68 +1,9 @@
 <?php include_once 'meta.php';?>
-<style>
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    padding: 8px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    border-top: 1px solid #ddd;
-    font-size: 13px;
-}
-.table>thead>tr>th {
-    vertical-align: bottom;
-    border-bottom: 0px;
-    background-color: #fe6003;
-	color:white;
-    font-weight: bold;
-}
-	</style>
+
 <body class="header_sticky">
 	<div class="boxed style2">
 
 		<div class="overlay"></div>
-
-		<!-- Preloader -->
-		<!-- <div class="preloader">
-			<div class="clear-loading loading-effect-2">
-				<span></span>
-			</div>
-		</div> --><!-- /.preloader -->
-
-		<div class="popup-newsletter">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						
-					</div>
-					<div class="col-sm-8">
-						<div class="popup">
-							<span></span>
-							<div class="popup-text">
-								<h2>Join our newsletter and <br />get discount!</h2>
-								<p class="subscribe">Subscribe to the newsletter to receive updates about new products.</p>
-								<div class="form-popup">
-									<form action="#" class="subscribe-form" method="get" accept-charset="utf-8">
-										<div class="subscribe-content">
-											<input type="text" name="email" class="subscribe-email" placeholder="Your E-Mail">
-											<button type="submit"><img src="images/icons/right-2.png" alt=""></button>
-										</div>
-									</form><!-- /.subscribe-form -->
-									<div class="checkbox">
-										<input type="checkbox" id="popup-not-show" name="category">
-										<label for="popup-not-show">Don't show this popup again</label>
-									</div>
-								</div><!-- /.form-popup -->
-							</div><!-- /.popup-text -->
-							<div class="popup-image">
-								<img src="images/product/other/my.jpg" alt="">
-							</div><!-- /.popup-text -->
-						</div><!-- /.popup -->
-					</div><!-- /.col-sm-8 -->
-					<div class="col-sm-2">
-						
-					</div>
-				</div><!-- /.row -->
-			</div><!-- /.container -->
-		</div><!-- /.popup-newsletter -->
 
 		<section id="header" class="header">
 			<div class="header-top">
@@ -102,12 +43,17 @@
                 
 		<section class="main-blog">
 			<div class="container">
+			<center> <h2 style="text-align:center">Goomo flights offer - Get discount up to Rs.15,000</h2><br>
+			<button type="submit" class="contact" style="background-color:#f92400" data-toggle="modal" data-target="#myModal1">BOOK NOW</button></center><br>
 			<div class="row">
-			<div class="col-sm-2">
+			
+			<div class="col-sm-1">
 			</div>
-			<div class="col-sm-8">
-			<h2 style="text-align:center">Goomo flights offer - Get discount up to Rs.15,000</h2><br>
-			<center> <button type="submit" class="contact" style="background-color:#f92400" data-toggle="modal" data-target="#myModal1">BOOK NOW</button></center><br>
+			<div class="col-sm-4">
+			<img src="images/slider/1.jpg">
+			</div>
+			<div class="col-sm-6">
+			
 			<p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum repellat, maxime vel alias impedit veritatis temporibus, sequi quos veniam eius optio corporis modi dicta molestias at inventore culpa, natus explicabo.</p>
 			<div class="row">
 			<div class="col-sm-3">
@@ -130,7 +76,7 @@
 			</div>
 			</div>			
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-1">
 			</div>
 			</div>
        </div>

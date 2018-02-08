@@ -88,7 +88,7 @@
 										<li class="active"><a href="products.php" <?php if($page_name == 'products.php') {  ?> class="check_page" <?php } ?>>Products</a></li>
 
 										<li class="active"><a href="newarraivals.php" <?php if($page_name == 'newarraivals.php') {  ?> class="check_page" <?php } ?>>New Arrivals</a></li>
-										<li class="active"><a href="offerzone.php" <?php if($page_name == 'offerzone.php') {  ?> class="check_page" <?php } ?>>Offer Zone</a></li>
+										<li class="active"><a href="new.php" <?php if($page_name == 'new.php' || $page_name == 'new1.php') {  ?> class="check_page" <?php } ?>>Offer Zone</a></li>
 			
 										
 										<li class="active"><a href="faq.php" <?php if($page_name == 'faq.php') {  ?> class="check_page" <?php } ?>>Faq's</a></li>

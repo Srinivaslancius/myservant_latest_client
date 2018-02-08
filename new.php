@@ -71,43 +71,6 @@
 			</div>
 		</div> --><!-- /.preloader -->
 
-		<div class="popup-newsletter">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						
-					</div>
-					<div class="col-sm-8">
-						<div class="popup">
-							<span></span>
-							<div class="popup-text">
-								<h2>Join our newsletter and <br />get discount!</h2>
-								<p class="subscribe">Subscribe to the newsletter to receive updates about new products.</p>
-								<div class="form-popup">
-									<form action="#" class="subscribe-form" method="get" accept-charset="utf-8">
-										<div class="subscribe-content">
-											<input type="text" name="email" class="subscribe-email" placeholder="Your E-Mail">
-											<button type="submit"><img src="images/icons/right-2.png" alt=""></button>
-										</div>
-									</form><!-- /.subscribe-form -->
-									<div class="checkbox">
-										<input type="checkbox" id="popup-not-show" name="category">
-										<label for="popup-not-show">Don't show this popup again</label>
-									</div>
-								</div><!-- /.form-popup -->
-							</div><!-- /.popup-text -->
-							<div class="popup-image">
-								<img src="images/product/other/my.jpg" alt="">
-							</div><!-- /.popup-text -->
-						</div><!-- /.popup -->
-					</div><!-- /.col-sm-8 -->
-					<div class="col-sm-2">
-						
-					</div>
-				</div><!-- /.row -->
-			</div><!-- /.container -->
-		</div><!-- /.popup-newsletter -->
-
 		<section id="header" class="header">
 			<div class="header-top">
 			<?php include_once 'top_header.php';?>
@@ -146,79 +109,31 @@
                 
 		<section class="main-blog">
 			<div class="container text-center bg-grey">
-  <h2>Offers based on your interest</h2><br> 
-  <div class="row text-center">
-    <div class="col-sm-3">
-      <div class="thumbnail">
-     <img src="images/team/01.jpg" alt="" style="width=400px;height:300px" class="image1">
-        <p><strong>Somthing</strong></p>
-        <p>Experies on 31-03-2018</p>
-		 <div class="overlay">
-    <div class="text"><h4 style="margin-bottom:18px">Get Discount upto</h4>
-	<h3 style="color:white;margin-bottom:15px;font-size:20px">₹15,000</h3>
-	<p style="font-size:13px;margin-bottom:15px;">Pay Using ICICI Bank<br>Netbanking, or Cards</p>
-	<a href="new1.php"><button class="button" style="font-size:15px">SEE FULL DETAILS</button></a>
-
-	</div>
-														
-  </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-
-     <div class="thumbnail">
-     <img src="images/team/01.jpg" alt="" style="width=400px;height:300px" class="image1">
-        <p><strong>Somthing</strong></p>
-        <p>Experies on 31-03-2018</p>
-		 <div class="overlay">
-    <div class="text"><h4 style="margin-bottom:18px">Get Discount upto</h4>
-	<h3 style="color:white;margin-bottom:15px;font-size:20px">₹15,000</h3>
-	<p style="font-size:13px;margin-bottom:15px;">Pay Using ICICI Bank<br>Netbanking, or Cards</p>
-	<a href="new1.php"><button class="button" style="font-size:15px">SEE FULL DETAILS</button></a>
-
-	</div>
-														
-  </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="thumbnail">
-     <img src="images/team/01.jpg" alt="" style="width=400px;height:300px" class="image1">
-        <p><strong>Somthing</strong></p>
-        <p>Experies on 31-03-2018</p>
-		 <div class="overlay">
-    <div class="text"><h4 style="margin-bottom:18px">Get Discount upto</h4>
-	<h3 style="color:white;margin-bottom:15px;font-size:20px">₹15,000</h3>
-	<p style="font-size:13px;margin-bottom:15px;">Pay Using ICICI Bank<br>Netbanking, or Cards</p>
-	<a href="new1.php"><button class="button" style="font-size:15px">SEE FULL DETAILS</button></a>
-
-	</div>
-														
-  </div>
-      </div>
-    </div>
-	<div class="col-sm-3">
-      <div class="thumbnail">
-     <img src="images/team/01.jpg" alt="" style="width=400px;height:300px" class="image1">
-        <p><strong>Somthing</strong></p>
-        <p>Experies on 31-03-2018</p>
-		 <div class="overlay">
-    <div class="text"><h4 style="margin-bottom:18px">Get Discount upto</h4>
-	<h3 style="color:white;margin-bottom:15px;font-size:20px">₹15,000</h3>
-	<p style="font-size:13px;margin-bottom:15px;">Pay Using ICICI Bank<br>Netbanking, or Cards</p>
-	<a href="new1.php"><button class="button" style="font-size:15px">SEE FULL DETAILS</button></a>
-
-	</div>
-														
-  </div>
-      </div>
-    </div>
-  </div>
-</div>
+  				<h2>Offers based on your interest</h2><br> 
+				<div class="row text-center">
+				<?php 
+				$cur_time=date("Y-m-d");
+				$getGroceryOfferZone1 = "SELECT * FROM grocery_offer_zone WHERE lkp_status_id = 0 AND offer_end_date > '$cur_time'";
+				$getGroceryOfferZone = $conn->query($getGroceryOfferZone1);
+                while ($row = $getGroceryOfferZone->fetch_assoc()) { ?>
+  					<div class="col-sm-3">
+      					<div class="thumbnail">
+     						<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$row['offer_image'] ?>" alt="" style="width:400px;height:300px" class="image1">
+        					<!-- <p><strong>Somthing</strong></p> -->
+        					<p>Experies on <?php echo $row['offer_end_date'];?></p>
+		 					<div class="overlay">
+    							<div class="text"><h4 style="margin-bottom:18px">Get Discount upto</h4>
+									<h3 style="color:white;margin-bottom:15px;font-size:20px"><?php echo $row['min_offer_percentage'];?>%</h3>
+									<!-- <p style="font-size:13px;margin-bottom:15px;">Pay Using ICICI Bank<br>Netbanking, or Cards</p> -->
+									<a href="new1.php"><button class="button" style="font-size:15px">SEE FULL DETAILS</button></a>
+								</div>				
+  							</div>
+      					</div>
+    				</div>
+  				<?php } ?>
+  				</div>
+			</div>
 		</section><!-- /.main-blog -->
-   
-		
-
 
 <?php $getFreeShippingData = getIndividualDetails('grocery_content_pages','id',4);
 
