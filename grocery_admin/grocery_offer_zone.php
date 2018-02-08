@@ -176,12 +176,12 @@
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
     <script type="text/javascript">
-    $('.start_date_pick').datepicker({numberOfMonths: 2,
+    $('.start_date_pick').datepicker({numberOfMonths: 2,minDate: 0,
         onSelect: function(selected) {
             $(".end_date_pick").datepicker("option","minDate", selected)
         }
     });
-    $('.end_date_pick').datepicker({numberOfMonths: 2,
+    $('.end_date_pick').datepicker({numberOfMonths: 2,minDate: 0,
         onSelect: function(selected) {
             $(".start_date_pick").datepicker("option","maxDate", selected)
         }
