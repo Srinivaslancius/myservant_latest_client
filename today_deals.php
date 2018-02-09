@@ -73,16 +73,9 @@ position:absolute;
 			$getOffers1 = $conn->query($getOffers); ?>
 			
                 
-<?php 
-if($_SESSION['city_name'] == '') {
-    $lkp_city_id = 1;
-} else {
-    $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
-	$lkp_city_id = $getCities1['id'];
-}
-$getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC";
-$tagNames = $conn->query($getTags);
-?>
+<?php $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND deal_start_date = CURDATE() AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')";
+$getTodayDeals1 = $conn->query($getTodayDeals);
+if($getTodayDeals1->num_rows > 0) { ?>
 
 
 		<section class="flat-imagebox">
@@ -137,32 +130,24 @@ $tagNames = $conn->query($getTags);
 								</div>
 					<div class="box-product">
 						<div class="row">
-                             <?php 
-                            	$tagId= $tagNames1['id'];
-								$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = '$tagId' AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC LIMIT 0,8";
-									$getProducts1 = $conn->query($getProducts);
-								while($productDetails = $getProducts1->fetch_assoc()) { 
-									$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$productDetails['id']);
-									$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
-									$categoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
-									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$productDetails['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-									$allGetPrices1 = $conn->query($getPrices1);
-									$getPrc1 = $allGetPrices1->fetch_assoc();
-								?>
-							<input type="hidden" id="cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_category_id']; ?>">
-							<input type="hidden" id="sub_cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
-							<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
+                             <?php while($todayDeals = $getTodayDeals1->fetch_assoc()) {
+                       	$getCategoryName = getIndividualDetails('grocery_category','id',$todayDeals['grocery_category_id']);
+                   		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$todayDeals['id']);
+                   		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
+                   		?>
+						
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
-									<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
+									<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">
 										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
 										<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
 									</div>
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
-										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
-												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="" style="width:264px;height:210px">
+										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
+			
+												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="" style="width:264px;height:210px">
 											</a>
 											
 										</div><!-- /.box-image -->
@@ -171,55 +156,60 @@ $tagNames = $conn->query($getTags);
 												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $categoryName['category_name']; ?></a>
 											</div>-->
 											<div class="product-name" style="margin-top:25px">
-												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
+												<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 											</div>
-											<div class="product_name">
 											<?php 
-											$prodid = $productDetails['id'];
-									 		$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='$prodid' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-									 		$allGetPrices = $conn->query($getPrices);
-							 				?>
-												<select onchange="get_price(this.value,'na10');" id="get_pr_price_<?php echo $prodid; ?>" class="s-w form-control" data-product-id="<?php echo $prodid; ?>">
-												<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
-			                                      <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>,<?php echo $prodid; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
-			                                    <?php } ?>								  
-			                                    </select>
-											</div>
-										
-											<div class="price_<?php echo $productDetails['id']; ?>">
-												<span class="sale"><?php echo 'Rs : ' . $getPrc1['selling_price']; ?></span>
-												<?php if($getPrc1['offer_type'] == 1) { ?>
-													<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
-												<?php } ?>
-											</div>
+											$prodid = $todayDeals['id'];
+										 	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$todayDeals['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										 	$allGetPrices = $conn->query($getPrices);
+										 	?>
+											<div class="product_name">
+										<select class="s-w form-control" id="get_pr_price_<?php echo $prodid; ?>" onchange="get_price(this.value,'na10');">
+											<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
+                                            <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>,<?php echo $prodid; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
+	                                    <?php } ?>
+                                          </select>
+										</div>
+										<?php 
+										 	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$todayDeals['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
+										 	$allGetPrices = $conn->query($getPrices);
+										 	$getPrc1 = $allGetPrices->fetch_assoc();
+										 ?>
+										 
+											<div class="price_<?php echo $todayDeals['id']; ?>">
+											<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
+											<?php if($getPrc1['offer_type'] == 1) { ?>
+												<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
+											<?php } ?>
+										</div>
 										</div><!-- /.box-content -->
 										<div class="box-bottom">
 											<div class="row">
 												<div class="col-sm-5 col-xs-12">
 													<div class="quanlity">
-														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $productDetails['id']; ?>" type="number" style="height:45px">
+														<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $todayDeals['id']; ?>" type="number" style="height:45px">
 													</div>							
 												</div>
 												<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 													<div class="btn-add-cart mrgn_lft">
-														<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
+														<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)" style="width:115%">
 															<img src="images/icons/add-cart.png" alt="">Add to Cart
 														</a>
 													</div>
 												</div>
 											</div>
 											<div class="compare-wishlist">
-												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $todayDeals['id']; ?>)" href="javascript:void(0)" <?php } ?> >
 													<?php if(!isset($_SESSION['user_login_session_id'])) { 
 														?>
 														<img src="images/icons/wishlist.png" alt="">Wishlist
 													<?php } else { 
-														$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$productDetails['id']);
+														$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$todayDeals['id']);
 														?>
 														<?php if($getCountWishLsit == 0) { ?>
-															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $productDetails['id']; ?>" alt="">Wishlist
+															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $todayDeals['id']; ?>" alt="">Wishlist
 														<?php } else {  ?>
-															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $productDetails['id']; ?>">Wishlist
+															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $todayDeals['id']; ?>">Wishlist
 														<?php } ?>
 														
 													<?php } ?>
@@ -237,156 +227,9 @@ $tagNames = $conn->query($getTags);
 					<div class="divider10"></div>
 				</div><!-- /.container -->
 		</section><!-- /.flat-imagebox -->
-
-
-<?php $getOfferModules = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 2,6";
-$getOfferModules1 = $conn->query($getOfferModules); ?>
-
-
-<?php 
-if($_SESSION['city_name'] == '') {
-    $lkp_city_id = 1;
-} else {
-    $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
-	$lkp_city_id = $getCities1['id'];
-}
-$getsubCats = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND make_it_popular=1 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC LIMIT 0,6";
-$getSubCat = $conn->query($getsubCats);
-?>
-
-
-<?php $getTodayDeals = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND deal_start_date = CURDATE() AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')";
-$getTodayDeals1 = $conn->query($getTodayDeals);
-if($getTodayDeals1->num_rows > 0) { ?>
-		<section class="flat-imagebox style1">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-					
-						<div class="flat-row-title">
-						<div class="row">
-						<div class="col-md-2">
-							<h3>Today Deals</h3>
-						</div>
-							<div class="col-md-10">
-						<div class="counter">									
-									<div class="counter-content">										
-										<div class="count-down">											
-											<div class="square">
-												<div class="numb">
-													09
-												</div>
-												<div class="text">
-													HOURS
-												</div>
-											</div>
-											<div class="square">
-												<div class="numb">
-													48
-												</div>
-												<div class="text">
-													MINS
-												</div>
-											</div>
-											<div class="square">
-												<div class="numb">
-													23
-												</div>
-												<div class="text">
-													SECS
-												</div>
-											</div>
-										</div><!-- /.count-down -->
-									</div><!-- /.counter-content -->
-								</div><!-- /.counter -->
-								</div>
-								</div>
-								</div>
-						
-
-					</div><!-- /.col-md-12 -->
-				</div><!-- /.row -->
-				<div class="row ">
-					<div class="col-md-12 owl-carousel-10">
-                       <?php while($todayDeals = $getTodayDeals1->fetch_assoc()) {
-                       	$getCategoryName = getIndividualDetails('grocery_category','id',$todayDeals['grocery_category_id']);
-                   		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$todayDeals['id']);
-                   		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
-                   		?>
-                   		<input type="hidden" id="cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_category_id']; ?>">
-						<input type="hidden" id="sub_cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_sub_category_id']; ?>">
-						<input type="hidden" id="pro_name_<?php echo $todayDeals['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
-						<div class="owl-carousel-item">
-                        <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
-						<div class="product-box style1">
-							<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">
-								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-								<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-							</div>
-								<div class="imagebox style1">
-									<div class="box-image">
-										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
-											<img class="T_wdht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
-										</a>
-									</div><!-- /.box-image -->
-									<div class="box-content">
-										<!--<div class="cat-name">
-											<a href="#" title=""><?php echo $getCategoryName['category_name']; ?></a>
-										</div>-->
-										<div class="product-name">
-											<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
-										</div>
-										<?php 
-											$prodid = $todayDeals['id'];
-										 	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$todayDeals['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-										 	$allGetPrices = $conn->query($getPrices);
-										 ?>
-										<div class="product_name">
-										<select class="s-w form-control" id="get_pr_price_<?php echo $prodid; ?>" onchange="get_price(this.value,'na10');">
-											<?php while($getPrc = $allGetPrices->fetch_assoc() ) { ?>
-                                            <option value="<?php echo $getPrc['id']; ?>,<?php echo $getPrc['selling_price']; ?>,<?php echo $prodid; ?>"><?php echo $getPrc['weight_type']; ?> - Rs.<?php echo $getPrc['selling_price']; ?> </option>
-	                                    <?php } ?>
-                                          </select>
-										</div>
-										<?php 
-										 	$getPrices = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$todayDeals['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ";
-										 	$allGetPrices = $conn->query($getPrices);
-										 	$getPrc1 = $allGetPrices->fetch_assoc();
-										 ?>
-										<div class="price_<?php echo $todayDeals['id']; ?>">
-											<span class="sale"><?php echo 'Rs.' . $getPrc1['selling_price'] . '.00'; ?></span>
-											<?php if($getPrc1['offer_type'] == 1) { ?>
-												<span class="regular"><?php echo 'Rs.' . $getPrc1['mrp_price']; ?></span>
-											<?php } ?>
-										</div>
-
-										<div class="quanlity">
-										<input name="product_quantity" value="1" min="1" max="20" placeholder="Quantity" id="product_quantity_<?php echo $todayDeals['id']; ?>" type="number" style="height:45px">
-										</div>
-									</div><!-- /.box-content -->
-									<div class="box-bottom">
-										<div class="compare-wishlist">
-											
-											<a href="#" class="wishlist" title="">
-												<img src="images/icons/wishlist.png" alt="">Wishlist
-											</a>
-										</div>
-										<div class="btn-add-cart">
-											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
-												<img src="images/icons/add-cart.png" alt="">Add to Cart
-											</a>
-										</div>
-									</div><!-- /.box-bottom -->
-								</div><!-- /.imagebox style1 -->
-							</div><!-- /.product-box style1 -->
-							
-						</div><!-- /.owl-carousel-item -->
-                      <?php } ?>
-					</div>
-				</div><!-- /.row -->
-			</div><!-- /.container -->
-		</section><!-- /.flat-imagebox style1 -->
 		<?php } ?>
+
+
 
 		
 

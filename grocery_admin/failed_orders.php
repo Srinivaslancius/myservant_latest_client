@@ -31,13 +31,13 @@
       </div>
       <div class="site-content">
         <?php 
-          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 GROUP BY order_id ORDER BY id DESC"; 
+          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id = 3 GROUP BY order_id ORDER BY id DESC"; 
           $groceryOrdersData = $conn->query($groceryOrders);
           $i=1;
         ?>
         <div class="panel panel-default panel-table">
           <div class="panel-heading">
-            <h3 class="m-t-0 m-b-5 font_sz_view">View Orders</h3>
+            <h3 class="m-t-0 m-b-5 font_sz_view">View Failed Orders</h3>
           </div>
           <div class="panel-body">
             <div class="table-responsive">
@@ -54,7 +54,6 @@
                     <th>Payment Option</th>
                     <th>Payment Status</th>
                     <th>Order Status</th>
-                    <th>Delivery Boy</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -74,14 +73,7 @@
                          while($getPaymentsStatus = $getGroceryPaymentsStatus->fetch_assoc()) { if($row['lkp_payment_status_id'] == $getPaymentsStatus['id']) { echo $getPaymentsStatus['payment_status']; } } ?></td>
                          <td><?php $getGroceryOrderStatus = getAllData('lkp_order_status');
                          while($getOrderStatus = $getGroceryOrderStatus->fetch_assoc()) { if($row['lkp_order_status_id'] == $getOrderStatus['id']) { echo $getOrderStatus['order_status']; } } ?></td>
-                        <?php if($row['assign_delivery_id'] == '0' || $row['assign_delivery_id'] == '') { ?>
-                        <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>">Assign To</a></td>
-                        <?php } else { 
-                          $getDeliveryBoysNames = getAllDataWhere('grocery_delivery_boys','id',$row['assign_delivery_id']); $getDeliveryBoysNamesData = $getDeliveryBoysNames->fetch_assoc(); ?>
-                          <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
-                          <?php }?>
-                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 5 && $row['lkp_payment_status_id'] == 1) { ?><?php } elseif($row['assign_delivery_id'] > '0') { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>"><i class="zmdi zmdi-edit"></i></a><?php } ?> </td>
-
+                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span> </td>
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">

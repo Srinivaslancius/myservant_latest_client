@@ -2702,11 +2702,12 @@ footer.style4 .widget-newsletter {
 }
 
 .widget-ft .widget-title h3 {
-	color: #2d2d2d;
+	color: #fe6003;
 	font-weight:500;
 	margin-top:8px;
 	margin-bottom:24px;
 	margin-left:-1px;
+	font-size: 18px;
 }
 
 .widget-ft.style2 .widget-title h3 {
@@ -2764,7 +2765,7 @@ footer.style4 .widget-newsletter {
 ul.social-list li {
 	display:inline-block;
 	font-size:18px;
-	margin-right:27px;
+	/* margin-right:27px; */
 }
 
 ul.social-list li:last-child {
@@ -3845,4 +3846,81 @@ width:90%;
 	.box-image .ht_wd{
 		height:130px !important;
 	}
+	.products li{
+		float: left !important;
+    border-right: 1px solid #676767 !important;
+    padding: 0 10px !important;
+	font-size:13px;
 	
+	}
+	.sub_prdct{
+		padding-top:10px !important;
+	}
+	.sub_prdct li{
+		padding-top:3px !important;
+		font-size:13px !important;
+	}
+	
+	.part1{
+		border-bottom:1px dotted #ccc !important;
+		padding-bottom:30px !important;
+		padding-top:30px !important;
+		
+	}
+	.part2{
+		
+		padding-top:30px !important;		
+	}
+	.total_prdcts{
+		border-top: 1px solid #ddd;
+		padding-bottom:30px;
+	}
+	.fa {
+  padding: 9px;
+  font-size: 20px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+.txt_brdr{
+	border-top:1px dotted #ccc !important;
+	padding-top:20px !important;
+}
+.prdct_lst li{
+float: left !important;
+padding:3px !important;
+}
