@@ -37,6 +37,7 @@
           $price_type_id = $_POST['price_type_id'];
           $discount_price = $_POST['discount_price'];
           $coupon_type = $_POST['coupon_type'];
+          $coupon_device_type = $_POST['coupon_device_type'];
           $coupon_description = $_POST['coupon_description'];
           $coupon_start_date = date('y-m-d',strtotime($_POST['coupon_start_date']));
           $coupon_end_date = date('y-m-d',strtotime($_POST['coupon_end_date']));
@@ -47,7 +48,7 @@
             $category_id = '';
             $sub_category_id = $_POST['sub_category_id'];
           }
-          $sql = "INSERT INTO grocery_coupons (`coupon_code`, `price_type_id`, `discount_price`, `coupon_type`, `coupon_start_date`, `coupon_end_date`, `category_id`, `sub_category_id`, `coupon_description`) VALUES (UPPER('$coupon_code'), '$price_type_id', '$discount_price', '$coupon_type', '$coupon_start_date', '$coupon_end_date', '$category_id', '$sub_category_id', '$coupon_description')";
+          $sql = "INSERT INTO grocery_coupons (`coupon_code`, `price_type_id`, `discount_price`, `coupon_type`, `coupon_start_date`, `coupon_end_date`, `category_id`, `sub_category_id`, `coupon_description`, `coupon_device_type`) VALUES (UPPER('$coupon_code'), '$price_type_id', '$discount_price', '$coupon_type', '$coupon_start_date', '$coupon_end_date', '$category_id', '$sub_category_id', '$coupon_description', '$coupon_device_type')";
           if($conn->query($sql) === TRUE){
              echo "<script type='text/javascript'>window.location='grocery_coupons.php?msg=success'</script>";
           } else {
@@ -71,6 +72,18 @@
                                     <span id="input_status" style="color: red;"></span>
                                     <input type="hidden" id="table_name" value="grocery_coupons">
                                     <input type="hidden" id="column_name" value="coupon_code">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Choose Coupon Device Type</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <select id="coupon_device_type" name="coupon_device_type" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                                        <option value="">Select Coupon Device Type</option>
+                                        <?php $getCouponDeviceTypes = getAllData('lkp_register_device_types');?>
+                                        <?php while($row = $getCouponDeviceTypes->fetch_assoc()) {  ?>
+                                            <option value="<?php echo $row['id']; ?>" ><?php echo $row['user_type']; ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -165,6 +178,7 @@
                                     <th>S.No</th>
                                     <th>Coupon Code</th>
                                     <th>Coupon Type</th>
+                                    <th>Coupon Device Type</th>
                                     <th>Category</th>
                                     <th>Sub Category</th>
                                     <th>Price Type</th>
@@ -182,6 +196,7 @@
                                     <td><?php echo $i;?></td>
                                     <td><?php echo $row['coupon_code'];?></td>
                                     <td><?php $getCouponType = getIndividualDetails('grocery_coupon_types','id',$row['coupon_type']); echo $getCouponType['coupon_type']; ?></td>
+                                    <td><?php $getCouponDeviceType = getIndividualDetails('lkp_register_device_types','id',$row['coupon_device_type']); echo $getCouponDeviceType['user_type']; ?></td>
                                     <td><?php if($row['category_id'] != '') { $getCategory = getIndividualDetails('grocery_category','id',$row['category_id']); echo $getCategory['category_name']; } else { echo '--' ; } ?></td>
                                     <td><?php if($row['sub_category_id'] != '') { $getCategory = getIndividualDetails('grocery_sub_category','id',$row['sub_category_id']); echo $getCategory['sub_category_name']; } else { echo '--' ; } ?></td>
                                     <td><?php if($row['price_type_id'] == 1) { echo "Price"; } else { echo "Percentage"; }?></td>
@@ -203,12 +218,12 @@
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
     <script type="text/javascript">
-    $('.start-date-pick').datepicker({numberOfMonths: 2,
+    $('.start-date-pick').datepicker({numberOfMonths: 2,minDate: 0,
         onSelect: function(selected) {
             $(".end-date-pick").datepicker("option","minDate", selected)
         }
     });
-    $('.end-date-pick').datepicker({numberOfMonths: 2,
+    $('.end-date-pick').datepicker({numberOfMonths: 2,minDate: 0,
         onSelect: function(selected) {
             $(".start-date-pick").datepicker("option","maxDate", selected)
         }
