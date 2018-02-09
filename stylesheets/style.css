@@ -1428,9 +1428,9 @@ ul.flat-unstyled li > ul > li > a {
 
 #mega-menu > ul.menu > li .drop-menu > .one-third .cat-title {
 	color:#f28b00;
-	font-size:16px;
+	font-size: 14px;
 	font-weight:bold;
-	margin-bottom:20px;
+	margin-bottom: 10px;
 }
 
 #mega-menu > ul.menu > li .drop-menu > .one-third ul li {
