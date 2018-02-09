@@ -325,7 +325,7 @@
 			</div><!-- /.container -->
 		</section><br><br>
 		<footer>
-			<?php include_once 'footer.php';?>
+			<?php include_once 'footer1.php';?>
 		</footer><!-- /footer -->
 
 		<section class="footer-bottom">
