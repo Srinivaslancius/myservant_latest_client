@@ -136,13 +136,6 @@
                 <span class="menu-text">Offer Zone</span>
               </a>
             </li>
-            <li class="<?php if($page_name == 'view_orders.php') { echo "active"; } ?>"><a href="view_orders.php">
-                <span class="menu-icon">
-                  <i class="zmdi zmdi-local-mall zmdi-hc-fw"></i>
-                </span>
-                <span class="menu-text">Orders</span>
-              </a>
-            </li>
            <li class="with-sub">
               <a href="#" aria-haspopup="true">
                 <span class="menu-icon">

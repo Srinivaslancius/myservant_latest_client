@@ -103,7 +103,7 @@
             </div>
           </div>
           </a>
-          <?php $getTodayOrders = "SELECT * FROM food_orders WHERE DATE(`delivery_date`) = CURDATE() AND lkp_order_status_id = 2 AND lkp_payment_status_id = 1 ORDER BY lkp_order_status_id DESC"; 
+          <?php $getTodayOrders = "SELECT * FROM food_orders WHERE DATE(`created_at`) = CURDATE() AND lkp_order_status_id = 2 AND lkp_payment_status_id = 1 ORDER BY lkp_order_status_id DESC"; 
           $getTodayOrders1 = $conn->query($getTodayOrders); 
           $getRowsCount = $getTodayOrders1->num_rows; ?>
           <a href="food_today_orders.php">
