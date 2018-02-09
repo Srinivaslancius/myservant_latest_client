@@ -126,13 +126,13 @@ position:absolute;
 						<div class="main-shop">
 							
 							<div class="wrap-imagebox">
-								<div class="flat-row-title">
+								<!-- <div class="flat-row-title">
 									<h3><?php echo $getName; ?></h3>
 									<span>
 										Showing 1–15 of 20 results
 									</span>
 									<div class="clearfix"></div>
-								</div>
+								</div> -->
 								<div class="sort-product">
 									<ul class="icons">
 										<li>
