@@ -69,6 +69,8 @@ width:100% !important;
 		$getProducts1 = $conn->query($getProducts);
 		$productDetails = $getProducts1->fetch_assoc();
 		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$product_id);
+		$getCategoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']);
+		$getSubCategories = getIndividualDetails('grocery_sub_category','id',$productDetails['grocery_sub_category_id']);
 		?>
 		<section class="flat-breadcrumb">
 			<div class="container-fluid">
@@ -80,8 +82,15 @@ width:100% !important;
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
+								<a href="results.php?cat_id=<?php echo $getCategoryName['id'] ?>" title=""><?php echo $getCategoryName['category_name']; ?></a>
+								<span><img src="images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-item">
+								<a href="results.php?sub_cat_id=<?php echo $getSubCategories['id'] ?>" title=""><?php echo $getSubCategories['sub_category_name']; ?></a>
+								<span><img src="images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-item">
 								<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
-								
 							</li>
 							
 						</ul><!-- /.breacrumbs -->
@@ -90,8 +99,7 @@ width:100% !important;
 			</div><!-- /.container -->
 		</section><!-- /.flat-breadcrumb -->
 
-		<?php $getProductImages = getAllDataWhere('grocery_product_bind_images','product_id',$product_id);
-		$getCategoryName = getIndividualDetails('grocery_category','id',$productDetails['grocery_category_id']); ?>
+		<?php $getProductImages = getAllDataWhere('grocery_product_bind_images','product_id',$product_id); ?>
 		<input type="hidden" id="pro_id" value="<?php echo $product_id; ?>">
 		<input type="hidden" id="cat_id" value="<?php echo $productDetails['grocery_category_id']; ?>">
 		<input type="hidden" id="sub_cat_id" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
