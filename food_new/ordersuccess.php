@@ -10,7 +10,7 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 	$user_id = $_SESSION['user_login_session_id'];
 	$updateOrderStatus = "UPDATE food_orders SET lkp_payment_status_id = '$payment_status' WHERE user_id = '$user_id' AND order_id='$order_id' ";
 	$conn->query($updateOrderStatus);
-	$getSiteSettingsData = getAllDataWhere('food_site_settings','id','1');
+	$getSiteSettingsData = getIndividualDetails('food_site_settings','id','1');
 	//$dataem = $_POST["email"];
 		$getUserEmail = getIndividualDetails('users','id',$user_id);
 		//$to = "srinivas@lanciussolutions.com";
