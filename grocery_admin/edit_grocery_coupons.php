@@ -38,6 +38,7 @@
             $price_type_id = $_POST['price_type_id'];
             $discount_price = $_POST['discount_price'];
             $coupon_type = $_POST['coupon_type'];
+            $coupon_device_type = $_POST['coupon_device_type'];
             $coupon_description = $_POST['coupon_description'];
             $coupon_start_date = date('y-m-d',strtotime($_POST['coupon_start_date']));
             $coupon_end_date = date('y-m-d',strtotime($_POST['coupon_end_date']));
@@ -48,7 +49,7 @@
                 $category_id = '';
                 $sub_category_id = $_POST['sub_category_id'];
             }
-            $sql = "UPDATE `grocery_coupons` SET coupon_code=UPPER('$coupon_code'), price_type_id='$price_type_id', discount_price='$discount_price', coupon_type='$coupon_type', coupon_start_date='$coupon_start_date', coupon_end_date='$coupon_end_date', category_id='$category_id', sub_category_id='$sub_category_id', coupon_description='$coupon_description' WHERE id = '$id' ";
+            $sql = "UPDATE `grocery_coupons` SET coupon_code=UPPER('$coupon_code'), price_type_id='$price_type_id', discount_price='$discount_price', coupon_device_type='$coupon_device_type', coupon_type='$coupon_type', coupon_start_date='$coupon_start_date', coupon_end_date='$coupon_end_date', category_id='$category_id', sub_category_id='$sub_category_id', coupon_description='$coupon_description' WHERE id = '$id' ";
             if($conn->query($sql) === TRUE){
               echo "<script type='text/javascript'>window.location='grocery_coupons.php?msg=success'</script>";
             } else {
@@ -73,6 +74,18 @@
                                     <span id="input_status" style="color: red;"></span>
                                     <input type="hidden" id="table_name" value="grocery_coupons">
                                     <input type="hidden" id="column_name" value="coupon_code">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Choose Coupon Device Type</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <select id="coupon_device_type" name="coupon_device_type" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                                        <option value="">Select Coupon Device Type</option>
+                                        <?php $getCouponDeviceTypes = getAllData('lkp_register_device_types');?>
+                                        <?php while($row = $getCouponDeviceTypes->fetch_assoc()) {  ?>
+                                            <option <?php if($row['id'] == $getGroceryCouponsData['coupon_device_type']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['user_type']; ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -160,12 +173,12 @@
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
     <script type="text/javascript">
-    $('.start-date-pick').datepicker({numberOfMonths: 2,
+    $('.start-date-pick').datepicker({numberOfMonths: 2,minDate: 0,
         onSelect: function(selected) {
             $(".end-date-pick").datepicker("option","minDate", selected)
         }
     });
-    $('.end-date-pick').datepicker({numberOfMonths: 2,
+    $('.end-date-pick').datepicker({numberOfMonths: 2,minDate: 0,
         onSelect: function(selected) {
             $(".start-date-pick").datepicker("option","maxDate", selected)
         }

@@ -114,6 +114,8 @@
 				$coupon_code = $_POST["coupon_code"];
 				$coupon_code_type = $_POST["coupon_code_type"];
 				$discount_money = $_POST["discount_money"];
+				$coupon_id = $_POST["coupon_id"];
+				$coupon_device_type = $_POST["coupon_device_type"];
 				//echo "<pre>"; print_r($_POST); die;
 				$payment_group = $_POST["pay_mn"];
 				$order_date = date("Y-m-d h:i:s");
@@ -161,7 +163,7 @@
 					$date = date("ymdhis");
 					$contstr = "MYSERVANT-GR";
 					$sub_order_id = $contstr.$random1.$random2.$date;
-					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`,`delivery_slot_date`,`delivery_time`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`, `reward_points`, `product_reward_points`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges','$delivery_date','$delivery_time', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date','$reward_points','" . $_POST["product_reward_points"][$i] . "')";
+					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`,`delivery_slot_date`,`delivery_time`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`, `reward_points`, `product_reward_points`, `coupon_id`, `coupon_device_type`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges','$delivery_date','$delivery_time', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date','$reward_points','" . $_POST["product_reward_points"][$i] . "','$coupon_id','$coupon_device_type')";
 					$groceryOrders = $conn->query($orders);
 				} 
 				
@@ -361,6 +363,8 @@
 									<input type="hidden" name="delivery_time" value="<?php echo $_POST['slot_timings']; ?>">
 									<input type="hidden" name="discount_money" value="0" id="discount_money">
 									<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
+									<input type="hidden" name="coupon_id" value="" id="coupon_id">
+									<input type="hidden" name="coupon_device_type" value="" id="coupon_device_type">
 									<input type="hidden" name="reward_points" value="<?php echo round($reward_points); ?>">
 
 									<table>
@@ -631,15 +635,15 @@
 			           		if(value == 0) {
 			           			$('#coupon_status').html("<span>Please Enter Valid Coupon.</span>");
 			           			//alert('Please Enter Valid Coupon');
-			           			$("#coupon_code").val('');
+			           			$("#coupon_code,#coupon_id,#coupon_device_type").val('');
 			           		} else if(value == 1) {
 			           			$('#coupon_status').html("<span>Enter Coupon is not valid for this Service.</span>");
 			           			//alert('Enter Coupon is not valid for this Service');
-			           			$("#coupon_code").val('');
+			           			$("#coupon_code,#coupon_id,#coupon_device_type").val('');
 			           		} else if(value == 2) {
 			           			$('#coupon_status').html("<span>Already Used.</span>");
 			           			//alert('Enter Coupon is not valid for this Service');
-			           			$("#coupon_code").val('');
+			           			$("#coupon_code,#coupon_id,#coupon_device_type").val('');
 			           		} else{
 			           			$('#coupon_status').html("");
 			           			$('#coupon_code').attr('readonly','true');
@@ -652,6 +656,8 @@
 			               		$('#discount_price1').html("Rs. "+data[1]);
 			               		$('#discount_money').val(data[2]);
 			               		$('#coupon_code_type').val(data[3]);
+			               		$('#coupon_id').val(data[4]);
+			               		$('#coupon_device_type').val(data[5]);
 			               	}
 			        	}
 			        });
@@ -670,7 +676,7 @@
 						$('#order_total').val(order_total);
 						$('#discount_price').hide();
 						$('.close-icon').hide();
-						$('#discount_money,#coupon_code_type').val('');
+						$('#discount_money,#coupon_code_type,#coupon_id,#coupon_device_type').val('');
 					});	
 				});
 			</script>
