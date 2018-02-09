@@ -26,36 +26,64 @@
 		
 	</div><!-- /.widget widget-color -->
 	<?php } ?>
-	<?php								
-	$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
-	$getAllBrands = $conn->query($getBrnds);
-	?>
 	<div class="widget widget-brands">
-		<div class="widget-title">
-			<h3>Brands<span></span></h3>
-		</div>
-		
-			<div class="widget-content">
-<form id="check_filter_form">
-			<?php if($_GET['cat_id']) { ?>
-				<input type="hidden" name="category_id" value="<?php echo $_GET['cat_id']; ?>">
-			 <?php } elseif($_GET['sub_cat_id']) { ?>
-				<input type="hidden" name="sub_category_id" value="<?php echo $_GET['sub_cat_id']; ?>">
+		<?php if($_GET['cat_id']) {
+				$cat_id = $_GET['cat_id'];			
+				$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND grocery_category_id = '$cat_id' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+				?>
+			 <?php } elseif($_GET['sub_cat_id']) { 
+				$sub_cat_id = $_GET['sub_cat_id'];
+				$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id = '$sub_cat_id' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+				?>
 			<?php } elseif($_GET['offer_id']) { 
 				$getOffers = getIndividualDetails('grocery_offer_module','id',$_GET['offer_id']);
-				if($getOffers['offer_level'] == 1) { ?>
-					<input type="hidden" name="category_id" value="<?php echo $getOffers['category_id']; ?>">
-				<?php } elseif($getOffers['offer_level'] == 2) { ?>
-					<input type="hidden" name="sub_category_id" value="<?php echo $getOffers['sub_category_id']; ?>">
+				if($getOffers['offer_level'] == 1) { 
+					$category_id = $getOffers['category_id'];
+					$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0  AND grocery_category_id = '$category_id' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+					?>
+				<?php } elseif($getOffers['offer_level'] == 2) {
+					$sub_category_id = $getOffers['sub_category_id'];
+					$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id = '$sub_category_id' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+					?>
 				<?php } ?>
 			<?php } elseif($_GET['id']) { 
 				$getBanners = getIndividualDetails('grocery_banners','id',$_GET['id']);
-				if($getBanners['type'] == 1) { ?>
-					<input type="hidden" name="category_id" value="<?php echo $getBanners['category_id']; ?>">
-				<?php } elseif($getBanners['type'] == 2) { ?>
-					<input type="hidden" name="sub_category_id" value="<?php echo $getBanners['sub_category_id']; ?>">
+				if($getBanners['type'] == 1) {
+					$category_id = $getBanners['category_id'];
+					$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND grocery_category_id = '$category_id' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+					?>
+				<?php } elseif($getBanners['type'] == 2) { 
+					$sub_category_id = $getBanners['sub_category_id'];
+					$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id = '$sub_category_id' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+					?>
 				<?php } ?>
-			<?php } ?>	
+			<?php } ?>
+		<?php $getAllBrands = $conn->query($getBrnds); ?>
+		<?php if($getAllBrands->num_rows > 0) { ?>
+		<div class="widget-title">
+			<h3>Brands<span></span></h3>	
+		</div>
+		<div class="widget-content">
+			<form id="check_filter_form">
+				<?php if($_GET['cat_id']) { ?>
+					<input type="hidden" name="category_id" value="<?php echo $_GET['cat_id']; ?>">
+				 <?php } elseif($_GET['sub_cat_id']) { ?>
+					<input type="hidden" name="sub_category_id" value="<?php echo $_GET['sub_cat_id']; ?>">
+				<?php } elseif($_GET['offer_id']) { 
+					$getOffers1 = getIndividualDetails('grocery_offer_module','id',$_GET['offer_id']);
+					if($getOffers1['offer_level'] == 1) { ?>
+						<input type="hidden" name="category_id" value="<?php echo $getOffers1['category_id']; ?>">
+					<?php } elseif($getOffers1['offer_level'] == 2) { ?>
+						<input type="hidden" name="sub_category_id" value="<?php echo $getOffers1['sub_category_id']; ?>">
+					<?php } ?>
+				<?php } elseif($_GET['id']) { 
+					$getBanners1 = getIndividualDetails('grocery_banners','id',$_GET['id']);
+					if($getBanners1['type'] == 1) { ?>
+						<input type="hidden" name="category_id" value="<?php echo $getBanners1['category_id']; ?>">
+					<?php } elseif($getBanners1['type'] == 2) { ?>
+						<input type="hidden" name="sub_category_id" value="<?php echo $getBanners1['sub_category_id']; ?>">
+					<?php } ?>
+				<?php } ?>
 				<ul class="box-checkbox scroll">
 					<?php while($getAllBrandsNames = $getAllBrands->fetch_assoc() ) { ?>
 					<li class="check-box">
@@ -64,10 +92,11 @@
 					</li>	
 					<?php } ?>									
 				</ul>
-				</form>
-			</div>
-		
+			</form>
+		</div>
+		<?php } ?>
 	</div><!-- /.widget widget-brands -->
+
 	<div class="widget widget-price">
 		<div class="widget-title">
 			<h3>Price<span></span></h3>

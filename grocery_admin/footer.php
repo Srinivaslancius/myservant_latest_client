@@ -173,6 +173,16 @@
         }
         });
     }
+    function getSubCategories(val) { 
+        $.ajax({
+        type: "POST",
+        url: "get_sub_categories.php",
+        data:'category_id='+val,
+        success: function(data){
+            $("#sub_category_id").html(data);
+        }
+        });
+    }
     </script>
     <!-- Below script for ck editor -->
     <script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>

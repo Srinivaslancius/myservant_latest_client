@@ -117,7 +117,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="form-control-1" name="grocery_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                                    <select id="category_id" name="grocery_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" onChange="getSubCategories(this.value);" required>
                                         <option value="">-- Select Category --</option>
                                         <?php $getCategories = getAllDataWithStatus('grocery_category','0');?>
                                         <?php while($row = $getCategories->fetch_assoc()) {  ?>
@@ -129,7 +129,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Sub Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="form-control-1" name="grocery_sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                                    <select id="sub_category_id" name="grocery_sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
                                         <option value="">-- Select Sub Category --</option>
                                         <?php $getSubCategories = getAllDataWithStatus('grocery_sub_category','0');?>
                                         <?php while($row = $getSubCategories->fetch_assoc()) {  ?>
@@ -142,7 +142,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Product Description</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="product_description"><?php echo $getProducts['product_description']; ?></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="product_description" required><?php echo $getProducts['product_description']; ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -183,7 +183,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Search Tags</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags"><?php echo $search_tags2['search_tags']; ?></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags" required><?php echo $search_tags2['search_tags']; ?></textarea>
                                 </div>
                             </div>                         
                             <div class="form-group">
