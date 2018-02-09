@@ -383,7 +383,7 @@ position:absolute;
 			</div><!-- /.container -->
 		</main><!-- /#shop -->
 		<?php } else { ?>
-		<h1 style="text-align:center;margin:15px;color: #FE6003;">No Items Found.</h1>
+		<h2 style="text-align:center;margin:15px;color: #FE6003;">No Items Found.</h2>
 		<?php } ?>
 		<footer>
 			<?php include_once 'footer.php';?>
