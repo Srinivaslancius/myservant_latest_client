@@ -113,7 +113,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="form-control-1" name="grocery_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                                    <select id="category_id" name="grocery_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" onChange="getSubCategories(this.value);" required>
                                         <option value="">-- Select Category --</option>
                                         <?php $getCategories = getAllDataWithStatus('grocery_category','0');?>
                                         <?php while($row = $getCategories->fetch_assoc()) {  ?>
@@ -125,12 +125,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Sub Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="form-control-1" name="grocery_sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                                    <select id="sub_category_id" name="grocery_sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
                                         <option value="">-- Select Sub Category --</option>
-                                        <?php $getSubCategories = getAllDataWithStatus('grocery_sub_category','0');?>
-                                        <?php while($row = $getSubCategories->fetch_assoc()) {  ?>
-                                            <option value="<?php echo $row['id']; ?>" ><?php echo $row['sub_category_name']; ?></option>
-                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>

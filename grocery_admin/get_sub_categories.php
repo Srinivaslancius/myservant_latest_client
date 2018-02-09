@@ -1,8 +1,8 @@
 <?php
 include_once('../admin_includes/config.php');
 include_once('../admin_includes/common_functions.php');
-if(!empty($_POST["cat_id"])) {
-	$query ="SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id = '" . $_POST["cat_id"] . "'";
+if(!empty($_POST["category_id"])) {
+	$query ="SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id = '" . $_POST["category_id"] . "'";
 	$results = $conn->query($query);
 ?>
 	<option value="">-- Select Sub Category --</option>
