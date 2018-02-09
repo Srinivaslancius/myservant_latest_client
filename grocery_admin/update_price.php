@@ -293,15 +293,16 @@
         function getOfferPercentage() {
             var Price = $('#mrp_price').val();
             var SellingPrice = $('#selling_price').val();
-            if(SellingPrice!='') {
+            if(SellingPrice!='' && Price!='') {
                 var OfferPer = ((Price-SellingPrice)/Price)*100;
                 $('#offer_per').val(OfferPer);
             } else {
-                alert("Please enter selling price");
+                alert("Please enter selling price and MRP");
+                $('.offer_type_1,.offer_type_0,#offer_per').val('');
             }
             if(parseFloat(SellingPrice) > parseFloat(Price)) {
                 alert("Selling Price should be less than MRP");
-                $('#mrp_price, #selling_price,#offer_per').val('');
+                $('.offer_type_1,.offer_type_0,#offer_per').val('');
             }
         }
         function getPrice(MrpPrice) {
@@ -311,16 +312,19 @@
         function getOfferPercentage1(getIncValue) {
             var Price1 = $('#mrp_price_'+getIncValue).val();
             var SellingPrice1 = $('#selling_price_'+getIncValue).val();
-            if(SellingPrice1!='') {
+            if(SellingPrice1!='' && Price1!='') {
                 var OfferPer1 = ((Price1-SellingPrice1)/Price1)*100;
                 $('#offer_per_'+getIncValue).val(OfferPer1);
             } else {
-                alert("Please enter selling price");
+                alert("Please enter selling price and MRP");
+                $('.offer_type_1_'+getIncValue).val('');
+                $('.offer_type_0_'+getIncValue).val('');
+                $('#offer_per_'+getIncValue).val('');
             }
             if(parseFloat(SellingPrice1) > parseFloat(Price1)) {
                 alert("Selling Price should be less than MRP");
-                $('#mrp_price_'+getIncValue).val('');
-                $('#selling_price_'+getIncValue).val('');
+                $('.offer_type_1_'+getIncValue).val('');
+                $('.offer_type_0_'+getIncValue).val('');
                 $('#offer_per_'+getIncValue).val('');
             }
             return false;
