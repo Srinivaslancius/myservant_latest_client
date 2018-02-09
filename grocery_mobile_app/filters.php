@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$lkp_city_id = 1;
 	}
 
-	$sub_cat_id = $_GET['subCatId'];
+	$sub_cat_id = $_REQUEST['subCatId'];
 	$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id = '$sub_cat_id' AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC LIMIT 1";
 	$getAllBrnds = $conn->query($getBrnds);
 
