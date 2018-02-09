@@ -79,19 +79,19 @@ position:absolute;
 				$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_sub_category_id = '$sub_category_id' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' $offer_percentage) ORDER BY id DESC";
 				$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
         	}
-		} elseif($product_id = $_GET['cat_id']) {
-			$getProducts = getIndividualDetails('grocery_category','id',$product_id);
+		} elseif($category_id = $_GET['cat_id']) {
+			$getProducts = getIndividualDetails('grocery_category','id',$category_id);
 			$getName = $getProducts['category_name'];
-			$getProducts = "SELECT * from grocery_products WHERE grocery_category_id = $product_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
+			$getProducts = "SELECT * from grocery_products WHERE grocery_category_id = $category_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
 			$getProducts1 = $conn->query($getProducts);
-			$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_category_id = $product_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
+			$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_category_id = $category_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
 			$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
-		} elseif($product_id = $_GET['sub_cat_id']) {
-			$getProducts = getIndividualDetails('grocery_sub_category','id',$product_id);
+		} elseif($sub_category_id = $_GET['sub_cat_id']) {
+			$getProducts = getIndividualDetails('grocery_sub_category','id',$sub_category_id);
 			$getName = $getProducts['sub_category_name'];
-			$getProducts = "SELECT * from grocery_products WHERE grocery_sub_category_id = $product_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
+			$getProducts = "SELECT * from grocery_products WHERE grocery_sub_category_id = $sub_category_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
 			$getProducts1 = $conn->query($getProducts);
-			$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_sub_category_id = $product_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
+			$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_sub_category_id = $sub_category_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
 			$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
 		}
 		//echo $getProducts;
@@ -105,9 +105,26 @@ position:absolute;
 								<a href="index.php" title="">Home</a>
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
+							<?php if(isset($category_id)) { 
+								$getCategories = getIndividualDetails('grocery_category','id',$category_id);
+								$getCategoryName = $getCategories['category_name']; ?>
 							<li class="trail-item">
-								<a href="#" title=""><?php echo $getName; ?></a>
+								<a href="#" title=""><?php echo $getCategoryName; ?></a>
 							</li>
+							<?php } elseif(isset($sub_category_id)) { 
+								$getSubCategories = getIndividualDetails('grocery_sub_category','id',$sub_category_id);
+								$getSubCategoryName = $getSubCategories['sub_category_name'];
+								$getCategories = getIndividualDetails('grocery_category','id',$getSubCategories['grocery_category_id']);
+								$getCategoryName = $getCategories['category_name'];
+								?>
+							<li class="trail-item">
+								<a href="results.php?cat_id=<?php echo $getSubCategories['grocery_category_id'] ?>" title=""><?php echo $getCategoryName; ?></a>
+								<span><img src="images/icons/arrow-right.png" alt=""></span>
+							</li>
+							<li class="trail-item">
+								<a href="#" title=""><?php echo $getSubCategoryName; ?></a>
+							</li>
+							<?php } ?>
 						</ul><!-- /.breacrumbs -->
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
