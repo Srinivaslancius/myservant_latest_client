@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $catId = $_REQUEST['catId'];
         $subCatId = $_REQUEST['subCatId'];
         $offerId = $_REQUEST['offerId'];
+        $brandId = $_REQUEST['brandId'];
 
         if($catId!='' && $catId!=0) {
 
@@ -47,6 +48,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				$getProducts = "SELECT * from grocery_products WHERE grocery_sub_category_id = '$sub_category_id' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' $offer_percentage) ORDER BY id DESC";
 				$getProducts1 = $conn->query($getProducts);				
         	}
+        } elseif($brandId!='' && $brandId!=0) {
+        	$getProducts = "SELECT grocery_product_bind_brands.brand_id,grocery_product_bind_brands.product_id, grocery_products.id,grocery_products.grocery_category_id,grocery_products.grocery_sub_category_id,grocery_products.product_description,grocery_products.lkp_status_id FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id AND grocery_product_bind_brands.brand_id IN ('".$brandId."') WHERE grocery_products.grocery_sub_category_id = '".$_REQUEST['sub_category_id']."' AND grocery_products.lkp_status_id = '0' AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
         }
 		
 		if ($getProducts1->num_rows > 0) {

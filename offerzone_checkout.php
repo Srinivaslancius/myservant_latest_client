@@ -246,7 +246,7 @@
 								</div><br>
 								<p style="text-align:justify"><b>Description:</b> <?php echo $offerZone['offer_description'];?></p><br>
 								<p><b>Minimum Reward points to purchase this coupon : <?php echo $offerZone['offer_reward_points'];?></b></p>
-								<?php if($totalRewards > $offerZone['offer_reward_points']) { ?>
+								<?php if($totalRewards >= $offerZone['offer_reward_points']) { ?>
 								<div class="btn-order">
 									<input type="submit" name="submit" value="Place Order" class="order">
 								</div><!-- /.btn-order -->
