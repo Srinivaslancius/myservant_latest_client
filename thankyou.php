@@ -21,7 +21,7 @@
 		</section><!-- /#header -->
 
 		<?php
-		//header( "refresh:10;url=index.php" );
+		header( "refresh:10;url=index.php" );
 		if($_SESSION['user_login_session_id'] == '') {
 		    header ("Location: logout.php");
 		} 
@@ -50,6 +50,9 @@
 								
 								<h1>Thank You for placing the order with my servant</h1>
 								<p>We will send you the order details with delivery dates shortly!</p>
+								<p style="text-align:center">Your Order No is: <strong><?php echo $order_session_id; ?></strong>
+								</p>
+					<p style="text-align:center">You will be redirected to the Home in 10 seconds.</p>
 							</div><!-- /.header-error -->
 							<table class="table" style="border: 1px solid #ddd;width:90%;margin-left:5%">
 							<thead>
@@ -61,20 +64,21 @@
 							  </tr>
 							</thead>
 							<tbody>
-							<!--<?php while ($getPlaceOrders = $placeOrder->fetch_assoc()) { 
+							<?php while ($getPlaceOrders = $placeOrder->fetch_assoc()) { 
 								$cartTotal += $getPlaceOrders['item_quantity']*$getPlaceOrders['item_price'];
 								$getProductDetails= getIndividualDetails('grocery_product_name_bind_languages','product_id',$getPlaceOrders['product_id']);
 								$delivery_charges = $getPlaceOrders['delivery_charges'];
 								$service_tax = $getPlaceOrders['service_tax'];
 								$order_total = $getPlaceOrders['order_total'];
+								$discout_money = $getPlaceOrders['discout_money'];
 							?>
 							  <tr style="border-bottom:1px solid #ddd">
 								<td><?php echo $getProductDetails['product_name']; ?></td>
 								<td><?php echo $getPlaceOrders['item_quantity']; ?></td>
 								<td>Rs : <?php echo $getPlaceOrders['item_price']; ?></td>
 							  </tr>
-							<?php } ?>-->
-							 <tr style="border-bottom:1px solid #ddd">
+							<?php } ?>
+							 <!-- <tr style="border-bottom:1px solid #ddd">
 							 
 								<td>Haldirams Namkeen - Khatta Meetha ( Multipack )</td>
 								<td>2</td>
@@ -85,22 +89,7 @@
 								<td>Haldirams Namkeen - Khatta Meetha ( Multipack )</td>
 								<td>2</td>
 								<td>Rs : 600/-</td>
-							  </tr>
-							<!--<tr>
-								<td>somthing</td>
-								<td>1</td>
-								<td>Rs : 600/-</td>
-							  </tr>
-							  <tr>
-								<td>somthing</td>
-								<td>1</td>
-								<td>Rs : 600/-</td>
-							  </tr>
-							  <tr>
-								<td>somthing</td>
-								<td>1</td>
-								<td>Rs : 600/-</td>
-							  </tr>-->
+							  </tr> -->
 							  <tr>
 								<td style="font-size:14px;color:#fe6003">Sub Total</td>
 								<td></td>
@@ -119,11 +108,11 @@
 								<td></td>
 								<td style="font-size:14px;color:#fe6003">Rs : <?php echo $delivery_charges; ?>/-</td>
 							  </tr>
-							  <?php if($getPlaceOrders['discout_money']) { ?>
+							  <?php if($discout_money != 0) { ?>
 							  <tr>
 								<td style="font-size:14px;color:#fe6003">Discount Amount</td>
 								<td></td>
-								<td style="font-size:14px;color:#fe6003">Rs : <?php echo $getPlaceOrders['discout_money']; ?>/-</td>
+								<td style="font-size:14px;color:#fe6003">Rs : <?php echo $discout_money; ?>/-</td>
 							  </tr>
 							  <?php } ?>
 							  <tr style="background-color:black">
