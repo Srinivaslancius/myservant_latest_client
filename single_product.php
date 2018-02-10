@@ -210,11 +210,18 @@ width:100% !important;
 												</a>
 											</div>
 								</div><!-- /.box-cart -->
+
+								<?php
+								$title=urlencode('MyServant');
+								$url=urlencode('https://onlyprojects.info/single_product.php?product_id=176');
+								$summary=urlencode('Aashirvaad - Coriander Powder');
+								$image=urlencode('https://onlyprojects.info/grocery_admin/uploads/product_images/5a744a9078bb1Aashirvaad%20-%20Coriander%20Powder.jpg');
+								?>
 								<div class="social-single">
 									<span>SHARE</span>
 									<ul class="social-list style2">
 										<li>
-											<a href="<?php echo $getSiteSettingsData1['fb_link'] ?>" target="_blank" title="">
+											<a onClick="window.open('http://www.facebook.com/sharer.php?s=100&  amp;p[title]=<?php  echo $title;?>&amp;p[summary]=<?php echo $summary;?>&amp;p[url]=<?php echo $url; ?>&amp;p[images][0]=<?php echo $image;?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">
 												<i class="fa fa-facebook" aria-hidden="true"></i>
 										</a>
 										</li>
