@@ -106,7 +106,7 @@
           <?php 
 $getFoodTodayOrdersData = $conn->query($getFoodTodayOrders); $i=1;
   ?>
-          <?php $getFoodTodayOrders = "SELECT * FROM food_orders WHERE DATE(`created_at`) = CURDATE() AND lkp_order_status_id != 6 AND lkp_payment_status_id!=3 ORDER BY lkp_order_status_id DESC "; 
+          <?php $getFoodTodayOrders = "SELECT * FROM food_orders WHERE DATE(`created_at`) = CURDATE() AND lkp_order_status_id != 6 AND lkp_payment_status_id!=3 AND lkp_order_status_id != 5 AND lkp_payment_status_id !=1 ORDER BY lkp_order_status_id DESC "; 
           $getTodayOrders1 = $conn->query($getFoodTodayOrders); 
           $getRowsCount = $getTodayOrders1->num_rows; ?>
           <a href="food_today_orders.php">
@@ -118,6 +118,29 @@ $getFoodTodayOrdersData = $conn->query($getFoodTodayOrders); $i=1;
               </div>
               <div class="wt-icon">
                 <i class="zmdi zmdi-shopping-cart-plus"></i>
+              </div>
+            </div>
+          </div>
+          </a>
+          <?php
+    $GetFoodDeliveredOrders = "SELECT * FROM food_orders WHERE lkp_order_status_id=5 AND lkp_payment_status_id=1"; 
+    $GetFoodDeliveredData = $conn->query($GetFoodDeliveredOrders);
+  $GetFoodDeliveredCount = $GetFoodDeliveredData->num_rows;
+  ?>
+          <a href="food_delivery_boys.php">
+          <div class="col-md-4 col-sm-5">
+            <div class="widget widget-tile-2 bg-primary m-b-30">
+              <div class="wt-content p-a-20 p-b-50">
+                <div class="wt-title">Delivered Orders
+                  <span class="t-caret text-success">
+                    <i class="zmdi zmdi-caret-up"></i>
+                  </span>
+                </div>
+                <div class="wt-number"><?php echo $GetFoodDeliveredCount ?></div>
+                
+              </div>
+              <div class="wt-icon">
+                <i class="zmdi zmdi-accounts"></i>
               </div>
             </div>
           </div>

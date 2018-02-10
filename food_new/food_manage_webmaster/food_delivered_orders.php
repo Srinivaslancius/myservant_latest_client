@@ -1,11 +1,14 @@
 <?php include_once 'admin_includes/main_header.php';?>
-<?php $getFoodTodayOrders = "SELECT * FROM food_orders WHERE DATE(`created_at`) = CURDATE() AND lkp_order_status_id != 6 AND lkp_payment_status_id!=3 AND lkp_order_status_id != 5 AND lkp_payment_status_id !=1 ORDER BY lkp_order_status_id DESC ";
-$getFoodTodayOrdersData = $conn->query($getFoodTodayOrders); $i=1;
+<?php $i=1;
+
+$GetFoodDeliveredOrders = "SELECT * FROM food_orders WHERE lkp_order_status_id=5 AND lkp_payment_status_id=1"; 
+    $GetFoodDeliveredData = $conn->query($GetFoodDeliveredOrders);
+  
   ?>
      <div class="site-content">
         <div class="panel panel-default panel-table">
           <div class="panel-heading">
-            <h3 class="m-t-0 m-b-5">Today Orders</h3>
+            <h3 class="m-t-0 m-b-5">Cancelled Orders</h3>
           </div>
           <div class="panel-body">
             <div class="table-responsive">
@@ -21,7 +24,7 @@ $getFoodTodayOrdersData = $conn->query($getFoodTodayOrders); $i=1;
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while ($row = $getFoodTodayOrdersData->fetch_assoc()) { ?>
+                  <?php while ($row = $GetFoodDeliveredData->fetch_assoc()) { ?>
                   <tr>
                     <td><?php echo $i;?></td>
                     <?php $getProductNames = getAllDataWhere('food_products','id',$row['product_id']); 
