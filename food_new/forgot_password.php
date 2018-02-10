@@ -5,54 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php include_once './meta_fav.php';?>
-    <?php 
-	error_reporting(0);
-	$getSiteSettings1 = getAllDataWhere('grocery_site_settings','id','1');
-	if(isset($_POST['submit']))  { 
-	
-	    //Login here
-	    $user_email = $_POST['login_email'];
-	   
-	    $getUserForgotData = forgotPassword($user_email);
-	    //Set variable for session
-	    if($getUserForgotPassword = $getUserForgotData->fetch_assoc()) {
-
-	    	//$pwd = decryptPassword($getUserForgotPassword['user_password']);
-	    	$userId = encryptPassword($getUserForgotPassword['id']);
-            $to = $user_email;
-            $subject =  " My Servant - User Forgot Password";
-            $message = '';
-            $message .= '<body>
-			<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
-			<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
-			 <center><img src='.$base_url . "uploads/food_logo/".$getFoodSiteSettingsData["logo"].' class="logo-responsive"></center>
-			</header>
-			<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
-			  <h1 style="color:#fe6003">Your Password</h1>
-			  <p>Dear <span style="color:#fe6003;">'.$getUserForgotPassword["user_full_name"].'</span>.</p>
-			  <p>Want to change your password? Please click on the link given below to reset the password of your Myservant Account </p>
-			  <p><a href="'.$base_url . "food_new/reset_password.php?token=".$userId.'" target="_blank"> Click here</a></p>
-
-			  <p>If you are not able to click on the above link, please copy and paste the entire URL into your browsers address bar and press Enter.</p>
-			  <strong>'.$base_url . "food_new/reset_password.php?token=".$userId.'</strong>
-				<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
-				<p>Warm Regards,<br>The Myservant Team </p>
-			</article>
-			<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getFoodSiteSettingsData['footer_text'].'</footer>
-			</div>
-
-			</body>';
-			
-			//echo $message; die;
-			$name = "My Servant - Food";
-			$from = $getSiteSettings1["forgot_password_email"];
-			$resultEmail = sendEmail($to,$subject,$message,$from,$name);
-		        echo  "<script>alert('Password Sent To Your Email,Please Check.');window.location='login.php';</script>";
-	    } else {
-	    	echo "<script>alert('Your Entered Email Not Found');</script>";
-	    }
-	}
-?>
+    
     <!-- GOOGLE WEB FONT -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic,300,300italic' rel='stylesheet' type='text/css'>
 
@@ -114,7 +67,60 @@
             
         </div>
     </div><!-- Position -->
+<?php 
+	error_reporting(0);
+	if(isset($_POST['submit']))  { 
 
+		$getSiteSettings1 = getAllDataWhere('food_site_settings','id','1'); 
+		$getSiteSettingsData1 = $getSiteSettings1->fetch_assoc();
+	    //Login here
+	    $user_email = $_POST['login_email'];
+	   
+	    $getUserForgotData = forgotPassword($user_email);
+	    //Set variable for session
+	    if($getUserForgotPassword = $getUserForgotData->fetch_assoc()) {
+
+	    	//$pwd = decryptPassword($getUserForgotPassword['user_password']);
+	    	$userId = encryptPassword($getUserForgotPassword['id']);
+            $to = $user_email;
+            $subject =  "Myservant - User Forgot Password";
+            $message = '';
+            $message .= '<body>
+			<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
+			<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
+			 <center><img src='.$base_url . "uploads/logo/".$getSiteSettingsData1["logo"].' class="logo-responsive"></center>
+			</header>
+			<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
+			  <h1 style="color:#fe6003">Your Password</h1>
+			  <p>Dear <span style="color:#fe6003;">'.$getUserForgotPassword["user_full_name"].'</span>.</p>
+			  <p>Want to change your password? Please click on the link given below to reset the password of your Myservant Account </p>
+			  <p><a href="'.$base_url . "reset_password.php?token=".$userId.'" target="_blank"> Click here</a></p>
+
+			  <p>If you are not able to click on the above link, please copy and paste the entire URL into your browsers address bar and press Enter.</p>
+			  <strong>'.$base_url . "reset_password.php?token=".$userId.'</strong>
+				<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
+				<p>Warm Regards,<br>The Myservant Team </p>
+			</article>
+			<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettingsData1['footer_text'].'</footer>
+			</div>
+
+			</body>';
+			//echo $message; die;
+			$name = "My Servant - Food";
+			$from = $getSiteSettingsData1["from_email"];
+			$resultEmail = sendEmail($to,$subject,$message,$from,$name);
+			if($resultEmail == 0) {
+				echo "Mail Sent Success";
+			} else {
+				echo "Mail Sent Failed";
+			}
+
+		        echo  "<script>alert('Password Sent To Your Email,Please Check.');window.location='login.php';</script>";
+		} else {
+	    	echo "<script>alert('Your Entered Email Not Found');</script>";
+	    }
+	}
+?>
 <!-- Content ================================================== -->
 <div class="container margin_60_35">
         </div>
