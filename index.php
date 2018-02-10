@@ -159,6 +159,7 @@ if($_SESSION['city_name'] == '') {
     $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
 	$lkp_city_id = $getCities1['id'];
 }
+$i = 0;
 $getTags = "SELECT * FROM grocery_tags WHERE lkp_status_id = 0 AND id IN (SELECT tag_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC";
 $tagNames = $conn->query($getTags);
 ?>
@@ -278,34 +279,41 @@ $tagNames = $conn->query($getTags);
 					<div class="divider10"></div>
 				</div><!-- /.container -->
 		</section><!-- /.flat-imagebox -->
-<?php } ?>
-
-<?php $getOfferModules = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 2,6";
+<?php if (++$i % 2 === 0 ) { 
+	if($i == 2) {
+		$limit = $i;
+	} else {
+		$limit = $limit+4;
+	} 
+?>
+<?php $getOfferModules = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 4 OFFSET $limit ";
 $getOfferModules1 = $conn->query($getOfferModules); ?>
+<?php if($getOfferModules1->num_rows > 0) { ?>
 <section class="flat-row flat-banner-box">
-			<div class="container">
-				<div class="row">
+	<div class="container">
+		<div class="row">
 			<div class="col-md-12">
 				<div class="flat-row-title">
 					<h3><?php echo $getSiteSettingsData1['offers_heading2']; ?></h3>
 				</div>
 			</div><!-- /.col-md-12 -->
 		</div><!-- /.row -->
-				<div class="row">
-					<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
-					<div class="col-md-3">
-						<div class="banner-box">
-							<div class="inner-box">
-								<a href="results.php?offer_id=<?php echo $getOfferModulesData['id']; ?>" title="">
-									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOfferModulesData['image'] ?>" alt="" width="360px" height="200px">
-								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
-					<?php } ?>
-				</div><!-- /.row -->
-			</div><!-- /.container -->
-		</section><!-- /.flat-banner-box -->
+		<div class="row">
+			<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
+			<div class="col-md-3">
+				<div class="banner-box">
+					<div class="inner-box">
+						<a href="results.php?offer_id=<?php echo $getOfferModulesData['id']; ?>" title="">
+							<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOfferModulesData['image'] ?>" alt="" width="360px" height="200px">
+						</a>
+					</div><!-- /.inner-box -->
+				</div><!-- /.banner-box -->
+			</div><!-- /.col-md-4 -->
+			<?php } ?>
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</section><!-- /.flat-banner-box -->
+<?php } } } ?>
 
 <?php 
 if($_SESSION['city_name'] == '') {

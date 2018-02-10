@@ -6,7 +6,7 @@
          $getAllProducts = "SELECT * FROM food_products WHERE restaurant_id= '$vendor_id'";
           $getProducts = $conn->query($getAllProducts);
           $getProductsCount = $getProducts->num_rows;
-          $getAllOrders = "SELECT * FROM food_orders  WHERE restaurant_id = '$vendor_id' AND vendor_order_status = 2 GROUP BY order_id ORDER BY id DESC";
+          $getAllOrders = "SELECT * FROM food_orders  WHERE restaurant_id = '$vendor_id' GROUP BY order_id ORDER BY id DESC";
           $getAllOrders1 = $conn->query($getAllOrders);
           $getOrdersCount = $getAllOrders1->num_rows;?>
         <div class="row">
