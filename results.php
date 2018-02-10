@@ -132,6 +132,10 @@ position:absolute;
 							<li class="trail-item">
 								<a href="#" title=""><?php echo $getSubCategoryName; ?></a>
 							</li>
+							<?php } elseif(isset($_GET['brand_id'])) { ?>
+							<li class="trail-item">
+								<a href="#" title=""><?php echo $getBrands['brand_name']; ?></a>
+							</li>
 							<?php } ?>
 						</ul><!-- /.breacrumbs -->
 					</div><!-- /.col-md-12 -->
