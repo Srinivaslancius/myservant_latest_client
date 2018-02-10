@@ -151,57 +151,34 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							</div>
 						</div>
 					</ul>
+					<?php								
+		    		$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+		    		$getAllBrands = $conn->query($getBrnds);
+			    	?>
 					<ul class="prdct_lst">
-					<div class="row">
-					<div class="col-sm-2">
-					<li style="color:#fe6003">POPULAR BRANDS :<li>
-					</div>
-					<div class="col-sm-10">
-					<li><a href="#">Washing Powders</a>,</li>
-					<li><a href="#">Raw Rice</a>,</li>
-					<li><a href="#">Sunflower Oils</a>,</li>
-					<li><a href="#">Tea</a>,</li>
-					<li><a href="#">Liquid Soaps</a>,</li>
-					<li><a href="#">Bars</a>,</li>
-					<li><a href="#">Health Drinks</a>,</li>
-					<li><a href="#">Other Vegetables</a>,</li>
-					<li><a href="#">Whole Spices</a>,</li>
-					<li><a href="#">Toothpaste</a>,</li>
-					<li><a href="#">Shampoo</a>,</li>
-					<li><a href="#">Cut Fruits & Vegetables</a>,</li>
-					<li><a href="#">Glucose</a>,</li>
-					<li><a href="#">Marie & Milk Biscuits</a>,</li>
-					<li><a href="#">Dishwash Bars</a>,</li>
-					<li><a href="#">Namkeen</a>,</li>
-					<li><a href="#">Chocolate</a>,</li>
-					</div>
-					</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<li style="color:#fe6003">POPULAR BRANDS :<li>
+							</div>
+							<div class="col-sm-10">
+								<?php while($getAllBrandsNames = $getAllBrands->fetch_assoc() ) { ?>
+									<li><a href="results.php?brand_id=<?php echo $getAllBrandsNames['id']; ?>"><?php echo $getAllBrandsNames['brand_name']; ?></a>,</li>
+								<?php } ?>
+							</div>
+						</div>
 					</ul>
 					<ul class="prdct_lst">
-					<div class="row">
-					<div class="col-sm-2">
-					<li style="color:#fe6003">CITIES WE SERVE :<li>
-					</div>
-					<div class="col-sm-10">
-					<li><a href="#">Washing Powders</a>,</li>
-					<li><a href="#">Raw Rice</a>,</li>
-					<li><a href="#">Sunflower Oils</a>,</li>
-					<li><a href="#">Tea</a>,</li>
-					<li><a href="#">Liquid Soaps</a>,</li>
-					<li><a href="#">Bars</a>,</li>
-					<li><a href="#">Health Drinks</a>,</li>
-					<li><a href="#">Other Vegetables</a>,</li>
-					<li><a href="#">Whole Spices</a>,</li>
-					<li><a href="#">Toothpaste</a>,</li>
-					<li><a href="#">Shampoo</a>,</li>
-					<li><a href="#">Cut Fruits & Vegetables</a>,</li>
-					<li><a href="#">Glucose</a>,</li>
-					<li><a href="#">Marie & Milk Biscuits</a>,</li>
-					<li><a href="#">Dishwash Bars</a>,</li>
-					<li><a href="#">Namkeen</a>,</li>
-					<li><a href="#">Chocolate</a>,</li>
-					</div>
-					</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<li style="color:#fe6003">CITIES WE SERVE :<li>
+							</div>
+							<?php $getCities = getAllDataWhere('grocery_lkp_cities','lkp_status_id',0); ?>
+							<div class="col-sm-10">
+								<?php while ($row = $getCities->fetch_assoc()) { ?>
+									<li><?php echo $row['city_name'];?>,</li>
+								<?php } ?>
+							</div>
+						</div>
 					</ul>
 					<ul class="prdct_lst">
 					<div class="row">
