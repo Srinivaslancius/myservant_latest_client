@@ -135,7 +135,7 @@ width:100% !important;
 									<?php echo $getCategoryName['category_name']; ?>
 								</div>
 								<div class="reviewed">
-									<div class="review">
+									<!-- <div class="review">
 										<div class="queue">
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<i class="fa fa-star" aria-hidden="true"></i>
@@ -147,7 +147,7 @@ width:100% !important;
 											<span>3 Reviews</span>
 											<span class="add-review">Add Your Review</span>
 										</div>
-									</div><!-- /.review -->
+									</div> --><!-- /.review -->
 									<div class="status-product">
 										Availablity <span>In stock</span>
 									</div>
