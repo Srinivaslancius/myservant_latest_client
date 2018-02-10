@@ -123,6 +123,9 @@
 				<?php } elseif($getBanners1['type'] == 2) { ?>
 					<input type="hidden" name="sub_category_id" value="<?php echo $getBanners1['sub_category_id']; ?>">
 				<?php } ?>
+			<?php } elseif($_GET['brand_id']) { 
+				$getBrands = getIndividualDetails('grocery_brands','id',$brand_id); ?>
+				<input type="hidden" name="brand_id" value="<?php echo $getBrands['id']; ?>">
 			<?php } ?>
 				<ul class="box-checkbox scroll">
 					<li class="check-box check_price_type">
