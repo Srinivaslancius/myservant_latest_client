@@ -1,6 +1,6 @@
 <div class="container">
 				<div class="row" style="padding-bottom:30px">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-categories-ft">
 							<div class="widget-title">
 								<h3>Myservant</h3>
@@ -29,7 +29,7 @@
 						</div><!-- /.widget-categories-ft -->
 					</div><!-- /.col-lg-3 col-md-6 -->
 					
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-menu">
 							<div class="widget-title">
 								<h3>Customer Care</h3>
@@ -74,7 +74,7 @@
 						</div><!-- /.widget-menu -->
 					</div><!-- /.col-lg-2 col-md-6 -->
 					
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-menu">
 							<div class="widget-title">
 								<h3>Download Our App</h3>
@@ -83,7 +83,7 @@
 							<img src="images/product/applestore.png" class="img-responsive">
 						</div><!-- /.widget-apps -->
 					</div><!-- /.col-lg-4 col-md-6 -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-about">
 							
 								<div class="widget-title">

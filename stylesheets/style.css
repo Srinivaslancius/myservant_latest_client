@@ -3562,6 +3562,10 @@ i, cite, em, var, address, dfn {
 	margin-bottom:10px;
 }
 @media screen and (max-width: 480px) and (min-width: 320px){
+	.part1{
+		
+		padding-top:55px !important;		
+	}
 	#div1{
 width:90%;
 	}
@@ -3808,13 +3812,14 @@ width:90%;
 	font-size:15px !important;
 	width:100% !important;
 	color:white !important;
-	border-color: #d34836!important;
-	background-color:#d34836!important;
+	border-color: #dd4b39!important;
+	background-color:#dd4b39!important;
+	padding:0px!important;
 	
 }
 .btn-primary.fac_book{
 	font-size:15px!important;
-	padding:9px 27px!important;
+	padding:0px!important;
 	color:white!important;
 	width:100%!important;
 }
@@ -3864,7 +3869,7 @@ width:90%;
 	.part1{
 		border-bottom:1px dotted #ccc !important;
 		padding-bottom:30px !important;
-		padding-top:30px !important;
+		padding-top:30px ;
 		
 	}
 	.part2{

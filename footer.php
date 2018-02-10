@@ -2,7 +2,7 @@
 $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 <div class="container">
 				<div class="row" style="padding-bottom:30px">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-categories-ft">
 							<div class="widget-title">
 								<h3>Myservant</h3>
@@ -31,7 +31,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 						</div><!-- /.widget-categories-ft -->
 					</div><!-- /.col-lg-3 col-md-6 -->
 					
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-menu">
 							<div class="widget-title">
 								<h3>Customer Care</h3>
@@ -77,7 +77,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 						</div><!-- /.widget-menu -->
 					</div><!-- /.col-lg-2 col-md-6 -->
 					
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-menu">
 							<div class="widget-title">
 								<h3>Download Our App</h3>
@@ -86,7 +86,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							<a href="<?php echo $getSiteSettingsData1['apple_app_link'] ?>" target="_blank" title=""><img src="images/product/applestore.png" class="img-responsive"></a>
 						</div><!-- /.widget-apps -->
 					</div><!-- /.col-lg-4 col-md-6 -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-about">
 							
 								<div class="widget-title">
@@ -200,3 +200,64 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 				</div>
 				</div>
 			</div><!-- /.container -->
+			<?php include "search_js_script.php"; ?>
+			<script type="text/javascript">
+			function addWishList(productId) {
+
+				//alert(productId);
+				var weightType= $('#get_pr_price_'+productId).val();	
+				//alert(weightType);
+				var split = weightType.split(",");				
+				var productWeightType = split[0];			
+				//alert(productWeightType);
+				$.ajax({
+				  type:'post',
+				  url:'save_wish_list.php',
+				  data:{
+				     product_id:productId,productWeightType:productWeightType,       
+				  },
+				  success:function(data) {
+				    if(data == 1) {
+				    	alert("Added to your Wishlist");
+				    	$('#change_wishlist_img_'+productId).attr('src', "images/icons/1.png");
+				    	$('#change_wishlist_img1_'+productId).attr('src', "images/icons/1.png");
+				    	
+				    } else {
+				    	alert("Removed from your Wishlist");
+				    	$('#change_wishlist_img_'+productId).attr('src', "images/icons/wishlist.png");
+				    	$('#change_wishlist_img1_'+productId).attr('src', "images/icons/wishlist.png");
+				    }
+				  }
+				});
+
+			}
+			function addWishList1(ProductId) {
+
+				//alert(ProductId);
+				var weightType= $('#get_pr_price1_'+ProductId).val();	
+				//alert(weightType);
+				var split = weightType.split(",");				
+				var productWeightType = split[0];			
+				//alert(productWeightType);
+				$.ajax({
+				  type:'post',
+				  url:'save_wish_list.php',
+				  data:{
+				     product_id:ProductId,productWeightType:productWeightType,       
+				  },
+				  success:function(data) {
+				    if(data == 1) {
+				    	alert("Added to your Wishlist");
+				    	$('#change_wishlist_img1_'+ProductId).attr('src', "images/icons/1.png");
+				    	
+				    } else {
+				    	alert("Removed from your Wishlist");
+				    	$('#change_wishlist_img1_'+ProductId).attr('src', "images/icons/wishlist.png");
+				    }
+				  }
+				});
+
+			}
+			</script>
+
+			<script type="text/javascript" src="javascript/check_number_validations.js"></script>
