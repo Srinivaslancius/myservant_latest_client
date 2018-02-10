@@ -1,5 +1,10 @@
 <?php ob_start(); ?>
 <?php include_once 'meta.php';?>
+<style>
+.flat-error {
+    padding: 50px 0;
+}
+</style>
 	<body class="header_sticky">
 	<div class="boxed">
 		<div class="overlay"></div>
@@ -16,7 +21,7 @@
 		</section><!-- /#header -->
 
 		<?php
-		header( "refresh:10;url=index.php" );
+		//header( "refresh:10;url=index.php" );
 		if($_SESSION['user_login_session_id'] == '') {
 		    header ("Location: logout.php");
 		} 
@@ -40,45 +45,77 @@
 					</div><!-- /.col-md-2 -->
 					<div class="col-md-8 col-sm-8">
 						<div class="wrap-error center">
+						<img src="images/right.png" class="img-responsive" style="width:120px;height:120px">
 							<div class="header-error" style="margin-bottom:30px">
 								
 								<h1>Thank You for placing the order with my servant</h1>
 								<p>We will send you the order details with delivery dates shortly!</p>
 							</div><!-- /.header-error -->
-							<table class="table" style="border: 1px solid #ddd;width:70%;margin-left:15%">
+							<table class="table" style="border: 1px solid #ddd;width:90%;margin-left:5%">
 							<thead>
 							  <tr style="background-color:#e5e5e5">
 								<th style="text-align:center">PRODUCT</th>
+								
 								<th style="text-align:center">QUANTITY</th>
 								<th style="text-align:center">PRICE</th>
 							  </tr>
 							</thead>
 							<tbody>
-							<?php while ($getPlaceOrders = $placeOrder->fetch_assoc()) { 
+							<!--<?php while ($getPlaceOrders = $placeOrder->fetch_assoc()) { 
 								$cartTotal += $getPlaceOrders['item_quantity']*$getPlaceOrders['item_price'];
 								$getProductDetails= getIndividualDetails('grocery_product_name_bind_languages','product_id',$getPlaceOrders['product_id']);
 								$delivery_charges = $getPlaceOrders['delivery_charges'];
 								$service_tax = $getPlaceOrders['service_tax'];
 								$order_total = $getPlaceOrders['order_total'];
 							?>
-							  <tr>
+							  <tr style="border-bottom:1px solid #ddd">
 								<td><?php echo $getProductDetails['product_name']; ?></td>
 								<td><?php echo $getPlaceOrders['item_quantity']; ?></td>
 								<td>Rs : <?php echo $getPlaceOrders['item_price']; ?></td>
 							  </tr>
-							<?php } ?>
+							<?php } ?>-->
+							 <tr style="border-bottom:1px solid #ddd">
+							 
+								<td>Haldirams Namkeen - Khatta Meetha ( Multipack )</td>
+								<td>2</td>
+								<td>Rs : 600/-</td>
+							  </tr>
+							  <tr style="border-bottom:1px solid #ddd">
+							  
+								<td>Haldirams Namkeen - Khatta Meetha ( Multipack )</td>
+								<td>2</td>
+								<td>Rs : 600/-</td>
+							  </tr>
+							<!--<tr>
+								<td>somthing</td>
+								<td>1</td>
+								<td>Rs : 600/-</td>
+							  </tr>
+							  <tr>
+								<td>somthing</td>
+								<td>1</td>
+								<td>Rs : 600/-</td>
+							  </tr>
+							  <tr>
+								<td>somthing</td>
+								<td>1</td>
+								<td>Rs : 600/-</td>
+							  </tr>-->
 							  <tr>
 								<td style="font-size:14px;color:#fe6003">Sub Total</td>
 								<td></td>
+								
 								<td style="font-size:14px;color:#fe6003">Rs : <?php echo $cartTotal; ?>/-</td>
 							  </tr>
 							  <tr>
 								<td style="font-size:14px;color:#fe6003">GST</td>
+								
 								<td></td>
 								<td style="font-size:14px;color:#fe6003">Rs : <?php echo $service_tax; ?>/-</td>
 							  </tr>
 							  <tr>
 								<td style="font-size:14px;color:#fe6003">Delivery Charges</td>
+								
 								<td></td>
 								<td style="font-size:14px;color:#fe6003">Rs : <?php echo $delivery_charges; ?>/-</td>
 							  </tr>
@@ -92,6 +129,7 @@
 							  <tr style="background-color:black">
 								<td style="font-size:14px;color:#fff">Total</td>
 								<td></td>
+							
 								<td style="font-size:14px;color:#fff">Rs : <?php echo round($order_total); ?>/-</td>
 							  </tr>
 							</tbody>
