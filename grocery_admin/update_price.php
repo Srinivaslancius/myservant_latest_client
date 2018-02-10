@@ -88,7 +88,7 @@
                             <div class="clear_fix"></div>
 
                             <div class="input_fields_container" >
-							
+                            
                                 <div style="border:1px solid #ddd;padding-top:20px;margin-left:60px;margin-right:60px">
                                     <div class="form-group">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Offer</label>
@@ -136,9 +136,9 @@
                                        
                                     </div>
                                 </div>
-								 <div class="col-sm-8 col-md-8">
-								 </div>
-								 <div class="col-sm-4 col-md-4" style="margin-top:10px">
+                                 <div class="col-sm-8 col-md-8">
+                                 </div>
+                                 <div class="col-sm-4 col-md-4" style="margin-top:10px">
                                             <span><button type="button" class="btn btn-success add_more_button"> <i class="zmdi zmdi-plus-circle zmdi-hc-fw" ></i></button></span>
                                 </div>
                             </div>
