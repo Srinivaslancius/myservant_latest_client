@@ -109,7 +109,7 @@
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Android App</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" name="android_app_link" class="form-control" id="form-control-3" placeholder="Enter Android App Link" value="<?php echo $getSiteSettingsData['apple_app_link'];?>" required>
+                                    <input type="text" name="android_app_link" class="form-control" id="form-control-3" placeholder="Enter Android App Link" value="<?php echo $getSiteSettingsData['android_app_link'];?>" required>
                                 </div>
                             </div>
                             <div class="form-group">

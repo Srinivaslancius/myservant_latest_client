@@ -42,6 +42,10 @@ if(isset($_POST['price'])) {
     $where_condition = "WHERE grocery_category_id = '".$_POST['category_id']."' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')  ORDER BY id DESC";
 } elseif($_POST['product_price'] == '' && isset($_POST['sub_category_id'])) {
     $where_condition = "WHERE grocery_sub_category_id = '".$_POST['sub_category_id']."' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')  ORDER BY id DESC";
+} elseif(isset($_POST['product_price']) && isset($_POST['brand_id'])) {
+    $where_condition = "WHERE id IN (SELECT product_id FROM grocery_product_bind_brands WHERE brand_id = '".$_POST['brand_id']."') AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' AND (selling_price BETWEEN '$sendMinPrice' AND '$sendMaxPrice'))  ORDER BY id DESC";
+} elseif($_POST['product_price'] == '' && isset($_POST['brand_id'])) {
+    $where_condition = "WHERE id IN (SELECT product_id FROM grocery_product_bind_brands WHERE brand_id = '".$_POST['brand_id']."') AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')  ORDER BY id DESC";
 } else {
     $where_condition = "WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)  ORDER BY id DESC LIMIT 0,10";
 }
