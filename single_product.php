@@ -135,7 +135,7 @@ width:100% !important;
 									<?php echo $getCategoryName['category_name']; ?>
 								</div>
 								<div class="reviewed">
-									<div class="review">
+									<!-- <div class="review">
 										<div class="queue">
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<i class="fa fa-star" aria-hidden="true"></i>
@@ -147,7 +147,7 @@ width:100% !important;
 											<span>3 Reviews</span>
 											<span class="add-review">Add Your Review</span>
 										</div>
-									</div><!-- /.review -->
+									</div> --><!-- /.review -->
 									<div class="status-product">
 										Availablity <span>In stock</span>
 									</div>
@@ -214,33 +214,18 @@ width:100% !important;
 									<span>SHARE</span>
 									<ul class="social-list style2">
 										<li>
-											<a href="#" title="">
+											<a href="<?php echo $getSiteSettingsData1['fb_link'] ?>" target="_blank" title="">
 												<i class="fa fa-facebook" aria-hidden="true"></i>
-											</a>
+										</a>
 										</li>
 										<li>
-											<a href="#" title="">
+											<a href="<?php echo $getSiteSettingsData1['twitter_link'] ?>" target="_blank">
 												<i class="fa fa-twitter" aria-hidden="true"></i>
 											</a>
 										</li>
 										<li>
-											<a href="#" title="">
+											<a href="<?php echo $getSiteSettingsData1['inst_link'] ?>" target="_blank">
 												<i class="fa fa-instagram" aria-hidden="true"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#" title="">
-												<i class="fa fa-pinterest" aria-hidden="true"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#" title="">
-												<i class="fa fa-dribbble" aria-hidden="true"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#" title="">
-												<i class="fa fa-google" aria-hidden="true"></i>
 											</a>
 										</li>
 									</ul><!-- /.social-list -->

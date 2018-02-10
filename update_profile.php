@@ -178,5 +178,52 @@
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 		<script type="text/javascript" src="javascript/main.js"></script>
 
+		<script type="text/javascript">
+	    
+		function checkEmail() {
+
+	        var user_email = document.getElementById("user_email").value;
+	        if (user_email){
+	          $.ajax({
+	          type: "POST",
+	          url: "user_avail_check.php",
+	          data: {
+	            user_email:user_email,
+	          },
+	          success: function (result) {	          	
+	            if (result > 0){
+	            	$("#input_status").html("<span style='color:red;'>Email Already Exist</span>");
+	        		$('#user_email').val('');
+	            } else {
+	              $('#input_status').html("");
+	            }     
+	            }
+	           });          
+	        }
+	    }
+	    function checkMobile() {
+	        var user_mobile = document.getElementById("user_mobile").value;
+	        if (user_mobile){
+	          $.ajax({
+	          type: "POST",
+	          url: "user_avail_check.php",
+	          data: {
+	            user_mobile:user_mobile,
+	          },
+	          success: function (result) {
+
+	            if (result > 0){
+	            	$("#input_status1").html("<span style='color:red;'>Mobile Already Exist</span>");
+	        		$('#user_mobile').val('');
+	            } else {
+	              $('#input_status1').html("");
+	            }       
+	            }
+	           });          
+	        }
+	    }
+
+    </script>
+
 </body>	
 </html>

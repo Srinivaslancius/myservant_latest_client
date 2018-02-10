@@ -216,7 +216,7 @@
 										<div class="field-row">
 											<p class="field-one-half">
 												<label for="email-address">Email Address *</label>
-												<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required>
+												<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required readonly>
 											</p>
 											<p class="field-one-half">
 												<label for="phone">Phone *</label>

@@ -98,7 +98,7 @@
 								</div><!-- /.mainnav -->
 							</div><!-- /.nav-wrap -->
 							<div class="today-deal">
-								<a href="today_deals.php" title="">TODAY DEALS</a>
+								<a href="today_deals.php" title="">TODAY'S DEALS</a>
 							</div><!-- /.today-deal -->
 							<div class="btn-menu">
 	                            <span></span>
