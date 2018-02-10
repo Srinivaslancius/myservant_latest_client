@@ -238,16 +238,24 @@
     function check_offer(getRadioVal) {
         if(getRadioVal == 1 ){
             $('.offer_price').css("display", "block");
+            $('#mrp_price,#selling_price,#offer_per').val('');
         } else {
-            $('.offer_price').css("display", "none");           
+            $('.offer_price').css("display", "none");
+            $('#mrp_price,#selling_price,#offer_per').val('');          
         }      
         $('#setRaioVal').val(getRadioVal);
     }
     function check_offer1(getRadioVal,getIncValue) {
         if(getRadioVal == 1 ){
             $('#offer_price_'+getIncValue).css("display", "block");
+            $('#selling_price_'+getIncValue).val('');
+            $('#mrp_price_'+getIncValue).val('');
+            $('#offer_per_'+getIncValue).val('');
         } else {
-            $('#offer_price_'+getIncValue).css("display", "none");           
+            $('#offer_price_'+getIncValue).css("display", "none");
+            $('#selling_price_'+getIncValue).val('');
+            $('#mrp_price_'+getIncValue).val('');
+            $('#offer_per_'+getIncValue).val('');           
         }
          $('#setRaioVal_'+getIncValue).val(getRadioVal);
     }

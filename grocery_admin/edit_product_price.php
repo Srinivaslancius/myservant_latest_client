@@ -108,7 +108,7 @@
                                     <div class="form-group offer_price" style="display:none">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Percentage</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control valid_mobile_num" name="offer_percentage" onChange="calculatePrice()" value="<?php echo $getPrices['offer_percentage']; ?>" id="offer_per" onblur="getPricePercentage();" placeholder="Offer Percentage (%)" >
+                                            <input type="text" class="form-control valid_mobile_num" name="offer_percentage" onChange="calculatePrice()" value="<?php echo $getPrices['offer_percentage']; ?>" id="offer_per" placeholder="Offer Percentage (%)" >
                                         </div>
                                     </div>
 
@@ -127,7 +127,7 @@
                                     <div class="form-group">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Selling Price</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control valid_mobile_num" value="<?php echo $getPrices['selling_price']; ?>" name="selling_price" id="selling_price" placeholder="Enter Selling Price" required readonly>
+                                            <input type="text" class="form-control valid_mobile_num" value="<?php echo $getPrices['selling_price']; ?>" name="selling_price" id="selling_price" placeholder="Enter Selling Price" onkeyup="changePrice(this.value);" required>
                                         </div>
                                        
                                     </div>
@@ -160,60 +160,46 @@
             $('#mrp_price, #selling_price,#offer_per').val('');
         } else {
             $('.offer_price').css("display", "none");
-            $('#mrp_price, #selling_price,#offer_per').val('');        
+            $('#mrp_price, #selling_price,#offer_per').val('');         
         }      
         $('#setRaioVal').val(getRadioVal);
     }
+    var RadioVal = $('.offer_type').val();
     if ($('.offer_type').val() == 1) {
         $('.offer_price').css("display", "block");
-    } 
+        $('#setRaioVal').val(RadioVal);
+    }
     </script>
 
     <script type="text/javascript">
     function getPrice(Price) {
-
         if($('#setRaioVal').val()!='') {
-            if($('#setRaioVal').val() == 0){         
+            if($('#setRaioVal').val() == 0){
                 $('#selling_price').val(Price);        
             } else {
-                //Calculation for selling price            
-                var OfferPer = $('#offer_per').val();
-                if(OfferPer!='') {
-                    var SellingPrice = Price-(Price*(OfferPer/100)); 
-                    $('#selling_price').val(SellingPrice);              
-                } else {
-                    $('#mrp_price, #selling_price').val('');
-                    alert("Please enter offer price");
-                    return false;
-                }                          
+                return false;
             }
         } else {
             $('#mrp_price, #selling_price').val('');
             alert("Please select offer type ");
             return false;
-        }                    
+        }
     }
-    function getPricePercentage() {
-        var price = $('#mrp_price').val();
-        if($('#setRaioVal').val()!='') {
-            if($('#setRaioVal').val() == 0){         
-                $('#selling_price').val(Price);        
-            } else {
-                //Calculation for selling price            
-                var OfferPer = $('#offer_per').val();
-                if(OfferPer!='') {
-                    var SellingPrice = price-(price*(OfferPer/100)); 
-                    $('#selling_price').val(SellingPrice);              
-                } else {
-                    $('#mrp_price, #selling_price').val('');
-                    alert("Please enter offer price");
-                    return false;
-                }                          
-            }
+    function changePrice() {
+        var Price = $('#mrp_price').val();
+        var SellingPrice = $('#selling_price').val();
+
+        if(SellingPrice!='' && Price!='') {
+            var OfferPer = ((Price-SellingPrice)/Price)*100;
+            $('#offer_per').val(OfferPer);
         } else {
+            //alert("Please enter MRP Price");
             $('#mrp_price, #selling_price').val('');
-            alert("Please select offer type ");
-            return false;
+        }
+
+        if(parseFloat(SellingPrice) > parseFloat(Price)) {
+            alert("Selling Price should be less than MRP");
+            $('#mrp_price,#selling_price,#offer_per').val('');
         }
     }
     </script>
