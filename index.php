@@ -283,7 +283,7 @@ $tagNames = $conn->query($getTags);
 	if($i == 2) {
 		$limit = $i;
 	} else {
-		$limit = $i+2;
+		$limit = $limit+4;
 	} 
 ?>
 <?php $getOfferModules = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 4 OFFSET $limit ";
@@ -298,8 +298,8 @@ $getOfferModules1 = $conn->query($getOfferModules); ?>
 				</div>
 			</div><!-- /.col-md-12 -->
 		</div><!-- /.row -->
-		<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
 		<div class="row">
+			<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
 			<div class="col-md-3">
 				<div class="banner-box">
 					<div class="inner-box">
@@ -309,8 +309,8 @@ $getOfferModules1 = $conn->query($getOfferModules); ?>
 					</div><!-- /.inner-box -->
 				</div><!-- /.banner-box -->
 			</div><!-- /.col-md-4 -->
+			<?php } ?>
 		</div><!-- /.row -->
-		<?php } ?>
 	</div><!-- /.container -->
 </section><!-- /.flat-banner-box -->
 <?php } } } ?>
