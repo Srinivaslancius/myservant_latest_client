@@ -200,6 +200,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 				</div>
 				</div>
 			</div><!-- /.container -->
+			<?php include "search_js_script.php"; ?>
 			<script type="text/javascript">
 			function addWishList(productId) {
 
@@ -257,4 +258,4 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 			}
 			</script>
 
-			<script type="text/javascript" src="javascript/check_number_validations.js"></scrip
+			<script type="text/javascript" src="javascript/check_number_validations.js"></script>
