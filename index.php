@@ -280,15 +280,16 @@ $tagNames = $conn->query($getTags);
 				</div><!-- /.container -->
 		</section><!-- /.flat-imagebox -->
 <?php if (++$i % 2 === 0 ) { 
-if($i == 2) {
-	$limit = $i;
-} else {
-	$limit = $i+2;
-} ?>
+	if($i == 2) {
+		$limit = $i;
+	} else {
+		$limit = $i+2;
+	} 
+?>
 <?php $getOfferModules = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 4 OFFSET $limit ";
 $getOfferModules1 = $conn->query($getOfferModules); ?>
+<?php if($getOfferModules1->num_rows > 0) { ?>
 <section class="flat-row flat-banner-box">
-	<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -297,6 +298,7 @@ $getOfferModules1 = $conn->query($getOfferModules); ?>
 				</div>
 			</div><!-- /.col-md-12 -->
 		</div><!-- /.row -->
+		<?php while($getOfferModulesData = $getOfferModules1->fetch_assoc()) { ?>
 		<div class="row">
 			<div class="col-md-3">
 				<div class="banner-box">
@@ -307,12 +309,11 @@ $getOfferModules1 = $conn->query($getOfferModules); ?>
 					</div><!-- /.inner-box -->
 				</div><!-- /.banner-box -->
 			</div><!-- /.col-md-4 -->
-			<?php } ?>
 		</div><!-- /.row -->
+		<?php } ?>
 	</div><!-- /.container -->
-	<?php } ?>
 </section><!-- /.flat-banner-box -->
-<?php } ?>
+<?php } } } ?>
 
 <?php 
 if($_SESSION['city_name'] == '') {
