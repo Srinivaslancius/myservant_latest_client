@@ -2,7 +2,7 @@
 $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 <div class="container">
 				<div class="row" style="padding-bottom:30px">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-categories-ft">
 							<div class="widget-title">
 								<h3>Myservant</h3>
@@ -31,7 +31,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 						</div><!-- /.widget-categories-ft -->
 					</div><!-- /.col-lg-3 col-md-6 -->
 					
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-menu">
 							<div class="widget-title">
 								<h3>Customer Care</h3>
@@ -77,7 +77,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 						</div><!-- /.widget-menu -->
 					</div><!-- /.col-lg-2 col-md-6 -->
 					
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-menu">
 							<div class="widget-title">
 								<h3>Download Our App</h3>
@@ -86,7 +86,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							<a href="<?php echo $getSiteSettingsData1['apple_app_link'] ?>" target="_blank" title=""><img src="images/product/applestore.png" class="img-responsive"></a>
 						</div><!-- /.widget-apps -->
 					</div><!-- /.col-lg-4 col-md-6 -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-3">
 						<div class="widget-ft widget-about">
 							
 								<div class="widget-title">
