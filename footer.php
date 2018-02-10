@@ -220,10 +220,12 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 				    if(data == 1) {
 				    	alert("Added to your Wishlist");
 				    	$('#change_wishlist_img_'+productId).attr('src', "images/icons/1.png");
+				    	$('#change_wishlist_img1_'+productId).attr('src', "images/icons/1.png");
 				    	
 				    } else {
 				    	alert("Removed from your Wishlist");
 				    	$('#change_wishlist_img_'+productId).attr('src', "images/icons/wishlist.png");
+				    	$('#change_wishlist_img1_'+productId).attr('src', "images/icons/wishlist.png");
 				    }
 				  }
 				});
