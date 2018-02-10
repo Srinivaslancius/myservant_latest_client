@@ -20,9 +20,9 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 					<div class="row">
 						<div class="col-md-4">
 							<ul class="flat-support">
-								<li>
+								<!-- <li>
 									<a href="faq.php" title="">Support</a>
-								</li>
+								</li> -->
 								<li>
 									<a href="trackorder.php" title="">Track Your Order</a>
 								</li>
