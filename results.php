@@ -93,6 +93,14 @@ position:absolute;
 			$getProducts1 = $conn->query($getProducts);
 			$getProductsTotalDetails = "SELECT * from grocery_products WHERE grocery_sub_category_id = $sub_category_id AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
 			$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
+		} elseif(isset($_GET['brand_id'])) {
+			$brand_id = $_GET['brand_id'];
+			$getBrands = getIndividualDetails('grocery_brands','id',$brand_id);
+			$getName = $getBrands['brand_name'];
+			$getProducts = "SELECT grocery_product_bind_brands.brand_id,grocery_product_bind_brands.product_id, grocery_products.id,grocery_products.grocery_category_id,grocery_products.grocery_sub_category_id,grocery_products.product_description,grocery_products.lkp_status_id FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id AND grocery_product_bind_brands.brand_id = '$brand_id' WHERE grocery_products.lkp_status_id = '0' AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
+			$getProducts1 = $conn->query($getProducts);
+			$getProductsTotalDetails = "SELECT grocery_product_bind_brands.brand_id,grocery_product_bind_brands.product_id, grocery_products.id,grocery_products.grocery_category_id,grocery_products.grocery_sub_category_id,grocery_products.product_description,grocery_products.lkp_status_id FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id AND grocery_product_bind_brands.brand_id = '$brand_id' WHERE grocery_products.lkp_status_id = '0' AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
+			$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
 		}
 		//echo $getProducts;
 		?>

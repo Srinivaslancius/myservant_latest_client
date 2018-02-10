@@ -227,7 +227,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 					<div class="divider10"></div>
 				</div><!-- /.container -->
 		</section><!-- /.flat-imagebox -->
-		<?php } ?>
+		<?php } else { ?>
+       <h3 style="text-align:center">No Items Found</h3>
+       <?php } ?>
 
 
 
