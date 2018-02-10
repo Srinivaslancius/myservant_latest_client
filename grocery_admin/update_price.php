@@ -112,7 +112,7 @@
                                     <div class="form-group offer_price" style="display:none">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Percentage</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control valid_mobile_num" name="offer_percentage[]" onChange="calculatePrice()" id="offer_per" onblur="getPricePercentage();" placeholder="Offer Percentage (%)" >
+                                            <input type="text" class="form-control valid_mobile_num" name="offer_percentage[]" id="offer_per"  placeholder="Offer Percentage (%)" readonly>
                                         </div>
                                     </div>
 
@@ -131,7 +131,7 @@
                                     <div class="form-group">
                                         <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Selling Price</label>
                                         <div class="col-sm-6 col-md-4">
-                                            <input type="text" class="form-control valid_mobile_num" name="selling_price[]" id="selling_price" placeholder="Enter Selling Price" required readonly>
+                                            <input type="text" class="form-control valid_mobile_num" name="selling_price[]" id="selling_price" placeholder="Enter Selling Price" required onkeyup="changePrice(this.value);">
                                         </div>
                                        
                                     </div>
@@ -224,7 +224,7 @@
             if(x < max_fields_limit){ //check conditions
                 x++; //counter increment
 
-                $('.input_fields_container').append('<div><div class="row" style="border:1px solid #ddd;margin:60px 60px 0px 60px;padding-top:20px;padding-bottom:10px"><input type="hidden" id="setRaioVal_'+x+'"><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Offer</label><div class="btn-group col-sm-6 col-md-4" ><select class="form-control" onChange="check_offer1(this.value,'+x+')" name="select_opt[]"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></div></div><div class="form-group" id="offer_price_'+x+'" style="display:none"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Percentage</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control" name="offer_percentage[]" id="offer_per_'+x+'" placeholder="Offer Percentage (%)" onblur="getPricePercentage1('+x+');" ></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Weight (Ex: 100 Gms etc..)</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control" id="form-control-3" placeholder="Weight Types" name="weight_type[]" required></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">MRP</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control valid_mobile_num" id="mrp_price_'+x+'" placeholder="Enter MRP" name="mrp_price[]" required onkeyup="getPrice1(this.value,'+x+');"></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Selling Price</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control valid_mobile_num" id="selling_price_'+x+'" placeholder="Enter Selling Price" name="selling_price[]" required readonly></div></div><a href="#" style="margin-right:23%;margin-left:3px" class="remove_field btn btn-warning pull-right"><i class="zmdi zmdi-minus-circle zmdi-hc-fw"></i></a><a href="#" class="add_more_button btn btn-warning pull-right"><i class="zmdi zmdi-plus-circle zmdi-hc-fw" ></i></a></div></div>'); //add input field
+                $('.input_fields_container').append('<div><div class="row" style="border:1px solid #ddd;margin:60px 60px 0px 60px;padding-top:20px;padding-bottom:10px"><input type="hidden" id="setRaioVal_'+x+'"><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Offer</label><div class="btn-group col-sm-6 col-md-4" ><select class="form-control" onChange="check_offer1(this.value,'+x+')" name="select_opt[]"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></div></div><div class="form-group" id="offer_price_'+x+'" style="display:none"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Percentage</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control" name="offer_percentage[]" id="offer_per_'+x+'" placeholder="Offer Percentage (%)" readonly></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Weight (Ex: 100 Gms etc..)</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control" id="form-control-3" placeholder="Weight Types" name="weight_type[]" required></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">MRP</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control valid_mobile_num" id="mrp_price_'+x+'" placeholder="Enter MRP" name="mrp_price[]" required onkeyup="getPrice1(this.value,'+x+');"></div></div><div class="form-group"><label for="form-control-3" class="col-sm-3 col-md-4 control-label">Selling Price</label><div class="col-sm-6 col-md-4"><input type="text" class="form-control valid_mobile_num" id="selling_price_'+x+'" onkeyup="changePrice1(this.value,'+x+');" placeholder="Enter Selling Price" name="selling_price[]" required ></div></div><a href="#" style="margin-right:23%;margin-left:3px" class="remove_field btn btn-warning pull-right"><i class="zmdi zmdi-minus-circle zmdi-hc-fw"></i></a><a href="#" class="add_more_button btn btn-warning pull-right"><i class="zmdi zmdi-plus-circle zmdi-hc-fw" ></i></a></div></div>'); //add input field
 
             }
         });  
@@ -258,102 +258,80 @@
     function getPrice(Price) {
 
         if($('#setRaioVal').val()!='') {
-            if($('#setRaioVal').val() == 0){         
+            if($('#setRaioVal').val() == 0){
                 $('#selling_price').val(Price);        
             } else {
-                //Calculation for selling price            
-                var OfferPer = $('#offer_per').val();
-                if(OfferPer!='') {
-                    var SellingPrice = Price-(Price*(OfferPer/100)); 
-                    $('#selling_price').val(SellingPrice);              
-                } else {
-                    $('#mrp_price, #selling_price').val('');
-                    alert("Please enter offer price");
-                    return false;
-                }                          
-            }
-        } else {
-            $('#mrp_price, #selling_price').val('');
-            alert("Please select offer type ");
-            return false;
-        }                    
-    }
-    function getPricePercentage() {
-        var price = $('#mrp_price').val();
-        if($('#setRaioVal').val()!='') {
-            if($('#setRaioVal').val() == 0){         
-                $('#selling_price').val(Price);        
-            } else {
-                //Calculation for selling price            
-                var OfferPer = $('#offer_per').val();
-                if(OfferPer!='') {
-                    var SellingPrice = price-(price*(OfferPer/100)); 
-                    $('#selling_price').val(SellingPrice);              
-                } else {
-                    $('#mrp_price, #selling_price').val('');
-                    alert("Please enter offer price");
-                    return false;
-                }                          
+                return false;
             }
         } else {
             $('#mrp_price, #selling_price').val('');
             alert("Please select offer type ");
             return false;
         }
+
     }
 
-    function getPricePercentage1(getIncValue) {
-        
-        if($('#setRaioVal_'+getIncValue).val()!='') {            
-            if($('#setRaioVal_'+getIncValue).val() == 0){         
-                $('#selling_price_'+getIncValue).val(Price);    
+    function changePrice() {
+
+        var Price = $('#mrp_price').val();
+        var SellingPrice = $('#selling_price').val();
+
+        if(SellingPrice!='' && Price!='') {
+            var OfferPer = ((Price-SellingPrice)/Price)*100;
+            $('#offer_per').val(OfferPer);
+        } else {
+            //alert("Please enter MRP Price");
+            $('#mrp_price, #selling_price').val('');
+        }
+
+        if(parseFloat(SellingPrice) > parseFloat(Price)) {
+            alert("Selling Price should be less than MRP");
+            $('#mrp_price,#selling_price,#offer_per').val('');
+        }
+    }
+
+
+    function getPrice1(MrpPrice,getIncValue) {
+
+        if($('#setRaioVal_'+getIncValue).val()!='') {  
+
+            if($('#setRaioVal_'+getIncValue).val() == 0){     
+                $('#selling_price_'+getIncValue).val(MrpPrice);    
             } else {
-                //Calculation for selling price            
-                var OfferPer = $('#offer_per_'+getIncValue).val();
-                var price = $('#mrp_price_'+getIncValue).val();              
-                if(OfferPer!='') {
-                    var SellingPrice = price-(price*(OfferPer/100)); 
-                    $('#selling_price_'+getIncValue).val(SellingPrice);              
-                } else {
-                    $('#selling_price_'+getIncValue).val('');
-                    $('#mrp_price_'+getIncValue).val('');
-                    alert("Please enter offer price");
-                    return false;
-                }                          
+                return false;
             }
+
         } else {
             $('#selling_price_'+getIncValue).val('');
             $('#mrp_price_'+getIncValue).val('');
             alert("Please select offer type ");
             return false;
         }
+
     }
 
-    function getPrice1(Price,getIncValue) {
+    function changePrice1(SellingPrice,getIncValue) {
 
-        if($('#setRaioVal_'+getIncValue).val()!='') {            
-            if($('#setRaioVal_'+getIncValue).val() == 0){         
-                $('#selling_price_'+getIncValue).val(Price);    
-            } else {
-                //Calculation for selling price            
-                var OfferPer = $('#offer_per_'+getIncValue).val();                
-                if(OfferPer!='') {
-                    var SellingPrice = Price-(Price*(OfferPer/100)); 
-                    $('#selling_price_'+getIncValue).val(SellingPrice);              
-                } else {
-                    $('#selling_price_'+getIncValue).val('');
-                    $('#mrp_price_'+getIncValue).val('');
-                    alert("Please enter offer price");
-                    return false;
-                }                          
-            }
+        var Price = $('#mrp_price_'+getIncValue).val();        
+
+        if(SellingPrice!='' && Price!='') {
+            var OfferPer = ((Price-SellingPrice)/Price)*100;
+            $('#offer_per_'+getIncValue).val(OfferPer);
         } else {
+            //alert("Please enter MRP Price");
             $('#selling_price_'+getIncValue).val('');
             $('#mrp_price_'+getIncValue).val('');
-            alert("Please select offer type ");
-            return false;
+            $('#offer_per_'+getIncValue).val('');
+        }
+
+        if(parseFloat(SellingPrice) > parseFloat(Price)) {
+            alert("Selling Price should be less than MRP");
+            $('#selling_price_'+getIncValue).val('');
+            $('#mrp_price_'+getIncValue).val('');
+            $('#offer_per_'+getIncValue).val('');
         }
     }
+    
     </script>
 
   </body>
