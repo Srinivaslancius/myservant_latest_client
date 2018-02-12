@@ -67,7 +67,13 @@
 											<?php } ?>
 										</div>
 									</li>
+									
 									<?php } ?>
+									<li>
+										<a href="#" title="">
+										<p style="text-align:center;font-size:15px">View all categories</P>
+										</a>
+									</li>
 								</ul>
 								<?php } else { ?>
 								<ul class="menu">
