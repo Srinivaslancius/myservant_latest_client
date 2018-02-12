@@ -826,13 +826,15 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="owl-carousel-3">
-				<?php $getAllBrandLogos=  getAllDataWithStatus('grocery_brand_logos',0); 
-				while($getBrandLogosData = $getAllBrandLogos->fetch_assoc()) { ?>
+				<?php 
+				$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+		    	$getAllBrands = $conn->query($getBrnds);
+				while($getBrandsData = $getAllBrands->fetch_assoc()) { ?>
 				
 					<div class="imagebox style4">
 						<div class="box-image">
-							<a href="<?php echo $getBrandLogosData['link'] ?>" title="">
-								<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_brand_logos/'.$getBrandLogosData['brand_logo'] ?>" alt="<?php echo $getBrandLogosData['link'] ?>">
+							<a href="results.php?brand_id=<?php echo $getBrandsData['id']; ?>" title="">
+								<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_brands_web_logo/'.$getBrandsData['web_logo'] ?>" alt="">
 							</a>
 						</div><!-- /.box-image -->
 						
