@@ -41,6 +41,9 @@
 			</div><!-- /.container -->
 		</section><!-- /.flat-breadcrumb -->
 		<?php 
+		if($_SESSION['user_login_session_id'] != '') {
+		    header ("Location: index.php");
+		}
     if (isset($_POST['register']))  {
 
         $user_mobile = $_POST['user_mobile'];

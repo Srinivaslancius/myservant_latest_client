@@ -42,7 +42,9 @@
 		</section><!-- /.flat-breadcrumb -->
 		<?php 
 		error_reporting(0);
-		
+		if($_SESSION['user_login_session_id'] != '') {
+		    header ("Location: index.php");
+		}
 		$cart_id = decryptPassword($_GET['cart_id']);
 		$offer_id = decryptPassword($_GET['offer_id']);
 		if(isset($_POST['login']))  { 
