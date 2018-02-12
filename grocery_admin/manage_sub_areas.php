@@ -153,7 +153,7 @@
                                 <?php $getSubAreas = getAllDataWithActiveRecent('grocery_lkp_sub_areas'); $i=1;
                                 while ($row = $getSubAreas->fetch_assoc()) { ?>
                                 <tr>
-                                    <td>1</td>
+                                    <td><?php echo $i; ?></td>
                                     <!-- <td>Subrea1234</td> -->
                                     <td><?php echo $row['sub_area_name'] ?></td>
                                     <td><?php $getAreas = getAllData('grocery_lkp_areas'); while($getAreasData = $getAreas->fetch_assoc()) { if($row['lkp_area_id'] == $getAreasData['id']) { echo $getAreasData['area_name']; } } ?></td>
