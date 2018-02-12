@@ -118,7 +118,7 @@
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Booking Per Slot</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" class="form-control" id="form-control-3" placeholder="Booking Per Slot" name="booking_per_slot" required="required">
+                                    <input type="text" class="form-control valid_mobile_num" id="form-control-3" placeholder="Booking Per Slot" name="booking_per_slot" required="required">
                                 </div>
                             </div>
 
