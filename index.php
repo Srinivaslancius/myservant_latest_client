@@ -12,7 +12,9 @@ padding:20px;
 z-index:9999;
 position:absolute;
 }
-
+.flat-banner-box {
+    padding: 45px 0 10px;
+}
 </style>
 <body class="header_sticky">
 	<div class="boxed">

@@ -212,10 +212,11 @@ width:100% !important;
 								</div><!-- /.box-cart -->
 
 								<?php
+								$getProductImage1 = getIndividualDetails('grocery_product_bind_images','product_id',$productDetails['id']);
 								$title=urlencode('MyServant');
-								$url=urlencode('https://onlyprojects.info/single_product.php?product_id=176');
-								$summary=urlencode('Aashirvaad - Coriander Powder');
-								$image=urlencode('https://onlyprojects.info/grocery_admin/uploads/product_images/5a744a9078bb1Aashirvaad%20-%20Coriander%20Powder.jpg');
+								$url=urlencode($base_url.'single_product.php?product_id='.$productDetails['id']);
+								$summary=urlencode($getProductName['product_name']);
+								$image=urlencode($base_url.'grocery_admin/uploads/product_images/'.$getProductImage1['image']);
 								?>
 								<div class="social-single">
 									<span>SHARE</span>
@@ -231,11 +232,7 @@ width:100% !important;
 												<i class="fa fa-twitter" aria-hidden="true"></i>
 											</a> -->
 										</li>
-										<li>
-											<a href="<?php echo $getSiteSettingsData1['inst_link'] ?>" target="_blank">
-												<i class="fa fa-instagram" aria-hidden="true"></i>
-											</a>
-										</li>
+										
 									</ul><!-- /.social-list -->
 								</div><!-- /.social-single -->
 							</div><!-- /.footer-detail -->
