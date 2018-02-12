@@ -44,52 +44,48 @@
 		<section class="flat-row flat-imagebox">
 			<div class="container">
 				<?php 
+					if($_SESSION['city_name'] == '') {
+					    $lkp_city_id = 1;
+					} else {
+					    $getCities1 = getIndividualDetails('grocery_lkp_cities','city_name',$_SESSION['city_name']);
+						$lkp_city_id = $getCities1['id'];
+					}
 					$getCategories1 = "SELECT * FROM grocery_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_category_id FROM grocery_sub_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
 					$getCategories = $conn->query($getCategories1); ?>
-				<?php while($getCategoriesData = $getCategories->fetch_assoc()) { ?>
-				<div>
+				<?php while($getCategoriesData = $getCategories->fetch_assoc()) { ?>		
+				<h2><a href="results.php?cat_id=<?php echo $getCategoriesData['id']; ?>"><?php echo $getCategoriesData['category_name']; ?></a></h2><br>
+				<ul class="products_lst">
 					<?php $getSubCategories = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id ='".$getCategoriesData['id']."' AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
 					$getSubCategories1 = $conn->query($getSubCategories); ?>
-					<a href="results.php?cat_id=<?php echo $getCategoriesData['id']; ?>"><h2><?php echo $getCategoriesData['category_name']; ?></h2></a><br>
-					<ul class="products_lst">
-						<?php while($getSubCategoriesData = $getSubCategories1->fetch_assoc()) { ?>
-						<li><a href="results.php?sub_cat_id=<?php echo $getSubCategoriesData['id']; ?>"><?php echo $getSubCategoriesData['sub_category_name']; ?></a></li>
-						<?php } ?>
-					</ul>
-				</div>
-				<?php $getAllSubCategories = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id ='".$getCategoriesData['id']."' AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
-					$getAllSubCategories1 = $conn->query($getAllSubCategories); ?>
-				<div class="total_prdcts" style="border-top:0px">
-					<?php while($getAllSubCategoriesData = $getAllSubCategories1->fetch_assoc()) { ?>
-					<div class="part1">
+					<?php while($getSubCategoriesData = $getSubCategories1->fetch_assoc()) { ?>
+					<li><a href="results.php?sub_cat_id=<?php echo $getSubCategoriesData['id']; ?>"><?php echo $getSubCategoriesData['sub_category_name']; ?></a></li>
+					<?php } ?>			
+				</ul>
+				<div class="part1">
 					<div class="row">
-					<?php for($i=0; $i<4; $i++) {?>
-					<div class="col-sm-3">
-						<h4>Fresh Vegitables</h4>
+					<?php $getAllSubCategories = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id ='".$getCategoriesData['id']."' AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
+					$getAllSubCategories1 = $conn->query($getAllSubCategories); ?>
+					<?php while($getAllSubCategoriesData = $getAllSubCategories1->fetch_assoc()) { ?>
+						<div class="col-sm-3">
+						<h4><a href="results.php?sub_cat_id=<?php echo $getAllSubCategories['id']; ?>"><?php echo $getAllSubCategoriesData['sub_category_name']; ?></h4>
 						<ul class="sub_prdct">
-						<li><a href="#">Fruits and Vegetables</a></li>
-						<li><a href="#">Eggs, Meat and Fish</a></li>
-						<li><a href="#">Branded Foods</a></li>
-						<li><a href="#">House Hold</a></li>
-						<li><a href="#">Grocery and Staples</a></li>
-						<li><a href="#">Fruits and Vegetables</a></li>
-						<li><a href="#">Eggs, Meat and Fish</a></li>
-						<li><a href="#">Branded Foods</a></li>
-						<li><a href="#">House Hold</a></li>
-						<li><a href="#">Grocery and Staples</a></li>
+							<?php
+							$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND grocery_sub_category_id = '".$getAllSubCategoriesData['id']."' AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)  ORDER BY id DESC LIMIT 0,3";
+							$getProducts1 = $conn->query($getProducts);
+							while($getProductsData = $getProducts1->fetch_assoc()) { 
+								$getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductsData['id']);?>
+							<li><a href="single_product.php?product_id=<?php echo $getProductsData['id']; ?>"><?php echo $getProductNames['search_tags']; ?></a></li>
+							<?php } ?>
 						</ul>
+						</div>
+					<?php } ?>
 					</div>
-				<?php } ?>
 				</div>
-				</div>
-				<?php } ?>
-
-				</div>
-				<?php } ?>
+			<?php } ?>
 			</div><!-- /.container -->
 		</section><br><br>
 		<footer>
-			<?php include_once 'footer.php';?>
+			<?php include_once 'footer1.php';?>
 		</footer><!-- /footer -->
 
 		<section class="footer-bottom">
