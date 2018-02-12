@@ -135,7 +135,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
                    		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$todayDeals['id']);
                    		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
                    		?>
-						
+						<input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
 									<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">

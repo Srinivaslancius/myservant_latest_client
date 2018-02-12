@@ -3,6 +3,9 @@
 include "admin_includes/config.php";
 include "admin_includes/common_functions.php";
 
+if($_SESSION['user_login_session_id'] != '') {
+    header ("Location: index.php");
+}
 $getSiteSettings1 = getAllDataWhere('grocery_site_settings','id','1'); 
 $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc();
 //echo "<pre>"; print_r($_POST); die;

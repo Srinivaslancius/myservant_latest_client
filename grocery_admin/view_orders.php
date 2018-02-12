@@ -136,8 +136,7 @@
                           </div>
                           <?php 
                           $groceryOrders1 = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 AND order_id = '".$row['order_id']."'"; 
-                          $groceryOrdersData1 = $conn->query($groceryOrders1);
-                          $i=1; ?>
+                          $groceryOrdersData1 = $conn->query($groceryOrders1); ?>
                           <?php while($OrderDetails = $groceryOrdersData1->fetch_assoc()) { 
                           $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
                           $getProducts1 = getIndividualDetails('grocery_product_bind_images','product_id',$OrderDetails['product_id']);
