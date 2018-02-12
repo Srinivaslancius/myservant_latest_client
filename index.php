@@ -34,7 +34,9 @@ a.mask {
     text-transform: uppercase;
 	border-radius: 10px;
 }
-
+.flat-imagebox.style1{
+	margin-bottom:-125px;
+}
 
 </style>
 <body class="header_sticky">
