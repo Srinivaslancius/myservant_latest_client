@@ -43,104 +43,41 @@
 		</section><br>
 		<section class="flat-row flat-imagebox">
 			<div class="container">
-				<div>			
-				<h2>Fruits & Vegitables </h2><br>
-				<ul class="products">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>				
-				</ul>
+				<?php 
+					$getCategories1 = "SELECT * FROM grocery_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_category_id FROM grocery_sub_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+					$getCategories = $conn->query($getCategories1); ?>
+				<?php while($getCategoriesData = $getCategories->fetch_assoc()) { ?>
+				<div>
+					<?php $getSubCategories = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id ='".$getCategoriesData['id']."' AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
+					$getSubCategories1 = $conn->query($getSubCategories); ?>
+					<a href="results.php?cat_id=<?php echo $getCategoriesData['id']; ?>"><h2><?php echo $getCategoriesData['category_name']; ?></h2></a><br>
+					<ul class="products">
+						<?php while($getSubCategoriesData = $getSubCategories1->fetch_assoc()) { ?>
+						<li><a href="results.php?sub_cat_id=<?php echo $getSubCategoriesData['id']; ?>"><?php echo $getSubCategoriesData['sub_category_name']; ?></a></li>
+						<?php } ?>
+					</ul>
 				</div><br><br>
+				<?php $getAllSubCategories = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id ='".$getCategoriesData['id']."' AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
+					$getAllSubCategories1 = $conn->query($getAllSubCategories); ?>
 				<div class="total_prdcts" style="border-top:0px">
-				<div class="part1">
-				<div class="row">
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Oranges, sweet Lime & Other Citrus</a></li>
-				</ul>
-				</div>
-				</div>
-				</div>
-				
-				<div class="part2">
-				<div class="row">
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
+					<?php while($getAllSubCategoriesData = $getAllSubCategories1->fetch_assoc()) { ?>
+					<div class="part1">
+					<div class="row">
+					<div class="col-sm-3">
+					<h4>Fresh Vegitables</h4>
+					<ul class="sub_prdct">
+					<li><a href="#">Fruits and Vegetables</a></li>
+					<li><a href="#">Eggs, Meat and Fish</a></li>
+					<li><a href="#">Branded Foods</a></li>
+					<li><a href="#">House Hold</a></li>
+					<li><a href="#">Grocery and Staples</a></li>
+					<li><a href="#">Fruits and Vegetables</a></li>
+					<li><a href="#">Eggs, Meat and Fish</a></li>
+					<li><a href="#">Branded Foods</a></li>
+					<li><a href="#">House Hold</a></li>
+					<li><a href="#">Grocery and Staples</a></li>
+					</ul>
+					</div>
 				<div class="col-sm-3">
 				<h4>Fresh Vegitables</h4>
 				<ul class="sub_prdct">
@@ -188,144 +125,14 @@
 				</div>
 				</div>
 				</div>
+				<?php } ?>
+
 				</div>
-				<!---Food grains oil, masal started---->
-				<div class="total_prdcts">
-				<div class="part1">
-				<h2>Foodgrains Oil, Masala</h2><br>
-				<div class="row">
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Oranges, sweet Lime & Other Citrus</a></li>
-				</ul>
-				</div>
-				</div>
-				</div>
-				
-				<div class="part2">
-				<div class="row">
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				</ul>
-				</div>
-				<div class="col-sm-3">
-				<h4>Fresh Vegitables</h4>
-				<ul class="sub_prdct">
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Grocery and Staples</a></li>
-				<li><a href="#">Fruits and Vegetables</a></li>
-				<li><a href="#">Eggs, Meat and Fish</a></li>
-				<li><a href="#">Branded Foods</a></li>
-				<li><a href="#">House Hold</a></li>
-				<li><a href="#">Oranges, sweet Lime & Other Citrus</a></li>
-				</ul>
-				</div>
-				</div>
-				</div>
-				</div>
+				<?php } ?>
 			</div><!-- /.container -->
 		</section><br><br>
 		<footer>
-			<?php include_once 'footer1.php';?>
+			<?php include_once 'footer.php';?>
 		</footer><!-- /footer -->
 
 		<section class="footer-bottom">
