@@ -95,6 +95,12 @@
 		 </div>
 	    <?php }?>
 
+	    <?php
+
+		require_once('gplus_login/settings.php');
+		$login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me') . '&redirect_uri=' . urlencode(CLIENT_REDIRECT_URL) . '&response_type=code&client_id=' . CLIENT_ID . '&access_type=online';
+		?>
+
 		<section class="flat-account background">
 			<div class="container">
 				<div class="row">
@@ -111,7 +117,7 @@
                                 <a href="#" class="btn btn-primary fac_book"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
                             </div>
                             <div class="col-md-5 col-sm-6">
-                                <a href="#" class="btn btn-danger twi_ter"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a>
+                                <a href="<?= $login_url ?>" class="btn btn-danger twi_ter"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a>
                             </div>
 							<div class="col-md-1">
 							</div>

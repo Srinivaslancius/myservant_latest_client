@@ -144,13 +144,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="form-control-9">Minimum Offer Percentage</label>
                                     <div class="col-sm-6 col-md-4">
-                                        <input type="text" name="min_percentage" class="form-control valid_price_dec" id="min_offer_percentage" value="<?php echo $getBanners['min_percentage']; ?>" placeholder="Enter Minimum Offer Percentage" required>
+                                        <input type="text" name="min_percentage" class="form-control valid_price_dec" id="min_offer_percentage" value="<?php echo $getBanners['min_percentage']; ?>" placeholder="Enter Minimum Offer Percentage">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="form-control-9">Maximum Offer Percentage</label>
                                     <div class="col-sm-6 col-md-4">
-                                        <input type="text" name="max_percentage" class="form-control valid_price_dec" id="max_offer_percentage" value="<?php echo $getBanners['max_percentage']; ?>" placeholder="Enter Maximum Offer Percentage" required>
+                                        <input type="text" name="max_percentage" class="form-control valid_price_dec" id="max_offer_percentage" value="<?php echo $getBanners['max_percentage']; ?>" placeholder="Enter Maximum Offer Percentage">
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +264,6 @@
         //alert($('#banner_type').val());
         if($('#banner_type').val() == 1) {
             $("#offer_percentage").show();
-            $("#min_offer_percentage,#max_offer_percentage").attr("required", "true");
         }
         $("#min_offer_percentage,#max_offer_percentage").blur(function () {
             if(parseInt($('#min_offer_percentage').val()) > parseInt($('#max_offer_percentage').val())) {
