@@ -50,6 +50,18 @@
         var output2 = document.getElementById('output2');
         output2.src = URL.createObjectURL(event.target.files[0]);
       };
+      var loadFile3 = function(event) {
+        var output3 = document.getElementById('output3');
+        output3.src = URL.createObjectURL(event.target.files[0]);
+      };
+      var loadFile4 = function(event) {
+        var output4 = document.getElementById('output4');
+        output4.src = URL.createObjectURL(event.target.files[0]);
+      };
+      var loadFile5 = function(event) {
+        var output5 = document.getElementById('output5');
+        output5.src = URL.createObjectURL(event.target.files[0]);
+      };
 
       //check status active or not
         $(".check_active").click(function(){
