@@ -738,11 +738,14 @@ if($getTodayDeals1->num_rows > 0) { ?>
                    		$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$todayDeals['id']);
                    		$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$todayDeals['id']);
                    		?>
-                   		<input type="hidden" id="cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_category_id']; ?>">
+                   		
+						<div class="owl-carousel-item">
+                        <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">
+
+                        <input type="hidden" id="cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_category_id']; ?>">
 						<input type="hidden" id="sub_cat_id_<?php echo $todayDeals['id']; ?>" value="<?php echo $todayDeals['grocery_sub_category_id']; ?>">
 						<input type="hidden" id="pro_name_<?php echo $todayDeals['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
-						<div class="owl-carousel-item">
-                        <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
+						     
 						<div class="product-box style1">
 							<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">
 								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
