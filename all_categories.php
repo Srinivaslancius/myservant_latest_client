@@ -51,12 +51,12 @@
 					<?php $getSubCategories = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id ='".$getCategoriesData['id']."' AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
 					$getSubCategories1 = $conn->query($getSubCategories); ?>
 					<a href="results.php?cat_id=<?php echo $getCategoriesData['id']; ?>"><h2><?php echo $getCategoriesData['category_name']; ?></h2></a><br>
-					<ul class="products">
+					<ul class="products_lst">
 						<?php while($getSubCategoriesData = $getSubCategories1->fetch_assoc()) { ?>
 						<li><a href="results.php?sub_cat_id=<?php echo $getSubCategoriesData['id']; ?>"><?php echo $getSubCategoriesData['sub_category_name']; ?></a></li>
 						<?php } ?>
 					</ul>
-				</div><br><br>
+				</div>
 				<?php $getAllSubCategories = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id ='".$getCategoriesData['id']."' AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC";
 					$getAllSubCategories1 = $conn->query($getAllSubCategories); ?>
 				<div class="total_prdcts" style="border-top:0px">

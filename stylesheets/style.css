@@ -3564,7 +3564,7 @@ i, cite, em, var, address, dfn {
 @media screen and (max-width: 480px) and (min-width: 320px){
 	.part1{
 		
-		padding-top:55px !important;		
+		padding-top:100px !important;		
 	}
 	#div1{
 width:90%;
@@ -3851,15 +3851,21 @@ width:90%;
 	.box-image .ht_wd{
 		height:130px !important;
 	}
-	.products li{
+	.products_lst li{
 		float: left !important;
     border-right: 1px solid #676767 !important;
     padding: 0 10px !important;
 	font-size:13px;
 	
 	}
+	.products_lst{
+		margin-bottom:40px !important;
+	}
+	
 	.sub_prdct{
 		padding-top:10px !important;
+		margin-bottom:30px !important;
+		
 	}
 	.sub_prdct li{
 		padding-top:3px !important;
@@ -3868,8 +3874,9 @@ width:90%;
 	
 	.part1{
 		border-bottom:1px dotted #ccc !important;
-		padding-bottom:30px !important;
-		padding-top:30px ;
+		padding-bottom:15px !important;
+		padding-top:30px;
+		padding-left:10px !important;
 		
 	}
 	.part2{
@@ -3880,6 +3887,9 @@ width:90%;
 		border-top: 1px solid #ddd;
 		padding-bottom:30px;
 		
+	}
+	.prdct_dvd{
+		padding-bottom:130px !important;
 	}
 	.fa {
   padding: 9px;
