@@ -12,6 +12,28 @@ padding:20px;
 z-index:9999;
 position:absolute;
 }
+.flat-banner-box {
+    padding: 25px 0 10px;
+}
+a.mask {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    padding-bottom: 10px;
+	border-radius: 10px;
+}
+.storeimgcapt1 {
+    background-color: rgba(0,0,0,0.8);
+    text-align: center;
+    color: #fff;
+    padding: 12px 0px;
+    position: relative;
+    margin-top: -40px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+	border-radius: 10px;
+}
 
 </style>
 <body class="header_sticky">
@@ -107,10 +129,31 @@ position:absolute;
 				</div><!-- /.container -->
 			</section><!-- /.flat-slider -->
 
-			<?php $getOffers = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 2";
-			$getOffers1 = $conn->query($getOffers); ?>
 			<section class="flat-row flat-banner-box">
 			<div class="container">
+			<div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="banner-box">
+							<div class="inner-box">
+                        <a href="https://myservant.com/search-result?key=Tata" class="mask">
+                           <img width="100%" class="img-responsive zoom-img" src="images/img.jpg" alt="">
+                           <div class="storeimgcapt1">Services</div>
+                        </a>
+						</div>
+						</div>
+                     </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="banner-box">
+							<div class="inner-box">
+                        <a href="https://myservant.com/search-result?key=Tata" class="mask">
+                           <img width="100%" class="img-responsive zoom-img" src="images/img.jpg" alt="">
+                           <div class="storeimgcapt1">Food</div>
+                        </a>
+						</div>
+						</div>
+                     </div>
+                     
+                  </div>
 				<!-- <div class="row">
 			<div class="col-md-12">
 				<div class="flat-row-title">
@@ -118,37 +161,25 @@ position:absolute;
 				</div>
 			</div>
 		</div> -->
-				<div class="row">
-					<?php while($getOffersData = $getOffers1->fetch_assoc()) { ?>
-					<div class="col-md-3">
-						<div class="banner-box">
-							<div class="inner-box">
-								<a href="results.php?offer_id=<?php echo $getOffersData['id']; ?>" title="">
-									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOffersData['image'] ?>" alt="" width="360px" height="200px">
-								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
-					<?php } ?>
+				<!--<div class="row">
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
 								<a href="<?php echo $base_url; ?>food_new/index.php" title="">
 									<img src="images/banner_boxes/6.jpeg" alt="" width="360px" height="200px">
 								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
+							</div>
+						</div>
+					</div>
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
 								<a href="<?php echo $base_url; ?>Services/index.php" title="">
 									<img src="images/banner_boxes/5.jpeg" alt="" width="360px" height="200px">
 								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
-				</div><!-- /.row -->
+						</div>
+					</div>
+				</div>-->
 			</div><!-- /.container -->
 		</section><!-- /.flat-banner-box -->
                 
@@ -281,7 +312,7 @@ $tagNames = $conn->query($getTags);
 		</section><!-- /.flat-imagebox -->
 <?php if (++$i % 2 === 0 ) { 
 	if($i == 2) {
-		$limit = $i;
+		$limit = 0;
 	} else {
 		$limit = $limit+4;
 	} 
@@ -795,13 +826,15 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="owl-carousel-3">
-				<?php $getAllBrandLogos=  getAllDataWithStatus('grocery_brand_logos',0); 
-				while($getBrandLogosData = $getAllBrandLogos->fetch_assoc()) { ?>
+				<?php 
+				$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+		    	$getAllBrands = $conn->query($getBrnds);
+				while($getBrandsData = $getAllBrands->fetch_assoc()) { ?>
 				
 					<div class="imagebox style4">
 						<div class="box-image">
-							<a href="<?php echo $getBrandLogosData['link'] ?>" title="">
-								<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_brand_logos/'.$getBrandLogosData['brand_logo'] ?>" alt="<?php echo $getBrandLogosData['link'] ?>">
+							<a href="results.php?brand_id=<?php echo $getBrandsData['id']; ?>" title="">
+								<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_brands_web_logo/'.$getBrandsData['web_logo'] ?>" alt="">
 							</a>
 						</div><!-- /.box-image -->
 						

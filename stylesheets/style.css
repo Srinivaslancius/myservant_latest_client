@@ -3879,10 +3879,11 @@ width:90%;
 	.total_prdcts{
 		border-top: 1px solid #ddd;
 		padding-bottom:30px;
+		
 	}
 	.fa {
   padding: 9px;
-  font-size: 20px;
+  /*font-size: 20px;*/
   width: 40px;
   text-align: center;
   text-decoration: none;
@@ -3929,6 +3930,9 @@ width:90%;
 float: left !important;
 padding:3px !important;
 }
+.prdct_lst{
+	margin-bottom:15px !important
+	}
 .container3 {
     /*display: block;*/
     position: relative;
