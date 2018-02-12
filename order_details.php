@@ -106,6 +106,7 @@
 							    $OrderDetails = $groceryOrdersData1->fetch_assoc();
 							    $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1);
 							    $getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$OrderDetails['payment_method']);
+							    $paymentStatus = getIndividualDetails('lkp_payment_status','id',$OrderDetails['lkp_payment_status_id']);
 							    $orderStatus = getIndividualDetails('lkp_order_status','id',$OrderDetails['lkp_order_status_id']);
 							    $service_tax = $OrderDetails['sub_total']*$getSiteSettingsData['service_tax']/100;
 								if($OrderDetails['delivery_charges'] == '0') {
@@ -121,10 +122,13 @@
 									  <tr>
 										<td colspan="2" style="padding-left:20px">
 											<h3>Order Information</h3><br>
+											<p>Order Id:<?php echo $OrderDetails['order_id']; ?></p>
+											<p>Delivery Slot Date: <?php echo changeDateFormat($OrderDetails['delivery_slot_date']);?></p>
+											<p>Delivery Slot Time: <?php echo $OrderDetails['delivery_time'];?></p>
 											<p>Payment Method:<?php echo $getpaymentTypes['status']; ?></p>
 											<p>Order Type:<?php echo $order_type; ?></p>
 											<p>Order Status: <?php echo $orderStatus['order_status']; ?></p>
-											<p>Payment Status: InProgress</p>
+											<p>Payment Status:  <?php echo $paymentStatus['payment_status']; ?></p>
 										</td>
 										<td colspan="2">
 											<h3>Shipping Address</h3><br>
