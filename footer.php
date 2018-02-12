@@ -174,9 +174,8 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							</div>
 							<?php $getCities = getAllDataWhere('grocery_lkp_cities','lkp_status_id',0); ?>
 							<div class="col-sm-10">
-								<?php while ($row = $getCities->fetch_assoc()) { ?>
-									<li><?php echo $row['city_name'];?>,</li>
-								<?php } ?>
+								<?php while ($row = $getCities->fetch_assoc()) { $city .= $row['city_name'].','; } ?>
+								<li><?php echo rtrim(wordwrap($city,40,"<br />\n"),",");?></li>
 							</div>
 						</div>
 					</ul>

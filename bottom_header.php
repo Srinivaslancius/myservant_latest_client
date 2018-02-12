@@ -70,7 +70,7 @@
 									
 									<?php } ?>
 									<li>
-										<a href="#" title="">
+										<a href="all_categories.php" title="">
 										<p style="text-align:center;font-size:15px">View all categories</P>
 										</a>
 									</li>
