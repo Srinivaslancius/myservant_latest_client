@@ -134,16 +134,15 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
     }
 } else {
     echo'<div class="row" style="padding-bottom:30px">
-        <div class="col-sm-4">
+        <div class="col-sm-2">
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-10">
         <center><img src="images/thumb.png" style="padding-top:50px"></center><br>
        <h3 style="text-align:center">Sorry..!! No Items Found.</h3>
        <p style="text-align:center;margin:15px">Please click on the Continue Shopping button below for items</p>
             <center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
        </div>
-       <div class="col-sm-4">
-        </div>
+       
        </div>';
 }
 ?>
