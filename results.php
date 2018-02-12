@@ -395,7 +395,18 @@ position:absolute;
 			</div><!-- /.container -->
 		</main><!-- /#shop -->
 		<?php } else { ?>
-		<h2 style="text-align:center;margin:15px;color: #FE6003;">No Items Found.</h2>
+		<div class="row" style="padding-bottom:30px">
+		<div class="col-sm-4">
+		</div>
+		<div class="col-sm-4">
+		<center><img src="images/thumb.png" style="padding-top:50px"></center><br>
+       <h3 style="text-align:center">Sorry..!! No Items Found.</h3>
+	   <p style="text-align:center;margin:15px">Please click on the 'Continue Shopping' button below for items</p>
+    		<center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
+	   </div>
+	   <div class="col-sm-4">
+		</div>
+	   </div>
 		<?php } ?>
 		<footer>
 			<?php include_once 'footer.php';?>
