@@ -13,8 +13,28 @@ z-index:9999;
 position:absolute;
 }
 .flat-banner-box {
-    padding: 45px 0 10px;
+    padding: 25px 0 10px;
 }
+a.mask {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    padding-bottom: 10px;
+	border-radius: 10px;
+}
+.storeimgcapt1 {
+    background-color: rgba(0,0,0,0.8);
+    text-align: center;
+    color: #fff;
+    padding: 12px 0px;
+    position: relative;
+    margin-top: -40px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+	border-radius: 10px;
+}
+
 </style>
 <body class="header_sticky">
 	<div class="boxed">
@@ -111,6 +131,29 @@ position:absolute;
 
 			<section class="flat-row flat-banner-box">
 			<div class="container">
+			<div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="banner-box">
+							<div class="inner-box">
+                        <a href="https://myservant.com/search-result?key=Tata" class="mask">
+                           <img width="100%" class="img-responsive zoom-img" src="images/img.jpg" alt="">
+                           <div class="storeimgcapt1">Services</div>
+                        </a>
+						</div>
+						</div>
+                     </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="banner-box">
+							<div class="inner-box">
+                        <a href="https://myservant.com/search-result?key=Tata" class="mask">
+                           <img width="100%" class="img-responsive zoom-img" src="images/img.jpg" alt="">
+                           <div class="storeimgcapt1">Food</div>
+                        </a>
+						</div>
+						</div>
+                     </div>
+                     
+                  </div>
 				<!-- <div class="row">
 			<div class="col-md-12">
 				<div class="flat-row-title">
@@ -118,26 +161,25 @@ position:absolute;
 				</div>
 			</div>
 		</div> -->
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
 								<a href="<?php echo $base_url; ?>food_new/index.php" title="">
 									<img src="images/banner_boxes/6.jpeg" alt="" width="360px" height="200px">
 								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
+							</div>
+						</div>
+					</div>
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
 								<a href="<?php echo $base_url; ?>Services/index.php" title="">
 									<img src="images/banner_boxes/5.jpeg" alt="" width="360px" height="200px">
 								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
-				</div><!-- /.row -->
+						</div>
+					</div>
+				</div>-->
 			</div><!-- /.container -->
 		</section><!-- /.flat-banner-box -->
                 
