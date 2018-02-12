@@ -7,6 +7,7 @@ define('CLIENT_ID', '373078096746-16mpbeb98rlq8cvvevpc2sbpgkjsbdf9.apps.googleus
 define('CLIENT_SECRET', '7AAlHAlFkzM_xynDW36flijU');
 
 /* Google App Redirect Url */
-define('CLIENT_REDIRECT_URL', 'http://localhost/myservant_latest_client/gplus_login/gauth.php');
+define('CLIENT_REDIRECT_URL', 'https://onlyprojects.info/gplus_login/gauth.php');
 
 ?>
+

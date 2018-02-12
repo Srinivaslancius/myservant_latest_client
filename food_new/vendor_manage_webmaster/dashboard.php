@@ -23,6 +23,24 @@
             </div>
           </div>
           </a>
+          <?php 
+          $getFoodTodayOrders = "SELECT * FROM food_orders WHERE DATE(`created_at`) = CURDATE() AND lkp_order_status_id != 6 AND lkp_payment_status_id!=3 AND lkp_order_status_id != 5 AND lkp_payment_status_id !=1 AND restaurant_id = '$vendor_id' ORDER BY lkp_order_status_id DESC ";
+          $getFoodTodayOrdersData = $conn->query($getFoodTodayOrders);
+          $getTodayOrdersCount = $getFoodTodayOrdersData->num_rows;
+            ?>
+          <a href="vendor_today_orders.php">
+          <div class="col-md-4 col-sm-5">
+            <div class="widget widget-tile-2 bg-danger m-b-30">
+              <div class="wt-content p-a-20 p-b-50">
+                <div class="wt-title">Today Orders</div>
+                <div class="wt-number"><?php echo $getTodayOrdersCount ?></div>
+              </div>
+              <div class="wt-icon">
+                <i class="zmdi zmdi-accounts"></i>
+              </div>
+            </div>
+          </div>
+          </a>
           <a href="food_products.php">
           <div class="col-md-4 col-sm-5">
             <div class="widget widget-tile-2 bg-warning m-b-30">
