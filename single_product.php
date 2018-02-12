@@ -226,9 +226,10 @@ width:100% !important;
 										</a>
 										</li>
 										<li>
-											<a href="<?php echo $getSiteSettingsData1['twitter_link'] ?>" target="_blank">
+											<a id="ref_tw" href="http://twitter.com/home?status=<?php echo $title; ?>+<?php echo $url;?>&amp;p[images][0]=<?php echo $image;?>"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600');return false;"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+											<!-- <a href="<?php echo $getSiteSettingsData1['twitter_link'] ?>" target="_blank">
 												<i class="fa fa-twitter" aria-hidden="true"></i>
-											</a>
+											</a> -->
 										</li>
 										<li>
 											<a href="<?php echo $getSiteSettingsData1['inst_link'] ?>" target="_blank">
