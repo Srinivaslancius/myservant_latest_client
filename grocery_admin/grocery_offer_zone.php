@@ -79,7 +79,7 @@
                                     <img id="output1" height="100" width="100"/>
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input class="file-upload-input" type="file" name="offer_image" multiple="multiple" accept="image/*" id="offer_image" onchange="loadFile1(event)" required>
-                                    </label> (width : 550px ; height : 200px)
+                                    </label> (width:848px;height:256px)
                                 </div> 
                             </div>
                             <div class="form-group">

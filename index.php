@@ -35,6 +35,7 @@ a.mask {
 	border-radius: 10px;
 }
 
+
 </style>
 <body class="header_sticky">
 	<div class="boxed">

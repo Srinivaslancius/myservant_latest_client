@@ -78,7 +78,7 @@
                                         <img id="output1" height="100" width="100"/>
                                         <label class="btn btn-default file-upload-btn">Choose file...
                                             <input id="form-control-22" class="file-upload-input" type="file" name="product_images[]" accept="image/*" onchange="loadFile1(event)" required>
-                                        </label> (width : 420px ; height : 420px)
+                                        </label> (width:264px;height:210px)
                                     </div>
                                     <div class="col-sm-6 col-md-2">
                                         <span><button type="button" class="btn btn-success add_more_button"> <i class="zmdi zmdi-plus-circle zmdi-hc-fw"></i></button></span>                                    
