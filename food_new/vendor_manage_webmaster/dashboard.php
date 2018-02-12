@@ -24,7 +24,7 @@
           </div>
           </a>
           <?php 
-          $getFoodTodayOrders = "SELECT * FROM food_orders WHERE DATE(`created_at`) = CURDATE() AND lkp_order_status_id != 6 AND lkp_payment_status_id!=3 AND restaurant_id = '$vendor_id' ORDER BY lkp_order_status_id DESC ";
+          $getFoodTodayOrders = "SELECT * FROM food_orders WHERE DATE(`created_at`) = CURDATE() AND lkp_order_status_id != 6 AND lkp_payment_status_id!=3 AND lkp_order_status_id != 5 AND lkp_payment_status_id !=1 AND restaurant_id = '$vendor_id' ORDER BY lkp_order_status_id DESC ";
           $getFoodTodayOrdersData = $conn->query($getFoodTodayOrders);
           $getTodayOrdersCount = $getFoodTodayOrdersData->num_rows;
             ?>
