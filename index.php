@@ -109,8 +109,6 @@ position:absolute;
 				</div><!-- /.container -->
 			</section><!-- /.flat-slider -->
 
-			<?php $getOffers = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 2";
-			$getOffers1 = $conn->query($getOffers); ?>
 			<section class="flat-row flat-banner-box">
 			<div class="container">
 				<!-- <div class="row">
@@ -121,17 +119,6 @@ position:absolute;
 			</div>
 		</div> -->
 				<div class="row">
-					<?php while($getOffersData = $getOffers1->fetch_assoc()) { ?>
-					<div class="col-md-3">
-						<div class="banner-box">
-							<div class="inner-box">
-								<a href="results.php?offer_id=<?php echo $getOffersData['id']; ?>" title="">
-									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOffersData['image'] ?>" alt="" width="360px" height="200px">
-								</a>
-							</div><!-- /.inner-box -->
-						</div><!-- /.banner-box -->
-					</div><!-- /.col-md-4 -->
-					<?php } ?>
 					<div class="col-md-3">
 						<div class="banner-box">
 							<div class="inner-box">
@@ -283,7 +270,7 @@ $tagNames = $conn->query($getTags);
 		</section><!-- /.flat-imagebox -->
 <?php if (++$i % 2 === 0 ) { 
 	if($i == 2) {
-		$limit = $i;
+		$limit = 0;
 	} else {
 		$limit = $limit+4;
 	} 
