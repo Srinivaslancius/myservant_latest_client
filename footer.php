@@ -96,17 +96,17 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							<ul class="social-list">
 								<li>
 									<a href="<?php echo $getSiteSettingsData1['fb_link'] ?>" target="_blank" title="">
-										<i class="fa fa-facebook" aria-hidden="true"></i>
+										<i class="fa fa-facebook" aria-hidden="true"style="font-size:20px;"></i>
 									</a>
 								</li>
 								<li>
 									<a href="<?php echo $getSiteSettingsData1['twitter_link'] ?>" target="_blank">
-										<i class="fa fa-twitter" aria-hidden="true"></i>
+										<i class="fa fa-twitter" aria-hidden="true"style="font-size:20px;"></i>
 									</a>
 								</li>
 								<li>
 									<a href="<?php echo $getSiteSettingsData1['inst_link'] ?>" target="_blank">
-										<i class="fa fa-instagram" aria-hidden="true"></i>
+										<i class="fa fa-instagram" aria-hidden="true"style="font-size:20px;"></i>
 									</a>
 								</li>
 								<!--<li>
@@ -121,7 +121,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 								</li>-->
 								<li>
 									<a href="<?php echo $getSiteSettingsData1['gplus_link'] ?>" target="_blank">
-										<i class="fa fa-google" aria-hidden="true"></i>
+										<i class="fa fa-google" aria-hidden="true" style="font-size:20px;"></i>
 									</a>
 								</li>
 							</ul><!-- /.social-list -->
