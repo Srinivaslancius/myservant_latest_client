@@ -4005,4 +4005,18 @@ padding:3px !important;
 	border-radius: 50%;
 	background: white;
 }
-
+.button.btn.btn-default{
+	background-color: #FE6003 !important;
+	margin-top:10px;
+}
+.modernAlertWrapper p{
+	padding:10px 10px !important;
+	font-size: 14px;
+}
+.modernAlertWrapper h4 {
+    background: #e8a033;
+    color: #fff;
+    margin: 0;
+    padding: 9px;
+    font-size: 15px;
+}

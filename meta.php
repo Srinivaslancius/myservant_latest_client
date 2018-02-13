@@ -24,5 +24,7 @@ include "admin_includes/common_functions.php";
 	<!-- Reponsive -->
 	<link rel="stylesheet" type="text/css" href="stylesheets/responsive.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/dash_board.css">
-	 <link href="stylesheets/animate.min.css" rel="stylesheet"> 
+	<link href="stylesheets/animate.min.css" rel="stylesheet">
+
+	<script type="text/javascript" src="javascript/modernAlert.min.js"></script>
 </head>

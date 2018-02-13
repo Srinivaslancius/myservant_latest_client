@@ -106,8 +106,8 @@
 <script type="text/javascript">
 	function deleteCartItem(cartId) {
   //Display Add On's
-  var x = confirm("Are you sure you want to delete?");
-    if(x) {
+   if(confirm('Are You Sure You Want to Delete ?', 'You Want to Delete Cart Item', function(input){var str = input === true ? 'Ok' : 'Cancel'; 
+    if(str == 'Ok') {
         $.ajax({
           type:'post',
           url:'delete_cart_tem.php',
@@ -116,7 +116,7 @@
           },
           success:function(response) {            
              if(response == 1) {
-                alert("Item Deleted!");
+                //alert("Item Deleted!");
                 location.reload();
              } else {
                alert("Item Delete Failed!");
@@ -124,6 +124,8 @@
              }
             }
         });
-      }
+       }
+  	}))  
+    return false;
 }
 </script>

@@ -131,7 +131,14 @@ a.mask {
 					</div><!-- /.row -->
 				</div><!-- /.container -->
 			</section><!-- /.flat-slider -->
-
+			<?php $getOtherServicesData ="SELECT * FROM myservant_other_services WHERE id=2";
+			$getOtherServices = $conn->query($getOtherServicesData);
+			$getOtherServices1 = $getOtherServices->fetch_assoc();
+			?>
+			<?php $getOtherServicesFoodData ="SELECT * FROM myservant_other_services WHERE id=3";
+			$getOtherServicesFood = $conn->query($getOtherServicesFoodData);
+			$getOtherServicesFood1 = $getOtherServicesFood->fetch_assoc();
+			?>
 			<section class="flat-row flat-banner-box">
 			<div class="container">
 			<div class="row">
@@ -139,8 +146,8 @@ a.mask {
 							<div class="banner-box">
 							<div class="inner-box">
                         <a href="https://myservant.com/search-result?key=Tata" class="mask">
-                           <img width="100%" class="img-responsive zoom-img" src="images/img.jpg" alt="">
-                           <div class="storeimgcapt1">Services</div>
+                           <img width="100%" class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServices1['web_image']; ?>" alt="<?php echo $getOtherServices1['title']; ?>">
+                           <div class="storeimgcapt1"><?php echo $getOtherServices1['title']; ?></div>
                         </a>
 						</div>
 						</div>
@@ -149,8 +156,8 @@ a.mask {
 					<div class="banner-box">
 							<div class="inner-box">
                         <a href="https://myservant.com/search-result?key=Tata" class="mask">
-                           <img width="100%" class="img-responsive zoom-img" src="images/img.jpg" alt="">
-                           <div class="storeimgcapt1">Food</div>
+                           <img width="100%" class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServicesFood1['web_image']; ?>" alt="<?php echo $getOtherServicesFood1['title']; ?>">
+                           <div class="storeimgcapt1"><?php echo $getOtherServicesFood1['title']; ?></div>
                         </a>
 						</div>
 						</div>
@@ -238,7 +245,7 @@ $tagNames = $conn->query($getTags);
 										<span class="item-new">NEW</span>
 										<div class="box-image">
 										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
-												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="" style="width:264px;height:210px">
+												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 											</a>
 											
 										</div><!-- /.box-image -->
@@ -338,7 +345,7 @@ $getOfferModules1 = $conn->query($getOfferModules); ?>
 				<div class="banner-box">
 					<div class="inner-box">
 						<a href="results.php?offer_id=<?php echo $getOfferModulesData['id']; ?>" title="">
-							<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOfferModulesData['image'] ?>" alt="" width="360px" height="200px">
+							<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOfferModulesData['image'] ?>" alt="">
 						</a>
 					</div><!-- /.inner-box -->
 				</div><!-- /.banner-box -->

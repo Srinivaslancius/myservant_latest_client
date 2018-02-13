@@ -34,7 +34,7 @@
                 <li class="<?php if($page_name == 'manage_brands.php' || $page_name == 'edit_grocery_brands.php') { echo "active"; } ?>"><a href="manage_brands.php">Manage Brands</a></li>
                 <li class="<?php if($page_name == 'manage_categories.php' || $page_name == 'edit_grocery_category.php') { echo "active"; } ?>"><a href="manage_categories.php">Manage Categories</a></li>
                 <li class="<?php if($page_name == 'manage_sub_categories.php' || $page_name == 'edit_grocery_sub_category.php') { echo "active"; } ?>"><a href="manage_sub_categories.php">Manage Sub Categories</a></li>
-                <li class="<?php if($page_name == '') { echo "active"; } ?>"><a href="">Manage Time Slots</a></li>
+                <!-- <li class="<?php if($page_name == '') { echo "active"; } ?>"><a href="">Manage Time Slots</a></li> -->
                 <!-- <li><a href="">Manage Time Slots</a></li> -->
               </ul>
             </li>
@@ -65,7 +65,7 @@
 
             <li class="<?php if($page_name == 'content_page.php' || $page_name == 'edit_content_pages.php') { echo "active"; } ?>"><a href="content_page.php">
                 <span class="menu-icon">
-                  <i class="zmdi zmdi-info zmdi-hc-fw"></i>
+                  <i class="zmdi zmdi-comments  zmdi-hc-fw"></i>
                 </span>
                 <span class="menu-text">Content Pages</span>
               </a>
@@ -94,7 +94,7 @@
             </li> -->
             <li class="<?php if($page_name == 'grocery_banners.php' || $page_name == 'edit_grocery_banners.php') { echo "active"; } ?>"><a href="grocery_banners.php">
                 <span class="menu-icon">
-                  <i class="zmdi zmdi-info zmdi-hc-fw"></i>
+                  <i class="zmdi zmdi-collection-image  zmdi-hc-fw"></i>
                 </span>
                 <span class="menu-text">Banners</span>
               </a>

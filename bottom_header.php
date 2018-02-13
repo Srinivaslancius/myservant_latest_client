@@ -9,7 +9,7 @@
 ?>
 <style type="text/css">
 .check_page {
-    color:#C71585 !important;
+    color:#ffff;
 }
 </style>
 
