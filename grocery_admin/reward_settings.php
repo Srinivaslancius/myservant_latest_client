@@ -84,7 +84,7 @@
                             <div class="form-group category">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="cat_id" name="category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getSubCategories(this.value);" >
+                                    <select id="category_id" name="category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getSubCategories(this.value);" >
                                         <option value="">-- Select Category --</option>
                                         <?php $getCategories = getAllDataWithStatus('grocery_category','0');?>
                                         <?php while($row = $getCategories->fetch_assoc()) {  ?>
@@ -96,7 +96,7 @@
                             <div class="form-group sub_category">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Sub Category</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <select id="sub_cat_id" name="sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getProducts(this.value);" >
+                                    <select id="sub_category_id" name="sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }"  onChange="getProducts(this.value);" >
                                         <option value="">-- Select Sub Category --</option>
                                     </select>
                                 </div>
@@ -176,56 +176,34 @@
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
     <script type="text/javascript">
-        function getSubCategories(val) { 
-            $.ajax({
-            type: "POST",
-            url: "get_sub_categories.php",
-            data:'cat_id='+val,
-            success: function(data){
-                $("#sub_cat_id").html(data);
-            }
-            });
-        }
-        function getProducts(val) { 
-            $.ajax({
-            type: "POST",
-            url: "get_products.php",
-            data:'sub_cat_id='+val,
-            success: function(data){
-                $("#product_id").html(data);
-            }
-            });
-        }
-    </script>
-    <script type="text/javascript">
         $(".category,.sub_category,.product").hide();
-        $("#cat_id,#sub_cat_id,#product_id").removeAttr('required');
+        $("#category_id,#sub_category_id,#product_id").removeAttr('required');
         $("#reward_type").change(function() {
             if($(this).val() == 2) {
                 $(".category").show();
                 $(".sub_category").hide();
                 $(".product").hide();
-                $("#cat_id").attr("required", "true");
-                $("#cat_id").val('');
-                $("#sub_cat_id,#product_id").removeAttr('required');
+                $("#category_id").attr("required", "true");
+                $("#category_id").val('');
+                $("#sub_category_id,#product_id").removeAttr('required');
             } else if($(this).val() == 3) {
                 $(".category").show();
                 $(".sub_category").show();
                 $(".product").hide();
-                $("#cat_id,#sub_cat_id").val('');
-                $("#cat_id,#sub_cat_id").attr("required", "true");
+                $("#category_id,#sub_category_id").val('');
+                $("#category_id,#sub_category_id").attr("required", "true");
                 $("#product_id").removeAttr('required');
             } else if($(this).val() == 4) {
                 $(".category").show();
                 $(".sub_category").show();
                 $(".product").show();
-                $("#cat_id,#sub_cat_id,#product_id").val('');
-                $("#cat_id,#sub_cat_id,#product_id").attr("required", "true");
+                $("#category_id,#sub_category_id,#product_id").val('');
+                $("#category_id,#sub_category_id,#product_id").attr("required", "true");
             } else {
                 $(".category").hide();
                 $(".sub_category").hide();
                 $(".product").hide();
-                $("#cat_id,#sub_cat_id,#product_id").removeAttr('required');
+                $("#category_id,#sub_category_id,#product_id").removeAttr('required');
             }
         });
     </script>
