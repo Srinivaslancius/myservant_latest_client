@@ -56,9 +56,9 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 		</header>
 		<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
 		  <h1 style="color:#fe6003">Greetings From Myservant</h1>
-		  <p>Dear <span style="color:#fe6003;">'.$first_name.'</span>, Thank you for Ordering myservant.com!</p>
+		  <p>Dear <span style="color:#fe6003;">'.$getWalletAmount['first_name'].'</span>, Thank you for Ordering myservant.com!</p>
 			<p>Your Order Number is: <span style="color:#fe6003;">'.$order_id.'</span></p>
-			<p>Your Order Total: Rs. <span style="color:#fe6003;">'.$order_total.'</span></p>
+			<p>Your Order Total: Rs. <span style="color:#fe6003;">'.$getWalletAmount['order_total'].'</span></p>
 			<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
 			<p>Warm Regards,<br>The Myservant Team </p>
 		</article>
@@ -87,9 +87,7 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 		  <h1 style="color:#fe6003">Greetings From Myservant</h1>
 		  <p>Dear <span style="color:#fe6003;">Admin</span>, order details.</p>
 			<p>Order Number is: <span style="color:#fe6003;">'.$order_id.'</span></p>
-			<p>Order Total: Rs. <span style="color:#fe6003;">'.$order_total.'</span></p>
-			<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
-			<p>Warm Regards,<br>The Myservant Team </p>
+			<p>Order Total: Rs. <span style="color:#fe6003;">'.$getWalletAmount['order_total'].'</span></p>
 		</article>
 		<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettings1['footer_text'].'</footer>
 		</div>

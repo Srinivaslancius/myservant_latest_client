@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Title</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" class="form-control" id="form-control-3" placeholder="Enter Brand Name" name="title" required value="<?php echo $getOtherServices['title']; ?>">
+                                    <input type="text" class="form-control" id="form-control-3" placeholder="Enter Title" name="title" required value="<?php echo $getOtherServices['title']; ?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -97,7 +97,7 @@
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input id="form-control-22" class="file-upload-input" type="file" name="web_logo" accept="image/*" onchange="loadFile(event)">
-                                    </label>
+                                    </label> (width: 624px; height:254px)
                                 </div>
                             </div>
                             <div class="form-group">
@@ -108,7 +108,7 @@
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input id="form-control-22" class="file-upload-input" type="file" name="app_logo" accept="image/*" onchange="loadFile1(event)">
-                                    </label>
+                                    </label> (width: 624px; height:254px)
                                 </div>
                             </div>
                             <?php $getStatus = getAllData('lkp_status');?>

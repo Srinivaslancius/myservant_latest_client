@@ -151,7 +151,7 @@
               </a>
               <ul class="sidebar-submenu collapse">
                 <li class="menu-subtitle">Orders</li>
-                <li  class="<?php if($page_name == 'view_orders.php') { echo "active"; } ?>"><a href="view_orders.php">Orders</a>
+                <li  class="<?php if($page_name == 'view_orders.php'|| $page_name == 'edit_orders.php') { echo "active"; } ?>"><a href="view_orders.php">Orders</a>
                 </li>
                 <li  class="<?php if($page_name == 'failed_orders.php') { echo "active"; } ?>"><a href="failed_orders.php">Failed Orders</a>
                 </li>
@@ -186,8 +186,13 @@
                 
               </ul>
             </li>
-            
-            
+            <li class="<?php if($page_name == 'grocery_news_letter.php') { echo "active"; } ?>"><a href="grocery_news_letter.php">
+                <span class="menu-icon">
+                  <i class="zmdi zmdi-balance-wallet zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">News Letter</span>
+              </a>
+            </li>
             <li><a href="#">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-balance-wallet zmdi-hc-fw"></i>
