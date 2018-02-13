@@ -375,7 +375,7 @@ function deleteCartItem(cartId) {
           },
           success:function(response) {            
              if(response == 1) {
-                alert("Item Deleted!");
+                //alert("Item Deleted!");
                 location.reload();
              } else {
                alert("Item Delete Failed!");
