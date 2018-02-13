@@ -842,7 +842,7 @@
 
 .imagebox.style1.v3 .box-content .status {
 	color:#f92400;
-	margin:3px 0 9px;
+	/* margin:3px 0 9px; */
 }
 
 .imagebox.style1.v3 .box-content .info p {
