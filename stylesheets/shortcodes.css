@@ -6695,7 +6695,7 @@ table.product thead tr th:last-child {
 
 .iconbox.style2 ul.social-list.style2 li {
 	font-size:16px;
-	margin-right:18px;
+	/* margin-right:18px; */
 }
 
 .iconbox.style2 ul.social-list.style2 li:last-child {
@@ -6767,7 +6767,7 @@ table.product thead tr th:last-child {
 #form-contact .form-box button {
 	height:55px;
 	line-height:55px;
-	background-color:#f92400;
+	background-color: #fe6003;
 	color:#fff;
 	font-family:'Open Sans';
 	font-weight:600;
