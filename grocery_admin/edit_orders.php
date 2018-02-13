@@ -47,7 +47,7 @@ if (!isset($_POST['submit'])) {
 
   $sql = "UPDATE `grocery_orders` SET lkp_payment_status_id = '$lkp_payment_status_id',lkp_order_status_id = '$lkp_order_status_id' WHERE order_id = '$order_id' ";
   $res = $conn->query($sql);
-  header("Location:view_orders.php");
+  header("Location:grocery_order_invoice.php?order_id=".$order_id."");
 }   
 ?>
 
