@@ -49,7 +49,7 @@
                             <?php while ($row = $getNewsLetters->fetch_assoc()) { ?>
                             <tr>
                                 <td><?php echo $i; ?></td>
-                                <td><?php echo $row['email']; ?></td>
+                                <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a></td>
                                 <td><?php echo $row['created_at']; ?></td>
                             </tr>
                             <?php $i++; } ?>
