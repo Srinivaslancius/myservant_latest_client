@@ -88,9 +88,10 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 										</li>
 									</ul><!-- /.unstyled -->
 								</li>
-								<?php } else { ?>
+								<?php } else { 
+									$getUserName = getIndividualDetails('users','id',$_SESSION['user_login_session_id']); ?>
 								<li class="account">
-									<a href="#" title=""><?php echo $_SESSION['user_login_session_name']; ?><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									<a href="#" title=""><?php echo $getUserName['user_full_name'] ; ?><i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									
 									<ul class="unstyled">										
 										
