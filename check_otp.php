@@ -81,13 +81,8 @@ if(!empty($_POST['user_mobile']) && !empty($_POST['mobile_otp']))  {
 			</body>';
 
 		//echo $message; die;
-		//$sendMail = sendEmail($to,$subject,$message,$from);
 		$name = "My Servant - Grocery";
-		$from = $getSiteSettingsData["from_email"];
-		// $headers = "MIME-Version: 1.0" . "\r\n";
-  //       $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";  
-  //       $headers .= 'From: '.$name.'<'.$from.'>'. "\r\n";
-  //       mail($to, $subject, $message, $headers);
+		$from = $getSiteSettingsData1["from_email"];
 		$resultEmail = sendEmail($to,$subject,$message,$from,$name);
 		echo $getnoRows;
 	} else {

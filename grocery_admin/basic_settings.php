@@ -210,6 +210,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Order Email</label>
+                                <div class="col-sm-6 col-md-4">
+                                   <input type="text" class="form-control" name="orders_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" id="form-control-3" placeholder="Enter Order Email Id" required value="<?php echo $getGrocerySiteSettings['orders_email'];?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Mobile Number</label>
                                 <div class="col-sm-6 col-md-4">
                                     <input type="text" class="form-control valid_mobile_num" name="mobile" id="form-control-3" placeholder="Enter Mobile Number" required value="<?php echo $getGrocerySiteSettings['mobile'];?>" required maxlength="10" pattern="[0-9]{10}">
