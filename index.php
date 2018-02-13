@@ -47,7 +47,7 @@ a.mask {
 		$addNewsLetter = "INSERT INTO `grocery_news_letter`(`email`, `created_at`) VALUES ('$email','$created_at')";
 		$addNewsLetter1 = $conn->query($addNewsLetter);
 		echo "<script>alert('Thank you for Joining. You will be the first to know about new releases,giveaways & offers. Stay tuned.');</script>";
-		header('Location: index.php');
+		//header('Location: index.php');
 	}
 ?>
 <body class="header_sticky">
