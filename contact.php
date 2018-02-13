@@ -215,7 +215,7 @@ $message .= '<body>
         
         <h4>Message: </h4><p>'.$message_contact.'</p>
     </article>
-    <footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getFoodSiteSettingsData['footer_text'].'</footer>
+    <footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettingsData1['footer_text'].'</footer>
     </div>
 
     </body>';

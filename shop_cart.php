@@ -127,7 +127,7 @@
 											</div>
 										</td>
 										<td>
-											<a href="#" title="" onclick="deleteCartItem(<?php echo $getCartItems['id']; ?>);">
+											<a href="javascript:void(0)" title="" onclick="deleteCartItem(<?php echo $getCartItems['id']; ?>);">
 												<img src="images/icons/delete.png" alt="">
 											</a>
 										</td>
