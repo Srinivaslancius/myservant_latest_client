@@ -39,36 +39,43 @@ a.mask {
 }
 
 </style>
+<?php 
+	if(isset($_POST['news_letter'])) {
+		$email = $_POST['email'];
+		$created_at = date("Y-m-d h:i:s");
+		$_SESSION['news_letter_email'] = $_POST['email'];
+		$addNewsLetter = "INSERT INTO `grocery_news_letter`(`email`, `created_at`) VALUES ('$email','$created_at')";
+		$addNewsLetter1 = $conn->query($addNewsLetter);
+		header('Location: index.php');
+	}
+?>
 <body class="header_sticky">
 	<div class="boxed">
-
 		<div class="overlay"></div>
-
-		
-
+		<?php if($_SESSION['news_letter_email'] == '') { ?>
 		<div class="popup-newsletter">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-2">
-						
 					</div>
 					<div class="col-sm-8">
 						<div class="popup">
 							<span></span>
 							<div class="popup-text">
+								<?php echo $_SESSION['news_letter_email']; ?>
 								<h2>Join our newsletter and <br />get discount!</h2>
 								<p class="subscribe">Subscribe to the newsletter to receive updates about new products.</p>
 								<div class="form-popup">
-									<form action="#" class="subscribe-form" method="get" accept-charset="utf-8">
+									<form action="" class="subscribe-form" method="post" accept-charset="utf-8">
 										<div class="subscribe-content">
-											<input type="text" name="email" class="subscribe-email" placeholder="Your E-Mail">
-											<button type="submit"><img src="images/icons/right-2.png" alt=""></button>
+											<input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  id="user_email" class="subscribe-email" placeholder="Your E-Mail">
+											<button name="news_letter" type="submit"><img src="images/icons/right-2.png" alt=""></button>
 										</div>
 									</form>
-									<div class="checkbox">
+									<!-- <div class="checkbox">
 										<input type="checkbox" id="popup-not-show" name="category">
 										<label for="popup-not-show">Don't show this popup again</label>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="popup-image">
@@ -77,11 +84,11 @@ a.mask {
 						</div>
 					</div>
 					<div class="col-sm-2">
-						
 					</div>
 				</div>
 			</div>
 		</div>
+		<?php } ?>
 
 		<section id="header" class="header">
 			<div class="header-top">
