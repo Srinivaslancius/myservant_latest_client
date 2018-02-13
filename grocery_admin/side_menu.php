@@ -34,7 +34,7 @@
                 <li class="<?php if($page_name == 'manage_brands.php' || $page_name == 'edit_grocery_brands.php') { echo "active"; } ?>"><a href="manage_brands.php">Manage Brands</a></li>
                 <li class="<?php if($page_name == 'manage_categories.php' || $page_name == 'edit_grocery_category.php') { echo "active"; } ?>"><a href="manage_categories.php">Manage Categories</a></li>
                 <li class="<?php if($page_name == 'manage_sub_categories.php' || $page_name == 'edit_grocery_sub_category.php') { echo "active"; } ?>"><a href="manage_sub_categories.php">Manage Sub Categories</a></li>
-                <li class="<?php if($page_name == '') { echo "active"; } ?>"><a href="">Manage Time Slots</a></li>
+                <!-- <li class="<?php if($page_name == '') { echo "active"; } ?>"><a href="">Manage Time Slots</a></li> -->
                 <!-- <li><a href="">Manage Time Slots</a></li> -->
               </ul>
             </li>
