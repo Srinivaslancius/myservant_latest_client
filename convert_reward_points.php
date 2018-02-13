@@ -147,8 +147,8 @@
         $(".button1").click(function(){
         	var conversionAmount = $("#conversion_amount").val();
         	var reward_points = $("#reward_points").val();
-            if(confirm('Are You Sure You Want to Add in Your Wallet?', function(input){var str = input === true ? 'Ok' : 'Cancel'; 
-                if(str == 'Ok') {
+            if(confirm('Are You Sure You Want to Add in Your Wallet?', 'Message', function(input){var str = input === true ? 'Ok' : 'Cancel'; 
+    if(str == 'Ok') {
                     $.ajax({
                        type: "POST",
                        url: "conver_amount.php",
