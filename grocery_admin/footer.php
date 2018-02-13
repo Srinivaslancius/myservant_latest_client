@@ -195,6 +195,16 @@
         }
         });
     }
+    function getProducts(val) { 
+            $.ajax({
+            type: "POST",
+            url: "get_products.php",
+            data:'sub_category_id='+val,
+            success: function(data){
+                $("#product_id").html(data);
+            }
+            });
+        }
     </script>
     <!-- Below script for ck editor -->
     <script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
