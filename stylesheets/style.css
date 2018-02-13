@@ -3564,7 +3564,7 @@ i, cite, em, var, address, dfn {
 @media screen and (max-width: 480px) and (min-width: 320px){
 	.part1{
 		
-		padding-top:100px !important;		
+		padding-top:200px !important;		
 	}
 	#div1{
 width:90%;
@@ -3844,6 +3844,10 @@ width:90%;
 		width:264px !important;
 		height:210px !important;
 	}
+	.box-image .img_wiht{
+		width:264px !important;
+		height:210px !important;
+	}
 	.box-image .n_wdht{
 		width:227px !important;
 	height:227px !important;
@@ -3852,11 +3856,14 @@ width:90%;
 		height:130px !important;
 	}
 	.products_lst li{
-		float: left !important;
+		float: left;
     border-right: 1px solid #676767 !important;
     padding: 0 10px !important;
 	font-size:13px;
 	
+	}
+	.products_lst li a{
+		color: #919191 !important;	
 	}
 	.products_lst{
 		margin-bottom:40px !important;
@@ -3870,6 +3877,10 @@ width:90%;
 	.sub_prdct li{
 		padding-top:3px !important;
 		font-size:13px !important;
+		color: #919191 !important;		
+	}
+	.sub_prdct li a{
+		color: #919191 !important;		
 	}
 	
 	.part1{
@@ -3877,6 +3888,10 @@ width:90%;
 		padding-bottom:15px !important;
 		padding-top:30px;
 		padding-left:10px !important;
+		
+	}
+	.part1 h4 a{
+		font-size:17px;
 		
 	}
 	.part2{
@@ -4019,4 +4034,7 @@ padding:3px !important;
     margin: 0;
     padding: 9px;
     font-size: 15px;
+}
+li img{
+	float:left !important;
 }

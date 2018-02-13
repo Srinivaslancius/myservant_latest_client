@@ -325,7 +325,7 @@ padding:10px !important;
 											<div class="imagebox style1 v3">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $getProductsData1['id'];?>" title="">
-														<img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages1['image'] ?>" alt="" style="width:264px; height:210px">
+														<img class="img_wiht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages1['image'] ?>" alt="">
 													</a>
 													
 												</div><!-- /.box-image -->
