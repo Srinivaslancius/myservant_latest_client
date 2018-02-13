@@ -62,7 +62,6 @@ a.mask {
 						<div class="popup">
 							<span></span>
 							<div class="popup-text">
-								<?php echo $_SESSION['news_letter_email']; ?>
 								<h2>Join our newsletter and <br />get discount!</h2>
 								<p class="subscribe">Subscribe to the newsletter to receive updates about new products.</p>
 								<div class="form-popup">
