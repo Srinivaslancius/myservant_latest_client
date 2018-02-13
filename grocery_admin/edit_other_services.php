@@ -35,67 +35,32 @@
         } else  {
             //echo "<pre>"; print_r($_FILES); die;
 
+            $title = $_POST['title'];
             $lkp_status_id = $_REQUEST['lkp_status_id'];
-
-            if($_FILES["fileToUpload"]["name"]!='' || $_FILES["fileToUpload1"]["name"]!='' || $_FILES["fileToUpload2"]["name"]!='' || $_FILES["fileToUpload3"]["name"]!='' || $_FILES["fileToUpload4"]["name"]!='' || $_FILES["fileToUpload5"]["name"]!='') {
-                $grocery_app_image = uniqid().$_FILES["fileToUpload"]["name"];
-                $grocery_app_image_target_dir = "uploads/other_services_images/";
-                $target_grocery_app_image_file = $grocery_app_image_target_dir . basename($grocery_app_image);
+            if($_FILES["web_logo"]["name"]!='' || $_FILES["app_logo"]["name"]!='') {
+                $web_logo = uniqid().$_FILES["web_logo"]["name"];
+                $target_dir = "uploads/other_services_web_images/";
+                $target_file = $target_dir . basename($web_logo);
                 //$getImgUnlink = getImageUnlink('web_logo','grocery_brands_web_logo','id',$brand_id,$target_dir);
 
-                $grocery_web_image = uniqid().$_FILES["fileToUpload1"]["name"];
-                $grocery_web_image_target_dir = "uploads/other_services_images/";
-                $target_grocery_web_image_file = $grocery_web_image_target_dir . basename($grocery_web_image);
-
-                $food_app_image = uniqid().$_FILES["fileToUpload2"]["name"];
-                $food_app_image_target_dir = "uploads/other_services_images/";
-                $target_food_app_image_file = $food_app_image_target_dir . basename($food_app_image);
-
-                $food_web_image = uniqid().$_FILES["fileToUpload3"]["name"];
-                $food_web_image_target_dir = "uploads/other_services_images/";
-                $target_food_web_image_file = $food_web_image_target_dir . basename($food_web_image);
-
-                $services_app_image = uniqid().$_FILES["fileToUpload4"]["name"];
-                $services_app_image_target_dir = "uploads/other_services_images/";
-                $target_services_app_image_file = $services_app_image_target_dir . basename($services_app_image);
-
-                $services_web_image = uniqid().$_FILES["fileToUpload5"]["name"];
-                $services_web_image_target_dir = "uploads/other_services_images/";
-                $target_services_web_image_file = $services_web_image_target_dir . basename($services_web_image);
+                $app_logo = uniqid().$_FILES["app_logo"]["name"];
+                $app_logo_dir = "uploads/other_services_app_images/";
+                $app_logo_file = $app_logo_dir . basename($app_logo);
                 //$getImgUnlink = getImageUnlink('app_logo','grocery_brands_app_logo','id',$brand_id,$app_logo_dir);
-                if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_grocery_app_image_file) && move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_grocery_web_image_file) && move_uploaded_file($_FILES["fileToUpload2"]["tmp_name"], $target_food_app_image_file) && move_uploaded_file($_FILES["fileToUpload3"]["tmp_name"], $target_food_web_image_file) && move_uploaded_file($_FILES["fileToUpload4"]["tmp_name"], $target_services_app_image_file) && move_uploaded_file($_FILES["fileToUpload5"]["tmp_name"], $target_services_web_image_file)) {
-                    $sql = "UPDATE `myservant_other_services` SET grocery_app_image = '$grocery_app_image', grocery_web_image = '$grocery_web_image', food_app_image = '$food_app_image', food_web_image = '$food_web_image',services_app_image = '$services_app_image',services_web_image = '$services_web_image',lkp_status_id='$lkp_status_id' WHERE id = '$brand_id' ";
-                } elseif($_FILES["fileToUpload"]["tmp_name"]!='') {
-                   move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_grocery_app_image_file);
-                    $sql = "UPDATE `myservant_other_services` SET grocery_app_image = '$grocery_app_image', lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
+                if(move_uploaded_file($_FILES["web_logo"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["app_logo"]["tmp_name"], $app_logo_file)) {
+                    $sql = "UPDATE `myservant_other_services` SET title = '$title', web_image = '$web_logo', app_image = '$app_logo',lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
+                } elseif($_FILES["web_logo"]["tmp_name"]!='') {
+                   move_uploaded_file($_FILES["web_logo"]["tmp_name"], $target_file);
+                    $sql = "UPDATE `myservant_other_services` SET title = '$title', web_image = '$web_logo',lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
                     //$conn->query($sql);
-                } elseif($_FILES["fileToUpload1"]["tmp_name"]!='') {
-                    move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_grocery_web_image_file);
-                    $sql = "UPDATE `myservant_other_services` SET grocery_web_image = '$grocery_web_image', lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
+                } elseif($_FILES["app_logo"]["tmp_name"]!='') {
+                    move_uploaded_file($_FILES["app_logo"]["tmp_name"], $app_logo_file);
+                    $sql = "UPDATE `myservant_other_services` SET title = '$title', app_image = '$app_logo',lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
                     //$conn->query($sql);
                 } 
-                 elseif($_FILES["fileToUpload2"]["tmp_name"]!='') {
-                    move_uploaded_file($_FILES["fileToUpload2"]["tmp_name"], $target_food_app_image_file);
-                    $sql = "UPDATE `myservant_other_services` SET food_app_image = '$food_app_image', lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
-                    //$conn->query($sql);
-                }
-                elseif($_FILES["fileToUpload3"]["tmp_name"]!='') {
-                    move_uploaded_file($_FILES["fileToUpload3"]["tmp_name"], $target_food_web_image_file);
-                    $sql = "UPDATE `myservant_other_services` SET food_web_image = '$food_web_image', lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
-                    //$conn->query($sql);
-                }
-                elseif($_FILES["fileToUpload4"]["tmp_name"]!='') {
-                    move_uploaded_file($_FILES["fileToUpload4"]["tmp_name"], $target_services_app_image_file);
-                    $sql = "UPDATE `myservant_other_services` SET services_app_image = '$services_app_image', lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
-                    //$conn->query($sql);
-                }
-                elseif($_FILES["fileToUpload5"]["tmp_name"]!='') {
-                    move_uploaded_file($_FILES["fileToUpload5"]["tmp_name"], $target_services_web_image_file);
-                    $sql = "UPDATE `myservant_other_services` SET services_web_image = '$services_web_image', lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
-                    //$conn->query($sql);
-                }
+
             } else{
-               $sql = "UPDATE `myservant_other_services` SET  lkp_status_id = '$lkp_status_id' WHERE id = '$brand_id' ";
+               $sql = "UPDATE `myservant_other_services` SET   title = '$title',lkp_status_id = '$lkp_status_id'  WHERE id = '$brand_id' ";
                //$conn->query($sql);
             }          
             //echo $sql; die;
@@ -118,73 +83,34 @@
                     <div class="row">
                         <?php $getOtherServices = getIndividualDetails('myservant_other_services','id',$brand_id); ?>
                         <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
-                            
                             <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Grocery App Image</label>
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Title</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <?php if($getOtherServices['grocery_app_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/other_services_images/'.$getOtherServices['grocery_app_image']; ?>" id="output" height="100" width="100"/>
+                                    <input type="text" class="form-control" id="form-control-3" placeholder="Enter Brand Name" name="title" required value="<?php echo $getOtherServices['title']; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Web Image</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <?php if($getOtherServices['web_image']!='') { ?>
+                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServices['web_image']; ?>" id="output" height="100" width="100"/>
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input id="form-control-22" class="file-upload-input" type="file" name="fileToUpload" accept="image/*" onchange="loadFile(event)">
+                                        <input id="form-control-22" class="file-upload-input" type="file" name="web_logo" accept="image/*" onchange="loadFile(event)">
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Grocery Web Image</label>
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">App Image</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <?php if($getOtherServices['grocery_web_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/other_services_images/'.$getOtherServices['grocery_web_image']; ?>"  id="output1" height="100" width="100"/>
+                                    <?php if($getOtherServices['app_image']!='') { ?>
+                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/other_services_app_images/'.$getOtherServices['app_image']; ?>"  id="output1" height="100" width="100"/>
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input id="form-control-22" class="file-upload-input" type="file" name="fileToUpload1" accept="image/*" onchange="loadFile1(event)">
+                                        <input id="form-control-22" class="file-upload-input" type="file" name="app_logo" accept="image/*" onchange="loadFile1(event)">
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Food App Image</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <?php if($getOtherServices['food_app_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/other_services_images/'.$getOtherServices['food_app_image']; ?>"  id="output2" height="100" width="100"/>
-                                    <?php } ?>
-                                    <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input id="form-control-22" class="file-upload-input" type="file" name="fileToUpload2" accept="image/*" onchange="loadFile2(event)">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Food Web Image</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <?php if($getOtherServices['food_web_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/other_services_images/'.$getOtherServices['food_web_image']; ?>"  id="output3" height="100" width="100"/>
-                                    <?php } ?>
-                                    <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input id="form-control-22" class="file-upload-input" type="file" name="fileToUpload3" accept="image/*" onchange="loadFile3(event)">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Services App Image</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <?php if($getOtherServices['services_app_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/other_services_images/'.$getOtherServices['services_app_image']; ?>"  id="output4" height="100" width="100"/>
-                                    <?php } ?>
-                                    <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input id="form-control-22" class="file-upload-input" type="file" name="fileToUpload4" accept="image/*" onchange="loadFile4(event)">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Services Web Image</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <?php if($getOtherServices['services_web_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/other_services_images/'.$getOtherServices['services_web_image']; ?>"  id="output5" height="100" width="100"/>
-                                    <?php } ?>
-                                    <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input id="form-control-22" class="file-upload-input" type="file" name="fileToUpload5" accept="image/*" onchange="loadFile5(event)">
-                                    </label>
-                                </div>
-                            </div> 
                             <?php $getStatus = getAllData('lkp_status');?>
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Status</label>
@@ -196,7 +122,7 @@
                                           <?php } ?>
                                     </select>
                                 </div>
-                            </div>                       
+                            </div>                        
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                                     <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>

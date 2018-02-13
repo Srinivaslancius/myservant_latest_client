@@ -70,13 +70,13 @@
                 <span class="menu-text">Content Pages</span>
               </a>
             </li>
-            <!-- <li class="<?php if($page_name == 'other_services.php' || $page_name == 'edit_other_services.php') { echo "active"; } ?>"><a href="other_services.php">
+             <li class="<?php if($page_name == 'other_services.php' || $page_name == 'edit_other_services.php') { echo "active"; } ?>"><a href="other_services.php">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-info zmdi-hc-fw"></i>
                 </span>
                 <span class="menu-text">Other Services</span>
               </a>
-            </li> -->
+            </li> 
     
             <li class="<?php if($page_name == 'grocery_blog.php' || $page_name == 'edit_grocery_blog.php') { echo "active"; } ?>"><a href="grocery_blog.php">
                 <span class="menu-icon">
