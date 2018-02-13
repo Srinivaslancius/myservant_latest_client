@@ -188,7 +188,7 @@
             </li>
             <li class="<?php if($page_name == 'grocery_news_letter.php') { echo "active"; } ?>"><a href="grocery_news_letter.php">
                 <span class="menu-icon">
-                  <i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i>
+                  <i class="zmdi zmdi-email zmdi-hc-fw"></i>
                 </span>
                 <span class="menu-text">News Letter</span>
               </a>
