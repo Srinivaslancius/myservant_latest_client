@@ -4011,4 +4011,12 @@ padding:3px !important;
 }
 .modernAlertWrapper p{
 	padding:10px 10px !important;
+	font-size: 14px;
+}
+.modernAlertWrapper h4 {
+    background: #e8a033;
+    color: #fff;
+    margin: 0;
+    padding: 9px;
+    font-size: 15px;
 }
