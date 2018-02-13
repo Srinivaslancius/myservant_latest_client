@@ -245,7 +245,7 @@ $tagNames = $conn->query($getTags);
 										<span class="item-new">NEW</span>
 										<div class="box-image">
 										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
-												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="" style="width:264px;height:210px">
+												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 											</a>
 											
 										</div><!-- /.box-image -->
@@ -345,7 +345,7 @@ $getOfferModules1 = $conn->query($getOfferModules); ?>
 				<div class="banner-box">
 					<div class="inner-box">
 						<a href="results.php?offer_id=<?php echo $getOfferModulesData['id']; ?>" title="">
-							<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOfferModulesData['image'] ?>" alt="" width="360px" height="200px">
+							<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOfferModulesData['image'] ?>" alt="">
 						</a>
 					</div><!-- /.inner-box -->
 				</div><!-- /.banner-box -->
