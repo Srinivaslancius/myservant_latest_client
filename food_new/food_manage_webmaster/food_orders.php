@@ -43,14 +43,14 @@
                       <td> -- </td>
                     <?php } elseif($row['vendor_order_status'] != 2) { ?>
                      <td>Assign To</td>
-                     <?php } elseif($row['assign_delivery_id'] == '0' || $row['assign_delivery_id'] == '') { ?>
+                     <?php } elseif($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
                      <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>">Assign To</a></td>
                      <?php } else { 
                       $getDeliveryBoysNames = getAllDataWhere('food_delivery_boys','id',$row['assign_delivery_id']); $getDeliveryBoysNamesData = $getDeliveryBoysNames->fetch_assoc();
                       ?>
                      <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['name']; } ?>(Assigned)</a></td>
                     <?php } ?>
-                    <td><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"  class=""></i></a>&nbsp;<?php if($row['lkp_order_status_id'] == 5 && $row['lkp_payment_status_id'] == 1) { ?><a href="../../uploads/food_order_invoice/<?php echo $row['order_id']; ?>.pdf" target="_blank"><i class="zmdi zmdi-local-printshop"></i></a><?php } elseif($row['assign_delivery_id'] > '0') { ?> <a href="edit_food_orders.php?order_id=<?php echo $row['order_id']; ?>"><i class="zmdi zmdi-edit"></i></a><?php } ?></td>
+                    <td><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"  class=""></i></a>&nbsp;<?php if($row['lkp_order_status_id'] == 5 && $row['lkp_payment_status_id'] == 1) { ?><a href="../../uploads/food_order_invoice/<?php echo $row['order_id']; ?>.pdf" target="_blank"><i class="zmdi zmdi-local-printshop"></i></a><?php } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_food_orders.php?order_id=<?php echo $row['order_id']; ?>"><i class="zmdi zmdi-edit"></i></a><?php } ?></td>
                   </tr>
                   <?php  $i++; } ?>
                 </tbody>

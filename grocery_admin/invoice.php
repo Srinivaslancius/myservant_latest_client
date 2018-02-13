@@ -164,9 +164,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
           </div>
         </div>
       </div>
-      <div class="site-footer">
-        2017 © LANCIUS IT SOLUTIONS
-      </div>
+      <?php include_once 'footer.php'; ?>
     </div>
     <script src="js/vendor.min.js"></script>
     <script src="js/cosmos.min.js"></script>

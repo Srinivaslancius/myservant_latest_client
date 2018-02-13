@@ -74,13 +74,13 @@
                          while($getPaymentsStatus = $getGroceryPaymentsStatus->fetch_assoc()) { if($row['lkp_payment_status_id'] == $getPaymentsStatus['id']) { echo $getPaymentsStatus['payment_status']; } } ?></td>
                          <td><?php $getGroceryOrderStatus = getAllData('lkp_order_status');
                          while($getOrderStatus = $getGroceryOrderStatus->fetch_assoc()) { if($row['lkp_order_status_id'] == $getOrderStatus['id']) { echo $getOrderStatus['order_status']; } } ?></td>
-                        <?php if($row['assign_delivery_id'] == '0' || $row['assign_delivery_id'] == '') { ?>
+                        <?php if($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
                         <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>">Assign To</a></td>
                         <?php } else { 
                           $getDeliveryBoysNames = getAllDataWhere('grocery_delivery_boys','id',$row['assign_delivery_id']); $getDeliveryBoysNamesData = $getDeliveryBoysNames->fetch_assoc(); ?>
                           <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
                           <?php }?>
-                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 5 && $row['lkp_payment_status_id'] == 1) { ?><?php } elseif($row['assign_delivery_id'] > '0') { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>"><i class="zmdi zmdi-edit"></i></a><?php } ?> </td>
+                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 2 && $row['lkp_payment_status_id'] == 1) { ?><a href="uploads/grocery_order_invoice/<?php echo $row['order_id']; ?>.pdf" target="_blank"><i class="zmdi zmdi-local-printshop"></i></a><?php } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>"><i class="zmdi zmdi-edit"></i></a><?php } ?> </td>
 
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
@@ -140,6 +140,7 @@
                           <?php while($OrderDetails = $groceryOrdersData1->fetch_assoc()) { 
                           $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
                           $getProducts1 = getIndividualDetails('grocery_product_bind_images','product_id',$OrderDetails['product_id']);
+
                           ?>
                           <div class="col-md-12 fr1 padd0">
                               <div class="col-md-12 mt5 brdrbtm padd0">
@@ -166,8 +167,10 @@
                                   <p><b>Sub Total: </b> Rs. <?php echo $row['sub_total'];  ?></p>
                                   <p><b>GST: </b> Rs. <?php echo $row['service_tax'].'('.$getSiteSettingsData['service_tax'].'%)' ?></p>
                                   <p><b>Delivery Charges: </b> Rs. <?php echo $row['delivery_charges'];  ?></p>
-                                  <?php $total_price = round($row['sub_total'] + $row['delivery_charges'] + $row['service_tax']); ?>
-                                   <h3 class="m-t-0 m-b-5 font_sz_view">Total Amount: Rs. <?php echo $total_price;  ?></h3>
+                                  <?php if($row['discout_money'] != 0) { ?>
+                                  <p><b>Discount Amount: </b> Rs. <?php echo $row['discout_money'];  ?></p>
+                                  <?php } ?>
+                                  <h3 class="m-t-0 m-b-5 font_sz_view">Total Amount: Rs. <?php echo $row['order_total'];  ?></h3>
                               </div>
                           </div>
                       </div>
