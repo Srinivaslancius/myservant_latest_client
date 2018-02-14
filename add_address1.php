@@ -25,7 +25,7 @@
 }
 
 </style>
-<body class="header_sticky" onload="getDateTime()">
+<body class="header_sticky">
 	<div class="boxed">
 
 		<div class="overlay"></div>
@@ -47,122 +47,167 @@
 			<?php include_once 'bottom_header.php';?>
 			</div><!-- /.header-bottom -->
 		</section><!-- /#header -->
-		
 
-		
+		<?php 
+	  	if(isset($_POST["save"]) && $_POST["save"]!="") {
+	  		//echo "<pre>"; print_r($_POST); exit;
+	      	$user_id =$_SESSION["user_login_session_id"];
+	      	$first_name = $_POST['first_name'];
+	      	$last_name = $_POST['last_name'];
+	      	$email = $_POST['email'];
+	      	$mobile = $_POST['mobile'];
+	      	$lkp_state_id = $_POST['lkp_state_id'];
+	      	$lkp_district_id = $_POST['lkp_district_id'];
+	      	$lkp_city_id = $_POST['lkp_city_id'];
+	      	$lkp_pincode_id = $_POST['lkp_pincode_id'];
+	      	$lkp_area_id = $_POST['lkp_area_id'];
+	      	$address = $_POST['address'];
+	      	$created_at = date("Y-m-d h:i:s");
+	      	$sql1 = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_area_id','$address','$created_at')";
+	      	if($conn->query($sql1) === TRUE){             
+	         	echo "<script type='text/javascript'>window.location='add_address1.php?succ=log-success'</script>";
+	      	} else {               
+	         	header('Location: add_address1.php?err=log-fail');
+	      	} 
+		}
+		?>
 
 		<section class="flat-tracking">
 			<div class="container-fluid">
-			<form action="shop_checkout.php" method="post" accept-charset="utf-8">
 				<div class="row">
-				
 					<div class="col-lg-8">
+						<?php if(isset($_GET['succ']) && $_GET['succ'] == 'log-success' ) {  ?>                
+			            <div class="alert alert-success" style="top:10px; display:block" id="set_valid_msg">
+			              <strong>Success!</strong> Your Data Updated Successfully.
+			            </div>               
+				       <?php }?>
+
+				        <?php if(isset($_GET['err']) && $_GET['err'] == 'log-fail' ) {  ?>            
+				          <div class="alert alert-danger" style="top:10px; display:block" id="set_valid_msg">
+				            <strong>Failed!</strong> Data Updation Failed.
+				          </div>     
+				        <?php } ?>
 						<div class="order-tracking">
 							<div class="title">
 								<center><h2>My Addresses</h2></center>
 							</div><!-- /.title --><br>
 							<div class="tracking-content">
-								<?php
-								$user_id = $_SESSION["user_login_session_id"];
-					          	$getAllCustomerAddress = "SELECT * FROM grocery_add_address WHERE user_id = '$user_id' AND lkp_status_id = 0";
-					          	$getCustomerAddress = $conn->query($getAllCustomerAddress);
-								if($getCustomerAddress->num_rows == 0) { ?>
-								<div class="row one">
-								  	<div class="col-sm-3"></div>
-								  	<div class="col-sm-6">
-										<center><img src="images/myaddress.png">
-										<h4>No Addresses found in your account!</h4>
-										<p>Add a delivery address.</p>
-										<button class="button1">ADD ADDRESS</button></center>
+								<div class="one">
+									<?php
+									$user_id = $_SESSION["user_login_session_id"];
+						          	$getAllCustomerAddress = "SELECT * FROM grocery_add_address WHERE user_id = '$user_id' AND lkp_status_id = 0";
+						          	$getCustomerAddress = $conn->query($getAllCustomerAddress);
+									if($getCustomerAddress->num_rows == 0) { ?>
+									<div class="row">
+									  	<div class="col-sm-3"></div>
+									  	<div class="col-sm-6">
+											<center><img src="images/myaddress.png">
+											<h4>No Addresses found in your account!</h4>
+											<p>Add a delivery address.</p>
+											<button class="button1">ADD ADDRESS</button></center>
+										</div>
+										<div class="col-sm-3"></div>
 									</div>
-									<div class="col-sm-3"></div>
+									<?php } else { ?>
+									<div class="">
+										<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { ?>
+										<div class="text_brdr">
+											<label class="container3">
+									  			<input type="radio" checked="checked" name="make_it_default">Address <?php echo $i;?>
+								  				<span class="checkmarkR1"></span>
+											</label>
+											<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
+											<p><?php echo $getCustomerDeatils['address']; ?>.</p>
+										</div>
+										<?php $i++; } ?>
+										<center><button class="button1">ADD NEW ADDRESS</button></center>
+									</div>
+									<?php } ?>
 								</div>
-								<?php } else { ?>
-								<div class="two">
-									<div class="text_brdr">
-										<label class="container3">
-								  			<input type="radio" checked="checked" name="radio">Work
-							  				<span class="checkmarkR1"></span>
-										</label>
-										<p><b>Swapna <span> 9876543210</span></b></p>
-										<p>Flat No:403, 4th Floor, V.R. Sunshine Building, Patrika Nagar Street NO:3, Near Maxcure Hospital, Madhapur, 500081.</p>
-									</div>
-									<div class="text_brdr">
-										<label class="container3">
-									  		<input type="radio" checked="checked" name="radio">Home
-									  		<span class="checkmarkR1"></span>
-										</label>
-										<p><b>Swapna <span> 9876543210</span></b></p>
-										<p>Flat No:403, 4th Floor, V.R. Sunshine Building, Patrika Nagar Street NO:3, Near Maxcure Hospital, Madhapur, 500081.</p>
-									</div>
-									<center><button class="button1">ADD NEW ADDRESS</button></center>							
-								</div>
-								<?php } ?>
+								<?php 
+								$id = $_SESSION['user_login_session_id'];
+								$getUserData = getAllDataWhere('users','id',$id);
+								$getUser = $getUserData->fetch_assoc();?>
 								<div class="three">
 									<form method="post">
 						  				<div class="row">
 						  					<div class="col-sm-6">
 												<div class="form-group">
-													<label for="first-name">Name*</label>
-													<input type="text" class="form-control"  name="user_full_name" placeholder="Name" required>
+													<label for="first-name">First Name *</label>
+													<input type="text" id="first-name" name="first_name" placeholder="First name" required value="<?php echo $getUser['user_full_name']; ?>">
 												</div>
 											</div>
 							 				<div class="col-sm-6">
 												<div class="form-group">
-													<label for="mobile">Mobile*</label>
-													<input type="text" class="form-control valid_mobile_num" name="user_mobile" placeholder="Mobile" required>
+													<label for="last-name">Last Name *</label>
+													<input type="text" id="last-name" name="last_name" placeholder="Last name" required>
 												</div>
 											</div>
 							 				<div class="col-sm-6">
 												<div class="form-group">
-													<label for="pincode">Pincode*</label>
-													<input type="text" class="form-control"  name="user_full_name" placeholder="Pincode" required>
+													<label for="email-address">Email Address *</label>
+													<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required readonly>
 												</div>
 											</div>
 										 	<div class="col-sm-6">
 												<div class="form-group">
-													<label for="locality">Locality*</label>
-													<input type="text" class="form-control"  name="user_full_name" placeholder="Locality" required>
+													<label for="phone">Phone *</label>
+													<input type="text" id="phone" name="mobile" maxlength="10" pattern="[0-9]{10}" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>State *</label>
+													<?php $getStates = getAllDataWithStatus('grocery_lkp_states','0'); ?>
+													<select name="lkp_state_id" id="lkp_state_id" onChange="getDistricts(this.value);" required>
+														<option value="">Select State</option>
+														<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
+														<option value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
+														<?php } ?>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>District *</label>
+													<select name="lkp_district_id" id="lkp_district_id" placeholder="District" onChange="getCities(this.value);" required>
+														<option value="">Select District</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>City *</label>
+													<select name="lkp_city_id" id="lkp_city_id" placeholder="City" onChange="getPincodes(this.value);" required>
+														<option value="">Select City</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>Pincode *</label>
+													<select name="lkp_pincode_id" id="lkp_pincode_id" onChange="getAreas(this.value);" placeholder="Zip / Postal Code" required>
+														<option value="">Select Pincode</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>Location *</label>
+													<select name="lkp_area_id" id="lkp_area_id" placeholder="Location" required>
+														<option value="">Select Location</option>
+													</select>
 												</div>
 											</div>
 							 				<div class="col-sm-12">
 												<div class="form-group">
 													<label for="address">Address*</label>
-													<textarea class="form-control" rows="5" id="comment"  placeholder="Address"style="border-radius:30px;height:48px;padding:10px 0px 0px 20px"></textarea>
-												</div>
-											</div>
-											<div class="col-sm-6">
-												<div class="form-group">
-													<label for="City/District/Town">City/District/Town*</label>
-													<input type="text" class="form-control"  name="user_full_name" placeholder="locality" required>
-												</div>
-											</div>
-											<div class="col-sm-6">
-												<div class="form-group">
-													<label for="sel1">Select State*</label>
-							  						<select class="form-control" id="sel1" style="border-radius:30px">
-														<option>Select State</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-												  	</select>
-												</div>
-											</div>
-											<div class="col-sm-6">
-												<div class="form-group">
-													<label for="Landmark">Landmark*</label>
-													<input type="text" class="form-control"  name="user_full_name" placeholder="Landmark" required>
-												</div>
-											</div>
-										 	<div class="col-sm-6">
-												<div class="form-group">
-													<label for="mobile">Alternate Mobile</label>
-													<input type="text" class="form-control valid_mobile_num" name="user_mobile" placeholder="Alternate Mobile"required>
+													<textarea name="address" class="form-control" rows="5" id="comment" placeholder="Address" style="border-radius:30px;height:48px;padding:10px 0px 0px 20px" required></textarea>
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<button class="button1" type="submit" name="save" style="width:100px;font-size:18px">Save</button> 					
+											<button class="button1" type="submit" value="save" name="save" style="width:100px;font-size:18px">Save</button> 					
 										</div>                    
 						  			</form>   
 								</div>	
@@ -214,12 +259,11 @@
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
-                                    <center><button type="submit" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center>
+                                    <center><button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center>
                                 </div><!-- /.btn-cart-totals -->
                         </div><!-- /.cart-totals -->
                     </div>
 				</div><!-- /.row -->
-				</form><!-- /form -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-tracking -->
 
@@ -315,18 +359,58 @@
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
-		<script>
-		$(document).ready(function(){
-		 	$(".two,.three").hide();
-		    $(".one").click(function(){
-		        $(".one,.three").hide();
-				$(".two").show();
-		    });
-			$(".two").click(function(){
-		        $(".two,.one").hide();
-				$(".three").show();
-		    });
-		});
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".three").hide();
+			    $(".button1").click(function(){
+					$(".three").show();
+					$(".one").hide();
+			    });
+			    setTimeout(function () {
+			        $('#set_valid_msg').hide();
+			      }, 2000);
+			});
+			function getDistricts(val) { 
+		        $.ajax({
+		        type: "POST",
+		        url: "grocery_admin/get_districts.php",
+		        data:'lkp_state_id='+val,
+		        success: function(data){
+		            $("#lkp_district_id").html(data);
+		        }
+		        });
+		    }
+		    function getCities(val) { 
+		        $.ajax({
+		        type: "POST",
+		        url: "grocery_admin/get_cities.php",
+		        data:'lkp_district_id='+val,
+		        success: function(data){
+		            $("#lkp_city_id").html(data);
+		        }
+		        });
+		    }
+		    function getPincodes(val) { 
+		        $.ajax({
+		        type: "POST",
+		        url: "grocery_admin/get_pincodes.php",
+		        data:'lkp_city_id='+val,
+		        success: function(data){
+		            $("#lkp_pincode_id").html(data);
+		        }
+		        });
+		    }
+		    function getAreas(val) { 
+		        $.ajax({
+		        type: "POST",
+		        url: "grocery_admin/get_locations.php",
+		        data:'lkp_pincode_id='+val,
+		        success: function(data){
+		            $("#lkp_area_id").html(data);
+		        }
+		        });
+		    }
+
 		</script>
 	</body>	
 </html>
