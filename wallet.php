@@ -104,7 +104,7 @@
 						$wallet_id = $_SESSION['wallet_id'];
 						$credit_amnt = $_POST['amnt'];						
 						$description = "Money Added in Wallet";
-						$updated_date = date('Y-m-d H:i:s', time() + 24 * 60 * 60);
+						$updated_date = date('Y-m-d H:i:s');
 
             			$sqlInwallet = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('$wallet_id','$user_id','$credit_amnt','$description','2','$updated_date')";
             			if($conn->query($sqlInwallet) === TRUE) {
