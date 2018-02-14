@@ -23,6 +23,11 @@
 	margin-top:15px;
 	padding:0px 20px;
 }
+.cart-totals h4{
+	color:#f28b00;
+	font-size:17px;
+	margin-top:20px;
+}
 
 </style>
 <body class="header_sticky">
@@ -245,20 +250,26 @@
                     <div class="col-lg-5">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
-                            <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Next Availble Time Slots</th> 
-                                                    <th>Delivery Date</th> 
-                                                    <th>Delivery Slot</th> 
-                                                </tr>
-                                            </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><p style="text-align: left">Date :    <span id="date"></span> <br>Time Slot :    <span id="time"></span> </p></td>
-                                                <td>
-                                            		<input type="text" id="datepicker" name="slot_date" class="slot_date" readonly>
-                                        		</td>
+                           <h4 style="margin-bottom:10px">Next Availble Time Slots</h4>
+						   <div class="row">
+												    <div class="col-sm-4">
+                                                   <p><b>Date :</b><span id="date"></span></p>
+												   </div>
+												    <div class="col-sm-8">
+												   <p><b>Time Slot :</b><span id="time"></span></p>
+												   </div>
+												   </div><br>
+												   <div class="row" style="margin-bottom:10px">
+												    <div class="col-sm-4">
+                                                <h4>Delivery Date:</h4>
+												</div>
+												<div class="col-sm-6">
+                                            		<input type="text" id="datepicker" name="slot_date" class="slot_date" readonly style="height:45px;">	
+													</div>
+													<div class="col-sm-2">
+													</div>
+													</div>
+                                        		
 
                                         		<?php 
 
@@ -272,37 +283,42 @@
                                         		$gettotalSlt = $getTotalTimeSlots->num_rows;
 
                                         		?>
-                                        		<?php if($gettotalSlt == 0) { ?>
+                                        		<div class="row">
+												    <div class="col-sm-4">
+                                                <h4>Delivery Slot:</h4>
+												</div>
+												<div class="col-sm-6">
+												<?php if($gettotalSlt == 0) { ?>
                                         		<?php 
 
                                         			$getTimeSlots1 = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
                                         			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
                                         		?>
-			                                        <td>
-			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings">
+			                                        
+			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings" style="height:45px;">
 															<?php 
 																while($row1 = $getTotalTimeSlots1->fetch_assoc()) {  	
 															?>
 																<option value="<?php echo $row1['total_slot_time']; ?>"><?php echo $row1['total_slot_time']; ?></option>
 															<?php } ?>
 														</select>
-			                                        </td>
+			                                        
 			                                    <?php } else { ?>
-			                                    	<td>
-			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings">
+			                                    	
+			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings"style="height:45px;">
 															<?php 
 																while($row = $getTotalTimeSlots->fetch_assoc()) {  	
 															?>
 																<option value="<?php echo $row['total_slot_time']; ?>">Today - <?php echo $row['total_slot_time']; ?></option>
 															<?php } ?>
 														</select>
-			                                        </td>
+			                                        
 			                                    <?php } ?>
-                                        </tr>
-                                            
-                                        </tbody>
-                                            </tbody>
-                                        </table>
+												</div>
+													<div class="col-sm-2">
+													</div>
+													</div>
+                                      
 								
                                 <table>
                                     <tbody>
