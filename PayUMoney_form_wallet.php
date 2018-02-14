@@ -1,5 +1,7 @@
 <?php
 ob_start(); 
+ob_start(); 
+include "admin_includes/config.php";
 $lastTransId = $_GET['key'];
 // Merchant key here as provided by Payu
 $MERCHANT_KEY = "gtKFFx";

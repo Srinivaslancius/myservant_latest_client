@@ -66,9 +66,9 @@ include_once('../admin_includes/common_functions.php');
                 </tr>
               </thead>
 <?php 
-$id = $_GET['id'];
+$user_id = $_GET['user_id'];
 $i=1;
-$getUserTransactionData = "SELECT * FROM user_wallet_transactions WHERE id='$id'";
+$getUserTransactionData = "SELECT * FROM user_wallet_transactions WHERE user_id='$user_id' AND lkp_payment_status_id=1 ";
 $getUserTransaction = $conn->query($getUserTransactionData);
 if($getUserTransaction->num_rows > 0) { 
 while($getTransaction = $getUserTransaction->fetch_assoc()) { 
@@ -86,7 +86,7 @@ $PaymentStatus = getIndividualDetails('lkp_payment_status','id',$getTransaction[
                   <td><?php echo $PaymentStatus['payment_status'] ?></td>
                 </tr>  
                 <?php } } else { ?>
-                  <tr><td colspan="6" style="text-align:center"><h3>No Details Found</h3></td></tr>
+                  <tr><td colspan="6" style="text-align:center"><h3>No Transactions Found</h3></td></tr>
                <?php }?>              
               </tbody>
             </table>
