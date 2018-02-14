@@ -196,14 +196,14 @@ width:100% !important;
 												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails['id']; ?>)" href="javascript:void(0)" <?php } ?> >
 													<?php if(!isset($_SESSION['user_login_session_id'])) { 
 														?>
-														<img src="images/icons/wishlist.png" alt="">Wishlist
+														<img src="images/icons/wishlist.png" alt=""> Wishlist
 													<?php } else { 
 														$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$productDetails['id']);
 														?>
 														<?php if($getCountWishLsit == 0) { ?>
-															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $productDetails['id']; ?>" alt="">Wishlist
+															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $productDetails['id']; ?>" alt=""> Wishlist
 														<?php } else {  ?>
-															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $productDetails['id']; ?>">Wishlist
+															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $productDetails['id']; ?>"> Wishlist
 														<?php } ?>
 														
 													<?php } ?>
@@ -223,11 +223,11 @@ width:100% !important;
 									<ul class="social-list style2">
 										<li>
 											<a onClick="window.open('http://www.facebook.com/sharer.php?s=100&  amp;p[title]=<?php  echo $title;?>&amp;p[summary]=<?php echo $summary;?>&amp;p[url]=<?php echo $url; ?>&amp;p[images][0]=<?php echo $image;?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">
-												<i class="fa fa-facebook" aria-hidden="true"></i>
+												<i class="fa fa-facebook" aria-hidden="true" style="font-size:20px"></i>
 										</a>
 										</li>
 										<li>
-											<a id="ref_tw" href="http://twitter.com/home?status=<?php echo $title; ?>+<?php echo $url;?>&amp;p[images][0]=<?php echo $image;?>"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600');return false;"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+											<a id="ref_tw" href="http://twitter.com/home?status=<?php echo $title; ?>+<?php echo $url;?>&amp;p[images][0]=<?php echo $image;?>"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600');return false;"><i class="fa fa-twitter" aria-hidden="true"style="font-size:20px"></i></a>
 											<!-- <a href="<?php echo $getSiteSettingsData1['twitter_link'] ?>" target="_blank">
 												<i class="fa fa-twitter" aria-hidden="true"></i>
 											</a> -->

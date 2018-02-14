@@ -118,7 +118,7 @@
                 while ($row = $getGroceryOfferZone->fetch_assoc()) { ?>
   					<div class="col-sm-3">
       					<div class="thumbnail">
-     						<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$row['offer_image'] ?>" alt="" style="width:400px;height:300px" class="image1">
+     						<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$row['offer_image'] ?>" alt=""class="image1">
         					<!-- <p><strong>Somthing</strong></p> -->
         					<p>Experies on <?php echo $row['offer_end_date'];?></p>
 		 					<div class="overlay">
