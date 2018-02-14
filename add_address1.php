@@ -113,7 +113,7 @@
 										<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { ?>
 										<div class="text_brdr">
 											<label class="container3">
-									  			<input type="radio" checked="checked" class="make_it_default" name="make_it_default" value="">Address <?php echo $i;?>
+									  			<input type="radio" checked="checked" class="make_it_default" name="make_it_default" value="<?php echo $getCustomerDeatils['make_it_default']; ?>">Address <?php echo $i;?>
 								  				<span class="checkmarkR1"></span>
 											</label>
 											<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
@@ -234,6 +234,7 @@
 						$subTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
 					}
 					?>
+					<input type="hidden" name="address_status" vlaue="" id="make_it_default">
                     <div class="col-lg-4">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
@@ -259,7 +260,7 @@
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
-                                    <a href="shop_checkout.php?user_id="><center><button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center></a>
+                                    <a href="shop_checkout.php?user_id=<?php echo $_SESSION['user_login_session_id']; ?>&address_status=default_address_status"><center><button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center></a>
                                 </div><!-- /.btn-cart-totals -->
                         </div><!-- /.cart-totals -->
                     </div>
@@ -372,7 +373,10 @@
 			});
 			$(".make_it_default").click(function(){
 				var defaultvalue = $(".make_it_default").val();
-				alert();
+				if(defaultvalue == 0) {
+					$("#make_it_default").val(1);
+				}
+				//alert($(".make_it_default").val());
 		    });
 			function getDistricts(val) { 
 		        $.ajax({
