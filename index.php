@@ -37,6 +37,11 @@ a.mask {
 .flat-imagebox.style1{
 	margin-bottom:-125px;
 }
+@media screen and (max-width: 480px) and (min-width: 320px){
+	.flat-imagebox.style1{
+	margin-bottom:30px;
+}
+}
 
 </style>
 <?php 
