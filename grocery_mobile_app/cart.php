@@ -25,6 +25,36 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$saveItems = "INSERT INTO `grocery_cart`(`user_id`, `session_cart_id`, `category_id`, `product_id`, `product_weight_type`, `product_price`, `product_quantity`, `product_name`, `sub_category_id`,`lkp_city_id`, `created_at`) VALUES ('$user_id','$session_cart_id','$category_id','$product_id','$product_weight_type','$product_price','$product_quantity','$product_name','$sub_category_id','$lkp_city_id','$created_at')"; 
 		if($conn->query($saveItems) === TRUE) {
 
+			//Rewards points adding when save item in cart
+			$product_quantity = $_REQUEST['product_quantity'];
+			$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
+			if($getRewardPointsdata['reward_status'] == 0) {
+				$getProductRewards = "SELECT * FROM grocery_reward_settings WHERE product_id = '$product_id' AND reward_type = 4 AND lkp_status_id = 0";
+				$getAllProIds=$conn->query($getProductRewards);
+				$getRewd = $getAllProIds->fetch_assoc();
+				if($getAllProIds->num_rows > 0) {
+					$rewardPointsRewdSettings = ($product_price/$getRewardPointsdata['transaction_amount'])*$getRewd['reward_points'];
+				} else { 
+					$getSubcatRewards = "SELECT * FROM grocery_reward_settings WHERE sub_category_id = '$sub_category_id' AND product_id != '$product_id' AND reward_type = 3 AND lkp_status_id = 0";
+					$getAllSubcatIds=$conn->query($getSubcatRewards);
+					$getSubcatRewd = $getAllSubcatIds->fetch_assoc();
+					if($getAllSubcatIds->num_rows > 0) {
+						$rewardPointsRewdSettings = ($product_price/$getRewardPointsdata['transaction_amount'])*$getSubcatRewd['reward_points'];
+					} else {
+						$getCategoryRewards = "SELECT * FROM grocery_reward_settings WHERE category_id = '$category_id' AND sub_category_id != '$sub_category_id' AND product_id != '$product_id' AND reward_type = 2 AND lkp_status_id = 0";
+						$getAllCatIds=$conn->query($getCategoryRewards);
+						$getCatRewd = $getAllCatIds->fetch_assoc();
+						if($getAllCatIds->num_rows > 0) {
+							$rewardPointsRewdSettings = ($product_price/$getRewardPointsdata['transaction_amount'])*$getCatRewd['reward_points'];
+						} else {
+							$rewardPointsRewdSettings = ($product_price/$getRewardPointsdata['transaction_amount'])*$getRewardPointsdata['reward_points'];
+						}
+					}
+				}
+			} else {
+				$rewardPointsRewdSettings = 0;
+			}
+			//end rewards
 			$getCartData = getAllDataWhere('grocery_cart','user_id',$user_id); 
 			$response["cartCount"] = $getCartData->num_rows;
 			//$response["cartId"] = $conn->insert_id;

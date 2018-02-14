@@ -220,7 +220,7 @@
 											</p>
 											<p class="field-one-half">
 												<label for="phone">Phone *</label>
-												<input type="text" id="phone" name="mobile" maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required>
+												<input type="text" id="phone" name="mobile" maxlength="10" pattern="[0-9]{10}" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required>
 											</p>
 											<div class="clearfix"></div>
 										</div>
