@@ -429,13 +429,11 @@
 		</script>
 
 		<script type="text/javascript">
-			$( document ).ready(function() {       
-		        var radioValue = $("input[name='make_it_default']:checked").val();
-		        $('.checkout').click(function(){
-				   window.location.href='shop_checkout.php?adid='+radioValue+'';
-				});
-		        //alert(radioValue);
-		    });
+	        $('.checkout').click(function(){
+	        	var radioValue = $("input[name='make_it_default']:checked").val();
+		        window.location.href='shop_checkout.php?adid='+radioValue+'';
+		        return false;
+			});
 		</script>
 
 	</body>	
