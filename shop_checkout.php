@@ -186,8 +186,14 @@
 		?>
 		<?php 
 		$id = $_SESSION['user_login_session_id'];
-		$getUserData = getAllDataWhere('users','id',$id);
-		$getUser = $getUserData->fetch_assoc();?>
+		$customer_id = $_GET['adid'];
+		$getCustomerDeatils = getIndividualDetails('grocery_add_address','id',$customer_id);
+		$getState = getIndividualDetails('grocery_lkp_states','id',$getCustomerDeatils['lkp_state_id']);
+		$getDistrict = getIndividualDetails('grocery_lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
+		$getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
+		$getCity = getIndividualDetails('grocery_lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
+		$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
+		?>
 
 		<section class="flat-checkout">
 			<form action="" method="post" accept-charset="utf-8">
@@ -205,76 +211,61 @@
 										<div class="field-row">
 											<p class="field-one-half">
 												<label for="first-name">First Name *</label>
-												<input type="text" id="first-name" name="first_name" placeholder="First name" required value="<?php echo $getUser['user_full_name']; ?>">
+												<input type="text" id="first-name" name="first_name" placeholder="First name" value="<?php echo $getCustomerDeatils['first_name']; ?>" readonly>
 											</p>
 											<p class="field-one-half">
 												<label for="last-name">Last Name *</label>
-												<input type="text" id="last-name" name="last_name" placeholder="Last name" required>
+												<input type="text" id="last-name" name="last_name" placeholder="Last name" value="<?php echo $getCustomerDeatils['last_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label for="email-address">Email Address *</label>
-												<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required readonly>
+												<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" value="<?php echo $getCustomerDeatils['email']; ?>" placeholder="Your email" readonly>
 											</p>
 											<p class="field-one-half">
 												<label for="phone">Phone *</label>
-												<input type="text" id="phone" name="mobile" maxlength="10" pattern="[0-9]{10}" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required>
+												<input type="text" id="phone" name="mobile" maxlength="10" pattern="[0-9]{10}" value="<?php echo $getCustomerDeatils['phone']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>State *</label>
-												<?php $getStates = getAllDataWithStatus('grocery_lkp_states','0'); ?>
-												<select name="lkp_state_id" id="lkp_state_id" onChange="getDistricts(this.value);" required>
-													<option value="">Select State</option>
-													<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
-													<option value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
-													<?php } ?>
-												</select>
+												<input type="text" id="lkp_state_id" name="lkp_state_id" placeholder="State" readonly value="<?php echo $getState['state_name']; ?>" >
 											</p>
 											<p class="field-one-half">
 												<label>District *</label>
-												<select name="lkp_district_id" id="lkp_district_id" placeholder="District" onChange="getCities(this.value);" required>
-													<option value="">Select District</option>
-												</select>
+												<input type="text" id="lkp_district_id" name="lkp_district_id" placeholder="District" value="<?php echo $getDistrict['district_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>City *</label>
-												<select name="lkp_city_id" id="lkp_city_id" placeholder="City" onChange="getPincodes(this.value);" required>
-													<option value="">Select City</option>
-												</select>
+												<input type="text" id="lkp_city_id" name="lkp_city_id" placeholder="City" value="<?php echo $getCity['city_name']; ?>" readonly>
 											</p>
 											<p class="field-one-half">
 												<label>Pincode *</label>
-												<select name="lkp_pincode_id" id="lkp_pincode_id" onChange="getAreas(this.value);" placeholder="Zip / Postal Code" required>
-													<option value="">Select Pincode</option>
-												</select>
+												<input type="text" id="lkp_pincode_id" name="lkp_pincode_id" placeholder="Zip / Postal Code" value="<?php echo $getPincode['pincode']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>Location *</label>
-												<select name="lkp_area_id" id="lkp_area_id" placeholder="Location" required>
-											<option value="">Select Location</option>
-												</select>
+												<input type="text" id="lkp_area_id" name="lkp_area_id" placeholder="Location" value="<?php echo $getArea['area_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<label for="address">Address *</label>
-											<input type="text" id="address" name="address" placeholder="Street address">
-											<!-- <input type="text" id="address-2" name="address" placeholder="Apartment, suite, unit etc. (optional)"> -->
+											<input type="text" id="address" name="address" placeholder="Street address" value="<?php echo $getCustomerDeatils['address']; ?>" readonly>
 										</div>
 										<div class="field-row">
 											<label for="address">Order Note</label>
-											<textarea style="height:150px" placeholder="Order Note...." name="order_note" id="order_note"></textarea>
+											<textarea style="height:150px" placeholder="Order Note...." name="order_note" id="order_note" required></textarea>
 										</div>
 										<!-- <div class="checkbox">
 											<input type="checkbox" id="create-account" name="create-account" checked>
@@ -564,46 +555,6 @@
 
 		<script type="text/javascript" src="javascript/main.js"></script>
 		<script type="text/javascript">
-		    function getDistricts(val) { 
-		        $.ajax({
-		        type: "POST",
-		        url: "grocery_admin/get_districts.php",
-		        data:'lkp_state_id='+val,
-		        success: function(data){
-		            $("#lkp_district_id").html(data);
-		        }
-		        });
-		    }
-		    function getCities(val) { 
-		        $.ajax({
-		        type: "POST",
-		        url: "grocery_admin/get_cities.php",
-		        data:'lkp_district_id='+val,
-		        success: function(data){
-		            $("#lkp_city_id").html(data);
-		        }
-		        });
-		    }
-		    function getPincodes(val) { 
-		        $.ajax({
-		        type: "POST",
-		        url: "grocery_admin/get_pincodes.php",
-		        data:'lkp_city_id='+val,
-		        success: function(data){
-		            $("#lkp_pincode_id").html(data);
-		        }
-		        });
-		    }
-		    function getAreas(val) { 
-		        $.ajax({
-		        type: "POST",
-		        url: "grocery_admin/get_locations.php",
-		        data:'lkp_pincode_id='+val,
-		        success: function(data){
-		            $("#lkp_area_id").html(data);
-		        }
-		        });
-		    }
 		    var totalWithoutWallet = $('#order_total_without_wallet').val();
 		    var totalWithWallet = $('#order_total').val();
 		    $('.radio-button').on("click", function(event){
