@@ -193,7 +193,7 @@
                 <span class="menu-text">News Letter</span>
               </a>
             </li>
-            <li><a href="#">
+            <li  class="<?php if($page_name == 'wallet.php') { echo "active"; } ?>"><a href="wallet.php">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-balance-wallet zmdi-hc-fw"></i>
                 </span>

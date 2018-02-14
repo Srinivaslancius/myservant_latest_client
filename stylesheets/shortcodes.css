@@ -581,7 +581,7 @@
 }
 
 .imagebox .box-bottom .compare-wishlist a img {
-	padding-right:10px;
+	/* padding-right:10px; */
 }
 
 .imagebox .box-bottom .compare-wishlist a {
@@ -885,7 +885,7 @@
 }
 
 .imagebox.style1.v3 .box-price .compare-wishlist a img {
-	padding-right:10px;
+	/* padding-right:10px; */
 }
 
 .imagebox.style1.v3 .box-price .compare {
@@ -4419,7 +4419,7 @@ input[type="checkbox"]:checked + label:before {
 
 .product-detail .footer-detail .social-single ul.social-list li {
 	font-size:16px;
-	margin-right:20px;
+	/* margin-right:20px; */
 }
 
 /* Reviewed */

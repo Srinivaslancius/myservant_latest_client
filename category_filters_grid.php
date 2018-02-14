@@ -37,7 +37,7 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
         <div class="imagebox style1 v3">
             <div class="box-image">
                 <a href="single_product.php?product_id='.$getProductsData1['id'].'" title="">
-                    <img src="'.$img.'" alt="" style="width:264px; height:210px">
+                    <img class="img_wiht"src="'.$img.'" alt="">
                 </a>
             </div>
             <div class="box-content">
