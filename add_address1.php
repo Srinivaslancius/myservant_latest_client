@@ -261,6 +261,14 @@
                                             <td class="subtotal">Rs . <?php echo $getSiteSettingsData1['delivery_charges']; ?></td>
                                         </tr>
                                         <tr>
+                                            <td>Delivery Date</td>
+                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_POST['slot_date']); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Delivery Slot</td>
+                                            <td class="subtotal" id="serviceTax1"><?php echo $_POST['slot_timings']; ?></td>
+                                        </tr>
+                                        <tr>
                                             <td>Total</td>
                                             <td class="price-total" id="ordertotal">Rs. <?php echo round($subTotal+$service_tax+$getSiteSettingsData1['delivery_charges']); ?></td>
                                         </tr>
