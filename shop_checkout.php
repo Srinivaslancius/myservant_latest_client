@@ -428,7 +428,7 @@
 										</tbody>
 									</table>
 									
-										<div class="form-group">
+										<div class="form-group coupon">
 											<div class="row">
 												<div class="col-md-8 col-sm-8 col-xs-8">
 													<div class="field-group has-feedback has-clear twof" style="width:118%;margin-top:4px">
@@ -559,6 +559,13 @@
 
 		<script type="text/javascript" src="javascript/main.js"></script>
 		<script type="text/javascript">
+			$( document ).ready(function() {
+				if($('#order_total').val() == 0){
+			    	$('.coupon,#discount_price').hide();
+			    }
+			});
+		</script>
+		<script type="text/javascript">
 		    var totalWithoutWallet = $('#order_total_without_wallet').val();
 		    var totalWithWallet = $('#order_total').val();
 		    $('.radio-button').on("click", function(event){
@@ -566,12 +573,24 @@
 			    $('#wallet').hide();
 			    $('.price-total').html("Rs. "+totalWithoutWallet);
 			    $('#order_total').val(totalWithoutWallet);
+			    if(totalWithoutWallet == 0) {
+			    	$('.coupon,#discount_price').hide();
+			    	$('#discount_money').val('');
+			    } else {
+			    	$('.coupon').show();
+			    }
 			});
 			$('.radio-button').on("change", function(event){
 			    $(this).prop('checked', true);
 			    $('#wallet').show();
 			    $('.price-total').html("Rs. "+totalWithWallet);
 			    $('#order_total').val(totalWithWallet);
+			    if(totalWithWallet == 0) {
+			    	$('.coupon,#discount_price').hide();
+			    	$('#discount_money').val('');
+			    } else {
+			    	$('.coupon').show();
+			    }
 			});
 		    </script>
 
