@@ -30,7 +30,7 @@
       </div>
       <div class="site-content">
       <?php 
-       $getUserWalletData ="SELECT * FROM user_wallet";
+       $getUserWalletData ="SELECT * FROM user_wallet GROUP BY user_id ";
        $getUserWalletData1 = $conn->query($getUserWalletData);
 
         $i=1; ?>
@@ -61,7 +61,7 @@
                                 <td><?php echo $row['amount']; ?></td>      
                                 <td><?php echo $row['created_at']; ?></td>
                                 </td>
-                                <td><span><a href="wallet_details.php?id=<?php echo $row['id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span></td>
+                                <td><span><a href="wallet_details.php?user_id=<?php echo $row['user_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span></td>
                             </tr>
                             <?php $i++; } ?>
                           </tbody>
