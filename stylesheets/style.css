@@ -3646,12 +3646,18 @@ width:90%;
 	#div1{
 width:90%;
 	}
+	.ftr_img{
+		margin-bottom:0px !important;
+	}
 	}
 	@media screen and (max-width: 640px) and (min-width: 360px){
 		.box-cart .inner-box .dropdown-box {
     right: -110px !important;
    
 }
+.ftr_img{
+		margin-bottom:0px !important;
+	}
 .form-control-feedback {
     right: 99px !important;
 }
@@ -4015,7 +4021,7 @@ padding:3px !important;
 
 /* When the radio button is checked, add a blue background */
 .container3 input:checked ~ .checkmarkR1 {
-    background-color: #2196F3;
+    background-color: #f28b00;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
