@@ -194,7 +194,6 @@
 		$getCity = getIndividualDetails('grocery_lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
 		$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
 		?>
-
 		<section class="flat-checkout">
 			<form action="" method="post" accept-charset="utf-8">
 				<div class="container">
@@ -202,6 +201,11 @@
 						<div class="col-md-7">
 							<div class="box-checkout">
 								<div class="billing-fields">
+									<input type="hidden" name="lkp_state_id" value="<?php echo $getCustomerDeatils['lkp_state_id']; ?>">
+									<input type="hidden" name="lkp_district_id" value="<?php echo $getCustomerDeatils['lkp_district_id']; ?>">
+									<input type="hidden" name="lkp_pincode_id" value="<?php echo $getCustomerDeatils['lkp_pincode_id']; ?>">
+									<input type="hidden" name="lkp_city_id" value="<?php echo $getCustomerDeatils['lkp_city_id']; ?>">
+									<input type="hidden" name="lkp_area_id" value="<?php echo $getCustomerDeatils['lkp_location_id']; ?>">
 									<div class="fields-title">
 										<h3>Billing details</h3>
 										<span></span>
@@ -211,11 +215,11 @@
 										<div class="field-row">
 											<p class="field-one-half">
 												<label for="first-name">First Name *</label>
-												<input type="text" id="first-name" name="first_name" placeholder="First name" value="<?php echo $getCustomerDeatils['first_name']; ?>" readonly>
+												<input type="text" id="first-name" class="form-control" name="first_name" placeholder="First name" value="<?php echo $getCustomerDeatils['first_name']; ?>" readonly>
 											</p>
 											<p class="field-one-half">
 												<label for="last-name">Last Name *</label>
-												<input type="text" id="last-name" name="last_name" placeholder="Last name" value="<?php echo $getCustomerDeatils['last_name']; ?>" readonly>
+												<input type="text" id="last-name" class="form-control" name="last_name" placeholder="Last name" value="<?php echo $getCustomerDeatils['last_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
@@ -233,35 +237,35 @@
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>State *</label>
-												<input type="text" id="lkp_state_id" name="lkp_state_id" placeholder="State" readonly value="<?php echo $getState['state_name']; ?>" >
+												<input type="text" class="form-control" id="lkp_state_id" placeholder="State" readonly value="<?php echo $getState['state_name']; ?>" >
 											</p>
 											<p class="field-one-half">
 												<label>District *</label>
-												<input type="text" id="lkp_district_id" name="lkp_district_id" placeholder="District" value="<?php echo $getDistrict['district_name']; ?>" readonly>
+												<input type="text" class="form-control" id="lkp_district_id" placeholder="District" value="<?php echo $getDistrict['district_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>City *</label>
-												<input type="text" id="lkp_city_id" name="lkp_city_id" placeholder="City" value="<?php echo $getCity['city_name']; ?>" readonly>
+												<input type="text" class="form-control" id="lkp_city_id" placeholder="City" value="<?php echo $getCity['city_name']; ?>" readonly>
 											</p>
 											<p class="field-one-half">
 												<label>Pincode *</label>
-												<input type="text" id="lkp_pincode_id" name="lkp_pincode_id" placeholder="Zip / Postal Code" value="<?php echo $getPincode['pincode']; ?>" readonly>
+												<input type="text" class="form-control" id="lkp_pincode_id" placeholder="Zip / Postal Code" value="<?php echo $getPincode['pincode']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>Location *</label>
-												<input type="text" id="lkp_area_id" name="lkp_area_id" placeholder="Location" value="<?php echo $getArea['area_name']; ?>" readonly>
+												<input type="text" class="form-control" id="lkp_area_id" placeholder="Location" value="<?php echo $getArea['area_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<label for="address">Address *</label>
-											<input type="text" id="address" name="address" placeholder="Street address" value="<?php echo $getCustomerDeatils['address']; ?>" readonly>
+											<input type="text" class="form-control" id="address" name="address" placeholder="Street address" value="<?php echo $getCustomerDeatils['address']; ?>" readonly>
 										</div>
 										<div class="field-row">
 											<label for="address">Order Note</label>
