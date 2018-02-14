@@ -3667,7 +3667,11 @@ width:100%;
 width:90%;
 	}
 	}
-	@media screen and (max-width: 1024px) and (min-width: 768px){
+	@media screen and (max-width: 1024px) and (min-width: 768px)
+	{
+		select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], input[type="email"]{
+			padding: 8px 15px 8px 15px;
+		}
 		.cities {
 			right:-30px;
 		}
@@ -3842,6 +3846,10 @@ width:90%;
 	.box-image .T_wdht{
 		width:153px !important;
 		height:122px !important;
+	}
+	.box-image .img_hw{
+		width:128px;
+		height:102px;
 	}
 	.imagebox .s_wdht{
 		width:128px;

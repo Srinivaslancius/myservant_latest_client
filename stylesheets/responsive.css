@@ -311,16 +311,16 @@
 @media only screen and (min-width:992px) and (max-width:1199px) {
 	
 	#mainnav ul.menu > li > a {
-		padding:0 18px;
+		padding:0 17px;
 	}
 
 	.imagebox.style1.v3 .box-price {
 		width:250px;padding:0px 2px 0 20px;
 	}
 
-	.imagebox.style1.v3 .box-content {
+	/*.imagebox.style1.v3 .box-content {
 		width:250px;
-	}
+	}*/
 
 	.imagebox.style1.v3 .box-image {
 		width:calc(100% - 465px);
@@ -1735,7 +1735,7 @@
 	}
 
 	.owl-carousel-3 .imagebox.style4 {
-		/*! height:200px; */
+		height:200px;
 	}
 
 	.slider .slider-item.style10 .item-text .header-item h2 {
