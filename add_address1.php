@@ -432,7 +432,7 @@
 			$( document ).ready(function() {       
 		        var radioValue = $("input[name='make_it_default']:checked").val();
 		        $('.checkout').click(function(){
-				   window.location.href='shop_checkout.php?adid= '+radioValue+'';
+				   window.location.href='shop_checkout.php?adid='+radioValue+'';
 				});
 		        //alert(radioValue);
 		    });
