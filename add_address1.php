@@ -33,7 +33,7 @@
 		<!-- Preloader -->
 		<div class="preloader">
 			<div class="clear-loading loading-effect-2">
-				// <span></span>
+				 <span></span>
 			</div>
 		</div><!-- /.preloader -->
 		<section id="header" class="header">
@@ -119,7 +119,7 @@
 										?>
 										<div class="text_brdr">
 											<label class="container3">
-									  			<input type="radio" checked="checked" class="make_it_default" name="make_it_default" value="<?php echo $getCustomerDeatils['make_it_default']; ?>">Address <?php echo $i;?>
+									  			<input type="radio" checked="checked" class="make_it_default" name="make_it_default" value="<?php echo $getCustomerDeatils['id']; ?>">Address <?php echo $i;?>
 								  				<span class="checkmarkR1"></span>
 											</label>
 											<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
@@ -267,7 +267,7 @@
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
-                                    <a href="shop_checkout.php?user_id=<?php echo $_SESSION['user_login_session_id']; ?>&address_status=default_address_status"><center><button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center></a>
+                                    <button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button>
                                 </div><!-- /.btn-cart-totals -->
                         </div><!-- /.cart-totals -->
                     </div>
@@ -427,5 +427,16 @@
 		    }
 
 		</script>
+
+		<script type="text/javascript">
+			$( document ).ready(function() {       
+		        var radioValue = $("input[name='make_it_default']:checked").val();
+		        $('.checkout').click(function(){
+				   window.location.href='shop_checkout.php?adid= '+radioValue+'';
+				});
+		        //alert(radioValue);
+		    });
+		</script>
+
 	</body>	
 </html>

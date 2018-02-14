@@ -27,7 +27,7 @@
 
 		<section class="flat-tracking">
 			<div class="container-fluid">
-			<form action="shop_checkout.php" method="post" accept-charset="utf-8">
+			<form action="add_address1.php" method="post" accept-charset="utf-8">
 				<div class="row">
 				
 					<div class="col-lg-8">
