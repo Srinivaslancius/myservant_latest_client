@@ -55,13 +55,16 @@ include_once('../admin_includes/common_functions.php');
                     Transaction Id
                   </th>
                   <th>
+                    Comments
+                  </th>               
+                  <th>
+                    Payment Status
+                  </th>
+                  <th>
                     Credit Amount
                   </th>
                   <th>
                     Debit Amount
-                  </th>                
-                  <th>
-                    Payment Status
                   </th>
                 </tr>
               </thead>
@@ -81,11 +84,49 @@ $PaymentStatus = getIndividualDetails('lkp_payment_status','id',$getTransaction[
                   <td><?php echo $i; ?></td>
                   <td><?php echo $getUsersData['user_full_name'] ?></td>     
                   <td><?php echo $getTransaction['transaction_id'] ?></td>
+                  <td><?php echo $getTransaction['description'] ?></td>
+                  <td><?php echo $PaymentStatus['payment_status'] ?></td>
                   <td><?php echo $getTransaction['credit_amnt'] ?></td>
                   <td><?php echo $getTransaction['debit_amnt'] ?></td>
-                  <td><?php echo $PaymentStatus['payment_status'] ?></td>
-                </tr>  
-                <?php } } else { ?>
+                  <?php $credit_amount += $getTransaction['credit_amnt'];
+                      $debit_amount += $getTransaction['debit_amnt'];
+                      $total_amount = $credit_amount - $debit_amount ?>
+                </tr>
+                <?php   $i++; } ?>
+                <tr>
+                  <td colspan="5">
+                  <td>
+                    
+                         Total Credit Amount: <?php echo $credit_amount ?>
+                
+                  </td>
+                  <td>
+                    
+                        Total Debit Amount:  <?php echo $debit_amount ?>
+                
+                  </td>
+                </tr>
+                 <tr>
+                  <td colspan="5">
+                  <td>
+                    
+                         <b>Grand Total:</b>
+                
+                  </td>
+                  <td>
+                    <b><?php echo $total_amount ?></b>
+                      
+                
+                  </td>
+                </tr>
+                  <!--<td>
+                    <?php echo $credit_amount;?>
+                        <br> <?php echo $debit_amount;?>
+                        <br>
+                      <strong><?php echo $total_amount;?></strong>
+                  </td>-->
+                </tr>
+                <?php  } else { ?>
                   <tr><td colspan="6" style="text-align:center"><h3>No Transactions Found</h3></td></tr>
                <?php }?>              
               </tbody>
