@@ -30,10 +30,12 @@
 					</div><!-- /.col-md-2 -->
 					<div class="col-md-8 col-sm-8">
 						<div class="wrap-error center">
-							<div class="header-error" style="margin-bottom:30px">								
-								<h1>Thank You for added money in my servant wallet</h1>								
+							<div class="header-error" style="margin-bottom:30px">
+								<img src="images/right.png" class="img-responsive" style="width:150px;height:150px"><br><br>
+								<h2>Thank You for added money in My Servant wallet.</h2><br>
+								<h4>Your money is safe and secure with us !</h4>									
 							</div><!-- /.header-error -->							
-					</div><!-- /.col-md-8 -->
+						</div><!-- /.col-md-8 -->
 					<div class="col-md-2 col-sm-2">
 					</div><!-- /.col-md-2 -->
 				</div><!-- /.row -->
