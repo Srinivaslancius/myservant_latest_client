@@ -61,7 +61,7 @@
                                 <td><?php echo $row['amount']; ?></td>      
                                 <td><?php echo $row['created_at']; ?></td>
                                 </td>
-                                <td><span><a href="invoice1.php?id=<?php echo $row['id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span></td>
+                                <td><span><a href="valid_details.php?id=<?php echo $row['id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span></td>
                             </tr>
                             <?php $i++; } ?>
                           </tbody>
