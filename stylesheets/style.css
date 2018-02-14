@@ -3562,6 +3562,10 @@ i, cite, em, var, address, dfn {
 	margin-bottom:10px;
 }
 @media screen and (max-width: 480px) and (min-width: 320px){
+	.prdct_lst li{
+	float: none !important;
+	}
+	
 	.imagebox .s_wdht {
     width: 128px !important;
     height: auto !important;
@@ -3642,12 +3646,18 @@ width:90%;
 	#div1{
 width:90%;
 	}
+	.ftr_img{
+		margin-bottom:0px !important;
+	}
 	}
 	@media screen and (max-width: 640px) and (min-width: 360px){
 		.box-cart .inner-box .dropdown-box {
     right: -110px !important;
    
 }
+.ftr_img{
+		margin-bottom:0px !important;
+	}
 .form-control-feedback {
     right: 99px !important;
 }
@@ -3967,7 +3977,7 @@ width:90%;
 	padding-top:20px !important;
 }
 .prdct_lst li{
-float: left !important;
+float: left;
 padding:3px !important;
 }
 .prdct_lst{
@@ -4011,7 +4021,7 @@ padding:3px !important;
 
 /* When the radio button is checked, add a blue background */
 .container3 input:checked ~ .checkmarkR1 {
-    background-color: #2196F3;
+    background-color: #f28b00;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -4050,9 +4060,9 @@ padding:3px !important;
     padding: 9px;
     font-size: 15px;
 }
-li img{
+/*li img{
 	float:left !important;
-}
+}*/
 .image1{
 	width: 400px !important;
 	height:300px !important;

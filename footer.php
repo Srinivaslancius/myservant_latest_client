@@ -82,7 +82,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							<div class="widget-title">
 								<h3>Download Our App</h3>
 							</div><br>
-							<a href="<?php echo $getSiteSettingsData1['android_app_link'] ?>" target="_blank" title=""><img src="images/product/googleplay.png" class="img-responsive" style="margin-bottom:10px"></a>
+							<a href="<?php echo $getSiteSettingsData1['android_app_link'] ?>" target="_blank" title=""><img class="ftr_img" src="images/product/googleplay.png"style="margin-bottom:10px"></a>
 							<a href="<?php echo $getSiteSettingsData1['apple_app_link'] ?>" target="_blank" title=""><img src="images/product/applestore.png" class="img-responsive"></a>
 						</div><!-- /.widget-apps -->
 					</div><!-- /.col-lg-4 col-md-6 -->
