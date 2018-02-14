@@ -64,6 +64,10 @@
 		        $_SESSION['user_login_session_email'] = $getLoggedInDetails['user_email'];
 		        $_SESSION['timestamp'] = time();
 
+		        //get wallet Id
+		        $getWalletDetails = getIndividualDetails('user_wallet','user_id',$getLoggedInDetails['id']);
+		        $_SESSION['wallet_id'] = $getWalletDetails['wallet_id'];
+		        
 		        $updateCart = "UPDATE `grocery_cart` SET user_id='".$_SESSION['user_login_session_id']."' WHERE session_cart_id = '".$_SESSION['CART_TEMP_RANDOM']."'";
 				$updateCart1 = $conn->query($updateCart);
 		        if($cart_id == 1) {
