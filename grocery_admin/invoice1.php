@@ -30,7 +30,7 @@ include_once('../admin_includes/common_functions.php');
       <div class="site-content">
         <div class="panel panel-default m-b-0">
           <div class="panel-heading">
-            <h3 class="m-y-0">User Wallet Trancaction</h3>
+            <h3 class="m-y-0">User Wallet Transcaction</h3>
             <center><img src="<?php echo $base_url . 'grocery_admin/uploads/logo/'.$getSiteSettingsData['logo'] ?>" class="logo-responsive" ></center>
           </div>
           <div class="panel-body">
