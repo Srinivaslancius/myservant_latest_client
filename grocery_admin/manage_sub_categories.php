@@ -140,8 +140,7 @@
                                     <!-- <td>Subcat21234</td> -->
                                     <td><?php echo $row['sub_category_name']; ?></td>
                                     <td><?php $getCategories = getAllData('grocery_category'); while($getCategoriesData = $getCategories->fetch_assoc()) { if($row['grocery_category_id'] == $getCategoriesData['id']) { echo $getCategoriesData['category_name']; } } ?></td>
-                                    <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>">View Brands Applicable</a></td>
-                                    <!-- Modal Popup for brands applicable -->
+                                    <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>">View Brands Applicable</a> <!-- Modal Popup for brands applicable -->
                                     <?php 
                                     $getBrandId = explode(',',$row['brands']);
                                     $getBrands = getAllDataWithStatus('grocery_brands','0');?>
@@ -172,7 +171,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- End Popup -->
+                                    <!-- End Popup --></td>
+                                   
                                     <!-- <td><?php echo $row['priority']; ?></td>-->
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_sub_category'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_sub_category'>In Active</span>" ;} ?></td>
                                     <td><?php if ($row['make_it_popular']==1) { echo "<span class='label label-outline-success check_make_it_active open_cursor' data-incId=".$row['id']." data-status=".$row['make_it_popular']." data-tbname='grocery_sub_category'><i class='zmdi zmdi-thumb-up zmdi-hc-fw'></i></span>" ;} else { echo "<span class='label label-outline-info check_make_it_active open_cursor' data-status=".$row['make_it_popular']." data-incId=".$row['id']." data-tbname='grocery_sub_category'><i class='zmdi zmdi-thumb-down zmdi-hc-fw'></i></span>" ;} ?></td>
