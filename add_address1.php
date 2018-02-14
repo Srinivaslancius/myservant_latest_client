@@ -23,6 +23,11 @@
 	margin-top:15px;
 	padding:0px 20px;
 }
+.cart-totals h4{
+	color:#f28b00;
+	font-size:17px;
+	margin-top:20px;
+}
 
 </style>
 <body class="header_sticky">
@@ -75,7 +80,7 @@
 		<section class="flat-tracking">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-lg-7">
 						<?php if(isset($_GET['succ']) && $_GET['succ'] == 'log-success' ) {  ?>                
 			            <div class="alert alert-success" style="top:10px; display:block" id="set_valid_msg">
 			              <strong>Success!</strong> Your Data Updated Successfully.
@@ -242,9 +247,79 @@
 					}
 					?>
 					<input type="hidden" name="address_status" vlaue="" id="make_it_default">
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
+                           <h4 style="margin-bottom:10px">Next Availble Time Slots</h4>
+						   <div class="row">
+												    <div class="col-sm-4">
+                                                   <p><b>Date :</b><span id="date"></span></p>
+												   </div>
+												    <div class="col-sm-8">
+												   <p><b>Time Slot :</b><span id="time"></span></p>
+												   </div>
+												   </div><br>
+												   <div class="row" style="margin-bottom:10px">
+												    <div class="col-sm-4">
+                                                <h4>Delivery Date:</h4>
+												</div>
+												<div class="col-sm-6">
+                                            		<input type="text" id="datepicker" name="slot_date" class="slot_date" readonly style="height:45px;">	
+													</div>
+													<div class="col-sm-2">
+													</div>
+													</div>
+                                        		
+
+                                        		<?php 
+
+                                        		$getDuration = getIndividualDetails('grocery_manage_time_slots','lkp_status_id',0);
+                                        		$cur_time=date("Y-m-d H:i:00");
+												$duration='+'.$getDuration['booking_time_gap'].' minutes';
+												$getCurTime = date('H:i:00', strtotime($duration, strtotime($cur_time)));
+
+                                        		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND start_time > '$getCurTime' ";
+                                        		$getTotalTimeSlots = $conn->query($getTimeSlots);
+                                        		$gettotalSlt = $getTotalTimeSlots->num_rows;
+
+                                        		?>
+                                        		<div class="row">
+												    <div class="col-sm-4">
+                                                <h4>Delivery Slot:</h4>
+												</div>
+												<div class="col-sm-6">
+												<?php if($gettotalSlt == 0) { ?>
+                                        		<?php 
+
+                                        			$getTimeSlots1 = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
+                                        			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
+                                        		?>
+			                                        
+			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings" style="height:45px;">
+															<?php 
+																while($row1 = $getTotalTimeSlots1->fetch_assoc()) {  	
+															?>
+																<option value="<?php echo $row1['total_slot_time']; ?>"><?php echo $row1['total_slot_time']; ?></option>
+															<?php } ?>
+														</select>
+			                                        
+			                                    <?php } else { ?>
+			                                    	
+			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings"style="height:45px;">
+															<?php 
+																while($row = $getTotalTimeSlots->fetch_assoc()) {  	
+															?>
+																<option value="<?php echo $row['total_slot_time']; ?>">Today - <?php echo $row['total_slot_time']; ?></option>
+															<?php } ?>
+														</select>
+			                                        
+			                                    <?php } ?>
+												</div>
+													<div class="col-sm-2">
+													</div>
+													</div>
+                                      
+								
                                 <table>
                                     <tbody>
                                         <tr>
@@ -260,13 +335,17 @@
                                             <td>Delivery Charges</td>
                                             <td class="subtotal">Rs . <?php echo $getSiteSettingsData1['delivery_charges']; ?></td>
                                         </tr>
+                                        <?php
+                                        	$_SESSION['slot_date'] =  $_POST['slot_date'];
+                                        	$_SESSION['slot_timings'] =  $_POST['slot_timings'];
+                                        ?>
                                         <tr>
                                             <td>Delivery Date</td>
-                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_POST['slot_date']); ?></td>
+                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_SESSION['slot_date']); ?></td>         
                                         </tr>
                                         <tr>
                                             <td>Delivery Slot</td>
-                                            <td class="subtotal" id="serviceTax1"><?php echo $_POST['slot_timings']; ?></td>
+                                            <td class="subtotal" id="serviceTax1"><?php echo $_SESSION['slot_timings']; ?></td>                                           
                                         </tr>
                                         <tr>
                                             <td>Total</td>
@@ -375,6 +454,85 @@
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
+		
+	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	  <link rel="stylesheet" href="/resources/demos/style.css">
+	  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+
+			var d = new Date();
+	  		var month = d.getMonth()+1;
+	  		var day = d.getDate();
+	  		var today = (month<10 ? '0' : '') + month + "/" 
+              + (day<10 ? '0' : '') + day + '/'
+	              + d.getFullYear();
+
+            var sltcnt= <?php echo $gettotalSlt; ?>		
+            if(sltcnt == 0)   {
+
+            	$('#datepicker').datepicker({
+				format: "mm/dd/yyyy",
+				minDate:1,
+				todayHighlight: true,
+				startDate: today+1,				
+				autoclose: true,
+				maxDate: "+2M",
+					onSelect: function (dateText, inst) {
+				        //alert("su");
+				        $.ajax({
+	                        type:"POST",
+	                        url:"get_slot_timings.php",
+	                        data:{
+							     dateText:dateText,
+							 },
+	                        success: function(result)
+	                        {
+	                           //alert("result");
+	                           $("#slot_timings").html(result);
+	                        }
+                    	});
+				    },
+				});
+
+            } else {
+
+            	$('#datepicker').datepicker({
+				format: "mm/dd/yyyy",
+				minDate:0,
+				todayHighlight: true,
+				startDate: today,				
+				autoclose: true,
+				maxDate: "+2M",
+					onSelect: function (dateText, inst) {
+				        //alert("su1");
+					    $.ajax({
+	                        type:"POST",
+	                        url:"get_slot_timings.php",
+	                        data:{
+							     dateText:dateText,
+							 },
+	                        success: function(result)
+	                        {
+	                           //alert("result");
+	                           $("#slot_timings").html(result);
+	                        }
+                    	});
+				    },
+				});
+            }
+		  	$('#datepicker').datepicker('setDate', today);
+		});
+		</script>
+		<script>
+		function getDateTime() {
+			var date = $('#datepicker').val();
+			var time = $('#slot_timings').val();
+		    $("#date").html(date);
+		    $("#time").html(time);
+		}
+		</script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$(".three").hide();
@@ -439,6 +597,8 @@
 		<script type="text/javascript">
 	        $('.checkout').click(function(){
 	        	var radioValue = $("input[name='make_it_default']:checked").val();
+	        	//var slotDate = $('#slot_date').val();
+	        	//var slotTimings = $('#slot_timings').val();
 		        window.location.href='shop_checkout.php?adid='+radioValue+'';
 		        return false;
 			});
