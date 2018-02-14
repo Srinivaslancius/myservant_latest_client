@@ -354,8 +354,8 @@
 									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
 									<input type="hidden" name="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>" id="delivery_charges">
-									<input type="hidden" name="delivery_slot_date" value="<?php echo $_SESSION['slot_date']; ?>">
-									<input type="hidden" name="delivery_time" value="<?php echo $_SESSION['slot_timings']; ?>">
+									<input type="hidden" name="delivery_slot_date" value="<?php echo $_REQUEST['slot_date']; ?>">
+									<input type="hidden" name="delivery_time" value="<?php echo $_REQUEST['slot_timings']; ?>">
 									<input type="hidden" name="discount_money" value="0" id="discount_money">
 									<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
 									<input type="hidden" name="coupon_id" value="" id="coupon_id">
@@ -378,11 +378,11 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td>Delivery Date</td>
-	                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_SESSION['slot_date']); ?></td>
+	                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_REQUEST['slot_date']); ?></td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td>Delivery Slot</td>
-	                                            <td class="subtotal" id="serviceTax1"><?php echo $_SESSION['slot_timings']; ?></td>
+	                                            <td class="subtotal" id="serviceTax1"><?php echo $_REQUEST['slot_timings']; ?></td>
 	                                        </tr>
 	                                        <tr>
 												<td>Order Total</td>
