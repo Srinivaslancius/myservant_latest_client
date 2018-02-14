@@ -47,7 +47,7 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
             </div>
             <div class="imagebox">
                     <a href="single_product.php?product_id='.$getProductsData['id'].'" title="">
-                        <img src="'.$img.'" alt="" style="width:264px; height:210px">
+                        <img class=".img_wiht" src="'.$img.'" alt="">
                     </a>
                     
                 <div class="box-content">
@@ -90,12 +90,12 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
                         echo'<a class="wishlist" onClick="addWishList('.$getProductsData['id'].')" href="javascript:void(0)" >';
                         }
                         if(!isset($_SESSION['user_login_session_id'])) { 
-                            echo'<img src="images/icons/wishlist.png" alt="">Wishlist';
+                            echo'<img src="images/icons/wishlist.png" alt=""> Wishlist';
                         } else {
                             if($getCountWishLsit == 0) {
-                                echo'<img src="images/icons/wishlist.png" id="change_wishlist_img_'.$getProductsData['id'].'" alt="">Wishlist';
+                                echo'<img src="images/icons/wishlist.png" id="change_wishlist_img_'.$getProductsData['id'].'" alt=""> Wishlist';
                             } else {
-                                echo'<img src="images/icons/1.png" alt="" id="change_wishlist_img_'.$getProductsData['id'].'">Wishlist';
+                                echo'<img src="images/icons/1.png" alt="" id="change_wishlist_img_'.$getProductsData['id'].'"> Wishlist';
                             }
                         }
                         echo'</a>
@@ -106,17 +106,13 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
         </div>';
     }
 } else {
-    echo'<div class="row" style="padding-bottom:30px">
-        <div class="col-sm-4">
-        </div>
-        <div class="col-sm-4">
+    echo'<div class="col-lg-2 col-md-2">
+    </div>
+    <div class="col-lg-7 col-md-6">
         <center><img src="images/thumb.png" style="padding-top:50px"></center><br>
        <h3 style="text-align:center">Sorry..!! No Items Found.</h3>
        <p style="text-align:center;margin:15px">Please click on the Continue Shopping button below for items</p>
             <center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
-       </div>
-       <div class="col-sm-4">
-        </div>
        </div>';
 }
 ?>

@@ -147,7 +147,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 										<div class="box-image">
 										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
 			
-												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="" style="width:264px;height:210px">
+												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 											</a>
 											
 										</div><!-- /.box-image -->
@@ -202,14 +202,14 @@ if($getTodayDeals1->num_rows > 0) { ?>
 												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $todayDeals['id']; ?>)" href="javascript:void(0)" <?php } ?> >
 													<?php if(!isset($_SESSION['user_login_session_id'])) { 
 														?>
-														<img src="images/icons/wishlist.png" alt="">Wishlist
+														<img src="images/icons/wishlist.png" alt=""> Wishlist
 													<?php } else { 
 														$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$todayDeals['id']);
 														?>
 														<?php if($getCountWishLsit == 0) { ?>
-															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $todayDeals['id']; ?>" alt="">Wishlist
+															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $todayDeals['id']; ?>" alt=""> Wishlist
 														<?php } else {  ?>
-															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $todayDeals['id']; ?>">Wishlist
+															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $todayDeals['id']; ?>"> Wishlist
 														<?php } ?>
 														
 													<?php } ?>

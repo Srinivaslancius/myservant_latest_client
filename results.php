@@ -230,7 +230,7 @@ position:absolute;
 												</div>
 												<div class="imagebox">
 														<a href="single_product.php?product_id=<?php echo $getProductDetails['id'];?>" title="">
-															<img class="img_wiht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="" style="width:264px; height:210px">
+															<img class="img_wiht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 														</a>
 													<div class="box-content">
 														<div class="product-name">
@@ -276,14 +276,14 @@ position:absolute;
 												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $getProductDetails['id']; ?>)" href="javascript:void(0)" <?php } ?> >
 													<?php if(!isset($_SESSION['user_login_session_id'])) { 
 														?>
-														<img src="images/icons/wishlist.png" alt="">Wishlist
+														<img src="images/icons/wishlist.png" alt=""> Wishlist
 													<?php } else { 
 														$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$getProductDetails['id']);
 														?>
 														<?php if($getCountWishLsit == 0) { ?>
-															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $getProductDetails['id']; ?>" alt="">Wishlist
+															<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $getProductDetails['id']; ?>" alt=""> Wishlist
 														<?php } else {  ?>
-															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $getProductDetails['id']; ?>">Wishlist
+															<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $getProductDetails['id']; ?>"> Wishlist
 														<?php } ?>
 														
 													<?php } ?>
@@ -368,14 +368,14 @@ position:absolute;
 													<div class="compare-wishlist">
 														<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList1(<?php echo $getProductsTotalDetails2['id']; ?>)" href="javascript:void(0)" <?php } ?> >
 															<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
-																<img src="images/icons/wishlist.png" alt="">Wishlist
+																<img src="images/icons/wishlist.png" alt=""> Wishlist
 															<?php } else { 
 																$getCountWishLsit1 = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$getProductsTotalDetails2['id']);
 																?>
 																<?php if($getCountWishLsit1 == 0) { ?>
-																	<img src="images/icons/wishlist.png" id="change_wishlist_img1_<?php echo $getProductsTotalDetails2['id']; ?>" alt="">Wishlist
+																	<img src="images/icons/wishlist.png" id="change_wishlist_img1_<?php echo $getProductsTotalDetails2['id']; ?>" alt=""> Wishlist
 																<?php } else {  ?>
-																	<img src="images/icons/1.png" alt="" id="change_wishlist_img1_<?php echo $getProductsTotalDetails2['id']; ?>">Wishlist
+																	<img src="images/icons/1.png" alt="" id="change_wishlist_img1_<?php echo $getProductsTotalDetails2['id']; ?>"> Wishlist
 																<?php } ?>
 															<?php } ?>
 														</a>

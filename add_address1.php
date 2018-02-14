@@ -60,113 +60,112 @@
 						<div class="order-tracking">
 							<div class="title">
 								<center><h2>My Addresses</h2></center>
-								
 							</div><!-- /.title --><br>
 							<div class="tracking-content">
+								<?php
+								$user_id = $_SESSION["user_login_session_id"];
+					          	$getAllCustomerAddress = "SELECT * FROM grocery_add_address WHERE user_id = '$user_id' AND lkp_status_id = 0";
+					          	$getCustomerAddress = $conn->query($getAllCustomerAddress);
+								if($getCustomerAddress->num_rows == 0) { ?>
 								<div class="row one">
-								  <div class="col-sm-3">
-								  </div>
-								  <div class="col-sm-6">
-									<center><img src="images/myaddress.png">
-									<h4>No Addresses found in your account!</h4>
-									<p>Add a delivery address.</p>
-									<button class="button1">ADD ADDRESS</button></center>
+								  	<div class="col-sm-3"></div>
+								  	<div class="col-sm-6">
+										<center><img src="images/myaddress.png">
+										<h4>No Addresses found in your account!</h4>
+										<p>Add a delivery address.</p>
+										<button class="button1">ADD ADDRESS</button></center>
 									</div>
-									<div class="col-sm-3">
-								  </div>
+									<div class="col-sm-3"></div>
 								</div>
-							<div class="two">
-								<div class="text_brdr">
-								<label class="container3">
-								  <input type="radio" checked="checked" name="radio">Work
-								  <span class="checkmarkR1"></span>
-								</label>
-								<p><b>Swapna <span> 9876543210</span></b></p>
-								<p>Flat No:403, 4th Floor, V.R. Sunshine Building, Patrika Nagar Street NO:3, Near Maxcure Hospital, Madhapur, 500081.</p>
+								<?php } else { ?>
+								<div class="two">
+									<div class="text_brdr">
+										<label class="container3">
+								  			<input type="radio" checked="checked" name="radio">Work
+							  				<span class="checkmarkR1"></span>
+										</label>
+										<p><b>Swapna <span> 9876543210</span></b></p>
+										<p>Flat No:403, 4th Floor, V.R. Sunshine Building, Patrika Nagar Street NO:3, Near Maxcure Hospital, Madhapur, 500081.</p>
+									</div>
+									<div class="text_brdr">
+										<label class="container3">
+									  		<input type="radio" checked="checked" name="radio">Home
+									  		<span class="checkmarkR1"></span>
+										</label>
+										<p><b>Swapna <span> 9876543210</span></b></p>
+										<p>Flat No:403, 4th Floor, V.R. Sunshine Building, Patrika Nagar Street NO:3, Near Maxcure Hospital, Madhapur, 500081.</p>
+									</div>
+									<center><button class="button1">ADD NEW ADDRESS</button></center>							
 								</div>
-								<div class="text_brdr">
-								<label class="container3">
-									  <input type="radio" checked="checked" name="radio">Home
-									  <span class="checkmarkR1"></span>
-									</label>
-								<p><b>Swapna <span> 9876543210</span></b></p>
-								<p>Flat No:403, 4th Floor, V.R. Sunshine Building, Patrika Nagar Street NO:3, Near Maxcure Hospital, Madhapur, 500081.</p>
-								</div>
-								<center><button class="button1">ADD NEW ADDRESS</button></center>							
-							</div>
-							<div class="three">
-							<form method="post">
-						 
-						  <div class="row">
-						  <div class="col-sm-6">
-							<div class="form-group">
-								<label for="first-name">Name*</label>
-								<input type="text" class="form-control"  name="user_full_name" placeholder="Name" required>
-							</div>
-							</div>
-							 <div class="col-sm-6">
-							<div class="form-group">
-								<label for="mobile">Mobile*</label>
-								<input type="text" class="form-control valid_mobile_num" name="user_mobile" placeholder="Mobile"required>
-							<span id="input_status1" style="color: red;"></span>
-							</div>
-							</div>
-							 <div class="col-sm-6">
-							<div class="form-group">
-								<label for="pincode">Pincode*</label>
-								<input type="text" class="form-control"  name="user_full_name" placeholder="Pincode" required>
-							</div>
-							</div>
-							 <div class="col-sm-6">
-								<div class="form-group">
-								<label for="locality">Locality*</label>
-								<input type="text" class="form-control"  name="user_full_name" placeholder="Locality" required>
-							</div>
-							</div>
-							 <div class="col-sm-12">
-							<div class="form-group">
-								 <label for="address">Address*</label>
-									<textarea class="form-control" rows="5" id="comment"  placeholder="Address"style="border-radius:30px;height:48px;padding:10px 0px 0px 20px"></textarea>
-							</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-								<label for="City/District/Town">City/District/Town*</label>
-								<input type="text" class="form-control"  name="user_full_name" placeholder="locality" required>
-							</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-								<label for="sel1">Select State*</label>
-							  <select class="form-control" id="sel1" style="border-radius:30px">
-								<option>Select State</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							  </select></label>
-							</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-								<label for="Landmark">Landmark*</label>
-								<input type="text" class="form-control"  name="user_full_name" placeholder="Landmark" required>
-							</div>
-							</div>
-							 <div class="col-sm-6">
-							<div class="form-group">
-								<label for="mobile">Alternate Mobile</label>
-								<input type="text" class="form-control valid_mobile_num" name="user_mobile" placeholder="Alternate Mobile"required>
-							<span id="input_status1" style="color: red;"></span>
-							</div>
-							</div>
-							</div>
-							
-							<div class="form-group">
-								<button class="button1" type="submit" name="save" style="width:100px;font-size:18px">Save</button> 					
-							</div>                    
-						  </form>   
-						</div>		  
-         	
+								<?php } ?>
+								<div class="three">
+									<form method="post">
+						  				<div class="row">
+						  					<div class="col-sm-6">
+												<div class="form-group">
+													<label for="first-name">Name*</label>
+													<input type="text" class="form-control"  name="user_full_name" placeholder="Name" required>
+												</div>
+											</div>
+							 				<div class="col-sm-6">
+												<div class="form-group">
+													<label for="mobile">Mobile*</label>
+													<input type="text" class="form-control valid_mobile_num" name="user_mobile" placeholder="Mobile" required>
+												</div>
+											</div>
+							 				<div class="col-sm-6">
+												<div class="form-group">
+													<label for="pincode">Pincode*</label>
+													<input type="text" class="form-control"  name="user_full_name" placeholder="Pincode" required>
+												</div>
+											</div>
+										 	<div class="col-sm-6">
+												<div class="form-group">
+													<label for="locality">Locality*</label>
+													<input type="text" class="form-control"  name="user_full_name" placeholder="Locality" required>
+												</div>
+											</div>
+							 				<div class="col-sm-12">
+												<div class="form-group">
+													<label for="address">Address*</label>
+													<textarea class="form-control" rows="5" id="comment"  placeholder="Address"style="border-radius:30px;height:48px;padding:10px 0px 0px 20px"></textarea>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="City/District/Town">City/District/Town*</label>
+													<input type="text" class="form-control"  name="user_full_name" placeholder="locality" required>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="sel1">Select State*</label>
+							  						<select class="form-control" id="sel1" style="border-radius:30px">
+														<option>Select State</option>
+														<option>2</option>
+														<option>3</option>
+														<option>4</option>
+												  	</select>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="Landmark">Landmark*</label>
+													<input type="text" class="form-control"  name="user_full_name" placeholder="Landmark" required>
+												</div>
+											</div>
+										 	<div class="col-sm-6">
+												<div class="form-group">
+													<label for="mobile">Alternate Mobile</label>
+													<input type="text" class="form-control valid_mobile_num" name="user_mobile" placeholder="Alternate Mobile"required>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<button class="button1" type="submit" name="save" style="width:100px;font-size:18px">Save</button> 					
+										</div>                    
+						  			</form>   
+								</div>	
 							</div><!-- /.tracking-content -->
 						</div><!-- /.order-tracking -->
 					</div><!-- /.col-md-12 -->
@@ -193,7 +192,6 @@
                     <div class="col-lg-4">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
-                            
                                 <table>
                                     <tbody>
                                         <tr>
@@ -218,7 +216,6 @@
                                 <div class="btn-cart-totals">
                                     <center><button type="submit" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center>
                                 </div><!-- /.btn-cart-totals -->
-                            
                         </div><!-- /.cart-totals -->
                     </div>
 				</div><!-- /.row -->
@@ -319,17 +316,17 @@
 
 		<script type="text/javascript" src="javascript/main.js"></script>
 		<script>
-$(document).ready(function(){
-	 $(".two,.three").hide();
-    $(".one").click(function(){
-        $(".one,.three").hide();
-		$(".two").show();
-    });
-	$(".two").click(function(){
-        $(".two,.one").hide();
-		$(".three").show();
-    });
-});
-</script>
-</body>	
+		$(document).ready(function(){
+		 	$(".two,.three").hide();
+		    $(".one").click(function(){
+		        $(".one,.three").hide();
+				$(".two").show();
+		    });
+			$(".two").click(function(){
+		        $(".two,.one").hide();
+				$(".three").show();
+		    });
+		});
+		</script>
+	</body>	
 </html>

@@ -50,6 +50,7 @@ if($popularity == 'recent') {
     }
 }
 $getProducts1 = $conn->query($getProducts);
+if($getProducts1->num_rows > 0) {
 while($getProductsData1 = $getProducts1->fetch_assoc()) {
 $getProductNames1 = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductsData1['id']);
 $getProductImages1 = getIndividualDetails('grocery_product_bind_images','product_id',$getProductsData1['id']);
@@ -71,7 +72,7 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
         <div class="imagebox style1 v3">
             <div class="box-image">
                 <a href="single_product.php?product_id='.$getProductsData1['id'].'" title="">
-                    <img src="'.$img.'" alt="" style="width:264px; height:210px">
+                    <img class="img_wiht" src="'.$img.'" alt="">
                 </a>
             </div>
             <div class="box-content">
@@ -122,12 +123,12 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
                     echo'<a  class="wishlist" onClick="addWishList1('.$getProductsData1['id'].')" href="javascript:void(0)" >';
                     }
                         if(!isset($_SESSION['user_login_session_id'])) {
-                            echo'<img src="images/icons/wishlist.png" alt="">Wishlist';
+                            echo'<img src="images/icons/wishlist.png" alt=""> Wishlist';
                         } else { 
                             if($getCountWishLsit1 == 0) {
-                                echo'<img src="images/icons/wishlist.png" id="change_wishlist_img1_'.$getProductsData1['id'].'" alt="">Wishlist';
+                                echo'<img src="images/icons/wishlist.png" id="change_wishlist_img1_'.$getProductsData1['id'].'" alt=""> Wishlist';
                             } else { 
-                                echo'<img src="images/icons/1.png" alt="" id="change_wishlist_img1_'.$getProductsData1['id'].'">Wishlist';
+                                echo'<img src="images/icons/1.png" alt="" id="change_wishlist_img1_'.$getProductsData1['id'].'"> Wishlist';
                             }
                         }
                     echo'</a>
@@ -136,5 +137,15 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
         </div><!-- /.imagebox -->
     </div>';
     }
+}
+} else {
+    echo'<div class="col-lg-2 col-md-2">
+    </div>
+    <div class="col-lg-7 col-md-6">
+        <center><img src="images/thumb.png" style="padding-top:50px"></center><br>
+       <h3 style="text-align:center">Sorry..!! No Items Found.</h3>
+       <p style="text-align:center;margin:15px">Please click on the Continue Shopping button below for items</p>
+            <center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
+       </div>';
 }
 ?>
