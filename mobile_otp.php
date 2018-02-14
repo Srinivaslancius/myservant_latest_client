@@ -169,7 +169,7 @@ $('#verify_otp').on('click', function () {
             //Success
             alert("Your Registration Successfully Completed");
             if (checkout_key != '') {
-                window.location.href = 'select_timeslot.php';
+                window.location.href = 'add_address.php';
             } else if (offer_checkout_key != '') {
                 window.location.href = 'offerzone.php';
             } else {

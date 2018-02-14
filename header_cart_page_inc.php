@@ -63,7 +63,7 @@ echo '<a href="#" title="">
 			if(!isset($_SESSION['user_login_session_id'])) { 
 			echo'<a href="login.php?cart_id='.encryptPassword(1).'" class="check-out" title="">Checkout</a>';
 			} else { 
-			echo'<a href="select_timeslot.php" class="check-out" title="">Checkout</a>';
+			echo'<a href="add_address.php" class="check-out" title="">Checkout</a>';
 			}
 		echo'</div>';
 		} else {
