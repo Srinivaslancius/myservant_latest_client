@@ -172,6 +172,11 @@
     </script>
 
     <script type="text/javascript">
+
+    $( document ).ready(function() {        
+        $("#setRaioVal").val($(".offer_type").val());
+    });
+
     function getPrice(Price) {
         if($('#setRaioVal').val()!='') {
             if($('#setRaioVal').val() == 0){
