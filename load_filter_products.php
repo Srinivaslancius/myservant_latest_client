@@ -13,7 +13,8 @@ if($_SESSION['city_name'] == '') {
     $lkp_city_id = $getCities1['id'];
 }
 $getProducts = "SELECT * FROM grocery_products WHERE grocery_sub_category_id='$subCatId' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)  ORDER BY id DESC ";
-    $getProducts1 = $conn->query($getProducts);
+$getProducts1 = $conn->query($getProducts);
+if($getProducts1->num_rows > 0) {
 while($getProductsData = $getProducts1->fetch_assoc()) {
 $getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductsData['id']);
 $getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$getProductsData['id']);
@@ -93,5 +94,15 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
             </div>
         </div>';
     }
+}
+} else {
+    echo'<div class="col-lg-2 col-md-2">
+    </div>
+    <div class="col-lg-7 col-md-6">
+        <center><img src="images/thumb.png" style="padding-top:50px"></center><br>
+       <h3 style="text-align:center">Sorry..!! No Items Found.</h3>
+       <p style="text-align:center;margin:15px">Please click on the Continue Shopping button below for items</p>
+            <center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
+       </div>';
 }
 ?>
