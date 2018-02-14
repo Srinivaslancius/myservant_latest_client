@@ -113,7 +113,7 @@
 										<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { ?>
 										<div class="text_brdr">
 											<label class="container3">
-									  			<input type="radio" checked="checked" name="make_it_default">Address <?php echo $i;?>
+									  			<input type="radio" checked="checked" class="make_it_default" name="make_it_default" value="">Address <?php echo $i;?>
 								  				<span class="checkmarkR1"></span>
 											</label>
 											<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
@@ -259,7 +259,7 @@
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
-                                    <center><button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center>
+                                    <a href="shop_checkout.php?user_id="><center><button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center></a>
                                 </div><!-- /.btn-cart-totals -->
                         </div><!-- /.cart-totals -->
                     </div>
@@ -370,6 +370,10 @@
 			        $('#set_valid_msg').hide();
 			      }, 2000);
 			});
+			$(".make_it_default").click(function(){
+				var defaultvalue = $(".make_it_default").val();
+				alert();
+		    });
 			function getDistricts(val) { 
 		        $.ajax({
 		        type: "POST",

@@ -68,7 +68,7 @@ a.mask {
 								<div class="form-popup">
 									<form action="" class="subscribe-form" method="post" accept-charset="utf-8">
 										<div class="subscribe-content">
-											<input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  id="user_email" class="subscribe-email" placeholder="Your E-Mail">
+											<input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  id="user_email" class="subscribe-email" placeholder="Your E-Mail" required>
 											<button name="news_letter" type="submit"><img src="images/icons/right-2.png" alt=""></button>
 										</div>
 									</form>
