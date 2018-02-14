@@ -23,14 +23,14 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 		$conn->query($updateWalletAmount);
 
 		$description = "Money Debited for placing Order";
-		$updated_date = date('Y-m-d H:i:s', time() + 24 * 60 * 60);
-		$insertTransaction = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `debit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','$user_id','".$getWalletAmount['wallet_amount']."','$description','$payment_status','$updated_date')";
+		$updated_date = date('Y-m-d H:i:s');
+		$insertTransaction = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `debit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','$user_id','".$getWalletAmount['wallet_amount']."','$description','1','$updated_date')";
 		$conn->query($insertTransaction);
 	}
 
 	//Saving data into reward transactions
 	$transation_status = "Credited reward points at the time of placing order";
-	$order_date = date('Y-m-d H:i:s', time() + 24 * 60 * 60);
+	$order_date = date('Y-m-d H:i:s');
 	$reward_points = $getWalletAmount['reward_points'];
 	$reward_points = "INSERT INTO grocery_reward_transactions (`user_id`, `offerzone_purchase_id`, `transation_status`, `credit_reward_points`, `created_at`) VALUES ('$user_id','$order_id','$transation_status','$reward_points','$order_date')";
 	$conn->query($reward_points);
