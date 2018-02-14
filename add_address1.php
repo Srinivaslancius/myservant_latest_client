@@ -33,7 +33,7 @@
 		<!-- Preloader -->
 		<div class="preloader">
 			<div class="clear-loading loading-effect-2">
-				// <span></span>
+				 <span></span>
 			</div>
 		</div><!-- /.preloader -->
 		<section id="header" class="header">
@@ -110,13 +110,20 @@
 									</div>
 									<?php } else { ?>
 									<div class="">
-										<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { ?>
+										<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { 
+										$getState = getIndividualDetails('grocery_lkp_states','id',$getCustomerDeatils['lkp_state_id']);
+										$getDistrict = getIndividualDetails('grocery_lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
+										$getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
+										$getCity = getIndividualDetails('grocery_lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
+										$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
+										?>
 										<div class="text_brdr">
 											<label class="container3">
-									  			<input type="radio" checked="checked" class="make_it_default" name="make_it_default" value="<?php echo $getCustomerDeatils['make_it_default']; ?>">Address <?php echo $i;?>
+									  			<input type="radio" checked="checked" class="make_it_default" name="make_it_default" value="<?php echo $getCustomerDeatils['id']; ?>">Address <?php echo $i;?>
 								  				<span class="checkmarkR1"></span>
 											</label>
 											<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
+											<p><?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['area_name']; ?> - <?php echo $getPincode['pincode']; ?>,</p>
 											<p><?php echo $getCustomerDeatils['address']; ?>.</p>
 										</div>
 										<?php $i++; } ?>
@@ -260,7 +267,7 @@
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
-                                    <a href="shop_checkout.php?user_id=<?php echo $_SESSION['user_login_session_id']; ?>&address_status=default_address_status"><center><button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button></center></a>
+                                    <button type="button" class="checkout" title="" style="background-color: #fe6003;width:100%">Next</button>
                                 </div><!-- /.btn-cart-totals -->
                         </div><!-- /.cart-totals -->
                     </div>
@@ -420,5 +427,16 @@
 		    }
 
 		</script>
+
+		<script type="text/javascript">
+			//$( document ).ready(function() {  
+	        $('.checkout').click(function(){
+	        	var radioValue = $("input[name='make_it_default']:checked").val();
+		        window.location.href='shop_checkout.php?adid='+radioValue+'';
+		        return false;
+			});
+		    //});
+		</script>
+
 	</body>	
 </html>
