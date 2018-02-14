@@ -3562,6 +3562,10 @@ i, cite, em, var, address, dfn {
 	margin-bottom:10px;
 }
 @media screen and (max-width: 480px) and (min-width: 320px){
+	.prdct_lst li{
+	float: none !important;
+	}
+	
 	.imagebox .s_wdht {
     width: 128px !important;
     height: auto !important;
@@ -3967,7 +3971,7 @@ width:90%;
 	padding-top:20px !important;
 }
 .prdct_lst li{
-float: left !important;
+float: left;
 padding:3px !important;
 }
 .prdct_lst{
@@ -4050,9 +4054,9 @@ padding:3px !important;
     padding: 9px;
     font-size: 15px;
 }
-li img{
+/*li img{
 	float:left !important;
-}
+}*/
 .image1{
 	width: 400px !important;
 	height:300px !important;
