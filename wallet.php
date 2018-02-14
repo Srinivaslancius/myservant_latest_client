@@ -170,7 +170,6 @@
 							            			<th>MERCHANT NAME</th>
 							            			<th>CREDIT AMOUNT</th>
 							            			<th>STATUS</th>
-							            			<th>TRANSACTION ID</th>
 													<th>COMMENT</th>
 													<th>DATE</th>
 							            		  </tr>
@@ -185,7 +184,6 @@
 							            			<td><b><?php echo $getUserDetails['user_full_name']; ?></b></td>
 							            			<td>Rs. <?php echo $UpDateWallet2['credit_amnt']; ?> </td>
 													<td><?php echo $PaymentStatus['payment_status']; ?></td>
-													<td><?php echo $UpDateWallet2['transaction_id']; ?></td>
 													<td><?php echo $UpDateWallet2['description']; ?></td>
 													<td><?php echo $UpDateWallet2['updated_date']; ?></td>
 							            		  </tr>
@@ -220,7 +218,6 @@
 							            			<th>MERCHANT NAME</th>
 							            			<th>DEBIT AMOUNT</th>
 							            			<th>STATUS</th>
-							            			<th>TRANSACTION ID</th>
 													<th>COMMENT</th>
 													<th>DATE</th>
 							            		  </tr>
@@ -235,7 +232,6 @@
 							            			<td><b><?php echo $getUserDetails1['user_full_name']; ?></b></td>
 							            			<td>Rs. <?php echo $UpDateWallets2['debit_amnt']; ?> </td>
 													<td><?php echo $PaymentStatus1['payment_status']; ?></td>
-													<td><?php echo $UpDateWallets2['transaction_id']; ?></td>
 													<td><?php echo $UpDateWallets2['description']; ?></td>
 													<td><?php echo $UpDateWallets2['updated_date']; ?></td>
 							            		  </tr>
