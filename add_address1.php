@@ -110,13 +110,20 @@
 									</div>
 									<?php } else { ?>
 									<div class="">
-										<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { ?>
+										<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { 
+										$getState = getIndividualDetails('grocery_lkp_states','id',$getCustomerDeatils['lkp_state_id']);
+										$getDistrict = getIndividualDetails('grocery_lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
+										$getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
+										$getCity = getIndividualDetails('grocery_lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
+										$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
+										?>
 										<div class="text_brdr">
 											<label class="container3">
 									  			<input type="radio" checked="checked" class="make_it_default" name="make_it_default" value="<?php echo $getCustomerDeatils['make_it_default']; ?>">Address <?php echo $i;?>
 								  				<span class="checkmarkR1"></span>
 											</label>
 											<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
+											<p><?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['area_name']; ?> - <?php echo $getPincode['pincode']; ?>,</p>
 											<p><?php echo $getCustomerDeatils['address']; ?>.</p>
 										</div>
 										<?php $i++; } ?>

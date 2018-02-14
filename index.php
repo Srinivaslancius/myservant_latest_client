@@ -37,11 +37,7 @@ a.mask {
 .flat-imagebox.style1{
 	margin-bottom:-125px;
 }
-@media screen and (max-width: 480px) and (min-width: 320px){
-	.flat-imagebox.style1{
-	margin-bottom:30px;
-}
-}
+
 
 </style>
 <?php 
@@ -73,7 +69,7 @@ a.mask {
 								<div class="form-popup">
 									<form action="" class="subscribe-form" method="post" accept-charset="utf-8">
 										<div class="subscribe-content">
-											<input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  id="user_email" class="subscribe-email" placeholder="Your E-Mail" required>
+											<input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  id="user_email" class="subscribe-email" placeholder="Your E-Mail">
 											<button name="news_letter" type="submit"><img src="images/icons/right-2.png" alt=""></button>
 										</div>
 									</form>
