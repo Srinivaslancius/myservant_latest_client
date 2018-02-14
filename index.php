@@ -856,7 +856,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 					<div class="imagebox style4">
 						<div class="box-image">
 							<a href="results.php?brand_id=<?php echo $getBrandsData['id']; ?>" title="">
-								<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_brands_web_logo/'.$getBrandsData['web_logo'] ?>" alt="">
+								<img class="img_hw"src="<?php echo $base_url . 'grocery_admin/uploads/grocery_brands_web_logo/'.$getBrandsData['web_logo'] ?>" alt="">
 							</a>
 						</div><!-- /.box-image -->
 						
