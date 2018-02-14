@@ -469,9 +469,9 @@ width:100% !important;
 									</a>
 								</div><!-- /.box-image -->
 								<div class="box-content">
-									<div class="cat-name">
+									<!--<div class="cat-name">
 										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $categoryName['category_name']; ?></a>
-									</div>
+									</div>-->
 									<div class="product-name">
 										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $getProductName['product_name']; ?></a>
 									</div>
