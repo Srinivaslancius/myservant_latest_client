@@ -313,7 +313,7 @@
 								<input type="hidden" name="wallet_amount" id="wallet_amount" value="<?php echo $getWalletAmount['amount']; ?>">
 								<?php if($getWalletAmount['amount'] > 0) { ?>
 								<label class="containerw"> Wallet
-								  <input type="checkbox" checked="checked" class="wallet_check" value="1">
+								  <input type="checkbox" checked="checked" class="wallet_check" value="1" name="walletid">
 								  <span class="checkmarkw"></span>
 								</label>
 								<?php } ?>
