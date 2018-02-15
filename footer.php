@@ -54,7 +54,13 @@ if(isset($_POST['submit'])) {
 				</div>
 				<ul class="cat-list-ft">
 					<li>
-						<a href="javascript:void(0)" title="" id="myBtn">Refer a friend</a>
+						<?php if($_SESSION['user_login_session_id'] =='') { ?>
+							<a href="login.php" title="">
+								My Account
+							</a>
+						<?php } else { ?>
+							<a href="javascript:void(0)" title="" id="myBtn">Refer a friend</a>
+						<?php } ?>
 					</li>
 					<li>
 						<a href="about.php" title="">About us</a>

@@ -6,7 +6,12 @@ if(!empty($_POST['coupon_code']) && !empty($_POST['cart_total']))  {
 	//echo "<pre>"; print_r($_POST); die;
 	$coupon_code = $_POST['coupon_code'];
 	$cart_total = $_POST['cart_total'];
-	$getCouponType = getIndividualDetails('grocery_coupons','coupon_code',$coupon_code);
+
+	$checkCoupncnt = "SELECT * FROM grocery_coupons WHERE coupon_code='$coupon_code' ";
+	$numcOuponrows = $conn->query($checkCoupncnt);
+	if($numcOuponrows->num_rows > 0) {
+
+			$getCouponType = getIndividualDetails('grocery_coupons','coupon_code',$coupon_code);
 	$orderCoupons1 = "SELECT * FROM grocery_orders WHERE coupen_code = '$coupon_code' AND user_id = '".$_SESSION['user_login_session_id']."'";
 	$orderCoupons = $conn->query($orderCoupons1);
 	if($getCouponType['coupon_type'] == 1) {
@@ -60,5 +65,9 @@ if(!empty($_POST['coupon_code']) && !empty($_POST['cart_total']))  {
 			echo 0;
 		}
 	}
+} else {
+	echo 0;
+}
+	
 }
 ?>
