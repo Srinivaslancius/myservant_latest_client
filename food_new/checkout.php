@@ -168,8 +168,8 @@ if($_SESSION['user_login_session_id'] == '') {
     <div id="position">
         <div class="container">
             <ul>
-                <li><a href="#0">Home</a></li>
-                <li><a href="#0">Checkout</a></li>
+                <li><a href="index.php">Home</a></li>
+                Checkout
                 <li>Place Your Order</li>
             </ul>
             
