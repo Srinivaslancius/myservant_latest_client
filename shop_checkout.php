@@ -296,7 +296,7 @@
 						<div class="col-md-5">
 							<div class="cart-totals style2">						
 								<h3>Your Order</h3>
-								<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
+								<!--<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
 								?>
 								<input type="hidden" name="wallet_amount" id="wallet_amount" value="<?php echo $getWalletAmount['amount']; ?>">
 								<?php if($getWalletAmount['amount'] > 0) { ?>
@@ -306,7 +306,15 @@
 										<label for="wallet_id">Wallet</label>
 									</div>
 								</div>
-								<?php } ?>
+								<label class="containerw">Wallet
+							  <input type="radio" id="wallet_id" name="walletid" value="1" checked>
+							  <span class="checkmarkw"></span>
+							</label>
+								<?php } ?>-->
+								<label class="containerw"> Wallet
+								  <input type="checkbox" checked="checked">
+								  <span class="checkmarkw"></span>
+								</label>
 									<table class="product">
 										<thead>
 											<tr>
@@ -447,16 +455,14 @@
 											</div>
 										</div>
 									
-									<div class="btn-radio style2">
-										<div class="radio-info">
-											<input type="radio" id="cash-delivery" name="pay_mn" value="1" required>
-											<label for="cash-delivery">COD</label>
-										</div>
-										<div class="radio-info">
-											<input type="radio" id="online_payment" name="pay_mn" value="2" required>
-											<label for="online_payment">Online payment</label>
-										</div>
-									</div><!-- /.btn-radio style2 -->
+									<label class="containerw">COD
+								  <input type="radio" name="radio">
+								  <span class="checkmarkw"></span>
+								</label>
+								<label class="containerw">Online Payment
+								  <input type="radio" name="radio">
+								  <span class="checkmarkw"></span>
+								</label>
 									
 									<div class="checkbox">
 										<input type="checkbox" id="checked-order" name="checked-order" checked>
