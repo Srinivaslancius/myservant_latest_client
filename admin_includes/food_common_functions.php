@@ -57,7 +57,7 @@
 
     function getItemsByVendorId($table,$clause1,$value1) {
         global $conn;        
-        $sql="select * from `$table` WHERE `$clause1` = '$value1'";
+        $sql="select * from `$table` WHERE `$clause1` = '$value1' ORDER BY lkp_status_id, id DESC";
         $result = $conn->query($sql);        
         return $result;
     }

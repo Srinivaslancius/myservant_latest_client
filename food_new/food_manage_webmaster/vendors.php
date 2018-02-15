@@ -1,6 +1,6 @@
 <?php include_once 'admin_includes/main_header.php'; ?>
 <?php 
-$getVendors = "SELECT * FROM food_vendors ORDER BY id DESC ";
+$getVendors = "SELECT * FROM food_vendors ORDER BY lkp_status_id, id DESC ";
 $getVendorsData = $conn->query($getVendors);$i=1; ?>
      <div class="site-content">
         <div class="panel panel-default panel-table">
