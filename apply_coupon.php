@@ -11,9 +11,9 @@ if(!empty($_POST['coupon_code']) && !empty($_POST['cart_total']))  {
 	$numcOuponrows = $conn->query($checkCoupncnt);
 	if($numcOuponrows->num_rows > 0) {
 
-			$getCouponType = getIndividualDetails('grocery_coupons','coupon_code',$coupon_code);
-	$orderCoupons1 = "SELECT * FROM grocery_orders WHERE coupen_code = '$coupon_code' AND user_id = '".$_SESSION['user_login_session_id']."'";
-	$orderCoupons = $conn->query($orderCoupons1);
+		$getCouponType = getIndividualDetails('grocery_coupons','coupon_code',$coupon_code);
+		$orderCoupons1 = "SELECT * FROM grocery_orders WHERE coupen_code = '$coupon_code' AND user_id = '".$_SESSION['user_login_session_id']."'";
+		$orderCoupons = $conn->query($orderCoupons1);
 	if($getCouponType['coupon_type'] == 1) {
 		$sql="SELECT * FROM grocery_coupons WHERE coupon_code='$coupon_code' AND coupon_device_type = 1 AND (now() BETWEEN coupon_start_date AND coupon_end_date) AND lkp_status_id = 0 AND category_id IN (SELECT category_id FROM grocery_cart WHERE user_id = '".$_SESSION['user_login_session_id']."')";
 		$getCartTotal = "SELECT * FROM grocery_cart WHERE category_id = '".$getCouponType['category_id']."' AND user_id = '".$_SESSION['user_login_session_id']."'";

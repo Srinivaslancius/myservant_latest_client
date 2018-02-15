@@ -14,8 +14,8 @@
 	  cursor: pointer;
 	}
 	.close-icon {
-	border:1px solid transparent;
-	// background-color: transparent;
+	/*border:1px solid transparent;*/
+	background-color: transparent;
 	display: inline-block;
 	vertical-align: middle;
   outline: 0;
@@ -50,14 +50,15 @@
     display: block;
     width: 34px;
     height: 34px;
-    line-height: 54px;
+    line-height: 68px;
     text-align: center;
     pointer-events: auto;
 	 cursor: pointer;
+	 background-color:transparent;
 }
 .form-control:focus {
 	box-shadow: 0 0 15px 5px #b0e0ee;
-	border: 2px solid #bebede;
+	border: 2px solid transparent;
 }
 .order{
 	background-color:#fe6003 !important;
@@ -415,12 +416,12 @@
 											<?php } else if($getWalletAmount['amount'] > 0) { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total cart_total2">Rs . <?php echo round($orderTotal); ?></td>
+												<td class="price-total">Rs . <?php echo round($orderTotal); ?></td>
 											</tr>
 											<?php } else { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total cart_total2">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
+												<td class="price-total">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
 											</tr>
 											<?php } ?>
 											
@@ -628,7 +629,7 @@
 			           			$('#coupon_code').attr('readonly','true');
 			           			$(".apply_coupon").hide();
 			           			var data = value.split(",");
-				          		$('.cart_total2').html("Rs. "+Math.round(data[0]));
+				          		$('.price-total').html("Rs. "+Math.round(data[0]));
 					            $('#order_total').val(Math.round(data[0]));
 			               		$('#discount_price').show();
 			               		$('.close-icon').show();
@@ -651,7 +652,7 @@
 						$('#coupon_code').removeAttr("readonly");
 					    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
 					    $(".apply_coupon").show();
-					    $('.cart_total2').html("Rs. "+order_total);
+					    $('.price-total').html("Rs. "+order_total);
 						$('#order_total').val(order_total);
 						$('#discount_price').hide();
 						$('.close-icon').hide();
