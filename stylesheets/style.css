@@ -3880,14 +3880,14 @@ width:90%;
 	.box-image .ht_wd{
 		height:130px !important;
 	}
-	.products_lst1 li{
+	.products_lst li{
 		float: left !important;
     border-right: 1px solid #676767 !important;
     padding: 0 10px !important;
 	font-size:13px;
 	
 	}
-	.products_lst1 li a{
+	.products_lst li a{
 		color: #919191 !important;	
 	}
 	.products_lst{
@@ -3976,11 +3976,17 @@ width:90%;
 	border-top:1px dotted #ccc !important;
 	padding-top:20px !important;
 }
-.prdct_lst li{
-float: left;
+.prdct_lst1 li{
+float: left !important;
 padding:3px !important;
 }
-.prdct_lst{
+.prdct_lst li>img{
+float: left;
+}
+.prdct_lst li{
+float: left;
+}
+.prdct_lst1{
 	margin-bottom:15px !important
 	}
 .container3 {
