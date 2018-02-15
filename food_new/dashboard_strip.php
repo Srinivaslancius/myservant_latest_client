@@ -16,6 +16,6 @@ if($_SESSION['user_login_session_id'] == '') {
        <li><a href="wallet.php" class="<?php if($page_name == 'wallet.php') { echo "active"; } ?>"><i class="icon-wallet"></i> Wallet</a></li>
        <li><a href="update_profile.php" class="<?php if($page_name == 'update_profile.php') { echo "active"; } ?>"><i class="icon-address-book-alt"></i> Update Profile</a></li>
        <li><a href="rewards.php"><i class="icon-gift" class="<?php if($page_name == 'myaccount.php') { echo "active"; } ?>"></i> Reward Points</a></li>
-       <li><a href="change_password.php" class="<?php if($page_name == 'change_password.php') { echo "active"; } ?>"><i class="icon-lock-open-6"></i> Change Password</a></li>
+       <li><a href="change_password1.php" class="<?php if($page_name == 'change_password1.php') { echo "active"; } ?>"><i class="icon-lock-open-6"></i> Change Password</a></li>
        <li><a href="logout.php"><i class="icon-logout-3"></i> Logout</a></li>
 </ul>
