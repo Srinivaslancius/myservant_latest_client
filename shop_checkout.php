@@ -416,12 +416,12 @@
 											<?php } else if($getWalletAmount['amount'] > 0) { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total cart_total2">Rs . <?php echo round($orderTotal); ?></td>
+												<td class="price-total">Rs . <?php echo round($orderTotal); ?></td>
 											</tr>
 											<?php } else { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total cart_total2">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
+												<td class="price-total">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
 											</tr>
 											<?php } ?>
 											
@@ -629,7 +629,7 @@
 			           			$('#coupon_code').attr('readonly','true');
 			           			$(".apply_coupon").hide();
 			           			var data = value.split(",");
-				          		$('.cart_total2').html("Rs. "+Math.round(data[0]));
+				          		$('.price-total').html("Rs. "+Math.round(data[0]));
 					            $('#order_total').val(Math.round(data[0]));
 			               		$('#discount_price').show();
 			               		$('.close-icon').show();
@@ -652,7 +652,7 @@
 						$('#coupon_code').removeAttr("readonly");
 					    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
 					    $(".apply_coupon").show();
-					    $('.cart_total2').html("Rs. "+order_total);
+					    $('.price-total').html("Rs. "+order_total);
 						$('#order_total').val(order_total);
 						$('#discount_price').hide();
 						$('.close-icon').hide();

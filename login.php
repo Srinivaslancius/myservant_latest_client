@@ -189,7 +189,7 @@
 								</label>
 								</div>
 								<div class="col-sm-6">
-								<input type="text" name="text" placeholder="Referral code" class="two"required>
+								<input type="text" name="text" placeholder="Referral code" class="two">
 								</div>
 								</div>
 								</div>
