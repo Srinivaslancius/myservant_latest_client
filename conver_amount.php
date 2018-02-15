@@ -16,7 +16,7 @@ $transaction = "INSERT INTO `grocery_reward_transactions` (`user_id`,`transation
 $conn->query($transaction);
 //Insert User Wallet Transcation
 $description = "Credited Reward Amount Into Your Wallet";
-$sqlInwallet = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('$wallet_id','$user_id','$total_amount','$description','1','$updated_date')";
+$sqlInwallet = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('$wallet_id','$user_id','$conversion_amount','$description','1','$updated_date')";
 $conn->query($sqlInwallet);
 //Update Wallet Amount
 $sql = "UPDATE `user_wallet` SET amount = '$total_amount' WHERE user_id = '$user_id' ";
