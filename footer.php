@@ -1,15 +1,17 @@
 <?php $getSiteSettings1 = getAllDataWhere('grocery_site_settings','id','1'); 
 $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 <?php 
-if(isset($_POST['submit'])) {
+if(isset($_POST['refer'])) {
 	$refer_email = $_POST['refer_email'];
 	$user_id = $_SESSION['user_login_session_id'];
 	$getEmail1 = "SELECT * FROM users WHERE user_email LIKE '$refer_email'";
 	$getEmail = $conn->query($getEmail1);
 	$getEmailDeatils = $getEmail->fetch_assoc();
 	$created_at = date('Y-m-d H:i:s');
+	$string2 = str_shuffle('1234567890');
+	$referal_code = substr($string2,0,6);
 	if($getEmail->num_rows == 0) {
-		$sql = "INSERT INTO grocery_refer_a_friend (`refered_user_id`,`refer_email_id`,`created_at`) VALUES ('$user_id','$refer_email','$created_at')";
+		$sql = "INSERT INTO grocery_refer_a_friend (`refered_user_id`,`refer_email_id`,`referal_code`,`created_at`) VALUES ('$user_id','$refer_email','$referal_code','$created_at')";
   		$result = $conn->query($sql);
   		if($result === TRUE) {
 			$to = $refer_email;
@@ -23,7 +25,8 @@ if(isset($_POST['submit'])) {
 				<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
 				  	<h1 style="color:#fe6003">Welcome To Myservant</h1>
 			  		<p>A very special welcome to you <span style="color:#fe6003;">'.$refer_email.'</span></p>
-			  		<p>Your Friend <span style="color:#fe6003;">'.$getEmailDeatils['user_full_name'].' has reffered.</span>
+			  		<p>Your Friend <span style="color:#fe6003;">'.$getEmailDeatils['user_full_name'].'</span> has reffered.</p>
+			  		<p>Your Referal code <span style="color:#fe6003;">'.$referal_code.'</span>
 					<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
 					<p>Warm Regards,<br>The Myservant Team </p>
 				</article>
@@ -330,7 +333,7 @@ $(document).ready(function () {
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	                <button type="submit" name="submit" class="btn btn-primary">Refer</button>
+	                <button type="submit" name="refer" class="btn btn-primary">Refer</button>
 	            </div>
 	        </div>
 	    </form>
