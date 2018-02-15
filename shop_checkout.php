@@ -356,9 +356,9 @@
 									$orderTotalwithoutWallet = round($cartTotal+$service_tax+$getSiteSettingsData1['delivery_charges']);
 									?>
 									<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
-									<input type="hidden" id="order_total" name="order_total" value="<?php echo 0; ?>">
+									<input type="text" id="order_total" name="order_total" value="<?php echo 0; ?>">
 									<?php } else { ?>
-									<input type="hidden" id="order_total" name="order_total" value="<?php echo $orderTotal; ?>">
+									<input type="text" id="order_total" name="order_total" value="<?php echo $orderTotal; ?>">
 									<?php } ?>
 									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
@@ -575,10 +575,11 @@
 		    var totalWithoutWallet = $('#order_total_without_wallet').val();
 		    var totalWithWallet = $('#order_total').val();
 		    $(".wallet_check").click(function() {
+		    	var discount_amount = $('#discount_money').val();
 			    if($(this).is(":checked")) {
 			        $("#wallet").show();
-			        $('.price-total').html("Rs. "+totalWithWallet);
-			    	$('#order_total').val(totalWithWallet);
+			        $('.price-total').html("Rs. "+Math.round((totalWithWallet-discount_amount)));
+			    	$('#order_total').val(Math.round(totalWithWallet-discount_amount));
 			    	if(totalWithWallet == 0) {
 				    	$('.coupon,#discount_price').hide();
 				    	$('#discount_money').val('');
@@ -587,8 +588,8 @@
 				    }
 			    } else {
 			        $("#wallet").hide();
-			        $('.price-total').html("Rs. "+totalWithoutWallet);
-			    	$('#order_total').val(totalWithoutWallet);
+			        $('.price-total').html("Rs. "+Math.round((totalWithoutWallet-discount_amount)));
+			    	$('#order_total').val(Math.round(totalWithoutWallet-discount_amount));
 			    	if(totalWithoutWallet == 0) {
 				    	$('.coupon,#discount_price').hide();
 				    	$('#discount_money').val('');
@@ -597,27 +598,6 @@
 				    }
 			    }
 			});
-		    // if($('.wallet_check').is(":checked")) {
-		    // 	$('#wallet').hide();
-			   //  $('.price-total').html("Rs. "+totalWithoutWallet);
-			   //  $('#order_total').val(totalWithoutWallet);
-			   //  if(totalWithoutWallet == 0) {
-			   //  	$('.coupon,#discount_price').hide();
-			   //  	$('#discount_money').val('');
-			   //  } else {
-			   //  	$('.coupon').show();
-			   //  }
-		    // } else {
-		    // 	$('#wallet').show();
-			   //  $('.price-total').html("Rs. "+totalWithWallet);
-			   //  $('#order_total').val(totalWithWallet);
-			   //  if(totalWithWallet == 0) {
-			   //  	$('.coupon,#discount_price').hide();
-			   //  	$('#discount_money').val('');
-			   //  } else {
-			   //  	$('.coupon').show();
-			   //  }
-		    // }
 		    </script>
 
 			<script type="text/javascript">
