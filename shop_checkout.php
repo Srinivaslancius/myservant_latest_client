@@ -356,9 +356,9 @@
 									$orderTotalwithoutWallet = round($cartTotal+$service_tax+$getSiteSettingsData1['delivery_charges']);
 									?>
 									<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
-									<input type="text" id="order_total" name="order_total" value="<?php echo 0; ?>">
+									<input type="hidden" id="order_total" name="order_total" value="<?php echo 0; ?>">
 									<?php } else { ?>
-									<input type="text" id="order_total" name="order_total" value="<?php echo $orderTotal; ?>">
+									<input type="hidden" id="order_total" name="order_total" value="<?php echo $orderTotal; ?>">
 									<?php } ?>
 									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
