@@ -255,10 +255,10 @@
                            <h4 style="font-size:17px;text-indent:0px">Next Availble Time Slots</h4>
 						    <div class="row">
 												    <div class="col-sm-6">
-                                                   <p style="font-size:15px;margin-bottom:5px"><b>Date :</b> <span id="date"></span></p>
+                                                   <p style="font-size:14px;margin-bottom:5px"><b>Date :</b> <span id="date"></span></p>
 												  </div>
 												   <div class="col-sm-6">
-												   <p style="font-size:15px"><b>Time Slot :</b> <span id="time"></span></p>
+												   <p style="font-size:14px"><b>Time Slot :</b> <span id="time"></span></p>
 												  </div>
 												  </div>
 												   <div class="row">

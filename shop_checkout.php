@@ -14,8 +14,8 @@
 	  cursor: pointer;
 	}
 	.close-icon {
-	border:1px solid transparent;
-	// background-color: transparent;
+	/*border:1px solid transparent;*/
+	background-color: transparent;
 	display: inline-block;
 	vertical-align: middle;
   outline: 0;
@@ -50,14 +50,15 @@
     display: block;
     width: 34px;
     height: 34px;
-    line-height: 54px;
+    line-height: 68px;
     text-align: center;
     pointer-events: auto;
 	 cursor: pointer;
+	 background-color:transparent;
 }
 .form-control:focus {
 	box-shadow: 0 0 15px 5px #b0e0ee;
-	border: 2px solid #bebede;
+	border: 2px solid transparent;
 }
 .order{
 	background-color:#fe6003 !important;
