@@ -157,7 +157,7 @@
                 <li class="menu-subtitle">Orders</li>
                 <li  class="<?php if($page_name == 'food_orders.php' || $page_name == 'add_food_orders.php' || $page_name == 'edit_food_orders.php' || $page_name == 'assign_to.php' ) { echo "active"; } ?>"><a href="food_orders.php">Orders</a>
                 </li>
-                <li  class="<?php if($page_name == 'food_delivered_orders.php') { echo "active"; } ?>"><a href="food_delivered_orders.php">Delivred Orders</a>
+                <li  class="<?php if($page_name == 'food_delivered_orders.php') { echo "active"; } ?>"><a href="food_delivered_orders.php">Delivered Orders</a>
                 </li>
                 <li  class="<?php if($page_name == 'food_failed_orders.php' || $page_name == 'edit_food_failed_orders.php' ) { echo "active"; } ?>"><a href="food_failed_orders.php">Failed Orders</a>
                 </li>

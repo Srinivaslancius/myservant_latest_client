@@ -198,7 +198,7 @@ if (!isset($_POST['submit']))  {
                       ?>
                       <div class="form-group col-md-6">
                         <label for="form-control-2" class="control-label">Ingredient Price</label>                         
-                        <input type="text" class="form-control" id="form-control-2" name="ingredient_price[]" required onkeypress="return isNumberKey(event)" placeholder="Ingredient Price" value="<?php echo $row2['ingredient_price']; ?>">
+                        <input type="text" class="form-control" id="form-control-2" name="ingredient_price[]"  onkeypress="return isNumberKey(event)" placeholder="Ingredient Price"  value="<?php echo $row2['ingredient_price']; ?>">
                         <div class="help-block with-errors"></div>
                       </div>
 

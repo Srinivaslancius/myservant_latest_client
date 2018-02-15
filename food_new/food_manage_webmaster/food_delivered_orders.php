@@ -8,7 +8,7 @@ $GetFoodDeliveredOrders = "SELECT * FROM food_orders WHERE lkp_order_status_id=5
      <div class="site-content">
         <div class="panel panel-default panel-table">
           <div class="panel-heading">
-            <h3 class="m-t-0 m-b-5">Cancelled Orders</h3>
+            <h3 class="m-t-0 m-b-5">Delivered Orders</h3>
           </div>
           <div class="panel-body">
             <div class="table-responsive">
