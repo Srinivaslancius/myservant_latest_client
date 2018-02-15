@@ -276,7 +276,7 @@ $(function() {
         starLength: '5',
         initialValue: '',
         callbackFunctionName: 'processRating',
-        imageDirectory: 'img/',
+        imageDirectory: 'img',
         inputAttr: 'post_id'
     });
 });

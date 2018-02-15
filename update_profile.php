@@ -124,7 +124,7 @@
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" class="form-control" readonly pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="user_email" id="user_email" name="user_email" placeholder="Email" value="<?php echo $userData['user_email']; ?>" required">
+						<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="user_email" id="user_email" name="user_email" placeholder="Email" value="<?php echo $userData['user_email']; ?>" required">
             <span id="input_status" style="color: red;"></span>
 					</div>
 					 <div class="form-group">

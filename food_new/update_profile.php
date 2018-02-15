@@ -149,7 +149,7 @@
 					</div>
 					 <div class="form-group">
 						<label for="mobile">Mobile</label>
-						<input type="text" class="form-control valid_mobile_num" name="user_mobile" id="user_mobile" placeholder="Mobile" value="<?php echo $userData['user_mobile']; ?>" onkeyup="checkMobile();" required>
+						<input type="tel" class="form-control valid_mobile_num" name="user_mobile" id="user_mobile" placeholder="Mobile" value="<?php echo $userData['user_mobile']; ?>" maxlength="10" pattern="[0-9]{10}" onkeyup="checkMobile();" required>
             <span id="input_status1" style="color: red;"></span>
 					</div>
 					<div class="form-group">
@@ -182,12 +182,13 @@
 		 </footer>
 <!-- End Footer =============================================== -->
 
-<div class="layer"></div><!-- Mobile menu overlay mask -->
-
+<div class="layer"></div>
 <!-- Login modal -->   
 
 	<!-- End Search Menu -->
-    
+<!-- Mobile menu overlay mask -->
+
+
 <!-- COMMON SCRIPTS -->
 <script src="js/jquery-2.2.4.min.js"></script>
 <script src="js/common_scripts_min.js"></script>
@@ -201,7 +202,48 @@
       additionalMarginTop: 80
     });
 </script>
-
+<script type="text/javascript">
+      function checkMobile() {
+          var user_mobile = document.getElementById("user_mobile").value;
+          if (user_mobile){
+            $.ajax({
+            type: "POST",
+            url: "user_avail_check.php",
+            data: {
+              user_mobile:user_mobile,
+            },
+            success: function (result) {
+              if (result > 0){
+                $("#input_status1").html("<span style='color:red;'>Mobile Already Exist</span>");
+              $('#user_mobile').val('');
+              } else {
+                $('#input_status1').html("");
+              }       
+              }
+             });          
+          }
+      }
+      function checkEmail() {
+          var user_email = document.getElementById("user_email").value;
+          if (user_email){
+            $.ajax({
+            type: "POST",
+            url: "user_avail_check.php",
+            data: {
+              user_email:user_email,
+            },
+            success: function (result) {
+              if (result > 0){
+                $("#input_status").html("<span style='color:red;'>Email Already Exist</span>");
+              $('#user_email').val('');
+              } else {
+                $('#input_status').html("");
+              }     
+              }
+             });          
+          }
+      }
+    </script>
 
 </body>
 
