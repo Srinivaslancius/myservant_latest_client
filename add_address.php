@@ -106,7 +106,7 @@
 									<div class="row">
 									  	<div class="col-sm-3"></div>
 									  	<div class="col-sm-6">
-											<center><img src="images/myaddress.png">
+										`	<center><img src="images/myaddress.png">
 											<h4>No Addresses found in your account!</h4>
 											<p>Add a delivery address.</p>
 											<button class="button1">ADD ADDRESS</button></center>
@@ -585,11 +585,17 @@
 
 		<script type="text/javascript">
 	        $('.checkout').click(function(){
-	        	var radioValue = $("input[name='make_it_default']:checked").val();
-	        	var slotDate = $('.slot_date').val();
-	        	var slotTimings = $('#slot_timings').val();
-		        window.location.href='shop_checkout.php?adid='+radioValue+'&slot_date='+slotDate+'&slot_timings='+slotTimings+'';
-		        return false;
+	        	var numberOfCheckedRadio = $('input:radio:checked').length;
+	        	if(numberOfCheckedRadio == 0) {
+	        		alert("Please fill your address");
+	        		return false;
+	        	} else {
+	        		var radioValue = $("input[name='make_it_default']:checked").val();
+		        	var slotDate = $('.slot_date').val();
+		        	var slotTimings = $('#slot_timings').val();
+			        window.location.href='shop_checkout.php?adid='+radioValue+'&slot_date='+slotDate+'&slot_timings='+slotTimings+'';
+			        return false;
+	        	}	        	
 			});
 		</script>
 
