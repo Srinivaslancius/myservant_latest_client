@@ -429,8 +429,7 @@
 											//If reward status is yes
 											if($getRewardPointsdata['reward_status'] == 0) { ?>
 												<tr>
-													<td>Reward Points</td>
-													<td class="reward-points"><?php echo round($reward_points); ?></td>
+													<td>If you Complete this transaction then you will be awarded <b><?php echo round($reward_points); ?> points</b>.</td>
 												</tr>
 											<?php } ?>
 											
