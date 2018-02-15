@@ -72,7 +72,7 @@ if(mail($to, $subject, $message, $headers)) {
                 </div>
                 <form method="post" action="" name="newsletter_2">
                     <div class="form-group">
-                        <input name="email" type="email" value="" placeholder="Your mail" class="form-control" required>
+                        <input name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  placeholder="Your mail" class="form-control" required>
                     </div>
                     <input type="submit" value="Subscribe" class="btn_1" >
                 </form>

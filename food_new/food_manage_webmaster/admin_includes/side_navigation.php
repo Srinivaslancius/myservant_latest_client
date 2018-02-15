@@ -163,7 +163,7 @@
                 </li>
                 <li  class="<?php if($page_name == 'food_cancelled_orders.php' ) { echo "active"; } ?>"><a href="food_cancelled_orders.php">Cancelled Orders</a>
                 </li>
-                <li  class="<?php if($page_name == 'food_today_orders.php' ) { echo "active"; } ?>"><a href="food_today_orders.php">Today Orders</a>
+                <li  class="<?php if($page_name == 'food_today_orders.php' ) { echo "active"; } ?>"><a href="food_today_orders.php">Today's Orders</a>
                 </li> 
               </ul>
             </li>
