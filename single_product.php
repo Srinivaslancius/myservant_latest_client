@@ -464,7 +464,7 @@ width:100% !important;
 								?>
 							<div class="imagebox style4 bx_height">
 								<div class="box-image">
-									<a href="#" title="">
+									<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
 										<img class="s_wdht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
 									</a>
 								</div><!-- /.box-image -->
