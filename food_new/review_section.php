@@ -272,11 +272,12 @@
 <script type="text/javascript" src="js/rating.js"></script>
 <script language="javascript" type="text/javascript">
 $(function() {
+  alert();
     $("#rating_star").spaceo_rating_widget({
         starLength: '5',
         initialValue: '',
         callbackFunctionName: 'processRating',
-        imageDirectory: 'img/',
+        imageDirectory: 'img',
         inputAttr: 'post_id'
     });
 });
