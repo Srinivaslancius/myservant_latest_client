@@ -429,8 +429,7 @@
 											//If reward status is yes
 											if($getRewardPointsdata['reward_status'] == 0) { ?>
 												<tr>
-													<td>Reward Points</td>
-													<td class="reward-points"><?php echo round($reward_points); ?></td>
+													<td colspan="2" style="text-align:left">If you Complete this transaction then you will be awarded <b><?php echo round($reward_points); ?> points</b>.</td>
 												</tr>
 											<?php } ?>
 											
@@ -575,10 +574,11 @@
 		    var totalWithoutWallet = $('#order_total_without_wallet').val();
 		    var totalWithWallet = $('#order_total').val();
 		    $(".wallet_check").click(function() {
+		    	var discount_amount = $('#discount_money').val();
 			    if($(this).is(":checked")) {
 			        $("#wallet").show();
-			        $('.price-total').html("Rs. "+totalWithWallet);
-			    	$('#order_total').val(totalWithWallet);
+			        $('.price-total').html("Rs. "+Math.round((totalWithWallet-discount_amount)));
+			    	$('#order_total').val(Math.round(totalWithWallet-discount_amount));
 			    	if(totalWithWallet == 0) {
 				    	$('.coupon,#discount_price').hide();
 				    	$('#discount_money').val('');
@@ -587,8 +587,8 @@
 				    }
 			    } else {
 			        $("#wallet").hide();
-			        $('.price-total').html("Rs. "+totalWithoutWallet);
-			    	$('#order_total').val(totalWithoutWallet);
+			        $('.price-total').html("Rs. "+Math.round((totalWithoutWallet-discount_amount)));
+			    	$('#order_total').val(Math.round(totalWithoutWallet-discount_amount));
 			    	if(totalWithoutWallet == 0) {
 				    	$('.coupon,#discount_price').hide();
 				    	$('#discount_money').val('');
@@ -597,27 +597,6 @@
 				    }
 			    }
 			});
-		    // if($('.wallet_check').is(":checked")) {
-		    // 	$('#wallet').hide();
-			   //  $('.price-total').html("Rs. "+totalWithoutWallet);
-			   //  $('#order_total').val(totalWithoutWallet);
-			   //  if(totalWithoutWallet == 0) {
-			   //  	$('.coupon,#discount_price').hide();
-			   //  	$('#discount_money').val('');
-			   //  } else {
-			   //  	$('.coupon').show();
-			   //  }
-		    // } else {
-		    // 	$('#wallet').show();
-			   //  $('.price-total').html("Rs. "+totalWithWallet);
-			   //  $('#order_total').val(totalWithWallet);
-			   //  if(totalWithWallet == 0) {
-			   //  	$('.coupon,#discount_price').hide();
-			   //  	$('#discount_money').val('');
-			   //  } else {
-			   //  	$('.coupon').show();
-			   //  }
-		    // }
 		    </script>
 
 			<script type="text/javascript">
