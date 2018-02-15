@@ -1,5 +1,5 @@
 <?php include_once 'admin_includes/main_header.php'; error_reporting(0);?>
-<?php $getServicesNewletter = "SELECT * FROM food_newsletter ORDER BY id";
+<?php $getServicesNewletter = "SELECT * FROM food_newsletter ORDER BY id DESC";
 $getServicesNewletter1 = $conn->query($getServicesNewletter);
  $i=1; ?>
      <div class="site-content">
