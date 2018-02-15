@@ -200,6 +200,20 @@ $getVendorsData = $conn->query($getVendors);$i=1; ?>
                               <div class="col-sm-4">Status:</div>
                               <div class="col-sm-6"><?php if($row['lkp_status_id'] == 0 ){ echo "Active";} else{ echo "InActive";}?></div>
                             </div>
+                            <?php if($row['delivery_charges']!=0) {?>
+                            <div class="row">
+                              <div class="col-sm-2"></div>
+                              <div class="col-sm-4">Delivery Charges:</div>
+                              <div class="col-sm-6"><?php echo $row['delivery_charges'];?></div>
+                            </div>
+                            <?php }?>
+                            <?php if($row['admin_comission']!=0) {?>
+                            <div class="row">
+                              <div class="col-sm-2"></div>
+                              <div class="col-sm-4">Admin Commsion:</div>
+                              <div class="col-sm-6"><?php echo $row['admin_comission'];?></div>
+                            </div>
+                            <?php }?>
                             <div class="row">
                               <div class="col-sm-2"></div>
                               <div class="col-sm-4">Logo:</div>

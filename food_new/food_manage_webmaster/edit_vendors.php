@@ -30,8 +30,7 @@ if (!isset($_POST['submit'])) {
     $make_it_popular = $_POST['make_it_popular'];
     $created_at = date("Y-m-d h:i:s");   
 
-    $delivery_charges = $_POST['delivery_charges'];
-    $admin_comission = $_POST['admin_comission'];
+    
 
       if($_FILES["fileToUpload"]["name"]!='' || $_FILES["vendor_banner"]["name"]!='') {
 
@@ -60,17 +59,18 @@ if (!isset($_POST['submit'])) {
               
                 //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
               if ($vendorLogo!='' && $vendorBanner!='') {
+
                     move_uploaded_file($_FILES["vendor_banner"]["tmp_name"],$vendorbannerpath);
                     move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$vendorLogopath);
-                    $sql = "UPDATE food_vendors SET vendor_name = '$vendor_name', vendor_email = '$vendor_email', vendor_mobile = '$vendor_mobile',description = '$description', password = '$password',working_timings = '$working_timings',min_delivery_time = '$min_delivery_time',closing_time = '$closing_time',delivery_charges = '$delivery_charges',admin_comission = '$admin_comission',lkp_state_id = '$lkp_state_id',lkp_district_id = '$lkp_district_id',lkp_city_id = '$lkp_city_id',location = '$location', logo = '$logoname', vendor_banner = '$bannerName', restaurant_address = '$restaurant_address',pincode = '$pincode', delivery_type_id ='$delivery_type_id', meta_title ='$meta_title', meta_desc= '$meta_desc',meta_keywords='$meta_keywords' , restaurant_name ='$restaurant_name',cusine_type_id= '$cusine_type_id',make_it_popular= '$make_it_popular'  WHERE id = '$id' ";
+                    $sql = "UPDATE food_vendors SET vendor_name = '$vendor_name', vendor_email = '$vendor_email', vendor_mobile = '$vendor_mobile',description = '$description', password = '$password',working_timings = '$working_timings',min_delivery_time = '$min_delivery_time',closing_time = '$closing_time',lkp_state_id = '$lkp_state_id',lkp_district_id = '$lkp_district_id',lkp_city_id = '$lkp_city_id',location = '$location', vendor_banner = '$bannerName',logo='$logoname',restaurant_address = '$restaurant_address',pincode = '$pincode', delivery_type_id ='$delivery_type_id', meta_title ='$meta_title', meta_desc= '$meta_desc',meta_keywords='$meta_keywords' , restaurant_name ='$restaurant_name',make_it_popular= '$make_it_popular'  WHERE id = '$id' "; 
                       $conn->query($sql);
               } elseif($vendorBanner!='') {
                     move_uploaded_file($_FILES["vendor_banner"]["tmp_name"],$vendorbannerpath);
-                    $sql = "UPDATE food_vendors SET vendor_name = '$vendor_name', vendor_email = '$vendor_email', vendor_mobile = '$vendor_mobile',description = '$description', password = '$password',working_timings = '$working_timings',min_delivery_time = '$min_delivery_time',closing_time = '$closing_time',delivery_charges = '$delivery_charges',admin_comission = '$admin_comission',lkp_state_id = '$lkp_state_id',lkp_district_id = '$lkp_district_id',lkp_city_id = '$lkp_city_id',location = '$location', vendor_banner = '$bannerName',restaurant_address = '$restaurant_address',pincode = '$pincode', delivery_type_id ='$delivery_type_id', meta_title ='$meta_title', meta_desc= '$meta_desc',meta_keywords='$meta_keywords' , restaurant_name ='$restaurant_name',cusine_type_id= '$cusine_type_id',make_it_popular= '$make_it_popular'  WHERE id = '$id' "; 
+                     $sql = "UPDATE food_vendors SET vendor_name = '$vendor_name', vendor_email = '$vendor_email', vendor_mobile = '$vendor_mobile',description = '$description', password = '$password',working_timings = '$working_timings',min_delivery_time = '$min_delivery_time',closing_time = '$closing_time',lkp_state_id = '$lkp_state_id',lkp_district_id = '$lkp_district_id',lkp_city_id = '$lkp_city_id',location = '$location', vendor_banner = '$bannerName',restaurant_address = '$restaurant_address',pincode = '$pincode', delivery_type_id ='$delivery_type_id', meta_title ='$meta_title', meta_desc= '$meta_desc',meta_keywords='$meta_keywords' , restaurant_name ='$restaurant_name',make_it_popular= '$make_it_popular'  WHERE id = '$id' ";
                     $conn->query($sql);
               } elseif($vendorLogo!='') {
                     move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$vendorLogopath);
-                    $sql = "UPDATE food_vendors SET vendor_name = '$vendor_name', vendor_email = '$vendor_email', vendor_mobile = '$vendor_mobile',description = '$description', password = '$password',working_timings = '$working_timings',min_delivery_time = '$min_delivery_time',closing_time = '$closing_time',delivery_charges = '$delivery_charges',admin_comission = '$admin_comission',lkp_state_id = '$lkp_state_id',lkp_district_id = '$lkp_district_id',lkp_city_id = '$lkp_city_id',location = '$location', logo = '$logoname',restaurant_address = '$restaurant_address',pincode = '$pincode', delivery_type_id ='$delivery_type_id', meta_title ='$meta_title', meta_desc= '$meta_desc',meta_keywords='$meta_keywords' , restaurant_name ='$restaurant_name',make_it_popular= '$make_it_popular' WHERE id = '$id' "; 
+                    $sql = "UPDATE food_vendors SET vendor_name = '$vendor_name', vendor_email = '$vendor_email', vendor_mobile = '$vendor_mobile',description = '$description', password = '$password',working_timings = '$working_timings',min_delivery_time = '$min_delivery_time',closing_time = '$closing_time',lkp_state_id = '$lkp_state_id',lkp_district_id = '$lkp_district_id',lkp_city_id = '$lkp_city_id',location = '$location', logo = '$logoname',restaurant_address = '$restaurant_address',pincode = '$pincode', delivery_type_id ='$delivery_type_id', meta_title ='$meta_title', meta_desc= '$meta_desc',meta_keywords='$meta_keywords' , restaurant_name ='$restaurant_name',make_it_popular= '$make_it_popular' WHERE id = '$id' "; 
                     $conn->query($sql);
               }
             //echo $sql; die;
@@ -199,7 +199,7 @@ if (!isset($_POST['submit'])) {
                     <input class="time-pick form-control" type="text" name="closing_time" id="form-control-2" placeholder="Closing Time" data-error="Please enter Closing Time" required value="<?php echo $getVendorsData['closing_time'];?>">
                     <div class="help-block with-errors"></div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="form-control-2" class="control-label">Delivery charges</label>
                     <input type="text" name="delivery_charges" class="form-control valid_price_dec" id="form-control-2" placeholder="Delivery charges" data-error="Please enter Delivery charges" required  value="<?php echo $getVendorsData['delivery_charges'];?>">
                     <div class="help-block with-errors"></div>
@@ -208,7 +208,7 @@ if (!isset($_POST['submit'])) {
                     <label for="form-control-2" class="control-label">Admin Comission (%)</label>
                     <input type="text" name="admin_comission" class="form-control valid_price_dec" id="form-control-2" placeholder="Admin Comission (%)" data-error="Please enter Admin Comission (%)" required  value="<?php echo $getVendorsData['admin_comission'];?>">
                     <div class="help-block with-errors"></div>
-                  </div>
+                  </div> -->
                 
                    <?php $getStates = getAllDataWithStatus('lkp_states','0');?>
 
@@ -267,7 +267,7 @@ if (!isset($_POST['submit'])) {
                     <div class="help-block with-errors"></div>
                   </div>
                     <div class="form-group">
-                    <label for="form-control-4" class="control-label">logo</label>
+                    <label for="form-control-4" class="control-label">logo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <img src="<?php echo $base_url . 'uploads/food_vendor_logo/'.$getVendorsData['logo'] ?>"  id="output" height="100" width="100"/ >
                     <label class="btn btn-default file-upload-btn">
                         Choose file...
