@@ -90,7 +90,7 @@ $PaymentStatus = getIndividualDetails('lkp_payment_status','id',$getTransaction[
                   <td><?php echo $getTransaction['debit_amnt'] ?></td>
                   <?php $credit_amount += $getTransaction['credit_amnt'];
                       $debit_amount += $getTransaction['debit_amnt'];
-                      $total_amount = $credit_amount - $debit_amount ?>
+                       ?>
                 </tr>
                 <?php   $i++; } ?>
                 <tr>
@@ -114,7 +114,7 @@ $PaymentStatus = getIndividualDetails('lkp_payment_status','id',$getTransaction[
                 
                   </td>
                   <td>
-                    <b><?php echo $total_amount ?></b>
+                    <b><?php echo ($credit_amount - $debit_amount); ?></b>
                       
                 
                   </td>

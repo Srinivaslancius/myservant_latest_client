@@ -186,9 +186,14 @@
 		?>
 		<?php 
 		$id = $_SESSION['user_login_session_id'];
-		$getUserData = getAllDataWhere('users','id',$id);
-		$getUser = $getUserData->fetch_assoc();?>
-
+		$customer_id = $_GET['adid'];
+		$getCustomerDeatils = getIndividualDetails('grocery_add_address','id',$customer_id);
+		$getState = getIndividualDetails('grocery_lkp_states','id',$getCustomerDeatils['lkp_state_id']);
+		$getDistrict = getIndividualDetails('grocery_lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
+		$getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
+		$getCity = getIndividualDetails('grocery_lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
+		$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
+		?>
 		<section class="flat-checkout">
 			<form action="" method="post" accept-charset="utf-8">
 				<div class="container">
@@ -196,6 +201,11 @@
 						<div class="col-md-7">
 							<div class="box-checkout">
 								<div class="billing-fields">
+									<input type="hidden" name="lkp_state_id" value="<?php echo $getCustomerDeatils['lkp_state_id']; ?>">
+									<input type="hidden" name="lkp_district_id" value="<?php echo $getCustomerDeatils['lkp_district_id']; ?>">
+									<input type="hidden" name="lkp_pincode_id" value="<?php echo $getCustomerDeatils['lkp_pincode_id']; ?>">
+									<input type="hidden" name="lkp_city_id" value="<?php echo $getCustomerDeatils['lkp_city_id']; ?>">
+									<input type="hidden" name="lkp_area_id" value="<?php echo $getCustomerDeatils['lkp_location_id']; ?>">
 									<div class="fields-title">
 										<h3>Billing details</h3>
 										<span></span>
@@ -205,72 +215,57 @@
 										<div class="field-row">
 											<p class="field-one-half">
 												<label for="first-name">First Name *</label>
-												<input type="text" id="first-name" name="first_name" placeholder="First name" required value="<?php echo $getUser['user_full_name']; ?>">
+												<input type="text" id="first-name" class="form-control" name="first_name" placeholder="First name" value="<?php echo $getCustomerDeatils['first_name']; ?>" readonly>
 											</p>
 											<p class="field-one-half">
 												<label for="last-name">Last Name *</label>
-												<input type="text" id="last-name" name="last_name" placeholder="Last name" required>
+												<input type="text" id="last-name" class="form-control" name="last_name" placeholder="Last name" value="<?php echo $getCustomerDeatils['last_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label for="email-address">Email Address *</label>
-												<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required readonly>
+												<input type="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" value="<?php echo $getCustomerDeatils['email']; ?>" placeholder="Your email" readonly>
 											</p>
 											<p class="field-one-half">
 												<label for="phone">Phone *</label>
-												<input type="text" id="phone" name="mobile" maxlength="10" pattern="[0-9]{10}" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required>
+												<input type="text" id="phone" name="mobile" maxlength="10" pattern="[0-9]{10}" value="<?php echo $getCustomerDeatils['phone']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>State *</label>
-												<?php $getStates = getAllDataWithStatus('grocery_lkp_states','0'); ?>
-												<select name="lkp_state_id" id="lkp_state_id" onChange="getDistricts(this.value);" required>
-													<option value="">Select State</option>
-													<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
-													<option value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
-													<?php } ?>
-												</select>
+												<input type="text" class="form-control" id="lkp_state_id" placeholder="State" readonly value="<?php echo $getState['state_name']; ?>" >
 											</p>
 											<p class="field-one-half">
 												<label>District *</label>
-												<select name="lkp_district_id" id="lkp_district_id" placeholder="District" onChange="getCities(this.value);" required>
-													<option value="">Select District</option>
-												</select>
+												<input type="text" class="form-control" id="lkp_district_id" placeholder="District" value="<?php echo $getDistrict['district_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>City *</label>
-												<select name="lkp_city_id" id="lkp_city_id" placeholder="City" onChange="getPincodes(this.value);" required>
-													<option value="">Select City</option>
-												</select>
+												<input type="text" class="form-control" id="lkp_city_id" placeholder="City" value="<?php echo $getCity['city_name']; ?>" readonly>
 											</p>
 											<p class="field-one-half">
 												<label>Pincode *</label>
-												<select name="lkp_pincode_id" id="lkp_pincode_id" onChange="getAreas(this.value);" placeholder="Zip / Postal Code" required>
-													<option value="">Select Pincode</option>
-												</select>
+												<input type="text" class="form-control" id="lkp_pincode_id" placeholder="Zip / Postal Code" value="<?php echo $getPincode['pincode']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<p class="field-one-half">
 												<label>Location *</label>
-												<select name="lkp_area_id" id="lkp_area_id" placeholder="Location" required>
-											<option value="">Select Location</option>
-												</select>
+												<input type="text" class="form-control" id="lkp_area_id" placeholder="Location" value="<?php echo $getArea['area_name']; ?>" readonly>
 											</p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="field-row">
 											<label for="address">Address *</label>
-											<input type="text" id="address" name="address" placeholder="Street address">
-											<!-- <input type="text" id="address-2" name="address" placeholder="Apartment, suite, unit etc. (optional)"> -->
+											<input type="text" class="form-control" id="address" name="address" placeholder="Street address" value="<?php echo $getCustomerDeatils['address']; ?>" readonly>
 										</div>
 										<div class="field-row">
 											<label for="address">Order Note</label>
@@ -301,7 +296,7 @@
 						<div class="col-md-5">
 							<div class="cart-totals style2">						
 								<h3>Your Order</h3>
-								<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
+								<!--<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
 								?>
 								<input type="hidden" name="wallet_amount" id="wallet_amount" value="<?php echo $getWalletAmount['amount']; ?>">
 								<?php if($getWalletAmount['amount'] > 0) { ?>
@@ -311,7 +306,15 @@
 										<label for="wallet_id">Wallet</label>
 									</div>
 								</div>
-								<?php } ?>
+								<label class="containerw">Wallet
+							  <input type="radio" id="wallet_id" name="walletid" value="1" checked>
+							  <span class="checkmarkw"></span>
+							</label>
+								<?php } ?>-->
+								<label class="containerw"> Wallet
+								  <input type="checkbox" checked="checked">
+								  <span class="checkmarkw"></span>
+								</label>
 									<table class="product">
 										<thead>
 											<tr>
@@ -359,8 +362,8 @@
 									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
 									<input type="hidden" name="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>" id="delivery_charges">
-									<input type="hidden" name="delivery_slot_date" value="<?php echo $_POST['slot_date']; ?>">
-									<input type="hidden" name="delivery_time" value="<?php echo $_POST['slot_timings']; ?>">
+									<input type="hidden" name="delivery_slot_date" value="<?php echo $_REQUEST['slot_date']; ?>">
+									<input type="hidden" name="delivery_time" value="<?php echo $_REQUEST['slot_timings']; ?>">
 									<input type="hidden" name="discount_money" value="0" id="discount_money">
 									<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
 									<input type="hidden" name="coupon_id" value="" id="coupon_id">
@@ -383,11 +386,11 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td>Delivery Date</td>
-	                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_POST['slot_date']); ?></td>
+	                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_REQUEST['slot_date']); ?></td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td>Delivery Slot</td>
-	                                            <td class="subtotal" id="serviceTax1"><?php echo $_POST['slot_timings']; ?></td>
+	                                            <td class="subtotal" id="serviceTax1"><?php echo $_REQUEST['slot_timings']; ?></td>
 	                                        </tr>
 	                                        <tr>
 												<td>Order Total</td>
@@ -433,7 +436,7 @@
 										</tbody>
 									</table>
 									
-										<div class="form-group">
+										<div class="form-group coupon">
 											<div class="row">
 												<div class="col-md-8 col-sm-8 col-xs-8">
 													<div class="field-group has-feedback has-clear twof" style="width:118%;margin-top:4px">
@@ -452,16 +455,14 @@
 											</div>
 										</div>
 									
-									<div class="btn-radio style2">
-										<div class="radio-info">
-											<input type="radio" id="cash-delivery" name="pay_mn" value="1" required>
-											<label for="cash-delivery">COD</label>
-										</div>
-										<div class="radio-info">
-											<input type="radio" id="online_payment" name="pay_mn" value="2" required>
-											<label for="online_payment">Online payment</label>
-										</div>
-									</div><!-- /.btn-radio style2 -->
+									<label class="containerw">COD
+								  <input type="radio" name="radio">
+								  <span class="checkmarkw"></span>
+								</label>
+								<label class="containerw">Online Payment
+								  <input type="radio" name="radio">
+								  <span class="checkmarkw"></span>
+								</label>
 									
 									<div class="checkbox">
 										<input type="checkbox" id="checked-order" name="checked-order" checked>
@@ -564,46 +565,13 @@
 
 		<script type="text/javascript" src="javascript/main.js"></script>
 		<script type="text/javascript">
-		    function getDistricts(val) { 
-		        $.ajax({
-		        type: "POST",
-		        url: "grocery_admin/get_districts.php",
-		        data:'lkp_state_id='+val,
-		        success: function(data){
-		            $("#lkp_district_id").html(data);
-		        }
-		        });
-		    }
-		    function getCities(val) { 
-		        $.ajax({
-		        type: "POST",
-		        url: "grocery_admin/get_cities.php",
-		        data:'lkp_district_id='+val,
-		        success: function(data){
-		            $("#lkp_city_id").html(data);
-		        }
-		        });
-		    }
-		    function getPincodes(val) { 
-		        $.ajax({
-		        type: "POST",
-		        url: "grocery_admin/get_pincodes.php",
-		        data:'lkp_city_id='+val,
-		        success: function(data){
-		            $("#lkp_pincode_id").html(data);
-		        }
-		        });
-		    }
-		    function getAreas(val) { 
-		        $.ajax({
-		        type: "POST",
-		        url: "grocery_admin/get_locations.php",
-		        data:'lkp_pincode_id='+val,
-		        success: function(data){
-		            $("#lkp_area_id").html(data);
-		        }
-		        });
-		    }
+			$( document ).ready(function() {
+				if($('#order_total').val() == 0){
+			    	$('.coupon,#discount_price').hide();
+			    }
+			});
+		</script>
+		<script type="text/javascript">
 		    var totalWithoutWallet = $('#order_total_without_wallet').val();
 		    var totalWithWallet = $('#order_total').val();
 		    $('.radio-button').on("click", function(event){
@@ -611,12 +579,24 @@
 			    $('#wallet').hide();
 			    $('.price-total').html("Rs. "+totalWithoutWallet);
 			    $('#order_total').val(totalWithoutWallet);
+			    if(totalWithoutWallet == 0) {
+			    	$('.coupon,#discount_price').hide();
+			    	$('#discount_money').val('');
+			    } else {
+			    	$('.coupon').show();
+			    }
 			});
 			$('.radio-button').on("change", function(event){
 			    $(this).prop('checked', true);
 			    $('#wallet').show();
 			    $('.price-total').html("Rs. "+totalWithWallet);
 			    $('#order_total').val(totalWithWallet);
+			    if(totalWithWallet == 0) {
+			    	$('.coupon,#discount_price').hide();
+			    	$('#discount_money').val('');
+			    } else {
+			    	$('.coupon').show();
+			    }
 			});
 		    </script>
 

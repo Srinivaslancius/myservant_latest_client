@@ -87,7 +87,7 @@
 											<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
 											<a href="login.php?cart_id=<?php echo encryptPassword(1);?>" class="check-out" title="">Checkout</a>
 											<?php } else { ?>
-											<a href="select_timeslot.php" class="check-out" title="">Checkout</a>
+											<a href="add_address.php" class="check-out" title="">Checkout</a>
 											<?php } ?>
 										</div>
 										<?php } else { ?>

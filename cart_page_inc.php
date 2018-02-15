@@ -138,7 +138,7 @@ echo'<div class="row">
 	                if(!isset($_SESSION['user_login_session_id'])) {
 	                	echo'<a href="login.php?cart_id='.encryptPassword(1).'" class="update" style="background-color:#2d2d2d !important;">Proceed To Checkout</a>';
 	                } else {
-	                	echo'<a href="shop_checkout.php" class="update" style="background-color:#2d2d2d !important;">Proceed To Checkout</a>';
+	                	echo'<a href="add_address.php" class="update" style="background-color:#2d2d2d !important;">Proceed To Checkout</a>';
 	                } 
 	                echo'<a href="index.php" class="checkout" title="">Continue Shopping</a>
 	            </div>

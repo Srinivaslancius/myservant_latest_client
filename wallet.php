@@ -127,7 +127,7 @@
             			$amount = $getwalletAmountDetails['amount'];
             		}
             		?> 
-            		<form method="post">       		
+            		<form method="post" autocomplete="off">       		
             		<tbody>
             		  <tr>
             			<td><img src="images/dashboard/wallet.png"></td>
@@ -149,14 +149,14 @@
 						<div class="product-wrap">
 							<div class="product-tab style1">
 								<ul class="tab-list">
-									<li class="active">Credit Amount</li>
-									<li>Debit Amount</li>
-									
+									<li class="active">Credit Transcations</li>
+									<li>Debit Transcations</li>
+									<li>Failed Transcations</li>
 								</ul><!-- /.tab-list -->
 							</div><!-- /.product-tab style1 -->
 							<?php 
 		            		$uid = $_SESSION["user_login_session_id"];
-		            		$UpdateWallet = "SELECT * FROM user_wallet_transactions WHERE user_id='$uid' AND credit_amnt!=0";
+		            		$UpdateWallet = "SELECT * FROM user_wallet_transactions WHERE lkp_payment_status_id = 1 AND user_id='$uid' AND credit_amnt!=0";
 		            		$UpDateWallet1 = $conn->query($UpdateWallet);
 		            		?>
 							<div class="tab-item">
@@ -205,7 +205,7 @@
 								</div>
 								<?php 
 			            		$uid = $_SESSION["user_login_session_id"];
-			            		$UpdateWallets = "SELECT * FROM user_wallet_transactions WHERE user_id='$uid' AND debit_amnt!=0";
+			            		$UpdateWallets = "SELECT * FROM user_wallet_transactions WHERE lkp_payment_status_id = 1 AND user_id='$uid' AND debit_amnt!=0";
 			            		$UpDateWallets1 = $conn->query($UpdateWallets);
 			            		?>
 								<div class="row">
@@ -231,6 +231,60 @@
 							            		  <tr style="border-bottom:1px solid #ddd">
 							            			<td><b><?php echo $getUserDetails1['user_full_name']; ?></b></td>
 							            			<td>Rs. <?php echo $UpDateWallets2['debit_amnt']; ?> </td>
+													<td><?php echo $PaymentStatus1['payment_status']; ?></td>
+													<td><?php echo $UpDateWallets2['description']; ?></td>
+													<td><?php echo $UpDateWallets2['updated_date']; ?></td>
+							            		  </tr>
+											       <?php }?>
+												  <!--<tr>
+							            			<td><b>Cashback Received</b><br>paytm for Order #CASH-676607643 Paytm Cash Txn ID 17376641204 2018-01-09 09:39:13 PM</td>
+							            			<td></td>
+							            			<td>Rs : 5/-</td>
+													<td>SUCCESS</td>
+													<td>Order #4419408824 of Reacharge of Airtel Mobile 730214...(Promocode:GETS)</td>
+							            		  </tr>-->
+							            		</tbody>
+        	     							</table>
+										</div><!-- /.col-md-6 -->
+										<?php } else { ?>
+					            		  <h3 style="text-align:center">No Transactions Found.</h3>
+								       	<?php }?>
+									</div><!-- /.row -->
+								</div><!-- /.tab-item -->
+								<?php 
+			            		$uid = $_SESSION["user_login_session_id"];
+			            		$UpdateWallets = "SELECT * FROM user_wallet_transactions WHERE lkp_payment_status_id != 1 AND user_id='$uid'";
+			            		$UpDateWallets1 = $conn->query($UpdateWallets);
+			            		?>
+								<div class="row">
+									<div class="col-md-12">
+										<?php if($UpDateWallets1->num_rows > 0) {
+										?>
+										 <div class="table-responsive">
+											<table class="table" style="border:1px solid #ddd;width:95%;margin-left:20px">
+							            		<thead>
+							            		  <tr>
+							            			<th>MERCHANT NAME</th>
+							            			<th>AMOUNT</th>
+							            			<th>STATUS</th>
+													<th>COMMENT</th>
+													<th>DATE</th>
+							            		  </tr>
+							            		</thead>
+							            		<tbody>
+							            		<?php 
+							            		while($UpDateWallets2 = $UpDateWallets1->fetch_assoc()) {
+							            		if($UpDateWallets2['credit_amnt'] != '0' && $UpDateWallets2['credit_amnt'] != '0') {
+													$amount = $UpDateWallets2['credit_amnt'];
+												} elseif($UpDateWallets2['debit_amnt'] != '0' && $UpDateWallets2['debit_amnt'] != '0') {
+													$amount = $UpDateWallets2['debit_amnt'];
+												}
+							            		$getUserDetails1 = getIndividualDetails('users','id',$UpDateWallets2['user_id']);
+							            		$PaymentStatus1 = getIndividualDetails('lkp_payment_status','id',$UpDateWallets2['lkp_payment_status_id']);
+							            		?>
+							            		  <tr style="border-bottom:1px solid #ddd">
+							            			<td><b><?php echo $getUserDetails1['user_full_name']; ?></b></td>
+							            			<td>Rs. <?php echo $amount; ?> </td>
 													<td><?php echo $PaymentStatus1['payment_status']; ?></td>
 													<td><?php echo $UpDateWallets2['description']; ?></td>
 													<td><?php echo $UpDateWallets2['updated_date']; ?></td>

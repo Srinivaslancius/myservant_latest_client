@@ -3562,6 +3562,10 @@ i, cite, em, var, address, dfn {
 	margin-bottom:10px;
 }
 @media screen and (max-width: 480px) and (min-width: 320px){
+	.prdct_lst li{
+	float: none !important;
+	}
+	
 	.imagebox .s_wdht {
     width: 128px !important;
     height: auto !important;
@@ -3642,12 +3646,18 @@ width:90%;
 	#div1{
 width:90%;
 	}
+	.ftr_img{
+		margin-bottom:0px !important;
+	}
 	}
 	@media screen and (max-width: 640px) and (min-width: 360px){
 		.box-cart .inner-box .dropdown-box {
     right: -110px !important;
    
 }
+.ftr_img{
+		margin-bottom:0px !important;
+	}
 .form-control-feedback {
     right: 99px !important;
 }
@@ -3667,7 +3677,11 @@ width:100%;
 width:90%;
 	}
 	}
-	@media screen and (max-width: 1024px) and (min-width: 768px){
+	@media screen and (max-width: 1024px) and (min-width: 768px)
+	{
+		select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], input[type="email"]{
+			padding: 8px 15px 8px 15px;
+		}
 		.cities {
 			right:-30px;
 		}
@@ -3843,6 +3857,10 @@ width:90%;
 		width:153px !important;
 		height:122px !important;
 	}
+	.box-image .img_hw{
+		width:128px;
+		height:102px;
+	}
 	.imagebox .s_wdht{
 		width:128px;
 		height:130px;
@@ -3959,7 +3977,7 @@ width:90%;
 	padding-top:20px !important;
 }
 .prdct_lst li{
-float: left !important;
+float: left;
 padding:3px !important;
 }
 .prdct_lst{
@@ -4003,7 +4021,7 @@ padding:3px !important;
 
 /* When the radio button is checked, add a blue background */
 .container3 input:checked ~ .checkmarkR1 {
-    background-color: #2196F3;
+    background-color: #f28b00;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -4042,10 +4060,73 @@ padding:3px !important;
     padding: 9px;
     font-size: 15px;
 }
-li img{
+/*li img{
 	float:left !important;
-}
+}*/
 .image1{
 	width: 400px !important;
 	height:300px !important;
+}
+/* Shop checkout radio button */
+.containerw {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.containerw input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmarkw {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.containerw:hover input ~ .checkmarkw {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.containerw input:checked ~ .checkmarkw {
+    background-color: #f28b00;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmarkw:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.containerw input:checked ~ .checkmarkw:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.containerw .checkmarkw:after {
+ 	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
 }
