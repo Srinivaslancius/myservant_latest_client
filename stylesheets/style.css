@@ -3982,6 +3982,7 @@ padding:3px !important;
 }
 .prdct_lst li>img{
 float: left;
+margin-right:5px;
 }
 .prdct_lst li{
 float: left;
@@ -4080,7 +4081,7 @@ float: left;
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 15px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

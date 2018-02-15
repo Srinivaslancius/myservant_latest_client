@@ -11,6 +11,7 @@ border-radius:10px;
 padding:20px;
 z-index:9999;
 position:absolute;
+margin-top:320px;
 }
 .flat-banner-box {
     padding: 25px 0 10px;
@@ -248,15 +249,14 @@ $tagNames = $conn->query($getTags);
 									<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
 										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
 										<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-									</div>
+										</div>
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
 										<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
 												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImage['image']; ?>" alt="">
-											</a>
-											
-										</div><!-- /.box-image -->
+											</a>											
+										</div><!-- /.box-image -->										
 										<div class="box-content">
 											<!--<div class="cat-name">
 												<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title=""><?php echo $categoryName['category_name']; ?></a>
@@ -283,8 +283,8 @@ $tagNames = $conn->query($getTags);
 													<span class="regular"><?php echo 'Rs : ' . $getPrc1['mrp_price']; ?></span>
 												<?php } ?>
 											</div>
-										</div><!-- /.box-content -->
-										<div class="box-bottom">
+										</div><!-- /.box-content -->										
+										<div class="box-bottom">										
 											<div class="row">
 												<div class="col-sm-5 col-xs-12">
 													<div class="quanlity">
@@ -298,7 +298,7 @@ $tagNames = $conn->query($getTags);
 														</a>
 													</div>
 												</div>
-											</div>
+											</div>										
 											<div class="compare-wishlist">
 												<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails['id']; ?>)" href="javascript:void(0)" <?php } ?> >
 													<?php if(!isset($_SESSION['user_login_session_id'])) { 
@@ -317,7 +317,9 @@ $tagNames = $conn->query($getTags);
 												</a>
 											</div>
 										</div><!-- /.box-bottom -->
+										
 									</div><!-- /.imagebox -->
+									
 								</div>	
 								
 							</div><!-- /.col-sm-6 col-lg-3 -->
