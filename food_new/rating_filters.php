@@ -49,5 +49,24 @@ if(isset($_POST['ratings']) && $_POST['ratings']!='' ) {
         </div><!-- End strip_list-->
     </div>
     <?php } } else { ?>
-    <div>No Data Found</div>
+	
+	 <div class="strip_list wow fadeIn" data-wow-delay="0.1s" style="min-height:519px;padding-top:100px">
+    <div class="desc">
+	<div class="row">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-6">
+	<center><i class="icon-down-hand" style="font-size:100px;color:#FE6003"></i></center><br>
+   <center><h3>Sorry..!! No Items Found</h3></center>
+   <center><h4>Please click on the button below for items</h4></center><br>
+   <div class="go_to">      
+            <center><a href="index.php" class="btn_1">Go To Home</a></center>      
+    </div>
+   </div>
+   <div class="col-sm-4">
+	</div>
+   </div>
+	  </div>
+	  </div>
+	 
     <?php } ?>
