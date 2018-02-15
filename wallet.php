@@ -127,7 +127,7 @@
             			$amount = $getwalletAmountDetails['amount'];
             		}
             		?> 
-            		<form method="post">       		
+            		<form method="post" autocomplete="off">       		
             		<tbody>
             		  <tr>
             			<td><img src="images/dashboard/wallet.png"></td>
