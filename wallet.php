@@ -149,8 +149,8 @@
 						<div class="product-wrap">
 							<div class="product-tab style1">
 								<ul class="tab-list">
-									<li class="active">Credit Amount</li>
-									<li>Debit Amount</li>
+									<li class="active">Credit Transcations</li>
+									<li>Debit Transcations</li>
 									<li>Failed Transcations</li>
 								</ul><!-- /.tab-list -->
 							</div><!-- /.product-tab style1 -->
