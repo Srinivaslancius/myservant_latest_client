@@ -5580,7 +5580,7 @@ input[type="checkbox"]:checked + label:before {
 }
 
 .cart-totals table tr td.price-total {
-	font-size:24px;
+	font-size: 20px;
 	font-weight:500;
 	font-family:'BloggerSans';
 	color:#f28b00;
