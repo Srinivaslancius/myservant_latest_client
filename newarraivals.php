@@ -10,6 +10,7 @@ border-radius:10px;
 padding:20px;
 z-index:9999;
 position:absolute;
+margin-top:330px;
 }
 #div2{
 width:400px;
