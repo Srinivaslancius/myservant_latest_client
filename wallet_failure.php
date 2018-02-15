@@ -15,7 +15,13 @@
 			</div><!-- /.header-bottom -->
 		</section><!-- /#header -->
 
-		
+		<?php
+		header( "refresh:10;url=index.php" );
+		if($_SESSION['user_login_session_id'] == '') {
+		    header ("Location: logout.php");
+		} 
+		?>
+
 		<section class="flat-error">
 			<div class="container">
 				<div class="row">
@@ -25,9 +31,9 @@
 						<div class="wrap-error center">
 							<div class="header-error" style="margin-bottom:30px">
 								<img src="images/thumb.png">
-								<p style="font-size:20px;margin:10px 0px">Sorry, your booking could not be completed !</p>
+								<p style="font-size:20px;margin:10px 0px">Sorry, your transaction could not be completed !</p>
 								<p style="color:#FE6003;margin-bottom:10px;font-size:15px">The payment for its transaction has failed</p>
-								<p style="margin-bottom:15px">If your payment for an order has failed, please check it is not due to the following situations: Card security code failed. Please note that an incorrect card security code could cause payment failure.</p>
+								<p style="margin-bottom:15px">If your payment for wallet has failed, please check it is not due to the following situations: Card security code failed. Please note that an incorrect card security code could cause payment failure.</p>
 								<center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Go To Home</button></a></center>
 							</div><!-- /.header-error -->
 							

@@ -269,7 +269,7 @@
 										</div>
 										<div class="field-row">
 											<label for="address">Order Note</label>
-											<textarea style="height:150px" placeholder="Order Note...." name="order_note" id="order_note" required></textarea>
+											<textarea style="height:150px" placeholder="Order Note...." name="order_note" id="order_note"></textarea>
 										</div>
 										<!-- <div class="checkbox">
 											<input type="checkbox" id="create-account" name="create-account" checked>
