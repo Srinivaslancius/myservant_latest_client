@@ -91,7 +91,43 @@
             
         </div>
     </div><!-- Position -->
+    <?php 
+    if($_SESSION['user_login_session_id'] == '') {
+        header ("Location: logout.php");
+    }
+    if(isset($_POST["submit"]) && $_POST["submit"]!="") {
+        $uid = $_SESSION["user_login_session_id"];
+        $changePass = "SELECT * FROM users WHERE id = '$uid'";
+        $changePassword = $conn->query($changePass);
+        $getUserPwd = $changePassword->fetch_assoc();
 
+        if($_POST['currentPassword'] == decryptPassword($getUserPwd['user_password'])){
+            $encNewPass = encryptPassword($_POST["confirmPassword"]);
+            $sql1 = "UPDATE users SET user_password = '$encNewPass' WHERE  id = '$uid'";
+            if($conn->query($sql1) === TRUE){             
+                echo "<script type='text/javascript'>window.location='change_password1.php?succ=log-success'</script>";
+            }               
+        } else {               
+           header('Location: change_password1.php?err=log-fail');
+        }
+    }
+?>
+
+
+<?php if(isset($_GET['succ']) && $_GET['succ'] == 'log-success' ) {  ?>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6 alert alert-success" style="top:10px; display:block">
+                  <strong>Success!</strong> Your Password Changed Successfully.
+                </div>
+                <div class="col-sm-3"></div>
+            <?php }?>
+        <?php if(isset($_GET['err']) && $_GET['err'] == 'log-fail' ) {  ?>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6 alert alert-danger" style="top:10px; display:block">
+                  <strong>Failed!</strong> Current Password Is Not Correct.
+                </div>
+                <div class="col-sm-3"></div>
+        <?php }?>
 <!-- Content ================================================== -->
 <div class="container margin_60_35">
 	<div class="row">
@@ -179,7 +215,19 @@
       additionalMarginTop: 80
     });
 </script>
-
+<script type="text/javascript">
+            function checkPasswordMatch() {
+                var password = $("#user_password").val();
+                var confirmPassword = $("#confirm_password").val();
+                if (confirmPassword != password) {
+                    $("#divCheckPasswordMatch").html("Passwords do not match!");
+                    $("#user_password").val("");
+                    $("#confirm_password").val("");
+                } else {
+                    $("#divCheckPasswordMatch").html("");
+                }
+            }
+        </script>
 
 </body>
 
