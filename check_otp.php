@@ -39,6 +39,11 @@ if(!empty($_POST['user_mobile']) && !empty($_POST['mobile_otp']))  {
         $updateCart = "UPDATE `grocery_cart` SET user_id='".$_SESSION['user_login_session_id']."' WHERE session_cart_id = '".$_SESSION['CART_TEMP_RANDOM']."'";
 		$updateCart1 = $conn->query($updateCart);
 
+		//Changing status of referd email
+        $getfriendDetails = getIndividualDetails('grocery_refer_a_friend','refer_email_id',$getLoggedInDetails['user_email']);
+        $updateRefer = "UPDATE `grocery_refer_a_friend` SET register_status = '1' WHERE refer_email_id = '".$getLoggedInDetails['user_email']."'";
+        $conn->query($updateRefer);
+
         if($_SESSION['wallet_id'] == "") {
 			$string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
 			$random1 = substr($string1,0,3);

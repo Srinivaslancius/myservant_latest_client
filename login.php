@@ -181,6 +181,19 @@
 	                    			<div id="pass-info" class="clearfix"></div>
 								</div>
 								<div class="form-box">
+								<div class="row">
+								<div class="col-sm-6" style="padding-top:10px">
+								<label class="containerc one"> We have a Referral code
+								  <input type="checkbox" >
+								  <span class="checkmarkc"></span>
+								</label>
+								</div>
+								<div class="col-sm-6">
+								<input type="text" name="text" placeholder="Referral code" class="two"required>
+								</div>
+								</div>
+								</div>
+								<div class="form-box">
 									<button type="submit" name="register" class="register">Register</button>
 								</div><!-- /.form-box -->
 							</form><!-- /#form-register -->
@@ -334,6 +347,14 @@
 	    }
 
     </script>
-
+<script>
+$(document).ready(function(){
+	 $(".two").hide();
+    $(".one").click(function(){
+     
+		$(".two").show();
+    });
+});
+</script>
 </body>	
 </html>
