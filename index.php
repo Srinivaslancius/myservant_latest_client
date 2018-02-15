@@ -277,7 +277,7 @@ $tagNames = $conn->query($getTags);
 												</div>
 												<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 													<div class="btn-add-cart mrgn_lft">
-														<a href="javascript:void(0)" title="" onclick="myFunction()" style="width:115%">
+														<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)"" style="width:115%">
 															<img src="images/icons/add-cart.png" alt="">Add to Cart
 														</a>
 													</div>
@@ -427,7 +427,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="javascript:void(0)" title="" onclick="myFunction()" title="" style="width:115%;font-size: 13px;">
+															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" title="" style="width:115%;font-size: 13px;">
 															<img src="images/icons/add-cart.png" alt="" >Add to Cart
 														</a>
 														</div>
@@ -515,7 +515,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 															<div class="btn-add-cart mrgn_lft">
-																<a href="javascript:void(0)" title="" onclick="myFunction()" title="" style="width:100%">
+																<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails2['id']; ?>)" title="" style="width:100%">
 																	<img src="images/icons/add-cart.png" alt="" >Add to Cart
 																</a>
 															</div>
@@ -591,7 +591,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="javascript:void(0)" title="" onclick="myFunction()" title="" style="width:115%;font-size: 13px;">
+															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails3['id']; ?>)" title="" style="width:115%;font-size: 13px;">
 															<img src="images/icons/add-cart.png" alt="" >Add to Cart
 														</a>
 														</div>
@@ -793,7 +793,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											</a>
 										</div>
 										<div class="btn-add-cart">
-											<a href="javascript:void(0)" title="" onclick="myFunction()">
+											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
 												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
@@ -915,8 +915,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 					</div><!-- /.col-md-3 col-sm-6 -->
 				</div><!-- /.row -->
 				<div id="snackbar">
-				<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-			<p>PRODUCT NAME: Happy Chef Pasta + Arrabiata + Borges Olive Oil </p></div>
+					<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+					<!-- <p>PRODUCT NAME: Happy Chef Pasta + Arrabiata + Borges Olive Oil </p> -->
+				</div>
 			</div><!-- /.container -->
 		</section><!-- /.flat-iconbox -->
 		
@@ -1015,10 +1016,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".cart_popup_"+ProductId).fadeIn(2000);
-			      	setTimeout(function() {
-					    $(".cart_popup_"+ProductId).fadeOut('fast');
-					}, 2000);
+			      	var x = document.getElementById("snackbar")
+				    x.className = "show";
+				    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 			      }
 			    });
 			    $.ajax({
@@ -1034,12 +1034,5 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				 });
 			}
 		</script>
-		<script>
-function myFunction() {
-    var x = document.getElementById("snackbar")
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-</script>
 </body>	
 </html>
