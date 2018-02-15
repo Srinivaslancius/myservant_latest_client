@@ -154,15 +154,15 @@
 				   <div class="col-md-6 col-sm-6">				  
 					<div class="form-group">
 						 <label for="cur-password">Current password</label>
-						<input type="password" class="form-control" id="cur-password"  name="currentPassword" placeholder="*******" autocomplete="off">                                           
+						<input type="password" class="form-control" id="cur-password"  name="currentPassword" placeholder="*******" autocomplete="off" required data-error="please enter current password">                                           
 					</div>					
 					 <div class="form-group">
 					 <label for="new-password">New password</label>
-						<input type="password" minlength="8" class="form-control" minlength="8" name="newPassword" id="user_password" placeholder="*********" autocomplete="off">                                           
+						<input type="password" minlength="8" class="form-control" minlength="8" name="newPassword" id="user_password" placeholder="*********" autocomplete="off" required data-error="please enter New password">                                           
 					</div>					
 					<div class="form-group">
 					<label for="new-repassword">Repeat password</label>
-						 <input type="password" minlength="8" class="form-control" minlength="8" name="confirmPassword" id="confirm_password" placeholder="********" autocomplete="off" onChange="checkPasswordMatch();">
+						 <input type="password" minlength="8" class="form-control" minlength="8" name="confirmPassword" id="confirm_password" placeholder="********" autocomplete="off" onChange="checkPasswordMatch();" required data-error="please enter Repeat password">
                                             
 					</div>					
 					 <div class="form-group">
