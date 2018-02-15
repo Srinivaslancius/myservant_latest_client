@@ -137,7 +137,7 @@ if (!isset($_POST['submit']))  {
                   <div class="row">
                     <div class="form-group col-md-5">  
                         <label for="form-control-3" class="control-label">Choose Ingredient Type</label>
-                        <select id="form-control-3" name="ingredient_name_id[]" class="custom-select" >
+                        <select id="form-control-3" name="ingredient_name_id[]" class="custom-select">
                           <option value="">Select Ingredient Type</option>
                           <?php while($row = $getIngredients->fetch_assoc()) {  ?>
                             <option value="<?php echo $row['id']; ?>"><?php echo $row['ingredient_name']; ?></option>

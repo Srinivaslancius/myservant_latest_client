@@ -189,7 +189,7 @@ if(isset($_POST['refer'])) {
         }
 		$getCategories1 = "SELECT * FROM grocery_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_category_id FROM grocery_sub_category WHERE lkp_status_id = 0 AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
 		$getCategories = $conn->query($getCategories1); ?>
-		<ul class="prdct_lst">
+		<ul class="prdct_lst1">
 			<div class="row">
 				<div class="col-sm-2">
 					<li style="color:#fe6003">POPULAR CATEGORIES :</li>
@@ -205,7 +205,7 @@ if(isset($_POST['refer'])) {
 		$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
 		$getAllBrands = $conn->query($getBrnds);
     	?>
-		<ul class="prdct_lst">
+		<ul class="prdct_lst1">
 			<div class="row">
 				<div class="col-sm-2">
 					<li style="color:#fe6003">POPULAR BRANDS :</li>
@@ -217,7 +217,7 @@ if(isset($_POST['refer'])) {
 				</div>
 			</div>
 		</ul>
-		<ul class="prdct_lst">
+		<ul class="prdct_lst1">
 			<div class="row">
 				<div class="col-sm-2">
 					<li style="color:#fe6003">CITIES WE SERVE :</li>
