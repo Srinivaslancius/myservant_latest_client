@@ -9,7 +9,7 @@ $walletAmount = $getwalletAmount['amount'];
 $total_amount += $walletAmount+$reward_points;
 $transation_status = "Credited Reward Amount Into Your Wallet";
 //Insert Reward Transcation
-$transaction = "INSERT INTO `grocery_reward_transactions` (`user_id`,`transation_status`,`reward_points`,`transanction_amount`) VALUES ('".$_SESSION['user_login_session_id']."','$transation_status,'$reward_points','$total_amount')";
+$transaction = "INSERT INTO `grocery_reward_transactions` (`user_id`,`transation_status`,`debit_reward_points`,`transanction_amount`) VALUES ('".$_SESSION['user_login_session_id']."','$transation_status,'$reward_points','$total_amount')";
 $conn->query($transaction);
 //Update Wallet Amount
 $sql = "UPDATE `user_wallet` SET amount = '$total_amount' WHERE user_id = '".$_SESSION['user_login_session_id']."' ";
