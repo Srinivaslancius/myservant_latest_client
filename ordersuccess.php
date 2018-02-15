@@ -99,6 +99,25 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 	$name = "My Servant - Grocery";
 	$mail = sendEmail($to,$subject,$message,$from,$name);
 
+	//Changing transaction status of referd email
+	$getFirstTran = getAllDataWhere('grocery_orders','user_id',$_SESSION['user_login_session_id']);
+	if($getFirstTran->num_rows == 1) {
+		$getfriendDetails = getIndividualDetails('grocery_refer_a_friend','refer_email_id',$_SESSION['user_login_session_email']);
+	    $updateRefer = "UPDATE `grocery_refer_a_friend` SET first_transaction_status = '1' WHERE refer_email_id = '".$_SESSION['user_login_session_email']."'";
+	    $conn->query($updateRefer);
+	    $refer_amount = $getSiteSettings1["reffer_amount"]+$getAmount['amount'];
+	    $updateWalletAmount1 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '$user_id' ";
+		$conn->query($updateWalletAmount1);
+		$updateWalletAmount2 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '".$getfriendDetails['refered_user_id']."' ";
+		$conn->query($updateWalletAmount2);
+		$description = "Money Credited for refer a friend";
+		$updated_date1 = date('Y-m-d H:i:s');
+		$insertTransaction1 = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','$user_id','".$getSiteSettings1["reffer_amount"]."','$description','1','$updated_date1')";
+		$conn->query($insertTransaction1);
+		$insertTransaction1 = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','".$getfriendDetails['refered_user_id']."','".$getSiteSettings1["reffer_amount"]."','$description','1','$updated_date1')";
+		$conn->query($insertTransaction1);
+	}
+
 	header("Location: thankyou.php?odi=".$order_id."");
 }
 ?>

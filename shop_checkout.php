@@ -456,11 +456,11 @@
 										</div>
 									
 									<label class="containerw">COD
-								  <input type="radio" name="radio">
+								  <input type="radio" name="pay_mn" value="1" required>
 								  <span class="checkmarkw"></span>
 								</label>
 								<label class="containerw">Online Payment
-								  <input type="radio" name="radio">
+								  <input type="radio" name="pay_mn" value="2" required>
 								  <span class="checkmarkw"></span>
 								</label>
 									
