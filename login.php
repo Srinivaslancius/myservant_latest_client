@@ -183,13 +183,13 @@
 								<div class="form-box">
 								<div class="row">
 								<div class="col-sm-6" style="padding-top:10px">
-								<label class="containerc one"> We have a Referral code
-								  <input type="checkbox" >
+								<label class="containerc"> We have a Referral code
+								  <input type="checkbox" id="check_referral">
 								  <span class="checkmarkc"></span>
 								</label>
 								</div>
 								<div class="col-sm-6">
-								<input type="text" name="text" placeholder="Referral code" class="two">
+								<input type="text" name="text" id="input_referral" placeholder="Referral code" >
 								</div>
 								</div>
 								</div>
@@ -347,14 +347,20 @@
 	    }
 
     </script>
-<script>
-$(document).ready(function(){
-	 $(".two").hide();
-    $(".one").click(function(){
-     
-		$(".two").show();
-    });
-});
+
+<script type="text/javascript">
+$("#input_referral").hide();
+ $(document).ready(function () {
+   $("#check_referral").click(function () {
+     if ($("#check_referral").is(":checked")) {
+         $("#input_referral").show();
+         
+     } else {
+         $("#input_referral").hide();
+         
+     }
+   });
+ });
 </script>
 </body>	
 </html>

@@ -1,6 +1,6 @@
 <?php 
 error_reporting(0);
-include "../manage_webmaster/admin_includes/config.php";
+include "../admin_includes/config.php";
 //Set Array for list
 $lists = array();
 $response = array();

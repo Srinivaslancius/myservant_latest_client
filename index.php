@@ -1,18 +1,5 @@
 <?php include_once 'meta.php';?>
 <style>
-
-#div1{
-width:90%;
-height:auto;
-display:none;
-background: rgba(0,0,0,0.8);
-border:1px solid #DCDCDC;
-border-radius:10px;
-padding:20px;
-z-index:9999;
-position:absolute;
-margin-top:320px;
-}
 .flat-banner-box {
     padding: 25px 0 10px;
 }
@@ -246,10 +233,7 @@ $tagNames = $conn->query($getTags);
 							<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
-									<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
-										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-										<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-										</div>
+									
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
@@ -293,7 +277,7 @@ $tagNames = $conn->query($getTags);
 												</div>
 												<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 													<div class="btn-add-cart mrgn_lft">
-														<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" style="width:115%">
+														<a href="javascript:void(0)" title="" onclick="myFunction()" style="width:115%">
 															<img src="images/icons/add-cart.png" alt="">Add to Cart
 														</a>
 													</div>
@@ -401,10 +385,7 @@ $getSubCat = $conn->query($getsubCats);
 										<input type="hidden" id="sub_cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
 										<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 										<div class="product-box">
-											<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
-												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-											</div>
+											
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
@@ -446,7 +427,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails['id']; ?>)" title="" style="width:115%;font-size: 13px;">
+															<a href="javascript:void(0)" title="" onclick="myFunction()" title="" style="width:115%;font-size: 13px;">
 															<img src="images/icons/add-cart.png" alt="" >Add to Cart
 														</a>
 														</div>
@@ -492,10 +473,7 @@ $getSubCat = $conn->query($getsubCats);
 									<input type="hidden" id="pro_name_<?php echo $productDetails2['id']; ?>" value="<?php echo $getProductName2['product_name']; ?>">
 									<div class="col-md-6">
 										<div class="product-box">
-											<div id="div1" class="cart_popup_<?php echo $productDetails2['id']; ?>">
-												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-											</div>
+											
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title="">
@@ -537,7 +515,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 															<div class="btn-add-cart mrgn_lft">
-																<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails2['id']; ?>)" title="" style="width:100%">
+																<a href="javascript:void(0)" title="" onclick="myFunction()" title="" style="width:100%">
 																	<img src="images/icons/add-cart.png" alt="" >Add to Cart
 																</a>
 															</div>
@@ -571,10 +549,7 @@ $getSubCat = $conn->query($getsubCats);
 										<input type="hidden" id="sub_cat_id_<?php echo $productDetails3['id']; ?>" value="<?php echo $productDetails3['grocery_sub_category_id']; ?>">
 										<input type="hidden" id="pro_name_<?php echo $productDetails3['id']; ?>" value="<?php echo $getProductName3['product_name']; ?>">
 										<div class="product-box">
-											<div id="div1" class="cart_popup_<?php echo $productDetails3['id']; ?>">
-												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-											</div>
+											
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails3['id']; ?>" title="">
@@ -616,7 +591,7 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														<div class="col-sm-7 col-xs-12" style="margin-left:-20px">
 														<div class="btn-add-cart mrgn_lft">
-															<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $productDetails3['id']; ?>)" title="" style="width:115%;font-size: 13px;">
+															<a href="javascript:void(0)" title="" onclick="myFunction()" title="" style="width:115%;font-size: 13px;">
 															<img src="images/icons/add-cart.png" alt="" >Add to Cart
 														</a>
 														</div>
@@ -768,10 +743,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 
                         <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
 						<div class="product-box style1">
-							<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">
-								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-								<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-							</div>
+							
 								<div class="imagebox style1">
 									<div class="box-image">
 										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
@@ -821,7 +793,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 											</a>
 										</div>
 										<div class="btn-add-cart">
-											<a href="javascript:void(0)" title="" onClick="show_cart(<?php echo $todayDeals['id']; ?>)">
+											<a href="javascript:void(0)" title="" onclick="myFunction()">
 												<img src="images/icons/add-cart.png" alt="">Add to Cart
 											</a>
 										</div>
@@ -942,6 +914,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 						</div><!-- /.iconbox -->
 					</div><!-- /.col-md-3 col-sm-6 -->
 				</div><!-- /.row -->
+				<div id="snackbar">
+				<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+			<p>PRODUCT NAME: Happy Chef Pasta + Arrabiata + Borges Olive Oil </p></div>
 			</div><!-- /.container -->
 		</section><!-- /.flat-iconbox -->
 		
@@ -1059,5 +1034,12 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				 });
 			}
 		</script>
+		<script>
+function myFunction() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
 </body>	
 </html>

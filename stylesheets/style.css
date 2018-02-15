@@ -4203,3 +4203,51 @@ float: left;
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+#snackbar {
+    visibility: hidden;
+    min-width: 350px;
+    margin-left: -125px;
+	  background-color: #333;
+  	/*background: rgba(0,0,0,0.8);*/
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 9999;
+    left: 40%;
+    bottom: 30px;
+    font-size: 14px;
+	border: 5px solid #00c853;
+}
+@media screen and (max-width: 480px) and (min-width: 320px){
+	#snackbar {
+		    left: 40%;
+			 min-width: 200px !important;
+	}
+}
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
