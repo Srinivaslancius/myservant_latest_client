@@ -25,8 +25,10 @@
 }
 .cart-totals h4{
 	color:#f28b00;
-	font-size:17px;
-	margin-top:20px;
+	font-size:15px;
+	margin-top:15px;
+	margin-bottom:10px;
+	text-indent:5px;
 }
 
 </style>
@@ -250,25 +252,23 @@
                     <div class="col-lg-5">
                         <div class="cart-totals">
                             <h3>Cart Totals</h3>
-                           <h4 style="margin-bottom:10px">Next Availble Time Slots</h4>
-						   <div class="row">
-												    <div class="col-sm-4">
-                                                   <p><b>Date :</b><span id="date"></span></p>
-												   </div>
-												    <div class="col-sm-8">
-												   <p><b>Time Slot :</b><span id="time"></span></p>
-												   </div>
-												   </div><br>
-												   <div class="row" style="margin-bottom:10px">
-												    <div class="col-sm-4">
+                           <h4 style="font-size:17px;text-indent:0px">Next Availble Time Slots</h4>
+						    <div class="row">
+												    <div class="col-sm-6">
+                                                   <p style="font-size:15px;margin-bottom:5px"><b>Date :</b> <span id="date"></span></p>
+												  </div>
+												   <div class="col-sm-6">
+												   <p style="font-size:15px"><b>Time Slot :</b> <span id="time"></span></p>
+												  </div>
+												  </div>
+												   <div class="row">
+												    <div class="col-sm-6">
                                                 <h4>Delivery Date:</h4>
-												</div>
-												<div class="col-sm-6">
+												
                                             		<input type="text" id="datepicker" name="slot_date" class="slot_date" readonly style="height:45px;" id="slot_date">	
 													</div>
-													<div class="col-sm-2">
-													</div>
-													</div>
+													
+													
                                         		
 
                                         		<?php 
@@ -283,11 +283,10 @@
                                         		$gettotalSlt = $getTotalTimeSlots->num_rows;
 
                                         		?>
-                                        		<div class="row">
-												    <div class="col-sm-4">
+                                        		
+												    <div class="col-sm-6">
                                                 <h4>Delivery Slot:</h4>
-												</div>
-												<div class="col-sm-6">
+												
 												<?php if($gettotalSlt == 0) { ?>
                                         		<?php 
 
@@ -315,8 +314,7 @@
 			                                        
 			                                    <?php } ?>
 												</div>
-													<div class="col-sm-2">
-													</div>
+													
 													</div>
                                       
 								
