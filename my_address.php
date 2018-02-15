@@ -85,44 +85,44 @@
 				  <div class="row">
 				  <div class="col-sm-6">
 					<div class="form-group">
-						<label for="first-name">Name</label>
+						<label for="first-name">Name*</label>
 						<input type="text" class="form-control"  name="user_full_name" placeholder="Name" required>
 					</div>
 					</div>
 					 <div class="col-sm-6">
 					<div class="form-group">
-						<label for="mobile">Mobile</label>
+						<label for="mobile">Mobile*</label>
 						<input type="text" class="form-control valid_mobile_num" name="user_mobile" placeholder="Mobile"required>
 					<span id="input_status1" style="color: red;"></span>
 					</div>
 					</div>
 					 <div class="col-sm-6">
 					<div class="form-group">
-						<label for="pincode">Pincode</label>
-						<input type="text" class="form-control"  name="user_full_name" placeholder="pincode" required>
+						<label for="pincode">Pincode*</label>
+						<input type="text" class="form-control"  name="user_full_name" placeholder="Pincode" required>
 					</div>
 					</div>
 					 <div class="col-sm-6">
 						<div class="form-group">
-						<label for="locality">Locality</label>
-						<input type="text" class="form-control"  name="user_full_name" placeholder="locality" required>
+						<label for="locality">Locality*</label>
+						<input type="text" class="form-control"  name="user_full_name" placeholder="Locality" required>
 					</div>
 					</div>
 					 <div class="col-sm-12">
 					<div class="form-group">
-						 <label for="address">Address</label>
-							<textarea class="form-control" rows="5" id="comment" style="border-radius:30px;height:48px"></textarea>
+						 <label for="address">Address*</label>
+							<textarea class="form-control" rows="5" id="comment" placeholder="Address" style="border-radius:30px;height:48px;padding:13px 0px 0px 20px"></textarea>
 					</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-						<label for="City/District/Town">City/District/Town</label>
-						<input type="text" class="form-control"  name="user_full_name" placeholder="locality" required>
+						<label for="City/District/Town">City/District/Town*</label>
+						<input type="text" class="form-control"  name="user_full_name" placeholder="City" required>
 					</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-						<label for="sel1">Select State</label>
+						<label for="sel1">Select State*</label>
 					  <select class="form-control" id="sel1" style="border-radius:30px">
 						<option>Select State</option>
 						<option>2</option>

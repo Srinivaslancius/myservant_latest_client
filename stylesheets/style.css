@@ -3562,7 +3562,7 @@ i, cite, em, var, address, dfn {
 	margin-bottom:10px;
 }
 @media screen and (max-width: 480px) and (min-width: 320px){
-	.prdct_lst li{
+	.prdct_lst li {
 	float: none !important;
 	}
 	
@@ -3880,14 +3880,14 @@ width:90%;
 	.box-image .ht_wd{
 		height:130px !important;
 	}
-	.products_lst li{
-		float: left;
+	.products_lst1 li{
+		float: left !important;
     border-right: 1px solid #676767 !important;
     padding: 0 10px !important;
 	font-size:13px;
 	
 	}
-	.products_lst li a{
+	.products_lst1 li a{
 		color: #919191 !important;	
 	}
 	.products_lst{
