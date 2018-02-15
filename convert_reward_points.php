@@ -158,6 +158,7 @@
                        success: function(result){
                         if(result == 1) {	
                             alert('Amount Credited In Your Wallet');
+                            window.location.href = "rewards.php";
                         } else {
                             alert('Amount not Credited In Your Wallet');
                             return false;
