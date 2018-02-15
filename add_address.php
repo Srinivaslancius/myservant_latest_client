@@ -70,9 +70,9 @@
 	      	$created_at = date("Y-m-d h:i:s");
 	      	$sql1 = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_area_id','$address','$created_at')";
 	      	if($conn->query($sql1) === TRUE){             
-	         	echo "<script type='text/javascript'>window.location='add_address1.php?succ=log-success'</script>";
+	         	echo "<script type='text/javascript'>window.location='add_address.php?succ=log-success'</script>";
 	      	} else {               
-	         	header('Location: add_address1.php?err=log-fail');
+	         	header('Location: add_address.php?err=log-fail');
 	      	} 
 		}
 		?>
