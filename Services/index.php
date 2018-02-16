@@ -220,7 +220,32 @@ if(isset($_POST['submit'])) {
               <?php include_once './news_scroll.php';?> 
                
                 </div>
-
+		<section class="flat-row flat-banner-box">
+			<div class="container">
+			<div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="banner-box">
+							<div class="inner-box">
+                        <a href="<?php echo $base_url; ?>Services/index.php" class="mask">
+                           <img class="img-responsive zoom-img" src="img/img.jpg" style="width:100%;height:auto">
+                           <div class="storeimgcapt1">Food</div>
+                        </a>
+						</div>
+						</div>
+                     </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="banner-box">
+							<div class="inner-box">
+                        <a href="<?php echo $base_url; ?>food_new/index.php" class="mask">
+                           <img class="img-responsive zoom-img" src="img/img.jpg"style="width:100%;height:auto">
+                           <div class="storeimgcapt1">Services</div>
+                        </a>
+						</div>
+						</div>
+                     </div>
+                     
+                  </div>
+				  </section>
 		<div class="container margin_60">
 
 			<div class="main_title">
