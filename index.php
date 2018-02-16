@@ -1,5 +1,6 @@
 <?php include_once 'meta.php';?>
 <style>
+
 .flat-banner-box {
     padding: 25px 0 10px;
 }

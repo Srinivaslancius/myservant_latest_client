@@ -4215,7 +4215,7 @@ float: left;
     padding: 16px;
     position: fixed;
     z-index: 9999;
-    left: 50%;
+    left: 40%;
     bottom: 30px;
     font-size: 14px;
 	border: 5px solid #00c853;
@@ -4227,7 +4227,7 @@ float: left;
 	}
 }
 
-.snackbar .show {
+.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
