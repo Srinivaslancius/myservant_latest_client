@@ -41,7 +41,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="#" title="">Refer a Friend</a>
+								Refer a Friend
 								
 							</li>
 							
@@ -54,7 +54,7 @@
 $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 <?php 
 if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
-	
+
 	//echo "<pre>"; print_r($_POST); die;
 	$refer_email = $_POST['refer_email'];
 	$user_id = $_SESSION['user_login_session_id'];
@@ -136,7 +136,12 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-tracking -->
-
+<?php 
+	$getFreeShippingData = getIndividualDetails('grocery_content_pages','id',4);
+	$getOnlineOrderData = getIndividualDetails('grocery_content_pages','id',5);
+	$getPaymentsData = getIndividualDetails('grocery_content_pages','id',6);
+	$getReturnPolicydataData = getIndividualDetails('grocery_content_pages','id',7);
+?>
 		<section class="flat-row flat-iconbox style1 background">
 			<div class="container">
 				<div class="row">
@@ -144,10 +149,10 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 						<div class="iconbox style1 v1">
 							<div class="box-header">
 								<div class="image">
-									<img src="images/icons/car.png" alt="">
+									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_content_banners/'.$getFreeShippingData['image'] ?>" alt="">
 								</div>
 								<div class="box-title">
-									<h3>Free Shipping</h3>
+									<h3><?php echo $getFreeShippingData['title']; ?></h3>
 								</div>
 								<div class="clearfix"></div>
 							</div><!-- /.box-header -->
@@ -157,10 +162,10 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 						<div class="iconbox style1 v1">
 							<div class="box-header">
 								<div class="image">
-									<img src="images/icons/order.png" alt="">
+									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_content_banners/'.$getOnlineOrderData['image'] ?>" alt="">
 								</div>
 								<div class="box-title">
-									<h3>Order Online Service</h3>
+									<h3><?php echo $getOnlineOrderData['title']; ?></h3>
 								</div>
 								<div class="clearfix"></div>
 							</div><!-- /.box-header -->
@@ -170,10 +175,10 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 						<div class="iconbox style1 v1">
 							<div class="box-header">
 								<div class="image">
-									<img src="images/icons/payment.png" alt="">
+									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_content_banners/'.$getPaymentsData['image'] ?>" alt="">
 								</div>
 								<div class="box-title">
-									<h3>Payment</h3>
+									<h3><?php echo $getPaymentsData['title']; ?></h3>
 								</div>
 								<div class="clearfix"></div>
 							</div><!-- /.box-header -->
@@ -183,10 +188,10 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 						<div class="iconbox style1 v1">
 							<div class="box-header">
 								<div class="image">
-									<img src="images/icons/return.png" alt="">
+									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_content_banners/'.$getReturnPolicydataData['image'] ?>" alt="">
 								</div>
 								<div class="box-title">
-									<h3>Return 30 Days</h3>
+									<h3><?php echo $getReturnPolicydataData['title']; ?></h3>
 								</div>
 								<div class="clearfix"></div>
 							</div><!-- /.box-header -->
