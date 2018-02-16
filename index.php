@@ -294,20 +294,10 @@ $tagNames = $conn->query($getTags);
 							<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
-
 									<div id="cart_popup_<?php echo $productDetails['id']; ?>" class="snackbar">
 										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
 										<p>PRODUCT NAME: <?php echo $getProductName['product_name']; ?> </p> 
 									</div>
-									
-										
-										<div id="snackbar_<?php echo $productDetails['id']; ?>" class="snackbar">
-								
-											<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-											<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-											
-											</div>
-											
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
@@ -459,9 +449,9 @@ $getSubCat = $conn->query($getsubCats);
 										<input type="hidden" id="sub_cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
 										<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 										<div class="product-box">
-											<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
+											<div id="cart_popup_<?php echo $productDetails['id']; ?>" class="snackbar">
 												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+												<p>PRODUCT NAME: <?php echo $getProductName['product_name']; ?> </p> 
 											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
@@ -550,9 +540,9 @@ $getSubCat = $conn->query($getsubCats);
 									<input type="hidden" id="pro_name_<?php echo $productDetails2['id']; ?>" value="<?php echo $getProductName2['product_name']; ?>">
 									<div class="col-md-6">
 										<div class="product-box">
-											<div id="div1" class="cart_popup_<?php echo $productDetails2['id']; ?>">
+											<div id="cart_popup_<?php echo $productDetails2['id']; ?>" class="snackbar">
 												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+												<p>PRODUCT NAME: <?php echo $getProductName2['product_name']; ?> </p> 
 											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
@@ -602,10 +592,21 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 													</div>
 													<div class="compare-wishlist">
-													
-													<a href="#" class="wishlist" title="">
-														<img src="images/icons/wishlist.png" alt=""> Wishlist
-													</a>
+														<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails2['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+															<?php if(!isset($_SESSION['user_login_session_id'])) { 
+																?>
+																<img src="images/icons/wishlist.png" alt=""> Wishlist
+															<?php } else { 
+																$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$productDetails2['id']);
+																?>
+																<?php if($getCountWishLsit == 0) { ?>
+																	<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $productDetails2['id']; ?>" alt=""> Wishlist
+																<?php } else {  ?>
+																	<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $productDetails2['id']; ?>"> Wishlist
+																<?php } ?>
+																
+															<?php } ?>
+														</a>
 													</div>
 												</div><!-- /.box-bottom -->
 											</div><!-- /.imagebox style2 -->
@@ -629,9 +630,9 @@ $getSubCat = $conn->query($getsubCats);
 										<input type="hidden" id="sub_cat_id_<?php echo $productDetails3['id']; ?>" value="<?php echo $productDetails3['grocery_sub_category_id']; ?>">
 										<input type="hidden" id="pro_name_<?php echo $productDetails3['id']; ?>" value="<?php echo $getProductName3['product_name']; ?>">
 										<div class="product-box">
-											<div id="div1" class="cart_popup_<?php echo $productDetails3['id']; ?>">
+											<div id="cart_popup_<?php echo $productDetails3['id']; ?>" class="snackbar">
 												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+												<p>PRODUCT NAME: <?php echo $getProductName3['product_name']; ?> </p> 
 											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
@@ -681,10 +682,21 @@ $getSubCat = $conn->query($getsubCats);
 														</div>
 														</div>
 														<div class="compare-wishlist">
-														
-														<a href="#" class="wishlist" title="">
-															<img src="images/icons/wishlist.png" alt=""> Wishlist
-														</a>
+															<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $productDetails3['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+																<?php if(!isset($_SESSION['user_login_session_id'])) { 
+																	?>
+																	<img src="images/icons/wishlist.png" alt=""> Wishlist
+																<?php } else { 
+																	$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$productDetails3['id']);
+																	?>
+																	<?php if($getCountWishLsit == 0) { ?>
+																		<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $productDetails3['id']; ?>" alt=""> Wishlist
+																	<?php } else {  ?>
+																		<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $productDetails3['id']; ?>"> Wishlist
+																	<?php } ?>
+																	
+																<?php } ?>
+															</a>
 														</div>
 													</div><!-- /.box-bottom -->
 											</div><!-- /.imagebox style2 -->
@@ -826,9 +838,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 
                         <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
 						<div class="product-box style1">
-							<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">
+							<div id="cart_popup_<?php echo $todayDeals['id']; ?>" class="snackbar">
 								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-								<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+								<p>PRODUCT NAME: <?php echo $getProductName['product_name']; ?> </p> 
 							</div>
 								<div class="imagebox style1">
 									<div class="box-image">
@@ -873,9 +885,19 @@ if($getTodayDeals1->num_rows > 0) { ?>
 									</div><!-- /.box-content -->
 									<div class="box-bottom">
 										<div class="compare-wishlist">
-											
-											<a href="#" class="wishlist" title="">
-												<img src="images/icons/wishlist.png" alt=""> Wishlist
+											<a  class="wishlist" <?php if(!isset($_SESSION['user_login_session_id'])) { ?> href="login.php" <?php } else { ?> onClick="addWishList(<?php echo $todayDeals['id']; ?>)" href="javascript:void(0)" <?php } ?> >
+												<?php if(!isset($_SESSION['user_login_session_id'])) { 
+													?>
+													<img src="images/icons/wishlist.png" alt=""> Wishlist
+												<?php } else { 
+													$getCountWishLsit = getWishListCount('grocery_save_wishlist',$_SESSION['user_login_session_id'],$todayDeals['id']);
+													?>
+													<?php if($getCountWishLsit == 0) { ?>
+														<img src="images/icons/wishlist.png" id="change_wishlist_img_<?php echo $todayDeals['id']; ?>" alt=""> Wishlist
+													<?php } else {  ?>
+														<img src="images/icons/1.png" alt="" id="change_wishlist_img_<?php echo $todayDeals['id']; ?>"> Wishlist
+													<?php } ?>
+												<?php } ?>
 											</a>
 										</div>
 										<div class="btn-add-cart">
