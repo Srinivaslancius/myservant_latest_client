@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $coupon_code = $_REQUEST['coupon_code'];   
       $coupon_applied_amount = $_REQUEST['coupon_applied_amount'];  
 
-      $result = "UPDATE `food_orders` SET `payment_status`='$payment_status',`coupen_code`='$coupon_code',`discout_money`='$coupon_applied_amount' WHERE `user_id`='$userId' AND order_id='$orderId' ";
+      $result = "UPDATE `food_orders` SET `lkp_payment_status_id`='$payment_status',`coupen_code`='$coupon_code',`discout_money`='$coupon_applied_amount' WHERE `user_id`='$userId' AND order_id='$orderId' ";
       if ($conn->query($result) === TRUE) {
 
         //$orderDEtails = getIndividualDetails($orderId,'orders','order_id');
