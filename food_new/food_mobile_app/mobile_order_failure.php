@@ -10,8 +10,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
       $userId = $_REQUEST['userId'];
       $orderId = $_REQUEST['orderId'];   
+
+      $coupon_code = $_REQUEST['coupon_code'];   
+      $coupon_applied_amount = $_REQUEST['coupon_applied_amount'];  
       
-      $result = "UPDATE `food_orders` SET `lkp_payment_status_id`='3' WHERE `user_id`='$userId' AND order_id='$orderId' ";
+      $result = "UPDATE `food_orders` SET `lkp_payment_status_id`='3' , `coupen_code`='$coupon_code',`discout_money`='$coupon_applied_amount' WHERE `user_id`='$userId' AND order_id='$orderId' ";
       if ($conn->query($result) === TRUE) {
         $response['success']=0;
         $response['message']='Success';        
