@@ -198,7 +198,7 @@
 			<form action="" method="post" accept-charset="utf-8">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-7">
+						<div class="col-md-6">
 							<div class="box-checkout">
 								<div class="billing-fields">
 									<input type="hidden" name="lkp_state_id" value="<?php echo $getCustomerDeatils['lkp_state_id']; ?>">
@@ -293,7 +293,7 @@
 						      $cartItems = $conn->query($cartItems1);
 						    } 
 						?>
-						<div class="col-md-5">
+						<div class="col-md-6">
 							<div class="cart-totals style2">						
 								<h3>Your Order</h3>
 								<!--<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
