@@ -86,6 +86,7 @@
 				                    <input type="hidden" name="user_password" value="<?php echo encryptPassword($_POST['user_password']); ?>">
 				                    <input type="hidden" name="checkout_key" value="<?php echo $_POST['checkout_key']; ?>" id="checkout_key">
 				                    <input type="hidden" name="offer_checkout_key" value="<?php echo decryptPassword($_POST['offer_checkout_key']); ?>" id="offer_checkout_key">
+				                    <input type="hidden" name="referal_code" value="<?php echo $_POST['referal_code']; ?>" >
 									<div class="form-box" style="margin-bottom:20px">
 										<label for="Mobile" style="margin-right:300px">Mobile No:</label>
 										<input type="text" id="user_mobile" name="user_mobile" readonly placeholder="Enter Your Mobile No." maxlength="10" value="<?php echo $_POST['user_mobile']; ?>" class="valid_mobile_num" >

@@ -23,6 +23,7 @@ if(!empty($_POST['user_mobile']) && !empty($_POST['mobile_otp']))  {
 	$lkp_register_device_type_id=1; //1- web, 2- android, 3-ios
 	$user_login_type = 1; //1-Normal, 2-Facebook,3-twitter
 	$user_register_service_id = 3;
+	$referal_code = $_POST['referal_code'];
 	$created_at = date("Y-m-d h:i:s");
 
 	$sql="SELECT * FROM user_mobile_otp WHERE user_mobile='$user_mobile' AND mobile_otp='$mobile_otp' ";
@@ -40,8 +41,7 @@ if(!empty($_POST['user_mobile']) && !empty($_POST['mobile_otp']))  {
 		$updateCart1 = $conn->query($updateCart);
 
 		//Changing status of referd email
-        $getfriendDetails = getIndividualDetails('grocery_refer_a_friend','refer_email_id',$getLoggedInDetails['user_email']);
-        $updateRefer = "UPDATE `grocery_refer_a_friend` SET register_status = '1' WHERE refer_email_id = '".$getLoggedInDetails['user_email']."'";
+        $updateRefer = "UPDATE `grocery_refer_a_friend` SET register_status = '1' WHERE refer_email_id = '".$getLoggedInDetails['user_email']."' AND referal_code = '".$_POST['referal_code']."'";
         $conn->query($updateRefer);
 
         if($_SESSION['wallet_id'] == "") {
