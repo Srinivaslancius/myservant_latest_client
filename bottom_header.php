@@ -16,7 +16,7 @@
 					<div class="row">
 						<div class="col-md-3 col-2">
 							<div id="mega-menu">
-								<div class="btn-mega"><span></span>ALL CATEGORIES</div>
+								<div class="btn-mega">ALL CATEGORIES</div>
 								<?php 
 								if($_SESSION['city_name'] == '') {
                                     $lkp_city_id = 1;
