@@ -31,9 +31,9 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
     <input type="hidden" id="sub_cat_id1_'.$getProductsData1['id'].'" value="'.$getProductsData1['grocery_sub_category_id'].'">
     <input type="hidden" id="pro_name1_'.$getProductsData1['id'].'" value="'.$getProductNames1['product_name'].'">';
  echo '<div class="product-box style3">
-        <div id="div1" class="cart_popup_'.$getProductsData1['id'].'">
+        <div id="cart_popup1_'.$getProductsData1['id'].'" class="snackbar">
             <p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-            <p style="color:white">Product Name : '.$getProductNames1['product_name'].'</p>
+            <p>PRODUCT NAME: '.$getProductNames1['product_name'].' </p> 
         </div>
         <div class="imagebox style1 v3">
             <div class="box-image">

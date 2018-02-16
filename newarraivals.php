@@ -1,36 +1,4 @@
 <?php include_once 'meta.php';?>
-<style>
-#div1{
-width:90%;
-height:auto;
-display:none;
-background: rgba(0,0,0,0.8);
-border:1px solid #DCDCDC;
-border-radius:10px;
-padding:20px;
-z-index:9999;
-position:absolute;
-margin-top:330px;
-}
-#div2{
-width:400px;
-height:auto;
-display:none;
-background: rgba(0,0,0,0.8);
-border:1px solid #DCDCDC;
-border-radius:10px;
-padding:20px;
-z-index:9999;
-position:absolute;
-margin-top:70px;
-}
-@media screen and (max-width: 480px) and (min-width: 320px){
-	#div2{
-width:93% !important;
-margin-top:0px !important;
-padding:10px !important;
-}
-</style>
 <body class="header_sticky">
 	<div class="boxed style2">
 
@@ -228,16 +196,16 @@ padding:10px !important;
 									while($getProductsData = $getProducts1->fetch_assoc()) {
 									$getProductNames = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getProductsData['id']);
 									$getProductImages = getIndividualDetails('grocery_product_bind_images','product_id',$getProductsData['id']);
-									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id'ORDER BY selling_price";
+									$getPrices1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id ='".$getProductsData['id']."' AND lkp_status_id = 0 AND lkp_city_id ='$lkp_city_id' ORDER BY selling_price";
 									$allGetPrices1 = $conn->query($getPrices1);
 									$getPrc1 = $allGetPrices1->fetch_assoc();
 									?>
 									<input type="hidden" id="row_no" value="10">
 										<div class="col-lg-4 col-md-6 col-sm-6" >
 											<div class="product-box">
-												<div id="div1" class="cart_popup_<?php echo $getProductsData['id']; ?>">
+												<div id="cart_popup_<?php echo $getProductsData['id']; ?>" class="snackbar">
 													<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-													<p style="color:white">Product Name : <?php echo $getProductNames['product_name']; ?></p>
+													<p>PRODUCT NAME: <?php echo $getProductNames['product_name']; ?> </p> 
 												</div>
 												<div class="imagebox">
 												
@@ -322,7 +290,6 @@ padding:10px !important;
 									$allGetPrices1 = $conn->query($getPrices1);
 									$getPrc2 = $allGetPrices1->fetch_assoc(); ?>
 										<div class="product-box style3">
-											
 											<div class="imagebox style1 v3">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $getProductsData1['id'];?>" title="">
@@ -330,10 +297,10 @@ padding:10px !important;
 													</a>
 													
 												</div><!-- /.box-image -->
-												<div id="div2" class="cart_popup_<?php echo $getProductsData1['id']; ?>">
-												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductNames1['product_name']; ?></p>
-											</div>
+												<div id="cart_popup1_<?php echo $getProductsData1['id']; ?>" class="snackbar">
+													<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+													<p>PRODUCT NAME: <?php echo $getProductNames1['product_name']; ?> </p> 
+												</div>
 												<div class="box-content">
 													<div class="product-name">
 														<a href="single_product.php?product_id=<?php echo $getProductsData1['id'];?>" title=""><?php echo $getProductNames1['product_name']; ?></a>
@@ -462,10 +429,9 @@ padding:10px !important;
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".cart_popup_"+ProductId).fadeIn(2000);
-			      	setTimeout(function() {
-					    $(".cart_popup_"+ProductId).fadeOut('fast');
-					}, 2000);
+			      	var x = document.getElementById("cart_popup_"+ProductId);
+				    x.className = "snackbar show1";
+				    setTimeout(function(){ x.className = x.className.replace("show1", ""); }, 1000);
 			      }
 			    });
 			    $.ajax({
@@ -499,10 +465,9 @@ padding:10px !important;
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".cart_popup_"+productId).fadeIn(2000);
-			      	setTimeout(function() {
-					    $(".cart_popup_"+productId).fadeOut('fast');
-					}, 2000);
+			      	var x = document.getElementById("cart_popup1_"+productId);
+				    x.className = "snackbar show1";
+				    setTimeout(function(){ x.className = x.className.replace("show1", ""); }, 1000);
 			      }
 			    });
 			    $.ajax({
