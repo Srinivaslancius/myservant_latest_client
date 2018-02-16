@@ -109,10 +109,10 @@ width:100% !important;
 				<div class="row">
 					<div class="col-md-6">
 						<div class="flexslider">
-						<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
-						<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-						<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
-					</div>
+						<div id="cart_popup_<?php echo $productDetails['id']; ?>" class="snackbar">
+							<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+							<p>PRODUCT NAME: <?php echo $getProductName['product_name']; ?> </p> 
+						</div>
 							<ul class="slides">
 								<?php while($productImage = $getProductImages->fetch_assoc()) { ?>
 							    <li data-thumb="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$productImage['image'] ?>">
@@ -557,10 +557,9 @@ width:100% !important;
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".cart_popup_"+ProductId).fadeIn(2000);
-			      	setTimeout(function() {
-					    $(".cart_popup_"+ProductId).fadeOut('fast');
-					}, 2000);
+			      	var x = document.getElementById("cart_popup_"+ProductId);
+				    x.className = "snackbar show1";
+				    setTimeout(function(){ x.className = x.className.replace("show1", ""); }, 1000);
 			      }
 			    }); 
 	   			$.ajax({
