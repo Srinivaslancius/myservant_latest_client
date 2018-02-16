@@ -5,7 +5,7 @@ include "../admin_includes/common_functions.php";
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-	if (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id']) && !empty($_REQUEST['first_name']) && !empty($_REQUEST['last_name']) && !empty($_REQUEST['email']) && !empty($_REQUEST['mobile']) && !empty($_REQUEST['state']) && !empty($_REQUEST['district']) && !empty($_REQUEST['city']) && !empty($_REQUEST['postal_code']) && !empty($_REQUEST['location']) && !empty($_REQUEST['address']) ) {
+	if (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])  ) {
 
 		$payment_status = 2; //In progress
 		$country = 99;
@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$contstr = "MYSER-GR";
 		$order_id = $contstr.$random1.$random2;
 		$service_tax = $_REQUEST["service_tax"];
-		$delivery_charges = 0;//For static as per harish comments
+		$delivery_charges = $_REQUEST["delivery_charges"];
 		//$servicesCount = count($_REQUEST["service_id"]);
 		//Saving user id and coupon id
 		$user_id = $_REQUEST["user_id"];

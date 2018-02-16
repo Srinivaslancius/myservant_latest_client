@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $userId = $_REQUEST['userId'];
       $orderId = $_REQUEST['orderId'];   
       
-      $result = "UPDATE `grocery_orders` SET `payment_status`='3' WHERE `user_id`='$userId' AND order_id='$orderId' ";
+      $result = "UPDATE `grocery_orders` SET `lkp_payment_status_id`='3' WHERE `user_id`='$userId' AND order_id='$orderId' ";
       if ($conn->query($result) === TRUE) {
         $response['success']=0;
         $response['message']='Success';        

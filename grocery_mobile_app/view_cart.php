@@ -15,6 +15,7 @@ if (isset($_REQUEST['userId'])  ) {
 		while($row = $getCartFoodData->fetch_assoc()) {
 			$lists = array();
 			$lists["cartId"] = $row["id"];	
+			$lists["cartCount"] = $getCartFoodData->num_rows;
 			$lists["product_id"]    = $row["product_id"];
 			$lists["product_quantity"] = $row["product_quantity"];	
 			$lists["product_price"] = $row["product_price"];	

@@ -13,15 +13,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $payment_mode = $_REQUEST['payment_mode']; 
       
       if($payment_mode == 1) {
-        $payment_status = 1;
-      } else {
         $payment_status = 2;
+      } else {
+        $payment_status = 1;
       }
-
+      
       $coupon_code = $_REQUEST['coupon_code'];   
       $coupon_applied_amount = $_REQUEST['coupon_applied_amount'];  
 
-      $result = "UPDATE `grocery_orders` SET `payment_status`='$payment_status' WHERE `user_id`='$userId' AND order_id='$orderId' ";
+      $result = "UPDATE `grocery_orders` SET `lkp_payment_status_id`='$payment_status', `coupen_code`='$coupon_code',`discout_money`='$coupon_applied_amount'WHERE `user_id`='$userId' AND order_id='$orderId' ";
       if ($conn->query($result) === TRUE) {
 
         //$orderDEtails = getIndividualDetails($orderId,'orders','order_id');
