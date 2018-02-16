@@ -13,9 +13,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $payment_mode = $_REQUEST['payment_mode']; 
       
       if($payment_mode == 1) {
-        $payment_status = 1;
-      } else {
         $payment_status = 2;
+      } else {
+        $payment_status = 1;
       }
 
       $coupon_code = $_REQUEST['coupon_code'];   
