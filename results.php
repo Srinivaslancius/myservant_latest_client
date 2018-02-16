@@ -100,13 +100,13 @@
 								<a href="index.php" title="">Home</a>
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
-							<?php if(isset($category_id)) { 
+							<?php if(isset($category_id) && !empty($category_id)) { 
 								$getCategories = getIndividualDetails('grocery_category','id',$category_id);
 								$getCategoryName = $getCategories['category_name']; ?>
 							<li class="trail-item">
 								<a href="#" title=""><?php echo $getCategoryName; ?></a>
 							</li>
-							<?php } elseif(isset($sub_category_id)) { 
+							<?php } elseif(isset($sub_category_id) && !empty($sub_category_id)) { 
 								$getSubCategories = getIndividualDetails('grocery_sub_category','id',$sub_category_id);
 								$getSubCategoryName = $getSubCategories['sub_category_name'];
 								$getCategories = getIndividualDetails('grocery_category','id',$getSubCategories['grocery_category_id']);

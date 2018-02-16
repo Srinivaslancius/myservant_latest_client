@@ -37,10 +37,20 @@
           //$link = $_POST['link'];
           $title = $_POST['title'];
           $lkp_city_id = $_POST['lkp_city_id'];
-          $category_id = $_POST['category_id'];
-          $sub_category_id = $_POST['sub_category_id'];
-          $product_id = $_POST['product_id'];
           $type = $_POST['type'];
+          if($type == 1) {
+                $category_id = $_POST['category_id'];
+                $sub_category_id = '';
+                $product_id = '';
+            } elseif($type == 2) {
+                $category_id = '';
+                $sub_category_id = $_POST['sub_category_id'];
+                $product_id = '';
+            } else {
+                $category_id = '';
+                $sub_category_id = '';
+                $product_id = $_POST['product_id'];
+            }
           $banner_image_type = $_POST['banner_image_type'];
           if($banner_image_type == 0) {
                 $max_percentage = '';
