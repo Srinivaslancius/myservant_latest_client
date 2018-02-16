@@ -916,7 +916,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				</div><!-- /.row -->
 				<div id="snackbar">
 				<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-			<p>PRODUCT NAME: Happy Chef Pasta + Arrabiata + Borges Olive Oil </p></div>
+				<p>PRODUCT NAME: Happy Chef Pasta + Arrabiata + Borges Olive Oil </p></div>
 			</div><!-- /.container -->
 		</section><!-- /.flat-iconbox -->
 		
