@@ -50,11 +50,11 @@ i.color_4 {
 }
 
 body {
-    /* background: #EFEFEF; */
+    background: #ffff !important;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 24px;
     font-family: 'Open Sans', sans-serif;
-    color: #666666;
+    color: #656565;
 }
 
 #newsletter_container h3,.main_title p {
