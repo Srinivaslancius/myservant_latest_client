@@ -1,5 +1,66 @@
 <?php include_once 'meta.php';?>
 <style>
+
+/*#div1{
+width:90%;
+height:auto;
+display:none;
+background: rgba(0,0,0,0.8);
+border:1px solid #DCDCDC;
+border-radius:10px;
+padding:20px;
+z-index:9999;
+position:absolute;
+margin-top:320px;
+}*/
+.snackbar {
+    visibility: hidden;
+    min-width: 350px;
+    margin-left: -125px;
+	  background-color: #333;
+  	/*background: rgba(0,0,0,0.8);*/
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 9999;
+    left: 40%;
+    bottom: 30px;
+    font-size: 14px;
+	border: 5px solid #00c853;
+}
+@media screen and (max-width: 480px) and (min-width: 320px){
+	.snackbar {
+		    left: 40%;
+			 min-width: 200px !important;
+	}
+}
+.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
 .flat-banner-box {
     padding: 25px 0 10px;
 }
@@ -234,6 +295,14 @@ $tagNames = $conn->query($getTags);
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
 									
+										
+										<div id="snackbar_<?php echo $productDetails['id']; ?>" class="snackbar">
+								
+											<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+											<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+											
+											</div>
+											
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
@@ -385,7 +454,10 @@ $getSubCat = $conn->query($getsubCats);
 										<input type="hidden" id="sub_cat_id_<?php echo $productDetails['id']; ?>" value="<?php echo $productDetails['grocery_sub_category_id']; ?>">
 										<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 										<div class="product-box">
-											
+											<div id="div1" class="cart_popup_<?php echo $productDetails['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails['id']; ?>" title="">
@@ -473,7 +545,10 @@ $getSubCat = $conn->query($getsubCats);
 									<input type="hidden" id="pro_name_<?php echo $productDetails2['id']; ?>" value="<?php echo $getProductName2['product_name']; ?>">
 									<div class="col-md-6">
 										<div class="product-box">
-											
+											<div id="div1" class="cart_popup_<?php echo $productDetails2['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails2['id']; ?>" title="">
@@ -549,7 +624,10 @@ $getSubCat = $conn->query($getsubCats);
 										<input type="hidden" id="sub_cat_id_<?php echo $productDetails3['id']; ?>" value="<?php echo $productDetails3['grocery_sub_category_id']; ?>">
 										<input type="hidden" id="pro_name_<?php echo $productDetails3['id']; ?>" value="<?php echo $getProductName3['product_name']; ?>">
 										<div class="product-box">
-											
+											<div id="div1" class="cart_popup_<?php echo $productDetails3['id']; ?>">
+												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+												<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+											</div>
 											<div class="imagebox style2">
 												<div class="box-image">
 													<a href="single_product.php?product_id=<?php echo $productDetails3['id']; ?>" title="">
@@ -743,7 +821,10 @@ if($getTodayDeals1->num_rows > 0) { ?>
 
                         <input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">     
 						<div class="product-box style1">
-							
+							<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">
+								<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+								<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+							</div>
 								<div class="imagebox style1">
 									<div class="box-image">
 										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
@@ -914,10 +995,6 @@ if($getTodayDeals1->num_rows > 0) { ?>
 						</div><!-- /.iconbox -->
 					</div><!-- /.col-md-3 col-sm-6 -->
 				</div><!-- /.row -->
-				<div id="snackbar">
-					<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-					<!-- <p>PRODUCT NAME: Happy Chef Pasta + Arrabiata + Borges Olive Oil </p> -->
-				</div>
 			</div><!-- /.container -->
 		</section><!-- /.flat-iconbox -->
 		
@@ -1016,9 +1093,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	var x = document.getElementById("snackbar")
-				    x.className = "show";
-				    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+			      	var x = document.getElementById("snackbar_"+ProductId)
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 8000);
 			      }
 			    });
 			    $.ajax({
