@@ -1169,13 +1169,13 @@ ul.flat-unstyled li > ul > li > a {
 
 .box-cart .inner-box .dropdown-box .total span.price {
 	color:#f28b00;
-	font-size:22px;
+	font-size: 16px;
 	font-weight:500;
 	float:right;
 }
 
 .box-cart .inner-box .dropdown-box .btn-cart {
-	margin-top:30px;
+	margin-top: 20px;
 	overflow:hidden;
 }
 
@@ -4254,6 +4254,11 @@ float: left;
 }
 .crt_shght{
 	overflow-y: auto !important;
-height: 300px;
+max-height: 350px;
 	
+}
+.bx_shadw{
+	/*background-color:#f2f2f2 !important;*/
+	padding-top:20px;
+/*box-shadow: 0 0 5px 0 rgba(254,96,3,.1);*/
 }

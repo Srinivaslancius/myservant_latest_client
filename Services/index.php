@@ -119,7 +119,25 @@ display: none;
 	  padding-top:45px !important;
 	  }
   }
- 
+ .input-group-addon.one{
+	background-color:#099E44;
+	color:white;
+	font-size:15px;
+}
+.input-group-addon{
+	font-size:15px;
+}
+.input-group input {
+    height: 36px;
+}
+.feature h2,h4{
+	color:#333;
+	margin-bottom:15px;
+}
+.feature h4{
+	line-height:25px;
+}
+
  </style>
 </head>
 
@@ -348,7 +366,48 @@ $getOtherFoodData1 = $getOtherFoodData->fetch_assoc();
 			  <?php include_once 'brands.php';?>
 		</div><br><br>
 		<!-- End Brnds here -->
+<div class="container margin_60">		
+					<div class="feature">
+						<div class="row">
+							<img src="img/logo1.png"><br>
 
+<div class="col-sm-5">
+<img src="img/foodM.png">
+</div>
+
+<div class="col-sm-6">
+<h2>Looking for the Food Feed? Get the app!</h2>
+<h4>Follow foodies to see their reviews and photos in your Feed, and discover great new restaurants!</h4>
+<p>We'll send you a link, open it on your phone to download the app</p>
+<div class="input-group">
+  <span class="input-group-addon">+91</span>
+  <input type="text" class="form-control">
+  <span class="input-group-addon one">Text App link</span>
+</div>
+  <div class="login-or"><hr class="hr-or"><span class="span-or">(OR)</span></div>
+<div class="input-group">
+  <span class="input-group-addon">+91</span>
+  <input type="text" class="form-control">
+  <span class="input-group-addon one">Email App link</span>
+</div><br>
+<div class="row">
+<div class="col-sm-4">
+<img src="img/applestore.png">
+</div>
+<div class="col-sm-4">
+<img src="img/googleplay.png">
+</div>
+<div class="col-sm-4">
+</div>
+</div>
+</div>
+<div class="col-sm-1">
+</div>
+</div>
+				  
+			</div>
+			<!-- End row -->						
+		</div>
 	</main>
 	<!-- End main -->
 

@@ -43,6 +43,47 @@ a.mask {
     text-transform: uppercase;
 	border-radius: 10px;
 }
+.input-group-addon.one{
+	background-color:#099E44;
+	color:white;
+	font-size:15px;
+}
+.input-group-addon{
+	font-size:15px;
+}
+
+.feature_2 h2,h4{
+	color:#333;
+	margin-bottom:15px;
+}
+.feature_2 h4{
+	line-height:25px;
+}
+.login-or {
+    position: relative;
+    font-size: 16px;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.hr-or {
+    background-color: #cdcdcd;
+    /* height: 1px; */
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+
+.span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -1px;
+    margin-left: -30px;
+    background-color: #fff;
+    /* width: 60px; */
+}
 </style>
 </head>
   
@@ -285,7 +326,44 @@ a.mask {
         
     </div>
     </div>
-    
+    <div class="container margin_60_35">
+			<div class="feature_2">
+		<div class="row">
+					<img src="img/logo1.png"><br>
+<div class="col-sm-5">
+<img src="img/foodM.png">
+</div>
+<div class="col-sm-6">
+<h2>Looking for the Food Feed? Get the app!</h2>
+<h4>Follow foodies to see their reviews and photos in your Feed, and discover great new restaurants!</h4>
+<p>We'll send you a link, open it on your phone to download the app</p>
+<div class="input-group">
+  <span class="input-group-addon">+91</span>
+  <input type="text" class="form-control">
+  <span class="input-group-addon one">Text App link</span>
+</div>
+  <div class="login-or"> <hr class="hr-or"> <span class="span-or"> (OR)</span></div>
+<div class="input-group">
+  <span class="input-group-addon">+91</span>
+  <input type="text" class="form-control">
+  <span class="input-group-addon one">Email App link</span>
+</div><br>
+<div class="row">
+<div class="col-sm-4">
+<img src="img/applestore.png">
+</div>
+<div class="col-sm-4">
+<img src="img/googleplay.png">
+</div>
+<div class="col-sm-4">
+</div>
+</div>
+</div>
+<div class="col-sm-1">
+</div>
+</div>
+			</div>
+</div>
        <div class="high_light">
        <?php include_once 'view_restaurants.php';?>
       </div><!-- End hight_light -->

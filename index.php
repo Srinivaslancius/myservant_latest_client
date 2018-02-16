@@ -26,8 +26,36 @@ a.mask {
 .flat-imagebox.style1{
 	margin-bottom:-125px;
 }
+.order-tracking {
+  text-align:left;
+    padding: 10px 70px 80px;
+  
+}
+.order-tracking h4 {
+    font-size: 16px;
+	line-height:25px;
+}
+.order-tracking h2,h4,p {
+	margin-bottom:20px;
+}
+.input-group-addon.one{
+	background-color:#099E44;
+	color:white;
+	font-size:15px;
+}
+.input-group-addon{
+	font-size:15px;
+}
 
-
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], input[type="email"]
+{
+	border:1px solid #e5e5e5;
+	height: 42px;
+}
+.imagebox.one_ht{
+	margin-top:15px;
+	margin-bottom:15px;
+}
 </style>
 <?php 
 	if(isset($_POST['news_letter'])) {
@@ -890,7 +918,55 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		</div><!-- /.row -->
 	</div><!-- /.container -->
 </section><!-- /.flat-imagebox style4 -->
+<section class="flat-imagebox style2 background">
+<div class="container">
+<div class="order-tracking">
+<img src="images/logos/logo1.png"><br><br>
+<div class="row">
 
+<div class="col-sm-5">
+<img src="images/foodM.png">
+</div>
+
+<div class="col-sm-6">
+<h2>Looking for the Food Feed? Get the app!</h2>
+<h4>Follow foodies to see their reviews and photos in your Feed, and discover great new restaurants!</h4>
+<p>We'll send you a link, open it on your phone to download the app</p>
+<div class="input-group">
+  <span class="input-group-addon">+91</span>
+  <input type="text" class="form-control">
+  <span class="input-group-addon one">Text App link</span>
+</div>
+<div class="imagebox one_ht">
+<div class="box-content">
+<div class="cat-name">
+<a href="" title=""><b>(OR)</b></a>
+</div>											
+</div>
+</div>
+<div class="input-group">
+  <span class="input-group-addon">+91</span>
+  <input type="text" class="form-control">
+  <span class="input-group-addon one">Email App link</span>
+</div><br>
+<div class="row">
+<div class="col-sm-4">
+<img src="images/product/applestore.png">
+</div>
+<div class="col-sm-4">
+<img src="images/product/googleplay.png">
+</div>
+<div class="col-sm-4">
+</div>
+</div>
+</div>
+<div class="col-sm-1">
+</div>
+</div>
+</div>
+
+</div>
+</section>
 <?php 
 	$getFreeShippingData = getIndividualDetails('grocery_content_pages','id',4);
 	$getOnlineOrderData = getIndividualDetails('grocery_content_pages','id',5);

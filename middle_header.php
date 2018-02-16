@@ -50,9 +50,9 @@
 											₹0.00
 										</div> -->
 									</a>
-									<div class="dropdown-box crt_shght">
+									<div class="dropdown-box">
 										<?php if($cart_count > 0) { ?>
-										<ul>
+										<ul class="crt_shght">
 											<?php $cartTotal = 0;
 											while ($getCartItems = $cartItems->fetch_assoc()) { 
 											$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
@@ -78,6 +78,7 @@
 											</li>
 											<?php } ?>
 										</ul>
+										<div class="bx_shadw">
 										<div class="total">
 											<span>Subtotal:</span>
 											<span class="price">Rs . <?php echo $cartTotal; ?></span>
@@ -89,6 +90,7 @@
 											<?php } else { ?>
 											<a href="add_address.php" class="check-out" title="">Checkout</a>
 											<?php } ?>
+										</div>
 										</div>
 										<?php } else { ?>
 										<center><img src="images/cart.png" style="width:120px;height:80px"></center>
