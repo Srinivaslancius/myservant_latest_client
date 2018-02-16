@@ -50,7 +50,7 @@
 											₹0.00
 										</div> -->
 									</a>
-									<div class="dropdown-box">
+									<div class="dropdown-box crt_shght">
 										<?php if($cart_count > 0) { ?>
 										<ul>
 											<?php $cartTotal = 0;

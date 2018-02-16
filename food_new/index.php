@@ -20,7 +20,30 @@
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-
+<style>
+.flat-banner-box {
+    padding: 30px 0 5px;
+}
+a.mask {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    padding-bottom: 10px;
+	border-radius: 10px;
+}
+.storeimgcapt1 {
+    background-color: rgba(0,0,0,0.8);
+    text-align: center;
+    color: #fff;
+    padding: 12px 0px;
+    position: relative;
+    margin-top: -40px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+	border-radius: 10px;
+}
+</style>
 </head>
   
 
@@ -64,7 +87,40 @@
         </ul>
    </div>
  </div>
-    
+ <?php $getOtherServicesGroceryData ="SELECT * FROM myservant_other_services WHERE id=1";
+      $getOtherServices = $conn->query($getOtherServicesGroceryData);
+      $getOtherServices1 = $getOtherServices->fetch_assoc();
+      ?>
+      <?php $getOtherServicesServicesData ="SELECT * FROM myservant_other_services WHERE id=2";
+      $getOtherServicesServices = $conn->query($getOtherServicesServicesData);
+      $getOtherServicesServices1 = $getOtherServicesServices->fetch_assoc();
+?>
+    <section class="flat-row flat-banner-box">
+			<div class="container">
+			<div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="banner-box">
+							<div class="inner-box">
+                        <a href="<?php echo $base_url; ?>index.php" class="mask">
+                           <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServices1['web_image']; ?>" alt="<?php echo $getOtherServices1['title']; ?>" style="width:100%;height:auto">
+                           <div class="storeimgcapt1"><?php echo $getOtherServices1['title']; ?></div>
+                        </a>
+						</div>
+						</div>
+                     </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="banner-box">
+							<div class="inner-box">
+                        <a href="<?php echo $base_url; ?>Services/index.php" class="mask">
+                           <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServicesServices1['web_image']; ?>" style="width:100%;height:auto" alt="<?php echo $getOtherServicesServices1['title']; ?>">
+                           <div class="storeimgcapt1"><?php echo $getOtherServicesServices1['title']; ?></div>
+                        </a>
+						</div>
+						</div>
+                     </div>
+                     
+                  </div>
+				  </section>
 <?php $getAllSearchByAreaData = getAllDataWhere('food_content_pages','id',2);
           $getSearchByAreaData = $getAllSearchByAreaData->fetch_assoc();
 ?>
