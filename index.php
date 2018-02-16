@@ -1121,7 +1121,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	var x = document.getElementById("cart_popup_"+ProductId)
+			      	var x = document.getElementById("cart_popup_"+ProductId);
 				    x.className = "snackbar show";				    
 				    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1000);
 			      }
