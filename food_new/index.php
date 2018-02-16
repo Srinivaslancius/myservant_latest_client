@@ -87,15 +87,23 @@ a.mask {
         </ul>
    </div>
  </div>
+ <?php $getOtherServicesGroceryData ="SELECT * FROM myservant_other_services WHERE id=1";
+      $getOtherServices = $conn->query($getOtherServicesGroceryData);
+      $getOtherServices1 = $getOtherServices->fetch_assoc();
+      ?>
+      <?php $getOtherServicesServicesData ="SELECT * FROM myservant_other_services WHERE id=2";
+      $getOtherServicesServices = $conn->query($getOtherServicesServicesData);
+      $getOtherServicesServices1 = $getOtherServicesServices->fetch_assoc();
+?>
     <section class="flat-row flat-banner-box">
 			<div class="container">
 			<div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="banner-box">
 							<div class="inner-box">
-                        <a href="<?php echo $base_url; ?>Services/index.php" class="mask">
-                           <img class="img-responsive zoom-img" src="img/img.jpg" style="width:100%;height:auto">
-                           <div class="storeimgcapt1">Food</div>
+                        <a href="<?php echo $base_url; ?>index.php" class="mask">
+                           <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServices1['web_image']; ?>" alt="<?php echo $getOtherServices1['title']; ?>" style="width:100%;height:auto">
+                           <div class="storeimgcapt1"><?php echo $getOtherServices1['title']; ?></div>
                         </a>
 						</div>
 						</div>
@@ -103,9 +111,9 @@ a.mask {
                     <div class="col-lg-6 col-md-6 col-sm-6">
 					<div class="banner-box">
 							<div class="inner-box">
-                        <a href="<?php echo $base_url; ?>food_new/index.php" class="mask">
-                           <img class="img-responsive zoom-img" src="img/img.jpg"style="width:100%;height:auto">
-                           <div class="storeimgcapt1">Services</div>
+                        <a href="<?php echo $base_url; ?>Services/index.php" class="mask">
+                           <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServicesServices1['web_image']; ?>" style="width:100%;height:auto" alt="<?php echo $getOtherServicesServices1['title']; ?>">
+                           <div class="storeimgcapt1"><?php echo $getOtherServicesServices1['title']; ?></div>
                         </a>
 						</div>
 						</div>
