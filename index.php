@@ -233,6 +233,11 @@ $tagNames = $conn->query($getTags);
 							<input type="hidden" id="pro_name_<?php echo $productDetails['id']; ?>" value="<?php echo $getProductName['product_name']; ?>">
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
+
+									<div id="cart_popup_<?php echo $productDetails['id']; ?>" class="snackbar">
+										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
+										<p>PRODUCT NAME: <?php echo $getProductName['product_name']; ?> </p> 
+									</div>
 									
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
@@ -914,10 +919,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 						</div><!-- /.iconbox -->
 					</div><!-- /.col-md-3 col-sm-6 -->
 				</div><!-- /.row -->
-				<div id="snackbar">
-					<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-					<!-- <p>PRODUCT NAME: Happy Chef Pasta + Arrabiata + Borges Olive Oil </p> -->
-				</div>
+				
 			</div><!-- /.container -->
 		</section><!-- /.flat-iconbox -->
 		
@@ -1016,9 +1018,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	var x = document.getElementById("snackbar")
-				    x.className = "show";
-				    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+			      	var x = document.getElementById("cart_popup_"+ProductId)
+				    x.className = "snackbar show";				    
+				    setTimeout(function(){ x.className = x.className.replace("snackbar show", ""); }, 2000);
 			      }
 			    });
 			    $.ajax({

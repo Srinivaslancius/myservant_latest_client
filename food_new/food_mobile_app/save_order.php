@@ -24,7 +24,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$random2 = substr($string2,0,3);
 		$contstr = "MYSER-FOOD";
 		$order_id = $contstr.$random1.$random2;
-		$service_tax = $_REQUEST["service_tax"];
+		$service_tax = $_REQUEST["gst"];
+		$delivery_charges = $_REQUEST["delivery_charges"];
+		
 		//$servicesCount = count($_REQUEST["service_id"]);
 		//Saving user id and coupon id
 		$user_id = $_REQUEST["user_id"];

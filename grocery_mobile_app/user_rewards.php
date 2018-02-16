@@ -23,7 +23,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				$response["message"] = "Success";				
 		} else {
 		    $response["success"] = 1;
-		    $response["message"] = "No Rewards found";	   
+		    $response["message"] = "No Rewards found";	
+		    $response["totalRewards"] = '0';   
 		}
 	} else {
 		$response["success"] = 2;

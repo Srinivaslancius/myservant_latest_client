@@ -4203,7 +4203,7 @@ float: left;
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-#snackbar {
+.snackbar {
     visibility: hidden;
     min-width: 350px;
     margin-left: -125px;
@@ -4221,12 +4221,12 @@ float: left;
 	border: 5px solid #00c853;
 }
 @media screen and (max-width: 480px) and (min-width: 320px){
-	#snackbar {
+	.snackbar {
 		    left: 40%;
 			 min-width: 200px !important;
 	}
 }
-#snackbar.show {
+.snackbar.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
