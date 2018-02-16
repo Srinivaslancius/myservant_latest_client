@@ -206,7 +206,8 @@ if (isset($_POST['cart_id'])){
                         } else {
                           echo'<a class="btn_full" href="checkout.php">Order now</a>';
                         }
-                        echo'<a class="btn_full_outline" href="index.php"><i class="icon-right"></i> Continue</a>
+                        echo'<a class="btn_full" href="clearcart.php">Clear Cart</a>
+                        <a class="btn_full_outline" href="index.php"><i class="icon-right"></i> Continue</a>
                     </div>
                 </div>
             </div>
