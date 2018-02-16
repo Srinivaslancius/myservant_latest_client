@@ -1,5 +1,9 @@
 <?php include_once 'admin_includes/main_header.php'; ?>
-<?php $getCategoriesData = getAllDataWhereWithActive('food_category','vendor_id',$_SESSION['food_vendor_user_id']); $i=1; ?>
+<?php 
+$vendor_id = $_SESSION['food_vendor_user_id'];
+$getFood_Category_Data ="SELECT * FROM food_category WHERE vendor_id='$vendor_id' ORDER BY lkp_status_id,id DESC";$i=1;
+$getFood_Category = $conn->query($getFood_Category_Data);
+?>
      <div class="site-content">
         <div class="panel panel-default panel-table">
           <div class="panel-heading">
@@ -20,7 +24,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while ($row = $getCategoriesData->fetch_assoc()) { ?>
+                  <?php while ($row = $getFood_Category->fetch_assoc()) { ?>
                   <tr>
                     <td><?php echo $i;?></td>
                     <td><?php echo $row['category_name'];?></td>
