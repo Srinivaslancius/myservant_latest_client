@@ -63,17 +63,17 @@ html * {
 body {
     font-size: 13px;
     line-height: 1.4;
-    color: #555;
+    color: #656565;
     background-color: #f5f5f5;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+    font-family: 'Open Sans', sans-serif;
 }
 
 .high_light h3,h1,h2,h3.slide_typo {
-    font-family: Lato,"Helvetica Neue",Helvetica,Arial,sans-serif
+    font-family: 'BloggerSans', sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6,label {
-    color: #333
+    color: #333;
 }
 
 h3.slide_typo {
@@ -118,7 +118,8 @@ h3 .slide_typo strong {
     font-size: 40px;
     letter-spacing: -1px;
     font-weight: 500;
-    color: #fe6003
+    color: #fe6003;
+    font-family: 'BloggerSans', sans-serif;
 }
 
 .main_title p {
@@ -688,7 +689,8 @@ iframe {
 
 .box_home h3,.box_home span {
     font-size: 16px;
-    font-weight: 700
+    font-weight: 700;
+    font-family: 'BloggerSans', sans-serif;
 }
 
 .box_home span {
@@ -745,7 +747,8 @@ iframe {
 
 .box_home h3 {
     margin-top: 35px;
-    margin-bottom: 3px
+    margin-bottom: 3px;
+    font-family: 'BloggerSans', sans-serif;
 }
 
 #delivery_time {
