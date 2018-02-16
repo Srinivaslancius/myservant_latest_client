@@ -92,9 +92,9 @@
 										</div>
 										<?php } else { ?>
 										<center><img src="images/cart.png" style="width:120px;height:80px"></center>
-											<p style="text-align:center; color:#f26226">Your shopping cart is currently empty
-
-</p>
+											<p style="text-align:center; color:#f26226">Your shopping cart is currently empty</p>
+											<p style="text-align:center;margin:10px">Please click on the 'Continue Shopping' button below for items</p>
+											<center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
 										<?php } ?>
 									</div>
 								</div><!-- /.inner-box -->

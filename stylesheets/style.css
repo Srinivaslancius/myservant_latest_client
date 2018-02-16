@@ -1117,7 +1117,7 @@ ul.flat-unstyled li > ul > li > a {
 
 .box-cart .inner-box .dropdown-box > ul > li {
 	position:relative;
-	margin-bottom:30px;
+	margin-bottom: 10px;
 }
 
 .box-cart .inner-box .dropdown-box > ul > li .img-product {
@@ -4254,6 +4254,6 @@ float: left;
 }
 .crt_shght{
 	overflow-y: auto !important;
-height: 200px;
+height: 300px;
 	
 }
