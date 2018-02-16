@@ -1,17 +1,4 @@
 <?php include_once 'meta.php';?>
-<style>
-#div1{
-width:90%;
-height:auto;
-display:none;
-background: rgba(0,0,0,0.8);
-border:1px solid #DCDCDC;
-border-radius:10px;
-padding:20px;
-z-index:9999;
-position:absolute;
-}
-</style>
 <body class="header_sticky">
 	<div class="boxed">
 
@@ -224,9 +211,9 @@ position:absolute;
 									?>	
 										<div class="col-lg-4 col-sm-6">
 											<div class="product-box">
-												<div id="div1" class="cart_popup_<?php echo $getProductDetails['id']; ?>">
+												<div id="cart_popup_<?php echo $getProductDetails['id']; ?>" class="snackbar">
 													<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-													<p style="color:white">Product Name : <?php echo $getProductNames['product_name']; ?></p>
+													<p>PRODUCT NAME: <?php echo $getProductNames['product_name']; ?> </p> 
 												</div>
 												<div class="imagebox">
 														<a href="single_product.php?product_id=<?php echo $getProductDetails['id'];?>" title="">
@@ -310,9 +297,9 @@ position:absolute;
 									<input type="hidden" id="sub_cat_id1_<?php echo $getProductsTotalDetails2['id']; ?>" value="<?php echo $getProductsTotalDetails2['grocery_sub_category_id']; ?>">
 									<input type="hidden" id="pro_name1_<?php echo $getProductsTotalDetails2['id']; ?>" value="<?php echo $getProductNames1['product_name']; ?>">
 										<div class="product-box style3">
-											<div id="div1" class="cart_popup_<?php echo $getProductsTotalDetails2['id']; ?>">
+											<div id="cart_popup1_<?php echo $getProductsTotalDetails2['id']; ?>" class="snackbar">
 												<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-												<p style="color:white">Product Name : <?php echo $getProductNames1['product_name']; ?></p>
+												<p>PRODUCT NAME: <?php echo $getProductNames1['product_name']; ?> </p> 
 											</div>
 											<div class="imagebox style1 v3">
 												<div class="box-image">
@@ -474,10 +461,9 @@ position:absolute;
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".cart_popup_"+ProductId).fadeIn(2000);
-			      	setTimeout(function() {
-					    $(".cart_popup_"+ProductId).fadeOut('fast');
-					}, 2000);
+			      	var x = document.getElementById("cart_popup_"+ProductId);
+				    x.className = "snackbar show1";
+				    setTimeout(function(){ x.className = x.className.replace("show1", ""); }, 1000);
 			      }
 			    });
 			    $.ajax({
@@ -510,10 +496,9 @@ position:absolute;
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".cart_popup_"+productId).fadeIn(2000);
-			      	setTimeout(function() {
-					    $(".cart_popup_"+productId).fadeOut('fast');
-					}, 2000);
+			      	var x = document.getElementById("cart_popup1_"+productId);
+				    x.className = "snackbar show1";
+				    setTimeout(function(){ x.className = x.className.replace("show1", ""); }, 1000);
 			      }
 			    });
 			    $.ajax({
