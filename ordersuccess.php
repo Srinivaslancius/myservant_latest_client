@@ -100,10 +100,13 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 	$mail = sendEmail($to,$subject,$message,$from,$name);
 
 	//Changing transaction status of referd email
-	$getFirstTran = getAllDataWhere('grocery_orders','user_id',$_SESSION['user_login_session_id']);
+	$getFirstTran1 = "SELECT * FROM grocery_orders WHERE user_id = '$user_id' GROUP BY order_id";
+	$getFirstTran = $conn->query($getFirstTran1);
 	if($getFirstTran->num_rows == 1) {
-		$getfriendDetails = getIndividualDetails('grocery_refer_a_friend','refer_email_id',$_SESSION['user_login_session_email']);
-	    $updateRefer = "UPDATE `grocery_refer_a_friend` SET first_transaction_status = '1' WHERE refer_email_id = '".$_SESSION['user_login_session_email']."'";
+		$getfriendDetails2 = "SELECT * FROM grocery_refer_a_friend WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";
+        $getfriendDetails1 = $conn->query($getfriendDetails2);
+        $getfriendDetails = $getfriendDetails1->fetch_assoc();
+	    $updateRefer = "UPDATE `grocery_refer_a_friend` SET first_transaction_status = '1' WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";
 	    $conn->query($updateRefer);
 	    $refer_amount = $getSiteSettings1["reffer_amount"]+$getAmount['amount'];
 	    $updateWalletAmount1 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '$user_id' ";

@@ -25,6 +25,55 @@ position:fixed;
 top:50%;
 left:50%;
 }
+#snackbar {
+    visibility: hidden;
+    min-width: 350px;
+    margin-left: -125px;
+	  background-color: #333;
+  	/*background: rgba(0,0,0,0.8);*/
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 9999;
+    left: 40%;
+    bottom: 30px;
+    font-size: 14px;
+	border: 5px solid #00c853;
+}
+@media screen and (max-width: 480px) and (min-width: 320px){
+	#snackbar {
+		    left: 40%;
+			 min-width: 200px !important;
+	}
+}
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
 </style>
 <body class="header_sticky">
 	<div class="boxed">
@@ -267,7 +316,7 @@ left:50%;
 									<?php for($i=0; $i<12; $i++) {?>
 										<div class="col-lg-4 col-sm-6">
 											<div class="product-box">
-											<div id="div1">
+											<div id="snackbar">
 								
 											<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
 											<p style="color:white">Product Name : Instant Brue</p>
@@ -302,7 +351,7 @@ left:50%;
 													
 													<div class="box-bottom">
 														<div class="btn-add-cart">
-															<a href="javascript:void(0)" title="">
+															<a href="javascript:void(0)" title="" onclick="myFunction()">
 																<img src="images/icons/add-cart.png" alt="">Add to Cart
 															</a>
 														</div>
@@ -444,6 +493,13 @@ left:50%;
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
+		<script>
+function myFunction() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
 <script>
 $(document).ready(function(){
     $(".btn-add-cart").click(function(){

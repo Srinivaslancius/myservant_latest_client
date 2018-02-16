@@ -1,7 +1,8 @@
 <?php $getSiteSettings1 = getAllDataWhere('grocery_site_settings','id','1'); 
 $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 <?php 
-if(isset($_POST['submit'])) {
+if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
+	//echo "<pre>"; print_r($_POST); die;
 	$refer_email = $_POST['refer_email'];
 	$user_id = $_SESSION['user_login_session_id'];
 	$string2 = str_shuffle('1234567890');
@@ -58,9 +59,7 @@ if(isset($_POST['submit'])) {
 				<ul class="cat-list-ft">
 					<li>
 						<?php if($_SESSION['user_login_session_id'] =='') { ?>
-							<a href="login.php" title="">
-								My Account
-							</a>
+							<a href="login.php" title="">Refer a friend</a>
 						<?php } else { ?>
 							<a href="javascript:void(0)" title="" id="myBtn">Refer a friend</a>
 						<?php } ?>
@@ -339,7 +338,7 @@ $(document).ready(function () {
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	                <button type="submit" name="submit" class="btn btn-primary">Refer</button>
+	                <button type="submit" name="refer_friend" value="refer_friend" class="btn btn-primary">Refer</button>
 	            </div>
 	        </div>
 	    </form>

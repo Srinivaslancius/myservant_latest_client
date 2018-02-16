@@ -78,7 +78,7 @@
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#0">Update Profile</a></li>
+                Update Profile
             </ul>
             
         </div>
@@ -197,6 +197,8 @@
 
 <!-- SPECIFIC SCRIPTS -->
 <script src="js/theia-sticky-sidebar.js"></script>
+<!-- This Script For validations -->
+<script type="text/javascript" src="js/check_number_validations.js"></script>
 <script>
     jQuery('#sidebar').theiaStickySidebar({
       additionalMarginTop: 80
