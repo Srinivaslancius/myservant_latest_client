@@ -36,9 +36,6 @@
             //echo "<pre>"; print_r($_FILES); die;
             $title = $_POST['title'];
             $lkp_city_id = $_POST['lkp_city_id'];
-            $category_id = $_POST['category_id'];
-            $sub_category_id = $_POST['sub_category_id'];
-            $product_id = $_POST['product_id'];
             $banner_image_type = $_POST['banner_image_type'];
             if($banner_image_type == 0) {
                 $max_percentage = '';
@@ -48,6 +45,19 @@
                 $min_percentage = $_POST['min_percentage'];
             }
             $type = $_POST['type'];
+            if($type == 1) {
+                $category_id = $_POST['category_id'];
+                $sub_category_id = '';
+                $product_id = '';
+            } elseif($type == 2) {
+                $category_id = '';
+                $sub_category_id = $_POST['sub_category_id'];
+                $product_id = '';
+            } else {
+                $category_id = '';
+                $sub_category_id = '';
+                $product_id = $_POST['product_id'];
+            }
             if($_FILES["web_image"]["name"]!='' || $_FILES["app_image"]["name"]!='') {
                 $web_image = uniqid().$_FILES["web_image"]["name"];
                 $web_image_dir = "uploads/grocery_banner_web_image/";

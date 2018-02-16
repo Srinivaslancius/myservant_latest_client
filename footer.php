@@ -1,54 +1,6 @@
 <?php $getSiteSettings1 = getAllDataWhere('grocery_site_settings','id','1'); 
 $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
-<?php 
-if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
-	//echo "<pre>"; print_r($_POST); die;
-	$refer_email = $_POST['refer_email'];
-	$user_id = $_SESSION['user_login_session_id'];
-	$string2 = str_shuffle('1234567890');
-	$referal_code = substr($string2,0,5);
-	$getEmail1 = "SELECT * FROM users WHERE user_email LIKE '$refer_email'";
-	$getEmail = $conn->query($getEmail1);
-	$getEmailDeatils = $getEmail->fetch_assoc();
-	$created_at = date('Y-m-d H:i:s');
-	if($getEmail->num_rows == 0) {
-		$sql = "INSERT INTO grocery_refer_a_friend (`refered_user_id`,`refer_email_id`,`created_at`,`referal_code`) VALUES ('$user_id','$refer_email','$created_at','$referal_code')";
-  		$result = $conn->query($sql);
-  		if($result === TRUE) {
-			$to = $refer_email;
-			$subject = "Myservent - Refer a Friend";
-			$message = '';		
-			$message .= '<body>
-				<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
-				<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
-				 <center><img src='.$base_url . "grocery_admin/uploads/logo/".$getSiteSettingsData1["logo"].' class="logo-responsive"></center>
-				</header>
-				<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
-				  	<h1 style="color:#fe6003">Welcome To Myservant</h1>
-			  		<p>A very special welcome to you <span style="color:#fe6003;">'.$refer_email.'</span></p>
-			  		<p>Your Friend <span style="color:#fe6003;">'.$getEmailDeatils['user_full_name'].' has reffered.</span></p>
-			  		<p>Your Referal code <span style="color:#fe6003;">'.$referal_code.'.</span></p>
-					<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
-					<p>Warm Regards,<br>The Myservant Team </p>
-				</article>
-				<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettingsData1['footer_text'].'</footer>
-				</div>
 
-				</body>';
-
-			//echo $message; die;
-			$name = "My Servant - Grocery";
-			$from = $getSiteSettingsData1["from_email"];
-			$resultEmail = sendEmail($to,$subject,$message,$from,$name);
-			echo "<script>alert('Thank You. Your recommendation has been sent to $refer_email.');</script>";
-		} else {
-			echo "<script>alert('Sorry! There was a problem sending your recommendation.');</script>";
-		}
-	} else {
-		echo "<script>alert('Sorry! You Cant refered this Mail.');</script>";
-	}
-}
-?>
 <div class="container">
 	<div class="row" style="padding-bottom:30px">
 		<div class="col-lg-3 col-md-3">
@@ -61,7 +13,7 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 						<?php if($_SESSION['user_login_session_id'] =='') { ?>
 							<a href="login.php" title="">Refer a friend</a>
 						<?php } else { ?>
-							<a href="javascript:void(0)" title="" id="myBtn">Refer a friend</a>
+							<a href="refer_friend.php" title="">Refer a friend</a>
 						<?php } ?>
 					</li>
 					<li>
@@ -318,29 +270,4 @@ function addWishList1(ProductId) {
 </script>
 
 <script type="text/javascript" src="javascript/check_number_validations.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {      
-    $("#myBtn").click(function(){
-         $('#myModal').modal('show');
-    });
-});
-</script>
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    	<form method="POST">
-	        <div class="modal-content">
-	            <div class="modal-header">			                
-	                 <h4 class="modal-title" id="myModalLabel">Refer a friend</h4>
-	            </div>
-	            <div class="modal-body">
-            		<input type="email" name="refer_email" placeholder="please enter email" required>
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	                <button type="submit" name="refer_friend" value="refer_friend" class="btn btn-primary">Refer</button>
-	            </div>
-	        </div>
-	    </form>
-    </div>
-</div>
+

@@ -27,7 +27,7 @@ echo '<a href="#" title="">
 			<span>'.$cart_count.'</span>
 		</div>
 	</a>
-	<div class="dropdown-box">';
+	<div class="dropdown-box crt_shght">';
 		if($cart_count > 0) {
 		echo'<ul>';
 		while ($getCartItems = $cartItems->fetch_assoc()) { 

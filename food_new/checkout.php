@@ -596,6 +596,9 @@ $('#discount_price').hide();
            		} else if(value == 1) {
            			alert('Enter Coupon is not valid for this Service');
            			$("#coupon_code").val('');
+           		} else if(value == 2) {
+           			alert('Already Used.');
+           			$("#coupon_code").val('');
            		} else{
            			$('#coupon_code').attr('readonly','true');
            			$(".apply_coupon").hide();

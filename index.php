@@ -66,6 +66,8 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 		$addNewsLetter1 = $conn->query($addNewsLetter);
 		echo "<script>alert('Thank you for Joining. You will be the first to know about new releases,giveaways & offers. Stay tuned.');</script>";
 		//header('Location: index.php');
+	} elseif($_GET['key']) {
+		$_SESSION['news_letter_email'] = 1;
 	}
 ?>
 <body class="header_sticky">
@@ -79,12 +81,12 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 					</div>
 					<div class="col-sm-8">
 						<div class="popup">
-							<span></span>
+							<a href="index.php?key=<?php echo encryptPassword(1); ?>"><span></span></a>
 							<div class="popup-text">
 								<h2>Join our newsletter and <br />get discount!</h2>
 								<p class="subscribe">Subscribe to the newsletter to receive updates about new products.</p>
 								<div class="form-popup">
-									<form action="" class="subscribe-form" method="post" accept-charset="utf-8">
+									<form action="" class="subscribe-form" method="post" accept-charset="utf-8" autocomplete="off">
 										<div class="subscribe-content">
 											<input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  id="user_email" class="subscribe-email" placeholder="Your E-Mail" required>
 											<button name="news_letter" type="submit"><img src="images/icons/right-2.png" alt=""></button>
