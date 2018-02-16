@@ -106,16 +106,18 @@
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-slider -->
-                
+            
+        <?php 
+		$cur_time=date("Y-m-d");
+		$getGroceryOfferZone1 = "SELECT * FROM grocery_offer_zone WHERE lkp_status_id = 0 AND offer_end_date > '$cur_time'";
+		$getGroceryOfferZone = $conn->query($getGroceryOfferZone1);
+		if($getGroceryOfferZone->num_rows > 0) {
+		?>        
 		<section class="main-blog">
 			<div class="container text-center bg-grey">
   				<h2>Offers based on your interest</h2><br> 
 				<div class="row text-center">
-				<?php 
-				$cur_time=date("Y-m-d");
-				$getGroceryOfferZone1 = "SELECT * FROM grocery_offer_zone WHERE lkp_status_id = 0 AND offer_end_date > '$cur_time'";
-				$getGroceryOfferZone = $conn->query($getGroceryOfferZone1);
-                while ($row = $getGroceryOfferZone->fetch_assoc()) { ?>
+                <?php while ($row = $getGroceryOfferZone->fetch_assoc()) { ?>
   					<div class="col-sm-3">
       					<div class="thumbnail">
      						<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$row['offer_image'] ?>" alt=""class="image1">
@@ -138,6 +140,20 @@
   				</div>
 			</div>
 		</section><!-- /.main-blog -->
+		<?php } else { ?>
+		<div class="row" style="padding-bottom:30px">
+		<div class="col-sm-4">
+		</div>
+		<div class="col-sm-4">
+		<center><img src="images/thumb.png" style="padding-top:50px"></center><br>
+       <h3 style="text-align:center">Sorry..!! No Offers Found.</h3>
+	   <p style="text-align:center;margin:15px">Please click on the 'Continue Shopping' button below for items</p>
+    		<center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
+	   </div>
+	   <div class="col-sm-4">
+		</div>
+	   </div>
+       <?php } ?>
 
 <?php $getFreeShippingData = getIndividualDetails('grocery_content_pages','id',4);
 

@@ -58,8 +58,8 @@
     <div id="position">
         <div class="container">
             <ul>
-                <li><a href="#0">Home</a></li>
-                <li><a href="#0">Place Order</a></li>
+                <li><a href="index.php">Home</a></li>
+                Place Order
                 <li>Thank You</li>
             </ul>
             
