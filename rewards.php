@@ -69,7 +69,7 @@
      		?>
           	<div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="nomargin_top" style="color:#fe6003;">Grocery Orders</h3>
+                  <h3 class="nomargin_top" style="color:#fe6003;">Reward Points</h3>
                 </div>
               	<div class="panel-body">
 				  	<div class="row" style="padding:10px 60px 50px 60px">

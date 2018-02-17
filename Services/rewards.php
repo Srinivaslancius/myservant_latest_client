@@ -117,32 +117,38 @@
      </div><!-- End col-md-3 -->
         
         <div class="col-md-9 col-sm-9">
-        
-         <div class="panel-group">
-                  <div class="panel panel-default">
+        	<?php
+     		$user_id = $_SESSION['user_login_session_id'];
+     		$getRewards1 = "SELECT * FROM grocery_reward_transactions WHERE user_id = '$user_id' ";
+     		$getRewards = $conn->query($getRewards1);
+     		while ($getRewards1 = $getRewards->fetch_assoc()) {
+     			$credit_reward_points += $getRewards1['credit_reward_points'];
+     			$debit_reward_points += $getRewards1['debit_reward_points'];
+     		}
+     		$totalRewards = $credit_reward_points - $debit_reward_points;
+     		$getRewardAmount = getIndividualDetails('grocery_reward_points','id',1);
+     		?>
+         	<div class="panel-group">
+              	<div class="panel panel-default">
                     <div class="panel-heading">
                       <h3 class="nomargin_top">Reward points</h3>
                     </div>
                     <div class="panel-body">
-					
-					<div class="row" style="padding:10px 60px 50px 60px">
-					<div class="col-sm-4">
-					<h4 style="margin-left:10px">Rewards</h4>
-						<a href="" class="notif"><span class="badge1">2</span></a>
-						</div>
-						<div class="col-sm-4">
-					<h4>For Rewards</h4>
-						<a href="" class="notif1"><span class="badge1">22</span></a>
-						</div>
-						<div class="col-sm-4">
-					<h4 style="margin-left:20px">Total</h4>
-						<a href="" class="notif2"><span class="badge1">44</span></a>
-						</div>
-                     </div>
-
-
-					
-                    <div class="table-responsive">						
+						<div class="row" style="padding:10px 60px 50px 60px">
+							<div class="col-sm-4">
+								<h4 style="margin-left:10px">Rewards</h4>
+								<a href="" class="notif"><span class="badge1"><?php echo round($totalRewards); ?></span></a>
+							</div>
+							<div class="col-sm-4">
+								<h4>For Rewards</h4>
+								<a href="" class="notif1"><span class="badge1"><?php echo $getRewardAmount['for_reward_points']; ?></span></a>
+							</div>
+							<div class="col-sm-4">
+								<h4 style="margin-left:20px">Total</h4>
+								<a href="" class="notif2"><span class="badge1"><?php echo $getRewardAmount['amount_credits']; ?></span></a>
+							</div>
+                 		</div>
+                   <!--  <div class="table-responsive">						
         			<table class="table" style="border:1px solid #ddd;width:100%">					
             		<thead>
             		  <tr>
@@ -158,21 +164,13 @@
             			<td>Somthing</td>
             			<td>Somthing</td>
             			<td>Somthing</td>
-						
             		  </tr>
-            		  
             		</tbody>
-					
         	     </table>
-        	     
-				
-        	  </div>
+        	  </div> -->
                       </div>
                   </div>
-                  
                 </div><!-- End panel-group -->
-                
-            
         </div><!-- End col-md-9 -->
     </div><!-- End row -->
 			<!-- End row -->						

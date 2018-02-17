@@ -220,7 +220,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#">
+                            <a href="rewards.php">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="box_home" id="eight">
                                         
