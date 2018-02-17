@@ -415,12 +415,12 @@
 											<?php } else if($getWalletAmount['amount'] > 0) { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total cart_total2">Rs . <?php echo round($orderTotal); ?></td>
+												<td class="price-total">Rs . <?php echo round($orderTotal); ?></td>
 											</tr>
 											<?php } else { ?>
 											<tr>
 												<td>Total</td>
-												<td class="price-total cart_total2">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
+												<td class="price-total">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
 											</tr>
 											<?php } ?>
 											
@@ -577,23 +577,27 @@
 		    	var discount_amount = $('#discount_money').val();
 			    if($(this).is(":checked")) {
 			        $("#wallet").show();
-			        $('.price-total').html("Rs. "+Math.round((totalWithWallet-discount_amount)));
-			    	$('#order_total').val(Math.round(totalWithWallet-discount_amount));
 			    	if(totalWithWallet == 0) {
 				    	$('.coupon,#discount_price').hide();
 				    	$('#discount_money').val('');
+				    	$('.price-total').html("Rs. "+totalWithWallet);
+			    		$('#order_total').val(totalWithWallet);
 				    } else {
 				    	$('.coupon').show();
+				    	$('.price-total').html("Rs. "+Math.round((totalWithWallet-discount_amount)));
+			    		$('#order_total').val(Math.round(totalWithWallet-discount_amount));
 				    }
 			    } else {
 			        $("#wallet").hide();
-			        $('.price-total').html("Rs. "+Math.round((totalWithoutWallet-discount_amount)));
-			    	$('#order_total').val(Math.round(totalWithoutWallet-discount_amount));
 			    	if(totalWithoutWallet == 0) {
 				    	$('.coupon,#discount_price').hide();
 				    	$('#discount_money').val('');
+				    	$('.price-total').html("Rs. "+totalWithoutWallet);
+			    		$('#order_total').val(totalWithoutWallet);
 				    } else {
 				    	$('.coupon').show();
+				    	$('.price-total').html("Rs. "+Math.round((totalWithoutWallet-discount_amount)));
+			    		$('#order_total').val(Math.round(totalWithoutWallet-discount_amount));
 				    }
 			    }
 			});
@@ -628,7 +632,7 @@
 			           			$('#coupon_code').attr('readonly','true');
 			           			$(".apply_coupon").hide();
 			           			var data = value.split(",");
-				          		$('.cart_total2').html("Rs. "+Math.round(data[0]));
+				          		$('.price-total').html("Rs. "+Math.round(data[0]));
 					            $('#order_total').val(Math.round(data[0]));
 			               		$('#discount_price').show();
 			               		$('.close-icon').show();
@@ -651,7 +655,7 @@
 						$('#coupon_code').removeAttr("readonly");
 					    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
 					    $(".apply_coupon").show();
-					    $('.cart_total2').html("Rs. "+order_total);
+					    $('.price-total').html("Rs. "+order_total);
 						$('#order_total').val(order_total);
 						$('#discount_price').hide();
 						$('.close-icon').hide();
