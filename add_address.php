@@ -108,7 +108,7 @@
 									<div class="row">
 									  	<div class="col-sm-3"></div>
 									  	<div class="col-sm-6">
-										`	<center><img src="images/myaddress.png">
+											<center><img src="images/myaddress.png">
 											<h4>No Addresses found in your account!</h4>
 											<p>Add a delivery address.</p>
 											<button class="button1">ADD ADDRESS</button></center>
