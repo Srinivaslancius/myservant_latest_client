@@ -27,9 +27,9 @@ echo '<a href="#" title="">
 			<span>'.$cart_count.'</span>
 		</div>
 	</a>
-	<div class="dropdown-box crt_shght">';
+	<div class="dropdown-box">';
 		if($cart_count > 0) {
-		echo'<ul>';
+		echo'<ul class="crt_shght">';
 		while ($getCartItems = $cartItems->fetch_assoc()) { 
 		$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
 		$cartTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
