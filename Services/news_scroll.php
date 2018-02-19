@@ -5,10 +5,9 @@
 				</div>
 				<div class="marquee">
 					<ul class="marquee-content-items">
-						<li>Get a Great Offers on Plumber Booking</li>
-						<li>Get a first sevrice free on booking Launder Services</li>
-						<li>Get a Great Offers on Plumber Booking</li>
-						<li>Get a first sevrice free on booking Launder Services</li>
+						<?php while($getServiceNewsFeed = $getAllServiceNewsFeedData->fetch_assoc()) {  ?>
+						<a href="<?php echo $getServiceNewsFeed['news_feed_url']; ?>" target= "_blank"><li><?php echo $getServiceNewsFeed['title'];?></li></a>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
