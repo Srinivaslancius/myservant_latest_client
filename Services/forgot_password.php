@@ -68,6 +68,7 @@
 	<link href="css/base.css" rel="stylesheet">
         <link href="site_launch/css/style.css" rel="stylesheet">
 	<link href="layerslider/css/layerslider.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/marquee.css">
 	<!-- REVOLUTION SLIDER CSS -->
 </head>
 
@@ -101,11 +102,9 @@
 			<img src="img/slides/slide_3.jpg" class="img-responsive">
 		</div>
     </div>
-<div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
+			<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
                 <div id="position">
 			<div class="container">
 				<ul>

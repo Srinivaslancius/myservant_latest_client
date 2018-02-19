@@ -32,7 +32,7 @@
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-
+<link rel="stylesheet" href="css/marquee.css">
 </head>
 
 <body>
@@ -69,11 +69,9 @@
 			</div>
 					
 		    </div>
- <div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
+ 	<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
             <div id="position">
 			<div class="container">
 				<ul>
