@@ -70,10 +70,12 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="terms&conditions.php" title="">Order_details</a>
-								
+								<a href="grocery_orders.php" title="">Grocery Orders</a>
+								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
-							
+							<li class="trail-item">
+								Order_details
+							</li>
 						</ul><!-- /.breacrumbs -->
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->

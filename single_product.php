@@ -90,7 +90,7 @@ width:100% !important;
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="#" title=""><?php echo $getProductName['product_name']; ?></a>
+								<?php echo $getProductName['product_name']; ?>
 							</li>
 							
 						</ul><!-- /.breacrumbs -->

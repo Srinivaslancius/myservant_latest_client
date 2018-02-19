@@ -51,8 +51,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="terms&conditions.php" title="">Update Profile</a>
-								
+								Update Profile
 							</li>
 							
 						</ul><!-- /.breacrumbs -->
