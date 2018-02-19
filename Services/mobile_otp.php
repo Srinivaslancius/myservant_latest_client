@@ -40,6 +40,7 @@
 
 	<!-- CSS -->
 	<link href="css/base.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/marquee.css">
 
 
 </head>
@@ -51,7 +52,7 @@
 	<!-- Mobile menu overlay mask -->
 
 	<!-- Header================================================== -->
-	<header>
+	<header id="plain">
 		<?php include_once './top_header.php';?>
 		<!-- End top line-->
 
@@ -70,6 +71,18 @@
 			<img src="img/slides/slide_3.jpg" class="img-responsive">
 		</div>
     </div>
+	<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
+			<div id="position">
+			<div class="container">
+				<ul>
+					<li><a href="index.php">Home</a>
+					</li>
+					<li>Grocery Wishlist</li>
+				</ul>
+			</div>
+		</div>
 		<div class="container" style="margin-top:-70px">		
 
            <div class="row">

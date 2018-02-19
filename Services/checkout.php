@@ -31,6 +31,7 @@
 	<link href="css/ion.rangeSlider.css" rel="stylesheet">
 	<link href="css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
         <link href="css/skins/square/grey.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/marquee.css">
 
 	<!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
@@ -89,11 +90,9 @@ background-color: #fe6003;
 					</div>
 				<?php }?>
     	</div>
-<div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
+			<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
             <div id="position">
 			<div class="container">
 				<ul>

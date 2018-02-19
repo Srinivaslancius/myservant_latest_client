@@ -25,6 +25,7 @@
     <link href="layerslider/css/layerslider.css" rel="stylesheet">
     <!-- MYDASHBOARD CSS-->
     <link href="css/my-dashboard.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/marquee.css">
 </head>
 
 <body>
@@ -68,8 +69,18 @@
                 </div>
             <?php }?>   
         </div>
-    
-    <br>
+	<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
+		<div id="position">
+			<div class="container">
+				<ul>
+					<li><a href="index.php">Home</a>
+					</li>
+					<li>Wallet</li>
+				</ul>
+			</div>
+		</div>
     <div class="container margin_60">
         <div class="main_title">
             <h2><span>Order Information</span></h2>

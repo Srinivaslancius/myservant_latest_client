@@ -26,7 +26,7 @@
 
 	<!-- REVOLUTION SLIDER CSS -->
 	<link href="layerslider/css/layerslider.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="css/marquee.css">
 
 </head>
 
@@ -42,7 +42,7 @@
 	<!-- Mobile menu overlay mask -->
 
 	<!-- Header================================================== -->
-	<header>
+	 <header id="plain">
 		<?php include_once './top_header.php';?>
 		<!-- End top line-->
 
@@ -63,6 +63,18 @@
 			<img src="img/slides/slide_3.jpg" class="img-responsive">
 		<?php } ?>
     	</div>
+		<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
+			<div id="position">
+			<div class="container">
+				<ul>
+					<li><a href="index.php">Home</a>
+					</li>
+					<li>Content Details</li>
+				</ul>
+			</div>
+		</div>
 		<div class="container margin_60">
 		<div class="main_title">
 				<h2><?php echo $getAboutUsData['title'];?></h2>				

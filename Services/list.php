@@ -25,6 +25,7 @@
 
 	<!-- Radio and check inputs -->
 	<link href="css/skins/square/grey.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/marquee.css">
 
 	<!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
@@ -71,17 +72,15 @@
 					</div>
 				<?php }?>
     	</div>
-<div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
+			<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
             <div id="position">
 			<div class="container">
 				<ul>
 					<li><a href="index.php">Home</a>
 					</li>
-					<li>Cart</li>
+					<li>list</li>
 				</ul>
 			</div>
 		</div>
