@@ -91,3 +91,14 @@
 
 <!-- This Script For validations -->
 <script type="text/javascript" src="js/check_number_validations.js"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('marquee').mouseover(function() {
+        $(this).attr('scrollamount',0);
+    }).mouseout(function() {
+         $(this).attr('scrollamount',5);
+    });
+
+});
+</script>
