@@ -51,9 +51,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			    		$note_array["weightType"] .=  $getPriceDet['weight_type'] .",";		    		
 			    	}    
 
-	    			array_push($user_array['categoryDetails'],$note_array);
+	    			array_push($user_array['productDetails'],$note_array);
 	    		}	
-		    	//array_push($response['lists'],$user_array);	
+		    	array_push($response['lists'],$user_array);	
 			}
 			
 			$response["success"] = 0;

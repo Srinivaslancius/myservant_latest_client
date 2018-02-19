@@ -173,6 +173,8 @@
 				} elseif ($payment_group == 2) {
 					//online 
 					header("Location: PayUMoney_form.php?odi=".$order_id."&pay_stau=2");
+				} elseif($payment_group == 3) {
+					header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
 				} else {
 					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
 				}			
@@ -458,8 +460,12 @@
 										  <input type="radio" name="pay_mn" value="1" required>
 										  <span class="checkmarkw"></span>
 										</label>
-										<label class="containerw">Online Payment
+										<label class="containerw">PayUmoney
 										  <input type="radio" name="pay_mn" value="2" required>
+										  <span class="checkmarkw"></span>
+										</label>
+										<label class="containerw">HDFC
+										  <input type="radio" name="pay_mn" value="3" required>
 										  <span class="checkmarkw"></span>
 										</label>
 									
