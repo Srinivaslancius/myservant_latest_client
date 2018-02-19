@@ -34,8 +34,8 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="about.php" title=""><?php echo $getAboutUsData['title'];?></a>
-								
+								<?php echo $getAboutUsData['title'];?>
+							</li>
 						</ul><!-- /.breacrumbs -->
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->

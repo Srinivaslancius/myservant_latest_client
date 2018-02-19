@@ -104,7 +104,7 @@
 								$getCategories = getIndividualDetails('grocery_category','id',$category_id);
 								$getCategoryName = $getCategories['category_name']; ?>
 							<li class="trail-item">
-								<a href="#" title=""><?php echo $getCategoryName; ?></a>
+								<?php echo $getCategoryName; ?>
 							</li>
 							<?php } elseif(isset($sub_category_id) && !empty($sub_category_id)) { 
 								$getSubCategories = getIndividualDetails('grocery_sub_category','id',$sub_category_id);
@@ -117,11 +117,11 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="#" title=""><?php echo $getSubCategoryName; ?></a>
+								<?php echo $getSubCategoryName; ?>
 							</li>
 							<?php } elseif(isset($_GET['brand_id'])) { ?>
 							<li class="trail-item">
-								<a href="#" title=""><?php echo $getBrands['brand_name']; ?></a>
+								<?php echo $getBrands['brand_name']; ?>
 							</li>
 							<?php } ?>
 						</ul><!-- /.breacrumbs -->

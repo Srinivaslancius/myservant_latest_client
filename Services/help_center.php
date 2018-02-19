@@ -74,8 +74,9 @@
 				<div class="content">
 			  <?php include_once './news_scroll.php';?> 
 			</div>
+
 		<!-- Position -->
-			<div id="position">
+		<div id="position">
 			<div class="container">
 				<ul>
 					<li><a href="index.php">Home</a>
@@ -84,7 +85,6 @@
 				</ul>
 			</div>
 		</div>
-		
 		<div class="container margin_60">
 
 			<div class="row">

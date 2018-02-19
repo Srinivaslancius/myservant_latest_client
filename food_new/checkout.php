@@ -502,13 +502,16 @@ if($_SESSION['user_login_session_id'] == '') {
 						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',1); 
 							if($getOnlineDeatils['enable_status'] == 0) { ?>
 						<div class="col-lg-4 col-md-12 col-sm-12 col-xs-6">
-							<label class="radiob"><input type="radio" value="1" name="pay_mn"id="cod_check">COD<span class="checkmark"></span></label>
+							<label class="radiob"><input type="radio" value="1" name="pay_mn" id="cod_check">COD<span class="checkmark"></span></label>
 						</div>
 						<?php } ?>
 					</div><!-- Edn options 2 -->
 
 					<hr>
-
+					<div class="checkbox">
+						<input type="checkbox" id="checked-order" name="checked-order" checked required>
+						<label for="checked-order">I’ve read and accept the terms & conditions *</label>
+					</div><!-- /.checkbox -->
 					<input type="submit" name="submit" value="Place Order" class="btn_full">					
                     <!-- <a class="btn_full_outline" href="index.php"><i class="icon-right"></i> Add other items</a> -->
 				</div><!-- End cart_box -->

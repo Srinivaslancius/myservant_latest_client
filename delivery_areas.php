@@ -31,8 +31,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="delivery_areas.php" title="">Delivery Areas</a>
-								
+								Delivery Areas
 							</li>
 							
 						</ul><!-- /.breacrumbs -->

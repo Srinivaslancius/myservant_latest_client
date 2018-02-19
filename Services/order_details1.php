@@ -89,6 +89,19 @@
 					</div>
 				<?php }?>
     	</div>
+    	<div class="container-fluid marg10 search_back">
+          	<?php include_once './news_scroll.php';?> 
+        </div>
+		<div id="position">
+			<div class="container">
+				<ul>
+					<li><a href="index.php">Home</a>
+					</li>
+					<li><a href="service_orders.php">Service Orders</a></li>
+					<li>Order Deatils</li>
+				</ul>
+			</div>
+		</div>
 		<div class="container margin_60">
 <div class="row">
     

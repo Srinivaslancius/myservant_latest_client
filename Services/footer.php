@@ -33,16 +33,16 @@
 						<li><a href="login.php">My Account</a>
 						</li>
 						<?php } else { ?>
-						<li><a href="my_dashboard.php">My Account</a>
+						<li><a href="my_account.php">My Account</a>
 						</li>
 						<?php } ?>
-						<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
+						<!-- <?php if(!isset($_SESSION['user_login_session_id'])) { ?>
 						<li><a href="login.php">Track Order</a>
 						</li>
 						<?php } else { ?>
 						<li><a href="my_dashboard.php">Track Order</a>
 						</li>
-						<?php } ?>
+						<?php } ?> -->
 						<li><a href="help_center.php">Help Center</a>
 						</li>
 						<li><a href="delivery_areas.php">Delivery Areas</a>
@@ -91,3 +91,14 @@
 
 <!-- This Script For validations -->
 <script type="text/javascript" src="js/check_number_validations.js"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('marquee').mouseover(function() {
+        $(this).attr('scrollamount',0);
+    }).mouseout(function() {
+         $(this).attr('scrollamount',5);
+    });
+
+});
+</script>

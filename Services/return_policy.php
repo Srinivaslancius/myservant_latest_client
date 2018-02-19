@@ -68,6 +68,7 @@
 					</div>
 				<?php }?>
     	</div>
+
 		<div class="content">
 			  <?php include_once './news_scroll.php';?> 
 			</div>
@@ -81,7 +82,6 @@
 				</ul>
 			</div>
 		</div>
-		
 		<div class="container margin_60">
 		<div class="main_title">
 				<h2><?php echo $getReturnPolicyData['title'];?></h2>				

@@ -68,10 +68,13 @@
 					</div>
 				<?php }?>
     	</div>
-					<div class="content">
+				<div class="content">
 			  <?php include_once './news_scroll.php';?> 
 			</div>
-                <div id="position">
+  
+
+        <div id="position">
+
 			<div class="container">
 				<ul>
 					<li><a href="index.php">Home</a>
@@ -80,7 +83,6 @@
 				</ul>
 			</div>
 		</div>
-		
 		<div class="container margin_60">
 		<div class="main_title">
 				<h2>Delivery Areas</h2>					
