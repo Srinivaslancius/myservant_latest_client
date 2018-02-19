@@ -31,7 +31,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="#" title="">New Arraivals</a>								
+								New Arraivals
 							</li>
 							
 						</ul><!-- /.breacrumbs -->

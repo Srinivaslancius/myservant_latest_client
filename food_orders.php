@@ -31,8 +31,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="food_orders.php" title="">Food Orders</a>
-								
+								Food Orders
 							</li>
 							
 						</ul><!-- /.breacrumbs -->

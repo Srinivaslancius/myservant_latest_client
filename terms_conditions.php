@@ -32,8 +32,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="terms&conditions.php" title=""><?php echo $getTerms_ConditionsData['title']; ?></a>
-								
+								<?php echo $getTerms_ConditionsData['title']; ?>
 							</li>
 							
 						</ul><!-- /.breacrumbs -->

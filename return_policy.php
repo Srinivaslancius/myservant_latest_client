@@ -32,8 +32,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="return_policy.php" title=""><?php echo $getReturnpolicyData['title']; ?></a>
-								
+								<?php echo $getReturnpolicyData['title']; ?>
 							</li>
 							
 						</ul><!-- /.breacrumbs -->

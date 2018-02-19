@@ -33,8 +33,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="faq.php" title="">Faqs</a>
-								
+								Faqs
 							</li>
 							
 						</ul><!-- /.breacrumbs -->

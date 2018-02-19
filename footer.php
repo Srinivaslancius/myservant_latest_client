@@ -72,7 +72,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 						</a>
 					</li>
 					<li>
-						<a href="terms&conditions.php" title="">
+						<a href="terms_conditions.php" title="">
 						Terms & Conditions
 						</a>
 					</li>

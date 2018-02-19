@@ -40,10 +40,12 @@
                 <span><img src="images/icons/arrow-right.png" alt=""></span>
               </li>
               <li class="trail-item">
-                Service Orders
-                
+                <a href="service_orders.php">Service Orders</a>
+                <span><img src="images/icons/arrow-right.png" alt=""></span>
               </li>
-              
+              <li class="trail-item">
+                Service Category Orders
+              </li>
             </ul><!-- /.breacrumbs -->
           </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
