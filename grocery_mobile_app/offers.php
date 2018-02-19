@@ -7,7 +7,7 @@ $lists = array();
 $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-	$getOffers = $getOffers = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id LIMIT 2";
+	$getOffers = $getOffers = "SELECT * FROM grocery_offer_module WHERE lkp_status_id = 0 ORDER BY id ";
 	$result = $conn->query($getOffers); 
 
 	if ($result->num_rows > 0) {
