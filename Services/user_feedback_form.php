@@ -104,7 +104,10 @@ if (!isset($_POST['submit']))  {
         </div>
       <?php }?>
     	</div>
-                <div id="position">
+    <div class="container-fluid marg10 search_back">
+        <?php include_once './news_scroll.php';?> 
+    </div>
+    <div id="position">
 			<div class="container">
 				<ul>
 					<li><a href="index.php">Home</a>
@@ -113,11 +116,6 @@ if (!isset($_POST['submit']))  {
 				</ul>
 			</div>
 		</div>
-		<div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
 		<div class="container margin_60">
 <div class="main_title">
 				<h2>FEEDBACK FORM</h2>

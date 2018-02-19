@@ -71,8 +71,11 @@
 			<?php include_once './common_slider.php';?>
 		</div>
     </div>
+    	<div class="container-fluid marg10 search_back">
+          	<?php include_once './news_scroll.php';?> 
+        </div>
 		<!-- Position -->
-			<div id="position">
+		<div id="position">
 			<div class="container">
 				<ul>
 					<li><a href="index.php">Home</a>
@@ -81,11 +84,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
 		<div class="container margin_60">
 
 			<div class="row">

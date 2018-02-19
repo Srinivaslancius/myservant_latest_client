@@ -46,12 +46,16 @@
             }
             $category_id = $_POST['category_id'];
             $sub_category_id = $_POST['sub_category_id'];
-            if($_FILES["image"]["name"]!='') {
+            if($_FILES["image"]["name"]!='' && $_FILES["app_image"]["name"]!='') {
                 $image = uniqid().$_FILES["image"]["name"];
                 $target_dir = "uploads/grocery_offer_module_image/";
                 $target_file = $target_dir . basename($image);
                 move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-                $sql = "INSERT INTO grocery_offer_module (`name`,`image`, `offer_type`, `offer_level`, `category_id`, `sub_category_id`, `min_offer_percentage`, `max_offer_percentage`) VALUES ('$name', '$image', '$offer_type', '$offer_level', '$category_id', '$sub_category_id', '$min_offer_percentage', '$max_offer_percentage')";
+                $app_image = uniqid().$_FILES["app_image"]["name"];
+                $target_dir1 = "uploads/grocery_offer_module_app_image/";
+                $target_file1 = $target_dir1 . basename($app_image);
+                move_uploaded_file($_FILES["app_image"]["tmp_name"], $target_file1);
+                $sql = "INSERT INTO grocery_offer_module (`name`,`image`,`app_image`, `offer_type`, `offer_level`, `category_id`, `sub_category_id`, `min_offer_percentage`, `max_offer_percentage`) VALUES ('$name', '$image', '$app_image', '$offer_type', '$offer_level', '$category_id', '$sub_category_id', '$min_offer_percentage', '$max_offer_percentage')";
                 $result = $conn->query($sql);
             }
            
@@ -78,12 +82,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Image</label>
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Web Image</label>
                                 <div class="col-sm-6 col-md-4">
                                     <img id="output" height="100" width="100"/>
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input id="form-control-22" class="file-upload-input" type="file" name="image" accept="image/*"  onchange="loadFile(event)" required>
                                     </label> (width:360px;height:200px)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">App Image</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <img id="output1" height="100" width="100"/>
+                                    <label class="btn btn-default file-upload-btn">Choose file...
+                                        <input id="form-control-22" class="file-upload-input" type="file" name="app_image" accept="image/*"  onchange="loadFile1(event)" required>
+                                    </label>(width:360px;height:200px)
                                 </div>
                             </div>
                             <div class="form-group">
@@ -165,7 +178,8 @@
                                 <tr>
                                     <th>S.no</th>
                                     <th>Name</th>
-                                    <th>Image</th>
+                                    <th>Web Image</th>
+                                    <th>App Image</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -177,6 +191,7 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $row['name']; ?></td>
                                     <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$row['image']; ?>"  id="output" height="60" width="60"/></td>
+                                    <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_app_image/'.$row['app_image']; ?>"  id="output" height="60" width="60"/></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_offer_module'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_offer_module'>In Active</span>" ;} ?></td>
                                     <td> <a href="edit_grocery_offer_module.php?offer_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
                                 </tr>

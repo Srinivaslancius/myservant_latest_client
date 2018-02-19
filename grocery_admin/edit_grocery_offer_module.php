@@ -48,23 +48,35 @@
             $category_id = $_POST['category_id'];
             $sub_category_id = $_POST['sub_category_id'];
 
-if($sub_category_id!='') {
-$subcatId =$_POST['sub_category_id'];
-} else {
-$subcatId = 0;
-}
-            if($_FILES["image"]["name"]!='') {
+            if($sub_category_id!='') {
+            $subcatId =$_POST['sub_category_id'];
+            } else {
+            $subcatId = 0;
+            }
+            if($_FILES["image"]["name"]!='' || $_FILES["app_image"]["name"]!='') {
                 $image = uniqid().$_FILES["image"]["name"];
                 $target_dir = "uploads/grocery_offer_module_image/";
                 $target_file = $target_dir . basename($image);
-                $getImgUnlink = getImageUnlink('image','grocery_offer_module','id',$offer_id,$target_dir);
-                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-               $sql = "UPDATE `grocery_offer_module` SET name = '$name', image = '$image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$subcatId' WHERE id = '$offer_id' "; 
-                
+
+                $app_image = uniqid().$_FILES["app_image"]["name"];
+                $target_dir1 = "uploads/grocery_offer_module_app_image/";
+                $target_file1 = $target_dir1 . basename($app_image);
+                // $getImgUnlink = getImageUnlink('image','grocery_offer_module','id',$offer_id,$target_dir);
+                if($_FILES["image"]["name"]!='' && $_FILES["app_image"]["name"]!='') {
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                    move_uploaded_file($_FILES["app_image"]["tmp_name"], $target_file1);
+                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', image = '$image', app_image = '$app_image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$subcatId' WHERE id = '$offer_id' ";
+                } elseif($_FILES["image"]["name"]!='') {
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', image = '$image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$subcatId' WHERE id = '$offer_id' ";
+                } elseif($_FILES["app_image"]["name"]!='') {
+                    move_uploaded_file($_FILES["app_image"]["tmp_name"], $target_file1);
+                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', app_image = '$app_image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$subcatId' WHERE id = '$offer_id' ";
+                }
             } else {
                 $sql = "UPDATE `grocery_offer_module` SET offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$sub_category_id' WHERE id = '$offer_id' ";
             }
-            
+            //echo $sql; die;
             $result = $conn->query($sql);
             if( $result == 1){
                 echo "<script type='text/javascript'>window.location='grocery_offer_module.php?msg=success'</script>";
@@ -89,13 +101,24 @@ $subcatId = 0;
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Image</label>
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Web Image</label>
                                 <div class="col-sm-6 col-md-4">
                                     <?php if($getOffers['image']!='') { ?>
                                         <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_image/'.$getOffers['image']; ?>"  id="output" height="100" width="100"/>
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input id="form-control-22" class="file-upload-input" type="file" name="image" accept="image/*" onchange="loadFile(event)">
+                                    </label> (width : 555px ; height : 179px)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">App Image</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <?php if($getOffers['app_image']!='') { ?>
+                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_module_app_image/'.$getOffers['app_image']; ?>"  id="output1" height="100" width="100"/>
+                                    <?php } ?>
+                                    <label class="btn btn-default file-upload-btn">Choose file...
+                                        <input id="form-control-22" class="file-upload-input" type="file" name="app_image" accept="image/*" onchange="loadFile1(event)">
                                     </label> (width : 555px ; height : 179px)
                                 </div>
                             </div>
