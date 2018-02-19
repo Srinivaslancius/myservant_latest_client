@@ -160,6 +160,46 @@ if(isset($_POST['submit'])) {
 }
 ?>
 
+<!-- Sending SMS or Email of App links -->
+<?php
+	$getSiteSettingsData1 = getIndividualDetails('services_site_settings','id','1'); 
+	if(isset($_POST['text_app_link'])) {
+		$user_mobile = $_POST["user_mobile"];
+		$message = '';
+		$message .= 'Heres the link you requested to download the My Servant app.</br>
+					Android app link: '.$getSiteSettingsData1["android_app_link"].'</br>
+			  		Apple app link: '.$getSiteSettingsData1["apple_app_link"].'';
+		//echo $message; die;
+		sendMobileSMS($message,$user_mobile);
+	} elseif(isset($_POST['email_app_link'])) {
+		$to = $_POST["user_email"];
+		//$from = $getSiteSettingsData1["email"];
+		$subject = "Myservent - App Links";
+		$message = '';		
+		$message .= '<body>
+			<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
+			<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
+			 <center><img src='.$base_url . "uploads/logo/".$getSiteSettingsData1["logo"].' class="logo-responsive"></center>
+			</header>
+			<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
+			  	<h1 style="color:#fe6003">Welcome To Myservant</h1>
+			  	<p>Heres the link you requested to download the My Servant app.</p>
+			  	<p>Android app link: '.$getSiteSettingsData1["android_app_link"].'</p>
+			  	<p>Apple app link: '.$getSiteSettingsData1["apple_app_link"].'</p>
+				<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
+				<p>Warm Regards,<br>The Myservant Team </p>
+			</article>
+			<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettingsData1['footer_text'].'</footer>
+			</div>
+
+			</body>';
+		//echo $message; die;
+		$name = "My Servant";
+		$from = $getSiteSettingsData1["from_email"];
+		$resultEmail = sendEmail($to,$subject,$message,$from,$name);
+	}
+?>
+
 <?php if($_SESSION['lkp_city_id'] == '' && $_SESSION['lkp_pincode_id'] == '') { ?>
 <form method="post">	
 <div id="boxes">
@@ -366,45 +406,44 @@ $getOtherFoodData1 = $getOtherFoodData->fetch_assoc();
 			  <?php include_once 'brands.php';?>
 		</div><br><br>
 		<!-- End Brnds here -->
-<div class="container margin_60">		
-					<div class="feature">
+		<div class="container margin_60">		
+			<div class="feature">
+				<div class="row">
+					<img src="img/logo1.png"><br>
+					<div class="col-sm-5">
+						<img src="img/foodM.png">
+					</div>
+					<div class="col-sm-6">
+						<h2>Looking for the Food Feed? Get the app!</h2>
+						<h4>Follow foodies to see their reviews and photos in your Feed, and discover great new restaurants!</h4>
+						<p>We'll send you a link, open it on your phone to download the app</p>
+						<form method="post">
+							<div class="input-group">
+							  	<span class="input-group-addon">+91</span>
+							  	<input type="tel" name="user_mobile" id="user_mobile"  placeholder="Enter Your Mobile Number" maxlength="10" pattern="[0-9]{10}" required class="form-control valid_mobile_num">
+							  	<span class="input-group-addon one"><button type="submit" name="text_app_link" value="text_app_link">Text App link</button></span>
+							</div>
+						</form>
+		  				<div class="login-or"><hr class="hr-or"><span class="span-or">(OR)</span></div>
+		  				<form method="post">
+		  					<div class="input-group">
+							  	<input type="email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  id="user_email" placeholder="Enter Your Email Id" class="form-control" required>
+						  		<span class="input-group-addon one"><button type="submit" name="email_app_link" value="email_app_link">Email App link</button></span>
+							</div>
+		  				</form>
+						<br>
 						<div class="row">
-							<img src="img/logo1.png"><br>
-
-<div class="col-sm-5">
-<img src="img/foodM.png">
-</div>
-
-<div class="col-sm-6">
-<h2>Looking for the Food Feed? Get the app!</h2>
-<h4>Follow foodies to see their reviews and photos in your Feed, and discover great new restaurants!</h4>
-<p>We'll send you a link, open it on your phone to download the app</p>
-<div class="input-group">
-  <span class="input-group-addon">+91</span>
-  <input type="text" class="form-control">
-  <span class="input-group-addon one">Text App link</span>
-</div>
-  <div class="login-or"><hr class="hr-or"><span class="span-or">(OR)</span></div>
-<div class="input-group">
-  <span class="input-group-addon">+91</span>
-  <input type="text" class="form-control">
-  <span class="input-group-addon one">Email App link</span>
-</div><br>
-<div class="row">
-<div class="col-sm-4">
-<img src="img/applestore.png">
-</div>
-<div class="col-sm-4">
-<img src="img/googleplay.png">
-</div>
-<div class="col-sm-4">
-</div>
-</div>
-</div>
-<div class="col-sm-1">
-</div>
-</div>
-				  
+							<div class="col-sm-4">
+								<a href="<?php echo $getSiteSettingsData1['apple_app_link'] ?>" target="_blank" title=""><img src="img/applestore.png"></a>
+							</div>
+							<div class="col-sm-4">
+								<a href="<?php echo $getSiteSettingsData1['android_app_link'] ?>" target="_blank" title=""><img src="img/googleplay.png"></a>
+							</div>
+							<div class="col-sm-4"></div>
+						</div>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>  
 			</div>
 			<!-- End row -->						
 		</div>
