@@ -76,11 +76,10 @@
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Delivery</label>
                                 <div class="col-sm-6 col-md-4 btn-group">
                                     <label class="btn btn-outline-primary  <?php if($getPaymentsSettings['delivery'] == 1) {  ?> active <?php } ?>  ">
-                                       <input type="radio" name="delivery" id="delivery"  value="1" <?php if($getPaymentsSettings['delivery'] == 1) echo 'checked="checked"'; ?>
-                                        hidden> Yes 
+                                       <input type="radio" name="delivery" id="delivery"  value="1" <?php if($getPaymentsSettings['delivery'] == 1) echo 'checked="checked"'; ?>> Yes 
                                     </label>
                                     <label class="btn btn-outline-primary <?php if($getPaymentsSettings['delivery'] == 2) {  ?> active <?php } ?>">
-                                        <input type="radio" name="delivery" id="delivery" autocomplete="off" value="2" <?php if($getPaymentsSettings['delivery'] == 2)  echo 'checked="checked"'; ?> hidden> No &nbsp;
+                                        <input type="radio" name="delivery" id="delivery" autocomplete="off" value="2" <?php if($getPaymentsSettings['delivery'] == 2)  echo 'checked="checked"'; ?>> No &nbsp;
                                     </label>
                                 </div>
                             </div>

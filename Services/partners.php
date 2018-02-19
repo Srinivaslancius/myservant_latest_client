@@ -26,7 +26,7 @@
 
 	<!-- REVOLUTION SLIDER CSS -->
 	<link href="layerslider/css/layerslider.css" rel="stylesheet">
-<link rel="stylesheet" href="css/marquee.css">
+	<link rel="stylesheet" href="css/marquee.css">
 
 </head>
 
