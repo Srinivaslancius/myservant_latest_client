@@ -118,6 +118,9 @@
 					</div>
 				<?php }?>
     	</div>
+    	<div class="container-fluid marg10 search_back">
+          	<?php include_once './news_scroll.php';?> 
+        </div>
 		<div id="position">
 			<div class="container">
 				<ul>
