@@ -1,7 +1,35 @@
- <div class="row">
-                	
-					<marquee scrollamount="10" style="color:white;font-size:15px">
-					<?php while($getServiceNewsFeed = $getAllServiceNewsFeedData->fetch_assoc()) {  ?><span><a href="<?php echo $getServiceNewsFeed['news_feed_url']; ?>" target= "_blank" style="color:white;"><?php echo $getServiceNewsFeed['title'];?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php  } ?>
-					</marquee> 
-					 
-                </div>
+
+				<div class="container1" style="height:45px">
+				<div class="marquee-sibling">
+					Latest News
+				</div>
+				<div class="marquee">
+					<ul class="marquee-content-items">
+						<li>Get a Great Offers on Plumber Booking</li>
+						<li>Get a first sevrice free on booking Launder Services</li>
+						<li>Get a Great Offers on Plumber Booking</li>
+						<li>Get a first sevrice free on booking Launder Services</li>
+					</ul>
+				</div>
+			</div>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+				<script type="text/javascript" src="js/marquee.js"></script>
+				<script>
+					$(function (){
+
+						createMarquee({
+						});
+
+						//example of overwriting defaults: 
+						
+						// createMarquee({
+						// 		duration:30000, 
+						// 		padding:20, 
+						// 		marquee_class:'.example-marquee', 
+						// 		container_class: '.example-container', 
+						// 		sibling_class: '.example-sibling', 
+						// 		hover: false});
+						// });
+					});
+
+				</script>

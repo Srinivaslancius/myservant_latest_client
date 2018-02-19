@@ -26,7 +26,7 @@
 
 	<!-- REVOLUTION SLIDER CSS -->
 	<link href="layerslider/css/layerslider.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="css/marquee.css">
 	<!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
@@ -71,6 +71,9 @@
 			<?php include_once './common_slider.php';?>
 		</div>
     </div>
+				<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
 		<!-- Position -->
 			<div id="position">
 			<div class="container">
@@ -81,11 +84,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
+		
 		<div class="container margin_60">
 
 			<div class="row">
