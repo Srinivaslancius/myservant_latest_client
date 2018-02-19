@@ -17,7 +17,7 @@
     $vendor_mobile = $_POST['vendor_mobile'];
     $description = $_POST['description'];
     $password = encryptPassword($_POST['password']);
-    $working_timings = $_POST['working_timings'];
+    $opening_time = $_POST['opening_time'];
     $min_delivery_time = $_POST['min_delivery_time'];
     $closing_time = date("H:i:s",strtotime($_POST['closing_time']));
     //$delivery_charges = $_POST['delivery_charges'];
@@ -62,7 +62,7 @@
 
             move_uploaded_file($_FILES["vendor_banner"]["tmp_name"],$vendorbannerpath);
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$vendorLogopath);
-           $sql = "INSERT INTO food_vendors (`vendor_name`, `vendor_id`,`vendor_email`, `vendor_mobile`, `description`,  `password`, `working_timings`,`min_delivery_time`,`closing_time`, `lkp_state_id`,`lkp_district_id`, `lkp_city_id`,`location`, `logo`, `restaurant_name`,`restaurant_address`,`delivery_type_id`,`created_at`,`pincode`,`meta_title`,`meta_keywords`,`meta_desc`,`vendor_banner`,`make_it_popular`) VALUES ('$vendor_name','$vendor_id','$vendor_email','$vendor_mobile', '$description','$password','$working_timings','$min_delivery_time','$closing_time','$lkp_state_id','$lkp_district_id','$lkp_city_id','$location','$logoname','$restaurant_name','$restaurant_address','$delivery_type_id','$created_at','$pincode','$meta_title','$meta_keywords','$meta_desc','$bannerName','$make_it_popular')";
+           $sql = "INSERT INTO food_vendors (`vendor_name`, `vendor_id`,`vendor_email`, `vendor_mobile`, `description`,  `password`, `opening_time`,`min_delivery_time`,`closing_time`, `lkp_state_id`,`lkp_district_id`, `lkp_city_id`,`location`, `logo`, `restaurant_name`,`restaurant_address`,`delivery_type_id`,`created_at`,`pincode`,`meta_title`,`meta_keywords`,`meta_desc`,`vendor_banner`,`make_it_popular`) VALUES ('$vendor_name','$vendor_id','$vendor_email','$vendor_mobile', '$description','$password','$opening_time','$min_delivery_time','$closing_time','$lkp_state_id','$lkp_district_id','$lkp_city_id','$location','$logoname','$restaurant_name','$restaurant_address','$delivery_type_id','$created_at','$pincode','$meta_title','$meta_keywords','$meta_desc','$bannerName','$make_it_popular')";
 
             if($conn->query($sql) === TRUE){
               $last_id = $conn->insert_id;
@@ -168,14 +168,19 @@
                     <div class="help-block with-errors"></div>
                   </div>
                   <div id="divCheckPasswordMatch" style="color:red"></div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="form-control-2" class="control-label">Working Timings</label>
                     <input type="text" name="working_timings" class="form-control" id="form-control-2" placeholder="Working Timings" data-error="Please enter Working Timings" required>
                     <div class="help-block with-errors"></div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Minimum Delivery Time</label>
                     <input type="text" name="min_delivery_time" class="form-control" id="form-control-2" placeholder="Minimum Delivery Time" data-error="Please enter Minimum Delivery Time" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Opening Time</label>
+                    <input class="time-pick form-control" type="text" name="opening_time" id="form-control-2" placeholder="Closing Time" data-error="Please enter Opening Time" required>
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
