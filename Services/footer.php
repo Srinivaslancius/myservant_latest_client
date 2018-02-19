@@ -33,16 +33,16 @@
 						<li><a href="login.php">My Account</a>
 						</li>
 						<?php } else { ?>
-						<li><a href="my_dashboard.php">My Account</a>
+						<li><a href="my_account.php">My Account</a>
 						</li>
 						<?php } ?>
-						<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
+						<!-- <?php if(!isset($_SESSION['user_login_session_id'])) { ?>
 						<li><a href="login.php">Track Order</a>
 						</li>
 						<?php } else { ?>
 						<li><a href="my_dashboard.php">Track Order</a>
 						</li>
-						<?php } ?>
+						<?php } ?> -->
 						<li><a href="help_center.php">Help Center</a>
 						</li>
 						<li><a href="delivery_areas.php">Delivery Areas</a>
