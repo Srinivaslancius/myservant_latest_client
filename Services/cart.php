@@ -97,7 +97,7 @@
 				<ul>
 					<li><a href="index.php">Home</a>
 					</li>
-					<li><a href="#">Cart</a>
+					<li>Cart
 					</li>					
 				</ul>
 			</div>
