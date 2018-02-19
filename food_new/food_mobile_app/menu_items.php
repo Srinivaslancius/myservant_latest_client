@@ -24,6 +24,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			    	$lists["productDesc"] = strip_tags($row["specifications"]); 		    	
 			    	$lists["productImage"] = $base_url."uploads/food_product_images/".$row["product_image"];
 			    	$lists["categoryName"] = $getCatName["category_name"];
+			    	//Restaurant closing time
+			    	$restName= getIndividualDetails('food_vendors','id',$row['restaurant_id']);
+			    	$lists["restClosingTime"] = $restName["closing_time"];
 			    	//get products weights and product weight type names with prices
 			    	$getPriceDetails = getAllDataWhere('food_product_weight_prices','product_id',$productId);
 			    	$getPriceDet = array();
