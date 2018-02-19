@@ -1,5 +1,5 @@
 
-				<div class="container1" style="height:45px">
+				<div class="container1" style="height:40px">
 				<div class="marquee-sibling">
 					Latest News
 				</div>
