@@ -26,6 +26,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			    	$lists["categoryName"] = $getCatName["category_name"];
 			    	//Restaurant closing time
 			    	$restName= getIndividualDetails('food_vendors','id',$row['restaurant_id']);
+			    	$lists["restOpenTime"] = $restName["opening_time"];
 			    	$lists["restClosingTime"] = $restName["closing_time"];
 			    	//get products weights and product weight type names with prices
 			    	$getPriceDetails = getAllDataWhere('food_product_weight_prices','product_id',$productId);
