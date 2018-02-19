@@ -25,8 +25,11 @@
 	<link href="layerslider/css/layerslider.css" rel="stylesheet">
 	<!-- Popup CSS -->
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/marquee.css">
+	
 	<!-- For brands slider -->
 	<script src="../cdn-cgi/scripts/78d64697/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-2.2.4.min.js"></script>
+
 <style>
 	
 	.close1 {   
@@ -97,26 +100,26 @@ display: none;
 }
 @media only screen and (max-width: 480px) {
 	#layerslider{
-		margin-top:67px !important;
+		margin-top:45px !important;
 	}
 }
  @media screen and (max-width: 1024px) and (min-width: 768px){
 	 #layerslider{
   width:100% !important;
-  padding-top:145px !important;
+  padding-top:126px !important;
   }
  }
  #layerslider{
-	 padding-top:129px;
+	 padding-top:109px;
  }
   @media screen and (max-width: 960px) and (min-width: 600px){
 	  #layerslider{
-	 padding-top:99px !important;
+	 padding-top:79px !important;
  }
   }
   @media screen and (max-width: 732px) and (min-width: 412px){
 	  #layerslider{
-	  padding-top:45px !important;
+	  padding-top:50px !important;
 	  }
   }
  .input-group-addon.one{
@@ -272,12 +275,10 @@ if(isset($_POST['submit'])) {
                     <?php include_once './slider.php';?>
 		</div>
 		<!-- End layerslider -->
-			
-             <div class="container-fluid marg10 search_back">
-            	
-              <?php include_once './news_scroll.php';?> 
-               
-                </div>
+			<div class="content">
+			  <?php include_once './news_scroll.php';?> 
+			</div>
+            
 <?php $getOtherServicesGroceryData ="SELECT * FROM myservant_other_services WHERE id=1";
 $getOtherServices = $conn->query($getOtherServicesGroceryData);
 $getOtherServices1 = $getOtherServices->fetch_assoc();
@@ -356,12 +357,7 @@ $getOtherFoodData1 = $getOtherFoodData->fetch_assoc();
 			<!-- End row -->
 			<p class="text-center add_bottom_30">
 				<a href="services.php" class="btn_1 medium"><i class="icon-eye-7"></i>View all our Services</a>
-			</p>
-
-			
-
-			
-
+			</p>						
       <div class="main_title">
         <h2>Our <span>Associate</span> Partners</h2>
         
@@ -406,12 +402,13 @@ $getOtherFoodData1 = $getOtherFoodData->fetch_assoc();
 			  <?php include_once 'brands.php';?>
 		</div><br><br>
 		<!-- End Brnds here -->
+
 		<div class="container margin_60">		
 			<div class="feature">
 				<div class="row">
 					<img src="img/logo1.png"><br>
 					<div class="col-sm-5">
-						<img src="img/foodM.png">
+						<img src="img/foodM.png" class="img-responsive">
 					</div>
 					<div class="col-sm-6">
 						<h2>Looking for the Food Feed? Get the app!</h2>
@@ -538,6 +535,7 @@ $getOtherFoodData1 = $getOtherFoodData->fetch_assoc();
         });
     }
 </script>
+
 </body>
 
 </html>
