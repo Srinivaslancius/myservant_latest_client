@@ -100,7 +100,7 @@ background-color: #fe6003;
 					<li><a href="index.php">Home</a>
 					</li>
 
-					<li>checkout</li>
+					<li>Checkout</li>
 
 				</ul>
 			</div>
