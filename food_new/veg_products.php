@@ -93,12 +93,13 @@ if(isset($_POST['item_type']) && $_POST['item_type']=='undefined' ) {
             <?php 
             $closing_time = $getFoodSiteSettingsData['closing_time'];
             $getVendorTimings = getIndividualDetails('food_vendors','id',$getRestKey1);
-            $date = date("H:i:s",strtotime($getVendorTimings['closing_time'])-($closing_time * 60));
+            $closing_time1 = date("H:i:s",strtotime($getVendorTimings['closing_time'])-($closing_time * 60));
+            $opening_time1 = date("H:i:s",strtotime($getVendorTimings['opening_time']));
             ?>
-            <?php if($date <= date("H:i:s")) { ?>
-            <a class="btn_full" style="padding:8px 0px;background-color: #d4d4d4"">Add to cart</a>
-            <?php } else { ?>
+            <?php if($closing_time1 >= date("H:i:s") && $opening_time1 <= date("H:i:s")) { ?>
             <a class="btn_full" onClick = "add_cart_item(<?php echo $productId; ?>);" style="padding:8px 0px">Add to cart</a>
+            <?php } else { ?>
+            <a class="btn_full" style="padding:8px 0px;background-color: #d4d4d4"">Add to cart</a>
             <?php } ?>
         </td>
         

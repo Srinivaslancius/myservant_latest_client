@@ -173,6 +173,8 @@
 				} elseif ($payment_group == 2) {
 					//online 
 					header("Location: PayUMoney_form.php?odi=".$order_id."&pay_stau=2");
+				} elseif($payment_group == 3) {
+					header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
 				} else {
 					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
 				}			
@@ -308,6 +310,7 @@
 								</div>
 								<?php } ?>-->
 								<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
+								$getAllPaymentsSettings = getIndividualDetails('grocery_payments_settings','id','1');
 								?>
 								<input type="hidden" name="wallet_amount" id="wallet_amount" value="<?php echo $getWalletAmount['amount']; ?>">
 								<?php if($getWalletAmount['amount'] > 0) { ?>
@@ -352,8 +355,13 @@
 									
 									<?php 
 									$service_tax += ($getSiteSettingsData1['service_tax']/100)*$cartTotal;
-									$orderTotal = round($cartTotal+$service_tax+$getSiteSettingsData1['delivery_charges']-$getWalletAmount['amount']);
-									$orderTotalwithoutWallet = round($cartTotal+$service_tax+$getSiteSettingsData1['delivery_charges']);
+									if($getAllPaymentsSettings['delivery'] == 1) {
+										$delivery_charges = $getAllPaymentsSettings['delivery_charges'];
+									} else {
+										$delivery_charges = 0;
+									}
+									$orderTotal = round($cartTotal+$service_tax+$delivery_charges-$getWalletAmount['amount']);
+									$orderTotalwithoutWallet = round($cartTotal+$service_tax+$delivery_charges);
 									?>
 									<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
 									<input type="hidden" id="order_total" name="order_total" value="<?php echo 0; ?>">
@@ -362,7 +370,7 @@
 									<?php } ?>
 									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
-									<input type="hidden" name="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>" id="delivery_charges">
+									<input type="hidden" name="delivery_charges" value="<?php echo $delivery_charges; ?>" id="delivery_charges">
 									<input type="hidden" name="delivery_slot_date" value="<?php echo $_REQUEST['slot_date']; ?>">
 									<input type="hidden" name="delivery_time" value="<?php echo $_REQUEST['slot_timings']; ?>">
 									<input type="hidden" name="discount_money" value="0" id="discount_money">
@@ -381,10 +389,12 @@
 	                                            <td>GST(<?php echo $getSiteSettingsData1['service_tax']; ?>%)</td>
 	                                            <td class="subtotal" id="serviceTax1">Rs . <?php echo $service_tax; ?></td>
 	                                        </tr>
+	                                        <?php if($getAllPaymentsSettings['delivery'] == 1) { ?>
 	                                        <tr>
 	                                            <td>Delivery Charges</td>
-	                                            <td class="subtotal">Rs . <?php echo $getSiteSettingsData1['delivery_charges']; ?></td>
+	                                            <td class="subtotal">Rs . <?php echo $getAllPaymentsSettings['delivery_charges']; ?></td>
 	                                        </tr>
+	                                        <?php } ?>
 	                                        <tr>
 	                                            <td>Delivery Date</td>
 	                                            <td class="subtotal" id="serviceTax1"><?php echo changeDateFormat($_REQUEST['slot_date']); ?></td>
@@ -458,8 +468,12 @@
 										  <input type="radio" name="pay_mn" value="1" required>
 										  <span class="checkmarkw"></span>
 										</label>
-										<label class="containerw">Online Payment
+										<label class="containerw">PayUmoney
 										  <input type="radio" name="pay_mn" value="2" required>
+										  <span class="checkmarkw"></span>
+										</label>
+										<label class="containerw">HDFC
+										  <input type="radio" name="pay_mn" value="3" required>
 										  <span class="checkmarkw"></span>
 										</label>
 									

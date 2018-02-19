@@ -244,8 +244,14 @@
 					$cartTotal = 0;
 					while ($getCartItems = $cartItems->fetch_assoc()) { 
 						$getProductImage = getIndividualDetails('grocery_product_bind_images','product_id',$getCartItems['product_id']);
+						$getAllPaymentsSettings = getIndividualDetails('grocery_payments_settings','id','1');
 						$cartTotal = $getCartItems['product_price']*$getCartItems['product_quantity'];
 						$subTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
+						if($getAllPaymentsSettings['delivery'] == 1) {
+							$delivery_charges = $getAllPaymentsSettings['delivery_charges'];
+						} else {
+							$delivery_charges = 0;
+						}
 					}
 					?>
 					<input type="hidden" name="address_status" vlaue="" id="make_it_default">
@@ -329,14 +335,15 @@
                                             <?php $service_tax += ($getSiteSettingsData1['service_tax']/100)*$subTotal; ?>
                                             <td class="subtotal" id="serviceTax1">Rs . <?php echo $service_tax; ?></td>
                                         </tr>
+                                        <?php if($getAllPaymentsSettings['delivery'] == 1) { ?>
                                         <tr>
                                             <td>Delivery Charges</td>
-                                            <td class="subtotal">Rs . <?php echo $getSiteSettingsData1['delivery_charges']; ?></td>
+                                            <td class="subtotal">Rs . <?php echo $delivery_charges; ?></td>
                                         </tr>
-                                        
+                                        <?php } ?>
                                         <tr>
                                             <td>Total</td>
-                                            <td class="price-total" id="ordertotal">Rs. <?php echo round($subTotal+$service_tax+$getSiteSettingsData1['delivery_charges']); ?></td>
+                                            <td class="price-total" id="ordertotal">Rs. <?php echo round($subTotal+$service_tax+$delivery_charges); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
