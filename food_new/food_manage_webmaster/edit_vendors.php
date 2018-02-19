@@ -20,7 +20,7 @@ if (!isset($_POST['submit'])) {
     $vendor_mobile = $_POST['vendor_mobile'];
     $description = $_POST['description'];
     $password = encryptPassword($_POST['password']);
-    $opening_time = $_POST['opening_time'];
+    $opening_time = date("H:i:s",strtotime($_POST['opening_time']));
     $min_delivery_time = $_POST['min_delivery_time'];    
     $closing_time = date("H:i:s",strtotime($_POST['closing_time']));
     $lkp_state_id = $_POST['lkp_state_id'];
