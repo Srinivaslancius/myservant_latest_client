@@ -84,6 +84,17 @@ a.mask {
     background-color: #fff;
     /* width: 60px; */
 }
+.button6 {
+    background-color: #099E44;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;  
+    cursor: pointer;
+	height:36px;
+}
 </style>
 </head>
   
@@ -379,14 +390,14 @@ a.mask {
               <div class="input-group">
                   <span class="input-group-addon">+91</span>
                   <input type="tel" name="user_mobile" id="user_mobile"  placeholder="Enter Your Mobile Number" maxlength="10" pattern="[0-9]{10}" required class="form-control valid_mobile_num">
-                  <span class="input-group-addon one"><button type="submit" name="text_app_link" value="text_app_link">Text App link</button></span>
+                  <span class="input-group-addon one"><button class="button6" type="submit" name="text_app_link" value="text_app_link">Text App link</button></span>
               </div>
             </form>
               <div class="login-or"><hr class="hr-or"><span class="span-or">(OR)</span></div>
               <form method="post">
                 <div class="input-group">
                   <input type="email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  id="user_email" placeholder="Enter Your Email Id" class="form-control" required>
-                  <span class="input-group-addon one"><button type="submit" name="email_app_link" value="email_app_link">Email App link</button></span>
+                  <span class="input-group-addon one"><button class="button6" type="submit" name="email_app_link" value="email_app_link">Email App link</button></span>
               </div>
               </form>
             <br>

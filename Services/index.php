@@ -98,9 +98,7 @@ display: none;
   -ms-word-break: normal;
   word-break: normal;
 }
-#layerslider{
-	 padding-top:32px;
- }
+
 /*@media only screen and (max-width: 480px) {
 	#layerslider{
 		margin-top:45px !important;
