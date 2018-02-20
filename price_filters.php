@@ -139,7 +139,7 @@ echo'<input type="hidden" id="cat_id_'.$getProductsData['id'].'" value="'.$getPr
         <center><img src="images/thumb.png" style="padding-top:40px"></center><br>
        <h3 style="text-align:center">Sorry..!! No Items Found.</h3>
        <p style="text-align:center;margin:15px">Please click on the Continue Shopping button below for items</p>
-            <center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center>
+            <center><a href="index.php"><button type="submit" class="contact" style="background-color:#FE6003">Continue Shopping</button></a></center><br><br><br><br>
        </div>';
 }
 ?>
