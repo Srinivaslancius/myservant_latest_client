@@ -102,28 +102,34 @@ display: none;
     padding-top: 13px;
 }
 
-/*@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 480px)and (min-width: 320px) {
 	#layerslider{
-		margin-top:45px !important;
+		margin-top:55px !important;
+	}
+}
+@media only screen and (max-width: 568px)and (min-width: 320px) {
+	#layerslider{
+		padding-top:55px !important;
 	}
 }
  @media screen and (max-width: 1024px) and (min-width: 768px){
 	 #layerslider{
   width:100% !important;
-  padding-top:126px !important;
+  padding-top:49px !important;
   }
  }
  
   @media screen and (max-width: 960px) and (min-width: 600px){
 	  #layerslider{
-	 padding-top:79px !important;
+	 padding-top:5px !important;
  }
   }
   @media screen and (max-width: 732px) and (min-width: 412px){
 	  #layerslider{
-	  padding-top:50px !important;
+	  padding-top:43px !important;
 	  }
-  }*/
+  }
+  
  .input-group-addon.one{
 	background-color:#099E44;
 	color:white;

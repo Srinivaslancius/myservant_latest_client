@@ -2467,7 +2467,7 @@ article.main-post.style1 .content-post h3.title-post {
 }
 
 article.main-post.style2 {
-	width:50%;
+	width: 33%;
 	float:left;
 	padding-left:14px;
 	padding-right:14px;
@@ -3194,7 +3194,7 @@ ol.comment-list li.comment .comment-text .comment-content p {
 }
 
 .comment-respond .form-comment form .btn-submit button {
-	background-color:#f92400;
+	background-color: #f28b00;
 	font-family:'Open Sans';
 	font-weight:600;
 	color:#fff;
