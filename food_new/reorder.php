@@ -8,6 +8,12 @@ if($_SESSION['CART_TEMP_RANDOM'] == "") {
     $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
 }
 $session_cart_id = $_SESSION['CART_TEMP_RANDOM'];
+$sessionRestId = $_SESSION['session_restaurant_id'];
+$delCart = "DELETE FROM food_cart WHERE session_cart_id='$session_cart_id' AND restaurant_id = '$sessionRestId' ";
+$conn->query($delCart);
+
+$delCartIng = "DELETE FROM food_update_cart_ingredients WHERE session_cart_id='$session_cart_id'";
+$conn->query($delCartIng);
 $groceryOrders1 = "SELECT * FROM food_orders WHERE  order_id = '$order_id' AND user_id = '$user_id' "; 
 $groceryOrdersData1 = $conn->query($groceryOrders1);
 while ($OrderDetails = $groceryOrdersData1->fetch_assoc()) {
@@ -21,6 +27,7 @@ while ($OrderDetails = $groceryOrdersData1->fetch_assoc()) {
     $getFirstPrice =  $conn->query($getFirstPrice1);
     $getPrice = $getFirstPrice->fetch_assoc();
     $ProductPrice = round($getPrice['admin_price']);
+    $_SESSION['session_restaurant_id'] = $restId;
 
 	$selCnt = "SELECT * FROM food_cart WHERE food_item_id = '$ProductId' AND item_price='$ProductPrice' AND item_weight_type_id='$ProductWeighType' AND session_cart_id = '$session_cart_id' AND restaurant_id ='$restId' AND user_id = '$user_id'";
 	$getCountSel = $conn->query($selCnt);
