@@ -33,7 +33,7 @@
        $getReferaFriend = getAllData('grocery_refer_a_friend'); $i=1; ?>
             <div class="panel panel-default panel-table m-b-0">
                 <div class="panel-heading">
-                    <h3 class="m-t-0 m-b-5 font_sz_view">Customers</h3>
+                    <h3 class="m-t-0 m-b-5 font_sz_view">Refer a Friend</h3>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
