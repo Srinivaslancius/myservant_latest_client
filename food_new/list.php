@@ -95,6 +95,7 @@
                             <div class="strip_list wow fadeIn" data-wow-delay="0.1s">
                                     <div class="row">
                                             <div class="col-md-12 col-sm-12">
+                                              <?php if($getResults['make_it_popular'] == '1') { ?><div class="ribbon_1">Popular</div><?php } ?>
                                                     <div class="desc">
                                                             <div class="thumb_strip">
                                                                 <a href="view_rest_menu.php?key=<?php echo encryptPassword($getResults['id']);?>"><img src="<?php echo $base_url . 'uploads/food_vendor_logo/'.$getResults['logo'] ?>" alt=""></a>

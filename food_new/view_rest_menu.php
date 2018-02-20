@@ -175,7 +175,7 @@ if($_SESSION['session_restaurant_id']!= $getRestKey) {
 					<i class="icon_lifesaver"></i>
 					<h4>Need <span>Help?</span></h4>
 					<a href="tel:<?php echo $getFoodVendorsBann['vendor_mobile']; ?>" class="phone">+91- <?php echo $getFoodVendorsBann['vendor_mobile']; ?></a>
-					<small>Monday to Friday <?php echo $getFoodVendorsBann['working_timings']; ?></small>
+					<small>Monday to Friday <?php echo date('h:i a', strtotime($getFoodVendorsBann['opening_time'])); ?> - <?php echo date('h:i a', strtotime($getFoodVendorsBann['closing_time'])); ?></small>
 				</div>
 				</div>
 			</div><!-- End col-md-3 -->

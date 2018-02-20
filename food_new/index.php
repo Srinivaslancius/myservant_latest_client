@@ -318,7 +318,7 @@ a.mask {
                         </div>
                         <div class="location">
                            <?php echo $getMostPopualrRestaurants['restaurant_address']; ?> .
-                           <p class="opening">Opens at <?php echo date('h:i:s a', strtotime($getMostPopualrRestaurants['opening_time'])); ?> - <?php echo date('h:i:s a', strtotime($getMostPopualrRestaurants['closing_time'])); ?></p>
+                           <p class="opening">Opens at <?php echo date('h:i a', strtotime($getMostPopualrRestaurants['opening_time'])); ?> - <?php echo date('h:i a', strtotime($getMostPopualrRestaurants['closing_time'])); ?></p>
                         </div>
                         <ul>
                             <?php 
