@@ -27,6 +27,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			    	$lists["totalAmount"] = round($orderData["order_total"]);
 			    	$lists["itemCount"] = $getOrdersData3->num_rows;	
 			    	$lists["orderNo"] = $orderData["order_id"];
+
+			    	$orderStatus = getIndividualDetails('lkp_order_status','id',$orderData['lkp_order_status_id']);
+			    	$lists["track_order_status"] = $orderData['lkp_order_status_id'];
 			    	
 			    	array_push($response["lists"], $lists);		
 				}

@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $lists["weightType"] = $getItemWeights["weight_type"];
             $lists["itemQuantity"] = $getOrdersData2["item_quantity"];
             $lists["itemPrice"] = round($getOrdersData2["item_price"]);
+            $lists["track_order_status"] = $getOrdersData2['lkp_order_status_id'];
             array_push($response["lists"], $lists);	
         }       
 		
