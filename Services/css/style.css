@@ -379,7 +379,7 @@ a.btn_full_outline {
 
 .sticky ul#top_tools a,header#plain ul#top_links :hover a,header#plain ul#top_tools a {
     color: #333;
-    font-size: 14px;
+  
 }
 
 a.btn_full_outline:hover {
@@ -512,7 +512,7 @@ ul#top_tools li {
 #top_line {
     height: 32px;
     border-bottom: 1px solid rgba(255,255,255,.2);
-    font-size: 12px;
+    font-size: 13px;
     visibility: visible;
     opacity: 1;
     margin-bottom: 0px;
