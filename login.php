@@ -64,6 +64,10 @@
 		        $_SESSION['user_login_session_email'] = $getLoggedInDetails['user_email'];
 		        $_SESSION['timestamp'] = time();
 
+		        //Save log data here
+				$message = "User";
+				saveAdminLogs('3',$_SESSION['user_login_session_id'],$message);//3- for grocery_cart
+
 		        //get wallet Id
 		        $getWalletDetails = getIndividualDetails('user_wallet','user_id',$getLoggedInDetails['id']);
 		        $_SESSION['wallet_id'] = $getWalletDetails['wallet_id'];

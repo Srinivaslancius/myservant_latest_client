@@ -31,6 +31,11 @@ if(!empty($_POST['user_mobile']) && !empty($_POST['mobile_otp']))  {
         $_SESSION['user_login_session_name'] = $getLoggedInDetails['user_full_name'];
         $_SESSION['user_login_session_email'] = $getLoggedInDetails['user_email'];
         $_SESSION['timestamp'] = time();
+
+        //Save log data here
+		$message = "User";
+		saveAdminLogs('1',$_SESSION['user_login_session_id'],$message);//1- for services_cart
+
         $updateCart = "UPDATE `services_cart` SET user_id='".$_SESSION['user_login_session_id']."' WHERE session_cart_id = '".$_SESSION['CART_TEMP_RANDOM']."'";
 		$updateCart1 = $conn->query($updateCart);
 
