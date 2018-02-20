@@ -221,11 +221,10 @@
     }
 
 
-    function saveAdminLogs($service_id,$user_id) {
+    function saveAdminLogs($service_id,$user_id,$message) {
         //Save data into logs table
         global $conn;   
         $remote_addr = $_SERVER['REMOTE_ADDR'];
-        $message = 'Grocery Admin Login';
         $log_start_date = date("Y-m-d h:i:s");
 
        $sqlIns = "INSERT INTO admin_log_history (remote_addr,message,log_start_date,service_id,user_id) VALUES ('$remote_addr','$message','$log_start_date','$service_id','$user_id')";

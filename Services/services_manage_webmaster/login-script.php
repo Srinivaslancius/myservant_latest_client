@@ -20,7 +20,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	    //Assign the current timestamp as the user's
 		//latest activity
 		$_SESSION['last_action'] = time();
-		saveAdminLogs('1',$_SESSION['services_admin_user_id']);//1- for Services
+		//Save log data here
+		$message = "Admin";
+		saveAdminLogs('1',$_SESSION['services_admin_user_id'],$message);//1- for Services
 	    if(isset($_SESSION["services_admin_user_name"])) {
 		    echo "<script type='text/javascript'>window.location='dashboard.php'</script>";
 		}
