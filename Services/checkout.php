@@ -415,11 +415,15 @@ background-color: #fe6003;
 						</div>
                                                     <?php } ?>
                                                 </div>
-                            <div class="checkbox">
+							<label class="container5">
+							  <input type="checkbox" checked="checked"  name="checked-order" required>I’ve read and accept the terms & conditions *
+							  <span class="checkmark5"></span>
+							</label><br>
+                            <!--<div class="checkbox">
 								<input type="checkbox" id="checked-order" name="checked-order" checked required>
 								<label for="checked-order">I’ve read and accept the terms & conditions *</label>
-							</div><!-- /.checkbox -->
-                                                <div id="divId">
+							</div>-->
+                            <div id="divId">
 								<input type="submit" name="submit" class="btn_full" value="Place Order">
 							</div>
                                                 
