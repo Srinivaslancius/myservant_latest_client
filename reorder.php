@@ -15,12 +15,14 @@ while ($OrderDetails = $groceryOrdersData1->fetch_assoc()) {
 	$sub_category_id = $OrderDetails['sub_cat_id'];
 	$product_id = $OrderDetails['product_id'];
 	$product_quantity = $OrderDetails['item_quantity'];
-	$created_at = date('Y-m-d H:i:s', time() + 24 * 60 * 60);
+	$product_weight_type = $OrderDetails['item_weight_type_id'];
+	$created_at = date('Y-m-d H:i:s');
 	$city_id = 1;
 	$device_id = 1;
 	$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
-	$getProductPrice = getIndividualDetails('grocery_product_bind_weight_prices','product_id',$OrderDetails['product_id']);
-	$product_weight_type = $getProductPrice['id'];
+	$getFirstPrice1 = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id = '$product_id' AND  id='$product_weight_type' ";
+    $getFirstPrice =  $conn->query($getFirstPrice1);
+    $getProductPrice = $getFirstPrice->fetch_assoc();
 	$product_price = $getProductPrice['selling_price'];
 	$product_name = $getProductName['product_name'];
 
