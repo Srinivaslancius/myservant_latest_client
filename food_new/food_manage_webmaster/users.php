@@ -1,6 +1,6 @@
 <?php include_once 'admin_includes/main_header.php'; ?>
 <?php 
-$getUsers = "SELECT * FROM users WHERE lkp_admin_service_type_id = 2 ORDER BY lkp_status_id, id DESC";
+$getUsers = "SELECT * FROM users ORDER BY lkp_status_id, id DESC";
 $getUsersData = $conn->query($getUsers);
 ?>
      <div class="site-content">

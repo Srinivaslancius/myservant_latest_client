@@ -1,6 +1,6 @@
 <?php include_once 'admin_includes/main_header.php'; ?>
 <?php 
-$getUsers = "SELECT * FROM users WHERE lkp_admin_service_type_id = 1 ORDER BY lkp_status_id, id DESC";
+$getUsers = "SELECT * FROM users WHERE ORDER BY lkp_status_id, id DESC";
 $getUsersData = $conn->query($getUsers); $i=1; ?>
      <div class="site-content">
         <div class="panel panel-default panel-table">
