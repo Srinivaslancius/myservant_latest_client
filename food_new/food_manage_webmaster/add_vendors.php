@@ -311,7 +311,7 @@
   $('input.time-pick').timepicker({   
     // 'minTime': '<?php echo $min_time; ?>',
     // 'maxTime': '7:30pm',
-    'step': 60,
+    'step': 30,
       //'showDuration': true
   });
 </script>

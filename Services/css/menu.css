@@ -31,13 +31,13 @@
  color:#333
 }
 .main-menu > ul > li:hover > a {
- color:#e04f67
+ color:#fe6003
 }
 header#plain .main-menu > ul > li > a {
  color:#333
 }
 header#plain .main-menu > ul > li:hover > a {
- color:#e04f67
+ color:#fe6003
 }
 header#colored.sticky .main-menu > ul > li > a {
  color:#fff
@@ -100,7 +100,7 @@ a.dropdown-toggle.icon-search {
  }
  .main-menu ul ul,.main-menu ul li .menu-wrapper {
   position:absolute;
-  border-top:2px solid #e04f67;
+  border-top:2px solid #fe6003;
   z-index:1;
   visibility:hidden;
   left:3px;
@@ -163,7 +163,7 @@ a.dropdown-toggle.icon-search {
  }
  .main-menu ul ul li:hover > a {
   background-color:#f9f9f9;
-  color:#e04f67;
+  color:#fe6003;
   padding-left:15px
  }
  .main-menu ul li.megamenu {
@@ -213,7 +213,7 @@ a.dropdown-toggle.icon-search {
   width:0;
   position:absolute;
   pointer-events:none;
-  border-bottom-color:#e04f67;
+  border-bottom-color:#fe6003;
   border-width:7px;
   margin-left:-7px
  }
@@ -230,7 +230,7 @@ a.dropdown-toggle.icon-search {
   display:block
  }
  .main-menu ul li a:hover,a.show-submenu:hover,a.show-submenu:focus,a.show-submenu-mega:hover,a.show-submenu-mega:focus {
-  color:#e04f67!important;
+  color:#fe6003!important;
   background-color:#f9f9f9
  }
  .main-menu ul li {
@@ -260,7 +260,7 @@ a.dropdown-toggle.icon-search {
   position:relative
  }
  .main-menu a:hover {
-  color:#e04f67!important
+  color:#fe6003!important
  }
  .main-menu ul > li {
   padding-bottom:0
