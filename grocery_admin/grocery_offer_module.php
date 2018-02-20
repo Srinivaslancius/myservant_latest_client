@@ -44,8 +44,13 @@
                 $max_offer_percentage = $_POST['max_offer_percentage'];
                 $min_offer_percentage = $_POST['min_offer_percentage'];
             }
-            $category_id = $_POST['category_id'];
-            $sub_category_id = $_POST['sub_category_id'];
+            if($offer_level == 1) {
+                $category_id = $_POST['category_id'];
+                $sub_category_id = '';
+            } elseif($offer_level == 2) {
+                $category_id = '';
+                $sub_category_id = $_POST['sub_category_id'];
+            }
             if($_FILES["image"]["name"]!='' && $_FILES["app_image"]["name"]!='') {
                 $image = uniqid().$_FILES["image"]["name"];
                 $target_dir = "uploads/grocery_offer_module_image/";

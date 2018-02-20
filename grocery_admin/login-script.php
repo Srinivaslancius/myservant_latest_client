@@ -21,7 +21,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 		//latest activity
 		$_SESSION['last_action'] = time();
 		//Save log data here
-		saveAdminLogs('3',$_SESSION['grocery_admin_user_id']);//3- for grocery
+		$message = "Admin";
+		saveAdminLogs('3',$_SESSION['grocery_admin_user_id'],$message);//3- for grocery
 	    if(isset($_SESSION["grocery_admin_user_name"])) {
 		    echo "<script type='text/javascript'>window.location='dashboard.php'</script>";
 		}

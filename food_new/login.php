@@ -25,6 +25,11 @@
 		        $_SESSION['user_login_session_name'] = $getLoggedInDetails['user_full_name'];
 		        $_SESSION['user_login_session_email'] = $getLoggedInDetails['user_email'];
 		        $_SESSION['timestamp'] = time();
+
+		        //Save log data here
+				$message = "User";
+				saveAdminLogs('2',$_SESSION['user_login_session_id'],$message);//2- for food_cart
+
 		        $updateCart = "UPDATE `food_cart` SET user_id='".$_SESSION['user_login_session_id']."' WHERE session_cart_id = '".$_SESSION['CART_TEMP_RANDOM']."'";
 				$updateCart1 = $conn->query($updateCart);
 		        if($cart_id == 1) {

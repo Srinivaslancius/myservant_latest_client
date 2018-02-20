@@ -32,7 +32,7 @@
         <div class="site-content">
             
 <?php 
-       $getUsers = "SELECT * FROM users WHERE lkp_admin_service_type_id = 3 ORDER BY lkp_status_id, id DESC";
+       $getUsers = "SELECT * FROM users ORDER BY lkp_status_id, id DESC";
        $getUsersData = $conn->query($getUsers); $i=1; ?>
             <div class="panel panel-default panel-table m-b-0">
                 <div class="panel-heading">
@@ -49,6 +49,7 @@
                                     <th>Email</th>
                                     <th>Mobile</th>
                                     <th>Created Date</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,7 +62,7 @@
                                     <td><?php echo $row['user_email']; ?></td>
                                     <td><?php echo $row['user_mobile']; ?></td>
                                     <td><?php echo $row['created_at']; ?></td>
-                                    
+                                    <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='users'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='users'>In Active</span>" ;} ?></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>

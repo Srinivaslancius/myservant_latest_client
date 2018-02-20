@@ -16,7 +16,7 @@ a,a.bt_facebook,a.bt_paypal,a:focus,a:hover {
 }
 
 #map_filter ul,#rating_summary ul,.filter_type ul,.general_icons ul,.other_tours ul,.plan-features li,footer ul,ul#cart_items,ul#cat_nav,ul#contact-info,ul#top_links,ul#top_tools,ul.add_info,ul.list_icons,ul.list_ok,ul.list_order {
-    list-style: none
+    list-style: none;
 }
 
 i.color_1 {
@@ -493,7 +493,8 @@ ul#top_tools {
     position: absolute;
     right: 15px;
     top: 0;
-    z-index: 999
+    z-index: 999;
+    font-size: 14px;
 }
 
 ul#top_tools a {
@@ -664,11 +665,12 @@ header#colored.sticky ul#top_tools a {
 }
 
 .dropdown-menu {
-    margin-top: 14px
+    margin-top: 14px;
 }
 
 ul#cart_items {
-    padding: 5px 0 0
+    padding: 5px 0 5px;
+    font-size: 14px;
 }
 
 ul#cart_items li {
@@ -5216,14 +5218,14 @@ header#plain{
 padding: 0px 30px 0 0px !important;
 }
 #layerslider{
-	padding-top:40px !important;
+	padding-top:5px !important;
 }
 
   }
   @media screen and (max-width: 568px) and (min-width: 320px){
 
 #layerslider{
-	padding-top:49px !important;
+	padding-top:18px !important;
 }
 
   }
@@ -5239,7 +5241,7 @@ padding: 0px 30px 0 0px !important;
   }
   #layerslider{
 	width:100%;
-	padding-top:98px !important;
+	padding-top:5px !important;
 }
 .carousel-control.right{
 	margin-right:20px !important;
@@ -5267,7 +5269,7 @@ padding: 0px 30px 0 0px !important;
 }
 #layerslider{
 	width:100%;
-	padding-top:51px !important;
+	padding-top:5px !important;
 }
 ul#top_tools{
 	right: -60px;
@@ -5279,7 +5281,7 @@ ul#top_tools{
 	@media screen and (max-width: 732px) and (min-width: 412px){
 		#layerslider{
 	width:100%;
-	padding-top:45px !important;
+	padding-top:0px !important;
 }
 	}
 	.container.carousel1{
@@ -5443,4 +5445,8 @@ a.mask {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+.img-responsive{
+	width:100%;
+	height:auto;
 }

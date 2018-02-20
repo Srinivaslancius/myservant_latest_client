@@ -41,25 +41,33 @@
                             <thead>
                                 <tr>
                                     <th>S.no</th>
-                                    <th>Admin Name</th>
+                                    <th>Name</th>
                                     <th>Service Name</th>
+                                    <th>Type</th>
                                     <th>IP</th>
                                     <th>Login Date and Time</th>
-                                    <th>Logout Date and Time</th>
+                                    <!-- <th>Logout Date and Time</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $getAllDaLog = "SELECT * FROM admin_log_history ORDER BY log_id DESC"; $getAdminLogs=$conn->query($getAllDaLog); $i=1; ?>
                                 <?php while ($row = $getAdminLogs->fetch_assoc()) { ?>
+                                <?php if($row['message'] == "Admin") {
+                                    $getAdminName = getIndividualDetails('admin_users','id',$row['user_id']);
+                                    $name = $getAdminName['admin_name'];
+                                } elseif($row['message'] == "User") {
+                                    $getWebname = getIndividualDetails('users','id',$row['user_id']);
+                                    $name = $getWebname['user_full_name'];
+                                } ?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
-                                    <?php $getAdminName = getIndividualDetails('admin_users','id',$row['user_id']); ?>
-                                    <td><?php echo $getAdminName['admin_name']; ?></td>
+                                    <td><?php echo $name; ?></td>
                                     <?php $getServName = getIndividualDetails('lkp_admin_service_types','id',$row['service_id']); ?>
                                     <td><?php echo $getServName['admin_service_type']; ?></td>
+                                    <td><?php echo $row['message']; ?></td>
                                     <td><?php echo $row['remote_addr']; ?></td>
                                     <td><?php echo $row['log_start_date']; ?></td>
-                                    <td><?php if($row['log_end_date']!='') { echo $row['log_end_date']; } else { echo "---"; } ?></td>                                    
+                                    <!-- <td><?php if($row['log_end_date']!='') { echo $row['log_end_date']; } else { echo "---"; } ?></td> -->                                    
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>

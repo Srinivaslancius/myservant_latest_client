@@ -59,6 +59,9 @@ a.mask {
 .feature_2 h4{
 	line-height:25px;
 }
+.feature_2 h2{
+	font-size:25px;
+}
 .login-or {
     position: relative;
     font-size: 16px;
@@ -381,7 +384,7 @@ a.mask {
 		    <div class="row">
           <img src="img/logo1.png"><br>
           <div class="col-sm-5">
-            <img src="img/foodM.png">
+            <img src="img/foodM.png"class="img-responsive">
           </div>
           <div class="col-sm-6">
             <h2>Looking for the Food Feed? Get the app!</h2>

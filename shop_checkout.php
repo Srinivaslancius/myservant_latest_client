@@ -355,7 +355,7 @@
 									
 									<?php 
 									$service_tax += ($getSiteSettingsData1['service_tax']/100)*$cartTotal;
-									if($getAllPaymentsSettings['delivery'] == 1) {
+									if($getAllPaymentsSettings['delivery'] == 1 && $cartTotal <= $getAllPaymentsSettings['order_amount']) {
 										$delivery_charges = $getAllPaymentsSettings['delivery_charges'];
 									} else {
 										$delivery_charges = 0;
@@ -389,7 +389,7 @@
 	                                            <td>GST(<?php echo $getSiteSettingsData1['service_tax']; ?>%)</td>
 	                                            <td class="subtotal" id="serviceTax1">Rs . <?php echo $service_tax; ?></td>
 	                                        </tr>
-	                                        <?php if($getAllPaymentsSettings['delivery'] == 1) { ?>
+	                                        <?php if($getAllPaymentsSettings['delivery'] == 1 && $cartTotal <= $getAllPaymentsSettings['order_amount']) { ?>
 	                                        <tr>
 	                                            <td>Delivery Charges</td>
 	                                            <td class="subtotal">Rs . <?php echo $getAllPaymentsSettings['delivery_charges']; ?></td>
