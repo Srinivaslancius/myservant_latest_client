@@ -200,7 +200,7 @@
                 <span class="menu-text">Wallet</span>
               </a>
             </li>
-            <li><a href="#">
+            <li class="<?php if($page_name == 'grocery_refer_a_friend.php') { echo "active"; } ?>"><a href="grocery_refer_a_friend.php">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-accounts-outline zmdi-hc-fw"></i>
                 </span>
