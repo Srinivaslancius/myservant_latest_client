@@ -28,15 +28,15 @@
       <div class="site-right-sidebar">
         <?php include_once './right_slide_toggle.php';?>
       </div>
-      <?php $getUsers = "SELECT * FROM users WHERE lkp_admin_service_type_id = 3 ORDER BY lkp_status_id, id DESC";
+      <?php $getUsers = "SELECT * FROM users ORDER BY lkp_status_id, id DESC";
           $getUsersData = $conn->query($getUsers);
           $getUsersCount = $getUsersData->num_rows;?>
 
-          <?php $getUsers1 = "SELECT * FROM users WHERE lkp_status_id =0 AND lkp_admin_service_type_id = 3 ORDER BY lkp_status_id, id DESC";
+          <?php $getUsers1 = "SELECT * FROM users WHERE lkp_status_id =0 ORDER BY lkp_status_id, id DESC";
           $getUsersData1 = $conn->query($getUsers1);
           $getUsersCount1 = $getUsersData1->num_rows;?>
 
-          <?php $getUsers2 = "SELECT * FROM users WHERE lkp_status_id =1 AND lkp_admin_service_type_id = 3 ORDER BY lkp_status_id, id DESC";
+          <?php $getUsers2 = "SELECT * FROM users WHERE lkp_status_id =1 ORDER BY lkp_status_id, id DESC";
           $getUsersData2 = $conn->query($getUsers2);
           $getUsersCount2 = $getUsersData2->num_rows;?>
       <div class="site-content">
@@ -46,11 +46,7 @@
           <div class="col-md-4 col-sm-5">
             <div class="widget widget-tile-2 bg-danger m-b-30">
               <div class="wt-content p-a-20 p-b-50">
-                <div class="wt-title">Customers
-                  <span class="t-caret text-success">
-                    <i class="zmdi zmdi-caret-up"></i>
-                  </span>
-                </div>
+                <div class="wt-title">Customers</div>
                 <div class="wt-number"><?php echo $getUsersCount ?><br></div>
                 Active :  &nbsp;<?php echo $getUsersCount1?> &nbsp;&nbsp;&nbsp; In Active :  &nbsp;<?php echo $getUsersCount2?>
               </div>
@@ -75,11 +71,7 @@
           <div class="col-md-4 col-sm-5">
             <div class="widget widget-tile-2 bg-primary m-b-30">
               <div class="wt-content p-a-20 p-b-50">
-                <div class="wt-title">Delivery Boys
-                  <span class="t-caret text-success">
-                    <i class="zmdi zmdi-caret-up"></i>
-                  </span>
-                </div>
+                <div class="wt-title">Delivery Boys</div>
                 <div class="wt-number"><?php echo $getGroceryDeliveryBoysCount ?></div>
                 Active :  &nbsp;<?php echo $getGroceryDeliveryBoysCount1?> &nbsp;&nbsp;&nbsp; In Active :  &nbsp;<?php echo $getGroceryDeliveryBoysCount2?>
               </div>

@@ -5,15 +5,15 @@
     <div class="site-main">
       <div class="site-content">
         <div class="row">
-          <?php $getUsers = "SELECT * FROM users WHERE lkp_admin_service_type_id = 1 ORDER BY lkp_status_id, id DESC";
+          <?php $getUsers = "SELECT * FROM users ORDER BY lkp_status_id, id DESC";
           $getUsersData = $conn->query($getUsers);
           $getUsersCount = $getUsersData->num_rows;?>
 
-          <?php $getUsers1 = "SELECT * FROM users WHERE lkp_status_id =0 AND lkp_admin_service_type_id = 1 ORDER BY lkp_status_id, id DESC";
+          <?php $getUsers1 = "SELECT * FROM users WHERE lkp_status_id =0 ORDER BY lkp_status_id, id DESC";
           $getUsersData1 = $conn->query($getUsers1);
           $getUsersCount1 = $getUsersData1->num_rows;?>
 
-          <?php $getUsers2 = "SELECT * FROM users WHERE lkp_status_id =1 AND lkp_admin_service_type_id = 1 ORDER BY lkp_status_id, id DESC";
+          <?php $getUsers2 = "SELECT * FROM users WHERE lkp_status_id =1 ORDER BY lkp_status_id, id DESC";
           $getUsersData2 = $conn->query($getUsers2);
           $getUsersCount2 = $getUsersData2->num_rows;?>
           <a href="users.php">

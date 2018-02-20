@@ -136,12 +136,13 @@ td{
 	</div><!-- End subheader -->
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
-
+    <?php $getFoodVendorsBann = getIndividualDetails('food_vendors','id',$_SESSION['session_restaurant_id']); ?>
     <div id="position">
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#0">Cart</a></li>                
+                <li><a href="view_rest_menu.php?key=<?php echo encryptPassword($_SESSION['session_restaurant_id']); ?>"><?php echo $getFoodVendorsBann['restaurant_name']; ?></a></li>
+                <li>Cart</li>
             </ul>
             
         </div>

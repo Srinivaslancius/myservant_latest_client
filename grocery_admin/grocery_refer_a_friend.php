@@ -30,10 +30,10 @@
       </div>
       <div class="site-content">
       <?php 
-       $getNewsLetters = getAllData('grocery_news_letter'); $i=1; ?>
+       $getReferaFriend = getAllData('grocery_refer_a_friend'); $i=1; ?>
             <div class="panel panel-default panel-table m-b-0">
                 <div class="panel-heading">
-                    <h3 class="m-t-0 m-b-5 font_sz_view">News Letter</h3>
+                    <h3 class="m-t-0 m-b-5 font_sz_view">Refer a Friend</h3>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -41,15 +41,23 @@
                           <thead>
                             <tr>
                                 <th>S.no</th>
-                                <th>Email</th>
+                                <th>Refer User Id</th>
+                                <th>Refered Email</th>
+                                <th>Register Status</th>
+                                <th>Transcation Status</th>
+                                <th>Referal Code</th>
                                 <th>Created Date</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <?php while ($row = $getNewsLetters->fetch_assoc()) { ?>
+                            <?php while ($row = $getReferaFriend->fetch_assoc()) { ?>
                             <tr>
                                 <td><?php echo $i; ?></td>
-                                <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a></td>
+                                <td><?php echo $row['refered_user_id']; ?></td>
+                                <td><?php echo $row['refer_email_id']; ?></td>
+                                <td><?php echo $row['register_status']; ?></td>
+                                <td><?php echo $row['first_transaction_status']; ?></td>
+                                <td><?php echo $row['referal_code']; ?></td>
                                 <td><?php echo $row['created_at']; ?></td>
                             </tr>
                             <?php $i++; } ?>

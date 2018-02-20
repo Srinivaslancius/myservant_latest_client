@@ -36,7 +36,6 @@
             $id= 1;
 
                 $delivery = $_POST['delivery'];
-                $delivery_charges = $_POST['delivery_charges'];
                 $tax_percentage = $_POST['tax_percentage'];
                 $coupons = $_POST['coupons'];
                 $cash_on_delivery = $_POST['cash_on_delivery'];
@@ -44,9 +43,15 @@
                 $hdfc_payments = $_POST['hdfc_payments'];
                 $paytm_payments = $_POST['paytm_payments'];
                 $order_cancellation_time = $_POST['order_cancellation_time'];
-
+                if($delivery == 1) {
+                    $delivery_charges = $_POST['delivery_charges'];
+                    $order_amount = $_POST['order_amount'];
+                } else {
+                    $delivery_charges = '';
+                    $order_amount = '';
+                }
                 
-                $sql = "UPDATE grocery_payments_settings SET delivery ='$delivery',delivery_charges = '$delivery_charges',tax_percentage ='$tax_percentage',coupons ='$coupons',cash_on_delivery ='$cash_on_delivery',pay_u_payments ='$pay_u_payments',hdfc_payments ='$hdfc_payments',paytm_payments ='$paytm_payments',order_cancellation_time ='$order_cancellation_time' WHERE id = '$id'";                    
+                $sql = "UPDATE grocery_payments_settings SET delivery ='$delivery',delivery_charges = '$delivery_charges',order_amount = '$order_amount',tax_percentage ='$tax_percentage',coupons ='$coupons',cash_on_delivery ='$cash_on_delivery',pay_u_payments ='$pay_u_payments',hdfc_payments ='$hdfc_payments',paytm_payments ='$paytm_payments',order_cancellation_time ='$order_cancellation_time' WHERE id = '$id'";                    
                 if($conn->query($sql) === TRUE){
                        echo "<script type='text/javascript'>window.location='payment_settings.php?msg=success'</script>";
                 } else {
@@ -76,17 +81,25 @@
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Delivery</label>
                                 <div class="col-sm-6 col-md-4 btn-group">
                                     <label class="btn btn-outline-primary  <?php if($getPaymentsSettings['delivery'] == 1) {  ?> active <?php } ?>  ">
-                                       <input type="radio" name="delivery" id="delivery"  value="1" <?php if($getPaymentsSettings['delivery'] == 1) echo 'checked="checked"'; ?>> Yes 
+                                       <input type="radio" name="delivery" id="delivery_yes"  value="1" <?php if($getPaymentsSettings['delivery'] == 1) echo 'checked="checked"'; ?>> Yes 
                                     </label>
                                     <label class="btn btn-outline-primary <?php if($getPaymentsSettings['delivery'] == 2) {  ?> active <?php } ?>">
-                                        <input type="radio" name="delivery" id="delivery" autocomplete="off" value="2" <?php if($getPaymentsSettings['delivery'] == 2)  echo 'checked="checked"'; ?>> No &nbsp;
+                                        <input type="radio" name="delivery" id="delivery_no" autocomplete="off" value="2" <?php if($getPaymentsSettings['delivery'] == 2)  echo 'checked="checked"'; ?>> No &nbsp;
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Delivery Charges</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <input type="text" name="delivery_charges" class="form-control" id="form-control-3" placeholder="Enter Delivery Charges" required value="<?php echo $getPaymentsSettings['delivery_charges'];?>">
+                            <div id="delivery_charges">
+                                <div class="form-group">
+                                    <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Delivery Charges</label>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="delivery_charges" class="form-control delivery_charges  valid_mobile_num" id="form-control-3" placeholder="Enter Delivery Charges" value="<?php echo $getPaymentsSettings['delivery_charges'];?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Order Amount for Delivery</label>
+                                    <div class="col-sm-6 col-md-4">
+                                        <input type="text" name="order_amount" class="form-control order_amount valid_mobile_num" id="form-control-3" placeholder="Enter Delivery Charges" value="<?php echo $getPaymentsSettings['order_amount'];?>">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -167,14 +180,23 @@
             </div>
             
         </div>
-        <div class="site-footer">
-         Design & Developed By Lancius IT Solutions
-        </div>
-
-    <script src="js/vendor.min.js"></script>
-    <script src="js/cosmos.min.js"></script>
-    <script src="js/application.min.js"></script>
-    <script src="js/dashboard-3.min.js"></script>
+        <?php include_once 'footer.php'; ?>
+        <script src="js/dashboard-3.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
+    <script type="text/javascript">
+        $("#delivery_charges").hide();
+        $("#delivery_yes").click(function(){
+            $("#delivery_charges").show();
+            $(".delivery_charges,.order_amount").val('');
+            $(".delivery_charges,.order_amount").attr('required',true);
+        })
+        $("#delivery_no").click(function(){
+            $("#delivery_charges").hide();
+            $(".delivery_charges,.order_amount").removeAttr('required');
+        })
+        if($(".delivery_charges").val() != '') {
+            $("#delivery_charges").show();
+        }
+    </script>
   </body>
 </html>

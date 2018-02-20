@@ -154,8 +154,11 @@ $getAboutData = $getAllAboutData->fetch_assoc();
                            <a href="review_section.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1"> View Reviews</button></a>
                         <?php } ?>
                         <?php if($orderData['assign_delivery_id'] == '0' || $orderData['assign_delivery_id'] == '') { ?>
-                        <a href="cancel_order.php?order_id=<?php echo $orderData['order_id']; ?>" onclick="return confirm('Are you sure you want to cancel?')"><button class="button1">Cancel Order</button></a></td>
+                        <a href="cancel_order.php?order_id=<?php echo $orderData['order_id']; ?>" onclick="return confirm('Are you sure you want to cancel?')"><button class="button1">Cancel Order</button></a>
                         <?php } } ?>
+                        <?php if($orderData['lkp_order_status_id'] == 5 || $orderData['lkp_payment_status_id'] == 1) { ?>
+                        <a href="reorder.php?order_id=<?php echo $orderData['order_id']; ?>"><button class="button1" onclick="return confirm('If you want reorder then your cart items will remove');">Re Order</button></td>
+                        <?php } ?>
             		  </tr>
             		  
             		</tbody>

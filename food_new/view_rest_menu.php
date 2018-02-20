@@ -137,7 +137,7 @@ if($_SESSION['session_restaurant_id']!= $getRestKey) {
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#0"><?php echo $getFoodVendorsBann['restaurant_name']; ?></a></li>                
+                <li><?php echo $getFoodVendorsBann['restaurant_name']; ?></li>                
             </ul>
             
         </div>
