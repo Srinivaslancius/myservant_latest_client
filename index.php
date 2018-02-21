@@ -150,7 +150,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 								</div>
 							</div>
 							<div class="popup-image">
-								<img src="images/banner_boxes/popup.png" alt="">
+								<img src="images/product/other/my.jpg" alt="">
 							</div>
 						</div>
 					</div>
