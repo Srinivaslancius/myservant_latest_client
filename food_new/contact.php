@@ -59,13 +59,15 @@
 <![endif]-->
 <?php
 
-if(!empty($_POST['name_contact']) && !empty($_POST['how_can_help']) && !empty($_POST['email_contact']) && !empty($_POST['phone_contact']))  {
+if(!empty($_POST['name_contact']) && !empty($_POST['how_can_help']) && !empty($_POST['email_contact']) && !empty($_POST['phone_contact']) && !empty($_POST['message_contact']) && !empty($_POST['subject']) && !empty($_POST['priority']))  {
 
     $name_contact = $_POST['name_contact'];
     $how_can_help = $_POST['how_can_help'];
     $email_contact = $_POST['email_contact'];
     $phone_contact = $_POST['phone_contact'];
     $message_contact = $_POST['message_contact'];
+    $subject1 = $_POST['subject'];
+    $priority = $_POST['priority'];
 
 $dataem = $getFoodSiteSettingsData["contact_email"];
 //$to = "srinivas@lanciussolutions.com";
@@ -84,13 +86,15 @@ $message .= '<body>
         <h4>Email: </h4><p>'.$email_contact.'</p>
         <h4>Mobile: </h4><p>'.$phone_contact.'</p>
         <h4>How Can I Help You: </h4><p>'.$how_can_help.'</p>
+        <h4>Subject: </h4><p>'.$subject1.'</p>
+        <h4>Priority: </h4><p>'.$priority.'</p>
         <h4>Message: </h4><p>'.$message_contact.'</p>
     </article>
     <footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getFoodSiteSettingsData['footer_text'].'</footer>
     </div>
 
     </body>';
-
+//echo $message; die;
 //$sendMail = sendEmail($to,$subject,$message,$email_contact);
 $name = "My Servant";
 $from = $email_contact;
@@ -159,56 +163,68 @@ if(mail($to, $subject, $message, $headers)) {
             </div>
         </div>
     </div><!-- End row -->  
-                <div class="box_style_2">
-                <div class="row">
-                <div class="col-md-8 col-sm-8">
+    <div class="box_style_2">
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
                 <form method="post" action="" id="contactform" name="form">
-                <div class="row">
-                <div class="col-sm-6">
-                <label for="text">Name:</label>
-                <p><input type="text" name= "name_contact" class="form-control " placeholder="Name" required></p>
-                </div>
-                <div class="col-sm-6">
-                <label for="email">Email:</label>               
-                <p><input type="email" name="email_contact" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control " placeholder="Email" required></p>
-                </div>
-                <div class="col-sm-6">
-                <label for="text">Mobile No:</label>                
-               <input type="text" class="form-control valid_mobile_num" maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" name="phone_contact" placeholder="Mobile Number" required>
-                </div>
-                <div class="col-sm-6">
-                <label for="text">Select:</label>
-                  <p>
-                  <select class="form-control" name="how_can_help" id="sel1" required>
-                    <option>How can we help you?*</option>
-                    <?php while($getContactdata = $getAllContactdata->fetch_assoc()) { ?>
-
-                    <option><?php echo $getContactdata['description'] ?></option>
-                    <?php } ?>
-                  </select>
-                  </p>
-                  </div>
-                  <div class="col-sm-12">
-                    <label for="text">Message:</label>                
-                    <p> <textarea class="form-control" name="message_contact" rows="4" id="comment" placeholder="Message*" ></textarea></p>
-                </div>
-                <div class="col-sm-3">  
-                    <button type="submit" class="btn btn-submit" style="background-color:#f26226;color:white">Send Message</button>
-                    </div>
-                        <div class="col-sm-9">  
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="text">Name:</label>
+                            <p><input type="text" name= "name_contact" class="form-control " placeholder="Name" required></p>
                         </div>
-                </div>
+                        <div class="col-sm-6">
+                            <label for="email">Email:</label>               
+                            <p><input type="email" name="email_contact" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control " placeholder="Email" required></p>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="text">Mobile No:</label>                
+                            <input type="text" class="form-control valid_mobile_num" maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" name="phone_contact" placeholder="Mobile Number" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="text">Select:</label>
+                            <p>
+                                <select class="form-control" name="how_can_help" id="sel1" required>
+                                    <option value="">How can we help you?*</option>
+                                    <?php while($getContactdata = $getAllContactdata->fetch_assoc()) { ?>
+                                    <option><?php echo $getContactdata['description'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="text">Subject:</label>                
+                            <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter Subject" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="text">Select Priority:</label>
+                            <p>
+                                <select class="form-control" name="priority" id="sel1" required>
+                                    <option value="">Select Priority</option>
+                                    <option value="Option1">Option1</option>
+                                    <option value="Option2">Option2</option>
+                                    <option value="Option3">Option3</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="text">Message:</label>                
+                            <p> <textarea class="form-control" name="message_contact" rows="4" id="comment" placeholder="Message*" required></textarea></p>
+                        </div>
+                        <div class="col-sm-3">  
+                            <button type="submit" class="btn btn-submit" style="background-color:#f26226;color:white">Send Message</button>
+                        </div>
+                        <div class="col-sm-9"></div>
                     </div>
                 </form>
-                
                 <div class="col-md-4 col-sm-4">
-                <h4 style="color:#FE6003">Information</h4><br>
-                <p style="margin-bottom:5px"><span class="icon-location one"></span> <?php echo $getFoodSiteSettingsData["address"]; ?></p>
-                <p style="margin-bottom:20px"><span class="icon-mobile"></span> <a href="Tel:<?php echo $getFoodSiteSettingsData['mobile']; ?>"><?php echo $getFoodSiteSettingsData['mobile']; ?></a> Toll Free (24*7)</p></p>
-                <p><span class="icon-mail-1"></span> <a href="mailto::<?php echo $getFoodSiteSettingsData['contact_email']; ?>"><?php echo $getFoodSiteSettingsData['email']; ?></a></p>
+                    <h4 style="color:#FE6003">Information</h4><br>
+                    <p style="margin-bottom:5px"><span class="icon-location one"></span> <?php echo $getFoodSiteSettingsData["address"]; ?></p>
+                    <p style="margin-bottom:20px"><span class="icon-mobile"></span> <a href="Tel:<?php echo $getFoodSiteSettingsData['mobile']; ?>"><?php echo $getFoodSiteSettingsData['mobile']; ?></a> Toll Free (24*7)</p>
+                    <p><span class="icon-mail-1"></span> <a href="mailto::<?php echo $getFoodSiteSettingsData['contact_email']; ?>"><?php echo $getFoodSiteSettingsData['email']; ?></a></p>
                 </div>
-                </div>
-                </div></div>
+            </div>
+        </div>
+    </div>
 </div><!-- End container -->
 <div class="high_light">
        <?php include_once 'view_restaurants.php'; ?>

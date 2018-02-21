@@ -80,7 +80,13 @@
 		        	header("Location:offerzone.php");
 		    	} elseif($_GET['err']!='') { header('Location: index.php'); exit; } else { header('Location: index.php'); exit; }
 		    } else {
-		    	header('Location: login.php?err=log-fail');
+		    	if($cart_id == 1) {
+		    		header('Location: login.php?err=log-fail&cart_id='.$_GET['cart_id'].'');
+		    	} elseif($offer_id == 1) {
+		    		header('Location: login.php?err=log-fail&offer_id='.$_GET['offer_id'].'');
+		    	} else {
+		    		header('Location: login.php?err=log-fail');
+		    	}
 		    }
 		}
 	?>
