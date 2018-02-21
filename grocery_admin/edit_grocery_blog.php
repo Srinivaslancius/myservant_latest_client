@@ -28,32 +28,31 @@
       <div class="site-right-sidebar">
         <?php include_once './right_slide_toggle.php';?>
       </div>
-
-        <?php
+      <?php $cid = $_GET['cid']; ?>
+      <?php
         if (!isset($_POST['submit']))  {
-          echo "fail";
         } else  { 
 
-            //echo "<pre>"; print_r($_POST); die;
+            //echo "<pre>"; print_r($_POST); die;     
             $title = $_REQUEST['title'];
             $name = $_REQUEST['name'];      
             $image = $_REQUEST['image'];
             $short_description = $_REQUEST['short_description'];
             $long_description = $_REQUEST['long_description'];
-            $created_at = date("Y-m-d h:i:s");
             $lkp_status_id = $_REQUEST['lkp_status_id'];
-
-            if($_FILES["image"]["name"]!='') {
-
-                $image = uniqid().$_FILES["image"]["name"];
+            if($_FILES["brand_logo"]["name"]!='') {
+                $brand_logo = uniqid().$_FILES["brand_logo"]["name"];
                 $target_dir = "uploads/grocery_blog/";
-                $target_file = $target_dir . basename($image);
-                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-                $sql = "INSERT INTO grocery_blog (`title`, `image`, `short_description`,`long_description`,`lkp_status_id`,`created_at`,`name`) VALUES ('$title', '$image', '$short_description','$long_description' ,'$lkp_status_id','$created_at','$name')";
-            } 
+                $target_file = $target_dir . basename($brand_logo);
+                $getImgUnlink = getImageUnlink('image','grocery_blog','id',$id,$target_dir);
+                move_uploaded_file($_FILES["brand_logo"]["tmp_name"], $target_file);
+                $sql = "UPDATE `grocery_blog` SET title = '$title', name = '$name', image = '$brand_logo',short_description='$short_description',long_description='$long_description',lkp_status_id='$lkp_status_id' WHERE id = '$cid' ";
+                
+            } else {
+                $sql = "UPDATE `grocery_blog` SET title = '$title', name = '$name',short_description='$short_description',long_description='$long_description',lkp_status_id='$lkp_status_id' WHERE id = '$cid' ";
+            }
             
             $result = $conn->query($sql);
-           
             if( $result == 1){
                 echo "<script type='text/javascript'>window.location='grocery_blog.php?msg=success'</script>";
             } else {
@@ -61,7 +60,6 @@
             }
         }
         ?>
-
         <div class="site-content">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -69,42 +67,43 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        
+                        <?php $getGroceryBlog = getIndividualDetails('grocery_blog','id',$cid); ?>
                         <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-3">Title</label>
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Title</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" name="title" class="form-control" id="form-control-3" placeholder="Enter Title" required>
+                                    <input type="text" class="form-control" id="form-control-3" placeholder="Enter Title" name="title" required value="<?php echo $getGroceryBlog['title']; ?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Name</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="text" class="form-control" id="form-control-3" placeholder="Enter Title" name="name" required="required">
+                                    <input type="text" class="form-control" id="form-control-3" placeholder="Enter Title" name="name" required value="<?php echo $getGroceryBlog['name']; ?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Short Description</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="short_description" required="required"></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="3" name="short_description" required="required"><?php echo $getGroceryBlog['short_description']; ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Long Description</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="5" name="long_description" required="required"></textarea>
+                                    <textarea id="form-control-8" class="form-control" rows="5" name="long_description" required="required"><?php echo $getGroceryBlog['long_description']; ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Image</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <img id="output" height="100" width="100"/>
+                                    <?php if($getGroceryBlog['image']!='') { ?>
+                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_blog/'.$getGroceryBlog['image']; ?>"  id="output" height="100" width="100"/>
+                                    <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input id="form-control-22" class="file-upload-input" type="file" name="image" required="required" accept="image/*" onchange="loadFile(event)">
-                                    </label>
+                                        <input id="form-control-22" class="file-upload-input" type="file" name="brand_logo" accept="image/*" onchange="loadFile(event)">
+                                    </label> (width : 150px ; height : 150px)
                                 </div>
                             </div>
-                            
                             <?php $getStatus = getAllData('lkp_status');?>
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Status</label>
@@ -112,66 +111,26 @@
                                     <select id="lkp_status_id" name="lkp_status_id" class="form-control" required>
                                         <option value="">-- Select Status --</option>
                                          <?php while($row = $getStatus->fetch_assoc()) {  ?>
-                                              <option value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
+                                              <option <?php if($row['id'] == $getGroceryBlog['lkp_status_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
                                           <?php } ?>
                                     </select>
                                 </div>
                             </div>
-
+                             
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
-                                   <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
-             <div class="panel panel-default panel-table m-b-0">
-                <div class="panel-heading">
-                    <h3 class="m-t-0 m-b-5 font_sz_view">View Blog</h3>
-                    
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered dataTable" id="table-2">
-                            <thead>
-                                <tr>
-                                    <th>S.no</th>
-                                    <th>Title</th>
-                                    <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Created Date</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $getBlog = getAllDataWithActiveRecent('grocery_blog'); $i=1; ?>
-                                <?php while ($row = $getBlog->fetch_assoc()) { ?>
-                                <tr>
-                                    <td><?php echo $i; ?></td>
-                                    <td><?php echo $row['title']; ?></td>
-                                    <td><?php echo $row['name']; ?></td>
-                                    <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_blog/'.$row['image']; ?>"  id="output" height="60" width="60"/></td>
-                                    <td><?php echo $row['created_at']; ?></td>
-                                    <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_blog'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_blog'>In Active</span>" ;} ?></td>
-                                    <td> <a href="edit_grocery_blog.php?cid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
-                                </tr>
-                                <?php $i++; } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
             
         </div>
+        <?php include_once 'footer.php'; ?>
         
-
-    <?php include_once 'footer.php'; ?>
-    <script src="js/dashboard-3.min.js"></script>
-    <script src="js/forms-plugins.min.js"></script>
-    <script src="js/tables-datatables.min.js"></script>    
+        <script src="js/dashboard-3.min.js"></script>
+    <script src="js/tables-datatables.min.js"></script>
   </body>
 </html>
