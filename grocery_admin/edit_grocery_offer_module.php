@@ -64,13 +64,13 @@
                 if($_FILES["image"]["name"]!='' && $_FILES["app_image"]["name"]!='') {
                     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
                     move_uploaded_file($_FILES["app_image"]["tmp_name"], $target_file1);
-                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', image = '$image', app_image = '$app_image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$subcatId' WHERE id = '$offer_id' ";
+                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', image = '$image', app_image = '$app_image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$sub_category_id' WHERE id = '$offer_id' ";
                 } elseif($_FILES["image"]["name"]!='') {
                     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', image = '$image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$subcatId' WHERE id = '$offer_id' ";
+                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', image = '$image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$sub_category_id' WHERE id = '$offer_id' ";
                 } elseif($_FILES["app_image"]["name"]!='') {
                     move_uploaded_file($_FILES["app_image"]["tmp_name"], $target_file1);
-                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', app_image = '$app_image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$subcatId' WHERE id = '$offer_id' ";
+                    $sql = "UPDATE `grocery_offer_module` SET name = '$name', app_image = '$app_image', offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$sub_category_id' WHERE id = '$offer_id' ";
                 }
             } else {
                 $sql = "UPDATE `grocery_offer_module` SET offer_type = '$offer_type', offer_level = '$offer_level', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', category_id = '$category_id', sub_category_id = '$sub_category_id' WHERE id = '$offer_id' ";

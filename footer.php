@@ -164,7 +164,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 			</div>
 		</ul>
 		<?php								
-		$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
+		$getBrnds = "SELECT * FROM grocery_brands WHERE lkp_status_id = 0 AND make_it_popular = 1 AND id IN (SELECT brand_id FROM grocery_product_bind_brands WHERE product_id IN (SELECT id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id))) ORDER BY id DESC";
 		$getAllBrands = $conn->query($getBrnds);
     	?>
 		<ul class="prdct_lst1">

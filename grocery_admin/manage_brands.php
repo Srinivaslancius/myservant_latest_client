@@ -35,6 +35,7 @@
         }else  {
           //If success
           $brand_name = $_POST['brand_name'];
+          $make_it_popular = $_POST['make_it_popular'];
           $fileToUpload = $_FILES["fileToUpload"]["name"];
           $fileToUpload1 = $_FILES["fileToUpload1"]["name"];
           if($fileToUpload!='' && $fileToUpload1!='') {
@@ -46,7 +47,7 @@
             $target_file1 = $target_dir1 . basename($app_logo);
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
-                $sql = "INSERT INTO grocery_brands (`brand_name`,`web_logo`,`app_logo`) VALUES ('$brand_name','$web_logo', '$app_logo')"; 
+                $sql = "INSERT INTO grocery_brands (`brand_name`,`web_logo`,`app_logo`,`make_it_popular`) VALUES ('$brand_name','$web_logo', '$app_logo', '$make_it_popular')"; 
                 if($conn->query($sql) === TRUE){
                    echo "<script type='text/javascript'>window.location='manage_brands.php?msg=success'</script>";
                 } else {
@@ -89,6 +90,12 @@
                                     <label class="btn btn-default file-upload-btn">Choose file...
                                         <input class="file-upload-input" type="file" name="fileToUpload1" multiple="multiple" accept="image/*" id="fileToUpload" onchange="loadFile1(event)" required>
                                     </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-22">Make It Popular</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="checkbox" name="make_it_popular" value="1">
                                 </div>
                             </div>
                             <div class="form-group">
