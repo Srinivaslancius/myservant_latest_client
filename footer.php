@@ -81,6 +81,11 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							Return Policy
 						</a>
 					</li>
+					<li>
+						<a href="blog.php" title="">
+							Blog
+						</a>
+					</li>
 				</ul>
 			</div><!-- /.widget-menu -->
 		</div><!-- /.col-lg-2 col-md-6 -->
