@@ -5450,3 +5450,65 @@ a.mask {
 	width:100%;
 	height:auto;
 }
+.radiochck {
+   display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radiochck input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmarkR1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+   background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radiochck:hover input ~ .checkmarkR1 {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radiochck input:checked ~ .checkmarkR1 {
+    background-color: #f28b00;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmarkR1:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radiochck input:checked ~ .checkmarkR1:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radiochck .checkmarkR1:after {
+ 	top: 6px;
+	left: 6px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: white;
+}
