@@ -31,29 +31,34 @@
 			<?php include_once 'bottom_header.php';?>
 			</div><!-- /.header-bottom -->
 		</section><!-- /#header -->
-
+		
 			<section class="flat-breadcrumb">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
 							<ul class="breadcrumbs">
 								<li class="trail-item">
-									<a href="#" title="">Home</a>
+									<a href="index.php" title="">Home</a>
 									<span><img src="images/icons/arrow-right.png" alt=""></span>
 								</li>
 								<li class="trail-item">
-									<a href="#" title="">Blog</a>
+									<a href="blog.php" title="">Blog</a>
 									<span><img src="images/icons/arrow-right.png" alt=""></span>
 								</li>
 								<li class="trail-end">
-									<a href="#" title="">Blog-detail</a>
+									<a href="" title="">Blog-detail</a>
 								</li>
 							</ul><!-- /.breacrumbs -->
 						</div><!-- /.col-md-12 -->
 					</div><!-- /.row -->
 				</div><!-- /.container -->
 			</section><!-- /.flat-breadcrumb -->
-
+<?php 
+        $id = $_GET['id'];
+        $getAllGroceryBlogData ="SELECT * FROM grocery_blog WHERE id='$id' ";
+        $getAllGroceryBlog = $conn->query($getAllGroceryBlogData);
+        ?>  
+        <?php $getBlog = $getAllGroceryBlog->fetch_assoc(); ?>
 			<section class="main-blog">
 				<div class="container">
 					<div class="row">
@@ -61,48 +66,29 @@
 							<div class="post-wrap">
 								<article class="main-post single">
 									<div class="featured-post">
-										<a href="#" title="">
-											<img src="images/blog/post-01.jpg" alt="">
+										<a href="" title="">
+											<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_blog/'.$getBlog['image']; ?>" alt="<?php echo $getBlog['title']; ?>">
 										</a>
 									</div><!-- /.featured-post -->
 									<div class="divider25"></div>
 									<div class="content-post">
 										<h3 class="title-post">
-											<a href="#" title="">There are many variations of passages</a>
+											<a href="" title=""><?php echo $getBlog['title']; ?></a>
 										</h3>
 										<ul class="meta-post">
-											<li class="comment">
+											<!-- <li class="comment">
 												<a href="#" title="">
 													1 Comment
 												</a>
-											</li>
+											</li> -->
 											<li class="date">
-												<a href="#" title="">
-													February 20, 2018
+												<a href="" title="">
+													<?php echo $getBlog['created_at']; ?>
 												</a>
 											</li>
 										</ul><!-- /.meta-post -->
 										<div class="entry-post">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis diam erat. Duis velit lectus, posuere a blandit sit amet, tempor at lorem. Donec ultricies, lorem sed ultrices interdum, leo metus luctus sem, vel vulputate diam ipsum sed lorem. Donec tempor arcu nisl, et molestie massa scelerisque ut. Nunc at rutrum leo. Mauris metus mauris, tristique quis sapien eu, rutrum vulputate enim.
-											</p>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque.<span> Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus mollis et.</span>
-											</p>
-											<p>
-												Mauris tempus erat laoreet turpis lobortis, eu tincidunt erat fermentum. Aliquam non tincidunt urna. Integer tincidunt nec nisl vitae ullamcorper. Proin sed ultrices erat. Praesent varius ultrices massa at faucibus. Aenean dignissim, orci sed faucibus pharetra, dui mi dignissim tortor, sit amet condimentum mi ligula sit amet augue. Pellentesque vitae eros eget enim mollis placerat.
-											</p>
-											<blockquote>
-												<span>“</span>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis diam erat. Duis velit lectus, posuere a blandit sit amet, tempor at lorem. Donec ultricies, lorem sed ultrices interdum, leo metus luctus sem, vel vulputate diam ipsum sed lorem. Donec tempor arcu nisl, et molestie massa scelerisque ut. Nunc at rutrum leo. Mauris metus mauris, tristique quis sapien</p>
-											</blockquote>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aqua Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iure dolor in reprehenderit sed do eiusmod tempor incididunt minim veniam, quis nostrud.
-											</p>
-											<ul>
-												<li>Onsum dolor sit amet, consectetur adipisicing elit.</li>
-												<li>Quis nostrud exercitation ullamco nisi ut aliquip.</li>
-												<li>Reprehenderit sed do eiusmod tempor inci.</li>
-											</ul>
+											<?php echo $getBlog['long_description']; ?>
 										</div><!-- /.entry-post -->
 										<div class="social-single">
 											<span>SHARE</span>
@@ -133,7 +119,7 @@
 									</div><!-- /.content-post -->
 								</article><!-- /.main-post single -->
 							</div><!-- /.post-wrap -->
-							<div class="blog-pagination single">
+							<!-- <div class="blog-pagination single">
 								<ul class="flat-pagination style2">
 									<li class="prev">
 										<a href="#" title="">
@@ -145,9 +131,9 @@
 											Next Page<img src="images/icons/right-1.png" alt="">
 										</a>
 									</li>
-								</ul><!-- /.flat-pagination style2 -->
-							</div><!-- /.blog-pagination single -->
-							<div class="comment-area">
+								</ul>
+							</div> -->
+							<!-- <div class="comment-area">
 								<h2 class="comment-title">1 Comment</h2>
 								<ol class="comment-list">
 									<li class="comment">
@@ -175,9 +161,9 @@
 											</div>
 											<div class="clearfix"></div>
 										</div>
-									</li><!-- /.comment -->
+									</li>
 									
-								</ol><!-- /.comment-list -->
+								</ol>
 								<div class="comment-respond">
 									<h2 class="comment-reply-title">Leave a Reply</h2>
 									<p>Your email address will not be published. Required fields are marked *</p>
@@ -186,23 +172,23 @@
 											<div class="comment-form-name">
 												<label id="name-author">Name</label>
 												<input type="text" name="name-author" value="" placeholder="Ali">
-											</div><!-- /.comment-form-name -->
+											</div>
 											<div class="comment-form-email">
 												<label id="email-author">Email</label>
 												<input type="text" name="email-author" value="">
-											</div><!-- /.comment-form-email -->
+											</div>
 											<div class="comment-form-comment">
 												<label id="comment-author">Comment</label>
 												<textarea name="comment-text"></textarea>
-											</div><!-- /.comment-form-comment -->
+											</div>
 											<div class="btn-submit">
 												<button type="submit">Post Comment</button>
-											</div><!-- /.btn-submit -->
-										</form><!-- /.form -->
-									</div><!-- /.form-comment -->
-								</div><!-- /.comment-respond -->
-							</div><!-- /.comment-area -->
-						</div><!-- /.col-md-8 col-lg-9 -->
+											</div>
+										</form>
+									</div>
+								</div>
+							</div> -->
+						</div>
 						
 					</div><!-- /.row -->
 				</div><!-- /.container -->
