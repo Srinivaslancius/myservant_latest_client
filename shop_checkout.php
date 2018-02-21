@@ -464,18 +464,27 @@
 												<span id="coupon_status" style="color: red;"></span>
 											</div>
 										</div>
-										<label class="containerw">COD
-										  <input type="radio" name="pay_mn" value="1" required>
-										  <span class="checkmarkw"></span>
-										</label>
-										<label class="containerw">PayUmoney
-										  <input type="radio" name="pay_mn" value="2" required>
-										  <span class="checkmarkw"></span>
-										</label>
-										<label class="containerw">HDFC
-										  <input type="radio" name="pay_mn" value="3" required>
-										  <span class="checkmarkw"></span>
-										</label>
+
+										<?php if($getAllPaymentsSettings['cash_on_delivery'] == 1) { ?>
+											<label class="containerw">COD
+											  <input type="radio" name="pay_mn" value="1" required>
+											  <span class="checkmarkw"></span>
+											</label>
+										<?php } ?>
+
+										<?php if($getAllPaymentsSettings['pay_u_payments'] == 1) { ?>
+											<label class="containerw">PayUmoney
+											  <input type="radio" name="pay_mn" value="2" required>
+											  <span class="checkmarkw"></span>
+											</label>
+										<?php } ?>
+
+										<?php if($getAllPaymentsSettings['hdfc_payments'] == 1) { ?>
+											<label class="containerw">HDFC
+											  <input type="radio" name="pay_mn" value="3" required>
+											  <span class="checkmarkw"></span>
+											</label>
+										<?php } ?>
 									
 									<div class="checkbox">
 										<input type="checkbox" id="checked-order" name="checked-order" checked required>

@@ -6,10 +6,11 @@
   } else  { 
     //echo "<pre>"; print_r($_POST); exit;
       $coupon_code = $_POST['coupon_code'];
+      $coupon_device_type = $_POST['coupon_device_type'];
       $price_type_id = $_POST['price_type_id'];
       $discount_price = $_POST['discount_price'];
       $status = $_POST['lkp_status_id'];
-      $sql = "INSERT INTO food_coupons (`coupon_code`, `price_type_id`, `discount_price`, `lkp_status_id`) VALUES (UPPER('$coupon_code'), '$price_type_id', '$discount_price','$status')";
+      $sql = "INSERT INTO food_coupons (`coupon_code`, `coupon_device_type`, `price_type_id`, `discount_price`, `lkp_status_id`) VALUES (UPPER('$coupon_code'), '$coupon_device_type', '$price_type_id', '$discount_price','$status')";
       if($conn->query($sql) === TRUE){
          echo "<script type='text/javascript'>window.location='food_coupons.php?msg=success'</script>";
       } else {
@@ -33,6 +34,16 @@
                     <div class="help-block with-errors"></div>
                     <input type="hidden" id="table_name" value="food_coupons">
                     <input type="hidden" id="column_name" value="coupon_code">
+                  </div>
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Choose Coupon Device Type</label>
+                    <select id="coupon_device_type" name="coupon_device_type" class="custom-select" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                      <option value="">Select Coupon Device Type</option>
+                      <?php $getCouponDeviceTypes = getAllData('lkp_register_device_types');?>
+                      <?php while($row = $getCouponDeviceTypes->fetch_assoc()) {  ?>
+                        <option value="<?php echo $row['id']; ?>" ><?php echo $row['user_type']; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose Price Types</label>

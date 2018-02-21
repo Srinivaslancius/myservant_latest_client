@@ -7,9 +7,9 @@ $lists = array();
 $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-	if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId']) && !empty($_REQUEST['orderNo']) )  {
+    if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId']) && !empty($_REQUEST['orderNo']) )  {
 
-		$order_id = $_REQUEST['orderNo'];
+        $order_id = $_REQUEST['orderNo'];
         $user_id = $_REQUEST['userId'];
         $getOrders1 = "SELECT * FROM grocery_orders WHERE order_id='$order_id' AND user_id='$user_id' ";
         $getOrdersData3 = $conn->query($getOrders1);
@@ -20,9 +20,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $response["orderTotal"] = round($orderData["order_total"]);
         $response["totalItemCount"] = $getOrdersData3->num_rows;
         $response["order_date"] = $orderData["created_at"];
+        $response["track_order_status"] = $orderData['lkp_order_status_id'];
         while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {
-        	$lists = array();
-        	$getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getOrdersData2['product_id']);
+            $lists = array();
+            $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getOrdersData2['product_id']);
             $getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$getOrdersData2['payment_method']);
             $orderStatus = getIndividualDetails('lkp_order_status','id',$getOrdersData2['lkp_order_status_id']);
             $getCategories = getIndividualDetails('grocery_category','id',$getOrdersData2['category_id']);
@@ -33,21 +34,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $lists["weightType"] = $getItemWeights["weight_type"];
             $lists["itemQuantity"] = $getOrdersData2["item_quantity"];
             $lists["itemPrice"] = round($getOrdersData2["item_price"]);
-            $lists["track_order_status"] = $getOrdersData2['lkp_order_status_id'];
-            array_push($response["lists"], $lists);	
+           
+            array_push($response["lists"], $lists); 
         }       
-		
-		$response["success"] = 0;
-		$response["message"] = "Success";				
-		
-	} else {
-		$response["success"] = 2;
-		$response["message"] = "Required field(s) is missing";
-	}
+        
+        $response["success"] = 0;
+        $response["message"] = "Success";               
+        
+    } else {
+        $response["success"] = 2;
+        $response["message"] = "Required field(s) is missing";
+    }
 
 } else {
-	$response["success"] = 3;
-	$response["message"] = "Invalid request";
+    $response["success"] = 3;
+    $response["message"] = "Invalid request";
 
 }
 echo json_encode($response);

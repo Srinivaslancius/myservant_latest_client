@@ -40,12 +40,16 @@
             $offer_reward_points = $_REQUEST['offer_reward_points'];
             $offer_start_date = date('y-m-d',strtotime($_REQUEST['offer_start_date']));
             $offer_end_date = date('y-m-d',strtotime($_REQUEST['offer_end_date']));
-            if($_FILES["offer_image"]["name"]!='') {
+            if($_FILES["offer_image"]["name"]!='' && $_FILES["offer_app_image"]["name"]!='') {
                 $offer_image = uniqid().$_FILES["offer_image"]["name"];
                 $target_dir = "uploads/grocery_offer_zone_images/";
                 $target_file = $target_dir . basename($offer_image);
                 move_uploaded_file($_FILES["offer_image"]["tmp_name"], $target_file);
-                $sql = "INSERT INTO grocery_offer_zone (`offer_code`, `max_offer_percentage`, `min_offer_percentage`, `offer_description`, `offer_start_date`, `offer_end_date`, `offer_image`, `offer_reward_points`) VALUES (UPPER('$offer_code'), '$max_offer_percentage', '$min_offer_percentage', '$offer_description', '$offer_start_date', '$offer_end_date', '$offer_image', '$offer_reward_points')";
+                $offer_app_image = uniqid().$_FILES["offer_app_image"]["name"];
+                $target_dir1 = "uploads/grocery_offer_zone_app_images/";
+                $target_file1 = $target_dir1 . basename($offer_app_image);
+                move_uploaded_file($_FILES["offer_app_image"]["tmp_name"], $target_file1);
+                $sql = "INSERT INTO grocery_offer_zone (`offer_code`, `max_offer_percentage`, `min_offer_percentage`, `offer_description`, `offer_start_date`, `offer_end_date`, `offer_image`, `offer_app_image`, `offer_reward_points`) VALUES (UPPER('$offer_code'), '$max_offer_percentage', '$min_offer_percentage', '$offer_description', '$offer_start_date', '$offer_end_date', '$offer_image', '$offer_app_image', '$offer_reward_points')";
             }
             //echo $sql; die;
             if($conn->query($sql) === TRUE){
@@ -74,11 +78,20 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Offer Image</label>
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Offer Web Image</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <img id="output" height="100" width="100"/>
+                                    <label class="btn btn-default file-upload-btn">Choose file...
+                                        <input class="file-upload-input" type="file" name="offer_image" multiple="multiple" accept="image/*" id="offer_image" onchange="loadFile(event)" required>
+                                    </label> (width:848px;height:256px)
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Offer App Image</label>
                                 <div class="col-sm-6 col-md-4">
                                     <img id="output1" height="100" width="100"/>
                                     <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input class="file-upload-input" type="file" name="offer_image" multiple="multiple" accept="image/*" id="offer_image" onchange="loadFile1(event)" required>
+                                        <input class="file-upload-input" type="file" name="offer_app_image" multiple="multiple" accept="image/*" id="offer_image" onchange="loadFile1(event)" required>
                                     </label> (width:848px;height:256px)
                                 </div> 
                             </div>
@@ -139,8 +152,9 @@
                                 <tr>
                                     <th>S.No</th>
                                     <th>Offer Code</th>
-                                    <th>Offer Image</th>
-                                    <th>Offer Description</th>
+                                    <th>WebImage</th>
+                                    <th>App Image</th>
+                                    <th>Description</th>
                                     <th>Max Offer percentage</th>
                                     <th>Min Offer percentage</th>
                                     <th>Start Date</th>
@@ -156,6 +170,7 @@
                                     <td><?php echo $i;?></td>
                                     <td><?php echo $row['offer_code'];?></td>
                                     <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$row['offer_image'] ?>" width="100" height="100"></td>
+                                    <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_app_images/'.$row['offer_app_image'] ?>" width="100" height="100"></td>
                                     <td><?php echo $row['offer_description'];?></td>
                                     <td><?php echo $row['max_offer_percentage'];?></td>
                                     <td><?php echo $row['min_offer_percentage'];?></td>

@@ -41,13 +41,23 @@
             $offer_reward_points = $_REQUEST['offer_reward_points'];
             $offer_start_date = date('y-m-d',strtotime($_REQUEST['offer_start_date']));
             $offer_end_date = date('y-m-d',strtotime($_REQUEST['offer_end_date']));
-            if($_FILES["offer_image"]["name"]!='') {
+            if($_FILES["offer_image"]["name"]!='' || $_FILES["offer_app_image"]["name"]!='') {
                 $offer_image = uniqid().$_FILES["offer_image"]["name"];
                 $target_dir = "uploads/grocery_offer_zone_images/";
                 $target_file = $target_dir . basename($offer_image);
-                move_uploaded_file($_FILES["offer_image"]["tmp_name"], $target_file);
-                $sql = "UPDATE `grocery_offer_zone` SET offer_code = '$offer_code', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', offer_description = '$offer_description', offer_start_date = '$offer_start_date', offer_end_date = '$offer_end_date', offer_image = '$offer_image', offer_reward_points = '$offer_reward_points' WHERE id = '$offer_zone_id' ";
-            } else{
+                $offer_app_image = uniqid().$_FILES["offer_app_image"]["name"];
+                $target_dir1 = "uploads/grocery_offer_zone_app_images/";
+                $target_file1 = $target_dir1 . basename($offer_app_image);
+                if(move_uploaded_file($_FILES["offer_image"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["offer_app_image"]["tmp_name"], $target_file1)) {
+                    $sql = "UPDATE `grocery_offer_zone` SET offer_code = '$offer_code', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', offer_description = '$offer_description', offer_start_date = '$offer_start_date', offer_end_date = '$offer_end_date', offer_image = '$offer_image', offer_app_image = '$offer_app_image', offer_reward_points = '$offer_reward_points' WHERE id = '$offer_zone_id' ";
+                } elseif($_FILES["offer_image"]["name"]!='') {
+                    move_uploaded_file($_FILES["offer_image"]["tmp_name"], $target_file);
+                    $sql = "UPDATE `grocery_offer_zone` SET offer_code = '$offer_code', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', offer_description = '$offer_description', offer_start_date = '$offer_start_date', offer_end_date = '$offer_end_date', offer_image = '$offer_image', offer_reward_points = '$offer_reward_points' WHERE id = '$offer_zone_id' ";
+                } elseif($_FILES["offer_app_image"]["name"]!='') {
+                    move_uploaded_file($_FILES["offer_app_image"]["tmp_name"], $target_file1);
+                    $sql = "UPDATE `grocery_offer_zone` SET offer_code = '$offer_code', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', offer_description = '$offer_description', offer_start_date = '$offer_start_date', offer_end_date = '$offer_end_date', offer_app_image = '$offer_app_image', offer_reward_points = '$offer_reward_points' WHERE id = '$offer_zone_id' ";
+                }
+            } else {
                 $sql = "UPDATE `grocery_offer_zone` SET offer_code = '$offer_code', max_offer_percentage = '$max_offer_percentage', min_offer_percentage = '$min_offer_percentage', offer_description = '$offer_description', offer_start_date = '$offer_start_date', offer_end_date = '$offer_end_date', offer_reward_points = '$offer_reward_points' WHERE id = '$offer_zone_id' ";
             }
             //echo $sql; die;
@@ -77,13 +87,24 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Offer Image</label>
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Offer Web Image</label>
                                 <div class="col-sm-6 col-md-4">
                                     <?php if($getOfferZones['offer_image']!='') { ?>
-                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$getOfferZones['offer_image']; ?>" id="output1" height="100" width="100"/>
+                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_images/'.$getOfferZones['offer_image']; ?>" id="output" height="100" width="100"/>
                                     <?php } ?>
                                     <label class="btn btn-default file-upload-btn">Choose file...
-                                        <input class="file-upload-input" type="file" name="offer_image" multiple="multiple" accept="image/*" id="offer_image" onchange="loadFile1(event)">
+                                        <input class="file-upload-input" type="file" name="offer_image" multiple="multiple" accept="image/*" id="offer_image" onchange="loadFile(event)">
+                                    </label> (width : 550px ; height : 200px)
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Offer App Image</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <?php if($getOfferZones['offer_app_image']!='') { ?>
+                                        <img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_offer_zone_app_images/'.$getOfferZones['offer_app_image']; ?>" id="output1" height="100" width="100"/>
+                                    <?php } ?>
+                                    <label class="btn btn-default file-upload-btn">Choose file...
+                                        <input class="file-upload-input" type="file" name="offer_app_image" multiple="multiple" accept="image/*" id="offer_image" onchange="loadFile1(event)">
                                     </label> (width : 550px ; height : 200px)
                                 </div> 
                             </div>

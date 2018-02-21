@@ -2,90 +2,80 @@
 error_reporting(1);
 include "../../admin_includes/config.php";
 include "../../admin_includes/common_functions.php";
-
+include "../../admin_includes/food_common_functions.php";
+//Set Array for list
+$lists = array();
+$response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    if (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])  ) {
+    if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId']) && !empty($_REQUEST['orderId']) )  {
 
-        $user_id = $_REQUEST['user_id'];
-        $getDefAddress = "SELECT * FROM food_add_address WHERE user_id='$user_id' ";
-        $getAdd1 = $conn->query($getDefAddress);        
-                $getAdd = $getAdd1->fetch_assoc();
-        $getAddress = $getAdd['address_order'];     
-        $pincode = $getAdd['pcode_order'];
-
-        $payment_status = 2; //In progress
-        $country = 99;
-            
-        $payment_group = $_REQUEST["payment_group"];
-        $order_date = date("Y-m-d h:i:s");
-        $string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
-        $random1 = substr($string1,0,3);
-        $string2 = str_shuffle('1234567890');
-        $random2 = substr($string2,0,3);
-        $contstr = "MYSER-FOOD";
-        $order_id = $contstr.$random1.$random2;
-        $service_tax = $_REQUEST["service_tax"];
-        //$servicesCount = count($_REQUEST["service_id"]);
-        //Saving user id and coupon id
-        $user_id = $_REQUEST["user_id"];
-        $payment_status = 2; //In progress
-
-        $food_category_id = array();
-        $food_category_id = explode(',', $_REQUEST["food_category_id"]);
-        
-        $food_item_id = array();
-        $food_item_id = explode(',', $_REQUEST["food_item_id"]);
-        
-        $item_weight_type_id = array();
-        $item_weight_type_id = explode(',', $_REQUEST["item_weight_type_id"]);
-        
-        $item_price = array();
-        $item_price= explode(',', $_REQUEST["item_price"]);
-
-        $item_quantity = array();
-        $item_quantity= explode(',', $_REQUEST["item_quantity"]);
-        $order_note =$_REQUEST['order_note'];
-        
-        $city =1;
-        $food_item_idcnt = count($food_item_id);
-        
-        for($i=0;$i<$food_item_idcnt;$i++) {
-            //Generate sub randon id
-
-            $string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
-            $random1 = substr($string1,0,3);
-            $string2 = str_shuffle('1234567890');
-            $random2 = substr($string2,0,3);
-            $date = date("ymdhis");
-            $contstr = "MYSER-FOOD";
-            $sub_order_id = $contstr.$random1.$random2.$date;
-            $orders = "INSERT INTO food_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `country`, `postal_code`, `city`, `order_note`, `category_id`, `product_id`, `item_weight_type_id`, `order_vendor_price`, `item_price`, `item_quantity`,`restaurant_id`, `sub_total`, `order_total`, `payment_method`,`lkp_payment_status_id`,`delivery_type_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`, `created_at`) VALUES ('$user_id','".$_REQUEST["firstname_order"]."','".$_REQUEST["lastname_order"]."', '".$_REQUEST["email_order"]."','".$_REQUEST["tel_order"]."','".$getAddress."','$country','$pincode','$city','$order_note','".$food_category_id[$i] . "','" . $food_item_id[$i] . "','" . $item_weight_type_id[$i] . "','".$item_price[$i]."','" . $item_price[$i] . "','" . $item_quantity[$i] . "','".$_REQUEST["restaurant_id"]."','".$_REQUEST["sub_total"]."','".$_REQUEST["order_total"]."','$payment_group','$payment_status','1','".$_REQUEST["service_tax"]."','20', '$order_id','$sub_order_id','$order_date')";       
-
-            if ($conn->query($orders) === TRUE) {
-                // check the conditions for query success or not
-                $response["success"] = 0;            
-                $response["message"] = "Save Successfully";   
-                $response["order_id"] = $order_id;      
-            } else {
-                // fail query insert problem
-                $response["success"] = 2;
-                $response["message"] = "Oops! An error occurred.";                      
-            }
-
+        $order_id = $_REQUEST['orderId'];
+        $orderData = getIndividualDetails('food_orders','order_id',$order_id);
+        $getRestaurants = getIndividualDetails('food_vendors','id',$orderData['restaurant_id']);
+        $getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$orderData['payment_method']);
+        $orderStatus = getIndividualDetails('lkp_food_order_status','id',$orderData['lkp_order_status_id']);
+        $paymentStatus = getIndividualDetails('lkp_payment_status','id',$orderData['lkp_payment_status_id']);
+        $getSiteSettingsData = getIndividualDetails('food_site_settings','id',1);
+        $service_tax = $orderData['sub_total']*$getSiteSettingsData['service_tax']/100;
+        $getAddOnsPrice = "SELECT * FROM food_order_ingredients WHERE order_id = '$order_id'";
+        $getAddontotal = $conn->query($getAddOnsPrice);
+        $getAddontotalCount = $getAddontotal->num_rows;
+        $getAdstotal = 0;
+        while($getAdTotal = $getAddontotal->fetch_assoc()) {
+            $getAdstotal += $getAdTotal['item_ingredient_price'];
         }
+        if($orderData['delivery_charges'] == '0') {
+          $order_type = "Take Away";
+        } else {
+          $order_type = "Delivery";
+        }
+
+        $lists["restaurantName"] = $getRestaurants['restaurant_name']; 
+        $lists["paymentMethod"] = $getpaymentTypes['status'];
+        $lists["orderType"] = $order_type;
+        $lists["orderStatus"] = $orderStatus['order_status'];
+        $lists["paymentStatus"] = $paymentStatus['payment_status'];
+        $lists["restaurantName"] = $orderData['first_name'] . ',' . $orderData['email'] . ','. $orderData['mobile'] . ',' . $orderData['address'] . ','. $orderData['postal_code'];
+
+        if($orderData['delivery_charges'] != '0') {
+            $lists["deliveryCharges"] = $orderData['delivery_charges'];
+        }
+
+        if($getAddontotalCount > 0) {
+            $lists["getAdonstotal"] = $getAdstotal;
+        }
+
+        $lists["orderTotal"] = $orderData['order_total'];
+
+        $getOrders1 = "SELECT * FROM food_orders WHERE order_id='$order_id'";
+        $getOrdersData3 = $conn->query($getOrders1);
+        while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {
+            $lists = array();
+            $getCategories = getIndividualDetails('food_category','id',$getOrdersData2['category_id']);
+            $getProducts = getIndividualDetails('food_products','id',$getOrdersData2['product_id']);
+            $getItemWeights = getIndividualDetails('food_product_weights','id',$getOrdersData2['item_weight_type_id']);
+            $lists["productName"] = $getProducts["product_name"];
+            $lists["categoryName"] = $getCategories["category_name"];
+            $lists["weightType"] = $getItemWeights["weight_type"];
+            $lists["itemQuantity"] = $getProducts["item_quantity"];
+            $lists["itemPrice"] = $getProducts["item_price"];
+            array_push($response["lists"], $lists); 
+        }       
         
-
+        $response["success"] = 0;
+        $response["message"] = "Success";               
+        
     } else {
-
         $response["success"] = 2;
-        $response["message"] = "Required field(s) is missing";      
+        $response["message"] = "Required field(s) is missing";
     }
+
 } else {
     $response["success"] = 3;
     $response["message"] = "Invalid request";
-}
 
+}
 echo json_encode($response);
 
 ?>

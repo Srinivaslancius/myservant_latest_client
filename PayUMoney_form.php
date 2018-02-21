@@ -5,12 +5,12 @@ $odi = $_GET['odi'];
 $pay_stau = $_GET['pay_stau'];
 
 // Merchant key here as provided by Payu
-$MERCHANT_KEY = "gtKFFx";
+$MERCHANT_KEY = "ucoSZ0aa";
 // Merchant Salt as provided by Payu
-$SALT = "eCwWELxi";
+$SALT = "868EgvrtHi";
 // End point - change to https://secure.payu.in for LIVE mode
-$PAYU_BASE_URL = "https://test.payu.in";
-//$PAYU_BASE_URL = "https://secure.payu.in";
+//$PAYU_BASE_URL = "https://test.payu.in";
+$PAYU_BASE_URL = "https://secure.payu.in";
 
 /*Below is the test card details to attempt for test transaction in the testing mode.
 Credit Card Number – 5123456789012346
@@ -104,7 +104,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         </tr>
         <tr>
           <td>Amount: </td>
-          <td><input name="amount" value="10" /></td>
+          <td><input name="amount" value="1" /></td>
           <td>First Name: </td>
           <td><input name="firstname" id="firstname" value="Srinivas" /></td>
         </tr>
@@ -112,7 +112,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           <td>Email: </td>
           <td><input name="email" id="email" value="srinivas@lanciussolutuions.com" /></td>
           <td>Phone: </td>
-          <td><input name="phone" value="789456123" /></td>
+          <td><input name="phone" value="7396170473" /></td>
         </tr>
         <tr>
           <td>Product Info: </td>
