@@ -186,7 +186,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
         </section><!-- /.flat-iconbox style4 -->
 <?php
 
-if(!empty($_POST['name_contact']) && !empty($_POST['last_name_contact']) && !empty($_POST['email_contact']) && !empty($_POST['phone_contact']))  {
+if(!empty($_POST['name_contact']) && !empty($_POST['last_name_contact']) && !empty($_POST['email_contact']) && !empty($_POST['phone_contact']) && !empty($_POST['message_contact']) && !empty($_POST['subject']) && !empty($_POST['priority']))  {
 
 
     $name_contact = $_POST['name_contact'];
@@ -194,6 +194,8 @@ if(!empty($_POST['name_contact']) && !empty($_POST['last_name_contact']) && !emp
     $email_contact = $_POST['email_contact'];
     $phone_contact = $_POST['phone_contact'];
     $message_contact = $_POST['message_contact'];
+    $subject1 = $_POST['subject'];
+    $priority = $_POST['priority'];
 
 $dataem = $getSiteSettingsData1["contact_email"];
 //$to = "srinivas@lanciussolutions.com";
@@ -211,14 +213,15 @@ $message .= '<body>
         <h4>Last Name: </h4><p>'.$last_name_contact.'</p>
         <h4>Email: </h4><p>'.$email_contact.'</p>
         <h4>Mobile: </h4><p>'.$phone_contact.'</p>
-        
+        <h4>Subject: </h4><p>'.$subject1.'</p>
+        <h4>Priority: </h4><p>'.$priority.'</p>
         <h4>Message: </h4><p>'.$message_contact.'</p>
     </article>
     <footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettingsData1['footer_text'].'</footer>
     </div>
 
     </body>';
-
+//echo $message; die;
 //$sendMail = sendEmail($to,$subject,$message,$email_contact);
 $name = "My Servant - Grocery";
 $from = $email_contact;
@@ -262,9 +265,22 @@ if($resultEmail == 0) {
 										<label for="name-contact">Mobile*</label>
 										<input type="text" maxlength="10" pattern="[0-9]{10}" name="phone_contact" placeholder="Mobile Number" required class="valid_mobile_num">
 									</div>
+                                    <div class="form-box one-half name-contact">
+                                        <label for="name-contact">Subject*</label>
+                                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter Subject" required>
+                                    </div>
+                                    <div class="form-box one-half name-contact">
+                                        <label for="name-contact">Priority*</label>
+                                        <select name="priority" required>
+                                            <option value="">Select Priority</option>
+                                            <option value="Option1">Option1</option>
+                                            <option value="Option2">Option2</option>
+                                            <option value="Option3">Option3</option>
+                                        </select>
+                                    </div>
 									<div class="form-box">
 										<label for="comment-contact">Comment</label>
-										<textarea name="message_contact" rows="4" id="comment"></textarea>
+										<textarea name="message_contact" rows="4" id="comment" required></textarea>
 									</div>
 									<div class="form-box">
 										<button type="submit" class="contact">Send</button>

@@ -12,13 +12,15 @@
 	?>
 	<?php
 
-if(!empty($_POST['name_contact']) && !empty($_POST['lastname_contact']) && !empty($_POST['email_contact']) && !empty($_POST['phone_contact']) && !empty($_POST['message_contact']))  {
+if(!empty($_POST['name_contact']) && !empty($_POST['lastname_contact']) && !empty($_POST['email_contact']) && !empty($_POST['phone_contact']) && !empty($_POST['message_contact']) && !empty($_POST['subject']) && !empty($_POST['priority']))  {
     
     $name_contact = $_POST['name_contact'];
     $lastname_contact = $_POST['lastname_contact'];
     $email_contact = $_POST['email_contact'];
     $phone_contact = $_POST['phone_contact'];
     $message_contact = $_POST['message_contact'];
+    $subject1 = $_POST['subject'];
+    $priority = $_POST['priority'];
 
 $dataem = $getSiteSettingsData["contact_email"];
 //$to = "srinivas@lanciussolutions.com";
@@ -36,6 +38,8 @@ $message .= '<body>
         <h4>Last Name: </h4><p>'.$lastname_contact.'</p>
         <h4>Email: </h4><p>'.$email_contact.'</p>
         <h4>Mobile: </h4><p>'.$phone_contact.'</p>
+        <h4>Subject: </h4><p>'.$subject1.'</p>
+        <h4>Priority: </h4><p>'.$priority.'</p>
         <h4>Message: </h4><p>'.$message_contact.'</p>
 	</article>
 	<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettingsData['footer_text'].'</footer>
@@ -157,6 +161,25 @@ if($resultEmail == 0) {
 									<div class="form-group">
 										<label>Phone</label>
 										<input type="tel" id="phone_contact" name="phone_contact" class="form-control valid_mobile_num" placeholder="Enter Phone number" maxlength="10" pattern="[0-9]{10}" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Subject</label>
+										<input type="text" id="subject" name="subject" class="form-control" placeholder="Enter Subject" required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Priority</label>
+										<select class="form-control" name="priority" required>
+											<option value="">Select Priority</option>
+											<option value="Option1">Option1</option>
+											<option value="Option2">Option2</option>
+											<option value="Option3">Option3</option>
+										</select>
 									</div>
 								</div>
 							</div>
