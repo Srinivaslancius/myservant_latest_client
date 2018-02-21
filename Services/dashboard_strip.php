@@ -17,6 +17,6 @@ $page_name = $parts[count($parts) - 1];
        <li><a href="update_profile.php" class="<?php if($page_name == 'update_profile.php') { echo "active"; } ?>"><i class="icon-address-book-alt"></i> Update Profile</a></li>
        <li><a href="rewards.php" class="<?php if($page_name == 'rewards.php') { echo "active"; } ?>"><i class="icon-gift"></i> Reward Points</a></li>
        <li><a href="change_password2.php" class="<?php if($page_name == 'change_password2.php') { echo "active"; } ?>"><i class="icon-lock-open-6"></i> Change Password</a></li>
-	   <li><a href="refer_friend.php" class=""><i class="icon-users"></i> Refer a friend</a></li>
+	   <li><a href="refer_friend.php" class="<?php if($page_name == 'refer_friend.php') { echo "active"; } ?>"><i class="icon-users"></i> Refer a friend</a></li>
        <li><a href="logout.php"><i class="icon-logout-3"></i> Logout</a></li>
 </ul>
