@@ -18,14 +18,14 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<div class="container">
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<ul class="flat-support">
 								<!-- <li>
 									<a href="faq.php" title="">Support</a>
 								</li> -->
-								<li>
-									<a href="trackorder.php" title="">Track Your Order</a>
-								</li>
+								<li class="phone">
+											Call Us : <a href="Tel:<?php echo $getSiteSettingsData1['contact_number']; ?>" title=""> <?php echo $getSiteSettingsData1['contact_number']; ?></a>
+										</li>
 								<li><a href="javascript:avoid();" class="page-scroll" id="select-city">
                					<?php echo $_SESSION['city_name']; ?> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 								<!--Select City Popup
@@ -68,40 +68,43 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
                 		$getTotalTimeSlots = $conn->query($getTimeSlots);
                 		$gettotalSlt = $getTotalTimeSlots->num_rows;
                 		?>
-						<div class="col-md-5">
+						<div class="col-md-6">
 							<ul class="flat-infomation">
 								<div class="row">
-									<div class="col-md-5 col-xs-12">
-										<li class="phone">
-											Call Us : <a href="Tel:<?php echo $getSiteSettingsData1['contact_number']; ?>" title=""> <?php echo $getSiteSettingsData1['contact_number']; ?></a>
-										</li>
+									<div class="col-md-6 col-xs-12">
+										<a href="#"><p style="margin-top:9px">For above Rs.500 orders delivery free</p></a>
 									</div>
-									<div class="col-md-7 col-xs-12">
-										<li class="time">
-											<div class="row">
-												<div class="col-md-4 col-xs-4">Time Slot : </div>
-												<div class="col-md-8 col-xs-8" class="mrgn_llft"style="margin-left:-25px">
-													<?php if($gettotalSlt == 0) {
-	                                        			$getTimeSlots1 = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
-	                                        			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
-	                                        		?>
-													<select style="border:0px;height:35px;padding:0px">
-														<?php while($row1 = $getTotalTimeSlots1->fetch_assoc()) { ?>
-															<option value="<?php echo $row1['total_slot_time']; ?>"><?php echo $row1['total_slot_time']; ?></option>
-														<?php } ?>
-													</select>
-													<?php } else { ?>
-													<select style="border:0px;height:35px;padding:0px">
-														<?php while($row = $getTotalTimeSlots->fetch_assoc()) { ?>
-															<option value="<?php echo $row['total_slot_time']; ?>">Today - <?php echo $row['total_slot_time']; ?></option>
-														<?php } ?>
-													</select>
-			                                    	<?php } ?>
-												</div>
-											</div>
-										</li>
+									<div class="col-md-6 col-xs-12" style="margin-top:-8px">
+									<div id="mega-menu" style="display: block;"><br>
+								<div class="btn-default meg_stl">Time Slot : Today - 2:00AM - 3:00PM</div>
+								<ul class="menu" style="border: 1px solid #f9f9f9">
+									<li>
+										<a>
+											
+											<span class="menu-title">
+												Today - 2:00AM - 3:00PM
+											</span>
+										</a>
+										<li>
+										<a>
+											
+											<span class="menu-title">
+												Today - 2:00AM - 3:00PM
+											</span>
+										</a>
+										<li>
+										<a>
+											
+											<span class="menu-title">
+												Today - 2:00AM - 3:00PM
+											</span>
+										</a>
+										</ul>
+										</div>
+
+										</div>
 									</div>
-								</div>
+								
 							</ul><!-- /.flat-infomation -->
 						</div><!-- /.col-md-4 -->
 						<div class="col-md-3">

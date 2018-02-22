@@ -20,7 +20,7 @@
 		padding-top:0px;
 	}
 	.site-content {
-    padding: 60px 60px 65px 60px;
+   padding: 60px 200px 65px 200px;
 }
 	</style>
   </head>
@@ -65,17 +65,15 @@ if($getOrdersData1['delivery_charges'] == '0') {
           </div>
           <div class="panel-body">
             <div class="row m-b-30">
-			 <div class="col-sm-2">  
-			 </div>
-              <div class="col-sm-5">                
+			
+              <div class="col-sm-8">                
                 <p><strong>Customer Address</strong></p>
                 <p><?php echo $getOrdersData1['first_name']; ?>
                   <br><?php echo $getOrdersData1['email']; ?>
                   <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getOrdersData1['postal_code']; ?></p>
                 <p class="m-b-0">Mobile: <?php echo $getOrdersData1['mobile']; ?></p>
               </div>
-			  <div class="col-sm-1">  
-			 </div>
+			  
               <div class="col-sm-4">                
                 <p><strong>Order Info</strong></p>
                 <p>Order Id: <?php echo $getOrdersData1['order_id']; ?>

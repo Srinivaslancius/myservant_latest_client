@@ -92,6 +92,7 @@
                                               <h4 class="modal-title">Images & Prices<span></span></h4>
                                           </div>
                                           <div class="modal-body">
+										 
                                         </div>
                                       </div>
                                     </div>

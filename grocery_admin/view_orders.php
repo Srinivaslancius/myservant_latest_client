@@ -167,11 +167,11 @@
                           <?php } ?>
                       </div>
                       <?php $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1); ?>
-                      <div class="modal-footer">
+                      <div class="modal-footer" style="text-align:left">
 					  
                           <div class="col-md-12">
-                              <div class="col-md-6"></div>
-                              <div class="col-md-6">
+                              <div class="col-md-9"></div>
+                              <div class="col-md-3"><br>
                                   <p><b>Sub Total: </b> Rs. <?php echo $row['sub_total'];  ?></p>
                                   <p><b>GST: </b> Rs. <?php echo $row['service_tax'].'('.$getSiteSettingsData['service_tax'].'%)' ?></p>
                                   <p><b>Delivery Charges: </b> Rs. <?php echo $row['delivery_charges'];  ?></p>
