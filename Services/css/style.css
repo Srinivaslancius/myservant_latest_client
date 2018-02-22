@@ -102,7 +102,7 @@ h2 span,h3 span,h4 span,h5 span,h6 span {
 }
 
 .box_style_1 h3.inner {
-    margin: -30px 0px 20px;
+    margin: -30px -30px 20px;
     background-color: #fe6003;
     padding: 10px 20px 10px 18px;
     color: #fff;
@@ -2550,7 +2550,7 @@ ul.list_icons li i {
     border-radius: 3px;
     border: 1px solid #ddd;
     /* margin-bottom: 25px; */
-    padding: 30px 0px;
+    padding: 30px;
     position: relative;
     color: #666;
 }

@@ -63,6 +63,10 @@
 	background-color:#fe6003 !important;
 	color:white !important;
 }
+th,td{
+	border-bottom:1px solid #ddd;
+	
+}
 </style>
 <body class="header_sticky">
 	<div class="boxed">
@@ -302,7 +306,7 @@
 						?>
 						<div class="col-md-6">
 							<div class="cart-totals style2">						
-								<h3>Your Order</h3>
+								<center><h3 style="color:#f28b00">Your Order Summary</h3></center>
 								<!--<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
 								?>
 								<input type="hidden" name="wallet_amount" id="wallet_amount" value="<?php echo $getWalletAmount['amount']; ?>">
@@ -328,6 +332,7 @@
 										<thead>
 											<tr>
 												<th>Product</th>
+												<th>QUANTITY</th>
 												<th>Total</th>
 											</tr>
 										</thead>
@@ -351,8 +356,9 @@
 												<td><?php echo $getProductName['product_name']; ?></td>
 												<input type="hidden" name="product_name" value="<?php echo $getProductName['product_name']; ?>">
 												<input type="hidden" name="product_price[]" value="<?php echo $getCartItems['product_price']; ?>">
-												<input type="hidden" name="sub_total" value="<?php echo $cartTotal; ?>">			
-												<td>Rs . <?php echo $getCartItems['product_price'] ?> * <?php echo $getCartItems['product_quantity']; ?></td>
+												<input type="hidden" name="sub_total" value="<?php echo $cartTotal; ?>">
+												<td> <?php echo $getCartItems['product_quantity']; ?></td>						
+												<td>Rs . <?php echo $getCartItems['product_price'] ?></td>
 											</tr>
 											<?php } ?>									
 										</tbody>
@@ -424,18 +430,18 @@
 								            </tr>							
 											<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
 											<tr>
-												<td>Total</td>
-												<td class="price-total">Rs . <?php echo 0; ?></td>
+												<td><b>TOTAL</b></td>
+												<td class="price-total"><b>Rs . <?php echo 0; ?></b></td>
 											</tr>
 											<?php } else if($getWalletAmount['amount'] > 0) { ?>
 											<tr>
-												<td>Total</td>
-												<td class="price-total">Rs . <?php echo round($orderTotal); ?></td>
+												<td><b>TOTAL</b></td>
+												<td class="price-total"><b>Rs . <?php echo round($orderTotal); ?></b></td>
 											</tr>
 											<?php } else { ?>
 											<tr>
-												<td>Total</td>
-												<td class="price-total">Rs . <?php echo round($orderTotalwithoutWallet); ?></td>
+												<td><b>TOTAL</b></td>
+												<td class="price-total"><b>Rs . <?php echo round($orderTotalwithoutWallet); ?></b></td>
 											</tr>
 											<?php } ?>
 											
@@ -444,7 +450,7 @@
 											//If reward status is yes
 											if($getRewardPointsdata['reward_status'] == 0) { ?>
 												<tr>
-													<td colspan="2" style="text-align:left">You will be awarded <b><?php echo round($reward_points); ?> points</b>.</td>
+													<td colspan="2" style="text-align:left;border-bottom:0px">You will be awarded <b><?php echo round($reward_points); ?> points</b>.</td>
 												</tr>
 											<?php } ?>
 											
@@ -469,7 +475,7 @@
 												<span id="coupon_status" style="color: red;"></span>
 											</div>
 										</div>
-
+										<h3 style="text-align:center;color:#fe6003">Payment Method</h3>
 										<?php if($getAllPaymentsSettings['cash_on_delivery'] == 1) { ?>
 											<label class="containerw">COD
 											  <input type="radio" name="pay_mn" value="1" required>

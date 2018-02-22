@@ -41,6 +41,17 @@
 .box_style_1 h3.inner {
 background-color: #fe6003;
 }
+.box_style_1 {
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    /* margin-bottom: 25px; */
+    padding: 30px 0px !important;
+    position: relative;
+    color: #666;
+}
 </style>
 </head>
 
