@@ -200,6 +200,7 @@ if($_SESSION['user_login_session_id'] == '') {
 			$country = 99;		
 			$_SESSION['order_last_session_id'] = $order_id;
 			$_SESSION['payment_service_type'] = 2;
+			$order_total = $_POST['order_total'];
 			$dev_type = $_POST["dev_type"];
 			if($dev_type == 1) {
 				$delivery_charges = '0';
@@ -243,7 +244,7 @@ if($_SESSION['user_login_session_id'] == '') {
 				header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
 			} elseif($payment_group == 4) {
 				//online paytm money
-				header("Location: ../PaytmKit/TxnTest.php");
+				header("Location: ../PaytmKit/TxnTest.php?pay_key=".encryptPassword($order_total)."");
 			} else {
 				header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
 			}			

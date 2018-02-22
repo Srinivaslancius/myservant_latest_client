@@ -3,6 +3,11 @@
 	header("Cache-Control: no-cache");
 	header("Expires: 0");
 
+	include "../admin_includes/config.php";
+	include "../admin_includes/common_functions.php";
+
+	$amnt = decryptPassword($_GET['pay_key']);
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -33,26 +38,26 @@
 				<tr>
 					<td>2</td>
 					<td><label>CUSTID ::*</label></td>
-					<td><input id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off" value="CUST001"></td>
+					<td><input id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off" value="CUST001" type="hidden"></td>
 				</tr>
 				<tr>
 					<td>3</td>
 					<td><label>INDUSTRY_TYPE_ID ::*</label></td>
-					<td><input id="INDUSTRY_TYPE_ID" tabindex="4" maxlength="12" size="12" name="INDUSTRY_TYPE_ID" autocomplete="off" value="Retail"></td>
+					<td><input id="INDUSTRY_TYPE_ID" tabindex="4" maxlength="12" size="12" name="INDUSTRY_TYPE_ID" autocomplete="off" type="hidden" value="Retail"></td>
 				</tr>
 				<tr>
 					<td>4</td>
 					<td><label>Channel ::*</label></td>
 					<td><input id="CHANNEL_ID" tabindex="4" maxlength="12"
-						size="12" name="CHANNEL_ID" autocomplete="off" value="WEB">
+						size="12" type="hidden" name="CHANNEL_ID" autocomplete="off" value="WEB">
 					</td>
 				</tr>
 				<tr>
 					<td>5</td>
 					<td><label>txnAmount*</label></td>
 					<td><input title="TXN_AMOUNT" tabindex="10"
-						type="text" name="TXN_AMOUNT"
-						value="1">
+						type="hidden" name="TXN_AMOUNT"
+						value="<?php echo $amnt; ?>">
 					</td>
 				</tr>
 				<tr>
