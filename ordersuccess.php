@@ -100,26 +100,29 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 	$mail = sendEmail($to,$subject,$message,$from,$name);
 
 	//Changing transaction status of referd email
-	$getFirstTran1 = "SELECT * FROM grocery_orders WHERE user_id = '$user_id' GROUP BY order_id";
-	$getFirstTran = $conn->query($getFirstTran1);
-	if($getFirstTran->num_rows == 1) {
-		$getfriendDetails2 = "SELECT * FROM grocery_refer_a_friend WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";
-        $getfriendDetails1 = $conn->query($getfriendDetails2);
-        $getfriendDetails = $getfriendDetails1->fetch_assoc();
-	    $updateRefer = "UPDATE `grocery_refer_a_friend` SET first_transaction_status = '1' WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";
-	    $conn->query($updateRefer);
-	    $refer_amount = $getSiteSettings1["reffer_amount"]+$getAmount['amount'];
-	    $updateWalletAmount1 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '$user_id' ";
-		$conn->query($updateWalletAmount1);
-		$updateWalletAmount2 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '".$getfriendDetails['refered_user_id']."' ";
-		$conn->query($updateWalletAmount2);
-		$description = "Money Credited for refer a friend";
-		$updated_date1 = date('Y-m-d H:i:s');
-		$insertTransaction1 = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','$user_id','".$getSiteSettings1["reffer_amount"]."','$description','1','$updated_date1')";
-		$conn->query($insertTransaction1);
-		$insertTransaction1 = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','".$getfriendDetails['refered_user_id']."','".$getSiteSettings1["reffer_amount"]."','$description','1','$updated_date1')";
-		$conn->query($insertTransaction1);
-	}
+	$getfriendDetails2 = "SELECT * FROM grocery_refer_a_friend WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";
+    $getfriendDetails1 = $conn->query($getfriendDetails2);
+    //echo $getfriendDetails1->num_rows; die;
+    if($getfriendDetails1->num_rows > 0) {
+    	$getFirstTran1 = "SELECT * FROM grocery_orders WHERE user_id = '$user_id' GROUP BY order_id";
+		$getFirstTran = $conn->query($getFirstTran1);
+		if($getFirstTran->num_rows == 1) {
+	        $getfriendDetails = $getfriendDetails1->fetch_assoc();
+		    $updateRefer = "UPDATE `grocery_refer_a_friend` SET first_transaction_status = '1' WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";
+		    $conn->query($updateRefer);
+		    $refer_amount = $getSiteSettings1["reffer_amount"]+$getAmount['amount'];
+		    $updateWalletAmount1 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '$user_id' ";
+			$conn->query($updateWalletAmount1);
+			$updateWalletAmount2 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '".$getfriendDetails['refered_user_id']."' ";
+			$conn->query($updateWalletAmount2);
+			$description = "Money Credited for refer a friend";
+			$updated_date1 = date('Y-m-d H:i:s');
+			$insertTransaction1 = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','$user_id','".$getSiteSettings1["reffer_amount"]."','$description','1','$updated_date1')";
+			$conn->query($insertTransaction1);
+			$insertTransaction1 = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','".$getfriendDetails['refered_user_id']."','".$getSiteSettings1["reffer_amount"]."','$description','1','$updated_date1')";
+			$conn->query($insertTransaction1);
+		}
+    }
 
 	header("Location: thankyou.php?odi=".$order_id."");
 }
