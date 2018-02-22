@@ -1,4 +1,25 @@
 <?php include_once 'meta.php';?>
+<style>
+.text_brdr{
+	text-align:left;
+	border:1px solid #ddd;
+	width:100%;
+	height: auto;
+	padding:20px;
+	margin-bottom:20px;
+}
+.text_brdr p{
+	font-size:13px;
+	
+}
+.text_brdr span{
+	padding-left:10px;
+}
+.button1{
+	margin-top:15px;
+	padding:0px 20px;
+}
+</style>
 <body class="header_sticky">
 	<div class="boxed">
 		<div class="overlay"></div>

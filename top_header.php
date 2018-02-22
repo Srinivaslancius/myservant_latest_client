@@ -59,14 +59,31 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 								 <!--<li><span class="icon-location" data-toggle="popover" data-placement="bottom" data-content="TOP SEARCHED: <br> Vijayawada, Hyderabad, Karimnagar, Chennai, Warangal, Pune, Bangalore" style="cursor:pointer">Vijayawada <i class="fa fa-angle-down" aria-hidden="true"></i></span></li>-->
 							</ul><!-- /.flat-support -->
 						</div><!-- /.col-md-4 -->
-						<div class="col-md-4">
+						<div class="col-md-5">
 							<ul class="flat-infomation">
+							<div class="row">
+							<div class="col-md-5 col-xs-12">
 								<li class="phone">
 									Call Us : <a href="Tel:<?php echo $getSiteSettingsData1['contact_number']; ?>" title=""> <?php echo $getSiteSettingsData1['contact_number']; ?></a>
 								</li>
+								</div>
+								<div class="col-md-7 col-xs-12">
+								<li class="time">
+								<div class="row">
+							<div class="col-md-4 col-xs-4">Time Slot : </div>
+							<div class="col-md-8 col-xs-8" class="mrgn_llft"style="margin-left:-25px">
+							<select style="border:0px;height:35px;padding:0px">
+								<option value="">Today - 2:00PM - 3:00PM</option>
+								<option value="">Today-2:00PM-3:00PM</option>
+								</select>
+								</div>
+								</div>
+								</li>
+								</div>
+								</div>
 							</ul><!-- /.flat-infomation -->
 						</div><!-- /.col-md-4 -->
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<ul class="flat-unstyled">
 							<!--<li class="locations1">
 									<a href="#" title="">Hyderabad<i class="fa fa-angle-down" aria-hidden="true"></i></a>

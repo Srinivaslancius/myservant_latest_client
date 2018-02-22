@@ -291,7 +291,7 @@ $tagNames = $conn->query($getTags);
 							<div class="product-tab style2">
 								<ul class="tab-list">
 									<li class="active"><?php echo $tagNames1['tag_name']; ?></li>
-									
+									<a href="results.php?tagId=<?php echo $tagNames1['id']; ?>">View All</a>
 								</ul>
 							</div><!-- /.product-tab -->
 						</div><!-- /.col-md-12 -->
