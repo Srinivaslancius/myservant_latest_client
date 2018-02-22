@@ -128,7 +128,7 @@
                 <span class="menu-text">FAQ'S</span>
               </a>
             </li>
-            <li class="<?php if($page_name == 'manage_products.php' || $page_name == 'edit_deal_dates.php' || $page_name == 'product_images.php' || $page_name == 'update_price.php' || $page_name == 'edit_product_price.php') { echo "active"; } ?>"><a href="manage_products.php">
+            <li class="<?php if($page_name == 'manage_products.php' || $page_name == 'add_manage_products.php' || $page_name == 'edit_deal_dates.php' || $page_name == 'product_images.php' || $page_name == 'update_price.php' || $page_name == 'edit_product_price.php') { echo "active"; } ?>"><a href="manage_products.php">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-labels zmdi-hc-fw"></i>
                 </span>
