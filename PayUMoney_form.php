@@ -49,7 +49,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           || empty($posted['productinfo'])
           || empty($posted['surl'])
           || empty($posted['furl'])          
-          //|| empty($posted['service_provider'])
+          || empty($posted['service_provider'])
 		  
   ) {
     $formError = 1;
@@ -128,7 +128,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         </tr>
 
         <tr>
-           <!-- <input type="hidden" name="service_provider" value="0" size="64" />  -->
+           <input type="hidden" name="service_provider"  size="64" />
         </tr>
 
         <tr>
