@@ -171,10 +171,14 @@
 					//cod 
 					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=2");				
 				} elseif ($payment_group == 2) {
-					//online 
+					//online Payu money
 					header("Location: PayUMoney_form.php?odi=".$order_id."&pay_stau=2");
 				} elseif($payment_group == 3) {
+					//online hdfc money
 					header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
+				} elseif($payment_group == 4) {
+					//online paytm money
+					header("Location: PaytmKit/TxnTest.php");
 				} else {
 					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
 				}			
@@ -197,7 +201,7 @@
 		$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
 		?>
 		<section class="flat-checkout">
-			<form action="" method="post" accept-charset="utf-8">
+			<form method="post" accept-charset="utf-8">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6">
@@ -482,6 +486,13 @@
 										<?php if($getAllPaymentsSettings['hdfc_payments'] == 1) { ?>
 											<label class="containerw">HDFC
 											  <input type="radio" name="pay_mn" value="3" required>
+											  <span class="checkmarkw"></span>
+											</label>
+										<?php } ?>
+
+										<?php if($getAllPaymentsSettings['paytm_payments'] == 1) { ?>
+											<label class="containerw">Paytm
+											  <input type="radio" name="pay_mn" value="4" required>
 											  <span class="checkmarkw"></span>
 											</label>
 										<?php } ?>

@@ -88,6 +88,14 @@
 			$getProducts1 = $conn->query($getProducts);
 			$getProductsTotalDetails = "SELECT grocery_product_bind_brands.brand_id,grocery_product_bind_brands.product_id, grocery_products.id,grocery_products.grocery_category_id,grocery_products.grocery_sub_category_id,grocery_products.product_description,grocery_products.lkp_status_id FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id AND grocery_product_bind_brands.brand_id = '$brand_id' WHERE grocery_products.lkp_status_id = '0' AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') ORDER BY id DESC";
 			$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
+		} elseif(isset($_GET['tagId'])) {
+			$tagId = $_GET['tagId'];
+			$getTags = getIndividualDetails('grocery_tags','id',$tagId);
+			$getName = $getTags['tag_name'];
+			$getProducts = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = '$tagId' AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC";
+			$getProducts1 = $conn->query($getProducts);
+			$getProductsTotalDetails = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_tags WHERE lkp_status_id = 0 AND tag_id = '$tagId' AND product_id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id')) ORDER BY id DESC";
+			$getProductsTotalDetails1 = $conn->query($getProductsTotalDetails);
 		}
 		//echo $getProducts;
 		?>
@@ -122,6 +130,10 @@
 							<?php } elseif(isset($_GET['brand_id'])) { ?>
 							<li class="trail-item">
 								<?php echo $getBrands['brand_name']; ?>
+							</li>
+							<?php } elseif(isset($_GET['tagId'])) { ?>
+							<li class="trail-item">
+								<?php echo $getTags['tag_name']; ?>
 							</li>
 							<?php } ?>
 						</ul><!-- /.breacrumbs -->

@@ -289,7 +289,7 @@
             $('#offer_per').val(OfferPer);
         } else {
             //alert("Please enter MRP Price");
-            $('#mrp_price, #selling_price').val('');
+            $('#selling_price').val('');
         }
 
         if(parseFloat(SellingPrice) > parseFloat(Price)) {
@@ -328,7 +328,6 @@
         } else {
             //alert("Please enter MRP Price");
             $('#selling_price_'+getIncValue).val('');
-            $('#mrp_price_'+getIncValue).val('');
             $('#offer_per_'+getIncValue).val('');
         }
 
