@@ -186,8 +186,10 @@ if (!isset($_POST['submit']))  {
 
 
 			<div class="row"> 
-			
-			 <div class="col-sm-7 col-md-7">
+			 <div class="col-sm-2 col-md-2">
+            
+                    </div> 
+			 <div class="col-sm-8 col-md-8">
                              <div class="main_title">
 				<h2>Service Provider Registration</h2>
 				
@@ -535,7 +537,7 @@ if (!isset($_POST['submit']))  {
               </div>
             </div>
 				</div>
-                 <div class="col-sm-5 col-md-5">
+                 <div class="col-sm-2 col-md-2">
                         <div class="main_title">
 				<!-- <h2>Benefits</h2> -->
 				

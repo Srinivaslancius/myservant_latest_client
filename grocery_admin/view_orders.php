@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/cosmos.min.css">
     <link rel="stylesheet" href="css/application.min.css">
+	<style>
+	.modal-body{
+		padding-left:15px !important;
+	}
+	</style>
   </head>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
     <div class="site-overlay"></div>
@@ -95,15 +100,17 @@
                       </div>
                       <div class="modal-body">
                         <div class="col-md-12 fr1">
-                           <div class="col-md-6">
-                               <h3 class="m-t-0 m-b-5 font_sz_view">User Details</h3>
+						
+                           <div class="col-md-8">
+                               <h3 class="m-t-0 m-b-5 font_sz_view"><b>User Details</b></h3><br>
                                <p>Name : <?php echo $row['first_name'];?></p>
                                <p>Email : <?php echo $row['email'];?></p>
                                <p>Mobile Number: <?php echo $row['mobile'];?></p>
                                <p>Order Date: <?php echo $row['created_at'];?></p>
                            </div>
-                            <div class="col-md-6">
-                              <h3 class="m-t-0 m-b-5 font_sz_view">Delivery Details</h3>
+						 
+                            <div class="col-md-4">
+                              <h3 class="m-t-0 m-b-5 font_sz_view"><b>Delivery Details</b></h3><br>
                               <p>Delivery Date: <?php echo changeDateFormat($row['delivery_slot_date']);?></p>
                               <p>Delivery Time: <?php echo $row['delivery_time'];?></p>
                               <p>Mode of Payment : <?php $getGroceryPaymentsTypes = getAllData('lkp_payment_types');
@@ -127,12 +134,12 @@
                           $deliveryboy_mobile = $deliveryBoyDetails['deliveryboy_mobile'];
                         } ?>
                         <div class="col-md-12 fr1 mt5">
-                            <h3 class="m-t-0 m-b-5 font_sz_view">Delivery Boy Details</h3>
-                            <p class="col-md-6">Name: <?php echo $deliveryboy_name;  ?></p>
-                            <p class="col-md-6 pull-right text-right">Mobile Number: <?php echo $deliveryboy_mobile;  ?></p>
+                            <h3 class="m-t-0 m-b-5 font_sz_view"><b>Delivery Boy Details</b></h3><br>
+                            <p class="col-md-8">Name: <?php echo $deliveryboy_name;  ?></p>
+                            <p class="col-md-4">Mobile Number: <?php echo $deliveryboy_mobile;  ?></p>
                         </div>
                           <div class="col-md-12 fr1 mt5">
-                              <h3 class="m-t-0 m-b-5 font_sz_view">Ordered Items</h3>
+                              <h3 class="m-t-0 m-b-5 font_sz_view"><b>Ordered Items</b></h3>
                           </div>
                           <?php 
                           $groceryOrders1 = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 AND order_id = '".$row['order_id']."'"; 
@@ -143,24 +150,25 @@
 
                           ?>
                           <div class="col-md-12 fr1 padd0">
-                              <div class="col-md-12 mt5 brdrbtm padd0">
+                              <div class="col-md-12 mt5 padd0">
                                   <div class="col-md-2 mb5">
                                       <img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProducts1['image'] ?>" width="100px" height="100px">
                                   </div>
-                                  <div class="col-md-6">
+                                  <div class="col-md-10">
                                       <p><b>Item Name: </b> <?php echo $getProducts['product_name'] ?></p>
                                       <p><b>Quantity: </b> <?php echo $OrderDetails['item_quantity'];  ?></p>
                                       <p><b>Price: </b> Rs. <?php echo $OrderDetails['item_price'];  ?></p>
                                   </div>
-                                  <div class="col-md-4">
+                                  <!--<div class="col-md-4">
                                       <p>Sub Total: Rs. <?php echo $OrderDetails['item_quantity']*$OrderDetails['item_price'];  ?></p>
-                                  </div>
+                                  </div>-->
                               </div>
                           </div>
                           <?php } ?>
                       </div>
                       <?php $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1); ?>
                       <div class="modal-footer">
+					  
                           <div class="col-md-12">
                               <div class="col-md-6"></div>
                               <div class="col-md-6">

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-<!-- Mirrored from big-bang-studio.com/cosmos/pages-invoice.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Aug 2017 10:14:32 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +12,17 @@
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/cosmos.min.css">
     <link rel="stylesheet" href="css/application.min.css">
+	<style>
+	.site-footer{
+		margin:0 auto;
+	}
+	.layout{
+		padding-top:0px;
+	}
+	.site-content {
+    padding: 60px 60px 65px 60px;
+}
+	</style>
   </head>
 
 <?php
@@ -42,26 +51,32 @@ if($getOrdersData1['delivery_charges'] == '0') {
 }
 ?>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
-    <div class="site-overlay"></div>
+  
     
     <div class="site-main">     
      
-      <div class="site-content">
+      <div class="site-content" style="margin:0 auto">
+	  
         <div class="panel panel-default m-b-0">
           <div class="panel-heading">
-            <h3 class="m-y-0">Invoice</h3>
-            <center><img src="<?php echo $base_url . 'grocery_admin/uploads/logo/'.$getSiteSettingsData['logo'] ?>" class="logo-responsive" ></center>
+           
+          <img src="<?php echo $base_url . 'grocery_admin/uploads/logo/'.$getSiteSettingsData['logo'] ?>" class="logo-responsive" >
+		   <center><h3 class="m-y-0">Invoice</h3></center>
           </div>
           <div class="panel-body">
             <div class="row m-b-30">
-              <div class="col-sm-6">                
+			 <div class="col-sm-2">  
+			 </div>
+              <div class="col-sm-5">                
                 <p><strong>Customer Address</strong></p>
                 <p><?php echo $getOrdersData1['first_name']; ?>
                   <br><?php echo $getOrdersData1['email']; ?>
                   <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getOrdersData1['postal_code']; ?></p>
                 <p class="m-b-0">Mobile: <?php echo $getOrdersData1['mobile']; ?></p>
               </div>
-              <div class="col-sm-6">                
+			  <div class="col-sm-1">  
+			 </div>
+              <div class="col-sm-4">                
                 <p><strong>Order Info</strong></p>
                 <p>Order Id: <?php echo $getOrdersData1['order_id']; ?>
                   <br>Delivery Slot Date: <?php echo changeDateFormat($getOrdersData1['delivery_slot_date']);?>
@@ -72,6 +87,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
                   <br>Payment Method: <?php echo $getpaymentTypes['status']; ?>
               	</p>               
               </div>
+			  
             </div>
             <table class="table table-bordered m-b-30">
               <thead>
@@ -163,6 +179,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
             
           </div>
         </div>
+		</div>
       </div>
       <?php include_once 'footer.php'; ?>
     </div>

@@ -34,149 +34,10 @@
         <?php include_once './right_slide_toggle.php';?>
       </div>
 
-      <?php
-        if (!isset($_POST['submit']))  {
-          echo "fail";
-        } else  { 
-            //echo "<pre>"; print_r($_POST); die;
-            $product_name = $_REQUEST['product_name'];            
-            $grocery_category_id = $_REQUEST['grocery_category_id'];
-            $grocery_sub_category_id = $_REQUEST['grocery_sub_category_id'];
-            $product_description = $_REQUEST['product_description'];
-            $tags = $_REQUEST['tags'];      
-            $created_at = date("Y-m-d h:i:s");      
-
-            $sql = "INSERT INTO grocery_products (`grocery_category_id`, `grocery_sub_category_id`, `product_description`, `created_at` ) VALUES ('$grocery_category_id', '$grocery_sub_category_id', '$product_description', '$created_at')";
-            $result = $conn->query($sql);
-            $last_id = $conn->insert_id;
-
-            $brands = $_REQUEST['brands'];
-            foreach($brands as $key=>$value){
-                if(!empty($value)) {
-                    $brandsType = $_REQUEST['brands'][$key];          
-                    $sql = "INSERT INTO grocery_product_bind_brands ( `product_id`,`brand_id`) VALUES ('$last_id','$brandsType')";
-                    $conn->query($sql);
-                }
-            }
-
-            $language_id = $_REQUEST['language_id'];
-            foreach($language_id as $key=>$value){
-                if(!empty($value)) {
-                    $product_name = $_REQUEST['product_name'][$key]; 
-                    $product_lang_ids = $_REQUEST['language_id'][$key];
-                    $search_tags = $_REQUEST['search_tags'];
-                    $sql = "INSERT INTO grocery_product_name_bind_languages ( `product_id`,`product_name`, `product_languages_id`, `search_tags`) VALUES ('$last_id','$product_name', '$product_lang_ids', '$search_tags')";
-                    $conn->query($sql);
-                }
-            }
-
-            $tags = $_REQUEST['tags'];
-            foreach($tags as $key=>$value){
-                if(!empty($value)) {
-                    $tagName = $_REQUEST['tags'][$key];                   
-                    $sql = "INSERT INTO grocery_product_bind_tags ( `product_id`,`tag_id`) VALUES ('$last_id','$tagName')";
-                    $conn->query($sql);
-                }
-            }
-           
-            if( $result == 1){
-                echo "<script type='text/javascript'>window.location='manage_products.php?msg=success'</script>";
-            } else {
-                echo "<script type='text/javascript'>window.location='manage_products.php?msg=fail'</script>";
-            }
-        }
-        ?>
-
         <div class="site-content">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="m-y-0 font_sz_view">Add Products</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        
-                        <form class="form-horizontal" method="POST" autocomplete="off">                            
-
-                            <?php 
-                            $getLanguages = getAllDataWithStatus('grocery_languages','0');
-                            ?>
-                            <?php while($getLang = $getLanguages->fetch_assoc()) { ?>
-                                <div class="form-group">
-                                    <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Product Name (<?php echo $getLang['language_name']; ?>)</label>
-                                        <div class="col-sm-4 col-md-4">
-                                            <input type="text" class="form-control" id="form-control-3" placeholder="Enter Title" name="product_name[]" required>
-                                            <input type="hidden" class="form-control" id="form-control-3" placeholder="Language" name="language_id[]" value="<?php echo $getLang['id']; ?>">
-                                        </div>                                        
-                                </div>
-                            <?php } ?>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Category</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <select id="category_id" name="grocery_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" onChange="getSubCategories(this.value);" required>
-                                        <option value="">-- Select Category --</option>
-                                        <?php $getCategories = getAllDataWithStatus('grocery_category','0');?>
-                                        <?php while($row = $getCategories->fetch_assoc()) {  ?>
-                                            <option value="<?php echo $row['id']; ?>" ><?php echo $row['category_name']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Select Sub Category</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <select id="sub_category_id" name="grocery_sub_category_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
-                                        <option value="">-- Select Sub Category --</option>
-                                    </select>
-                                </div>
-                            </div>
-                           
-                            <div class="form-group">
-                                <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Product Description</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="product_description" required></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="form-control-1" class="col-sm-3 col-md-4 control-label">Brands Applicable</label>
-                                    <div class="col-sm-6 col-md-4">
-                                        <select id="form-control-2" name="brands[]" class="form-control" data-plugin="select2" multiple="multiple">
-                                            <?php $getBrands = getAllDataWithStatus('grocery_brands','0');
-                                            while($row = $getBrands->fetch_assoc()) {  ?>
-                                                <option value="<?php echo $row['id']; ?>" ><?php echo $row['brand_name']; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Tags</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <select id="form-control-2" name="tags[]" class="form-control" data-plugin="select2" multiple="multiple">
-                                        <?php $getTags = getAllDataWithStatus('grocery_tags','0');
-                                        while($row = $getTags->fetch_assoc()) {  ?>
-                                            <option value="<?php echo $row['id']; ?>" ><?php echo $row['tag_name']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>  
-                            <div class="form-group">
-                                <label class="col-sm-3  col-md-4 control-label" for="form-control-8">Search Tags</label>
-                                <div class="col-sm-6 col-md-4">
-                                    <textarea id="form-control-8" class="form-control" rows="3" name="search_tags" required></textarea>
-                                </div>
-                            </div>                          
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
-                                    <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="clear_fix"></div>
             <div class="panel panel-default panel-table m-b-0">
                 <div class="panel-heading">
+                    <a href="add_manage_products.php" style="float:right">Add Products</a>
                     <h3 class="m-t-0 m-b-5 font_sz_view">View Products</h3>                    
                 </div>
                 <div class="panel-body">
@@ -190,6 +51,7 @@
                                     <th>Sub Category</th>
                                     <th>Update Price</th>
                                     <th>Upload Images</th>
+                                    <th>View Price & Images</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                     <th>Hot Deals</th>
@@ -211,82 +73,28 @@
                                     <td><?php echo $catNAme['category_name']; ?></td>
                                     <?php $subcatNAme = getIndividualDetails('grocery_sub_category','id',$row['grocery_sub_category_id']); ?>
                                     <td><?php echo $subcatNAme['sub_category_name']; ?></td>
-
                                     <td><a href="update_price.php?pid=<?php echo $row['id']; ?>">Update Price</a></td>
                                     <td><a href="product_images.php?pid=<?php echo $row['id']; ?>">Upload Images</a></td>
-
+                                    <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>">View Images & Prices</a></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_products'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_products'>In Active</span>" ;} ?></td>
                                     <td> <a href="edit_products.php?product_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
-
-                                    <?php if($row['deal_start_date']!='0000-00-00' && $row['deal_start_date']!='') { ?>
                                     <td> <a href="edit_deal_date.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i></a></td>
                             
-                                    <?php } else { ?>
-                                    <td> <a href="edit_deal_date.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-close zmdi-hc-fw"></i></a></td>
-                                    <?php } ?>
-                                    <!-- <?php
-                                    if(!empty($_POST['date']) && !empty($_POST['date']))  {
-                                        //echo "<pre>";print_r($_POST); exit;
-                                        $deal_start_date = $_POST['deal_start_date']; 
-                                        $id = $_POST['id'];
-                                        $deal_date = date('Y-m-d', strtotime($deal_start_date)); 
-                                        $dealDate="UPDATE grocery_products SET deal_start_date = '$deal_date' WHERE id = '$id' ";
-                                        if($conn->query($dealDate) === TRUE) {
-                                        echo "<script type='text/javascript'>window.location='manage_products.php?msg=success'</script>"; 
-                                        }
-                                        exit();
-                                    }
-
-                                    ?> -->
-                                    <!-- <div class="col-lg-2 col-sm-4 col-xs-6 m-y-5">
-
-                                    ?>
-                                   <!-- <div class="col-lg-2 col-sm-4 col-xs-6 m-y-5">
-
-                                        <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content animated flipInX">
-                                                    <div class="modal-header bg-info">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">
-                                                                <i class="zmdi zmdi-close"></i>
-                                                            </span>
-                                                        </button>
-                                                        <h4 class="modal-title">Hot Deal Date</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                    
-                                                        <?php
-                                                        $todayDealDate = getIndividualDetails('grocery_products','id',$row['id']);
-                                                        if($row['deal_start_date']!='0000-00-00' && $row['deal_start_date']!='') {
-                                                        $deal_start_date1 = date('Y-m-d', strtotime($todayDealDate['deal_start_date']));
-                                                        } else {
-                                                        $deal_start_date1 = '';
-                                                        }
-                                                        ?>
-                                                      <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
-                                                            <div class="form-group">
-                                                                <label for="form-control-5" class="col-sm-3 col-md-4 control-label">Deal Start Date</label>
-                                                                <div class="col-sm-6 col-md-5">
-                                                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                                                    <input class="date-pick" data-format="yyyy-MM-dd" type="text" placeholder="Deal Start Date" name="deal_start_date" required="required" value="<?php echo $deal_start_date1; ?>">
-                                                                </div>
-                                                            </div>
-                                                       
-                                                        <div class="form-group">
-                                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
-                                                               <button type="submit" value="date" name="date" class="btn btn-primary">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                    </div>
-                                                    <div class="modal-footer">                                                        
-                                                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <div class="modal-header bg-success">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">
+                                                <i class="zmdi zmdi-close"></i>
+                                              </span>
+                                            </button>
+                                              <h4 class="modal-title">Images & Prices<span></span></h4>
+                                          </div>
+                                          <div class="modal-body">
                                         </div>
-                                    </div> -->
+                                      </div>
+                                    </div>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>

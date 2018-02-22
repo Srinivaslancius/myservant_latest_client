@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-<!-- Mirrored from big-bang-studio.com/cosmos/pages-invoice.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Aug 2017 10:14:32 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +12,17 @@
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/cosmos.min.css">
     <link rel="stylesheet" href="css/application.min.css">
+	<style>
+	.site-footer{
+		margin:0 auto;
+	}
+	.layout{
+		padding-top:0px;
+	}
+	.site-content {
+    padding: 60px 60px 65px 60px;
+}
+	</style>
   </head>
 
 <?php
@@ -23,15 +32,16 @@ include_once('../admin_includes/common_functions.php');
 ?>
 
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
-    <div class="site-overlay"></div>
+ 
   <?php $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1);?>
     <div class="site-main">     
      
-      <div class="site-content">
+      <div class="site-content" style="margin: 0 auto">
         <div class="panel panel-default m-b-0">
           <div class="panel-heading">
-            <h3 class="m-y-0">User Wallet Transcaction</h3>
-            <center><img src="<?php echo $base_url . 'grocery_admin/uploads/logo/'.$getSiteSettingsData['logo'] ?>" class="logo-responsive" ></center>
+            
+           <img src="<?php echo $base_url . 'grocery_admin/uploads/logo/'.$getSiteSettingsData['logo'] ?>" class="logo-responsive" >
+			 <center><h3 class="m-y-0">User Wallet Transcaction</h3></center>
           </div>
           <div class="panel-body">
             <div class="row m-b-30">
