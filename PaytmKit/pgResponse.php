@@ -141,19 +141,26 @@ if($isValidChecksum == "TRUE") {
 		//echo 1; die;
 		//Process your transaction here as success transaction.
 		//Verify amount & order id received from Payment gateway with your application's order id and amount.
-	} else {
+	} else {	
 		
-		$updateOrderStatus = "UPDATE grocery_orders SET lkp_payment_status_id = '$payment_status' WHERE user_id = '$user_id' AND order_id='$order_id' ";
-		$conn->query($updateOrderStatus);
 		//echo "<b>Transaction status is failure</b>" . "<br/>";
 		unset($_SESSION['order_last_session_id']);
 		//unset($_SESSION['payment_service_type']);
 
 		if(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==3) {
+
+			$updateOrderStatus = "UPDATE grocery_orders SET lkp_payment_status_id = '3' WHERE user_id = '$user_id' AND order_id='$order_id' ";
+			$conn->query($updateOrderStatus);
 			header("Location: ../failure.php");
 		} elseif(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==1) {
+
+			$updateOrderStatus = "UPDATE services_orders SET lkp_payment_status_id = '3' WHERE user_id = '$user_id' AND order_id='$order_id' ";
+			$conn->query($updateOrderStatus);
 			header("Location: ../Services/failure.php");
 		} elseif(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==2) { 
+
+			$updateOrderStatus = "UPDATE food_orders SET lkp_payment_status_id = '3' WHERE user_id = '$user_id' AND order_id='$order_id' ";
+			$conn->query($updateOrderStatus);
 			header("Location: ../food_new/failure.php");
 		}
 		//echo 2; die;
