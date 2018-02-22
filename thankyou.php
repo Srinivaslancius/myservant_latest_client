@@ -130,7 +130,9 @@
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-error -->
-
+		<?php 
+		unset($_SESSION['order_last_session_id']);
+		unset($_SESSION['payment_service_type']); ?>
 		<footer>
 			<?php include_once 'footer.php';?>
 		</footer><!-- /footer -->

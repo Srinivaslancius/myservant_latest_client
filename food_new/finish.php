@@ -167,7 +167,7 @@ $getAddOrder = $orderData->fetch_array();
 						<td class="total total_confirm">
 							 TOTAL <span class="pull-right">Rs. <?php echo $cartTotal+$service_tax+$delCharge+$getAdstotal-$discountMoney; ?></span>
 							 <?php $order_total = $cartTotal+$service_tax+$delCharge+$getAdstotal-$discountMoney; ?> 
-							 <?php unset($_SESSION['order_last_session_id']); ?>
+							 <?php unset($_SESSION['order_last_session_id']); unset($_SESSION['payment_service_type']);?>
 						</td>
 					</tr>
 					</tbody>
