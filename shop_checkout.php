@@ -143,6 +143,7 @@ th,td{
 				$delivery_date = date("Y-m-d",strtotime($_POST["delivery_slot_date"]));
 				$delivery_time = $_POST["delivery_time"];
 
+				$order_total = $_POST['order_total'];
 				if($_SESSION['CART_TEMP_RANDOM'] == "") {
 			        $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
 			    }
@@ -183,7 +184,7 @@ th,td{
 					header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
 				} elseif($payment_group == 4) {
 					//online paytm money
-					header("Location: PaytmKit/TxnTest.php");
+					header("Location: PaytmKit/TxnTest.php?pay_key=".encryptPassword($order_total)."");
 				} else {
 					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
 				}			

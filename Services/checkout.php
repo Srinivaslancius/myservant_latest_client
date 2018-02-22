@@ -176,7 +176,7 @@ background-color: #fe6003;
 					header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
 				} elseif($payment_group == 4) {
 					//online paytm money
-					header("Location: ../PaytmKit/TxnTest.php");
+					header("Location: ../PaytmKit/TxnTest.php?pay_key=".encryptPassword($order_total)."");
 				} else {
 					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
 				}
