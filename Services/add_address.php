@@ -190,13 +190,29 @@ b, strong {
 						<div class="billing-details">
 							<div class="shop-form">
 								<div class="default-title">
-									<h2>Billing Details</h2>
+									<h2>Address Details</h2>
 								</div>
 								<div class="feature">
 									<label class="radiochck">
-										<input type="radio" checked="checked" name="radio">Address 1
+										<input type="radio" checked="checked" name="radio"> Address 1
+										
+									</label>									
+								<p><b>Swapna Ireddy <span>, 987654310</span></b></p>
+								<p>Plot No:403, Patrikanage 3, Madhapur, Hyderabad, Telangana, India</p>
+								</div>
+								<div class="feature">
+									<label class="radiochck">
+										<input type="radio"  name="radio"> Address 2
 										<span class="checkmarkR1"></span>
-									</label><br>									
+									</label>									
+								<p><b>Swapna Ireddy <span> 987654310</span></b></p>
+								<p>Plot No:403, Patrikanage 3, Madhapur, Hyderabad, Telangana, India</p>
+								</div>
+								<div class="feature">
+									<label class="radiochck">
+										<input type="radio"  name="radio"> Address 2
+										<span class="checkmarkR1"></span>
+									</label>									
 								<p><b>Swapna Ireddy <span> 987654310</span></b></p>
 								<p>Plot No:403, Patrikanage 3, Madhapur, Hyderabad, Telangana, India</p>
 								</div>
