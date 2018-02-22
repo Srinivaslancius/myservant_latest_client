@@ -80,14 +80,14 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 										<li class="time">
 											<div class="row">
 												<div class="col-md-4 col-xs-4">Time Slot : </div>
-												<div class="col-md-8 col-xs-8" class="mrgn_llft"style="margin-left:-25px">
+												<div class="col-md-8 col-xs-8" class="mrgn_llft" style="margin-left:-25px">
 													<?php if($gettotalSlt == 0) {
 	                                        			$getTimeSlots1 = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
 	                                        			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
 	                                        		?>
 													<select style="border:0px;height:35px;padding:0px">
 														<?php while($row1 = $getTotalTimeSlots1->fetch_assoc()) { ?>
-															<option value="<?php echo $row1['total_slot_time']; ?>"><?php echo $row1['total_slot_time']; ?></option>
+															<option value="<?php echo $row1['total_slot_time']; ?>">Tomorrow - <?php echo $row1['total_slot_time']; ?></option>
 														<?php } ?>
 													</select>
 													<?php } else { ?>
