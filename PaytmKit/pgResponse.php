@@ -147,8 +147,15 @@ if($isValidChecksum == "TRUE") {
 		$conn->query($updateOrderStatus);
 		//echo "<b>Transaction status is failure</b>" . "<br/>";
 		unset($_SESSION['order_last_session_id']);
-		unset($_SESSION['payment_service_type']);
-		header("Location: ../failure.php");
+		//unset($_SESSION['payment_service_type']);
+
+		if(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==3) {
+			header("Location: ../failure.php");
+		} elseif(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==1) {
+			header("Location: ../Services/failure.php");
+		} elseif(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==2) { 
+			header("Location: ../food_new/failure.php");
+		}
 		//echo 2; die;
 	}
 
