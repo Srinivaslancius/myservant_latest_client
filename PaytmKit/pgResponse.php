@@ -23,15 +23,42 @@ $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecks
 $order_id = $_SESSION['order_last_session_id'];
 $user_id = $_SESSION['user_login_session_id'];
 
+if($_SESSION['CART_TEMP_RANDOM'] == "") {
+    $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
+}
+$session_cart_id = $_SESSION['CART_TEMP_RANDOM'];
+
 if($isValidChecksum == "TRUE") {
-	echo "<b>Checksum matched and following are the transaction details:</b>" . "<br/>";
+	//echo "<b>Checksum matched and following are the transaction details:</b>" . "<br/>";
 	if ($_POST["STATUS"] == "TXN_SUCCESS") {
 
-		$getWalletAmount = getIndividualDetails('grocery_orders','order_id',$_SESSION['order_last_session_id']);
-		$getSiteSettings1 = getIndividualDetails('grocery_site_settings','id','1');
+
+		if(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==3) {
+
+			$getWalletAmount = getIndividualDetails('grocery_orders','order_id',$_SESSION['order_last_session_id']);
+			$getSiteSettings1 = getIndividualDetails('grocery_site_settings','id','1');
+			
+			$updateOrderStatus = "UPDATE grocery_orders SET lkp_payment_status_id = '1' WHERE user_id = '$user_id' AND order_id='$order_id' ";
+			$conn->query($updateOrderStatus);
+		} elseif(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==1) {
+
+			$getWalletAmount = getIndividualDetails('services_orders','order_id',$_SESSION['order_last_session_id']);
+			$getSiteSettings1 = getIndividualDetails('services_site_settings','id','1');
+			
+			$updateOrderStatus = "UPDATE services_orders SET lkp_payment_status_id = '1' WHERE user_id = '$user_id' AND order_id='$order_id' ";
+			$conn->query($updateOrderStatus);
+
+		} elseif(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==2) { 
+
+			$getWalletAmount = getIndividualDetails('food_orders','order_id',$_SESSION['order_last_session_id']);
+			$getSiteSettings1 = getIndividualDetails('food_site_settings','id','1');
+
+			$updateOrderStatus = "UPDATE food_orders SET lkp_payment_status_id = '1' WHERE user_id = '$user_id' AND order_id='$order_id' ";
+			$conn->query($updateOrderStatus);
+		} else {
+			echo "Sorry ! Your Payment Failed"; die;
+		}
 		
-		$updateOrderStatus = "UPDATE grocery_orders SET lkp_payment_status_id = '1' WHERE user_id = '$user_id' AND order_id='$order_id' ";
-		$conn->query($updateOrderStatus);
 
 		//echo "<b>Transaction status is success</b>" . "<br/>";
 
@@ -60,7 +87,7 @@ if($isValidChecksum == "TRUE") {
 
 		//echo $message; die;
 		//$sendMail = sendEmail($to,$subject,$message,$from);
-		$name = "My Servant - Grocery";
+		$name = "My Servant - ORDER";
 		$mail = sendEmail($to,$subject,$message,$from,$name);
 
 		//Mail to Admin
@@ -87,10 +114,31 @@ if($isValidChecksum == "TRUE") {
 
 		//echo $message; die;
 		//$sendMail = sendEmail($to,$subject,$message,$from);
-		$name = "My Servant - Grocery";
+		$name = "My Servant - ORDER";
 		$mail = sendEmail($to,$subject,$message,$from,$name);
-		header("Location: ../thankyou.php?odi=".$order_id."");
-	//echo 1; die;
+
+		if(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==3) {
+
+			$delCart ="DELETE FROM grocery_cart WHERE user_id = '$user_id' OR session_cart_id='$session_cart_id' ";
+			$conn->query($delCart);
+			header("Location: ../thankyou.php?odi=".$order_id."");
+			
+		} elseif(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==1) {
+
+			$delCart ="DELETE FROM services_cart WHERE user_id = '$user_id' OR session_cart_id='$session_cart_id' ";
+			$conn->query($delCart);
+			header("Location: ../Services/thankyou.php?odi=".$order_id."");
+
+		} elseif(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==2) { 
+
+			//after placing order that item will delete in cart
+			$delCart ="DELETE FROM food_cart WHERE user_id = '$user_id' OR session_cart_id='$session_cart_id' ";
+			$conn->query($delCart);
+			$delCartIngredients ="DELETE FROM food_update_cart_ingredients WHERE user_id = '$user_id' OR session_cart_id='$session_cart_id' ";
+			$conn->query($delCartIngredients);
+			header("Location: ../food_new/finish.php?odi=".$order_id."");
+		}
+		//echo 1; die;
 		//Process your transaction here as success transaction.
 		//Verify amount & order id received from Payment gateway with your application's order id and amount.
 	} else {
@@ -99,6 +147,7 @@ if($isValidChecksum == "TRUE") {
 		$conn->query($updateOrderStatus);
 		//echo "<b>Transaction status is failure</b>" . "<br/>";
 		unset($_SESSION['order_last_session_id']);
+		unset($_SESSION['payment_service_type']);
 		header("Location: ../failure.php");
 		//echo 2; die;
 	}
@@ -113,6 +162,10 @@ if($isValidChecksum == "TRUE") {
 
 }
 else {
+
+	unset($_SESSION['order_last_session_id']);
+	unset($_SESSION['payment_service_type']);
+	header("Location: ../failure.php");
 	echo "<b>Checksum mismatched.</b>";
 	//Process transaction as suspicious.
 }

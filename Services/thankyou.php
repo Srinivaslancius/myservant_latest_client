@@ -130,6 +130,9 @@
                 $orderId = $_GET['odi'];
                 $orderData =getAllDataWhere('services_orders','order_id',$orderId);
                 $getservicesOrders = $orderData->fetch_array();
+
+                unset($_SESSION['order_last_session_id']);
+                unset($_SESSION['payment_service_type']);
             ?>
         <div class="container" style="margin-top:-70px">        
            <div class="row">            

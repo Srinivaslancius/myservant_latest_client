@@ -199,6 +199,7 @@ if($_SESSION['user_login_session_id'] == '') {
 			$payment_status = 2; //In progress
 			$country = 99;		
 			$_SESSION['order_last_session_id'] = $order_id;
+			$_SESSION['payment_service_type'] = 2;
 			$dev_type = $_POST["dev_type"];
 			if($dev_type == 1) {
 				$delivery_charges = '0';
@@ -235,8 +236,14 @@ if($_SESSION['user_login_session_id'] == '') {
 				//cod 
 				header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=2");				
 			} elseif ($payment_group == 2) {
-				//online 
+					//online Payu money
 				header("Location: PayUMoney_form.php?odi=".$order_id."&pay_stau=2");
+			} elseif($payment_group == 3) {
+				//online hdfc money
+				header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
+			} elseif($payment_group == 4) {
+				//online paytm money
+				header("Location: ../PaytmKit/TxnTest.php");
 			} else {
 				header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
 			}			
@@ -492,19 +499,31 @@ if($_SESSION['user_login_session_id'] == '') {
 					<hr>
 
 					<div class="row" id="options_2">
-					
-						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',2); 
-							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-8 col-md-12 col-sm-12 col-xs-6">
-							<label class="radiob"><input type="radio" value="2" checked name="pay_mn" id="online_check">Online Payment<span class="checkmark"></span></label>
-						</div>
-						<?php } ?>
+
 						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',1); 
 							if($getOnlineDeatils['enable_status'] == 0) { ?>
 						<div class="col-lg-4 col-md-12 col-sm-12 col-xs-6">
-							<label class="radiob"><input type="radio" value="1" name="pay_mn" id="cod_check">COD<span class="checkmark"></span></label>
+							<label class="radiob"><input type="radio" value="1" required name="pay_mn" id="cod_check">COD<span class="checkmark"></span></label>
+						</div>
+						<?php } ?>					
+						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',2); 
+							if($getOnlineDeatils['enable_status'] == 0) { ?>
+						<div class="col-lg-8 col-md-12 col-sm-12 col-xs-6">
+							<label class="radiob"><input type="radio" value="2" required name="pay_mn" id="online_check">Payu<span class="checkmark"></span></label>
+						</div>
+						<?php } ?>	
+						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',3); 
+							if($getOnlineDeatils['enable_status'] == 0) { ?>
+						<div class="col-lg-8 col-md-12 col-sm-12 col-xs-6">
+							<label class="radiob"><input type="radio" value="3"  required name="pay_mn" id="online_check">HDFC<span class="checkmark"></span></label>
 						</div>
 						<?php } ?>
+						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',4); 
+							if($getOnlineDeatils['enable_status'] == 0) { ?>
+						<div class="col-lg-8 col-md-12 col-sm-12 col-xs-6">
+							<label class="radiob"><input type="radio" value="4"  required name="pay_mn" id="online_check">Paytm<span class="checkmark"></span></label>
+						</div>
+						<?php } ?>					
 					</div><!-- Edn options 2 -->
 
 					<hr>

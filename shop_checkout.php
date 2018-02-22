@@ -134,6 +134,7 @@
 				$payment_status = 2; //In progress
 				$country = 99;		
 				$_SESSION['order_last_session_id'] = $order_id;
+				$_SESSION['payment_service_type'] = 3;
 				$delivery_charges = $_POST["delivery_charges"];
 				$delivery_date = date("Y-m-d",strtotime($_POST["delivery_slot_date"]));
 				$delivery_time = $_POST["delivery_time"];

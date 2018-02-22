@@ -136,6 +136,9 @@ background-color: #fe6003;
 				$servicesCount = count($_POST["service_id"]);
 				//Saving user id and coupon id
 				$user_id = $_SESSION['user_login_session_id'];
+				$_SESSION['order_last_session_id'] = $order_id;
+				$_SESSION['payment_service_type'] = 1;
+
 				$payment_status = 2; //In progress
 				
 				for($i=0;$i<$servicesCount;$i++) {
@@ -155,8 +158,14 @@ background-color: #fe6003;
 				//cod 
 					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=2");				
 				} elseif ($payment_group == 2) {
-					//online 
+					//online Payu money
 					header("Location: PayUMoney_form.php?odi=".$order_id."&pay_stau=2");
+				} elseif($payment_group == 3) {
+					//online hdfc money
+					header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
+				} elseif($payment_group == 4) {
+					//online paytm money
+					header("Location: ../PaytmKit/TxnTest.php");
 				} else {
 					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
 				}
@@ -398,23 +407,47 @@ background-color: #fe6003;
 					<div class="box_style_4">
 						<span class="icon_set_1_icon-57" style="font-size:50px"></span>
 						<h4>Payment Method</h4>
-                                                <div id="policy">
-                                                    <?php if($getCount->num_rows == 0) { ?>
-									<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',2); ?>
-									<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="form-group text-left">
-							<label for="payment-2">
-								<input type="radio" name="payment_group" id="payment-2" value="2" required>Online Payment</label>
-						</div>
-                                                    <?php } } ?>
-									<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',1); ?>
-									<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
-                                                    <div class="form-group text-left">
-							<label for="payment-3">
-								<input type="radio" type="radio" name="payment_group" id="payment-3" value="1" required>COD</label>
-						</div>
-                                                    <?php } ?>
-                                                </div>
+
+                        <div id="policy">
+                                                    
+
+                            <?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',1); ?>
+							<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
+
+	                            <div class="form-group text-left">
+								<label for="payment-3">
+									<input type="radio" type="radio" name="payment_group" id="payment-3" value="1" required>COD</label>
+								</div>
+                            <?php } ?>
+
+	                        <?php if($getCount->num_rows == 0) { ?>
+								<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',2); ?>
+								<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
+								<div class="form-group text-left">
+									<label for="payment-2">
+										<input type="radio" name="payment_group" id="payment-2" value="2" required>Payu</label>
+								</div>
+	                            <?php } ?>
+
+	                            <?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',3); ?>
+								<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
+								<div class="form-group text-left">
+									<label for="payment-2">
+										<input type="radio" name="payment_group" id="payment-2" value="3" required>HDFC</label>
+								</div>
+	                            <?php } ?>	
+
+	                            <?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',4); ?>
+								<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
+								<div class="form-group text-left">
+									<label for="payment-2">
+										<input type="radio" name="payment_group" id="payment-2" value="4" required>Paytm</label>
+								</div>
+	                            <?php } ?>		
+
+	                        <?php } ?>							
+
+                            </div>
 							<label class="container5">
 							  <input type="checkbox" checked="checked"  name="checked-order" required>I’ve read and accept the terms & conditions *
 							  <span class="checkmark5"></span>
