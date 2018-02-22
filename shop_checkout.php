@@ -138,7 +138,7 @@ th,td{
 				$payment_status = 2; //In progress
 				$country = 99;		
 				$_SESSION['order_last_session_id'] = $order_id;
-				$_SESSION['payment_service_type'] = 3;
+				$_SESSION['payment_service_type'] = 3; //Groceries
 				$delivery_charges = $_POST["delivery_charges"];
 				$delivery_date = date("Y-m-d",strtotime($_POST["delivery_slot_date"]));
 				$delivery_time = $_POST["delivery_time"];
@@ -181,7 +181,7 @@ th,td{
 					header("Location: PayUMoney_form.php?odi=".$order_id."&pay_stau=2");
 				} elseif($payment_group == 3) {
 					//online hdfc money
-					header("Location: hdfc_form.php?odi=".$order_id."&pay_stau=2");
+					header("Location: HDFC/hdfc_new_form.php");
 				} elseif($payment_group == 4) {
 					//online paytm money
 					header("Location: PaytmKit/TxnTest.php?pay_key=".encryptPassword($order_total)."");

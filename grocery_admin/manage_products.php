@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/cosmos.min.css">
     <link rel="stylesheet" href="css/application.min.css">
-	<style>
-	#ui-datepicker-div{
-		top:146.483px !important;
-	}
-	</style>
+    <style>
+    #ui-datepicker-div{
+        top:146.483px !important;
+    }
+    </style>
   </head>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
     <div class="site-overlay"></div>
@@ -78,23 +78,123 @@
                                     <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>">View Images & Prices</a></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_products'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_products'>In Active</span>" ;} ?></td>
                                     <td> <a href="edit_products.php?product_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
+                                    <?php if($row['deal_start_date']!='0000-00-00' && $row['deal_start_date']!='') { ?>
                                     <td> <a href="edit_deal_date.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i></a></td>
+                                    <?php } else { ?>
+                                    <td> <a href="edit_deal_date.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-close zmdi-hc-fw"></i></a></td>
+                                    <?php } ?>
                             
                                     <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
-                                      <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                          <div class="modal-header bg-success">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">
-                                                <i class="zmdi zmdi-close"></i>
-                                              </span>
-                                            </button>
-                                              <h4 class="modal-title">Images & Prices<span></span></h4>
-                                          </div>
-                                          <div class="modal-body">
-										 
+
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-success">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
+                                                    <h4 class="modal-title">Product Images & Prices</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 fr1 mt5">
+                                                        <h3 class="m-t-0 m-b-5 font_sz_view"><b>Product Prices</b></h3>
+                                                    </div>
+                                                    <div class="col-md-12 fr1 padd0">
+                                                        <div class="col-md-12 mt5 padd0">
+                                                            <div class="row">
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><b>City</b></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><b>Offer</b></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><b>Offer Percentage</b></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><b>Weight</b></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><b>MRP</b></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><b>Selling Price</b></p>
+                                                                </div>
+                                                            </div>
+                                                            <?php 
+                                                            $j=1; 
+                                                            $getProPriceInfo = "SELECT * FROM grocery_product_bind_weight_prices WHERE product_id='$pid' " ; 
+                                                                $getProIn = $conn->query($getProPriceInfo);
+                                                            ?>
+                                                            <?php while($getProdInfo = $getProIn->fetch_assoc() ) {
+                                                                $getCityName= getIndividualDetails('grocery_lkp_cities','id',$getProdInfo['lkp_city_id']);
+                                                                if($getProdInfo['offer_type'] == 0) {
+                                                                    $checkOffer = "No";
+                                                                    $offerPer= "-";
+                                                                } else {
+                                                                    $checkOffer = "Yes";
+                                                                    $offerPer= $getProdInfo['offer_percentage'] . ' %';
+                                                                }
+                                                            ?>
+                                                            <div class="row">
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><?php echo $getCityName['city_name']; ?></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><?php echo $checkOffer; ?></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><?php echo $offerPer; ?></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><?php echo $getProdInfo['weight_type']; ?></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><?php echo $getProdInfo['mrp_price']; ?></p>
+                                                                </div>
+                                                                <div class="col-md-2 mb5">
+                                                                    <p><?php echo $getProdInfo['selling_price']; ?> </p>
+                                                                </div>
+                                                            </div>
+                                                            <?php $j++; } ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 fr1 mt5">
+                                                        <h3 class="m-t-0 m-b-5 font_sz_view"><b>Product Images</b></h3>
+                                                    </div>
+                                                    <div class="col-md-12 fr1 padd0">
+                                                        <div class="col-md-12 mt5 padd0">
+                                                            <div class="row">
+                                                                <div class="col-md-3 mb5">
+                                                                    <p><b>Product Nmae</b></p>
+                                                                </div>
+                                                                <div class="col-md-3 mb5">
+                                                                    <p><b>Image</b></p>
+                                                                </div>
+                                                            </div>
+                                                            <?php 
+                                                            $j=1; 
+                                                            $getProductImages = getAllDataWhere('grocery_product_bind_images','product_id',$pid);
+                                                            while ($row = $getProductImages->fetch_assoc()) {
+                                                            ?>
+                                                            <div class="row">
+                                                                <div class="col-md-3 mb5">
+                                                                    <p><?php echo $getProName_new['product_name']; ?></p>
+                                                                </div>
+                                                                <div class="col-md-3 mb5">
+                                                                    <p><img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$row['image']; ?>"  id="output" height="60" width="60"/></p>
+                                                                </div>
+                                                            </div>
+                                                            <?php $j++; } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-6"></div>
+                                                        <div class="col-md-6"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                      </div>
                                     </div>
                                 </tr>
                                 <?php $i++; } ?>
