@@ -197,7 +197,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 					<li style="color:#fe6003">PAYMENT OPTIONS :</li>
 				</div>
 				<div class="col-sm-10">
-					<li>CASH ON<br>DELIVERY</li>
+					<li><img src="images/cod.png" class="img-responsive"style="height:40px"></li>
 					<li><img src="images/product/visa.jpg" class="img-responsive"></li>
 					<li><img src="images/product/mastercard.png" class="img-responsive" style="height:40px"></li>
 					<li><img src="images/product/payumny.png" class="img-responsive" style="height:40px"></li>
