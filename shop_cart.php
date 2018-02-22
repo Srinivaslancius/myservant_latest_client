@@ -183,13 +183,13 @@
                                     </tbody>
                                 </table>
                                 <div class="btn-cart-totals">
-                                    <a href="delete_cart.php" class="update" title="">Clear Cart</a>
                                     <?php if(!isset($_SESSION['user_login_session_id'])) { ?>
                                     	<a href="login.php?cart_id=<?php echo encryptPassword(1);?>" class="update" style="background-color:#2d2d2d !important;">Proceed To Checkout</a>
                                     <?php } else { ?>
                                     	<a href="add_address.php" class="update" style="background-color:#2d2d2d !important;">Proceed To Checkout</a>
                                     <?php } ?>
                                     <a href="index.php" class="checkout" title="">Continue Shopping</a>
+                                    <a href="delete_cart.php" class="update" style="margin-top: 30px" title="">Clear Cart</a>
                                 </div><!-- /.btn-cart-totals -->
                             </form><!-- /form -->
                         </div><!-- /.cart-totals -->
