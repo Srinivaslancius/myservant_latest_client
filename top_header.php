@@ -75,17 +75,25 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 										<a href="#"><p style="margin-top:9px">For above Rs.500 orders delivery free</p></a>
 									</div>
 									<div class="col-md-6 col-xs-12" style="margin-top:-8px">
-									
-									<div class="dropdown">
-									  <button class="dropbtn" style="border:1px solid #f9f9f9;
-										margin-top:12px;">Time Slot : Today - 2:00AM - 3:00PM</button>
-									  <div class="dropdown-content">
-										<a href="#">Today - 2:00AM - 3:00PM</a>
-										<a href="#">Today - 2:00AM - 3:00PM</a>
-										<a href="#">Today - 2:00AM - 3:00PM</a>
-									  </div>
-									</div>
+										<div class="dropdown">
+										  <button class="dropbtn" style="border:1px solid #f9f9f9;
+											margin-top:12px;">Available Time Slots</button>
+										  <div class="dropdown-content">
+										  	<?php if($gettotalSlt == 0) {
+                                    			$getTimeSlots1 = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
+                                    			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
+                                    		?>
+                                    			<?php while($row1 = $getTotalTimeSlots1->fetch_assoc()) { ?>
+												<a href="#">Tomorrow - <?php echo $row1['total_slot_time']; ?></a>
+												<?php } ?>
+											<?php } else { ?>
+												<?php while($row = $getTotalTimeSlots->fetch_assoc()) { ?>
+												<a href="#">Today - <?php echo $row['total_slot_time']; ?></a>
+												<?php } ?>
+											<?php } ?>
+										  </div>
 										</div>
+									</div>
 
 									<!--<div class="col-md-7 col-xs-12">
 										<li class="time">
