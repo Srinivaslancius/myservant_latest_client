@@ -83,9 +83,9 @@ if(!empty($userData)){
       <script src="js/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-    .btn-info{
-    padding-left:60px;
-    padding-right:60px;
+    .btn-danger{
+   padding-left: 24px;
+    padding-right: 44px;
 	}
 	.btn-primary{
     padding-left:50px;
@@ -160,7 +160,7 @@ if(!empty($userData)){
 					  <!-- <button type="button" class="btn btn-primary" href="javascript:void(0);" onclick="fbLogin()" ><span class=" icon-facebook-1"></span>Facebook</button> -->
 					</div>
 					<div class="col-sm-6 col-xs-6">
-					<button type="button" class="btn btn-info"><span class="icon-twitter-2"></span>Twitter</button>
+					<button type="button" class="btn btn-danger"><span class="icon-google"></span>Google Plus</button>
 					</div>
 					</div><br>
 					<p style="text-align:center">(OR)</p>
