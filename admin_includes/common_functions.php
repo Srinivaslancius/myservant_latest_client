@@ -49,13 +49,13 @@
 
     function sendMobileSMS($message,$user_mobile) {
         global $conn;
-        $username = "*****";
-        $password = "*****";
+        $username = "ChandanaG";
+        $password = "chandanagrand";
         $numbers = "$user_mobile"; // mobile number
-        $sender = urlencode('*****'); // assigned Sender_ID
+        $sender = urlencode('MYSEVT'); // assigned Sender_ID
         // Message text required to deliver on mobile number
-        $data = "username="."$username"."&password="."$password"."&to="."$numbers"."&from="."$sender"."&msg="."$message"."&type=1";
-        $data = "https://www.smsstriker.com/API/sms.php?".$data;
+        $data = "username="."$username"."&pwd="."$password"."&msisdn="."$numbers"."&msg="."$message"."&senderid="."$sender";
+        $data = "http://158.69.130.136:9091/SMSPANELAPI?".$data;
         $ch = curl_init();
         curl_setopt($ch,CURLOPT_URL,$data);
         $response = curl_exec($ch);        
