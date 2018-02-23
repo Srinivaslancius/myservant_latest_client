@@ -26,7 +26,11 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 						<a href="newarraivals.php" title="">New Arraivals</a>
 					</li>
 					<li>
-						<a href="offerzone.php" title="">Offerzone</a>
+						<a href="offerzone.php" title="">Reward Zone</a>
+					</li>
+					<li>
+						<!-- this id for staic for offer products -->
+						<a href="results.php?tagId=8" title="">Offer Zone</a>
 					</li>
 					<!-- <li>
 						<a href="faq.php" title="">FAQ</a>
