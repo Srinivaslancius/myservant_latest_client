@@ -77,7 +77,7 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 			$message .= '<body>
 				<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
 				<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
-				 <center><img src='.$base_url . "grocery_admin/uploads/logo/".$getSiteSettingsData1["logo"].' class="logo-responsive"></center>
+				 <center>MY SERVANT</center>
 				</header>
 				<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
 				  	<h1 style="color:#fe6003">Welcome To Myservant</h1>
