@@ -130,7 +130,7 @@
 							<div class="col-md-1">
 							</div>
                             <div class="col-md-5 col-sm-6">
-                                <a href="#" class="btn btn-primary fac_book"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+                                <a href="grocery_coming_soon.php" class="btn btn-primary fac_book"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
                             </div>
                             <div class="col-md-5 col-sm-6">
                                 <a href="<?= $login_url ?>" class="btn btn-danger twi_ter"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a>

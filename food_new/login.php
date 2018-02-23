@@ -156,7 +156,8 @@ if(!empty($userData)){
 					<hr class="more_margin">
 					<div class="row">
 					<div class="col-sm-6 col-xs-6">
-					  <button type="button" class="btn btn-primary" href="javascript:void(0);" onclick="fbLogin()" ><span class=" icon-facebook-1"></span>Facebook</button>
+						<a href="food_coming_soon.php" class="btn btn-primary" span class=" icon-facebook-1"></span>Facebook </a>
+					  <!-- <button type="button" class="btn btn-primary" href="javascript:void(0);" onclick="fbLogin()" ><span class=" icon-facebook-1"></span>Facebook</button> -->
 					</div>
 					<div class="col-sm-6 col-xs-6">
 					<button type="button" class="btn btn-info"><span class="icon-twitter-2"></span>Twitter</button>
