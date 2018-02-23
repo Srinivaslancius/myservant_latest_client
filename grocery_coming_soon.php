@@ -34,7 +34,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								coming soon
+								Coming Soon
 							</li>
 						</ul><!-- /.breacrumbs -->
 					</div><!-- /.col-md-12 -->

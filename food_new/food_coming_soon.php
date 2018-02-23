@@ -40,7 +40,7 @@
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
     	<div id="sub_content">
-    	 <h1><?php echo $getAboutData['title']; ?></h1>
+    	 <h1>Coming Soon</h1>
          <p></p>
         </div><!-- End sub_content -->
 	</div><!-- End subheader -->
@@ -51,7 +51,7 @@
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li>Coming soon</li>
+                <li>Coming Soon</li>
             </ul>
     
         </div>
