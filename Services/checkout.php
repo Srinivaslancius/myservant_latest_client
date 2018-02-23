@@ -40,6 +40,7 @@
 <style>
 .box_style_1 h3.inner {
 background-color: #fe6003;
+margin: -30px 0px 20px;
 }
 .box_style_1 {
     background: #fff;
@@ -452,7 +453,7 @@ background-color: #fe6003;
 								<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
 								<div class="form-group text-left">
 									<label for="payment-2">
-										<input type="radio" name="payment_group" id="payment-2" value="4" required>Paytm</label>
+										<input type="radio" name="payment_group" id="payment-2" value="4" required><img src="img/paytm1.png"><b>(Debit Card/Credit Card/NB/UPI/Wallet)</b></label>
 								</div>
 	                            <?php } ?>		
 

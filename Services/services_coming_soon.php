@@ -7,27 +7,6 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<?php include_once 'meta.php';?>
-
-	<?php //echo "<pre>"; print_r($_POST); die;?>
-	<?php 
-	if (isset($_POST['register']))  {
-
-		$user_mobile = $_POST['user_mobile'];
-		//$mobile_otp = rand(1000, 9999); //Your message to send, Add URL encoding here.
-        $mobile_otp = "1234";
-		$selOTP = getAllDataWhere('user_mobile_otp','user_mobile',$user_mobile);	
-		$getNoRows = $selOTP->num_rows; 
-
-		if($getNoRows > 0) {
-			$mobOtpSave = "UPDATE user_mobile_otp SET mobile_otp = '$mobile_otp' WHERE user_mobile = '$user_mobile' ";
-			$saveOTP = $conn->query($mobOtpSave);
-		} else {
-			$mobOtpSave = "INSERT INTO `user_mobile_otp`(`user_mobile`, `mobile_otp`) VALUES ('$user_mobile', '$mobile_otp') ";
-			$saveOTP = $conn->query($mobOtpSave);
-		}		
-	}
-	?>
-
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
@@ -79,54 +58,18 @@
 				<ul>
 					<li><a href="index.php">Home</a>
 					</li>
-					<li>Mobile OTP</li>
+					<li>Coming Soon</li>
 				</ul>
 			</div>
 		</div>
-		<div class="container" style="margin-top:-70px">		
+		<div class="container" style="padding-bottom:50px">		
 
-           <div class="row">
-
-		    
-           	<div class="col-sm-3"></div>
-		   <div class="col-sm-6">
-
-                	<div id="login">
-                    		<div class="text-center"><h2><span>Mobile OTP</span></h2></div>
-                            <hr>
-                            <form method="post" id="opt_valid_mobile" name="opt_valid_mobile">       
-
-                            <input type="hidden" name="user_name" value="<?php echo $_POST['user_name']; ?>">
-							<input type="hidden" name="user_mobile_cust" value="<?php echo $_POST['user_mobile']; ?>" id="user_mobile_cust">
-							<input type="hidden" name="checkout_key" value="<?php echo $_POST['checkout_key']; ?>" id="checkout_key">
-							<input type="hidden" name="user_email" value="<?php echo $_POST['user_email']; ?>">
-							<input type="hidden" name="user_password" value="<?php echo encryptPassword($_POST['user_password']); ?>">
-
-                                <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="text" id="user_mobile" name="user_mobile" class="form-control valid_mobile_num" placeholder="Enter Phone number" value="<?php echo $_POST['user_mobile']; ?>" maxlength="10" pattern="[0-9]{10}" readonly required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>OTP</label>
-                                    <input type="tel" id="mobile_otp" name="mobile_otp" class="form-control valid_mobile_num" placeholder="Enter OTP" maxlength="4" pattern="[0-9]{10}"  required >
-                                </div>
-                                <span id="return_msg" style="display:none"></span><br />
-                                <div class="clear_fix"></div>
-                               
-                                <input type="button" value="Verify" id="verify_otp" class="btn_full" >
-                                
-                            </form>
-                        </div>
-
-                </div>
-			<div class="col-sm-3"></div>	
-			
-				<div class="col-sm-1">
-				</div>
-				
-		   </div>
-			
+          
+                	<center><img src="img/comingsoon.png"></center>		
+				<h4 style="text-align:center;line-height:30px;color:#333">The page you have requested is almost ready to go. only few days left,<br> so check back again for more updates</h4>
+				<center><a href="index.php"><input type="submit" value="Back To Home" class="btn_1" ></a></center>
+                     
+               
   </div>
 		
 		

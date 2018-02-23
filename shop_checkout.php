@@ -499,7 +499,7 @@ th,td{
 										<?php } ?>
 
 										<?php if($getAllPaymentsSettings['paytm_payments'] == 1) { ?>
-											<label class="containerw">Paytm
+											<label class="containerw"><img src="images/product/paytm1.png"><b>(Debit Card/Credit Card/NB/UPI/Wallet)</b>
 											  <input type="radio" name="pay_mn" value="4" required>
 											  <span class="checkmarkw"></span>
 											</label>

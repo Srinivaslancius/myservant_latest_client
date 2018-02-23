@@ -58,7 +58,7 @@
 /* Create a custom radio button */
 .checkmark {
     position: absolute;
-    top: 0;
+    top: 4px;
     left: 0;
     height: 25px;
     width: 25px;
@@ -101,7 +101,7 @@
     transform: rotate(45deg);
 }
 #options_2 label {
-    font-size: 12px;
+    font-size: 13px;
     padding-top: 5px;
 }
 ::-ms-clear {
@@ -503,26 +503,26 @@ if($_SESSION['user_login_session_id'] == '') {
 
 						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',1); 
 							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-4 col-md-12 col-sm-12 col-xs-6">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<label class="radiob"><input type="radio" value="1" required name="pay_mn" id="cod_check">COD<span class="checkmark"></span></label>
-						</div>
+						</div><br>
 						<?php } ?>					
 						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',2); 
 							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-8 col-md-12 col-sm-12 col-xs-6">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<label class="radiob"><input type="radio" value="2" required name="pay_mn" id="online_check">Payu<span class="checkmark"></span></label>
-						</div>
+						</div><br>
 						<?php } ?>	
 						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',3); 
 							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-8 col-md-12 col-sm-12 col-xs-6">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<label class="radiob"><input type="radio" value="3"  required name="pay_mn" id="online_check">HDFC<span class="checkmark"></span></label>
-						</div>
+						</div><br>
 						<?php } ?>
 						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',4); 
 							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-8 col-md-12 col-sm-12 col-xs-6">
-							<label class="radiob"><input type="radio" value="4"  required name="pay_mn" id="online_check">Paytm<span class="checkmark"></span></label>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label class="radiob"><input type="radio" value="4"  required name="pay_mn" id="online_check" style="margin-top:5px"><img src="img/paytm1.png"><b>(Debit Card/Credit Card/NB/UPI/Wallet)</b><span class="checkmark"></span></label>
 						</div>
 						<?php } ?>					
 					</div><!-- Edn options 2 -->
