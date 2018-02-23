@@ -66,15 +66,14 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 	$created_at = date('Y-m-d H:i:s');
 	if($getEmail->num_rows == 0) {
 		$sql = "INSERT INTO grocery_refer_a_friend (`refered_user_id`,`refer_email_id`,`created_at`,`referal_code`) VALUES ('$user_id','$refer_email','$created_at','$referal_code')";
-  		$result = $conn->query($sql);
-  		if($result === TRUE) {
+  		//$result = $conn->query($sql);
+  		if($conn->query($sql) === TRUE) {
 			$to = $refer_email;
 			$subject = "Myservent - Refer a Friend";
 			$message = '';		
-			$message .= '<body>
-				<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
+			$message .= '<body><div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
 				<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
-				 <center><img src='.$base_url . "grocery_admin/uploads/logo/".$getSiteSettingsData1["logo"].' class="logo-responsive"></center>
+				 <center>MY SERVANT</center>
 				</header>
 				<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
 				  	<h1 style="color:#fe6003">Welcome To Myservant</h1>
@@ -90,7 +89,7 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 				</body>';
 
 			//echo $message; die;
-			$name = "My Servant - Grocery";
+			$name = "My Servant - Refer Friend";
 			$from = $getSiteSettingsData1["from_email"];
 			$resultEmail = sendEmail($to,$subject,$message,$from,$name);
 			echo "<script>alert('Thank You. Your recommendation has been sent to $refer_email.');</script>";
@@ -120,7 +119,7 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 								</div>
 								<div class="col-sm-6">
 								<div class="form-group">						
-						<input type="email" class="form-control" name="refer_email" placeholder="please enter email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+						<input type="email" class="form-control" name="refer_email" placeholder="Please enter email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
 			            </div>
 						</div>
 						<div class="col-sm-3">
