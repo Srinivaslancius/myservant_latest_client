@@ -133,7 +133,7 @@
                                 <a href="services_coming_soon.php" class="btn btn-primary btn-block"><i class="icon-facebook"></i> Facebook</a>
                             </div>
                             <div class="col-md-6 col-sm-6 login_social">
-                                <a href="#" class="btn btn-info btn-block "><i class="icon-twitter"></i>Twitter</a>
+                                <a href="#" class="btn btn-info btn-block "><i class="icon-google"></i>Google Plus</a>
                             </div>
                             </div> <!-- end row -->
                             <div class="login-or"><hr class="hr-or"><span class="span-or">or</span></div>

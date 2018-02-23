@@ -77,7 +77,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 									<div class="col-md-6 col-xs-12" style="margin-top:-8px">
 										<div class="dropdown">
 										  <button class="dropbtn" style="border:1px solid #f9f9f9;
-											margin-top:12px;">Available Time Slots</button>
+											margin-top:12px;">Get Available Time Slots Here</button>
 										  <div class="dropdown-content">
 										  	<?php if($gettotalSlt == 0) {
                                     			$getTimeSlots1 = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
