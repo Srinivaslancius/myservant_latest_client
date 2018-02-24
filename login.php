@@ -145,24 +145,25 @@
                                 <a href="" class="btn btn-primary fac_book" data-toggle="modal" data-target="#myModal1"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
                             </div>
 							<div class="modal fade" id="myModal1" role="dialog">
-							<div class="modal-dialog modal-sm">
-							  <div class="modal-content">
-								<div class="modal-header"style="border-bottom:0px">
-								  <button type="button" class="close" data-dismiss="modal">&times;</button>
-								  <center><img src="images/2.png" class="img-responsive"></center>
+								<div class="modal-dialog modal-sm">
+								  <div class="modal-content">
+									<div class="modal-header" style="border-bottom:0px">
+									  <button type="button" class="close" data-dismiss="modal">&times;</button>
+									  <center><img src="images/2.png" class="img-responsive"></center>
+									</div>
+									<div class="modal-body">
+									  <p>The page you have requested is almost ready to go. only few days left,
+									so check back again for more updates</p>
+									</div>
+									<div class="modal-footer">
+									  <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#FE6003;color:white;font-size:16px">Close</button>
+									</div>
+								  </div>
 								</div>
-								<div class="modal-body">
-								  <p>The page you have requested is almost ready to go. only few days left,
-								so check back again for more updates</p>
-								</div>
-								<div class="modal-footer">
-								  <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#FE6003;color:white;font-size:16px">Close</button>
-								</div>
-							  </div>
-							</div>
-						  </div>
+						  	</div>
                             <div class="col-md-5 col-sm-6">
-                                <a href="<?= $login_url ?>" class="btn btn-danger twi_ter"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a>
+                                <!-- <a href="<?= $login_url ?>" class="btn btn-danger twi_ter"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a> -->
+                                <a href="" class="btn btn-danger twi_ter" data-toggle="modal" data-target="#myModal1"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a>
                             </div>
 							<div class="col-md-1">
 							</div>
@@ -171,8 +172,8 @@
 							<form  method="POST" id="form-login" accept-charset="utf-8" autocomplete="off">
 							
 								<div class="form-box">
-									<label for="name-login">Username or email address * </label>
-									<input type="text" id="user_email1" name="user_email" placeholder="Email" required>
+									<label for="name-login">Email or Mobile * </label>
+									<input type="text" id="user_email1" name="user_email" placeholder="Email or Mobile" required>
 								</div><!-- /.form-box -->
 								<div class="form-box">
 									<label for="password-login">Password * </label>
