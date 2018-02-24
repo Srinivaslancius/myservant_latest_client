@@ -163,13 +163,13 @@ if(!empty($userData)){
 					<hr class="more_margin">
 					<div class="row">
 					<div class="col-sm-6 col-xs-6">
-						<!--<a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal1"span class=" icon-facebook-1"></span>Facebook </a>-->
+						<!--<a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal1"><span class=" icon-facebook-1"></span>Facebook </a>-->
 					 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" ><span class=" icon-facebook-1"></span>Facebook</button>
 					 
 					</div>
 					
 					<div class="col-sm-6 col-xs-6">
-					<button type="button" class="btn btn-danger"><span class="icon-google"></span>Google Plus</button>
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1" ><span class="icon-google"></span>Google Plus</button>
 					</div>
 					</div><br>
 					<p style="text-align:center">(OR)</p>
@@ -221,22 +221,22 @@ if(!empty($userData)){
 		<div class="col-md-1 col-sm-1">
 	</div>
 	<div class="modal fade" id="myModal1" role="dialog">
-							<div class="modal-dialog modal-sm">
-							  <div class="modal-content">
-								<div class="modal-header"style="border-bottom:0px">
-								  <button type="button" class="close" data-dismiss="modal">&times;</button>
-								  <center><img src="img/2.png"></center>
-								</div>
-								<div class="modal-body">
-								  <p>The page you have requested is almost ready to go. only few days left,
-								so check back again for more updates</p>
-								</div>
-								<div class="modal-footer">
-								  <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#FE6003;color:white;font-size:16px">Close</button>
-								</div>
-							  </div>
-							</div>
-						  </div>
+		<div class="modal-dialog modal-sm">
+		  <div class="modal-content">
+			<div class="modal-header"style="border-bottom:0px">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  <center><img src="img/2.png"></center>
+			</div>
+			<div class="modal-body">
+			  <p>The page you have requested is almost ready to go. only few days left,
+			so check back again for more updates</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#FE6003;color:white;font-size:16px">Close</button>
+			</div>
+		  </div>
+		</div>
+  	</div>
 	</div><!-- End row -->
 	
 	
