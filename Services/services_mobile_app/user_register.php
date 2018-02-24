@@ -20,8 +20,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		} else {
 
 			$userMobile = $_REQUEST['userMobile'];
-			//$mobile_otp = rand(1000, 9999); //Your message to send, Add URL encoding here.
-	        $mobile_otp = "1234";
+			$mobile_otp = rand(1000, 9999); //Your message to send, Add URL encoding here.
+	        //$mobile_otp = "1234";
+	        $message = urlencode('OTP from MyServant is '.$mobile_otp.' . Do not share it with any one.'); // Message text required to deliver on mobile number
+        	$sendSMS = sendMobileSMS($message,$userMobile);
+
 			$selOTP = getAllDataWhere('user_mobile_otp','user_mobile',$userMobile);	
 			$getNoRows = $selOTP->num_rows;
 
