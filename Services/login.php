@@ -61,10 +61,23 @@
         <link href="site_launch/css/style.css" rel="stylesheet">
 	<link href="layerslider/css/layerslider.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/marquee.css">
+	 
 	<!-- REVOLUTION SLIDER CSS -->
+	<style>
+	.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: 0;
+}
+.close{
+	color:white;
+}
+.somthing{
+	padding-right:0px !important;
+}
+	</style>
 </head>
 
-<body>
+<body class="somthing">
 
 	<!--[if lte IE 8]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
@@ -130,7 +143,7 @@
                             <form method="POST">
                             <div class="row">
                             <div class="col-md-6 col-sm-6 login_social">
-                                <a href="services_coming_soon.php" class="btn btn-primary btn-block"><i class="icon-facebook"></i> Facebook</a>
+                                <a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2"><i class="icon-facebook"></i> Facebook</a>
                             </div>
                             <div class="col-md-6 col-sm-6 login_social">
                                 <a href="#" class="btn btn-info btn-block "><i class="icon-google"></i>Google Plus</a>
@@ -192,7 +205,23 @@
                 </div>
 				<div class="col-sm-1">
 				</div>
-				
+				<div class="modal fade" id="myModal2" role="dialog">
+							<div class="modal-dialog modal-sm">
+							  <div class="modal-content">
+								<div class="modal-header"style="border-bottom:0px">
+								  <button type="button" class="close" data-dismiss="modal">&times;</button>
+								  <center><img src="img/2.png"></center>
+								</div>
+								<div class="modal-body">
+								  <p>The page you have requested is almost ready to go. only few days left,
+								so check back again for more updates</p>
+								</div>
+								<div class="modal-footer">
+								  <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#FE6003;color:white;font-size:16px">Close</button>
+								</div>
+							  </div>
+							</div>
+						  </div>
 		   </div>
 			
   </div>
