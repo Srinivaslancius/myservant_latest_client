@@ -90,11 +90,13 @@
 											
 										<a href="index.php" <?php if($page_name == 'index.php') {  ?> class="check_page" <?php } ?>>Home</a>
 										</li><!-- /.column-1 -->
-										<li class="active"><a href="about.php" <?php if($page_name == 'about.php') {  ?> class="check_page" <?php } ?>>About</a></li>
+										<!-- <li class="active"><a href="about.php" <?php if($page_name == 'about.php') {  ?> class="check_page" <?php } ?>>About</a></li> -->
 										<li class="active"><a href="products.php" <?php if($page_name == 'products.php') {  ?> class="check_page" <?php } ?>>Products</a></li>
 
 										<li class="active"><a href="newarraivals.php" <?php if($page_name == 'newarraivals.php') {  ?> class="check_page" <?php } ?>>New Arrivals</a></li>
-										<li class="active"><a href="offerzone.php" <?php if($page_name == 'offerzone.php' || $page_name == 'offerzone_details.php') {  ?> class="check_page" <?php } ?>>Offer Zone</a></li>
+										<li class="active"><a href="results.php?tagId=8" <?php if($page_name == 'offerzone.php' || $page_name == 'offerzone_details.php') {  ?> class="check_page" <?php } ?>>Offer Zone</a></li>
+
+										<li class="active"><a href="offerzone.php" <?php if($page_name == 'offerzone.php' || $page_name == 'offerzone_details.php') {  ?> class="check_page" <?php } ?>>Reward Zone</a></li>
 			
 										
 										<li class="active"><a href="faq.php" <?php if($page_name == 'faq.php') {  ?> class="check_page" <?php } ?>>Faq's</a></li>
