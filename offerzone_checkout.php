@@ -165,6 +165,10 @@
 				//$sendMail = sendEmail($to,$subject,$message,$from);
 				$name = "My Servant - Grocery";
 				$mail = sendEmail($to,$subject,$message,$from,$name);
+
+				//Sending SMS after Purchase coupon
+				$message1 = urlencode('Thank you for purchasing offer coupon. Your Offer Coupon Code is '.$offer_code.''); // Message text required to deliver on mobile number
+			    $sendSMS = sendMobileSMS($message1,$user_phone);
 			}
 			?>
 

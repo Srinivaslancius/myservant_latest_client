@@ -33,6 +33,7 @@ if($isValidChecksum == "TRUE") {
 	if ($_POST["STATUS"] == "TXN_SUCCESS") {
 
 		$getSiteSettings1 = getIndividualDetails('grocery_site_settings','id','1');
+		$getUserDetails = getIndividualDetails('users','id',$user_id);
 
 		if(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==3) {
 
@@ -113,6 +114,11 @@ if($isValidChecksum == "TRUE") {
 		//$sendMail = sendEmail($to,$subject,$message,$from);
 		$name = "My Servant - ORDER";
 		$mail = sendEmail($to,$subject,$message,$from,$name);
+
+		//Sending SMS after placing Order
+		$user_mobile = $getUserDetails['user_mobile']
+		$message1 = urlencode('Thank you for placing order. Your order number is '.$order_id.''); // Message text required to deliver on mobile number
+	    $sendSMS = sendMobileSMS($message1,$user_mobile);
 
 		if(isset($_SESSION['payment_service_type']) && $_SESSION['payment_service_type']!='' && $_SESSION['payment_service_type']==3) {
 

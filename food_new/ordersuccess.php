@@ -67,6 +67,11 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 		$name = "My Servant - Food";
 		$mail = sendEmail($to,$subject,$message,$from,$name);
 
+		//Sending SMS after placing Order
+		$user_mobile = $getUserEmail['user_mobile'];
+		$message1 = urlencode('Thank you for placing order. Your order number is '.$order_id.''); // Message text required to deliver on mobile number
+	    $sendSMS = sendMobileSMS($message1,$user_mobile);
+
 	//after placing order that item will delete in cart
 	if($_SESSION['CART_TEMP_RANDOM'] == "") {
         $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();

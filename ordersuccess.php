@@ -13,6 +13,7 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 	$getSiteSettings1 = getIndividualDetails('grocery_site_settings','id','1');
 	$getWalletAmount = getIndividualDetails('grocery_orders','order_id',$_SESSION['order_last_session_id']);
 	$getAmount = getIndividualDetails('user_wallet','wallet_id',$_SESSION['wallet_id']);
+	$getUserDetails = getIndividualDetails('users','id',$user_id);
 	if($getWalletAmount['wallet_amount'] != '') {
 		if($getAmount['amount'] > $getWalletAmount['wallet_amount']) {
 			$amount = $getAmount['amount'] - $getWalletAmount['wallet_amount'];
@@ -98,6 +99,11 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 	//$sendMail = sendEmail($to,$subject,$message,$from);
 	$name = "My Servant - Grocery";
 	$mail = sendEmail($to,$subject,$message,$from,$name);
+
+	//Sending SMS after placing Order
+	$user_mobile = $getUserDetails['user_mobile'];
+	$message1 = urlencode('Thank you for placing order. Your order number is '.$order_id.''); // Message text required to deliver on mobile number
+    $sendSMS = sendMobileSMS($message1,$user_mobile);
 
 	//Changing transaction status of referd email
 	$getfriendDetails2 = "SELECT * FROM grocery_refer_a_friend WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";

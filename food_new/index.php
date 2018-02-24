@@ -112,10 +112,9 @@ a.mask {
       $getSiteSettingsData1 = getIndividualDetails('food_site_settings','id','1'); 
       if(isset($_POST['text_app_link'])) {
         $user_mobile = $_POST["user_mobile"];
-        $message = '';
-        $message .= 'Heres the link you requested to download the My Servant app.</br>
-              Android app link: '.$getSiteSettingsData1["android_app_link"].'</br>
-                Apple app link: '.$getSiteSettingsData1["apple_app_link"].'';
+        $message1 = urlencode('Heres the link you requested to download the My Servant app.</br>
+          Android app link: '.$getSiteSettingsData1["android_app_link"].'</br>
+            Apple app link: '.$getSiteSettingsData1["apple_app_link"].'');
         //echo $message; die;
         sendMobileSMS($message,$user_mobile);
       } elseif(isset($_POST['email_app_link'])) {
