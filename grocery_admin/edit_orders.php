@@ -38,11 +38,47 @@ if (!isset($_POST['submit'])) {
     //If success 
   $lkp_payment_status_id = $_POST['lkp_payment_status_id'];
   $lkp_order_status_id = $_POST['lkp_order_status_id'];
+  $user_id = $_POST['user_id'];
   $delivery_date = date("Y-m-d h:i:s");
+  $getSiteSettings1 = getIndividualDetails('grocery_site_settings','id','1');
+  $getAmount = getIndividualDetails('user_wallet','wallet_id',$_SESSION['wallet_id']);
   
   if($lkp_order_status_id == 2) {
     $sql = "UPDATE `grocery_orders` SET delivery_date ='$delivery_date' WHERE order_id = '$order_id' ";
     $res = $conn->query($sql);
+  }
+
+  if($lkp_order_status_id == 2 && $lkp_payment_status_id == 1) {
+    //Sending SMS after order completion
+    $getUserDetails = getIndividualDetails('users','id',$user_id);
+    $user_mobile = $getUserDetails['user_mobile'];
+    $message1 = urlencode('Your order ('.$order_id.') is placed. We hope you enjoy your stay at myservant.com.'); // Message text required to deliver on mobile number
+    $sendSMS = sendMobileSMS($message1,$user_mobile);
+
+    //Changing transaction status of referd email
+    $getfriendDetails2 = "SELECT * FROM grocery_refer_a_friend WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";
+    $getfriendDetails1 = $conn->query($getfriendDetails2);
+    //echo $getfriendDetails1->num_rows; die;
+    if($getfriendDetails1->num_rows > 0) {
+      $getFirstTran1 = "SELECT * FROM grocery_orders WHERE user_id = '$user_id' GROUP BY order_id";
+      $getFirstTran = $conn->query($getFirstTran1);
+      if($getFirstTran->num_rows == 1) {
+        $getfriendDetails = $getfriendDetails1->fetch_assoc();
+        $updateRefer = "UPDATE `grocery_refer_a_friend` SET first_transaction_status = '1' WHERE refer_email_id = '".$_SESSION['user_login_session_email']."' AND register_status = '1'";
+        $conn->query($updateRefer);
+        $refer_amount = $getSiteSettings1["reffer_amount"]+$getAmount['amount'];
+        $updateWalletAmount1 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '$user_id' ";
+        $conn->query($updateWalletAmount1);
+        $updateWalletAmount2 = "UPDATE user_wallet SET amount = '$refer_amount' WHERE user_id = '".$getfriendDetails['refered_user_id']."' ";
+        $conn->query($updateWalletAmount2);
+        $description = "Money Credited for refer a friend";
+        $updated_date1 = date('Y-m-d H:i:s');
+        $insertTransaction1 = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','$user_id','".$getSiteSettings1["reffer_amount"]."','$description','1','$updated_date1')";
+        $conn->query($insertTransaction1);
+        $insertTransaction1 = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('".$_SESSION['wallet_id']."','".$getfriendDetails['refered_user_id']."','".$getSiteSettings1["reffer_amount"]."','$description','1','$updated_date1')";
+        $conn->query($insertTransaction1);
+      }
+    }
   }
 
   $sql = "UPDATE `grocery_orders` SET lkp_payment_status_id = '$lkp_payment_status_id',lkp_order_status_id = '$lkp_order_status_id' WHERE order_id = '$order_id' ";
@@ -65,6 +101,7 @@ if (!isset($_POST['submit'])) {
                           <?php 
                         $getPaymentStatusData = "SELECT * FROM lkp_payment_status WHERE id != 3";
                         $getPaymentStatus = $conn->query($getPaymentStatusData);?>
+                        <input type="hidden" name="user_id" value="<?php echo $getGroceryOrdersData['user_id']; ?>">
                            <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Choose your Payment status</label>
                                 <div class="col-sm-6 col-md-4">
