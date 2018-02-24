@@ -44,13 +44,17 @@
     <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short"  data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
+<!--<section class="parallax-window" id="short"  data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
       <div id="sub_content">
        <h1>Frequently Asked Questions</h1>
-        </div><!-- End sub_content -->
-  </div><!-- End subheader -->
-</section><!-- End section -->
+        </div>
+  </div>
+</section>-->
+ <div class="container1">
+ <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered">Frequently Asked Questions</div>
+</div>
 <!-- End SubHeader ============================================ -->
 
     <div id="position">

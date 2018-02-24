@@ -128,13 +128,10 @@ td{
     <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
-    <div id="subheader">
-		<div id="sub_content">
-		 <h1>Place your order</h1>
-		 </div>
-	</div><!-- End subheader -->
-</section><!-- End section -->
+<div class="container1">
+ <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered">Place Your Order</div>
+</div>
 <!-- End SubHeader ============================================ -->
     <?php $getFoodVendorsBann = getIndividualDetails('food_vendors','id',$_SESSION['session_restaurant_id']); ?>
     <div id="position">
@@ -165,6 +162,7 @@ td{
 <input type="hidden" id="session_cart_id" value="<?php echo $_SESSION['CART_TEMP_RANDOM']; ?>">
 <!-- Content ================================================== -->
 	<div class="container margin_60_35 cart">
+	
 		<div class="row">     
 		<?php if($cartItems->num_rows > 0) { ?>  			
 			<div class="col-md-12">

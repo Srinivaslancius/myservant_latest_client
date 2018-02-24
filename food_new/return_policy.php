@@ -37,16 +37,19 @@
           $getReturnPolicyData = $getAllReturnPolicyData->fetch_assoc();
 ?>
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
+<!--<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
     	<div id="sub_content">
     	 <h1><?php echo $getReturnPolicyData['title']; ?></h1>
          <p></p>
-        </div><!-- End sub_content -->
-	</div><!-- End subheader -->
-</section><!-- End section -->
+        </div>
+	</div>
+</section>-->
 <!-- End SubHeader ============================================ -->
-
+<div class="container1">
+ <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered"><?php echo $getReturnPolicyData['title']; ?></div>
+</div>
     <div id="position">
         <div class="container">
             <ul>

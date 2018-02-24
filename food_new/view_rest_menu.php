@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie ie9"> <![endif]-->
-<html>
+<html style="overflow-x:hidden">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +20,17 @@
       <script src="js/respond.min.js"></script>
     <![endif]-->
     <style>
+	.container1 {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .selectdiv {
 position: relative; 
 }
@@ -120,8 +131,13 @@ if($_SESSION['session_restaurant_id']!= $getRestKey) {
 <?php $getCategory = getFoodCategoryByRestId('food_products','restaurant_id',$getRestKey); ?>
 <?php $getFoodVendorsBann = getIndividualDetails('food_vendors','id',$getRestKey); ?>
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" <?php if($getFoodVendorsBann['vendor_banner']!='') { ?>data-image-src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getFoodVendorsBann['vendor_banner']; ?>" <?php } else { ?> data-image-src="img/sub_header_home.jpg" <?php } ?>data-natural-width="1400" data-natural-height="350">
-    <div id="subheader">
+<!--<section class="parallax-window" id="short" data-parallax="scroll" <?php if($getFoodVendorsBann['vendor_banner']!='') { ?>data-image-src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getFoodVendorsBann['vendor_banner']; ?>" <?php } else { ?> data-image-src="img/sub_header_home.jpg" <?php } ?>data-natural-width="1400" data-natural-height="350">-->
+<section>
+
+<div class="container1">
+ <img <?php if($getFoodVendorsBann['vendor_banner']!='') { ?> src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getFoodVendorsBann['vendor_banner']; ?>" <?php } else { ?> src="img/sub_header_home.jpg" <?php } ?> class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered">
+    <div id="subheader" style="width:1400px;height:400px">
 	<div id="sub_content">
     	<div id="thumb"><img src="<?php echo $base_url . 'uploads/food_vendor_logo/'.$getFoodVendorsBann['logo']; ?>" alt="<?php echo $getMostPopualrRestaurants['restaurant_name']; ?>"></div>
 	         <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#">Read 98 reviews</a></small>)</div>
@@ -130,6 +146,8 @@ if($_SESSION['session_restaurant_id']!= $getRestKey) {
 	        <div style="color: #333 !important"><b><i class="icon_pin" style="color: #333 !important"></i> <?php echo $getFoodVendorsBann['restaurant_address']; ?> </b></div>
     </div><!-- End sub_content -->
 </div><!-- End subheader -->
+</div>
+</div>
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 

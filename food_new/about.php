@@ -37,14 +37,12 @@
           $getAboutData = $getAllAboutData->fetch_assoc();
 ?>
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
-    <div id="subheader">
-    	<div id="sub_content">
-    	 <h1><?php echo $getAboutData['title']; ?></h1>
-         <p></p>
-        </div><!-- End sub_content -->
-	</div><!-- End subheader -->
-</section><!-- End section -->
+<!--<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">-->
+
+<div class="container1">
+ <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered"><?php echo $getAboutData['title']; ?></div>
+</div>
 <!-- End SubHeader ============================================ -->
 
     <div id="position">
@@ -59,6 +57,7 @@
 
 <!-- Content ================================================== -->
 <div class="container margin_60_35">
+
 			<div class="feature_2">
 				<?php echo $getAboutData['description']; ?>
 			</div>

@@ -11,14 +11,14 @@ a,a:focus,a:hover {
 }
 
 .chromeframe,header {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     width: 100%;
-    left: 0
+    left: 0;
 }
 
 #sub_content {
-    padding-top: 105px!important
+    /*! padding-top: 105px!important */
 }
 
 #sub_content h2 {
@@ -352,7 +352,7 @@ a.btn_side:hover {
 
 header {
     z-index: 99999;
-    background: rgba(255,255,255,.5)
+    background: #EFEFEF;
 }
 
 header.sticky {
@@ -575,7 +575,7 @@ footer .styled-select {
     top: 3px;
     border: 0;
     width: 160px;
-    height: 43px;
+    height: 44px;
     cursor: pointer;
     background-color: #FE6003;
     color: white;
@@ -1990,7 +1990,8 @@ select.form-control.form-white {
 }
 
 .nomargin_top {
-    margin-top: -2px
+    margin-top: -2px;
+    color: #fe6003;
 }
 
 .nomargin,.nopadding {
@@ -3359,6 +3360,9 @@ th {
 }
 
 @media only screen and (max-width: 480px) {
+	.centered{
+		font-size:20px !important;
+	}
     .alert-dismissable,.alert-dismissible {
         padding-right:0px!important
     }
@@ -3417,7 +3421,7 @@ th {
 
     #custom-search-input input.btn_search {
         width: 52px;
-        height: 38px
+        height: 40px;
     }
 
     .btn-danger {
@@ -3535,6 +3539,10 @@ th {
     .twof {
         width: 200px!important
     }
+	.img-responsive.immgg{
+		width:100%;
+		height:auto !important;
+	}
 }
 
 @media screen and (max-width: 640px) and (min-width:360px) {
@@ -3820,4 +3828,16 @@ th {
 
 .rating .mrgn_rgt {
     margin-right: 10px !important;
+}
+.container1 {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	font-size:40px;
 }
