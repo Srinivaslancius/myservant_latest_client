@@ -193,7 +193,7 @@ a.mask {
                             <div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="banner-box">
 							<div class="inner-box">
-                        <a href="<?php echo $base_url; ?>index.php" class="mask">
+                        <a href="<?php echo $base_url; ?>index.php" class="mask" target="_blank">
                            <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServices1['web_image']; ?>" alt="<?php echo $getOtherServices1['title']; ?>" style="width:100%;height:auto">
                            <div class="storeimgcapt1"><?php echo $getOtherServices1['title']; ?></div>
                         </a>
@@ -203,7 +203,7 @@ a.mask {
                     <div class="col-lg-6 col-md-6 col-sm-6">
 					<div class="banner-box">
 							<div class="inner-box">
-                        <a href="<?php echo $base_url; ?>Services/index.php" class="mask">
+                        <a href="<?php echo $base_url; ?>Services/index.php" class="mask" target="_blank">
                            <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServicesServices1['web_image']; ?>" style="width:100%;height:auto" alt="<?php echo $getOtherServicesServices1['title']; ?>">
                            <div class="storeimgcapt1"><?php echo $getOtherServicesServices1['title']; ?></div>
                         </a>
