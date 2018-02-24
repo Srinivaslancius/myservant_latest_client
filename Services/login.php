@@ -146,7 +146,7 @@
                                 <a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2"><i class="icon-facebook"></i> Facebook</a>
                             </div>
                             <div class="col-md-6 col-sm-6 login_social">
-                                <a href="#" class="btn btn-info btn-block "><i class="icon-google"></i>Google Plus</a>
+                                <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal2"><i class="icon-google"></i>Google Plus</a>
                             </div>
                             </div> <!-- end row -->
                             <div class="login-or"><hr class="hr-or"><span class="span-or">or</span></div>
@@ -206,22 +206,22 @@
 				<div class="col-sm-1">
 				</div>
 				<div class="modal fade" id="myModal2" role="dialog">
-							<div class="modal-dialog modal-sm">
-							  <div class="modal-content">
-								<div class="modal-header"style="border-bottom:0px">
-								  <button type="button" class="close" data-dismiss="modal">&times;</button>
-								  <center><img src="img/2.png"></center>
-								</div>
-								<div class="modal-body">
-								  <p>The page you have requested is almost ready to go. only few days left,
-								so check back again for more updates</p>
-								</div>
-								<div class="modal-footer">
-								  <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#FE6003;color:white;font-size:16px">Close</button>
-								</div>
-							  </div>
-							</div>
-						  </div>
+					<div class="modal-dialog modal-sm">
+					  <div class="modal-content">
+						<div class="modal-header"style="border-bottom:0px">
+						  <button type="button" class="close" data-dismiss="modal">&times;</button>
+						  <center><img src="img/2.png"></center>
+						</div>
+						<div class="modal-body">
+						  <p>The page you have requested is almost ready to go. only few days left,
+						so check back again for more updates</p>
+						</div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#FE6003;color:white;font-size:16px">Close</button>
+						</div>
+					  </div>
+					</div>
+			  	</div>
 		   </div>
 			
   </div>
