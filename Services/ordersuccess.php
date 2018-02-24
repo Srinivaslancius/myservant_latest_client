@@ -74,6 +74,10 @@ if(isset($_GET["odi"]) && $_GET["odi"]!="") {
 		$message1 = urlencode('Thank you for placing order. Your order number is '.$order_id.''); // Message text required to deliver on mobile number
 	    $sendSMS = sendMobileSMS($message1,$user_mobile);
 
+	    //Sending SMS after placing Order to My Servant
+		$user_mobile = $getSiteSettingsData['mobile'];
+		$message2 = urlencode('Order Placed by '.$getUserEmail['user_full_name'].' and the order id is '.$order_id.'.'); // Message text required to deliver on mobile number
+	    $sendSMS = sendMobileSMS($message2,$user_mobile);
 	}
 
 	//after placing order that item will delete in cart

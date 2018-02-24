@@ -100,10 +100,15 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 	$name = "My Servant - Grocery";
 	$mail = sendEmail($to,$subject,$message,$from,$name);
 
-	//Sending SMS after placing Order
+	//Sending SMS after placing Order to customer
 	$user_mobile = $getUserDetails['user_mobile'];
 	$message1 = urlencode('Thank you for placing order. Your order number is '.$order_id.''); // Message text required to deliver on mobile number
     $sendSMS = sendMobileSMS($message1,$user_mobile);
+
+    //Sending SMS after placing Order to My Servant
+	$user_mobile = $getSiteSettings1['mobile'];
+	$message2 = urlencode('Order Placed by '.$getUserDetails['user_full_name'].' and the order id is '.$order_id.'.'); // Message text required to deliver on mobile number
+    $sendSMS = sendMobileSMS($message2,$user_mobile);
 
 	header("Location: thankyou.php?odi=".$order_id."");
 }
