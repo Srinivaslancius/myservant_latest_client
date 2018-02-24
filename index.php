@@ -91,7 +91,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
           Android app link: '.$getSiteSettingsData1["android_app_link"].'</br>
             Apple app link: '.$getSiteSettingsData1["apple_app_link"].'');
     //echo $message; die;
-    sendMobileSMS($messag1e,$user_mobile);
+    sendMobileSMS($message1,$user_mobile);
   } elseif(isset($_POST['email_app_link'])) {
     $to = $_POST["user_email"];
     //$from = $getSiteSettingsData1["email"];
