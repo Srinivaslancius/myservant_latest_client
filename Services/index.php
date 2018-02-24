@@ -195,11 +195,11 @@ if(isset($_POST['submit'])) {
 	$getSiteSettingsData1 = getIndividualDetails('services_site_settings','id','1'); 
 	if(isset($_POST['text_app_link'])) {
 		$user_mobile = $_POST["user_mobile"];
-		$message1 = urlencode('Heres the link you requested to download the My Servant app.</br>
-          Android app link: '.$getSiteSettingsData1["android_app_link"].'</br>
+		$message1 = urlencode('Heres the link you requested to download the My Servant app.
+          Android app link: '.$getSiteSettingsData1["android_app_link"].'
             Apple app link: '.$getSiteSettingsData1["apple_app_link"].'');
 		//echo $message; die;
-		sendMobileSMS($message,$user_mobile);
+		sendMobileSMS($message1,$user_mobile);
 	} elseif(isset($_POST['email_app_link'])) {
 		$to = $_POST["user_email"];
 		//$from = $getSiteSettingsData1["email"];
