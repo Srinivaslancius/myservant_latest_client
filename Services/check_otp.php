@@ -70,6 +70,11 @@ if(!empty($_POST['user_mobile']) && !empty($_POST['mobile_otp']))  {
 		$name = "My Servant - Services";
 		$from = $getSiteSettingsData["from_email"];
 		$resultEmail = sendEmail($to,$subject,$message,$from,$name);
+
+		//Sending SMS after registration
+		$message1 = urlencode('Registration completed successfully.A very special welcome to you '.$getLoggedInDetails["user_full_name"].', Thank you for joining myservant.com! Your pasword is '.$user_password.''); // Message text required to deliver on mobile number
+        $sendSMS = sendMobileSMS($message1,$user_mobile);
+        
 		echo $getnoRows;
 	} else {
 		echo $getnoRows;

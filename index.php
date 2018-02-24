@@ -87,12 +87,11 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
   $getSiteSettingsData1 = getIndividualDetails('grocery_site_settings','id','1'); 
   if(isset($_POST['text_app_link'])) {
     $user_mobile = $_POST["user_mobile"];
-    $message = '';
-    $message .= 'Heres the link you requested to download the My Servant app.</br>
+    $message1 = urlencode('Heres the link you requested to download the My Servant app.</br>
           Android app link: '.$getSiteSettingsData1["android_app_link"].'</br>
-            Apple app link: '.$getSiteSettingsData1["apple_app_link"].'';
+            Apple app link: '.$getSiteSettingsData1["apple_app_link"].'');
     //echo $message; die;
-    sendMobileSMS($message,$user_mobile);
+    sendMobileSMS($messag1e,$user_mobile);
   } elseif(isset($_POST['email_app_link'])) {
     $to = $_POST["user_email"];
     //$from = $getSiteSettingsData1["email"];
