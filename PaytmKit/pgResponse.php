@@ -116,7 +116,7 @@ if($isValidChecksum == "TRUE") {
 		$mail = sendEmail($to,$subject,$message,$from,$name);
 
 		//Sending SMS after placing Order
-		$user_mobile = $getUserDetails['user_mobile']
+		$user_mobile = $getUserDetails['user_mobile'];
 		$message1 = urlencode('Thank you for placing order. Your order number is '.$order_id.''); // Message text required to deliver on mobile number
 	    $sendSMS = sendMobileSMS($message1,$user_mobile);
 
