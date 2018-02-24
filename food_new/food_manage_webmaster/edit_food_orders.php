@@ -8,11 +8,20 @@ if (!isset($_POST['submit'])) {
     //If success 
   $lkp_payment_status_id = $_POST['lkp_payment_status_id'];
   $lkp_order_status_id = $_POST['lkp_order_status_id'];
+  $user_id = $_POST['user_id'];
   $delivery_date = date("Y-m-d h:i:s");
   
   if($lkp_order_status_id == 2) {
     $sql = "UPDATE `food_orders` SET delivery_date ='$delivery_date' WHERE order_id = '$order_id' ";
     $res = $conn->query($sql);
+  }
+
+  if($lkp_order_status_id == 5 && $lkp_payment_status_id == 1) {
+    //Sending SMS after order completion
+    $getUserDetails = getIndividualDetails('users','id',$user_id);
+    $user_mobile = $getUserDetails['user_mobile'];
+    $message1 = urlencode('Your order ('.$order_id.') is placed. We hope you enjoy your stay at myservant.com.'); // Message text required to deliver on mobile number
+    $sendSMS = sendMobileSMS($message1,$user_mobile);
   }
 
   $sql = "UPDATE `food_orders` SET lkp_payment_status_id = '$lkp_payment_status_id',lkp_order_status_id = '$lkp_order_status_id' WHERE order_id = '$order_id' ";
@@ -37,6 +46,7 @@ if (!isset($_POST['submit'])) {
                   <?php 
                   $getPaymentStatusData = "SELECT * FROM lkp_payment_status WHERE id != 3";
                   $getPaymentStatus = $conn->query($getPaymentStatusData);?>
+                  <input type="hidden" name="user_id" value="<?php echo $getFoodOrdersData['user_id']; ?>">
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your Payment status</label>
                     <select id="form-control-3" name="lkp_payment_status_id" class="custom-select" data-error="This field is required." required>

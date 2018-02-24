@@ -13,6 +13,7 @@ if (!isset($_POST['submit'])) {
   $lkp_order_status_id = $_POST['lkp_order_status_id'];
   $lkp_payment_status_id = $_POST['lkp_payment_status_id'];
   $order_total = $_POST['order_total'];
+  $user_id = $_POST['user_id'];
   $delivery_date = date("Y-m-d h:i:s");
 
   if($_POST['service_tax'] != 0) {
@@ -43,6 +44,11 @@ if (!isset($_POST['submit'])) {
       $sql = "UPDATE `services_orders` SET order_price='$order_price',lkp_order_status_id='$lkp_order_status_id', lkp_payment_status_id='$lkp_payment_status_id' WHERE id = '$id'";
         $res = $conn->query($sql);
     }
+    //Sending SMS after order completion
+    $getUserDetails = getIndividualDetails('users','id',$user_id);
+    $user_mobile = $getUserDetails['user_mobile'];
+    $message1 = urlencode('Your order ('.$order_id.') is placed. We hope you enjoy your stay at myservant.com.'); // Message text required to deliver on mobile number
+    $sendSMS = sendMobileSMS($message1,$user_mobile);
   }
 
   header("Location:order_invoice.php?id=".$id."");
@@ -124,6 +130,7 @@ if (!isset($_POST['submit'])) {
               </div>
               <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <form data-toggle="validator" method="POST" autocomplete="off" enctype="multipart/form-data">
+                  <input type="hidden" name="user_id" value="<?php echo $getServiceOrdersData['user_id']; ?>">
                   <input type="hidden" name="order_total" value="<?php echo $getServiceOrdersData['order_total'];?>">
                   <input type="hidden" name="service_tax" value="<?php echo $getServiceOrdersData['service_tax'];?>">
                   <input type="hidden" name="service_price_type_id" value="<?php echo $getServiceOrdersData['service_price_type_id'];?>">
