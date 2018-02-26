@@ -68,9 +68,10 @@
 	      	$lkp_city_id = $_POST['lkp_city_id'];
 	      	$lkp_pincode_id = $_POST['lkp_pincode_id'];
 	      	$lkp_area_id = $_POST['lkp_area_id'];
+	      	$lkp_sub_area_id = $_POST['lkp_sub_area_id'];
 	      	$address = $_POST['address'];
 	      	$created_at = date("Y-m-d h:i:s");
-	      	$sql1 = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_area_id','$address','$created_at')";
+	      	$sql1 = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`lkp_sub_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_area_id','$lkp_sub_area_id','$address','$created_at')";
 	      	if($conn->query($sql1) === TRUE){             
 	         	echo "<script type='text/javascript'>window.location='add_address.php?succ=log-success'</script>";
 	      	} else {               
@@ -123,6 +124,7 @@
 										$getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
 										$getCity = getIndividualDetails('grocery_lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
 										$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
+										$getsubArea = getIndividualDetails('grocery_lkp_sub_areas','id',$getCustomerDeatils['lkp_sub_location_id']);
 										?>
 										<div class="text_brdr">
 											<label class="container3">
@@ -130,7 +132,7 @@
 								  				<span class="checkmarkR1"></span>
 											</label>
 											<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
-											<p><?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['area_name']; ?> - <?php echo $getPincode['pincode']; ?>,</p>
+											<p><?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['area_name']; ?><?php if($getCustomerDeatils['lkp_sub_location_id'] != 0) { echo ','.$getsubArea['sub_area_name']; } ?> - <?php echo $getPincode['pincode']; ?>,</p>
 											<p><?php echo $getCustomerDeatils['address']; ?>.</p>
 										</div>
 										<?php $i++; } ?>
@@ -208,8 +210,16 @@
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label>Location *</label>
-													<select name="lkp_area_id" id="lkp_area_id" placeholder="Location" required>
+													<select name="lkp_area_id" id="lkp_area_id" placeholder="Location" onChange="getSubAreas(this.value);" required>
 														<option value="">Select Location</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>Sub Location</label>
+													<select name="lkp_sub_area_id" id="lkp_sub_area_id" placeholder="Location">
+														<option value="">Select Sub Location</option>
 													</select>
 												</div>
 											</div>
@@ -585,7 +595,16 @@
 		        }
 		        });
 		    }
-
+		    function getSubAreas(val) { 
+		        $.ajax({
+		        type: "POST",
+		        url: "grocery_admin/get_sub_locations.php",
+		        data:'lkp_area_id='+val,
+		        success: function(data){
+		            $("#lkp_sub_area_id").html(data);
+		        }
+		        });
+		    }
 		</script>
 
 		<script type="text/javascript">
