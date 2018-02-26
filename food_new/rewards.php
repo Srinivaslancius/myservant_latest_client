@@ -51,6 +51,16 @@
 h3,h4{
 	color:#fe6003;
 }
+.notif {
+    position: relative;
+    display: block;
+    height: 100px;
+    width: 100px;
+    background: url(../images/dashboard/rewards1.png);
+    background-size: contain;
+    text-decoration: none;
+    border-radius: 100%;
+}
 
 </style>
 </head>
@@ -104,17 +114,17 @@ h3,h4{
                       <h3 class="nomargin_top">Service Orders</h3>
                     </div>
                       <div class="panel-body">
-					  <div class="row" style="padding:10px 60px 50px 60px">
+					 <div class="row" style="padding:10px 60px 50px 60px">
 					<div class="col-sm-4">
-					<h4 style="margin-left:10px">Rewards</h4>
+					<h4 style="margin-left:10px;color:#fe6003">Rewards</h4><br>
 						<a href="" class="notif"><span class="badge1">2</span></a>
 						</div>
 						<div class="col-sm-4">
-					<h4>For Rewards</h4>
+					<h4 style="color:#fe6003;color:#fe6003">For Rewards</h4><br>
 						<a href="" class="notif1"><span class="badge1">22</span></a>
 						</div>
 						<div class="col-sm-4">
-					<h4 style="margin-left:20px">Total</h4>
+					<h4 style="margin-left:20px;color:#fe6003">Total</h4><br>
 						<a href="" class="notif2"><span class="badge1">44</span></a>
 						</div>
                      </div>

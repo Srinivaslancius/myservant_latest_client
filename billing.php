@@ -1,8 +1,6 @@
 <?php include_once 'meta.php';?>
 <style>
 .order-tracking{
-	width:600px;
-	margin:0 auto;
 	padding: 65px 50px 84px;
 }
 .order-tracking h1{
@@ -21,6 +19,17 @@ td{
 th{
 	border-bottom:1px solid #ddd !important;
 	font-size:15px !important;
+}
+td p{
+	line-height:30px;
+}
+@media screen and (max-width: 480px) and (min-width: 320px){
+.table{
+	width:100%!important;
+}
+.order-tracking {
+    padding: 65px 10px 84px;
+}
 }
 </style>
 <body class="header_sticky">
@@ -55,7 +64,7 @@ th{
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="#" title="">Track your orders</a>
+								<a href="#" title="">Billing</a>
 								
 							</li>
 							
@@ -68,7 +77,9 @@ th{
 		<section class="flat-tracking background">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
+				<div class="col-md-3 col-sm-3">
+				</div>
+					<div class="col-md-6 col-sm-6">
 						<div class="order-tracking">
 							<div class="title">
 								<h3><img src="images/logos/logo1.png"></h3>
@@ -77,6 +88,7 @@ th{
 							</div><!-- /.title -->
 							<div class="tracking-content">
 								<img src="images/icon-receipt.png">
+								
 								 <table class="table">
 								<thead>
 								  <tr>
@@ -102,10 +114,56 @@ th{
 									<td style="text-align:right">₹ 699.00</td>
 								  </tr>
 								</tbody>
+								<tbody>
+								  <tr>
+									<td><p>Subtotal</p>
+									<p>Tax</p>
+									<p>Shipping</p></td>
+									<td style="text-align:center"><p>4</p>
+									<p>10%</p>
+									<p></p></td>
+									<td style="text-align:right"><p>$ 735.96</p>
+									<p>$ 73.60</p>
+									<p>$ 9.99</p></td>
+								  </tr>
+								   <tr>
+									<td style="border-bottom:0px"><h3><b>Total</b></h3></td>
+									<td style="border-bottom:0px"></td>
+									<td style="text-align:right;border-bottom:0px"><h3><b>$ 876.96</b></h3></td>
+								  </tr>
+								  
+								</tbody>
 							  </table>
+							   <table class="table">
+								<thead>
+								  <tr>
+									<th>Shipping Address</th>
+									<th></th>
+									<th style="text-align:right">Billing Address</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<td><p>Tony Stark</p>
+									<p>22 23rd Street</p>
+									<p>San Francisco </p>
+									<p>CA 94107</p></td>
+									<td style="text-align:center"></td>
+									<td style="text-align:right"><p>Tony Stark</p>
+									<p>22 23rd Street</p>
+									<p>San Francisco </p>
+									<p>CA 94107</p></td>
+								  </tr>
+								  
+								</tbody>
+								
+							  </table>
+							  <button type="submit" class="contact">Back To Shop</button>
 							</div><!-- /.tracking-content -->
 						</div><!-- /.order-tracking -->
 					</div><!-- /.col-md-12 -->
+					<div class="col-md-3 col-sm-3">
+				</div>
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-tracking -->
