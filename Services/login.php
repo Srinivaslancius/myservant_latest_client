@@ -44,6 +44,10 @@
 		    	}
 		    }
 		}
+
+		//gplus login
+		require_once('../gplus_login/settings.php');
+		$login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me') . '&redirect_uri=' . urlencode(CLIENT_REDIRECT_URL) . '&response_type=code&client_id=' . CLIENT_ID . '&access_type=online';
 	?>
 
 	<!-- Favicons-->
@@ -146,7 +150,8 @@
                                 <a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2"><i class="icon-facebook"></i> Facebook</a>
                             </div>
                             <div class="col-md-6 col-sm-6 login_social">
-                                <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal2"><i class="icon-google"></i>Google Plus</a>
+                            	<a href="<?= $login_url ?>" class="btn btn-info btn-block"><i class="icon-google""></i> Google plus</a>
+                                <!-- <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal2"><i class="icon-google"></i>Google Plus</a> -->
                             </div>
                             </div> <!-- end row -->
                             <div class="login-or"><hr class="hr-or"><span class="span-or">or</span></div>
