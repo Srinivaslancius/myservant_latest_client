@@ -180,13 +180,13 @@ if($OrderDetails['delivery_charges'] == '0') {
       <p>Tax:</p>
       <p>Delivery Charges:</p>
       <p style="color:#fe6003;">Grand Total:</p></td>
-      <td><p style="color:#fe6003;">Rs. <?php echo $OrderDetails['sub_total'];  ?></p>
+      <td colspan="2"><p style="color:#fe6003;">Rs. <?php echo $OrderDetails['sub_total'];  ?></p>
 
       <p style="color:#fe6003;">Rs. <?php echo $OrderDetails['service_tax'].'('.$getSiteSettingsData['service_tax'].'%)' ?></p>
       <p style="color:#fe6003;">Rs. <?php echo $OrderDetails['delivery_charges'];  ?></p>
       <?php $total_price = round($OrderDetails['sub_total'] + $OrderDetails['delivery_charges'] + $OrderDetails['service_tax']); ?>
         <p style="color:#fe6003;">Rs. <?php echo $total_price;  ?></p></td>
-		<td></td>
+		
       </tr>
 		</tbody>
 					

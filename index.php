@@ -68,18 +68,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     cursor: pointer;
 	height:36px;
 }
-#scrollToTop, #scrollToBottom {
-    cursor: pointer;
-    background-color: #D3D3D3;
-    display: inline-block;
-    height: 27px;
-    width: 27px;
-    color: #fff;
-    font-size: 12pt;
-    text-align: center;
-    text-decoration: none;
-    line-height: 28px;
-}
+
 </style>
 <?php 
 	if(isset($_POST['news_letter'])) {
@@ -1134,18 +1123,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
-	<script type = "text/javascript">
-        $(function () {
-            $('#scrollToBottom').bind("click", function () {
-                $('html, body').animate({ scrollTop: $(document).height() }, 1200);
-                return false;
-            });
-            $('#scrollToTop').bind("click", function () {
-                $('html, body').animate({ scrollTop: 0 }, 1200);
-                return false;
-            });
-        });
-    </script>
+	
 	
 <script>
 		if($(window).width() > 768){

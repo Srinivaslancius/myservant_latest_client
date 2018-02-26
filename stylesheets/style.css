@@ -4375,3 +4375,15 @@ ul.flat-infomation li{
 .dropdown:hover .dropbtn {
     background-color: #f9f9f9;
 }
+/*#scrollToTop, #scrollToBottom {
+    cursor: pointer;
+    background-color: #D3D3D3;
+    display: inline-block;
+    height: 27px;
+    width: 27px;
+    color: #fff;
+    font-size: 12pt;
+    text-align: center;
+    text-decoration: none;
+    line-height: 28px;
+}*/

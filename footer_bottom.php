@@ -13,8 +13,20 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							</a>
 						</p>-->
 						<div align = "right">
-						<a href="javascript:;" id="scrollToTop" title="Scroll To Top">&#x25B2;</a>
+						<a href="javascript:;" id="scrollToTop" title="Scroll To Top"><img src="images/icons/top.png"></a>
 						</div>
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
 			</div><!-- /.container -->
+			<script type = "text/javascript">
+        $(function () {
+            $('#scrollToBottom').bind("click", function () {
+                $('html, body').animate({ scrollTop: $(document).height() }, 1200);
+                return false;
+            });
+            $('#scrollToTop').bind("click", function () {
+                $('html, body').animate({ scrollTop: 0 }, 1200);
+                return false;
+            });
+        });
+    </script>
