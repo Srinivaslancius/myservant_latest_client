@@ -162,8 +162,8 @@
 								</div>
 						  	</div>
                             <div class="col-md-5 col-sm-6">
-                                <!-- <a href="<?= $login_url ?>" class="btn btn-danger twi_ter"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a> -->
-                                <a href="" class="btn btn-danger twi_ter" data-toggle="modal" data-target="#myModal1"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a>
+                                <a href="<?= $login_url ?>" class="btn btn-danger twi_ter"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a>
+                                <!-- <a href="" class="btn btn-danger twi_ter" data-toggle="modal" data-target="#myModal1"><i class="fa fa-google" aria-hidden="true"></i> Google plus</a> -->
                             </div>
 							<div class="col-md-1">
 							</div>
