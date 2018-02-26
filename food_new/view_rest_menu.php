@@ -135,7 +135,7 @@ if($_SESSION['session_restaurant_id']!= $getRestKey) {
 <section>
 
 <div class="container1">
- <img <?php if($getFoodVendorsBann['vendor_banner']!='') { ?> src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getFoodVendorsBann['vendor_banner']; ?>" <?php } else { ?> src="img/sub_header_home.jpg" <?php } ?> class="img-responsive immgg" style="width:100%;height:400px">
+ <img <?php if($getFoodVendorsBann['vendor_banner']!='') { ?> src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getFoodVendorsBann['vendor_banner']; ?>" <?php } else { ?> src="img/sub_header_home.jpg" <?php } ?> class="img-responsive immge" style="width:100%;height:400px">
  <div class="centered">
     <div id="subheader" style="width:1400px;height:400px">
 	<div id="sub_content">

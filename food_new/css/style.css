@@ -3360,6 +3360,10 @@ th {
 }
 
 @media only screen and (max-width: 480px) {
+	.img-responsive.immge{
+		width:100%;
+		height:150px !important;
+	}
 	.centered{
 		font-size:20px !important;
 	}
@@ -3374,7 +3378,7 @@ th {
 
     #short #subheader {
         width: 100%!important;
-        height: 240px!important
+        height: 240px;
     }
 
     #sub_content {
@@ -3421,10 +3425,10 @@ th {
 
     #custom-search-input input.btn_search {
         width: 52px;
-        height: 40px;
+        height: 38px;
     }
 
-    .btn-danger {
+    .btn-warning {
         padding: 5px 2px 5px 2px!important;
         margin-bottom: 5px
     }
@@ -3546,6 +3550,9 @@ th {
 }
 
 @media screen and (max-width: 640px) and (min-width:360px) {
+	#custom-search-input input.btn_search{
+	height:38px !important;
+}
     .container .carousel1 {
         padding-left:25px!important;
         padding-right: 25px!important
@@ -3564,10 +3571,10 @@ th {
         width: 120px!important;
         right: 9px!important;
         top: 3px!important;
-        font-size: 11px
+        font-size: 10px;
     }
 
-    .btn.btn-danger.c_pad {
+    .btn.btn-warning.c_pad {
         margin-left: 15px
     }
 
@@ -3600,7 +3607,7 @@ th {
 }
 
 @media screen and (max-width: 1024px) and (min-width:768px) {
-    .btn.btn-danger.c_pad {
+    .btn.btn-warning.c_pad {
         padding:7px 9px
     }
 
@@ -3629,8 +3636,16 @@ th {
         width: 0px!important
     }
 }
+@media screen and (max-width: 533px) and (min-width:320px) {
+#custom-search-input input.btn_search{
+	height:40px;
+}
+}
 
 @media screen and (max-width: 736px) and (min-width:414px) {
+	#custom-search-input input.btn_search{
+	height:38px !important;
+}
     #custom-search-input,#custom-search-input .search-query {
         width:320px!important;
         margin-left: -14px!important
@@ -3700,10 +3715,13 @@ th {
     .twof {
         width: 250px!important
     }
+	#custom-search-input input.btn_search{
+	height:38px;
+}
 }
 
 @media screen and (max-width: 960px) and (min-width:600px) {
-    .btn.btn-danger.c_pad {
+    .btn.btn-warning.c_pad {
         padding:7px 4px
     }
 

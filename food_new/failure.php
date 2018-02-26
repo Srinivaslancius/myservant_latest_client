@@ -48,16 +48,10 @@ header( "refresh:10;url=index.php" );
 }
 
 ?>
-<!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
-    <div id="subheader">
-    	<div id="sub_content">
-    	 <h1>Failure</h1>
-         <p>One Stop Shop for all your food needs.</p>
-         <p></p>
-        </div><!-- End sub_content -->
-	</div><!-- End subheader -->
-</section><!-- End section -->
+<div class="container1">
+ <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered">Failure</div>
+</div>
 <!-- End SubHeader ============================================ -->
 
     <div id="position">
@@ -82,7 +76,7 @@ header( "refresh:10;url=index.php" );
 			<p style="color:#f26226;text-align:center">The payment for its transition has failed</p>
 			<p>If your payment for an order has failed, please check it is not due to the following situations: Card security code failed. Please note that an incorrect card security code could cause payment failure. Card security code is the short numeric code on the back of your credit card. Card security code is the short numeric code on the back of your credit card.</p>
 				<p class="text-center add_bottom_30">
-				<a href="index.php" class="btn_1 medium"><i class="icon-eye-7"></i>GO TO HOME</a>
+				<center><a href="index.php" class="btn_1 medium"><i class="icon-eye-7"></i>GO TO HOME</a></center>
 			</p>
 			</div>
 </div>

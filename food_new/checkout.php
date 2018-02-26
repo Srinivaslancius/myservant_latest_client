@@ -157,13 +157,11 @@ if($_SESSION['user_login_session_id'] == '') {
 } 
 ?>
 <!-- SubHeader =============================================== -->
-<section class="parallax-window"  id="short"  data-parallax="scroll" data-image-src="img/img_2.jpg" data-natural-width="1400" data-natural-height="350">
-    <div id="subheader">
-    	<div id="sub_content">
-    	 <h1>Place your order</h1>            
-        </div><!-- End sub_content -->
-	</div><!-- End subheader -->
-</section><!-- End section -->
+<div class="container1">
+ <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered">Place your order</div>
+</div>
+
 <!-- End SubHeader ============================================ -->
     <div id="position">
         <div class="container">

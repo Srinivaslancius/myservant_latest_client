@@ -116,16 +116,6 @@ if(mail($to, $subject, $message, $headers)) {
       <?php include_once './header.php';?>
      </header>
     <!-- End Header =============================================== -->
-
-    <!-- SubHeader =============================================== -->
-    <!--<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
-        <div id="subheader">
-            <div id="sub_content">
-             <h1>Contact Us</h1>
-            </div>
-        </div>
-    </section><!-- End section -->
-    <!-- End SubHeader ============================================ -->
  <div class="container1">
  <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
  <div class="centered">Contact Us</div>
@@ -219,13 +209,14 @@ if(mail($to, $subject, $message, $headers)) {
                         <div class="col-sm-9"></div>
                     </div>
                 </form>
+				 </div>
                 <div class="col-md-4 col-sm-4">
                     <h4 style="color:#FE6003">Information</h4><br>
                     <p style="margin-bottom:5px"><span class="icon-location one"></span> <?php echo $getFoodSiteSettingsData["address"]; ?></p>
                     <p style="margin-bottom:20px"><span class="icon-mobile"></span> <a href="Tel:<?php echo $getFoodSiteSettingsData['mobile']; ?>"><?php echo $getFoodSiteSettingsData['mobile']; ?></a> Toll Free (24*7)</p>
                     <p><span class="icon-mail-1"></span> <a href="mailto::<?php echo $getFoodSiteSettingsData['contact_email']; ?>"><?php echo $getFoodSiteSettingsData['email']; ?></a></p>
                 </div>
-            </div>
+           
         </div>
     </div>
 </div><!-- End container -->
