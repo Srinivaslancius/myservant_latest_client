@@ -192,14 +192,14 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 								?>
 								<div class="slider-item style1">
 									<div class="item-image">
-										<a href="single_product.php?id=<?php echo $getBannersData1['id']; ?>"><img title="Grocery Image" src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
+										<a href="single_product.php?id=<?php echo $getBannersData1['id']; ?>"><img title="<?php echo $getBannersData1['title']; ?>" src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
 								<?php } else { ?>
 								<div class="slider-item style1">
 									<div class="item-image">
-										<a href="results.php?id=<?php echo $getBannersData1['id']; ?>"><img title="Grocery Image" src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
+										<a href="results.php?id=<?php echo $getBannersData1['id']; ?>"><img title="<?php echo $getBannersData1['title']; ?>" src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
