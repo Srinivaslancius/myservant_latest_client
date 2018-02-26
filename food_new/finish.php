@@ -44,17 +44,10 @@
         <?php include_once './header.php';?>
     </header>
     <!-- End Header =============================================== -->
-
-<!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
-    <div id="subheader">
-    	<div id="sub_content">
-    	 <h1>Confirmed</h1>
-        </div><!-- End sub_content -->
-	</div><!-- End subheader -->
-</section><!-- End section -->
-<!-- End SubHeader ============================================ -->
-
+<div class="container1">
+ <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered">Confirmed</div>
+</div>
     <div id="position">
         <div class="container">
             <ul>

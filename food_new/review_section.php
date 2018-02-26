@@ -66,15 +66,11 @@
 <?php $getAllAboutData = getAllDataWhere('food_content_pages','id',6);
           $getAboutData = $getAllAboutData->fetch_assoc();
 ?>
-<!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="350">
-    <div id="subheader">
-    	<div id="sub_content">
-    	 <h1>Review Section</h1>
-         <p></p>
-        </div><!-- End sub_content -->
-	</div><!-- End subheader -->
-</section><!-- End section -->
+
+<div class="container1">
+ <img src="img/sub_header_home.jpg" class="img-responsive immgg" style="width:100%;height:400px">
+ <div class="centered">Review Section</div>
+</div>
     <div id="position">
         <div class="container">
             <ul>
