@@ -68,6 +68,18 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     cursor: pointer;
 	height:36px;
 }
+#scrollToTop, #scrollToBottom {
+    cursor: pointer;
+    background-color: #D3D3D3;
+    display: inline-block;
+    height: 27px;
+    width: 27px;
+    color: #fff;
+    font-size: 12pt;
+    text-align: center;
+    text-decoration: none;
+    line-height: 28px;
+}
 </style>
 <?php 
 	if(isset($_POST['news_letter'])) {
@@ -191,14 +203,14 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 								?>
 								<div class="slider-item style1">
 									<div class="item-image">
-										<a href="single_product.php?id=<?php echo $getBannersData1['id']; ?>"><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
+										<a href="single_product.php?id=<?php echo $getBannersData1['id']; ?>"><img title="Grocery Image" src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
 								<?php } else { ?>
 								<div class="slider-item style1">
 									<div class="item-image">
-										<a href="results.php?id=<?php echo $getBannersData1['id']; ?>"><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
+										<a href="results.php?id=<?php echo $getBannersData1['id']; ?>"><img title="Grocery Image" src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
@@ -1122,7 +1134,18 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
-	
+	<script type = "text/javascript">
+        $(function () {
+            $('#scrollToBottom').bind("click", function () {
+                $('html, body').animate({ scrollTop: $(document).height() }, 1200);
+                return false;
+            });
+            $('#scrollToTop').bind("click", function () {
+                $('html, body').animate({ scrollTop: 0 }, 1200);
+                return false;
+            });
+        });
+    </script>
 	
 <script>
 		if($(window).width() > 768){
