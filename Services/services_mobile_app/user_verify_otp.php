@@ -29,7 +29,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			$created_at = date("Y-m-d h:i:s");
 			$mobile_token = $_REQUEST['mobileToken'];
 
+			$referal_code = $_REQUEST['referalCode'];
+
 			$saveUser = saveUser($user_full_name, $user_email, $user_mobile, $user_password,$lkp_status_id,$login_count,$last_login_visit,$lkp_register_device_type_id,$user_login_type,$mobile_token,$user_register_service_id,$created_at);
+
+			$updateRefer = "UPDATE `grocery_refer_a_friend` SET register_status = '1' WHERE refer_email_id = '$user_email' AND referal_code = '$referal_code'";
+        	$conn->query($updateRefer); 
 
 			$response["success"] = 0;
 			$response["message"] = "OTP Verified.";
