@@ -73,7 +73,7 @@
         <div class="container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                Update Profile
+                <li>Update Profile</li>
             </ul>
             
         </div>
