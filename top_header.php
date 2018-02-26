@@ -190,10 +190,6 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 										<?php } ?>
 									</ul><!-- /.unstyled -->
 								</li>
-								<!--<li style="margin-top:2px"><div align = "right"><a href="javascript:;" id="scrollToBottom"title="Scroll To Bottom"><img src="images/icons/bottom.png"></a></div></li>-->
-								
-
-
 							</ul><!-- /.flat-unstyled -->
 							
 						</div><!-- /.col-md-4 -->
