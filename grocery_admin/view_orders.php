@@ -46,6 +46,23 @@
           </div>
           <div class="panel-body">
             <div class="table-responsive">
+              <div class="col s12 m12 l12">                  
+                <?php $sql = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 GROUP BY order_id"; $getUsersData1 = $conn->query($sql);?>
+                  <div class="form-group col-md-3">                    
+                    <select id="select-email" class="custom-select">
+                       <option value="">Select email</option>
+                        <?php while ($row = $getUsersData1->fetch_assoc()) { ?>
+                          <option value="<?php echo $row['email']; ?>"><?php echo $row['email']; ?></option>
+                        <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="clear_fix"></div>
+                <p id="date_filter">
+                  <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="text" id="datepicker_from" />
+                  <span id="date-label-to" class="date-label">To:<input class="date_range_filter date" type="text" id="datepicker_to" />
+                </p>
+                <div class="clear_fix"></div>
               <table class="table table-striped table-bordered dataTable" id="table-2">
                 <thead>
                   <tr>
@@ -198,5 +215,67 @@
     <script src="js/dashboard-3.min.js"></script>
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
+    <script type="text/javascript">
+      var table =  $('#table-2').DataTable({
+    });
+
+    $('#select-email').on('change', function () {
+        table.columns(3).search( this.value ).draw();
+    } );
+      //Date picker for filters
+    $("#datepicker_from").datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: false,
+      "onSelect": function(date) {
+        minDateFilter = new Date(date).getTime();
+        table.draw();
+      }
+    }).keyup(function() {
+      minDateFilter = new Date(this.value).getTime();
+      table.draw();
+    });
+
+    $("#datepicker_to").datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: false,
+      "onSelect": function(date) {
+        maxDateFilter = new Date(date).getTime();
+        table.draw();
+      }
+    }).keyup(function() {
+      maxDateFilter = new Date(this.value).getTime();
+      table.draw();
+    });
+    // Date range filter
+      minDateFilter = "";
+      maxDateFilter = "";
+
+      $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex) {
+          if (typeof aData._date == 'undefined') {
+            aData._date = new Date(aData[5]).getTime();
+          }
+
+          if (minDateFilter && !isNaN(minDateFilter)) {
+            if (aData._date < minDateFilter) {
+              return false;
+            }
+          }
+
+          if (maxDateFilter && !isNaN(maxDateFilter)) {
+            if (aData._date > maxDateFilter) {
+              return false;
+            }
+          }
+
+          return true;
+        }
+      );
+
+    // End  Date range filter
+    //End here
+    </script>
   </body>
 </html>

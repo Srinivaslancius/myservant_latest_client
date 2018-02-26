@@ -71,9 +71,16 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 						<div class="col-md-6">
 							<ul class="flat-infomation">
 								<div class="row">
+									<?php $getPaymentsSettings = getIndividualDetails('grocery_payments_settings','id',1);
+									if($getPaymentsSettings['delivery'] == 1) { ?>
 									<div class="col-md-6 col-xs-12">
-										<a href="#"><p style="margin-top:9px">For above Rs.500 orders delivery free</p></a>
+										<p style="margin-top:9px">For above Rs.<?php echo $getPaymentsSettings['order_amount']; ?> orders delivery free</p>
 									</div>
+									<?php } else { ?>
+									<div class="col-md-6 col-xs-12">
+										<p style="margin-top:9px">Free delivery</p>
+									</div>
+									<?php } ?>
 									<div class="col-md-6 col-xs-12" style="margin-top:-8px">
 										<div class="dropdown">
 										  <button class="dropbtn" style="border:1px solid #f9f9f9;

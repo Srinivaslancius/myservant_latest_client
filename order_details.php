@@ -112,10 +112,8 @@
 							    $orderStatus = getIndividualDetails('lkp_order_status','id',$OrderDetails['lkp_order_status_id']);
 							    $service_tax = $OrderDetails['sub_total']*$getSiteSettingsData['service_tax']/100;
 								if($OrderDetails['delivery_charges'] == '0') {
-								  $order_type = "Take Away";
 								  $delivery_charges = 0;
 								} else {
-								  $order_type = "Delivery";
 								  $delivery_charges = $OrderDetails['delivery_charges'];
 								}
 		                    ?>
@@ -128,7 +126,6 @@
 											<p>Delivery Slot Date: <?php echo changeDateFormat($OrderDetails['delivery_slot_date']);?></p>
 											<p>Delivery Slot Time: <?php echo $OrderDetails['delivery_time'];?></p>
 											<p>Payment Method:<?php echo $getpaymentTypes['status']; ?></p>
-											<p>Order Type:<?php echo $order_type; ?></p>
 											<p>Order Status: <?php echo $orderStatus['order_status']; ?></p>
 											<p>Payment Status:  <?php echo $paymentStatus['payment_status']; ?></p>
 										</td>
