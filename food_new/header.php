@@ -50,7 +50,7 @@ if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id
             <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top:-6px">
                 <?php  
                 if(!empty($getFoodSiteSettingsData['logo'])) { ?>
-                <a href="index.php" id="logo">
+                <a href="<?php echo $base_url.'food_new/'; ?>" id="logo">
                 <img src="<?php echo $base_url . 'uploads/food_logo/'.$getFoodSiteSettingsData['logo'] ?>" alt="<?php echo $getFoodSiteSettingsData['admin_title']; ?>" data-retina="true" class="myservanrlogo">
                 <?php } else { ?>
                 <center><img src="img/logo-mobile.png"  alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm"></center>

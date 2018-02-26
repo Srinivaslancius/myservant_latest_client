@@ -3,7 +3,7 @@
 					<div class="row">
 						<div class="col-md-3">
 							<div id="logo" class="logo">
-								<a href="index.php" title="">
+								<a href="<?php echo $base_url; ?>" title="">
 									<img src="images/logos/logo1.png" alt="">
 								</a>
 							</div><!-- /#logo -->

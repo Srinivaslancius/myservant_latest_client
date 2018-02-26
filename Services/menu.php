@@ -11,7 +11,7 @@
 <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-3">
                     <div id="logo_home">
-                        <h1><a href="index.php" title="My Servant" style="background-image:url(<?php echo $base_url . 'uploads/logo/'.$getSiteSettingsData['logo'] ?>)">My Servant</a></h1>
+                        <h1><a href="<?php echo $base_url.'Services/'; ?>" title="My Servant" style="background-image:url(<?php echo $base_url . 'uploads/logo/'.$getSiteSettingsData['logo'] ?>)">My Servant</a></h1>
                     </div>
                 </div>
                 <nav class="col-md-9 col-sm-9 col-xs-9">
