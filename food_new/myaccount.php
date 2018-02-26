@@ -72,7 +72,7 @@
                       <h3 class="nomargin_top">My Dashboard</h3>
                     </div>
                       <div class="panel-body">
-					  <a href="../Services/service_orders.php">
+					  <a href="service_orders.php">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="box_home" id="one">
                                         <?php $getServiceOrders = "SELECT * FROM services_orders WHERE user_id = '".$_SESSION['user_login_session_id']."' GROUP BY order_id";

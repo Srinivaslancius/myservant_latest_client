@@ -178,7 +178,7 @@ if($OrderDetails['delivery_charges'] == '0') {
       <td colspan="5"></td>
       <td><p>Subtotal:</p>
       <p>Tax:</p>
-      <p>Delivery Charges</p>
+      <p>Delivery Charges:</p>
       <p style="color:#fe6003;">Grand Total:</p></td>
       <td><p style="color:#fe6003;">Rs. <?php echo $OrderDetails['sub_total'];  ?></p>
 
