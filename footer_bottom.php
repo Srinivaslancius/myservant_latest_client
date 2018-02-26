@@ -16,7 +16,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
 			</div><!-- /.container -->
-			<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+			
 			<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 			<script>
 $(document).ready(function(){
