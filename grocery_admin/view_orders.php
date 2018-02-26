@@ -47,7 +47,7 @@
           <div class="panel-body">
             <div class="table-responsive">
               <div class="col s12 m12 l12">                  
-                <?php $sql = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 GROUP BY order_id"; $getUsersData1 = $conn->query($sql);?>
+                <?php $sql = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 GROUP BY email"; $getUsersData1 = $conn->query($sql);?>
                   <div class="form-group col-md-3">                    
                     <select id="select-email" class="custom-select">
                        <option value="">Select email</option>
