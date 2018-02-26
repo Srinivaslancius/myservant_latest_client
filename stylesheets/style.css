@@ -233,7 +233,7 @@ input[type="submit"] {
 	line-height:42px;
 	font-size:14px;
 	color:#ffffff;
-	background: #FE6003;
+	/* background: #FE6003; */
 	border-radius:30px;
 	font-weight:600;
 	font-family:"BloggerSans", sans-serif;

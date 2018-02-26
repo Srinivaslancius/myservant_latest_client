@@ -7,11 +7,14 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 				<div class="row">
 					<div class="col-md-12">
 						<p class="copyright"> <?php echo $getSiteSettingsData1['footer_text']; ?></p>
-						<p class="btn-scroll">
+						<!--<p class="btn-scroll">
 							<a href="#" title="">
 								<img src="images/icons/top.png" alt="">
 							</a>
-						</p>
+						</p>-->
+						<div align = "right">
+						<a href="javascript:;" id="scrollToTop" title="Scroll To Top">&#x25B2;</a>
+						</div>
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
 			</div><!-- /.container -->
