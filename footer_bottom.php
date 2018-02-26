@@ -12,7 +12,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 							Designed and developed by <a href="https://www.lanciussolutions.com" target="_blank"> Lancius IT Solutions</a>.
 						</p>
 						
-						<a id="back-to-top" href="#" class="btn btn-default btn-sm back-to-top pull-right" role="button"style="background: #333;border-color:#333"><img  title="Scroll To Top" src="images/ic_back_to_top.png"></span></a>
+						<a id="back-to-top" href="javascript:void(0)" class="btn btn-default btn-sm back-to-top pull-right" role="button"style="background: #333;border-color:#333"><img  title="Scroll To Top" src="images/ic_back_to_top.png"></span></a>
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
 			</div><!-- /.container -->
