@@ -3859,3 +3859,50 @@ th {
     transform: translate(-50%, -50%);
 	font-size:40px;
 }
+.notif {
+    position: relative;
+    display: block;
+    height: 100px;
+    width: 100px;
+    background: url(../img/dashboard/rewards1.png);
+    background-size: contain;
+    text-decoration: none;
+    border-radius: 100%;
+}
+.notif1 {
+    position: relative;
+    display: block;
+    height: 100px;
+    width: 100px;
+    background: url(../img/dashboard/mul.png);
+    background-size: contain;
+    text-decoration: none;
+    border-radius: 100%;
+}
+.notif2 {
+    position: relative;
+    display: block;
+    height: 100px;
+    width: 100px;
+    background: url(../img/dashboard/total.png);
+    background-size: contain;
+    text-decoration: none;
+    border-radius: 100%;
+}
+.badge1 {
+    display: inline-block;
+    width: 45%;
+    height: 20%;
+    padding: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #fe6003;
+    border-radius: 100%;
+    margin-left: 70px;
+    height: auto;
+}
