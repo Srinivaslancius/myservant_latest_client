@@ -51,16 +51,6 @@
 h3,h4{
 	color:#fe6003;
 }
-.notif {
-    position: relative;
-    display: block;
-    height: 100px;
-    width: 100px;
-    background: url(../images/dashboard/rewards1.png);
-    background-size: contain;
-    text-decoration: none;
-    border-radius: 100%;
-}
 
 </style>
 </head>

@@ -98,7 +98,7 @@ if(mail($to, $subject, $message, $headers)) {
                         <li><a href="#0"><i class="icon-youtube-play"></i></a></li> -->
                     </ul>
                     <p>
-                         Designed By <a href="https://www.lanciussolutions.com" target="_blank"> Lancius IT Solutions</a>.
+						 All rights reserved @My Servant 2017. : Designed by <a href="https://www.lanciussolutions.com" target="_blank"> Lancius IT Solutions</a>.
                     </p>
                 </div>
             </div>

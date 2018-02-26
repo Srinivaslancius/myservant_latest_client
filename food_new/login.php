@@ -64,6 +64,9 @@ if(!empty($userData)){
         $insert = $db->query($query);
     }
 }
+//gplus login
+require_once('../gplus_login/settings.php');
+$login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me') . '&redirect_uri=' . urlencode(CLIENT_REDIRECT_URL) . '&response_type=code&client_id=' . CLIENT_ID . '&access_type=online';
 ?>
 
 
@@ -169,7 +172,8 @@ if(!empty($userData)){
 					</div>
 					
 					<div class="col-sm-6 col-xs-6">
-					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1" ><span class="icon-google"></span>Google Plus</button>
+						<a href="<?= $login_url ?>" class="btn btn-danger twi_ter"><span class="icon-google"></span> Google plus</a>
+						<!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1" ><span class="icon-google"></span>Google Plus</button> -->
 					</div>
 					</div><br>
 					<p style="text-align:center">(OR)</p>
