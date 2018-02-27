@@ -138,18 +138,16 @@ if($getTodayDeals1->num_rows > 0) { ?>
 						<input type="hidden" id="count_down_date" value="<?php echo date('Y/m/d', time()+86400);?>">
 							<div class="col-sm-4 col-lg-3">
 								<div class="product-box style4">
-									<div id="div1" class="cart_popup_<?php echo $todayDeals['id']; ?>">
+									<div id="cart_popup_<?php echo $todayDeals['id']; ?>" class="snackbar">
 										<p style="color:white"><img src="images/icons/add-cart.png" alt="" style="margin-right:10px"> ITEM ADDED TO YOUR CART</p>
-										<p style="color:white">Product Name : <?php echo $getProductName['product_name']; ?></p>
+										<p>PRODUCT NAME: <?php echo $getProductName['product_name']; ?> </p> 
 									</div>
 									<div class="imagebox">
 										<span class="item-new">NEW</span>
 										<div class="box-image">
-										<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
-			
+											<a href="single_product.php?product_id=<?php echo $todayDeals['id']; ?>" title="">
 												<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 											</a>
-											
 										</div><!-- /.box-image -->
 										<div class="box-content">
 											<!--<div class="cat-name">
@@ -411,10 +409,9 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			      },
 			      success:function(response) {
 			      	//window.location.href = "shop_cart.php";
-			      	$(".cart_popup_"+ProductId).fadeIn(2000);
-			      	setTimeout(function() {
-					    $(".cart_popup_"+ProductId).fadeOut('fast');
-					}, 2000);
+			      	var x = document.getElementById("cart_popup_"+ProductId);
+				    x.className = "snackbar show1";				    
+				    setTimeout(function(){ x.className = x.className.replace("show1", ""); }, 1000);
 			      }
 			    });
 			    $.ajax({
