@@ -190,6 +190,10 @@
 												<?php } elseif($getBanners['type'] == 2) { ?>
 													<input type="hidden" name="sub_category_id" value="<?php echo $getBanners['sub_category_id']; ?>">
 												<?php } ?>
+											<?php } elseif($_GET['tagId']) { ?>
+												<input type="hidden" name="tagId" value="<?php echo $_GET['tagId']; ?>">
+											<?php } elseif($_GET['brand_id']) { ?>
+												<input type="hidden" name="brand_id" value="<?php echo $_GET['brand_id']; ?>">
 											<?php } ?>
 											<div class="popularity">
 												<select name="popularity" onChange="loadPopularity(this.value)">
@@ -229,7 +233,7 @@
 												</div>
 												<div class="imagebox">
 														<a href="single_product.php?product_id=<?php echo $getProductDetails['id'];?>" title="">
-															<img class="img_wiht"src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
+															<img class="img_wiht" src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProductImages['image'] ?>" alt="">
 														</a>
 													<div class="box-content">
 														<div class="product-name">
