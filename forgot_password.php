@@ -36,8 +36,7 @@
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
-								<a href="#" title="">Forgot Password</a>
-								
+								Forgot Password
 							</li>
 							
 						</ul><!-- /.breacrumbs -->
