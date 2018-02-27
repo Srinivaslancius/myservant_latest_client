@@ -257,7 +257,7 @@
 						$getAllPaymentsSettings = getIndividualDetails('grocery_payments_settings','id','1');
 						$cartTotal = $getCartItems['product_price']*$getCartItems['product_quantity'];
 						$subTotal += $getCartItems['product_price']*$getCartItems['product_quantity'];
-						if($getAllPaymentsSettings['delivery'] == 1 && $cartTotal <= $getAllPaymentsSettings['order_amount']) {
+						if($getAllPaymentsSettings['delivery'] == 1 && $subTotal <= $getAllPaymentsSettings['order_amount']) {
 							$delivery_charges = $getAllPaymentsSettings['delivery_charges'];
 						} else {
 							$delivery_charges = 0;
@@ -345,7 +345,7 @@
                                             <?php $service_tax += ($getSiteSettingsData1['service_tax']/100)*$subTotal; ?>
                                             <td class="subtotal" id="serviceTax1">Rs . <?php echo $service_tax; ?></td>
                                         </tr>
-                                        <?php if($getAllPaymentsSettings['delivery'] == 1 && $cartTotal <= $getAllPaymentsSettings['order_amount']) { ?>
+                                        <?php if($getAllPaymentsSettings['delivery'] == 1 && $subTotal <= $getAllPaymentsSettings['order_amount']) { ?>
                                         <tr>
                                             <td>Delivery Charges</td>
                                             <td class="subtotal">Rs . <?php echo $delivery_charges; ?></td>
