@@ -45,61 +45,6 @@
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</section><!-- /.flat-breadcrumb -->
-		<?php 
-	error_reporting(0);
-	if(isset($_POST['submit']))  { 
-	
-		$getSiteSettings1 = getAllDataWhere('grocery_site_settings','id','1'); 
-		$getSiteSettingsData1 = $getSiteSettings1->fetch_assoc();
-	    //Login here
-	    $user_email = $_POST['login_email'];
-	   
-	    $getUserForgotData = forgotPassword($user_email);
-	    //Set variable for session
-	    if($getUserForgotPassword = $getUserForgotData->fetch_assoc()) {
-
-	    	//$pwd = decryptPassword($getUserForgotPassword['user_password']);
-	    	$userId = encryptPassword($getUserForgotPassword['id']);
-            $to = $user_email;
-            $subject =  "Myservant - User Forgot Password";
-            $message = '';
-            $message .= '<body>
-			<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
-			<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
-			 <center><img src='.$base_url . "grocery_admin/uploads/logo/".$getSiteSettingsData1["logo"].' class="logo-responsive"></center>
-			</header>
-			<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
-			  <h1 style="color:#fe6003">Your Password</h1>
-			  <p>Dear <span style="color:#fe6003;">'.$getUserForgotPassword["user_full_name"].'</span>.</p>
-			  <p>Want to change your password? Please click on the link given below to reset the password of your Myservant Account </p>
-			  <p><a href="'.$base_url . "reset_password.php?token=".$userId.'" target="_blank"> Click here</a></p>
-
-			  <p>If you are not able to click on the above link, please copy and paste the entire URL into your browsers address bar and press Enter.</p>
-			  <strong>'.$base_url . "reset_password.php?token=".$userId.'</strong>
-				<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
-				<p>Warm Regards,<br>The Myservant Team </p>
-			</article>
-			<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettingsData1['footer_text'].'</footer>
-			</div>
-
-			</body>';
-			
-			//echo $message; die;
-			$name = "My Servant - Grocery";
-			$from = $getSiteSettingsData1["forgot_password_email"];
-			$resultEmail = sendEmail($to,$subject,$message,$from,$name);
-			if($resultEmail == 0) {
-				echo "Mail Sent Success";
-			} else {
-				echo "Mail Sent Failed";
-			}
-
-		        echo  "<script>alert('Password Sent To Your Email,Please Check.');window.location='login.php';</script>";
-		} else {
-	    	echo "<script>alert('Your Entered Email Not Found');</script>";
-	    }
-	}
-?>
 		<section class="flat-tracking background">
 			<div class="container">
 				<div class="row">
@@ -112,15 +57,17 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="title">
-								<center><h3>Forgot Password</h3></center>
+								<center><h3>Reset Password</h3></center>
 								<!--<p class="subscibe">
 									Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br />Excepteur sint occaecat cupidatat non proident.
 								</p>-->
 							</div><!-- /.title -->
 							<div class="tracking-content">
 								<form method="post"  accept-charset="utf-8">
-									<label for="name-contact">Email:</label>
-										<input type="text" id="login_email" name="login_email" placeholder="Email">
+									<label for="user_password">New Password</label>
+										<input type="password" id="login_email" name="login_email" placeholder="New Password"><br>
+										<label for="user_password">Retype Password</label>
+										<input type="password" id="login_email" name="login_email" placeholder="Retype Password"><br>
 									
 									<div class="btn-track">
 										<button type="submit" name="submit">Submit</button>
@@ -227,46 +174,6 @@
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
-
-		<script type="text/javascript">
-
-$('#verify_otp').on('click', function () {
-
-  var user_mobile = $('#user_mobile').val();
-  var mobile_otp = $('#mobile_otp').val();
-  var checkout_key = $('#checkout_key').val();
-  if(user_mobile!='' && mobile_otp!='') {
-
-      $.ajax({
-        type:"post",
-        url:"check_otp.php",
-        data:$("form").serialize(),
-        success:function(result){           
-          if(result == 0) {
-            $("#return_msg").css("display", "block");       
-            $("#return_msg").html("<span style='color:red;'>Please enter valid OTP!</span>");
-            $('#mobile_otp').val('');
-          } else {
-            //Success
-            alert("OTP verified");
-            if (checkout_key == '') {
-                window.location.href = 'index.php';
-            } else {
-                window.location.href = 'checkout.php';
-            }
-          }
-        }
-      });
-
-  } else {
-    alert("Please enter OTP!");
-    $("#return_msg").css("display", "none");
-    return false;
-  }
-  
-});
-
-</script>
 
 </body>	
 </html>
