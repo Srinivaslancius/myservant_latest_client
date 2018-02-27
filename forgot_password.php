@@ -67,10 +67,10 @@
 			  <h1 style="color:#fe6003">Your Password</h1>
 			  <p>Dear <span style="color:#fe6003;">'.$getUserForgotPassword["user_full_name"].'</span>.</p>
 			  <p>Want to change your password? Please click on the link given below to reset the password of your Myservant Account </p>
-			  <p><a href="'.$base_url . "forgot_password.php?token=".$userId.'" target="_blank"> Click here</a></p>
+			  <p><a href="'.$base_url . "reset_password.php?token=".$userId.'" target="_blank"> Click here</a></p>
 
 			  <p>If you are not able to click on the above link, please copy and paste the entire URL into your browsers address bar and press Enter.</p>
-			  <strong>'.$base_url . "forgot_password.php?token=".$userId.'</strong>
+			  <strong>'.$base_url . "reset_password.php?token=".$userId.'</strong>
 				<p>We hope you enjoy your stay at myservant.com, if you have any problems, questions, opinions, praise, comments, suggestions, please free to contact us at any time.</p>
 				<p>Warm Regards,<br>The Myservant Team </p>
 			</article>
