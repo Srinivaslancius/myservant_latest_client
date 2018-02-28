@@ -50,7 +50,7 @@
     display: block;
     width: 34px;
     height: 34px;
-    line-height: 54px;
+    line-height: 73px;
     text-align: center;
     pointer-events: auto;
 	 cursor: pointer;
