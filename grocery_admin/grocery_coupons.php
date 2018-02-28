@@ -36,6 +36,7 @@
           $coupon_code = $_POST['coupon_code'];
           $price_type_id = $_POST['price_type_id'];
           $discount_price = $_POST['discount_price'];
+          $min_order_amount = $_POST['min_order_amount'];
           $coupon_type = $_POST['coupon_type'];
           $coupon_device_type = $_POST['coupon_device_type'];
           $coupon_description = $_POST['coupon_description'];
@@ -48,7 +49,7 @@
             $category_id = '';
             $sub_category_id = $_POST['sub_category_id'];
           }
-          $sql = "INSERT INTO grocery_coupons (`coupon_code`, `price_type_id`, `discount_price`, `coupon_type`, `coupon_start_date`, `coupon_end_date`, `category_id`, `sub_category_id`, `coupon_description`, `coupon_device_type`) VALUES (UPPER('$coupon_code'), '$price_type_id', '$discount_price', '$coupon_type', '$coupon_start_date', '$coupon_end_date', '$category_id', '$sub_category_id', '$coupon_description', '$coupon_device_type')";
+          $sql = "INSERT INTO grocery_coupons (`coupon_code`, `price_type_id`, `discount_price`, `min_order_amount`, `coupon_type`, `coupon_start_date`, `coupon_end_date`, `category_id`, `sub_category_id`, `coupon_description`, `coupon_device_type`) VALUES (UPPER('$coupon_code'), '$price_type_id', '$discount_price', '$min_order_amount', '$coupon_type', '$coupon_start_date', '$coupon_end_date', '$category_id', '$sub_category_id', '$coupon_description', '$coupon_device_type')";
           if($conn->query($sql) === TRUE){
              echo "<script type='text/javascript'>window.location='grocery_coupons.php?msg=success'</script>";
           } else {
@@ -139,6 +140,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Min Order Amount</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="text" name="min_order_amount" class="form-control valid_price_dec" id="form-control-2" placeholder="Min Order Amount" data-error="Please enter Min Order Amount." required>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Coupon Start Date</label>
                                 <div class="col-sm-6 col-md-4">
                                     <input class="start-date-pick form-control" data-format="yyyy-MM-dd" type="text" placeholder="Coupon Start Date" name="coupon_start_date" required="required">
@@ -183,6 +190,7 @@
                                     <th>Sub Category</th>
                                     <th>Price Type</th>
                                     <th>Discount Price</th>
+                                    <th>Min Order Amount</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Status</th>
@@ -201,6 +209,7 @@
                                     <td><?php if($row['sub_category_id'] != '') { $getCategory = getIndividualDetails('grocery_sub_category','id',$row['sub_category_id']); echo $getCategory['sub_category_name']; } else { echo '--' ; } ?></td>
                                     <td><?php if($row['price_type_id'] == 1) { echo "Price"; } else { echo "Percentage"; }?></td>
                                     <td><?php echo $row['discount_price'];?></td>
+                                    <td><?php echo $row['min_order_amount'];?></td>
                                     <td><?php echo $row['coupon_start_date'];?></td>
                                     <td><?php echo $row['coupon_end_date'];?></td>  
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_coupons'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_coupons'>In Active</span>" ;} ?></td>

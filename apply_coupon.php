@@ -43,24 +43,27 @@ if(!empty($_POST['coupon_code']) && !empty($_POST['cart_total']))  {
 		echo 2;
 	} else {
 		if($getCouponPrice->num_rows > 0) {
-			if($getCouponPriceData['price_type_id'] == 1) {
-				$discount_price = $getCouponPriceData['discount_price'] * 1;
-				if($discount_price >= $coupon_total) {
-					echo 1;
-				} else{
-					$cartTotal = ($cart_total - $discount_price);
-					echo $cartTotal.",".-$discount_price.",".$discount_price.",".$getCouponPriceData['price_type_id'].",".$getCouponPriceData['id'].",".$getCouponPriceData['coupon_device_type'];
+			if($coupon_total >= $getCouponPriceData['min_order_amount']) {
+				if($getCouponPriceData['price_type_id'] == 1) {
+					$discount_price = $getCouponPriceData['discount_price'] * 1;
+					if($discount_price >= $coupon_total) {
+						echo 1;
+					} else{
+						$cartTotal = ($cart_total - $discount_price);
+						echo $cartTotal.",".-$discount_price.",".$discount_price.",".$getCouponPriceData['price_type_id'].",".$getCouponPriceData['id'].",".$getCouponPriceData['coupon_device_type'];
+					}
+				} else {
+					$discount_price = ($coupon_total/100) * $getCouponPriceData['discount_price'];
+					if($discount_price >= $cart_total) {
+						echo 1;
+					} else{
+						$cartTotal = ($cart_total - $discount_price);
+						echo $cartTotal.",".-$discount_price.",".$discount_price.",".$getCouponPriceData['price_type_id'].",".$getCouponPriceData['id'].",".$getCouponPriceData['coupon_device_type'];
+					}
 				}
 			} else {
-				$discount_price = ($coupon_total/100) * $getCouponPriceData['discount_price'];
-				if($discount_price >= $cart_total) {
-					echo 1;
-				} else{
-					$cartTotal = ($cart_total - $discount_price);
-					echo $cartTotal.",".-$discount_price.",".$discount_price.",".$getCouponPriceData['price_type_id'].",".$getCouponPriceData['id'].",".$getCouponPriceData['coupon_device_type'];
-				}
+				echo 1;
 			}
-			
 		} else {
 			echo 0;
 		}

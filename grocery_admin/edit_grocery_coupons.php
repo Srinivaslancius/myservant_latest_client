@@ -37,6 +37,7 @@
             $coupon_code = $_POST['coupon_code'];
             $price_type_id = $_POST['price_type_id'];
             $discount_price = $_POST['discount_price'];
+            $min_order_amount = $_POST['min_order_amount'];
             $coupon_type = $_POST['coupon_type'];
             $coupon_device_type = $_POST['coupon_device_type'];
             $coupon_description = $_POST['coupon_description'];
@@ -49,7 +50,7 @@
                 $category_id = '';
                 $sub_category_id = $_POST['sub_category_id'];
             }
-            $sql = "UPDATE `grocery_coupons` SET coupon_code=UPPER('$coupon_code'), price_type_id='$price_type_id', discount_price='$discount_price', coupon_device_type='$coupon_device_type', coupon_type='$coupon_type', coupon_start_date='$coupon_start_date', coupon_end_date='$coupon_end_date', category_id='$category_id', sub_category_id='$sub_category_id', coupon_description='$coupon_description' WHERE id = '$id' ";
+            $sql = "UPDATE `grocery_coupons` SET coupon_code=UPPER('$coupon_code'), price_type_id='$price_type_id', discount_price='$discount_price',min_order_amount='$min_order_amount', coupon_device_type='$coupon_device_type', coupon_type='$coupon_type', coupon_start_date='$coupon_start_date', coupon_end_date='$coupon_end_date', category_id='$category_id', sub_category_id='$sub_category_id', coupon_description='$coupon_description' WHERE id = '$id' ";
             if($conn->query($sql) === TRUE){
               echo "<script type='text/javascript'>window.location='grocery_coupons.php?msg=success'</script>";
             } else {
@@ -138,6 +139,12 @@
                                 <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Discount Price / Percentage</label>
                                 <div class="col-sm-6 col-md-4">
                                     <input type="text" name="discount_price" class="form-control valid_price_dec" id="form-control-2" placeholder="Discount Price / Percentage" data-error="Please enter Correct Discount Price / Percentage." required value="<?php echo $getGroceryCouponsData['discount_price'];?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-control-3" class="col-sm-3 col-md-4 control-label">Min Order Amount</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="text" name="min_order_amount" class="form-control valid_price_dec" id="form-control-2" placeholder="Min Order Amount" data-error="Please enter Correct Min Order Amount." required value="<?php echo $getGroceryCouponsData['min_order_amount'];?>">
                                 </div>
                             </div>
                             <div class="form-group">
