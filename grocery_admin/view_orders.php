@@ -213,10 +213,11 @@
     </div>
     <?php include_once 'footer.php'; ?>
     <script src="js/dashboard-3.min.js"></script>
-     <script src="js/forms-plugins.min.js"></script>
-    <script src="js/tables-datatables.min.js"></script>
+    <script src="js/forms-plugins.min.js"></script>
+    <!-- <script src="js/tables-datatables.min.js"></script> -->
     <script type="text/javascript">
       var table =  $('#table-2').DataTable({
+        dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"]
     });
 
     $('#select-email').on('change', function () {
