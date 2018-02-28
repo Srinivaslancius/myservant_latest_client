@@ -73,7 +73,7 @@ echo'<input type="hidden" id="cat_id1_'.$getProductsData1['id'].'" value="'.$get
                     <div class="price_'.$getProductsData1['id'].'">
                         <span class="sale">Rs: '.$getPricesDetails1['selling_price'].'</span>';
                         if($getPricesDetails1['offer_type'] == 1) { 
-                            echo'<span class="regular">Rs: '.$getPricesDetails1['selling_price'].'</span>';
+                            echo'<span class="regular">Rs: '.$getPricesDetails1['mrp_price'].'</span>';
                         }
                     echo'</div>
                 <div class="row">

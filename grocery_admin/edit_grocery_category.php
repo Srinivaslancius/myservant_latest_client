@@ -95,7 +95,7 @@
         <div class="site-content">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="m-y-0 font_sz_view">Edit Brands</h3>
+                    <h3 class="m-y-0 font_sz_view">Edit Categories</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
