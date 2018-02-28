@@ -364,7 +364,7 @@ a.mask {
              <?php $getBrands = getAllDataWithStatus('food_brand_logos','0'); ?>
           <?php while($getAllBrands = $getBrands->fetch_assoc()) { ?>
           <div class="item <?php if($getAllBrands['id']==4) { echo "active"; } ?>">
-            <div class="col-xs-12 col-sm-3 col-md-2"><a href=""> <img src="<?php echo $base_url . 'uploads/food_brand_logos/'.$getAllBrands['brand_logo'] ?>" alt="" width="200px" height="150px"></a>
+            <div class="col-xs-12 col-sm-2 col-md-2"><a href=""> <img src="<?php echo $base_url . 'uploads/food_brand_logos/'.$getAllBrands['brand_logo'] ?>" alt="" width="100%" height="150px"></a>
             </div>
           </div>
           <?php } ?>

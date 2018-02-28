@@ -3438,7 +3438,7 @@ th {
     }
 
     .carousel-control .glyphicon-chevron-right,.carousel-control .icon-next {
-        margin-right: -30px!important
+        margin-right: -37px !important;
     }
 
     .container.carousel1 {
@@ -3588,7 +3588,7 @@ th {
     }
 
     .carousel-inner.pad_lft {
-        padding-left: 40px!important
+        padding-left: 16px!important
     }
 
     .twof {
@@ -3656,7 +3656,7 @@ th {
     }
 
     .carousel-control .glyphicon-chevron-right,.carousel-control .icon-next {
-        margin-right: 1px!important
+        margin-right: -37px !important;
     }
 
     #country-list {
@@ -3664,7 +3664,7 @@ th {
     }
 
     .carousel-inner.pad_lft {
-        padding-left: 50px!important
+        padding-left: 13px!important
     }
 
     .twof {
@@ -3709,7 +3709,7 @@ th {
     }
 
     .carousel-inner.pad_lft {
-        padding-left: 60px!important
+        padding-left: 16px!important
     }
 
     .twof {
