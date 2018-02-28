@@ -156,8 +156,8 @@ th,td{
 			    $session_cart_id = $_SESSION['CART_TEMP_RANDOM'];
 			    if($_POST['walletid'] == 1) {
 				    $wallet_id = $_SESSION['wallet_id'];
-				    if($_POST['wallet_amount'] > $_POST['order_total_without_wallet']) {
-				    	$wallet_amount = $_POST["order_total_without_wallet"];
+				    if($_POST['wallet_amount'] > $_POST['orderTotalwithoutWallet']) {
+				    	$wallet_amount = $_POST["orderTotalwithoutWallet"]-$_POST["discount_money"];
 				    } else {
 				    	$wallet_amount = $_POST['wallet_amount'];
 				    }
@@ -175,7 +175,7 @@ th,td{
 					$date = date("ymdhis");
 					$contstr = "MYSERVANT-GR";
 					$sub_order_id = $contstr.$random1.$random2.$date;
-					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `lkp_sub_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`,`delivery_slot_date`,`delivery_time`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`, `reward_points`, `product_reward_points`, `coupon_id`, `coupon_device_type`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','$lkp_sub_area_id','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges','$delivery_date','$delivery_time', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date','$reward_points','" . $_POST["product_reward_points"][$i] . "','$coupon_id','$coupon_device_type')";
+					$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `lkp_sub_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`,`delivery_slot_date`,`delivery_time`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`, `reward_points`, `product_reward_points`, `coupon_id`, `coupon_device_type`) VALUES ('$user_id','".$_POST["first_name"]."','".$_POST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_POST["address"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_area_id"]."','$lkp_sub_area_id','".$_POST["order_note"]."','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["product_id"][$i] . "','".$_POST['product_weight'][$i]."','" . $_POST["product_price"][$i] . "','" . $_POST["product_quantity"][$i] . "','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_POST["service_tax"]."','$delivery_charges','$delivery_date','$delivery_time', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date','$reward_points','" . $_POST["product_reward_points"][$i] . "','$coupon_id','$coupon_device_type')"; 
 					$groceryOrders = $conn->query($orders);
 				} 
 				if($payment_group == 1) {
@@ -210,6 +210,7 @@ th,td{
 		$getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
 		$getCity = getIndividualDetails('grocery_lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
 		$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
+		$getAllPaymentsSettings = getIndividualDetails('grocery_payments_settings','id','1');
 		?>
 		<section class="flat-checkout">
 			<form method="post" accept-charset="utf-8">
@@ -333,16 +334,6 @@ th,td{
 									</div>
 								</div>
 								<?php } ?>-->
-								<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']); 
-								$getAllPaymentsSettings = getIndividualDetails('grocery_payments_settings','id','1');
-								?>
-								<input type="hidden" name="wallet_amount" id="wallet_amount" value="<?php echo $getWalletAmount['amount']; ?>">
-								<?php if($getWalletAmount['amount'] > 0) { ?>
-								<label class="containerw"> Wallet
-								  <input type="checkbox" checked="checked" class="wallet_check" value="1" name="walletid">
-								  <span class="checkmarkw"></span>
-								</label>
-								<?php } ?>
 									<table class="product">
 										<thead>
 											<tr>
@@ -386,15 +377,10 @@ th,td{
 									} else {
 										$delivery_charges = 0;
 									}
-									$orderTotal = round($cartTotal+$service_tax+$delivery_charges-$getWalletAmount['amount']);
 									$orderTotalwithoutWallet = round($cartTotal+$service_tax+$delivery_charges);
 									?>
-									<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
-									<input type="hidden" id="order_total" name="order_total" value="<?php echo 0; ?>">
-									<?php } else { ?>
-									<input type="hidden" id="order_total" name="order_total" value="<?php echo $orderTotal; ?>">
-									<?php } ?>
-									<input type="hidden" id="order_total_without_wallet" name="order_total_without_wallet" value="<?php echo $orderTotalwithoutWallet; ?>">
+									<input type="hidden" id="order_total" name="order_total" value="<?php echo $orderTotalwithoutWallet; ?>">
+									<input type="hidden" name="orderTotalwithoutWallet" value="<?php echo $orderTotalwithoutWallet; ?>">
 									<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
 									<input type="hidden" name="delivery_charges" value="<?php echo $delivery_charges; ?>" id="delivery_charges">
 									<input type="hidden" name="delivery_slot_date" value="<?php echo $_REQUEST['slot_date']; ?>">
@@ -404,7 +390,6 @@ th,td{
 									<input type="hidden" name="coupon_id" value="" id="coupon_id">
 									<input type="hidden" name="coupon_device_type" value="" id="coupon_device_type">
 									<input type="hidden" name="reward_points" value="<?php echo round($reward_points); ?>">
-
 									<table>
 										<tbody>	
 											<tr>
@@ -433,32 +418,18 @@ th,td{
 												<td>Order Total</td>
 												<td class="subtotal">Rs . <?php echo $orderTotalwithoutWallet; ?></td>
 											</tr>
-	                                        <?php if($getWalletAmount['amount'] > 0) { ?>
 	                                        <tr id="wallet">
 	                                            <td>Money in Your Wallet</td>
 	                                            <td class="subtotal">Rs . <?php echo $getWalletAmount['amount']; ?></td>
 	                                        </tr>
-	                                        <?php } ?>	
 	                                        <tr id="discount_price">
 								                <td>Discount<span style="color:green">(Coupon Applied.)</td> 
 								                <td><span id="discount_price1" class="pull-right"></span></td>
-								            </tr>							
-											<?php if($getWalletAmount['amount'] > $orderTotalwithoutWallet) { ?>
-											<tr>
-												<td><b>TOTAL</b></td>
-												<td class="price-total"><b>Rs . <?php echo 0; ?></b></td>
-											</tr>
-											<?php } else if($getWalletAmount['amount'] > 0) { ?>
-											<tr>
-												<td><b>TOTAL</b></td>
-												<td class="price-total"><b>Rs . <?php echo round($orderTotal); ?></b></td>
-											</tr>
-											<?php } else { ?>
-											<tr>
+								            </tr>
+								            <tr>
 												<td><b>TOTAL</b></td>
 												<td class="price-total"><b>Rs . <?php echo round($orderTotalwithoutWallet); ?></b></td>
 											</tr>
-											<?php } ?>
 											
 											<?php
 											$getRewardPointsdata = getIndividualDetails('grocery_reward_points','id',1);
@@ -471,6 +442,16 @@ th,td{
 											
 										</tbody>
 									</table>
+
+									<?php $getWalletAmount = getIndividualDetails('user_wallet','user_id',$_SESSION['user_login_session_id']);
+									?>
+									<input type="hidden" name="wallet_amount" id="wallet_amount" value="<?php echo $getWalletAmount['amount']; ?>">
+									<?php if($getWalletAmount['amount'] > 0) { ?>
+									<label class="containerw"> Wallet
+									  <input type="checkbox" class="wallet_check" value="1" name="walletid">
+									  <span class="checkmarkw"></span>
+									</label>
+									<?php } ?>
 									
 										<div class="form-group coupon">
 											<div class="row">
@@ -627,22 +608,20 @@ th,td{
 			});
 		</script>
 		<script type="text/javascript">
-		    var totalWithoutWallet = $('#order_total_without_wallet').val();
-		    var totalWithWallet = $('#order_total').val();
+			$("#wallet").hide();
+		    var totalWithoutWallet = $('#order_total').val();
+		    var wallet_amount = $('#wallet_amount').val();
 		    $(".wallet_check").click(function() {
 		    	var discount_amount = $('#discount_money').val();
 			    if($(this).is(":checked")) {
 			        $("#wallet").show();
-			    	if(totalWithWallet == 0) {
-				    	$('.coupon,#discount_price').hide();
-				    	$('#discount_money').val('');
-				    	$('.price-total').html("Rs. "+totalWithWallet);
-			    		$('#order_total').val(totalWithWallet);
-				    } else {
-				    	$('.coupon').show();
-				    	$('.price-total').html("Rs. "+Math.round((totalWithWallet-discount_amount)));
-			    		$('#order_total').val(Math.round(totalWithWallet-discount_amount));
-				    }
+			        if(parseInt(wallet_amount) > parseInt($('#order_total').val())) {
+			        	$('.price-total').html("Rs. "+0);
+			    		$('#order_total').val(0);
+			        } else {
+			        	$('.price-total').html("Rs. "+Math.round((totalWithoutWallet-wallet_amount-discount_amount)));
+			    		$('#order_total').val(Math.round(totalWithoutWallet-wallet_amount-discount_amount));
+			        }
 			    } else {
 			        $("#wallet").hide();
 			    	if(totalWithoutWallet == 0) {
