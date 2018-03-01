@@ -16,6 +16,9 @@
     #ui-datepicker-div{
         top:146.483px !important;
     }
+	p {
+    margin: 0 13px 10px;
+}
     </style>
   </head>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
@@ -115,7 +118,7 @@
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
                                                     <h4 class="modal-title">Product Images & Prices</h4>
                                                 </div>
-                                                <div class="modal-body">
+                                                <div class="modal-body" style="padding-left:10px">
                                                     <div class="col-md-12 fr1 mt5">
                                                         <h3 class="m-t-0 m-b-5 font_sz_view"><b>Product Prices</b></h3>
                                                     </div>
@@ -186,7 +189,7 @@
                                                         <div class="col-md-12 mt5 padd0">
                                                             <div class="row">
                                                                 <div class="col-md-3 mb5">
-                                                                    <p><b>Product Nmae</b></p>
+                                                                    <p><b>Product Name</b></p>
                                                                 </div>
                                                                 <div class="col-md-3 mb5">
                                                                     <p><b>Image</b></p>

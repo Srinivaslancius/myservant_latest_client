@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-<!-- Mirrored from big-bang-studio.com/cosmos/pages-invoice.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Aug 2017 10:14:32 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +12,19 @@
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/cosmos.min.css">
     <link rel="stylesheet" href="css/application.min.css">
+	<style>
+	.site-content {
+    padding: 15px 200px 65px 200px;
+	margin:0 auto;
+	margin-left:0px !important;
+	}
+	.site-footer{
+		margin-left:0px !important;
+	}
+	.layout{
+		padding-top:20px !important;
+	}
+	</style>
   </head>
 
 <?php
@@ -111,7 +122,7 @@ $service_provider = '--';
         </div>
       </div>
       <div class="site-footer">
-        2017 © LANCIUS IT SOLUTIONS
+        2017 © Designed & Developed By Lancius IT Solutions
       </div>
     </div>
     <script src="js/vendor.min.js"></script>

@@ -118,12 +118,8 @@ echo'<div class="row">
 	                    <tr>
 	                        <td>GST('.$_POST['service_tax'].'%)</td>';
 	                        $service_tax += ($_POST['service_tax']/100)*$subTotal;
-	                        $orderTotal = $subTotal+$service_tax+$_POST['delivery_charges'];
+	                        $orderTotal = $subTotal+$service_tax;
 	                        echo'<td class="subtotal" id="serviceTax1">Rs . '.$service_tax.'</td>
-	                    </tr>
-	                    <tr>
-	                        <td>Delivery Charges</td>
-	                        <td class="subtotal">Rs . '.$_POST['delivery_charges'].'</td>
 	                    </tr>
 	                    <input type="hidden" name="service_tax" id="service_tax" value="'.$_POST['service_tax'].'">
 	                    <input type="hidden" name="delivery_charges" id="delivery_charges" value="'.$_POST['delivery_charges'].'">
