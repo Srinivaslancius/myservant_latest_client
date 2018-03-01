@@ -6,7 +6,7 @@ include "../admin_includes/food_common_functions.php";
 if(isset($_POST['cusine_type']) && $_POST['cusine_type']!='' ) {
     //$getFoodVendors="SELECT * FROM food_vendor_add_cusine_types WHERE vendor_cusine_type_id IN (".implode(',', $_POST['cusine_type']).")  AND vendor_id IN (SELECT restaurant_id FROM food_products WHERE lkp_status_id = 0) GROUP BY vendor_id ORDER BY id DESC";
 
-   $getFoodVendors = "SELECT food_vendors.id,food_vendors.restaurant_name,food_vendors.restaurant_address,food_vendors.description,food_vendors.logo,food_vendors.lkp_status_id,food_vendor_add_cusine_types.vendor_id,food_vendor_add_cusine_types.vendor_cusine_type_id FROM food_vendors LEFT JOIN food_vendor_add_cusine_types ON food_vendors.id=food_vendor_add_cusine_types.vendor_id AND food_vendor_add_cusine_types.vendor_cusine_type_id IN (".implode(',', $_POST['cusine_type']).") GROUP BY food_vendor_add_cusine_types.vendor_id";
+   $getFoodVendors = "SELECT food_vendors.id,food_vendors.restaurant_name,food_vendors.restaurant_address,food_vendors.description,food_vendors.logo,food_vendors.lkp_status_id,food_vendor_add_cusine_types.vendor_id,food_vendor_add_cusine_types.vendor_cusine_type_id FROM food_vendors LEFT JOIN food_vendor_add_cusine_types ON food_vendors.id=food_vendor_add_cusine_types.vendor_id WHERE food_vendor_add_cusine_types.vendor_cusine_type_id IN (".implode(',', $_POST['cusine_type']).") AND food_vendors.lkp_status_id = 0 GROUP BY food_vendor_add_cusine_types.vendor_id";
     $getSearchResults=$conn->query($getFoodVendors); 
 } else {
     $getSearchResults = getAllRestaruntsWithProducts('0','','');
