@@ -150,9 +150,7 @@ $discount_money = $getOrdersData1['discount_money'].'(<span style="color:green">
           </div>
         </div>
       </div>
-      <div class="site-footer">
-        2017 © LANCIUS IT SOLUTIONS
-      </div>
+      <?php include_once 'admin_includes/footer.php'; ?>
     </div>
     <script src="js/vendor.min.js"></script>
     <script src="js/cosmos.min.js"></script>
