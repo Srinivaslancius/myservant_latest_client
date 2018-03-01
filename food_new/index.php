@@ -157,14 +157,14 @@ a.mask {
       <?php $getBanners = getAllDataWhere('food_banners','lkp_status_id','0'); ?>
       <?php $i=1; while($getFoodhomeBanners = $getBanners->fetch_assoc()) { ?>
        <div class="item <?php if($i==1) { echo "active"; } ?>">
-         <img src="<?php echo $base_url . 'uploads/food_banner_images/'.$getFoodhomeBanners['banner'] ?>"  alt="<?php echo $getFoodhomeBanners['title'];?>" style="width:100%;height:400px">
+         <img title="food"src="<?php echo $base_url . 'uploads/food_banner_images/'.$getFoodhomeBanners['banner'] ?>"  alt="<?php echo $getFoodhomeBanners['title'];?>" style="width:100%;height:400px">
        </div>
       <?php $i++; } ?>
 
       <?php $getBanners1 = getAllRestaruntsWithProducts('0','',''); ?>
       <?php $j=1; while($getVendorBanners = $getBanners1->fetch_assoc()) { ?>
         <div class="item">
-           <a href="view_rest_menu.php?key=<?php echo encryptPassword($getVendorBanners['id']);?>"><img src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getVendorBanners['vendor_banner'] ?>" alt="<?php echo $getVendorBanners['vendor_name'];?>" style="width:100%;height:400px"><a/>
+           <a href="view_rest_menu.php?key=<?php echo encryptPassword($getVendorBanners['id']);?>"><img title="food" src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getVendorBanners['vendor_banner'] ?>" alt="<?php echo $getVendorBanners['vendor_name'];?>" style="width:100%;height:400px"><a/>
         </div>
       <?php $j++; } ?>
    </div>
