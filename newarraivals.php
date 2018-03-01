@@ -177,6 +177,7 @@
 												<option value="recent">Sort by recent</option>
 												<option value="low_high">Price low to high</option>
 												<option value="high_low">Price high to low</option>
+												<option value="a_z">Sort by A to Z</option>
 											</select>
 										</div>										
 									</div>
