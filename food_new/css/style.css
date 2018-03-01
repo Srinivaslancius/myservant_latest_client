@@ -1184,7 +1184,7 @@ ul#cat_nav li a.active,ul#cat_nav li a:hover {
 #sub_content {
     display: table-cell;
     padding: 0 15%;
-    font-size: 16px
+    font-size: 14px;
 }
 
 #sub_content #thumb {
@@ -3360,6 +3360,22 @@ th {
 }
 
 @media only screen and (max-width: 480px) {
+	#subheader{
+		width:100%;
+		height:auto;
+	}
+	#subheader h5 {
+    margin: 0px 521px !important;
+    font-size: 12px;
+}
+	#subheader p{
+		 margin: 0px 521px !important;
+   
+	}
+	.btn-danger.twi_ter {
+    padding-left: 20px;
+    padding-right: 14px;
+	}
 	.img-responsive.immge{
 		width:100%;
 		height:150px !important;
@@ -3550,6 +3566,10 @@ th {
 }
 
 @media screen and (max-width: 640px) and (min-width:360px) {
+	.btn-danger.twi_ter {
+    padding-left: 20px;
+    padding-right: 22px;
+}
 	#custom-search-input input.btn_search{
 	height:38px !important;
 }
@@ -3698,6 +3718,10 @@ th {
 }
 
 @media screen and (max-width: 732px) and (min-width:412px) {
+	.btn-danger.twi_ter {
+    padding-left: 25px;
+    padding-right: 34px;
+}
     .btn-info {
         padding-left:50px!important;
         padding-right: 65px!important
