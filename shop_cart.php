@@ -158,10 +158,10 @@
                                         <?php if($getAllPaymentsSettings['delivery'] == 1 && $subTotal <= $getAllPaymentsSettings['order_amount']) { 
                                         	$delivery_charges = $getAllPaymentsSettings['delivery_charges'];
 											?>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>Delivery Charges</td>
                                             <td class="subtotal">Rs . <?php echo $getAllPaymentsSettings['delivery_charges']; ?></td>
-                                        </tr>
+                                        </tr> -->
                                         <?php } else {
 											$delivery_charges = 0;
 										} ?>
@@ -185,7 +185,7 @@
                                         </tr> -->
                                         <tr>
                                             <td>Total</td>
-                                            <td class="price-total" id="ordertotal">Rs. <?php echo round($subTotal+$service_tax+$delivery_charges); ?></td>
+                                            <td class="price-total" id="ordertotal">Rs. <?php echo round($subTotal+$service_tax); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
