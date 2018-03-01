@@ -9,8 +9,9 @@ $id = $_GET['coupon_id'];
     $coupon_device_type = $_POST['coupon_device_type'];
     $price_type_id = $_POST['price_type_id'];
     $discount_price = $_POST['discount_price'];
+    $min_order_amount = $_POST['min_order_amount'];
     $status = $_POST['lkp_status_id'];
-    $sql = "UPDATE `food_coupons` SET coupon_code=UPPER('$coupon_code'), coupon_device_type='$coupon_device_type', price_type_id='$price_type_id', discount_price='$discount_price', lkp_status_id = '$status' WHERE id = '$id' ";
+    $sql = "UPDATE `food_coupons` SET coupon_code=UPPER('$coupon_code'), coupon_device_type='$coupon_device_type', price_type_id='$price_type_id', discount_price='$discount_price', min_order_amount='$min_order_amount', lkp_status_id = '$status' WHERE id = '$id' ";
     if($conn->query($sql) === TRUE){
       echo "<script type='text/javascript'>window.location='food_coupons.php?msg=success'</script>";
     } else {
@@ -59,6 +60,11 @@ $id = $_GET['coupon_id'];
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Discount Price / Percentage</label>
                     <input type="text" name="discount_price" class="form-control valid_price_dec" id="form-control-2" placeholder="Discount Price / Percentage" data-error="Please enter Discount Price / Percentage." required value="<?php echo $getFoodCouponsData['discount_price'];?>">
+                    <div class="help-block with-errors"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Min Order Amount</label>
+                    <input type="text" name="min_order_amount" class="form-control valid_price_dec" id="form-control-2" placeholder="Min Order Amount" data-error="Please enter Min Order Amount." required value="<?php echo $getFoodCouponsData['min_order_amount'];?>">
                     <div class="help-block with-errors"></div>
                   </div>
                  <?php $getStatus = getAllData('lkp_status');?>

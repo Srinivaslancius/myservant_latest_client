@@ -12,6 +12,23 @@
           </div>
           <div class="panel-body">
             <div class="table-responsive">
+              <div class="col s12 m12 l12">                  
+                <?php $sql = "SELECT * FROM food_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 GROUP BY email"; $getUsersData1 = $conn->query($sql);?>
+                  <div class="form-group col-md-3">                    
+                    <select id="select-email" class="custom-select">
+                       <option value="">Select email</option>
+                        <?php while ($row = $getUsersData1->fetch_assoc()) { ?>
+                          <option value="<?php echo $row['email']; ?>"><?php echo $row['email']; ?></option>
+                        <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="clear_fix"></div>
+                <p id="date_filter">
+                  <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="text" id="datepicker_from" />
+                  <span id="date-label-to" class="date-label">To:<input class="date_range_filter date" type="text" id="datepicker_to" />
+                </p>
+                <div class="clear_fix"></div>
               <table class="table table-striped table-bordered dataTable" id="table-1">
                 <thead>
                   <tr>

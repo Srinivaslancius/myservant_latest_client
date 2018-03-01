@@ -125,7 +125,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 	<div class="boxed">
 		<div class="overlay"></div>
 		<?php if($_SESSION['news_letter_email'] == '') { ?>
-		<div class="popup-newsletter">
+		<!-- <div class="popup-newsletter">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-2">
@@ -147,7 +147,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 										<input type="checkbox" id="popup-not-show" name="category">
 										<label for="popup-not-show">Don't show this popup again</label>
 									</div> -->
-								</div>
+								<!-- </div>
 							</div>
 							<div class="popup-image">
 								<img src="images/product/other/my.jpg" alt="">
@@ -158,7 +158,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<?php } ?>
 
 		<section id="header" class="header">

@@ -83,6 +83,7 @@
 
 								$getProductName = getIndividualDetails('grocery_product_name_bind_languages','product_id',$getCartItems['product_id']);
 								$getProductWeight = getIndividualDetails('grocery_product_bind_weight_prices','id',$getCartItems['product_weight_type']);
+								$getAllPaymentsSettings = getIndividualDetails('grocery_payments_settings','id','1');
 								?>
 									<tr>
 										<td>
@@ -154,10 +155,16 @@
                                             <?php $service_tax += ($getSiteSettingsData1['service_tax']/100)*$subTotal; ?>
                                             <td class="subtotal" id="serviceTax1">Rs . <?php echo $service_tax; ?></td>
                                         </tr>
+                                        <?php if($getAllPaymentsSettings['delivery'] == 1 && $subTotal <= $getAllPaymentsSettings['order_amount']) { 
+                                        	$delivery_charges = $getAllPaymentsSettings['delivery_charges'];
+											?>
                                         <tr>
                                             <td>Delivery Charges</td>
-                                            <td class="subtotal">Rs . <?php echo $getSiteSettingsData1['delivery_charges']; ?></td>
+                                            <td class="subtotal">Rs . <?php echo $getAllPaymentsSettings['delivery_charges']; ?></td>
                                         </tr>
+                                        <?php } else {
+											$delivery_charges = 0;
+										} ?>
                                         <input type="hidden" name="service_tax" id="service_tax" value="<?php echo $getSiteSettingsData1['service_tax']; ?>">
                                         <input type="hidden" name="delivery_charges" id="delivery_charges" value="<?php echo $getSiteSettingsData1['delivery_charges']; ?>">
                                         <!-- <tr>
@@ -178,7 +185,7 @@
                                         </tr> -->
                                         <tr>
                                             <td>Total</td>
-                                            <td class="price-total" id="ordertotal">Rs. <?php echo round($subTotal+$service_tax+$getSiteSettingsData1['delivery_charges']); ?></td>
+                                            <td class="price-total" id="ordertotal">Rs. <?php echo round($subTotal+$service_tax+$delivery_charges); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

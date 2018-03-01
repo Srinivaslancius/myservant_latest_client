@@ -42,6 +42,29 @@
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
+                        <div class="col s12 m12 l12"> 
+                        <?php $getProdDet1 = $conn->query("SELECT * FROM grocery_products GROUP BY grocery_category_id"); ?>
+                        <?php $getProdDet2 = $conn->query("SELECT * FROM grocery_products GROUP BY grocery_sub_category_id"); ?>
+                          <div class="form-group col-md-3">                    
+                            <select id="select-category" class="custom-select">
+                               <option value="">Select Category</option>
+                                <?php while ($row = $getProdDet1->fetch_assoc()) { ?>
+                                    <?php $catNAme1 = getIndividualDetails('grocery_category','id',$row['grocery_category_id']); ?>
+                                  <option value="<?php echo $catNAme1['category_name']; ?>"><?php echo $catNAme1['category_name']; ?></option>
+                                <?php } ?>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-3">                    
+                            <select id="select-sub-category" class="custom-select">
+                               <option value="">Select Sub Category</option>
+                                <?php while ($row1 = $getProdDet2->fetch_assoc()) { ?>
+                                    <?php $subcatNAme1 = getIndividualDetails('grocery_sub_category','id',$row1['grocery_sub_category_id']); ?>
+                                  <option value="<?php echo $subcatNAme1['sub_category_name']; ?>"><?php echo $subcatNAme1['sub_category_name']; ?></option>
+                                <?php } ?>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="clear_fix"></div>
                         <table class="table table-striped table-bordered dataTable" id="table-2">
                             <thead>
                                 <tr>
@@ -207,9 +230,18 @@
         </div>
     <?php include_once 'footer.php'; ?>
     <script src="js/dashboard-3.min.js"></script>
-    <script src="js/tables-datatables.min.js"></script>
+    <!-- <script src="js/tables-datatables.min.js"></script> -->
     <script type="text/javascript">
-      $('input.date-pick').datepicker({minDate: 0, maxDate: "+2M"});
+      var table =  $('#table-2').DataTable({
+            dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"]
+        });
+
+        $('#select-category').on('change', function () {
+            table.columns(2).search( this.value ).draw();
+        } );
+        $('#select-sub-category').on('change', function () {
+            table.columns(3).search( this.value ).draw();
+        } );
     </script>
   </body>
 </html>

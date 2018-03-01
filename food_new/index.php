@@ -170,10 +170,12 @@ a.mask {
    </div>
     <?php $getAllFoodOrders = "SELECT * FROM food_orders GROUP BY order_id ORDER BY id DESC";
           $getFoodOrders = $conn->query($getAllFoodOrders);
-          $getFoodOrdersCount = $getFoodOrders->num_rows;?>
+          $getFoodOrdersCount = $getFoodOrders->num_rows;
+          $getRowsCount = getAllDataWhere('food_vendors','lkp_status_id',0);
+          $getRestaurantCount = $getRowsCount->num_rows;?>
      <div id="count" class="hidden-xs">
         <ul>
-            <li><span class="number"><?php echo getRowsCount('food_vendors'); ?></span> Restaurants</li>
+            <li><span class="number"><?php echo $getRestaurantCount; ?></span> Restaurants</li>
             <li><span class="number"><?php echo $getFoodOrdersCount ?></span> People Served</li>
             <li><span class="number"><?php echo getUsersRowsCount('users','lkp_admin_service_type_id','2'); ?></span> Registered Users</li>
         </ul>
