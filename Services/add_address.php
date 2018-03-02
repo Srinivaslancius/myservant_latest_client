@@ -47,7 +47,21 @@ p{
 b, strong {
     font-weight: 600;
 }
-
+.button1 {
+    background-color: #fe6003;
+    border-color: #fe6003;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+	height:40px;
+	border-top-right-radius:4px;
+	border-bottom-right-radius:4px;
+}
 </style>
 </head>
 
@@ -192,6 +206,30 @@ b, strong {
 								<div class="default-title">
 									<h2>Address Details</h2>
 								</div>
+								<div class="One">
+								
+							<div class="row">
+									  	<div class="col-sm-3"></div>
+									  	<div class="col-sm-6">
+											<center><img src="img/myaddress.png">
+											<h4>No Addresses found in your account!</h4>
+											<p style="text-align:center">Add a delivery address.</p>
+											<div class="row">
+								<div class="col-sm-2">
+								</div>
+								<div class="col-sm-8">
+								 <div id="divId">
+								<input  name="submit" class="btn_full" value="Add New Address">
+								</div>
+								</div>
+								<div class="col-sm-2">
+								</div>
+								</div>
+										</div>
+										<div class="col-sm-3"></div>
+									</div>
+									</div>
+									<div class="Two">
 								<div class="feature">
 									<label class="radiochck">
 										<input type="radio" checked="checked" name="radio"> Address 1
@@ -222,7 +260,107 @@ b, strong {
 								</div>
 								<div class="col-sm-4">
 								 <div id="divId">
-								<input type="submit" name="submit" class="btn_full" value="Add New Address">
+								<input  name="submit" class="btn_full" value="Add New Address">
+								</div>
+								</div>
+								<div class="col-sm-4">
+								</div>
+								</div>
+								</div>
+							</div>
+							<div class="Three">
+							<div class="row">
+									<div class="form-group col-md-6">
+										<label>First name <sup>*</sup>
+										</label>
+										<input type="text" name="first_name" id="name_contact" value="<?php echo $getUser['user_full_name']; ?>" placeholder="" class="form-control" required>
+									</div>
+									<div class="form-group col-md-6">
+										<label>Last name <sup>*</sup>
+										</label>
+										<input type="text" name="last_name" id="lastname_contact" value="" placeholder="" class="form-control" required>
+									</div>
+									<div class="form-group col-md-6">
+										<label>Email Address <sup>*</sup>
+										</label>
+										<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email_contact" value="<?php echo $getUser['user_email']; ?>" placeholder="" class="form-control" required readonly>
+									</div>
+									<div class="form-group col-md-6">
+										<label>Phone <sup>*</sup>
+										</label>
+										<input type="tel" name="mobile" id="phone_contact" value="<?php echo $getUser['user_mobile']; ?>" placeholder="" maxlength="10" pattern="[0-9]{10}" class="form-control valid_mobile_num" required>
+									</div>
+									<?php $getStates = getAllDataWithStatus('lkp_states','0'); ?>
+									<div class="form-group col-md-6">
+										<label>State <sup>*</sup>
+										</label>
+										<select name="state" id="lkp_state_id" class="form-control" onChange="getDistricts(this.value);" required>
+											<option value="">Select State</option>
+											<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
+											<option <?php if($getStatesData['id'] == $getUserAdressDetails['state']) { echo "Selected"; } ?> value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
+											<?php } ?>
+										</select>
+									</div>
+									<?php $getDistrcits = getAllDataWithStatus('lkp_districts','0');?>
+									<div class="form-group col-md-6">
+										<label>District <sup>*</sup>
+										</label>
+										<select name="district" id="lkp_district_id" placeholder="District" class="form-control" onChange="getCities(this.value);" required>
+											<option value="">Select District</option>
+											<?php while($row = $getDistrcits->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['district']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['district_name']; ?></option>
+					                      	<?php } ?>
+										</select>
+									</div>
+									<?php $getCities = getAllDataWithStatus('lkp_cities','0');?>
+									<div class="form-group col-md-6">
+										<label>City <sup>*</sup>
+										</label>
+										<select name="city" id="lkp_city_id" class="form-control" placeholder="City" onChange="getPincodes(this.value);" required>
+											<option value="">Select City</option>
+											<?php while($row = $getCities->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['city']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['city_name']; ?></option>
+					                      	<?php } ?>
+										</select>
+									</div>
+									<?php $getPincodes = getAllDataWithStatus('lkp_pincodes','0');?>
+									<div class="form-group col-md-6">
+										<label>Pincode <sup>*</sup>
+										</label>
+										<select name="postal_code" id="lkp_pincode_id" class="form-control" class="form-control valid_mobile_num" maxlength="6" onChange="getLocations(this.value);" placeholder="Zip / Postal Code" required>
+											<option value="">Select Pincode</option>
+											<?php while($row = $getPincodes->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['postal_code']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['pincode']; ?></option>
+					                      	<?php } ?>
+										</select>
+									</div>
+									<?php $getLocations = getAllDataWithStatus('lkp_locations','0');?>
+									<div class="form-group col-md-6">
+										<label>Location <sup>*</sup>
+										</label>
+										<select name="location" id="lkp_location_id" class="form-control" placeholder="Location" required>
+											<option value="">Select Location</option>
+											<?php while($row = $getLocations->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['location']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
+					                      	<?php } ?>
+										</select>
+									</div>
+									<div class="form-group col-md-12">
+										<label>Address <sup>*</sup>
+										</label>
+										<input type="text" name="address" value="" placeholder="" class="form-control" required>
+									</div>
+									<div class="form-group col-lg-12 col-md-12 col-xs-12">
+										<label>Order note</label>
+										<textarea id="order_note" name="order_note" placeholder="Notes about your order, e.g. special notes for delivery" class="form-control"></textarea>
+									</div>
+								</div>
+								<div class="row">
+								<div class="col-sm-4">
+								</div>
+								<div class="col-sm-4">
+								 <div id="divId">
+								<input  name="submit" class="btn_full" value="Submit">
 								</div>
 								</div>
 								<div class="col-sm-4">
@@ -559,6 +697,19 @@ b, strong {
 			radioClass: 'iradio_square-grey'
 		});
 	</script>
+	<script>
+$(document).ready(function(){
+	 $(".Two,.Three").hide();
+    $(".One").click(function(){
+        $(".One,.Three").hide();
+		$(".Two").show();
+		 $(".Two").click(function(){
+			   $(".Two,.One").hide();
+			   $(".Three").show();
+		 })
+    });
+});
+</script>
 </body>
 
 </html>
