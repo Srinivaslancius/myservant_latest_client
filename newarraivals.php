@@ -148,7 +148,7 @@
 								<?php while($getBannersData1 = $getBannersData->fetch_assoc()) { ?>
 								<div class="slider-item style9">
 									<div class="item-image">
-										<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt="">
+										<img title="<?php echo $getBannersData1['title']; ?>" src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt="">
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style9 -->
@@ -177,6 +177,7 @@
 												<option value="recent">Sort by recent</option>
 												<option value="low_high">Price low to high</option>
 												<option value="high_low">Price high to low</option>
+												<option value="a_z">Sort by A to Z</option>
 											</select>
 										</div>										
 									</div>

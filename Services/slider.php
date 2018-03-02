@@ -8,7 +8,7 @@
 			<a href='sub_categories.php?key=<?php echo encryptPassword($getBannerData['service_category_id'])?>'>
 		<?php } ?>
 		<div class="ls-slide" data-ls="slidedelay: 1500; transition2d:5;">
-			<img src="<?php echo $base_url . 'uploads/services_banner_images/'.$getBannerData['banner'] ?>" class="ls-bg" alt="<?php echo $getBannerData['title'];?>" class="img-responsive">
+			<img title="Services" src="<?php echo $base_url . 'uploads/services_banner_images/'.$getBannerData['banner'] ?>" class="ls-bg" alt="<?php echo $getBannerData['title'];?>" class="img-responsive">
 		</div>
 		<?php if($getBannerData['lkp_banner_type_id']==1) { ?>
 			</a>

@@ -49,8 +49,8 @@
     z-index: 2;
     display: block;
     width: 34px;
-    height: 34px;
-    line-height: 73px;
+    height: 54px;
+    line-height: 50px;
     text-align: center;
     pointer-events: auto;
 	 cursor: pointer;
