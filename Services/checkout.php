@@ -188,19 +188,24 @@ margin: -30px 0px 20px;
 		<div class="container margin_60">
 		<div class="feature">
 			<div class="checkout-page">
-
 				<?php
 				$id = $_SESSION['user_login_session_id'];
-				$getUserData = getAllDataWhere('users','id',$id);
-				$getUser = $getUserData->fetch_assoc();
-				$getUserAdress = "SELECT * FROM services_orders WHERE user_id = $id ORDER BY id DESC";
-				$getUserAdress1 = $conn->query($getUserAdress);
-				$getUserAdressDetails = $getUserAdress1->fetch_assoc();
+				$customer_id = $_GET['adid'];
+				$getCustomerDeatils = getIndividualDetails('grocery_add_address','id',$customer_id);
+				$getState = getIndividualDetails('lkp_states','id',$getCustomerDeatils['lkp_state_id']);
+				$getDistrict = getIndividualDetails('lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
+				$getPincode = getIndividualDetails('lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
+				$getCity = getIndividualDetails('lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
+				$getArea = getIndividualDetails('lkp_locations','id',$getCustomerDeatils['lkp_location_id']);
 				?>
 				<form method="post" name="form">
 				<div class="row">
 					<div class="col-md-7"  style="padding-right:20px">
-
+						<input type="hidden" name="state" value="<?php echo $getCustomerDeatils['lkp_state_id']; ?>">
+						<input type="hidden" name="district" value="<?php echo $getCustomerDeatils['lkp_district_id']; ?>">
+						<input type="hidden" name="postal_code" value="<?php echo $getCustomerDeatils['lkp_pincode_id']; ?>">
+						<input type="hidden" name="city" value="<?php echo $getCustomerDeatils['lkp_city_id']; ?>">
+						<input type="hidden" name="location" value="<?php echo $getCustomerDeatils['lkp_location_id']; ?>">
 						<div class="billing-details">
 							<div class="shop-form">
 								<div class="default-title">
@@ -210,92 +215,52 @@ margin: -30px 0px 20px;
 									<div class="form-group col-md-6">
 										<label>First name <sup>*</sup>
 										</label>
-										<input type="text" name="first_name" id="name_contact" value="<?php echo $getUser['user_full_name']; ?>" placeholder="" class="form-control" required>
+										<input type="text" readonly name="first_name" id="name_contact" value="<?php echo $getCustomerDeatils['first_name']; ?>" placeholder="" class="form-control" required>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Last name <sup>*</sup>
 										</label>
-										<input type="text" name="last_name" id="lastname_contact" value="" placeholder="" class="form-control" required>
+										<input type="text" readonly name="last_name" id="lastname_contact" value="<?php echo $getCustomerDeatils['last_name']; ?>" placeholder="" class="form-control" required>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Email Address <sup>*</sup>
 										</label>
-										<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email_contact" value="<?php echo $getUser['user_email']; ?>" placeholder="" class="form-control" required readonly>
+										<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email_contact" value="<?php echo $getCustomerDeatils['email']; ?>" placeholder="" class="form-control" required readonly>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Phone <sup>*</sup>
 										</label>
-										<input type="tel" name="mobile" id="phone_contact" value="<?php echo $getUser['user_mobile']; ?>" placeholder="" maxlength="10" pattern="[0-9]{10}" class="form-control valid_mobile_num" required>
+										<input type="tel" readonly name="mobile" id="phone_contact" value="<?php echo $getCustomerDeatils['phone']; ?>" placeholder="" maxlength="10" pattern="[0-9]{10}" class="form-control valid_mobile_num" required>
 									</div>
-									<?php $getStates = getAllDataWithStatus('lkp_states','0'); ?>
 									<div class="form-group col-md-6">
 										<label>State <sup>*</sup>
 										</label>
-										<select name="state" id="lkp_state_id" class="form-control" onChange="getDistricts(this.value);" required>
-											<option value="">Select State</option>
-											<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
-											<option <?php if($getStatesData['id'] == $getUserAdressDetails['state']) { echo "Selected"; } ?> value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
-											<?php } ?>
-										</select>
+										<input type="text" readonly name="lkp_state_id" id="lkp_state_id" value="<?php echo $getState['state_name']; ?>" placeholder="State" class="form-control" required>
 									</div>
-									<?php $getDistrcits = getAllDataWithStatus('lkp_districts','0');?>
 									<div class="form-group col-md-6">
 										<label>District <sup>*</sup>
 										</label>
-										<select name="district" id="lkp_district_id" placeholder="District" class="form-control" onChange="getCities(this.value);" required>
-											<option value="">Select District</option>
-											<?php while($row = $getDistrcits->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['district']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['district_name']; ?></option>
-					                      	<?php } ?>
-										</select>
+										<input type="text" readonly name="lkp_district_id" id="lkp_district_id" value="<?php echo $getDistrict['district_name']; ?>" placeholder="District" class="form-control" required>
 									</div>
-									<?php $getCities = getAllDataWithStatus('lkp_cities','0');?>
 									<div class="form-group col-md-6">
 										<label>City <sup>*</sup>
 										</label>
-										<select name="city" id="lkp_city_id" class="form-control" placeholder="City" onChange="getPincodes(this.value);" required>
-											<option value="">Select City</option>
-											<?php while($row = $getCities->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['city']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['city_name']; ?></option>
-					                      	<?php } ?>
-										</select>
+										<input type="text" readonly name="lkp_city_id" id="lkp_city_id" value="<?php echo $getCity['city_name']; ?>" placeholder="City" class="form-control" required>
 									</div>
-									<?php $getPincodes = getAllDataWithStatus('lkp_pincodes','0');?>
 									<div class="form-group col-md-6">
 										<label>Pincode <sup>*</sup>
 										</label>
-										<select name="postal_code" id="lkp_pincode_id" class="form-control" class="form-control valid_mobile_num" maxlength="6" onChange="getLocations(this.value);" placeholder="Zip / Postal Code" required>
-											<option value="">Select Pincode</option>
-											<?php while($row = $getPincodes->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['postal_code']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['pincode']; ?></option>
-					                      	<?php } ?>
-										</select>
+										<input type="text" readonly name="lkp_pincode_id" id="lkp_pincode_id" value="<?php echo $getPincode['pincode']; ?>" placeholder="Zip / Postal Code" class="form-control" required>
 									</div>
-									<?php $getLocations = getAllDataWithStatus('lkp_locations','0');?>
 									<div class="form-group col-md-6">
 										<label>Location <sup>*</sup>
 										</label>
-										<select name="location" id="lkp_location_id" class="form-control" placeholder="Location" required>
-											<option value="">Select Location</option>
-											<?php while($row = $getLocations->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['location']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
-					                      	<?php } ?>
-										</select>
-									</div>
-									<div class="form-group col-md-6">
-										<label>Sub Location <sup>*</sup>
-										</label>
-										<select name="location" id="lkp_location_id" class="form-control" placeholder="Location" required>
-											<option value="">Select Sub Location</option>
-											<?php while($row = $getLocations->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['location']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
-					                      	<?php } ?>
-										</select>
+										<input type="text" readonly name="lkp_location_id" id="lkp_location_id" value="<?php echo $getArea['location_name']; ?>" placeholder="Location" class="form-control" required>
 									</div>
 									<div class="form-group col-md-12">
 										<label>Address <sup>*</sup>
 										</label>
-										<input type="text" name="address" value="" placeholder="" class="form-control" required>
+										<input type="text" readonly name="address" value="<?php echo $getCustomerDeatils['address']; ?>" placeholder="" class="form-control" required>
 									</div>
 									<div class="form-group col-lg-12 col-md-12 col-xs-12">
 										<label>Order note</label>
@@ -541,49 +506,6 @@ margin: -30px 0px 20px;
 
 		}
 	</script>
-	<!-- Script to get Cities -->
-    <script type="text/javascript">
-    function getDistricts(val) { 
-        $.ajax({
-        type: "POST",
-        url: "services_manage_webmaster/get_districts.php",
-        data:'lkp_state_id='+val,
-        success: function(data){
-            $("#lkp_district_id").html(data);
-        }
-        });
-    }
-    function getCities(val) { 
-        $.ajax({
-        type: "POST",
-        url: "services_manage_webmaster/get_cities.php",
-        data:'lkp_district_id='+val,
-        success: function(data){
-            $("#lkp_city_id").html(data);
-        }
-        });
-    }
-    function getPincodes(val) { 
-        $.ajax({
-        type: "POST",
-        url: "services_manage_webmaster/get_pincodes.php",
-        data:'lkp_city_id='+val,
-        success: function(data){
-            $("#lkp_pincode_id").html(data);
-        }
-        });
-    }
-    function getLocations(val) { 
-        $.ajax({
-        type: "POST",
-        url: "services_manage_webmaster/get_locations.php",
-        data:'lkp_pincode_id='+val,
-        success: function(data){
-            $("#lkp_location_id").html(data);
-        }
-        });
-    }
-    </script>
     <script type="text/javascript">
     $('#discount_price').hide();
         $(".apply_coupon").click(function(){

@@ -127,255 +127,201 @@ b, strong {
 		</div>
 
 		<?php 
-		if(isset($_POST["submit"]) && $_POST["submit"]!="") {
-
-				$first_name = $_POST["first_name"];
-				$last_name = $_POST["last_name"];
-				$email = $_POST["email"];
-				$mobile = $_POST["mobile"];
-				$state = $_POST["state"];
-				$district = $_POST["district"];
-				$city = $_POST["city"];
-				$postal_code=$_POST["postal_code"];
-				$location = $_POST["location"];
-				$address = $_POST["address"];
-				$order_note = $_POST["order_note"];
-				$sub_total = $_POST["sub_total"];
-				$order_total = $_POST["order_total"];
-				$coupon_code = $_POST["coupon_code"];
-				$coupon_code_type = $_POST["coupon_code_type"];
-				$discount_money = $_POST["discount_money"];
-				$payment_group = $_POST["payment_group"];
-				$order_date = date("Y-m-d h:i:s");
-				$string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
-				$random1 = substr($string1,0,3);
-				$string2 = str_shuffle('1234567890');
-				$random2 = substr($string2,0,3);
-				$contstr = "MYSER-SERVICES";
-				$order_id = $contstr.$random1.$random2;
-				$service_tax = $_POST["service_tax"];
-				$servicesCount = count($_POST["service_id"]);
-				//Saving user id and coupon id
-				$user_id = $_SESSION['user_login_session_id'];
-				$payment_status = 2; //In progress
-				
-				for($i=0;$i<$servicesCount;$i++) {
-					//Generate sub randon id
-					$string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
-					$random1 = substr($string1,0,3);
-					$string2 = str_shuffle('1234567890');
-					$random2 = substr($string2,0,3);
-					$date = date("ymdhis");
-					$contstr = "MYSER-SERVICES";
-					$sub_order_id = $contstr.$random1.$random2.$date;
-					$orders = "INSERT INTO services_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `state`, `district`, `city`, `postal_code`, `location`, `address`, `order_note`, `category_id`, `sub_category_id`,  `group_id`, `service_id`, `service_price_type_id`,`service_price`,`order_price`,`service_quantity`, `service_selected_date`, `service_selected_time`, `sub_total`, `order_total`, `coupon_code`, `coupon_code_type`, `discount_money`, `payment_method`,`lkp_payment_status_id`,`service_tax`, `order_id`,`order_sub_id`, `created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$state','$district','$city','$postal_code','$location','$address','$order_note','" . $_POST["category_id"][$i] . "','" . $_POST["sub_cat_id"][$i] . "','" . $_POST["group_id"][$i] . "','" . $_POST["service_id"][$i] . "','" . $_POST["service_price_type_id"][$i] . "','" . $_POST["service_price"][$i] . "','" . $_POST["service_price"][$i] . "','" . $_POST["service_quantity"][$i] . "','" . $_POST["service_selected_date"][$i] . "','" . $_POST["service_selected_time"][$i] . "','$sub_total','$order_total',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','$service_tax', '$order_id','$sub_order_id','$order_date')";
-					$servicesOrders = $conn->query($orders);
-				}
-
-				if($payment_group == 1) {
-				//cod 
-					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=2");				
-				} elseif ($payment_group == 2) {
-					//online 
-					header("Location: PayUMoney_form.php?odi=".$order_id."&pay_stau=2");
-				} else {
-					header("Location: ordersuccess.php?odi=".$order_id."&pay_stau=1");
-				}
-
+	  	if(isset($_POST["save"]) && $_POST["save"]!="") {
+	  		//echo "<pre>"; print_r($_POST); exit;
+	      	$user_id =$_SESSION["user_login_session_id"];
+	      	$first_name = $_POST['first_name'];
+	      	$last_name = $_POST['last_name'];
+	      	$email = $_POST['email'];
+	      	$mobile = $_POST['mobile'];
+	      	$lkp_state_id = $_POST['lkp_state_id'];
+	      	$lkp_district_id = $_POST['lkp_district_id'];
+	      	$lkp_city_id = $_POST['lkp_city_id'];
+	      	$lkp_pincode_id = $_POST['lkp_pincode_id'];
+	      	$lkp_location_id = $_POST['lkp_location_id'];
+	      	$lkp_sub_area_id = $_POST['lkp_sub_area_id'];
+	      	$address = $_POST['address'];
+	      	$created_at = date("Y-m-d h:i:s");
+	      	$sql1 = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`lkp_sub_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_location_id','$lkp_sub_area_id','$address','$created_at')";
+	      	if($conn->query($sql1) === TRUE){             
+	         	echo "<script type='text/javascript'>window.location='add_address.php?succ=log-success'</script>";
+	      	} else {               
+	         	header('Location: add_address.php?err=log-fail');
+	      	} 
 		}
-	?>
+		?>
 
 		<div class="container margin_60">
 		<div class="feature">
 			<div class="checkout-page">
-
-				<?php
-				$id = $_SESSION['user_login_session_id'];
-				$getUserData = getAllDataWhere('users','id',$id);
-				$getUser = $getUserData->fetch_assoc();
-				$getUserAdress = "SELECT * FROM services_orders WHERE user_id = $id ORDER BY id DESC";
-				$getUserAdress1 = $conn->query($getUserAdress);
-				$getUserAdressDetails = $getUserAdress1->fetch_assoc();
-				?>
 				<form method="post" name="form">
 				<div class="row">
 					<div class="col-md-7"  style="padding-right:20px">
+						<?php if(isset($_GET['succ']) && $_GET['succ'] == 'log-success' ) {  ?>                
+			            <div class="alert alert-success" style="top:10px; display:block" id="set_valid_msg">
+			              <strong>Success!</strong> Your Data Updated Successfully.
+			            </div>               
+				       <?php }?>
 
+				        <?php if(isset($_GET['err']) && $_GET['err'] == 'log-fail' ) {  ?>            
+				          <div class="alert alert-danger" style="top:10px; display:block" id="set_valid_msg">
+				            <strong>Failed!</strong> Data Updation Failed.
+				          </div>     
+				        <?php } ?>
 						<div class="billing-details">
 							<div class="shop-form">
 								<div class="default-title">
 									<h2>Address Details</h2>
 								</div>
-								<div class="One">
-								
-							<div class="row">
-									  	<div class="col-sm-3"></div>
-									  	<div class="col-sm-6">
-											<center><img src="img/myaddress.png">
+								<div class="one">
+									<?php
+									$user_id = $_SESSION["user_login_session_id"];
+						          	$getAllCustomerAddress = "SELECT * FROM grocery_add_address WHERE user_id = '$user_id' AND lkp_status_id = 0";
+						          	$getCustomerAddress = $conn->query($getAllCustomerAddress);
+									if($getCustomerAddress->num_rows == 0) { ?>
+									<div class="row">
+							  			<div class="col-sm-3"></div>
+							  			<div class="col-sm-6">
+											<center><img src="img/myaddress.png"></center>
 											<h4>No Addresses found in your account!</h4>
 											<p style="text-align:center">Add a delivery address.</p>
 											<div class="row">
-								<div class="col-sm-2">
-								</div>
-								<div class="col-sm-8">
-								 <div id="divId">
-								<input  name="submit" class="btn_full" value="Add New Address">
-								</div>
-								</div>
-								<div class="col-sm-2">
-								</div>
-								</div>
+												<div class="col-sm-2"></div>
+												<div class="col-sm-8">
+								 					<div id="divId">
+														<input name="submit" class="btn_full add_address" value="Add New Address">
+													</div>
+												</div>
+												<div class="col-sm-2"></div>
+											</div>
 										</div>
 										<div class="col-sm-3"></div>
 									</div>
+									<?php } else { ?>
+									<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { 
+									$getState = getIndividualDetails('lkp_states','id',$getCustomerDeatils['lkp_state_id']);
+									$getDistrict = getIndividualDetails('lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
+									$getPincode = getIndividualDetails('lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
+									$getCity = getIndividualDetails('lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
+									$getArea = getIndividualDetails('lkp_locations','id',$getCustomerDeatils['lkp_location_id']);
+									?>
+									<div class="feature">
+										<label class="radiochck">
+											<input type="radio" checked="checked" value="<?php echo $getCustomerDeatils['id']; ?>" class="make_it_default" name="make_it_default"> Address <?php echo $i;?>
+										</label>
+										<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
+										<p><?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['location_name']; ?> - <?php echo $getPincode['pincode']; ?></p>
+										<p><?php echo $getCustomerDeatils['address']; ?>.</p>
 									</div>
-									<div class="Two">
-								<div class="feature">
-									<label class="radiochck">
-										<input type="radio" checked="checked" name="radio"> Address 1
-										
-									</label>									
-								<p><b>Swapna Ireddy <span>, 987654310</span></b></p>
-								<p>Plot No:403, Patrikanage 3, Madhapur, Hyderabad, Telangana, India</p>
-								</div>
-								<div class="feature">
-									<label class="radiochck">
-										<input type="radio"  name="radio"> Address 2
-										<span class="checkmarkR1"></span>
-									</label>									
-								<p><b>Swapna Ireddy <span> 987654310</span></b></p>
-								<p>Plot No:403, Patrikanage 3, Madhapur, Hyderabad, Telangana, India</p>
-								</div>
-								<div class="feature">
-									<label class="radiochck">
-										<input type="radio"  name="radio"> Address 2
-										<span class="checkmarkR1"></span>
-									</label>									
-								<p><b>Swapna Ireddy <span> 987654310</span></b></p>
-								<p>Plot No:403, Patrikanage 3, Madhapur, Hyderabad, Telangana, India</p>
-								</div>
-								
-								<div class="row">
-								<div class="col-sm-4">
-								</div>
-								<div class="col-sm-4">
-								 <div id="divId">
-								<input  name="submit" class="btn_full" value="Add New Address">
-								</div>
-								</div>
-								<div class="col-sm-4">
-								</div>
-								</div>
+									<?php $i++; } ?>
+									<div class="row">
+										<div class="col-sm-4"></div>
+										<div class="col-sm-4">
+									 		<div id="divId">
+												<input  name="submit" class="btn_full add_address" value="Add New Address">
+											</div>
+										</div>
+										<div class="col-sm-4"></div>
+									</div>
+									<?php } ?>
 								</div>
 							</div>
-							<div class="Three">
-							<div class="row">
-									<div class="form-group col-md-6">
-										<label>First name <sup>*</sup>
-										</label>
-										<input type="text" name="first_name" id="name_contact" value="<?php echo $getUser['user_full_name']; ?>" placeholder="" class="form-control" required>
+							<?php 
+							$id = $_SESSION['user_login_session_id'];
+							$getUserData = getAllDataWhere('users','id',$id);
+							$getUser = $getUserData->fetch_assoc();?>
+							<div class="three">
+								<form method="post">
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label>First name <sup>*</sup>
+											</label>
+											<input type="text" name="first_name" id="name_contact" value="<?php echo $getUser['user_full_name']; ?>" placeholder="" class="form-control" required>
+										</div>
+										<div class="form-group col-md-6">
+											<label>Last name <sup>*</sup>
+											</label>
+											<input type="text" name="last_name" id="lastname_contact" value="" placeholder="" class="form-control" required>
+										</div>
+										<div class="form-group col-md-6">
+											<label>Email Address <sup>*</sup>
+											</label>
+											<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email_contact" value="<?php echo $getUser['user_email']; ?>" placeholder="" class="form-control" required readonly>
+										</div>
+										<div class="form-group col-md-6">
+											<label>Phone <sup>*</sup>
+											</label>
+											<input type="tel" name="mobile" id="phone_contact" value="<?php echo $getUser['user_mobile']; ?>" placeholder="" maxlength="10" pattern="[0-9]{10}" class="form-control valid_mobile_num" required>
+										</div>
+										<?php $getStates = getAllDataWithStatus('lkp_states','0'); ?>
+										<div class="form-group col-md-6">
+											<label>State <sup>*</sup>
+											</label>
+											<select name="lkp_state_id" id="lkp_state_id" class="form-control" onChange="getDistricts(this.value);" required>
+												<option value="">Select State</option>
+												<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
+												<option <?php if($getStatesData['id'] == $getUserAdressDetails['state']) { echo "Selected"; } ?> value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
+												<?php } ?>
+											</select>
+										</div>
+										<?php $getDistrcits = getAllDataWithStatus('lkp_districts','0');?>
+										<div class="form-group col-md-6">
+											<label>District <sup>*</sup>
+											</label>
+											<select name="lkp_district_id" id="lkp_district_id" placeholder="District" class="form-control" onChange="getCities(this.value);" required>
+												<option value="">Select District</option>
+											</select>
+										</div>
+										<?php $getCities = getAllDataWithStatus('lkp_cities','0');?>
+										<div class="form-group col-md-6">
+											<label>City <sup>*</sup>
+											</label>
+											<select name="lkp_city_id" id="lkp_city_id" class="form-control" placeholder="City" onChange="getPincodes(this.value);" required>
+												<option value="">Select City</option>
+											</select>
+										</div>
+										<?php $getPincodes = getAllDataWithStatus('lkp_pincodes','0');?>
+										<div class="form-group col-md-6">
+											<label>Pincode <sup>*</sup>
+											</label>
+											<select name="lkp_pincode_id" id="lkp_pincode_id" class="form-control" class="form-control valid_mobile_num" maxlength="6" onChange="getLocations(this.value);" placeholder="Zip / Postal Code" required>
+												<option value="">Select Pincode</option>
+											</select>
+										</div>
+										<?php $getLocations = getAllDataWithStatus('lkp_locations','0');?>
+										<div class="form-group col-md-6">
+											<label>Location <sup>*</sup>
+											</label>
+											<select name="lkp_location_id" id="lkp_location_id" class="form-control" placeholder="Location" required>
+												<option value="">Select Location</option>
+											</select>
+										</div>
+										<!-- <div class="form-group col-md-6">
+											<label>Sub Location <sup>*</sup>
+											</label>
+											<select name="location" id="lkp_location_id" class="form-control" placeholder="Location" required>
+												<option value="">Select Sub Location</option>
+												<?php while($row = $getLocations->fetch_assoc()) {  ?>
+						                          <option <?php if($row['id'] == $getUserAdressDetails['location']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
+						                      	<?php } ?>
+											</select>
+										</div> -->
+										<div class="form-group col-md-12">
+											<label>Address <sup>*</sup>
+											</label>
+											<input type="text" name="address" value="" placeholder="" class="form-control" required>
+										</div>
 									</div>
-									<div class="form-group col-md-6">
-										<label>Last name <sup>*</sup>
-										</label>
-										<input type="text" name="last_name" id="lastname_contact" value="" placeholder="" class="form-control" required>
+									<div class="row">
+										<div class="col-sm-4"></div>
+										<div class="col-sm-4">
+									 		<div id="divId">
+												<input type="submit" name="save" class="btn_full" value="Submit">
+											</div>
+										</div>
+										<div class="col-sm-4"></div>
 									</div>
-									<div class="form-group col-md-6">
-										<label>Email Address <sup>*</sup>
-										</label>
-										<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email_contact" value="<?php echo $getUser['user_email']; ?>" placeholder="" class="form-control" required readonly>
-									</div>
-									<div class="form-group col-md-6">
-										<label>Phone <sup>*</sup>
-										</label>
-										<input type="tel" name="mobile" id="phone_contact" value="<?php echo $getUser['user_mobile']; ?>" placeholder="" maxlength="10" pattern="[0-9]{10}" class="form-control valid_mobile_num" required>
-									</div>
-									<?php $getStates = getAllDataWithStatus('lkp_states','0'); ?>
-									<div class="form-group col-md-6">
-										<label>State <sup>*</sup>
-										</label>
-										<select name="state" id="lkp_state_id" class="form-control" onChange="getDistricts(this.value);" required>
-											<option value="">Select State</option>
-											<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
-											<option <?php if($getStatesData['id'] == $getUserAdressDetails['state']) { echo "Selected"; } ?> value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
-											<?php } ?>
-										</select>
-									</div>
-									<?php $getDistrcits = getAllDataWithStatus('lkp_districts','0');?>
-									<div class="form-group col-md-6">
-										<label>District <sup>*</sup>
-										</label>
-										<select name="district" id="lkp_district_id" placeholder="District" class="form-control" onChange="getCities(this.value);" required>
-											<option value="">Select District</option>
-											<?php while($row = $getDistrcits->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['district']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['district_name']; ?></option>
-					                      	<?php } ?>
-										</select>
-									</div>
-									<?php $getCities = getAllDataWithStatus('lkp_cities','0');?>
-									<div class="form-group col-md-6">
-										<label>City <sup>*</sup>
-										</label>
-										<select name="city" id="lkp_city_id" class="form-control" placeholder="City" onChange="getPincodes(this.value);" required>
-											<option value="">Select City</option>
-											<?php while($row = $getCities->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['city']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['city_name']; ?></option>
-					                      	<?php } ?>
-										</select>
-									</div>
-									<?php $getPincodes = getAllDataWithStatus('lkp_pincodes','0');?>
-									<div class="form-group col-md-6">
-										<label>Pincode <sup>*</sup>
-										</label>
-										<select name="postal_code" id="lkp_pincode_id" class="form-control" class="form-control valid_mobile_num" maxlength="6" onChange="getLocations(this.value);" placeholder="Zip / Postal Code" required>
-											<option value="">Select Pincode</option>
-											<?php while($row = $getPincodes->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['postal_code']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['pincode']; ?></option>
-					                      	<?php } ?>
-										</select>
-									</div>
-									<?php $getLocations = getAllDataWithStatus('lkp_locations','0');?>
-									<div class="form-group col-md-6">
-										<label>Location <sup>*</sup>
-										</label>
-										<select name="location" id="lkp_location_id" class="form-control" placeholder="Location" required>
-											<option value="">Select Location</option>
-											<?php while($row = $getLocations->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['location']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
-					                      	<?php } ?>
-										</select>
-									</div>
-									<div class="form-group col-md-6">
-										<label>Sub Location <sup>*</sup>
-										</label>
-										<select name="location" id="lkp_location_id" class="form-control" placeholder="Location" required>
-											<option value="">Select Sub Location</option>
-											<?php while($row = $getLocations->fetch_assoc()) {  ?>
-					                          <option <?php if($row['id'] == $getUserAdressDetails['location']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
-					                      	<?php } ?>
-										</select>
-									</div>
-									<div class="form-group col-md-12">
-										<label>Address <sup>*</sup>
-										</label>
-										<input type="text" name="address" value="" placeholder="" class="form-control" required>
-									</div>
-									<div class="form-group col-lg-12 col-md-12 col-xs-12">
-										<label>Order note</label>
-										<textarea id="order_note" name="order_note" placeholder="Notes about your order, e.g. special notes for delivery" class="form-control"></textarea>
-									</div>
-								</div>
-								<div class="row">
-								<div class="col-sm-4">
-								</div>
-								<div class="col-sm-4">
-								 <div id="divId">
-								<input  name="submit" class="btn_full" value="Submit">
-								</div>
-								</div>
-								<div class="col-sm-4">
-								</div>
-								</div>
+								</form>
 							</div>
 						</div>
 						<!--End Billing Details-->
@@ -397,115 +343,75 @@ b, strong {
 						$getPriceType = "SELECT * FROM services_cart WHERE (services_price_type_id=2) AND (user_id = '$user_session_id' OR session_cart_id='$session_cart_id') ";
         					$getCount = $conn->query($getPriceType);
 					?>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <aside class="col-md-5">
-					<div class="box_style_1">
-						<h3 class="inner">- Summary -</h3>
-						<div class="table-responsive">
-						<table class="table table_summary">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>SERVICE</th>
-                                                            <th>QUANTITY</th>
-                                                            <th>PRICE</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <?php $cartTotal = 0; $service_tax = 0;
+                    <aside class="col-md-5">
+						<div class="box_style_1">
+							<h3 class="inner">- Summary -</h3>
+							<div class="table-responsive">
+								<table class="table table_summary">
+                                    <thead>
+                                        <tr>
+                                            <th>SERVICE</th>
+                                            <th>QUANTITY</th>
+                                            <th>PRICE</th>
+                                        </tr>
+                                    </thead>
+                                    <?php $cartTotal = 0; $service_tax = 0;
                               		while ($getCartItems = $cartItems->fetch_assoc()) { 
                                		$getSerName= getIndividualDetails('services_group_service_names','id',$getCartItems['service_id']); ?>
-
-                               	<input type="hidden" name="category_id[]" value="<?php echo $getCartItems['service_category_id']; ?>">
-                                <input type="hidden" name="sub_cat_id[]" value="<?php echo $getCartItems['service_sub_category_id']; ?>">
-                                <input type="hidden" name="group_id[]" value="<?php echo $getCartItems['group_id']; ?>">
-                                <input type="hidden" name="service_id[]" value="<?php echo $getCartItems['service_id']; ?>">
-                                <input type="hidden" name="service_quantity[]" value="<?php echo $getCartItems['service_quantity']; ?>">
-                                <input type="hidden" name="service_price_type_id[]" value="<?php echo $getSerName['service_price_type_id']; ?>">
-                                	<?php if($getSerName['service_price_type_id'] == 1) {
-			                            $cartTotal1 += $getSerName['service_price']*$getCartItems['service_quantity'];
-			                        ?>
-									<input type="hidden" name="service_price[]" value="<?php echo $getSerName['service_price']; ?>">
-									<?php } elseif($getSerName['price_after_visit_type_id'] == 1) { 
-										$cartTotal1 = $cartTotal;
+                               		<input type="hidden" name="address_status" vlaue="" id="make_it_default">
+									<tbody>
+										<tr>
+											<td>
+												<?php echo $getSerName['group_service_name']; ?>
+											</td>
+											<td>
+                                                <?php echo $getCartItems['service_quantity'];?>
+											</td>
+                                            <?php if($getSerName['service_price_type_id'] == 1) {
+					                            $cartTotal += $getSerName['service_price']*$getCartItems['service_quantity'];
+					                        ?>
+                                            <td>
+                                               Rs. <?php echo $getSerName['service_price']; ?>
+                                            </td>
+                                            <?php } elseif($getSerName['price_after_visit_type_id'] == 1) { ?>
+                                            <td>
+                                                <?php echo $getSerName['price_after_visiting']; ?>
+                                            </td>
+                                            <?php } else { ?>
+                                            <td>
+                                                Rs. <?php echo $getSerName['service_min_price']; ?> - <?php echo $getSerName['service_max_price']; ?>
+                                            </td>
+                                            <?php } ?>
+										</tr>
+										<?php } ?>
+									</tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td>Sub Total</td>
+                                        <td colspan="2" class="text-right">Rs. <?php echo $cartTotal; ?></td>
+                                    </tr>
+                                    <?php if($getCount->num_rows == 0) { 
+										$service_tax += ($getSiteSettingsData['service_tax']/100)*$cartTotal;
 									?>
-									<input type="hidden" name="service_price[]" value="<?php echo $getSerName['price_after_visiting']; ?>">
-									<?php } else { 
-										$cartTotal1 = $cartTotal;
-									?>
-									<input type="hidden" name="service_price[]" value="<?php echo $getSerName['service_min_price']; ?> - <?php echo $getSerName['service_max_price']; ?>">
-									<?php } ?>
-                                <input type="hidden" name="service_selected_date[]" value="<?php echo $getCartItems['service_selected_date']; ?>">
-                                <input type="hidden" name="service_selected_time[]" value="<?php echo $getCartItems['service_selected_time']; ?>">
-							<tbody>
-								<tr>
-									<td>
-										<?php echo $getSerName['group_service_name']; ?>
-									</td>
-									<td>
-                                                                            <?php echo $getCartItems['service_quantity'];?> 
-										
-									</td>
-                                                                        <?php if($getSerName['service_price_type_id'] == 1) {
-			                            $cartTotal += $getSerName['service_price']*$getCartItems['service_quantity'];
-			                        ?>
-                                                                        <td>
-                                                                           Rs. <?php echo $getSerName['service_price']; ?>
-                                                                        </td>
-                                                                        <?php } elseif($getSerName['price_after_visit_type_id'] == 1) { ?>
-                                                                        <td>
-                                                                            <?php echo $getSerName['price_after_visiting']; ?>
-                                                                        </td>
-                                                                        <?php } else { ?>
-                                                                        <td>
-                                                                            Rs. <?php echo $getSerName['service_min_price']; ?> - <?php echo $getSerName['service_max_price']; ?>
-                                                                        </td>
-                                                                        <?php } ?>
-								</tr>
-								<?php } ?>
-							</tbody>
-                                                        <input type="hidden" name="sub_total" id="sub_total" value="<?php echo $cartTotal1; ?>">
-								<input type="hidden" name="coupon_code_type" id="coupon_code_type" value="">
-								<input type="hidden" name="discount_money" id="discount_money" value="">
-                                                                <tfoot>
-                                                                <tr>
-                                                                    <td>Sub Total</td>
-                                                                    
-                                                                    <td colspan="2" class="text-right">Rs. <?php echo $cartTotal; ?></td>
-                                                                </tr>
-                                                                <?php if($getCount->num_rows == 0) { 
-																	$service_tax += ($getSiteSettingsData['service_tax']/100)*$cartTotal;
-																?>
-                                                                <tr>
-                                                                    <td>GST (<?php echo $getSiteSettingsData['service_tax'] ; ?>%)</td>
-                                                                    <td colspan="2" class="text-right">Rs. <?php echo $service_tax ; ?></td>
-                                                                </tr>
-                                                                <?php }  ?>
-                                                                <input type="hidden" name="service_tax" id="service_tax" value="<?php echo $service_tax ; ?>">
-                                                                <tr>
-
-                                                                    <td><strong>Order Total</strong><br><small>(*Minimum Charges applicable.)<small></td>
-
-                                                                    
-                                                                    <td colspan="2" class="text-right"><strong>Rs. <?php echo $cartTotal+$service_tax; ?></strong></td>
-                                                                </tr>
-                                                                <input type="hidden" name="order_total" id="order_total" value="<?php echo $cartTotal1+$service_tax; ?>">
-                                                                </tfoot>    
-						</table>
-						<div id="divId">
-								<input type="submit" name="submit" class="btn_full" value="Place Order">
+                                    <tr>
+                                        <td>GST (<?php echo $getSiteSettingsData['service_tax'] ; ?>%)</td>
+                                        <td colspan="2" class="text-right">Rs. <?php echo $service_tax ; ?></td>
+                                    </tr>
+                                    <?php }  ?>
+                                    <input type="hidden" name="service_tax" id="service_tax" value="<?php echo $service_tax ; ?>">
+                                    <tr>
+                                        <td><strong>Order Total</strong><br><small>(*Minimum Charges applicable.)<small></td>
+                                        <td colspan="2" class="text-right"><strong>Rs. <?php echo $cartTotal+$service_tax; ?></strong></td>
+                                    </tr>
+                                    <input type="hidden" name="order_total" id="order_total" value="<?php echo $cartTotal1+$service_tax; ?>">
+                                    </tfoot>    
+								</table>
+								<div id="divId">
+									<input type="button" name="submit" class="btn_full checkout" value="Place Order">
+								</div>
 							</div>
 						</div>
-						
-						
-					</div>
-					
-				</aside>
-
+					</aside>
 				</div>
 				</form>
 				<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
@@ -557,9 +463,32 @@ b, strong {
 
 		}
 	</script>
-	<!-- Script to get Cities -->
-    <script type="text/javascript">
-    function getDistricts(val) { 
+	<script src="js/icheck.js"></script>
+	<script>
+		$('input').iCheck({
+			checkboxClass: 'icheckbox_square-grey',
+			radioClass: 'iradio_square-grey'
+		});
+	</script>
+	<script>
+	$(document).ready(function(){
+		$(".three").hide();
+	    $(".add_address").click(function(){
+			$(".three").show();
+			$(".one").hide();
+	    });
+	    setTimeout(function () {
+	        $('#set_valid_msg').hide();
+	      }, 2000);
+	    $(".make_it_default").click(function(){
+			var defaultvalue = $(".make_it_default").val();
+			if(defaultvalue == 0) {
+				$("#make_it_default").val(1);
+			}
+			//alert($(".make_it_default").val());
+	    });
+	});
+	function getDistricts(val) { 
         $.ajax({
         type: "POST",
         url: "services_manage_webmaster/get_districts.php",
@@ -599,93 +528,20 @@ b, strong {
         }
         });
     }
-    </script>
-    <script type="text/javascript">
-    $('#discount_price').hide();
-        $(".apply_coupon").click(function(){
-            var coupon_code = $("#coupon_code").val();
-            var cart_total = $('#sub_total').val();
-            var order_total = $('#order_total').val();
-            var service_tax = $('#service_tax').val();
-            $.ajax({
-               type: "POST",
-               url: "apply_coupon.php",
-               data: "coupon_code="+coupon_code+"&cart_total="+cart_total+"&service_tax="+service_tax,
-               success: function(value){
-               		if(value == 0) {
-               			alert('Please Enter Valid Coupon');
-               			$("#coupon_code").val('');
-               			$(".form-control-clear").html('');
-               		} else if(value == 1) {
-               			alert('Enter Coupon is not valid for this Service');
-               			$("#coupon_code").val('');
-               			$(".form-control-clear").html('');
-               		} else{
-               			$('#coupon_code').attr('readonly','true');
-               			var data = value.split(",");
-		          		$('#cart_total2').html(data[0]);
-			            $('#order_total').val(data[0]);
-	               		$('#discount_price').show();
-	               		$('#discount_price1').html(data[1]);
-	               		$('#discount_money').val(data[2]);
-	               		$('#coupon_code_type').val(data[3]);
-	               	}
-            	}
-            });
-            $('.has-clear input[type="text"]').on('input propertychange', function() {
-			  var $this = $(this);
-			  var visible = Boolean($this.val());
-			  $this.siblings('.form-control-clear').toggleClass('hidden', !visible);
-			}).trigger('propertychange');
-
-			$('.form-control-clear').click(function() {
-				$('#coupon_code').removeAttr("readonly");
-			  $(this).siblings('input[type="text"]').val('')
-			    .trigger('propertychange').focus();
-			    $('#cart_total2').html(order_total);
-				$('#order_total').val(order_total);
-				$('#discount_price').hide();
-				$('#discount_money').val('');
-	            $('#coupon_code_type').val('');
-			});
+	</script>
+	<script type="text/javascript">
+        $('.checkout').click(function(){
+        	var numberOfCheckedRadio = $('input:radio:checked').length;
+        	if(numberOfCheckedRadio == 0) {
+        		alert("Please fill your address");
+        		return false;
+        	} else {
+        		var radioValue = $("input[name='make_it_default']:checked").val();
+		        window.location.href='checkout.php?adid='+radioValue+'';
+		        return false;
+        	}
 		});
 	</script>
-	<style type="text/css">
-	  .error {
-	    color: $errorMsgColor;
-	  }
-
-	</style>
-	<style>
-	::-ms-clear {
-	  display: none;
-	}
-
-	.form-control-clear {
-	  z-index: 10;
-	  pointer-events: auto;
-	  cursor: pointer;
-	}
-	</style><script src="js/icheck.js"></script>
-	<script>
-		$('input').iCheck({
-			checkboxClass: 'icheckbox_square-grey',
-			radioClass: 'iradio_square-grey'
-		});
-	</script>
-	<script>
-$(document).ready(function(){
-	 $(".Two,.Three").hide();
-    $(".One").click(function(){
-        $(".One,.Three").hide();
-		$(".Two").show();
-		 $(".Two").click(function(){
-			   $(".Two,.One").hide();
-			   $(".Three").show();
-		 })
-    });
-});
-</script>
 </body>
 
 </html>
