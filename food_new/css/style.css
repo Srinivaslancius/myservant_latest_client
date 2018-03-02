@@ -1880,10 +1880,10 @@ select.form-control.form-white {
     width: 20px;
     height: 20px;
     cursor: pointer;
-    border: 2px solid #fff;
+    border: 2px solid #666;
     background: 0 0;
     -webkit-transition: background-color .3s;
-    transition: background-color .3s
+    transition: background-color .3s;
 }
 
 .checkbox input[type=checkbox]:focus+label:before {
@@ -1897,9 +1897,9 @@ select.form-control.form-white {
     width: 8px;
     height: 8px;
     opacity: 0;
-    background: #fff;
+    background: #666;
     -webkit-transition: all .3s ease;
-    transition: all .3s ease
+    transition: all .3s ease;
 }
 
 .checkbox input[type=checkbox] {
@@ -3929,4 +3929,67 @@ th {
     border-radius: 100%;
     margin-left: 70px;
     height: auto;
+}
+.containerf {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 19px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-weight: 500;
+}
+
+/* Hide the browser's default radio button */
+.containerf input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmarkf {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.containerf:hover input ~ .checkmarkf {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.containerf input:checked ~ .checkmarkf {
+    background-color: #f26426;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmarkf:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.containerf input:checked ~ .checkmarkf:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.containerf .checkmarkf:after {
+ 	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
 }
