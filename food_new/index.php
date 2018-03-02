@@ -157,14 +157,14 @@ a.mask {
       <?php $getBanners = getAllDataWhere('food_banners','lkp_status_id','0'); ?>
       <?php $i=1; while($getFoodhomeBanners = $getBanners->fetch_assoc()) { ?>
        <div class="item <?php if($i==1) { echo "active"; } ?>">
-         <img title="food"src="<?php echo $base_url . 'uploads/food_banner_images/'.$getFoodhomeBanners['banner'] ?>"  alt="<?php echo $getFoodhomeBanners['title'];?>" style="width:100%;height:400px">
+         <img title="<?php echo $getFoodhomeBanners['title'] ?>" src="<?php echo $base_url . 'uploads/food_banner_images/'.$getFoodhomeBanners['banner'] ?>"  alt="<?php echo $getFoodhomeBanners['title'];?>" style="width:100%;height:400px">
        </div>
       <?php $i++; } ?>
 
       <?php $getBanners1 = getAllRestaruntsWithProducts('0','',''); ?>
       <?php $j=1; while($getVendorBanners = $getBanners1->fetch_assoc()) { ?>
         <div class="item">
-           <a href="view_rest_menu.php?key=<?php echo encryptPassword($getVendorBanners['id']);?>"><img title="food" src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getVendorBanners['vendor_banner'] ?>" alt="<?php echo $getVendorBanners['vendor_name'];?>" style="width:100%;height:400px"><a/>
+           <a href="view_rest_menu.php?key=<?php echo encryptPassword($getVendorBanners['id']);?>"><img title="<?php echo $getVendorBanners['restaurant_name'] ?>" src="<?php echo $base_url . 'uploads/food_vendor_Banner/'.$getVendorBanners['vendor_banner'] ?>" alt="<?php echo $getVendorBanners['vendor_name'];?>" style="width:100%;height:400px"><a/>
         </div>
       <?php $j++; } ?>
    </div>
@@ -191,30 +191,30 @@ a.mask {
 ?>
     <section class="flat-row flat-banner-box">
 			<div class="container">
-			<div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-							<div class="banner-box">
+			 <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="banner-box">
 							<div class="inner-box">
-                        <a href="<?php echo $base_url; ?>index.php" class="mask" target="_blank">
-                           <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServices1['web_image']; ?>" alt="<?php echo $getOtherServices1['title']; ?>" style="width:100%;height:auto">
-                           <div class="storeimgcapt1"><?php echo $getOtherServices1['title']; ?></div>
-                        </a>
+                <a href="<?php echo $base_url; ?>index.php" class="mask" target="_blank">
+                   <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServices1['web_image']; ?>" alt="<?php echo $getOtherServices1['title']; ?>" style="width:100%;height:auto">
+                   <div class="storeimgcapt1"><?php echo $getOtherServices1['title']; ?></div>
+                </a>
+						  </div>
 						</div>
-						</div>
-                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-					<div class="banner-box">
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+				    <div class="banner-box">
 							<div class="inner-box">
-                        <a href="<?php echo $base_url; ?>Services/index.php" class="mask" target="_blank">
-                           <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServicesServices1['web_image']; ?>" style="width:100%;height:auto" alt="<?php echo $getOtherServicesServices1['title']; ?>">
-                           <div class="storeimgcapt1"><?php echo $getOtherServicesServices1['title']; ?></div>
-                        </a>
+                <a href="<?php echo $base_url; ?>Services/index.php" class="mask" target="_blank">
+                   <img class="img-responsive zoom-img" src="<?php echo $base_url . 'grocery_admin/uploads/other_services_web_images/'.$getOtherServicesServices1['web_image']; ?>" style="width:100%;height:auto" alt="<?php echo $getOtherServicesServices1['title']; ?>">
+                   <div class="storeimgcapt1"><?php echo $getOtherServicesServices1['title']; ?></div>
+                </a>
+						  </div>
 						</div>
-						</div>
-                     </div>
-                     
-                  </div>
-				  </section>
+          </div>  
+        </div>
+      </div>
+	  </section>
 <?php $getAllSearchByAreaData = getAllDataWhere('food_content_pages','id',2);
           $getSearchByAreaData = $getAllSearchByAreaData->fetch_assoc();
 ?>
