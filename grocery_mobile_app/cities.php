@@ -1,7 +1,7 @@
 <?php 
 error_reporting(1);
-include "../../admin_includes/config.php";
-include "../../admin_includes/common_functions.php";
+include "../admin_includes/config.php";
+include "../admin_includes/common_functions.php";
 //Set Array for list
 $lists = array();
 $response = array();
@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	if (isset($_REQUEST['districtId'])  ) {
 
 		$response["lists"] = array();
-		$getCities = getAllDataWhere('grocery_lkp_districts','lkp_district_id',$_REQUEST['districtId']); 
+		$getCities = getAllDataWhere('grocery_lkp_cities','lkp_district_id',$_REQUEST['districtId']); 
 		while($row = $getCities->fetch_assoc()) {
 			$lists = array();
 	    	$lists["cityId"] = $row["id"];

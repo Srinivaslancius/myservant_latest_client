@@ -1,7 +1,7 @@
 <?php 
 error_reporting(1);
-include "../../admin_includes/config.php";
-include "../../admin_includes/common_functions.php";
+include "../admin_includes/config.php";
+include "../admin_includes/common_functions.php";
 //Set Array for list
 $lists = array();
 $response = array();
