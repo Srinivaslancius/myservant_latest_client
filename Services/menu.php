@@ -22,7 +22,7 @@
                         </div>
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
-                            <li class="active"><a href="index.php" <?php if($page_name == 'index.php') {  ?> class="check_page" <?php } ?>>Home</a></li>
+                            <li class="active"><a href="<?php echo $base_url.'Services/'; ?>" <?php if($page_name == 'index.php') {  ?> class="check_page" <?php } ?>>Home</a></li>
                             <li class="active"><a href="about.php" <?php if($page_name == 'about.php') {  ?> class="check_page" <?php } ?>>About Us</a></li>
                             <li class="active"><a href="services.php" <?php if($page_name == 'services.php') {  ?> class="check_page" <?php } ?>>Services</a></li>
                             <li class="active"><a href="testimonials.php" <?php if($page_name == 'testimonials.php') {  ?> class="check_page" <?php } ?>>Testimonials</a></li>

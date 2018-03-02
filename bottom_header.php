@@ -88,7 +88,7 @@
 									<ul class="menu">
 										<li class="active">
 											
-										<a href="index.php" <?php if($page_name == 'index.php') {  ?> class="check_page" <?php } ?>>Home</a>
+										<a href="<?php echo $base_url; ?>" <?php if($page_name == 'index.php') {  ?> class="check_page" <?php } ?>>Home</a>
 										</li><!-- /.column-1 -->
 										<!-- <li class="active"><a href="about.php" <?php if($page_name == 'about.php') {  ?> class="check_page" <?php } ?>>About</a></li> -->
 										<li class="active"><a href="products.php" <?php if($page_name == 'products.php') {  ?> class="check_page" <?php } ?>>Products</a></li>
