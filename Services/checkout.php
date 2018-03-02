@@ -282,6 +282,16 @@ margin: -30px 0px 20px;
 					                      	<?php } ?>
 										</select>
 									</div>
+									<div class="form-group col-md-6">
+										<label>Sub Location <sup>*</sup>
+										</label>
+										<select name="location" id="lkp_location_id" class="form-control" placeholder="Location" required>
+											<option value="">Select Sub Location</option>
+											<?php while($row = $getLocations->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['location']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
+					                      	<?php } ?>
+										</select>
+									</div>
 									<div class="form-group col-md-12">
 										<label>Address <sup>*</sup>
 										</label>
