@@ -356,7 +356,7 @@ td{
             <?php if(!isset($_SESSION['user_login_session_id'])) { ?>
 						  <a class="btn_full" href="login.php?cart_id=<?php echo encryptPassword(1);?>">Order now</a>
             <?php } else { ?>
-              <a class="btn_full" href="checkout.php">Order now</a>
+              <a class="btn_full" href="add_address.php">Order now</a>
             <?php } ?>
             <a class="btn_full" href="clearcart.php">Clear Cart</a>
 						<a class="btn_full_outline" href="index.php"><i class="icon-right"></i> Continue</a>
