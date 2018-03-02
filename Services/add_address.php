@@ -345,6 +345,16 @@ b, strong {
 					                      	<?php } ?>
 										</select>
 									</div>
+									<div class="form-group col-md-6">
+										<label>Sub Location <sup>*</sup>
+										</label>
+										<select name="location" id="lkp_location_id" class="form-control" placeholder="Location" required>
+											<option value="">Select Sub Location</option>
+											<?php while($row = $getLocations->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['location']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
+					                      	<?php } ?>
+										</select>
+									</div>
 									<div class="form-group col-md-12">
 										<label>Address <sup>*</sup>
 										</label>
@@ -486,50 +496,16 @@ b, strong {
                                                                 <input type="hidden" name="order_total" id="order_total" value="<?php echo $cartTotal1+$service_tax; ?>">
                                                                 </tfoot>    
 						</table>
-						</div>
-						
-						
-					</div>
-					<div class="box_style_4">
-						<span class="icon_set_1_icon-57" style="font-size:50px"></span>
-						<h4>Payment Method</h4>
-                                                <div id="policy">
-                                                    <?php if($getCount->num_rows == 0) { ?>
-									<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',2); ?>
-									<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="form-group text-left">
-							<label for="payment-2">
-								<input type="radio" name="payment_group" id="payment-2" value="2" required>Online Payment</label>
-						</div>
-                                                    <?php } } ?>
-									<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',1); ?>
-									<?php if($getOnlineDeatils['enable_status'] == 0) { ?>
-                                                    <div class="form-group text-left">
-							<label for="payment-3">
-								<input type="radio" type="radio" name="payment_group" id="payment-3" value="1" required>COD</label>
-						</div>
-                                                    <?php } ?>
-                                                </div>
-							<label class="container5">
-							  <input type="checkbox" checked="checked"  name="checked-order" required>I’ve read and accept the terms & conditions *
-							  <span class="checkmark5"></span>
-							</label><br>
-                            <!--<div class="checkbox">
-								<input type="checkbox" id="checked-order" name="checked-order" checked required>
-								<label for="checked-order">I’ve read and accept the terms & conditions *</label>
-							</div>-->
-                            <div id="divId">
+						<div id="divId">
 								<input type="submit" name="submit" class="btn_full" value="Place Order">
 							</div>
-                                                
+						</div>
+						
+						
 					</div>
-				</aside>
-                                        
-                                        
-                                        
-                                        
-                                        
 					
+				</aside>
+
 				</div>
 				</form>
 				<?php if(!isset($_SESSION['user_login_session_id'])) { ?>
