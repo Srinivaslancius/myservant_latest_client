@@ -181,6 +181,19 @@ if($_SESSION['user_login_session_id'] == '') {
 			<div class="col-md-8 col-sm-8">
 				<div class="box_style_2" id="order_process">
 					<h2 class="inner">Add Address</h2>
+					<div class="One">
+					<div class="row">
+									  	<div class="col-sm-3"></div>
+									  	<div class="col-sm-6">
+											<center><img src="img/myaddress.png">
+											<h4>No Addresses found in your account!</h4>
+											<p>Add a delivery address.</p>
+											<button class="button1">ADD ADDRESS</button></center>
+										</div>
+										<div class="col-sm-3"></div>
+									</div>
+									</div>
+									<div class="Two">
 					<div class="feature_2">
 					<label class="containerf"> 
 					  <input type="radio" checked="checked" name="radio">Address 1
@@ -208,7 +221,61 @@ if($_SESSION['user_login_session_id'] == '') {
 					<p><b>Swapna, <span>9876543210</span></b></p>
 					<p>Plot No:403, lancius IT Solutions, Patrikanage 3, Madhapur, Hyderabad, Telangana, India</P>
 				</div>
+			
 				<center><button class="button1" type="submit" name="submit">ADD NEW ADDRESS</button></center>
+					</div>
+					<div class="Three">
+					<div class="form-group">
+						<label>First name *</label>
+						<input type="text" class="form-control" id="firstname_order" value="<?php echo $getUser['user_full_name']; ?>" name="firstname_order" placeholder="First name" required>
+					</div>
+					<div class="form-group">
+						<label>Last name *</label>
+						<input type="text" class="form-control" id="lastname_order" name="lastname_order" placeholder="Last name" required>
+					</div>
+					<div class="form-group">
+						<label>Telephone/mobile *</label>
+						<input type="text" id="tel_order" name="tel_order" maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required >
+					</div>
+					<div class="form-group">
+						<label>Email *</label>
+						<input type="email" id="email_booking_2" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email_order" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required readonly>
+					</div>
+					<div class="form-group">
+						<label>Your full address *</label>
+						<input type="text" id="address_order" name="address_order" class="form-control" placeholder=" Your full address" required>
+					</div>
+					<?php $getCitiesData = getAllDataWhere('lkp_cities','lkp_status_id',0); ?>
+					<div class="row">
+						<div class="col-md-6 col-sm-6">
+							<div class="form-group">
+								<label>City *</label>
+								<select name="city" id="lkp_city_id" class="form-control" required>
+											<option value="">Select City</option>
+											<?php while($getCities = $getCitiesData->fetch_assoc()) { ?>
+											<option value="<?php echo $getCities['id'];?>"><?php echo $getCities['city_name'];?></option>
+											<?php } ?>
+										</select>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6">
+							<div class="form-group">
+								<label>Postal code *</label>
+								<input type="text" id="pcode_oder" required maxlength="6"  onkeypress="return isNumberKey(event)" name="pcode_oder" class="form-control valid_mobile_num" placeholder=" Your postal code" required>
+							</div>
+						</div>
+					</div>
+					
+					<hr>
+					<div class="row">
+						<div class="col-md-12">
+				
+								<label>Notes for the restaurant</label>
+								<textarea class="form-control" style="height:150px" placeholder="Ex. Allergies, cash change..." name="order_note" id="order_note"></textarea>
+				
+						</div>
+					</div>
+					</div>
 			</div><!-- End col-md-6 -->
 </div>
 			<?php 
@@ -519,7 +586,19 @@ $('#discount_price').hide();
 	}
 </script>
 
-
+<script>
+$(document).ready(function(){
+	 $(".Two,.Three").hide();
+    $(".One").click(function(){
+        $(".One,.Three").hide();
+		$(".Two").show();
+		 $(".Two").click(function(){
+			   $(".Two,.One").hide();
+			   $(".Three").show();
+		 })
+    });
+});
+</script>
 <?php include "search_js_script.php"; ?>
 </body>
 </html>
