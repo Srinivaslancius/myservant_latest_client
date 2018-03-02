@@ -96,7 +96,7 @@
 									<!--<div class="sale-off">
 										60 % <span>sale</span>
 									</div>-->
-									<img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt="">
+									<img title="offerzone"src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt="">
 								</div>
 								<div class="clearfix"></div>
 							</div><!-- /.slider -->
