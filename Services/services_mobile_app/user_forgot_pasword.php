@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 		if($getCnt > 0) {
 
-			$user_password = encryptPassword($getUserForgotPassword['user_password']);
+			$user_password = decryptPassword($getUserForgotPassword['user_password']);
 			$to = $_REQUEST['userEmail'];
             $subject =  "Myservant - User Forgot Password";
             $message = '';
@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
 			  <h1 style="color:#fe6003">Your Password</h1>
 			  <p>Dear <span style="color:#fe6003;">'.$getUserForgotPassword["user_full_name"].'</span>.</p>
-			 
+			 <p>Your User Name  : '.$to.'  </p>
 			 <p>Your Password : '.$user_password.'  </p>
 			<footer style="padding: 1em;color: white;background-color: #fe6003;clear: left;text-align: center;">'.$getSiteSettingsData1['footer_text'].'</footer>
 			</div>
