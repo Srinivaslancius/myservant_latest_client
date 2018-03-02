@@ -213,6 +213,18 @@
 							<input type="text" class="form-control valid_mobile_num" name="mobile" value="<?php echo $userData['user_mobile']; ?>"  placeholder="Mobile" maxlength="10" pattern="[0-9]{10}" required>
 						</div>
 					</div>
+					<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label>State *</label>
+						<input type="text" class="form-control" id="lastname_order" name="lastname_order" placeholder="State" required>
+					</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label>District*</label>
+						<input type="text" class="form-control" id="lastname_order" name="lastname_order" placeholder="District" required>
+					</div>
+					</div>
 					<?php $getCitiesData = getAllDataWhere('lkp_cities','lkp_status_id',0); ?>
 					<div class="col-sm-6">
 						<div class="form-group">
@@ -231,6 +243,28 @@
 							<input type="text" class="form-control valid_mobile_num" maxlength="6" name="pincode" placeholder="pincode" required>
 						</div>
 					</div>
+					<div class="col-md-6 col-sm-6">
+							<div class="form-group">
+								<label>Location*</label>
+								<select name="city" id="lkp_city_id" class="form-control" required>
+											<option value="">Select Location*</option>
+											<?php while($getCities = $getCitiesData->fetch_assoc()) { ?>
+											<option value="<?php echo $getCities['id'];?>"><?php echo $getCities['city_name'];?></option>
+											<?php } ?>
+										</select>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6">
+							<div class="form-group">
+								<label>Sub Location*</label>
+								<select name="city" id="lkp_city_id" class="form-control" required>
+											<option value="">Select Sub Location*</option>
+											<?php while($getCities = $getCitiesData->fetch_assoc()) { ?>
+											<option value="<?php echo $getCities['id'];?>"><?php echo $getCities['city_name'];?></option>
+											<?php } ?>
+										</select>
+							</div>
+						</div>
 					<div class="col-sm-12">
 						<div class="form-group">
 							<label for="address">Address*</label>

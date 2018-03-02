@@ -258,7 +258,7 @@ line-height:10px;
 					  	<div class="col-sm-6">
 							<center><img src="img/myaddress.png">
 							<h4>No Addresses found in your account!</h4>
-							<p>Add a delivery address.</p>
+							<p style="text-align:center">Add a delivery address.</p>
 							<button class="button1 one">ADD ADDRESS</button></center>
 						</div>
 						<div class="col-sm-3"></div>
@@ -312,11 +312,53 @@ line-height:10px;
 											</select>
 										</div>
 									</div>
+									<?php $getStates = getAllDataWithStatus('lkp_states','0'); ?>
+									<div class="form-group col-md-6">
+										<label>State <sup>*</sup>
+										</label>
+										<select name="state" id="lkp_state_id" class="form-control" onChange="getDistricts(this.value);" required>
+											<option value="">Select State</option>
+											<?php while($getStatesData = $getStates->fetch_assoc()) { ?>
+											<option <?php if($getStatesData['id'] == $getUserAdressDetails['state']) { echo "Selected"; } ?> value="<?php echo $getStatesData['id'];?>"><?php echo $getStatesData['state_name'];?></option>
+											<?php } ?>
+										</select>
+									</div>
+									<?php $getDistrcits = getAllDataWithStatus('lkp_districts','0');?>
+									<div class="form-group col-md-6">
+										<label>District <sup>*</sup>
+										</label>
+										<select name="district" id="lkp_district_id" placeholder="District" class="form-control" onChange="getCities(this.value);" required>
+											<option value="">Select District</option>
+											<?php while($row = $getDistrcits->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['district']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['district_name']; ?></option>
+					                      	<?php } ?>
+										</select>
+									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="pincode">Pincode*</label>
 											<input type="text" class="form-control valid_mobile_num" maxlength="6" name="pincode" placeholder="pincode" required>
 										</div>
+									</div>
+									<div class="form-group col-md-6">
+										<label>Location <sup>*</sup>
+										</label>
+										<select name="district" id="lkp_district_id" placeholder="District" class="form-control" onChange="getCities(this.value);" required>
+											<option value="">Select Location</option>
+											<?php while($row = $getDistrcits->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['district']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['district_name']; ?></option>
+					                      	<?php } ?>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label>Sub Location <sup>*</sup>
+										</label>
+										<select name="district" id="lkp_district_id" placeholder="District" class="form-control" onChange="getCities(this.value);" required>
+											<option value="">Select Sub Location</option>
+											<?php while($row = $getDistrcits->fetch_assoc()) {  ?>
+					                          <option <?php if($row['id'] == $getUserAdressDetails['district']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['district_name']; ?></option>
+					                      	<?php } ?>
+										</select>
 									</div>
 									<div class="col-sm-12">
 										<div class="form-group">
@@ -325,6 +367,7 @@ line-height:10px;
 										</div>
 									</div>
 								</div>
+								
 								<div class="form-group">
 									<button class="button1" type="submit" name="submit" value="submit" style="width:100px;font-size:18px">Save</button> 					
 								</div>						
