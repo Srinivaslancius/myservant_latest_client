@@ -162,7 +162,7 @@ $('#verify_otp').on('click', function () {
             if (checkout_key == '') {
                 window.location.href = 'index.php';
             } else {
-                window.location.href = 'checkout.php';
+                window.location.href = 'add_address.php';
             }
           }
         }

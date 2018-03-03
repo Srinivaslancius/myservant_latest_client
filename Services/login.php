@@ -34,7 +34,7 @@
 		        $updateCart = "UPDATE `services_cart` SET user_id='".$_SESSION['user_login_session_id']."' WHERE session_cart_id = '".$_SESSION['CART_TEMP_RANDOM']."'";
 				$updateCart1 = $conn->query($updateCart);
 		        if($cart_id == 1) {
-		        	header('Location: checkout.php');
+		        	header('Location: add_address.php');
 		        } elseif($_GET['err']!='') { header('Location: cart.php'); exit; } else { header('Location: index.php'); exit; }
 		    } else {
 		    	if($cart_id == 1) {
