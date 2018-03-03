@@ -189,6 +189,17 @@ if($_SESSION['user_login_session_id'] == '') {
 <div class="container margin_60_35">
 		<div class="row">
 			<div class="col-md-8 col-sm-8">
+				<?php if(isset($_GET['succ']) && $_GET['succ'] == 'log-success' ) {  ?>                
+	            <div class="alert alert-success" style="top:10px; display:block" id="set_valid_msg">
+	              <strong>Success!</strong> Your Data Updated Successfully.
+	            </div>               
+		       <?php }?>
+
+		        <?php if(isset($_GET['err']) && $_GET['err'] == 'log-fail' ) {  ?>            
+		          <div class="alert alert-danger" style="top:10px; display:block" id="set_valid_msg">
+		            <strong>Failed!</strong> Data Updation Failed.
+		          </div>     
+		        <?php } ?>
 				<div class="box_style_2" id="order_process">
 					<h2 class="inner">Add Address</h2>
 					<div class="one">
