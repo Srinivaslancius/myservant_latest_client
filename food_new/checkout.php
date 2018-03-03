@@ -223,7 +223,7 @@ if($_SESSION['user_login_session_id'] == '') {
 				$getItemPrice = "SELECT * FROM food_product_weight_prices WHERE product_id = '".$_POST["food_item_id"][$i]."' AND weight_type_id = '".$_POST["item_weight_type_id"][$i]."'";
 				$getItemPrice1 = $conn->query($getItemPrice);
 				$getItemPriceDatils = $getItemPrice1->fetch_assoc();
-				$orders = "INSERT INTO food_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `country`, `postal_code`, `city`, `order_note`, `category_id`, `product_id`, `item_weight_type_id`, `order_vendor_price`, `item_price`, `item_quantity`,`restaurant_id`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`delivery_type_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`, `created_at`) VALUES ('$user_id','".$_POST["firstname_order"]."','".$_POST["lastname_order"]."', '".$_POST["email_order"]."','".$_POST["tel_order"]."','".$_POST["address_order"]."','$country','".$_POST["pcode_oder"]."','".$_POST["city"]."','".$_POST["order_note"]."','" . $_POST["food_category_id"][$i] . "','" . $_POST["food_item_id"][$i] . "','" . $_POST["item_weight_type_id"][$i] . "','".$getItemPriceDatils['vendor_price']."','" . $_POST["item_price"][$i] . "','" . $_POST["item_quantity"][$i] . "','".$_POST["restaurant_id"]."','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','$dev_type','".$_POST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$order_date')";
+				$orders = "INSERT INTO food_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `product_id`, `item_weight_type_id`, `order_vendor_price`, `item_price`, `item_quantity`,`restaurant_id`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`delivery_type_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`, `created_at`) VALUES ('$user_id','".$_POST["firstname_order"]."','".$_POST["lastname_order"]."', '".$_POST["email_order"]."','".$_POST["tel_order"]."','".$_POST["address_order"]."','".$_POST["lkp_state_id"]."','".$_POST["lkp_district_id"]."','".$_POST["lkp_city_id"]."','".$_POST["lkp_pincode_id"]."','".$_POST["lkp_location_id"]."','".$_POST["order_note"]."','" . $_POST["food_category_id"][$i] . "','" . $_POST["food_item_id"][$i] . "','" . $_POST["item_weight_type_id"][$i] . "','".$getItemPriceDatils['vendor_price']."','" . $_POST["item_price"][$i] . "','" . $_POST["item_quantity"][$i] . "','".$_POST["restaurant_id"]."','".$_POST["sub_total"]."','".$_POST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','$dev_type','".$_POST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$order_date')";
 				$servicesOrders = $conn->query($orders);
 			} 
 			$getOrderIngredients = getAllDataWhere('food_update_cart_ingredients','session_cart_id',$session_cart_id);
@@ -287,97 +287,85 @@ if($_SESSION['user_login_session_id'] == '') {
 				</div>
                 
 			</div><!-- End col-md-3 -->
-			<?php 
+			<?php
 			$id = $_SESSION['user_login_session_id'];
-			$getUserData = getAllDataWhere('users','id',$id);
-			$getUser = $getUserData->fetch_assoc();?>
+			$customer_id = $_GET['adid'];
+			$getCustomerDeatils = getIndividualDetails('food_add_address','id',$customer_id);
+			$getState = getIndividualDetails('lkp_states','id',$getCustomerDeatils['lkp_state_id']);
+			$getDistrict = getIndividualDetails('lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
+			$getPincode = getIndividualDetails('lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
+			$getCity = getIndividualDetails('lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
+			$getArea = getIndividualDetails('lkp_locations','id',$getCustomerDeatils['lkp_location_id']);
+			?>
             <form method="post" name="form">
 			<div class="col-md-5 col-sm-5">
 				<div class="box_style_2" id="order_process">
+					<input type="hidden" name="lkp_state_id" value="<?php echo $getCustomerDeatils['lkp_state_id']; ?>">
+					<input type="hidden" name="lkp_district_id" value="<?php echo $getCustomerDeatils['lkp_district_id']; ?>">
+					<input type="hidden" name="lkp_pincode_id" value="<?php echo $getCustomerDeatils['lkp_pincode_id']; ?>">
+					<input type="hidden" name="lkp_city_id" value="<?php echo $getCustomerDeatils['lkp_city_id']; ?>">
+					<input type="hidden" name="lkp_location_id" value="<?php echo $getCustomerDeatils['lkp_location_id']; ?>">
 					<h2 class="inner">Your order details</h2>
 					<div class="col-md-6 col-sm-6">
 					<div class="form-group">
 						<label>First name *</label>
-						<input type="text" class="form-control" id="firstname_order" value="<?php echo $getUser['user_full_name']; ?>" name="firstname_order" placeholder="First name" required>
+						<input type="text" readonly class="form-control" id="firstname_order" value="<?php echo $getCustomerDeatils['first_name']; ?>" name="firstname_order" placeholder="First name" required>
 					</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
 					<div class="form-group">
 						<label>Last name *</label>
-						<input type="text" class="form-control" id="lastname_order" name="lastname_order" placeholder="Last name" required>
+						<input type="text" readonly class="form-control" id="lastname_order" name="lastname_order" placeholder="Last name" required value="getCustomerDeatils['last_name']">
 					</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
 					<div class="form-group">
 						<label>Telephone/mobile *</label>
-						<input type="text" id="tel_order" name="tel_order" maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" value="<?php echo $getUser['user_mobile']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required >
+						<input type="text" readonly id="tel_order" name="tel_order" maxlength="10" pattern="[0-9]{10}" value="<?php echo $getCustomerDeatils['phone']; ?>" class="form-control valid_mobile_num" placeholder="Telephone/mobile" required >
 					</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
 					<div class="form-group">
 						<label>Email *</label>
-						<input type="email" id="email_booking_2" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email_order" class="form-control" value="<?php echo $getUser['user_email']; ?>" placeholder="Your email" required readonly>
+						<input type="email" readonly id="email_booking_2" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email_order" class="form-control" value="<?php echo $getCustomerDeatils['email']; ?>" placeholder="Your email" required readonly>
 					</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
 					<div class="form-group">
 						<label>State *</label>
-						<input type="text" class="form-control" id="lastname_order" name="lastname_order" placeholder="State" required>
+						<input type="text" readonly class="form-control" id="lastname_order" value="<?php echo $getState['state_name']; ?>" name="lastname_order" placeholder="State" required>
 					</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
 					<div class="form-group">
 						<label>District*</label>
-						<input type="text" class="form-control" id="lastname_order" name="lastname_order" placeholder="District" required>
+						<input type="text" readonly class="form-control" id="lastname_order" name="lastname_order" placeholder="District" value="<?php echo $getDistrict['district_name']; ?>" required>
 					</div>
 					</div>
-					
 					<?php $getCitiesData = getAllDataWhere('lkp_cities','lkp_status_id',0); ?>
-					
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label>City *</label>
-								<select name="city" id="lkp_city_id" class="form-control" required>
-											<option value="">Select City</option>
-											<?php while($getCities = $getCitiesData->fetch_assoc()) { ?>
-											<option value="<?php echo $getCities['id'];?>"><?php echo $getCities['city_name'];?></option>
-											<?php } ?>
-										</select>
+								<input type="text" readonly class="form-control" id="lastname_order" name="lastname_order" placeholder="City" required value="<?php echo $getCity['city_name']; ?>">
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label>Postal code *</label>
-								<input type="text" id="pcode_oder" required maxlength="6"  onkeypress="return isNumberKey(event)" name="pcode_oder" class="form-control valid_mobile_num" placeholder=" Your postal code" required>
+								<input type="text" readonly id="pcode_oder" required maxlength="6" name="pcode_oder" class="form-control valid_mobile_num" placeholder=" Your postal code" required value="<?php echo $getPincode['pincode']; ?>">
 							</div>
 						</div>
 					
-					<div class="col-md-6 col-sm-6">
+					<div class="col-md-12 col-sm-12">
 							<div class="form-group">
 								<label>Location*</label>
-								<select name="city" id="lkp_city_id" class="form-control" required>
-											<option value="">Select Location*</option>
-											<?php while($getCities = $getCitiesData->fetch_assoc()) { ?>
-											<option value="<?php echo $getCities['id'];?>"><?php echo $getCities['city_name'];?></option>
-											<?php } ?>
-										</select>
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label>Sub Location*</label>
-								<select name="city" id="lkp_city_id" class="form-control" required>
-											<option value="">Select Sub Location*</option>
-											<?php while($getCities = $getCitiesData->fetch_assoc()) { ?>
-											<option value="<?php echo $getCities['id'];?>"><?php echo $getCities['city_name'];?></option>
-											<?php } ?>
-										</select>
+								<input type="text" readonly class="form-control" id="lastname_order" value="<?php echo $getArea['location_name']; ?>" name="lastname_order" placeholder="Location" required>
 							</div>
 						</div>
 						<div class="col-md-12 col-sm-12">
 						<div class="form-group">
 						<label>Your full address *</label>
-						<input type="text" id="address_order" name="address_order" class="form-control" placeholder=" Your full address" required>
+						<input type="text" readonly id="address_order" value="<?php echo $getCustomerDeatils['address']; ?>" name="address_order" class="form-control" placeholder=" Your full address" required>
 					</div>
 					</div>
 				

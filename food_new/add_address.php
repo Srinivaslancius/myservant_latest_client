@@ -178,7 +178,7 @@ if($_SESSION['user_login_session_id'] == '') {
 	      	$lkp_location_id = $_POST['lkp_location_id'];
 	      	$address = $_POST['address'];
 	      	$created_at = date("Y-m-d h:i:s");
-	      	 $sql1 = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_location_id','$address','$created_at')";
+	      	 $sql1 = "INSERT INTO food_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_location_id','$address','$created_at')";
 	      	if($conn->query($sql1) === TRUE){             
 	         	echo "<script type='text/javascript'>window.location='add_address.php?succ=log-success'</script>";
 	      	} else {               
@@ -191,24 +191,23 @@ if($_SESSION['user_login_session_id'] == '') {
 			<div class="col-md-8 col-sm-8">
 				<div class="box_style_2" id="order_process">
 					<h2 class="inner">Add Address</h2>
-					
-					<div class="One">
-							<?php
-									$user_id = $_SESSION["user_login_session_id"];
-						          	$getAllCustomerAddress = "SELECT * FROM grocery_add_address WHERE user_id = '$user_id' AND lkp_status_id = 0";
-						          	$getCustomerAddress = $conn->query($getAllCustomerAddress);
-									if($getCustomerAddress->num_rows == 0) { ?>
+					<div class="one">
+					<?php
+					$user_id = $_SESSION["user_login_session_id"];
+		          	$getAllCustomerAddress = "SELECT * FROM food_add_address WHERE user_id = '$user_id' AND lkp_status_id = 0";
+		          	$getCustomerAddress = $conn->query($getAllCustomerAddress);
+					if($getCustomerAddress->num_rows == 0) { ?>
 						<div class="row">
 					  		<div class="col-sm-3"></div>
 					  		<div class="col-sm-6">
-								<center><img src="img/myaddress.png">
+								<center><img src="img/myaddress.png"></center>
 								<h4>No Addresses found in your account!</h4>
 								<p>Add a delivery address.</p>
 								<div class="row">
 									<div class="col-md-4">
 									</div>
 									<div class="col-md-4">						
-									<input type="submit" name="submit" value="ADD ADDRESS" class="btn_full">
+									<input type="submit" name="submit" value="ADD ADDRESS" class="btn_full add_address">
 									</div>
 									<div class="col-md-4">
 									</div>
@@ -216,27 +215,24 @@ if($_SESSION['user_login_session_id'] == '') {
 							</div>
 							<div class="col-sm-3"></div>
 						</div>	
-						<?php } else { ?>			
-					</div>
-						<div class="">
+						<?php } else { ?>
 							<?php $i=1; while($getCustomerDeatils = $getCustomerAddress->fetch_assoc()) { 
-										$getState = getIndividualDetails('grocery_lkp_states','id',$getCustomerDeatils['lkp_state_id']);
-										$getDistrict = getIndividualDetails('grocery_lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
-										$getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
-										$getCity = getIndividualDetails('grocery_lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
-										$getArea = getIndividualDetails('grocery_lkp_areas','id',$getCustomerDeatils['lkp_location_id']);
-										$getsubArea = getIndividualDetails('grocery_lkp_sub_areas','id',$getCustomerDeatils['lkp_sub_location_id']);
+							$getState = getIndividualDetails('lkp_states','id',$getCustomerDeatils['lkp_state_id']);
+							$getDistrict = getIndividualDetails('lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
+							$getPincode = getIndividualDetails('lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);
+							$getCity = getIndividualDetails('lkp_cities','id',$getCustomerDeatils['lkp_city_id']);
+							$getArea = getIndividualDetails('lkp_locations','id',$getCustomerDeatils['lkp_location_id']);
 							?>
 							<div class="feature_2">
 								<label class="containerf">
-								  <input type="radio" checked="checked"  name="make_it_default" value="<?php echo $getCustomerDeatils['id']; ?>">Address <?php echo $i;?>
+								  <input type="radio" checked="checked"  name="make_it_default" value="<?php echo $getCustomerDeatils['id']; ?>" class="make_it_default">Address <?php echo $i;?>
 
 								  <span class="checkmarkf"></span>
 								  
 								</label>
 								<p><b><?php echo $getCustomerDeatils['first_name']; ?><span> <?php echo $getCustomerDeatils['phone']; ?></span></b></p>
-											<p><?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['area_name']; ?> - <?php echo $getPincode['pincode']; ?>,</p>
-											<p><?php echo $getCustomerDeatils['address']; ?>.</p>
+								<p><?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['location_name']; ?> - <?php echo $getPincode['pincode']; ?></p>
+								<p><?php echo $getCustomerDeatils['address']; ?>.</p>
 							</div>
 							<?php $i++; } ?>
 			
@@ -244,25 +240,23 @@ if($_SESSION['user_login_session_id'] == '') {
 								<div class="col-md-4">
 								</div>
 								<div class="col-md-4">						
-								<input type="submit" name="submit" value="ADD NEW ADDRESS" class="btn_full">
+								<input type="submit" name="submit" value="ADD NEW ADDRESS" class="btn_full add_address">
 								</div>
 								<div class="col-md-4">
 								</div>
 								</div>
 								<?php } ?>
-						</div>
-
-					
+					</div>
 					<?php 
 								$id = $_SESSION['user_login_session_id'];
 								$getUserData = getAllDataWhere('users','id',$id);
 								$getUser = $getUserData->fetch_assoc();?>
 					<form method="post">
-					<div class="Three">
+					<div class="three">
 					<div class="col-md-6 col-sm-6">
 					<div class="form-group">
 						<label>First name *</label>
-						<input type="text" class="form-control" id="first_name" value="<?php echo $getUser['user_full_name']; ?>" name="first_name" placeholder="First name" required value="<?php echo $getUser['user_full_name']; ?>">
+						<input type="text" class="form-control" id="first_name" value="<?php echo $getUser['user_full_name']; ?>" name="first_name" placeholder="First name" required >
 					</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
@@ -322,23 +316,12 @@ if($_SESSION['user_login_session_id'] == '') {
 							</div>
 						</div>
 					
-					<div class="col-md-6 col-sm-6">
+						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label>Location*</label>
 								<select name="lkp_location_id" id="lkp_location_id" class="form-control" required>
 									<option value="">Select Location*</option>
 								</select>
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label>Sub Location*</label>
-								<select name="city" id="lkp_city_id" class="form-control" required>
-											<option value="">Select Sub Location*</option>
-											
-											<option value="">Select Sub Location</option>
-											
-										</select>
 							</div>
 						</div>
 						<div class="col-md-12 col-sm-12">
@@ -347,13 +330,6 @@ if($_SESSION['user_login_session_id'] == '') {
 						<input type="text" id="address" name="address" class="form-control" placeholder=" Your full address" required>
 					</div>
 					</div>
-					<!-- <div class="col-md-12 col-sm-12">
-						<div class="form-group">
-						<label>Notes for the restaurant</label>
-						<textarea class="form-control" style="height:150px" placeholder="Ex. Allergies, cash change..." name="order_note" id="order_note"></textarea>
-					</div>
-					</div> -->
-					
 					<hr>
 					<div class="row">
 						<div class="col-md-12">
@@ -380,22 +356,13 @@ if($_SESSION['user_login_session_id'] == '') {
 		    $user_session_id = $_SESSION['user_login_session_id'];
 			$cartItems1 = "SELECT * FROM food_cart WHERE (user_id = '$user_session_id' OR session_cart_id='$session_cart_id') AND item_quantity!='0' ";
     		$cartItems = $conn->query($cartItems1);
-			?>            
-
-            <input type="hidden" name='key' type='text' value='71tFEF'>
-			<input type="hidden" name='txnid' type='text' value='<?php echo uniqid( "srinivas_" );?>'>		
-			<input type="hidden" name='amount' type='text' value='1'>
-			<input type="hidden" name='firstname' type='text' value='srinivas'>
-			<input type="hidden" name='email' type='text' value='srinivas@lanciussolutions.in'>
-			<input type="hidden" name='phone' type='text' value='1234567890'>
-			<input type="hidden" name='productinfo' type='text' value='Just another test site'>
-			<input type="hidden" name='furl' type='text' value='online_order_success.php'>
-			<input type="hidden" name='surl' type='text' value='online_order_failure.php'>
+			?> 
             
 			<div class="col-md-4 col-sm-4" id="sidebar">
             	<div class="theiaStickySidebar">
 				<div id="cart_box">
 					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
+					<input type="hidden" name="address_status" vlaue="" id="make_it_default">
 					<table class="table table_summary">
 					<tbody>
 					<?php $cartTotal = 0; $service_tax = 0;
@@ -423,27 +390,9 @@ if($_SESSION['user_login_session_id'] == '') {
 							<strong class="pull-right">Rs. <?php echo  $getCartItems['item_price']*$getCartItems['item_quantity']; ?><?php  $cartTotal += $getCartItems['item_price']*$getCartItems['item_quantity']; ?></strong>
 						</td>
 					</tr>
-
-					<input type="hidden" name="food_category_id[]" value="<?php echo $getCartItems['food_category_id']; ?>">
-					<input type="hidden" name="food_item_id[]" value="<?php echo $getCartItems['food_item_id']; ?>">
-					<input type="hidden" name="item_weight_type_id[]" value="<?php echo $getCartItems['item_weight_type_id']; ?>">
-					<input type="hidden" name="item_price[]" value="<?php echo $getCartItems['item_price']; ?>">
-					<input type="hidden" name="item_quantity[]" value="<?php echo $getCartItems['item_quantity']; ?>">
-					<input type="hidden" name="restaurant_id" value="<?php echo $getCartItems['restaurant_id']; ?>">
-
 					<?php } ?>					
 					</tbody>
-					</table>
-					<!-- <hr>
-					<div class="row" id="options_2">
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<label class="radiob"><input type="radio" value="2" checked name="dev_type" class="check_dev_type" id="del_check" data-pri-key="<?php echo $cartTotal;?>">Delivery
-							<span class="checkmark"></span></label>
-						</div>
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<label class="radiob"><input type="radio" value="1" name="dev_type" class="check_dev_type" id="take_away_check" data-pri-key="<?php echo $cartTotal; ?>">Take Away<span class="checkmark"></span></label>
-						</div>
-					</div> --><!-- Edn options 2 -->					
+					</table>					
 					<hr>
 					<table class="table table_summary">
 					<tbody>
@@ -478,9 +427,6 @@ if($_SESSION['user_login_session_id'] == '') {
 							 Service Tax <span class="pull-right">Rs.<?php echo $service_tax; ?>(<?php echo $getFoodSiteSettingsData['service_tax'] ; ?>%)</span>
 						</td>
 					</tr>
-					<tr id="discount_price">
-		                <td>Discount<span style="color:green">(Coupon Applied.) <span id="discount_price1" class="pull-right"></span></td>
-		            </tr>
 					<tr>
 						<td class="total">
 							<?php $order_total = $cartTotal+$service_tax+$DeliveryCharges+$getAdstotal; ?>
@@ -490,69 +436,9 @@ if($_SESSION['user_login_session_id'] == '') {
 					</tr>
 					</tbody>
 					</table>
-
-					<input type="hidden" name="delivery_charge" value="<?php echo $DeliveryCharges;?>" id="delivery_charge">
-					<input type="hidden" name="sub_total" value="<?php echo $cartTotal; ?>" id="sub_total">
-					<input type="hidden" name="order_total" value="<?php echo round($order_total); ?>" id="order_total">
-					<input type="hidden" name="service_tax" value="<?php echo $service_tax; ?>" id="service_tax">
-					<input type="hidden" name="getAdstotal" value="<?php echo $getAdstotal; ?>" id="getAdstotal">
-					<input type="hidden" name="discount_money" value="0" id="discount_money">
-					<input type="hidden" name="coupon_code_type" value="" id="coupon_code_type">
-					<input type="hidden" name="user_id" value="<?php echo $user_session_id; ?>">
-					
-					<!--<div class="row">
-						<div class="form-group">
-						<div class="row">
-						<div class="col-sm-8 col-xs-8">
-									<div class="field-group has-feedback has-clear twof" style="width:260px;margin-left:40px;margin-top:4px">
-								      <input autocomplete="off" type="text" name="coupon_code" style="text-transform:uppercase" id="coupon_code" value="" placeholder="Coupon Code" class="form-control" style="border-radius:0px">
-								      <span class="form-control-clear icon-cancel-1 form-control-feedback hidden" style="border-radius:0px"></span>
-								    </div>
-									</div>
-									<div class="col-sm-4 col-xs-4">
-									<div class="field-group btn-field">
-										<button type="button" class="button1 btn_cart_outine apply_coupon">Apply</button>
-									</div>
-									</div>
-								</div>
-								</div>
-					</div>-->
-
-					<!--<div class="row" id="options_2">
-
-						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',1); 
-							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<label class="radiob"><input type="radio" value="1" required name="pay_mn" id="cod_check">COD<span class="checkmark"></span></label>
-						</div><br>
-						<?php } ?>					
-						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',2); 
-							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<label class="radiob"><input type="radio" value="2" required name="pay_mn" id="online_check">Payu<span class="checkmark"></span></label>
-						</div><br>
-						<?php } ?>	
-						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',3); 
-							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<label class="radiob"><input type="radio" value="3"  required name="pay_mn" id="online_check">HDFC<span class="checkmark"></span></label>
-						</div><br>
-						<?php } ?>
-						<?php $getOnlineDeatils = getIndividualDetails('payment_gateway_options','id',4); 
-							if($getOnlineDeatils['enable_status'] == 0) { ?>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<label class="radiob"><input type="radio" value="4"  required name="pay_mn" id="online_check" style="margin-top:5px"><img src="img/paytm1.png"><b>(Debit Card/Credit Card/NB/UPI/Wallet)</b><span class="checkmark"></span></label>
-						</div>
-						<?php } ?>					
-					</div>-->
-
 					<hr>
-					<div class="checkbox">
-						<input type="checkbox" id="checked-order" name="checked-order" checked required>
-						<label for="checked-order" style="padding-left:30px"> I’ve read and accept the terms & conditions *</label>
-					</div><br>
-					<input type="submit" name="submit" value="Place Order" class="btn_full">					
-                    <!-- <a class="btn_full_outline" href="index.php"><i class="icon-right"></i> Add other items</a> -->
+					<br>
+					<input type="button" name="submit" value="Place Order" class="btn_full checkout">
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
 			</div><!-- End col-md-3 -->
@@ -578,107 +464,6 @@ if($_SESSION['user_login_session_id'] == '') {
 <script type="text/javascript" src="js/check_number_validations.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-
-
-<script type="text/javascript">
-$('.check_dev_type').click(function(){
-
-	var getcheckRadio = $(this).val();	
-	var getOrderDelCharge = parseFloat($('#delivery_charge').val());	
-	var getSubTotal = parseFloat($(this).attr('data-pri-key'));
-	var getServiceTax = parseFloat($('#service_tax').val());
-	var getAdonsTotal = parseFloat($('#getAdstotal').val());
-	if(getcheckRadio == 1) {
-		$('#hide_del_fee').hide();		
-		$('#order_total').val(Math.round(getSubTotal+getServiceTax+getAdonsTotal));
-		$('#apply_price_aft_del').html(Math.round(getSubTotal+getServiceTax+getAdonsTotal));
-		$('#coupon_code').removeAttr("readonly");
-		$('.form-control-clear').siblings('input[type="text"]').val('').trigger('propertychange').focus();
-		$(".apply_coupon").show();
-		$('#discount_price').hide();
-		$('#discount_money,#coupon_code,#coupon_code_type').val('');
-	} else {
-		$('#hide_del_fee').show();
-		$('#order_total').val(Math.round(getSubTotal + getOrderDelCharge+getServiceTax+getAdonsTotal));
-		$('#apply_price_aft_del').html(Math.round(getSubTotal + getOrderDelCharge+getServiceTax+getAdonsTotal));
-		$('#coupon_code').removeAttr("readonly");
-		$('.form-control-clear').siblings('input[type="text"]').val('').trigger('propertychange').focus();
-		$(".apply_coupon").show();
-		$('#discount_price').hide();
-		$('#discount_money,#coupon_code,#coupon_code_type').val('');
-	}
-});
-</script>
-<script>
-function isNumberKey(evt){
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-    return true;
-}
-</script>
-<script type="text/javascript">
-$('#discount_price').hide();
-    $(".apply_coupon").click(function(){
-        var coupon_code = $("#coupon_code").val();
-        var order_total = $('#order_total').val();
-        $.ajax({
-           type: "POST",
-           url: "apply_coupon.php",
-           data: "coupon_code="+coupon_code+"&cart_total="+order_total,
-           success: function(value){
-           		if(value == 0) {
-           			alert('Please Enter Valid Coupon');
-           			$("#coupon_code").val('');
-           		} else if(value == 1) {
-           			alert('Enter Coupon is not valid for this Service');
-           			$("#coupon_code").val('');
-           		} else if(value == 2) {
-           			alert('Already Used.');
-           			$("#coupon_code").val('');
-           		} else{
-           			$('#coupon_code').attr('readonly','true');
-           			$(".apply_coupon").hide();
-           			var data = value.split(",");
-	          		$('.cart_total2').html("Rs. "+data[0]);
-		            $('#order_total').val(data[0]);
-               		$('#discount_price').show();
-               		$('#discount_price1').html("Rs. "+data[1]);
-               		$('#discount_money').val(data[2]);
-               		$('#coupon_code_type').val(data[3]);
-               	}
-        	}
-        });
-
-        $('.has-clear input[type="text"]').on('input propertychange', function() {            	
-		  var $this = $(this);
-		  var visible = Boolean($this.val());
-		  $this.siblings('.form-control-clear').toggleClass('hidden', !visible);
-		}).trigger('propertychange');
-
-		$('.form-control-clear').click(function() {
-			$('#coupon_code').removeAttr("readonly");
-		    $(this).siblings('input[type="text"]').val('').trigger('propertychange').focus();
-		    $(".apply_coupon").show();
-		    $('.cart_total2').html("Rs. "+order_total);
-			$('#order_total').val(order_total);
-			$('#discount_price').hide();
-			$('#discount_money,#coupon_code_type').val('');
-		});	
-	});
-	function removeIngItem(ingUniqId) { 
-	  $.ajax({
-	      type:'post',
-	      url:'delete_cart_ingredants.php',
-	      data:{
-	         ingUniqId : ingUniqId,        
-	      },
-	      success:function(response) {
-	        location.reload();
-	      }
-	    });
-	}
-</script>
 <script type="text/javascript">
     function getDistricts(val) { 
         $.ajax({
@@ -720,19 +505,38 @@ $('#discount_price').hide();
         }
         });
     }
-    </script>
+</script>
 <script>
 $(document).ready(function(){
-	 $(".Two,.Three").hide();
-    $(".One").click(function(){
-        $(".One,.Three").hide();
-		$(".Two").show();
-		 $(".Two").click(function(){
-			   $(".Two,.One").hide();
-			   $(".Three").show();
-		 })
+	$(".three").hide();
+    $(".add_address").click(function(){
+		$(".three").show();
+		$(".one").hide();
+    });
+    setTimeout(function () {
+        $('#set_valid_msg').hide();
+      }, 2000);
+    $(".make_it_default").click(function(){
+		var defaultvalue = $(".make_it_default").val();
+		if(defaultvalue == 0) {
+			$("#make_it_default").val(1);
+		}
+		//alert($(".make_it_default").val());
     });
 });
+</script>
+<script type="text/javascript">
+    $('.checkout').click(function(){
+    	var numberOfCheckedRadio = $('input:radio:checked').length;
+    	if(numberOfCheckedRadio == 0) {
+    		alert("Please fill your address");
+    		return false;
+    	} else {
+    		var radioValue = $("input[name='make_it_default']:checked").val();
+	        window.location.href='checkout.php?adid='+radioValue+'';
+	        return false;
+    	}
+	});
 </script>
 <?php include "search_js_script.php"; ?>
 </body>

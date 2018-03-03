@@ -191,7 +191,7 @@ margin: -30px 0px 20px;
 				<?php
 				$id = $_SESSION['user_login_session_id'];
 				$customer_id = $_GET['adid'];
-				$getCustomerDeatils = getIndividualDetails('grocery_add_address','id',$customer_id);
+				$getCustomerDeatils = getIndividualDetails('food_add_address','id',$customer_id);
 				$getState = getIndividualDetails('lkp_states','id',$getCustomerDeatils['lkp_state_id']);
 				$getDistrict = getIndividualDetails('lkp_districts','id',$getCustomerDeatils['lkp_district_id']);
 				$getPincode = getIndividualDetails('lkp_pincodes','id',$getCustomerDeatils['lkp_pincode_id']);

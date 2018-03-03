@@ -139,10 +139,9 @@ b, strong {
 	      	$lkp_city_id = $_POST['lkp_city_id'];
 	      	$lkp_pincode_id = $_POST['lkp_pincode_id'];
 	      	$lkp_location_id = $_POST['lkp_location_id'];
-	      	$lkp_sub_area_id = $_POST['lkp_sub_area_id'];
 	      	$address = $_POST['address'];
 	      	$created_at = date("Y-m-d h:i:s");
-	      	$sql1 = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`lkp_sub_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_location_id','$lkp_sub_area_id','$address','$created_at')";
+	      	$sql1 = "INSERT INTO food_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`address`,`created_at`) VALUES ('$user_id','$first_name','$last_name','$email','$mobile','$lkp_state_id','$lkp_district_id','$lkp_city_id','$lkp_pincode_id','$lkp_location_id','$address','$created_at')";
 	      	if($conn->query($sql1) === TRUE){             
 	         	echo "<script type='text/javascript'>window.location='add_address.php?succ=log-success'</script>";
 	      	} else {               
@@ -176,7 +175,7 @@ b, strong {
 								<div class="one">
 									<?php
 									$user_id = $_SESSION["user_login_session_id"];
-						          	$getAllCustomerAddress = "SELECT * FROM grocery_add_address WHERE user_id = '$user_id' AND lkp_status_id = 0";
+						          	$getAllCustomerAddress = "SELECT * FROM food_add_address WHERE user_id = '$user_id' AND lkp_status_id = 0";
 						          	$getCustomerAddress = $conn->query($getAllCustomerAddress);
 									if($getCustomerAddress->num_rows == 0) { ?>
 									<div class="row">
