@@ -165,6 +165,8 @@
                           $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
                           $getProducts1 = getIndividualDetails('grocery_product_bind_images','product_id',$OrderDetails['product_id']);
 
+                          $getProductsWeights = getIndividualDetails('grocery_product_bind_weight_prices','id',$OrderDetails['item_weight_type_id']);
+
                           ?>
                           <div class="col-md-12 fr1 padd0">
                               <div class="col-md-12 mt5 padd0">
@@ -172,7 +174,8 @@
                                       <img src="<?php echo $base_url . 'grocery_admin/uploads/product_images/'.$getProducts1['image'] ?>" width="100px" height="100px">
                                   </div>
                                   <div class="col-md-10">
-                                      <p><b>Item Name: </b> <?php echo $getProducts['product_name'] ?></p>
+                                      <p><b>Product Name: </b> <?php echo $getProducts['product_name'] ?></p>
+                                      <p><b>Product Weight: </b> <?php echo $getProductsWeights['weight_type'];  ?></p>
                                       <p><b>Quantity: </b> <?php echo $OrderDetails['item_quantity'];  ?></p>
                                       <p><b>Price: </b> Rs. <?php echo $OrderDetails['item_price'];  ?></p>
                                   </div>
