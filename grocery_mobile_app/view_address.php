@@ -15,12 +15,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         if ($result->num_rows > 0) {
                 $response["lists"] = array();
                 while($getAddressDetails = $result->fetch_assoc()) {
-                    $getState = getIndividualDetails('grocery_lkp_states','id',$result['lkp_state_id']);
-                    $getDistrict = getIndividualDetails('grocery_lkp_districts','id',$result['lkp_district_id']);
-                    $getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$result['lkp_pincode_id']);
-                    $getCity = getIndividualDetails('grocery_lkp_cities','id',$result['lkp_city_id']);
-                    $getArea = getIndividualDetails('grocery_lkp_areas','id',$result['lkp_location_id']);
-                    $getsubArea = getIndividualDetails('grocery_lkp_sub_areas','id',$result['lkp_sub_location_id']);
+                    $getState = getIndividualDetails('grocery_lkp_states','id',$getAddressDetails['lkp_state_id']);
+                    $getDistrict = getIndividualDetails('grocery_lkp_districts','id',$getAddressDetails['lkp_district_id']);
+                    $getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getAddressDetails['lkp_pincode_id']);
+                    $getCity = getIndividualDetails('grocery_lkp_cities','id',$getAddressDetails['lkp_city_id']);
+                    $getArea = getIndividualDetails('grocery_lkp_areas','id',$getAddressDetails['lkp_location_id']);
+                    $getsubArea = getIndividualDetails('grocery_lkp_sub_areas','id',$getAddressDetails['lkp_sub_location_id']);
                     if($getCustomerDeatils['lkp_sub_location_id'] != 0) {
                         $subArea = $getsubArea["sub_area_name"];
                     } else {
