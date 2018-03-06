@@ -147,7 +147,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3 col-md-4"><br>
-						<?php include_once 'filter_new.php'; ?>
+						<?php include_once 'filters.php'; ?>
 						<!-- /.sidebar -->
 					</div><!-- /.col-lg-3 col-md-4 -->
 					<div class="col-lg-9 col-md-8">
@@ -163,10 +163,10 @@
 								</div>
 								<div class="sort-product">
 									<ul class="icons">
-										<li class="list-1">
+										<li>
 											<img src="images/icons/list-1.png" alt="">
 										</li>
-										<li class="list-2">
+										<li>
 											<img src="images/icons/list-2.png" alt="">
 										</li>
 									</ul>
@@ -196,7 +196,7 @@
 												<input type="hidden" name="brand_id" value="<?php echo $_GET['brand_id']; ?>">
 											<?php } ?>
 											<div class="popularity">
-												<select name="popularity" class="item_filter" id="sort">
+												<select name="popularity" onChange="loadPopularity(this.value)">
 													<option value="">Sort by popularity</option>
 													<option value="recent">Sort by recent</option>
 													<option value="low_high">Price low to high</option>
@@ -530,49 +530,99 @@
 
 				 });
 			}
+			function loadPopularity(popStatus) {
+
+				$.ajax({
+			      type: 'post',
+			      url: 'load_popular_products.php',
+			      data: $("#popularity").serialize(),
+			      success: function (response) {
+			      //alert(response);
+			      $('#all_rows').html(response);		  
+			      }
+				});
+
+				$.ajax({
+			      type: 'post',
+			      url: 'load_popular_products_grid.php',
+			      data: $("#popularity").serialize(),
+			      success: function (response) {
+			      //alert(response);
+			      $('#all_rows_grid').html(response);		  
+			      }
+				});
+			}
 		</script>
-	<script>
-        var categories,brand,category_id,sub_category_id,offer_id,banner_id,sorting,brand_id,tagId;
-        $(function(){
-            // $('.item_filter').click(function(){
-            $('.item_filter').on('click change',function(event) {
-                categories = multiple_values('categories');
-                brand  = multiple_values('brand');
-                price  = multiple_values('price');
-                category_id = $("#category_id").val();
-                sub_category_id = $("#sub_category_id").val();
-                offer_id = $("#offer_id").val();
-                banner_id = $("#banner_id").val();
-                brand_id = $("#brand_id").val();
-                tagId = $("#tagId").val();
-                sorting = $("#sort").val();
-                $.ajax({
-                    url:"filter_products.php",
-                    type:'post',
-                    data:{categories:categories,brand:brand,category_id:category_id,sub_category_id:sub_category_id,offer_id:offer_id,banner_id:banner_id,price:price,sorting:sorting,brand_id:brand_id,tagId:tagId},
-                    success:function(result){
-                    	$('#all_rows').html(result);
-                    }
-                });
-                $.ajax({
-                    url:"filter_products_grid.php",
-                    type:'post',
-                    data:{categories:categories,brand:brand,category_id:category_id,sub_category_id:sub_category_id,offer_id:offer_id,banner_id:banner_id,price:price,sorting:sorting,brand_id:brand_id,tagId:tagId},
-                    success:function(result){
-                    	$('#all_rows_grid').html(result);
-                    }
-                });
-            });
-        });    
-        
-        function multiple_values(inputclass){
-            var val = new Array();
-            $("."+inputclass+":checked").each(function() {
-                val.push($(this).val());
-            });
-            return val;
-        }
-    </script>
+		<script type="text/javascript">
+			$(document).on('change','.categories',function(){
+			   $.ajax({
+			      type: 'post',
+			      url: 'category_filters.php',
+			      data: $("#category_filters").serialize(),
+			      success: function (response) {
+			      //alert(response);
+			      $('#all_rows').html(response);		  
+			      }
+				});
+
+				$.ajax({
+			      type: 'post',
+			      url: 'category_filters_grid.php',
+			      data: $("#category_filters").serialize(),
+			      success: function (response) {
+			      //alert(response);
+			      $('#all_rows_grid').html(response);		  
+			      }
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).on('change','.brand_filters',function(){
+			   $.ajax({
+			      type: 'post',
+			      url: 'load_brands_products.php',
+			      data: $("#check_filter_form").serialize(),
+			      success: function (response) {
+			      //alert(response);
+			      $('#all_rows').html(response);		  
+			      }
+				});
+
+				$.ajax({
+			      type: 'post',
+			      url: 'load_brands_products_grid.php',
+			      data: $("#check_filter_form").serialize(),
+			      success: function (response) {
+			      //alert(response);
+			      $('#all_rows_grid').html(response);		  
+			      }
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).on('change','.check_price_type',function(){
+			   $.ajax({
+			     type: "POST",
+			     url: 'price_filters.php',
+			     data: $("#search_form").serialize(),
+			     success: function(response)
+			     {                  
+			        //alert(response);
+			        $('#all_rows').html(response);
+			     }               
+			   });
+			  $.ajax({
+			     type: "POST",
+			     url: 'price_filters_grid.php',
+			     data: $("#search_form").serialize(),
+			     success: function(response)
+			     {                  
+			        //alert(response);
+			        $('#all_rows_grid').html(response);
+			     }               
+			   });
+			});
+		</script>
 
 </body>	
 </html>
