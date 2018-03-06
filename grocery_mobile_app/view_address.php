@@ -8,9 +8,9 @@ $response = array();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    if(isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])) {
+    if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId'])) {
 
-        $result = getAllDataWhere('grocery_add_address','user_id',$_REQUEST['user_id']);
+        $result = getAllDataWhere('grocery_add_address','user_id',$_REQUEST['userId']);
         
         if ($result->num_rows > 0) {
                 $response["lists"] = array();
