@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$lkp_city_id = 1;
 	}
 
-	echo $getBanners = "SELECT * FROM grocery_banners WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id'"; die;
+	$getBanners = "SELECT * FROM grocery_banners WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id'";
 	$result = $conn->query($getBanners);
 	if ($result->num_rows > 0) {
 			$response["lists"] = array();
