@@ -173,7 +173,7 @@
 									</ul>
 									<div class="sort">
 										<div class="popularity">
-											<select name="popularity" onChange="loadPopularity(this.value)">
+											<select name="popularity" class="item_filter" id="sort">
 												<option value="">Sort by popularity</option>
 												<option value="recent">Sort by recent</option>
 												<option value="low_high">Price low to high</option>
@@ -559,16 +559,18 @@
 			}
 		</script>
 		<script>
-	        var categories,brand;
+	        var categories,brand,sorting;
 	        $(function(){
-	            $('.item_filter').click(function(){
+	            //$('.item_filter').click(function(){
+	            $('.item_filter').on('click change',function(event) {
 	                categories = multiple_values('categories');
 	                brand  = multiple_values('brand');
 	                price  = multiple_values('price');
+	                sorting = $("#sort").val();
 	                $.ajax({
 	                    url:"filter_products.php",
 	                    type:'post',
-	                    data:{categories:categories,brand:brand,price:price},
+	                    data:{categories:categories,brand:brand,price:price,sorting:sorting},
 	                    success:function(result){
 	                        $('#all_rows').html(result);
 	                    }
@@ -576,7 +578,7 @@
 	                $.ajax({
 	                    url:"filter_products_grid.php",
 	                    type:'post',
-	                    data:{categories:categories,brand:brand,price:price},
+	                    data:{categories:categories,brand:brand,price:price,sorting:sorting},
 	                    success:function(result){
 	                        $('#all_rows_grid').html(result);
 	                    }

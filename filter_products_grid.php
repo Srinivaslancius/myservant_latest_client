@@ -28,77 +28,98 @@ if($getMaxPriceVal=='') {
 $categories="";
 $brand="";
 if(isset($_POST['category_id'])) {
-	$category_id = $_POST['category_id'];
+    $category_id = $_POST['category_id'];
 } 
 if(isset($_POST['sub_category_id'])) {
-	$sub_category_id = $_POST['sub_category_id'];
+    $sub_category_id = $_POST['sub_category_id'];
 }
-if($_POST['price']) {
+if(isset($_POST['brand_id'])) {
+    $brand_id = $_POST['brand_id'];
+}
+if(isset($_POST['tagId'])) {
+    $tagId = $_POST['tagId'];
+}
+if(isset($_POST['price'])) {
     $price = 'AND (selling_price BETWEEN '.$sendMinPrice.' AND '.$sendMaxPrice.')';
 } else {
     $price = '';
+}
+if($_POST['sorting'] == 'recent') {
+    $sort = ' ORDER BY grocery_products.id DESC';
+} elseif($_POST['sorting'] == 'low_high') {
+    $sort = ' ORDER BY grocery_product_bind_weight_prices.selling_price ASC';
+} elseif($_POST['sorting'] == 'high_low') {
+    $sort = ' ORDER BY grocery_product_bind_weight_prices.selling_price DESC';
+} elseif($_POST['sorting'] == 'a_z') {
+    $sort = ' ORDER BY grocery_product_name_bind_languages.product_name';
 }
 $offer_id = $_POST['offer_id'];
 $banner_id = $_POST['banner_id'];
 $categories = isset($_REQUEST['categories'])?$_REQUEST['categories']:"";
 $brand = isset($_REQUEST['brand'])?$_REQUEST['brand']:"";
 if ($banner_id) {
-	$id = $banner_id;
-	$offerProducts = getIndividualDetails('grocery_banners','id',$id);
+    $id = $banner_id;
+    $offerProducts = getIndividualDetails('grocery_banners','id',$id);
     $min_percentage = $offerProducts['min_percentage'];
     $max_percentage = $offerProducts['max_percentage'];
     $type = $offerProducts['type'];
     $offer_type = $offerProducts['banner_image_type'];
     $category_id = $offerProducts['category_id'];
-	$sub_category_id = $offerProducts['sub_category_id'];
+    $sub_category_id = $offerProducts['sub_category_id'];
 } elseif ($offer_id) {
-	$id = $offer_id;
-	$offerProducts = getIndividualDetails('grocery_offer_module','id',$id);
+    $id = $offer_id;
+    $offerProducts = getIndividualDetails('grocery_offer_module','id',$id);
     $min_percentage = $offerProducts['min_offer_percentage'];
     $max_percentage = $offerProducts['max_offer_percentage'];
     $type = $offerProducts['offer_level'];
     $offer_type = $offerProducts['offer_type'];
     $category_id = $offerProducts['category_id'];
-	$sub_category_id = $offerProducts['sub_category_id'];
+    $sub_category_id = $offerProducts['sub_category_id'];
 }
 
 if($id) {
-	if($offer_type == 1) {
-		$offer_percentage = ' AND (offer_percentage BETWEEN '.$min_percentage.' AND '.$max_percentage.')';
-	} else {
-		$offer_percentage = '';
-	}
+    if($offer_type == 1) {
+        $offer_percentage = ' AND (offer_percentage BETWEEN '.$min_percentage.' AND '.$max_percentage.')';
+    } else {
+        $offer_percentage = '';
+    }
 }
 if(!empty($categories) && empty($brand)) {
-	$query = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id $offer_percentage $price) "; 
+    $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_products LEFT JOIN grocery_product_bind_weight_prices ON grocery_product_bind_weight_prices.product_id = grocery_products.id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price "; 
 } elseif(!empty($brand)){
     if($category_id) {
-    	$query = "SELECT grocery_product_bind_brands.*,grocery_products.*FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id WHERE grocery_products.lkp_status_id = '0' AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' $offer_percentage $price) AND grocery_products.grocery_category_id = '$category_id' ";
+        $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_brands.*,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id LEFT JOIN grocery_product_bind_weight_prices ON grocery_products.id=grocery_product_bind_weight_prices.product_id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = '0' AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price AND grocery_products.grocery_category_id = '$category_id' ";
     } elseif($sub_category_id) {
-    	$query = "SELECT grocery_product_bind_brands.*,grocery_products.*FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id WHERE grocery_products.lkp_status_id = '0' AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' $offer_percentage $price) AND grocery_products.grocery_sub_category_id = '$sub_category_id' ";
+        $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_brands.*,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id LEFT JOIN grocery_product_bind_weight_prices ON grocery_products.id=grocery_product_bind_weight_prices.product_id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = '0' AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price AND grocery_products.grocery_sub_category_id = '$sub_category_id' ";
     } else{
-        $query = "SELECT grocery_product_bind_brands.*,grocery_products.*FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id WHERE grocery_products.lkp_status_id = '0' AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id' $offer_percentage $price)";
+        $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_brands.*,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_product_bind_brands LEFT JOIN grocery_products ON grocery_products.id=grocery_product_bind_brands.product_id LEFT JOIN grocery_product_bind_weight_prices ON grocery_products.id=grocery_product_bind_weight_prices.product_id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = '0' AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price";
     }
 } else {
     if($category_id) {
-        $query = "SELECT * FROM grocery_products WHERE grocery_category_id = '$category_id' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id $offer_percentage $price)  ORDER BY id DESC";
+        $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_products LEFT JOIN grocery_product_bind_weight_prices ON grocery_products.id=grocery_product_bind_weight_prices.product_id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.grocery_category_id = '$category_id' AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price ";
     } elseif($sub_category_id) {
-        $query = "SELECT * FROM grocery_products WHERE grocery_sub_category_id = '$sub_category_id' AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id $offer_percentage $price)  ORDER BY id DESC";
+        $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_products LEFT JOIN grocery_product_bind_weight_prices ON grocery_products.id=grocery_product_bind_weight_prices.product_id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.grocery_sub_category_id = '$sub_category_id' AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price ";
+    } elseif($brand_id) {
+        $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_products LEFT JOIN grocery_product_bind_weight_prices ON grocery_products.id=grocery_product_bind_weight_prices.product_id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_brands WHERE brand_id = '$brand_id') AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price ";
+    } elseif($tagId) {
+        $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_products LEFT JOIN grocery_product_bind_weight_prices ON grocery_products.id=grocery_product_bind_weight_prices.product_id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_products.id IN (SELECT product_id FROM grocery_product_bind_tags WHERE tag_id = '$tagId') AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price ";
     } else {
-        $query = "SELECT * FROM grocery_products WHERE lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id $offer_percentage $price)  ORDER BY id DESC";
+        $query = "SELECT grocery_product_name_bind_languages.product_id,grocery_product_bind_weight_prices.*,grocery_products.* FROM grocery_products LEFT JOIN grocery_product_bind_weight_prices ON grocery_products.id=grocery_product_bind_weight_prices.product_id LEFT JOIN grocery_product_name_bind_languages ON grocery_product_name_bind_languages.product_id = grocery_products.id WHERE grocery_products.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_status_id = 0 AND grocery_product_bind_weight_prices.lkp_city_id = '$lkp_city_id' $offer_percentage $price ";
     }
 }
 //$query = "SELECT * FROM grocery_products WHERE ";
 //filter query start 
   if(!empty($categories)){
-	  $colordata =implode("','",$categories);
-	  $query  .= " and grocery_sub_category_id in('$colordata')"; 
+      $colordata =implode("','",$categories);
+      $query  .= " and grocery_sub_category_id in('$colordata')"; 
   }
   
    if(!empty($brand)){
-	  $branddata =implode("','",$brand);
-	  $query  .= " and grocery_product_bind_brands.brand_id in('$branddata') GROUP BY grocery_product_bind_brands.product_id"; 
+      $branddata =implode("','",$brand);
+      $query  .= " and grocery_product_bind_brands.brand_id in('$branddata')"; 
   }
+  $query .= " GROUP BY grocery_products.id";
+  $query .= $sort;
 //echo $query; die;
 $rs=$conn->query($query);
 if($rs->num_rows > 0) {

@@ -3,6 +3,10 @@
 	<input type="hidden" name="offer_id" id="offer_id" value="<?php echo $_GET['offer_id']; ?>">
 	<?php } elseif($_GET['id']) { ?>
 	<input type="hidden" name="banner_id" id="banner_id" value="<?php echo $_GET['id']; ?>">
+	<?php } elseif($_GET['brand_id']) { ?>
+	<input type="hidden" name="brand_id" id="brand_id" value="<?php echo $_GET['brand_id']; ?>">
+	<?php } elseif($_GET['tagId']) { ?>
+	<input type="hidden" name="tagId" id="tagId" value="<?php echo $_GET['tagId']; ?>">
 	<?php } ?>
 	<?php if($product_id = $_GET['cat_id']) { ?>
 	<div class="widget widget-categories">
@@ -124,7 +128,26 @@
 			<div style="height: 2px"></div>
 		</div>
 		<div class="widget-content">
-			<form id="search_form">									
+			<form id="search_form">	
+				<?php if($_GET['cat_id']) { ?>
+					<input type="hidden" name="category_id" id="category_id" value="<?php echo $_GET['cat_id']; ?>">
+				 <?php } elseif($_GET['sub_cat_id']) { ?>
+					<input type="hidden" name="sub_category_id" id="sub_category_id" value="<?php echo $_GET['sub_cat_id']; ?>">
+				<?php } elseif($_GET['offer_id']) { 
+					$getOffers1 = getIndividualDetails('grocery_offer_module','id',$_GET['offer_id']);
+					if($getOffers1['offer_level'] == 1) { ?>
+						<input type="hidden" name="category_id" id="category_id" value="<?php echo $getOffers1['category_id']; ?>">
+					<?php } elseif($getOffers1['offer_level'] == 2) { ?>
+						<input type="hidden" name="sub_category_id" id="sub_category_id" value="<?php echo $getOffers1['sub_category_id']; ?>">
+					<?php } ?>
+				<?php } elseif($_GET['id']) { 
+					$getBanners1 = getIndividualDetails('grocery_banners','id',$_GET['id']);
+					if($getBanners1['type'] == 1) { ?>
+						<input type="hidden" name="category_id" id="category_id" value="<?php echo $getBanners1['category_id']; ?>">
+					<?php } elseif($getBanners1['type'] == 2) { ?>
+						<input type="hidden" name="sub_category_id" id="sub_category_id" value="<?php echo $getBanners1['sub_category_id']; ?>">
+					<?php } ?>
+				<?php } ?>								
 				<ul class="box-checkbox scroll">
 					<li class="check-box">
 						<input type="checkbox" class="item_filter price" id="check1" name="price[]" value="0 - 500">

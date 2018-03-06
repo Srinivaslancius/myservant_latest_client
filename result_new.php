@@ -196,7 +196,7 @@
 												<input type="hidden" name="brand_id" value="<?php echo $_GET['brand_id']; ?>">
 											<?php } ?>
 											<div class="popularity">
-												<select name="popularity" onChange="loadPopularity(this.value)">
+												<select name="popularity" class="item_filter" id="sort">
 													<option value="">Sort by popularity</option>
 													<option value="recent">Sort by recent</option>
 													<option value="low_high">Price low to high</option>
@@ -216,7 +216,6 @@
 									</div>
 									<div class="clearfix"></div>
 								</div>
-								<input type="hidden" name="list" class="item_filter" id="list" value="1">
 								<div class="tab-product">
 									<div class="row sort-box" id="all_rows">
 									<?php 
@@ -531,33 +530,12 @@
 
 				 });
 			}
-			function loadPopularity(popStatus) {
-
-				$.ajax({
-			      type: 'post',
-			      url: 'load_popular_products.php',
-			      data: $("#popularity").serialize(),
-			      success: function (response) {
-			      //alert(response);
-			      $('#all_rows').html(response);		  
-			      }
-				});
-
-				$.ajax({
-			      type: 'post',
-			      url: 'load_popular_products_grid.php',
-			      data: $("#popularity").serialize(),
-			      success: function (response) {
-			      //alert(response);
-			      $('#all_rows_grid').html(response);		  
-			      }
-				});
-			}
 		</script>
 	<script>
-        var categories,brand,category_id,sub_category_id,offer_id,banner_id;
+        var categories,brand,category_id,sub_category_id,offer_id,banner_id,sorting,brand_id,tagId;
         $(function(){
-            $('.item_filter').click(function(){
+            // $('.item_filter').click(function(){
+            $('.item_filter').on('click change',function(event) {
                 categories = multiple_values('categories');
                 brand  = multiple_values('brand');
                 price  = multiple_values('price');
@@ -565,10 +543,13 @@
                 sub_category_id = $("#sub_category_id").val();
                 offer_id = $("#offer_id").val();
                 banner_id = $("#banner_id").val();
+                brand_id = $("#brand_id").val();
+                tagId = $("#tagId").val();
+                sorting = $("#sort").val();
                 $.ajax({
                     url:"filter_products.php",
                     type:'post',
-                    data:{categories:categories,brand:brand,category_id:category_id,sub_category_id:sub_category_id,offer_id:offer_id,banner_id:banner_id,price:price},
+                    data:{categories:categories,brand:brand,category_id:category_id,sub_category_id:sub_category_id,offer_id:offer_id,banner_id:banner_id,price:price,sorting:sorting,brand_id:brand_id,tagId:tagId},
                     success:function(result){
                     	$('#all_rows').html(result);
                     }
@@ -576,7 +557,7 @@
                 $.ajax({
                     url:"filter_products_grid.php",
                     type:'post',
-                    data:{categories:categories,brand:brand,category_id:category_id,sub_category_id:sub_category_id,offer_id:offer_id,banner_id:banner_id,price:price},
+                    data:{categories:categories,brand:brand,category_id:category_id,sub_category_id:sub_category_id,offer_id:offer_id,banner_id:banner_id,price:price,sorting:sorting,brand_id:brand_id,tagId:tagId},
                     success:function(result){
                     	$('#all_rows_grid').html(result);
                     }
