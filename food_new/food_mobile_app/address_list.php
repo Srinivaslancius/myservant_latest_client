@@ -8,19 +8,24 @@ $response = array();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    if(isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])) {
+    if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId'])) {
 
-        $result = getAllDataWhere('food_add_address','user_id',$_REQUEST['user_id']);
+        $result = getAllDataWhere('food_add_address','user_id',$_REQUEST['userId']);
         
         if ($result->num_rows > 0) {
                 $response["lists"] = array();
                 while($getAddressDetails = $result->fetch_assoc()) {
+                    $getState = getIndividualDetails('lkp_states','id',$getAddressDetails['lkp_state_id']);
+                    $getDistrict = getIndividualDetails('lkp_districts','id',$getAddressDetails['lkp_district_id']);
+                    $getPincode = getIndividualDetails('lkp_pincodes','id',$getAddressDetails['lkp_pincode_id']);
+                    $getCity = getIndividualDetails('lkp_cities','id',$getAddressDetails['lkp_city_id']);
+                    $getArea = getIndividualDetails('lkp_locations','id',$getAddressDetails['lkp_location_id']);
                     //Chedck the condioton for emptty or not        
                     $lists = array();
                     $lists["id"] = $getAddressDetails["id"];
                     $lists["user_id"] = $getAddressDetails["user_id"];     
-                    $lists["name"] = $getAddressDetails["name"];              
-                    $lists["address_details"] = $getAddressDetails["city"] . ',' . $getAddressDetails["state"] .',' . $getAddressDetails["landmark"] .',' . $getAddressDetails["pincode"] .', ' . $getAddressDetails["address"].',' . $getAddressDetails["location"];
+                    $lists["name"] = $getAddressDetails["first_name"].$getAddressDetails["last_name"];
+                    $lists["address_details"] = $getState["state_name"] . ',' . $getDistrict["district_name"] .',' . $getCity["city_name"] .',' . $getArea["location_name"] .', ' . $getPincode["pincode"].',' . $getAddressDetails["address"];
                     $lists["status"] = $getAddressDetails["lkp_status_id"];
                     
                     array_push($response["lists"], $lists);      
