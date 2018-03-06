@@ -21,12 +21,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     $getCity = getIndividualDetails('grocery_lkp_cities','id',$result['lkp_city_id']);
                     $getArea = getIndividualDetails('grocery_lkp_areas','id',$result['lkp_location_id']);
                     $getsubArea = getIndividualDetails('grocery_lkp_sub_areas','id',$result['lkp_sub_location_id']);
+                    if($getCustomerDeatils['lkp_sub_location_id'] != 0) {
+                        $subArea = $getsubArea["sub_area_name"];
+                    } else {
+                        $subArea = '';
+                    }
                     //Chedck the condioton for emptty or not        
                     $lists = array();
                     $lists["id"] = $getAddressDetails["id"];
                     $lists["user_id"] = $getAddressDetails["user_id"];     
                     $lists["name"] = $getAddressDetails["name"];              
-                    $lists["address_details"] = $getState["state_name"] . ',' . $getDistrict["district_name"] .',' . $getCity["city_name"] .',' . $getArea["area_name"] .', ' . $getAddressDetails["address"].',' . $getPincode["pincode"];
+                    $lists["address_details"] = $getState["state_name"] . ',' . $getDistrict["district_name"] .',' . $getCity["city_name"] .',' . $getArea["area_name"] .',' . $subArea .', ' . $getAddressDetails["address"].',' . $getPincode["pincode"];
                     $lists["status"] = $getAddressDetails["lkp_status_id"];
                     
                     array_push($response["lists"], $lists);      
