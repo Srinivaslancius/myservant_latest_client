@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     $getCity = getIndividualDetails('grocery_lkp_cities','id',$getAddressDetails['lkp_city_id']);
                     $getArea = getIndividualDetails('grocery_lkp_areas','id',$getAddressDetails['lkp_location_id']);
                     $getsubArea = getIndividualDetails('grocery_lkp_sub_areas','id',$getAddressDetails['lkp_sub_location_id']);
-                    if($getCustomerDeatils['lkp_sub_location_id'] != 0) {
+                    if($getAddressDetails['lkp_sub_location_id'] != 0) {
                         $subArea = $getsubArea["sub_area_name"];
                     } else {
                         $subArea = '';
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     $lists = array();
                     $lists["id"] = $getAddressDetails["id"];
                     $lists["user_id"] = $getAddressDetails["user_id"];     
-                    $lists["name"] = $getAddressDetails["name"];              
+                    $lists["name"] = $getAddressDetails["first_name"].$getAddressDetails["last_name"];              
                     $lists["address_details"] = $getState["state_name"] . ',' . $getDistrict["district_name"] .',' . $getCity["city_name"] .',' . $getArea["area_name"] .',' . $subArea .', ' . $getAddressDetails["address"].',' . $getPincode["pincode"];
                     $lists["status"] = $getAddressDetails["lkp_status_id"];
                     
