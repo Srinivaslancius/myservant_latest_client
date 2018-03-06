@@ -7,21 +7,23 @@ $response = array();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    if (isset($_REQUEST['userId']) && isset($_REQUEST['name']) && !empty($_REQUEST['landmark']) && !empty($_REQUEST['city']) && !empty($_REQUEST['address']) && !empty($_REQUEST['location']) && !empty($_REQUEST['state']) && !empty($_REQUEST['phone']) ) {
+    if (isset($_REQUEST['userId']) && isset($_REQUEST['firstName']) && !empty($_REQUEST['lastName']) && !empty($_REQUEST['email']) && !empty($_REQUEST['mobile']) && !empty($_REQUEST['state']) && !empty($_REQUEST['district']) && !empty($_REQUEST['city']) && !empty($_REQUEST['pincode']) && !empty($_REQUEST['location']) && !empty($_REQUEST['address']) ) {
 
         $userId = $_REQUEST['userId'];        
-        $name= $_REQUEST['name'];
-        $address= $_REQUEST['address'];
-        $landmark = $_REQUEST['landmark'];
-        $location= $_REQUEST['location'];
-        $city = $_REQUEST['city'];
+        $first_name= $_REQUEST['firstName'];
+        $last_name= $_REQUEST['lastName'];
+        $email = $_REQUEST['email'];
+        $mobile= $_REQUEST['mobile'];
         $state = $_REQUEST['state'];
+        $district = $_REQUEST['district'];
+        $city= $_REQUEST['city'];
         $pincode= $_REQUEST['pincode'];
-        $phone= $_REQUEST['phone'];
+        $location= $_REQUEST['location'];
+        $address= $_REQUEST['address'];
         $date = date("Y-m-d h:i:s");
         $lkp_status_id = 0;
 
-        $sql = "INSERT INTO food_add_address (`user_id`,`name`, `address`, `landmark`,`location`,`city`,`state`, `pincode`,`phone`,`created_at`, `lkp_status_id`) VALUES ('$userId','$name', '$address', '$landmark', '$location', '$city','$state','$pincode','$phone', '$date', '$lkp_status_id')";
+        $sql = "INSERT INTO food_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`address`,`created_at`, `lkp_status_id`) VALUES ('$userId','$first_name', '$last_name', '$email', '$mobile', '$state','$district','$city','$pincode', '$location', '$address', '$date', '$lkp_status_id')";
 
             if ($conn->query($sql) === TRUE) {
 
