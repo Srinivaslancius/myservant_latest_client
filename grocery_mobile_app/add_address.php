@@ -25,10 +25,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $lkp_status_id = 0;
         $make_it_default = 1;
 
-        $default = "UPDATE grocery_add_address SET make_it_default = 0 WHERE user_id = '$userId'";
-        $conn->query($default);
+        if($updateAddress = 1) {
+            $sql = "UPDATE grocery_add_address SET user_id = '$userId',first_name = '$first_name',last_name = '$last_name',email = '$email',phone = '$mobile',lkp_state_id = '$state',lkp_district_id = '$district',lkp_city_id = '$city',lkp_pincode_id = '$pincode',lkp_location_id = '$location',lkp_sub_location_id = '$subLocation',address = '$address'"
+        } else {
+            $default = "UPDATE grocery_add_address SET make_it_default = 0 WHERE user_id = '$userId'";
+            $conn->query($default);
 
-        $sql = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`lkp_sub_location_id`,`address`,`created_at`, `lkp_status_id`, `make_it_default`) VALUES ('$userId','$first_name', '$last_name', '$email', '$mobile', '$state','$district','$city','$pincode', '$location', '$subLocation', '$address', '$date', '$lkp_status_id', '$make_it_default')";
+            $sql = "INSERT INTO grocery_add_address (`user_id`,`first_name`,`last_name`,`email`,`phone`,`lkp_state_id`,`lkp_district_id`,`lkp_city_id`,`lkp_pincode_id`,`lkp_location_id`,`lkp_sub_location_id`,`address`,`created_at`, `lkp_status_id`, `make_it_default`) VALUES ('$userId','$first_name', '$last_name', '$email', '$mobile', '$state','$district','$city','$pincode', '$location', '$subLocation', '$address', '$date', '$lkp_status_id', '$make_it_default')";
+        }
+        
 
             if ($conn->query($sql) === TRUE) {
 
