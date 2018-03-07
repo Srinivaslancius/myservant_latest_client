@@ -12,12 +12,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
         //$result = getAllDataWhere('grocery_add_address','user_id',$_REQUEST['userId']);
 
-        $selDefaultAddress = "SELECT * FROM grocery_add_address WHERE user_id AND make_it_default = 1";
+        $user_id = $_REQUEST['userId'];
+        $selDefaultAddress = "SELECT * FROM grocery_add_address WHERE user_id='$user_id' AND make_it_default = 1";
         $result = $conn->query($selDefaultAddress);
         $getAddressDetails = $result->fetch_assoc();
         
         if ($result->num_rows > 0) {
-                $response["lists"] = array();
+                //$response["lists"] = array();
                 //while($getAddressDetails = $result->fetch_assoc()) {
                     $getState = getIndividualDetails('grocery_lkp_states','id',$getAddressDetails['lkp_state_id']);
                     $getDistrict = getIndividualDetails('grocery_lkp_districts','id',$getAddressDetails['lkp_district_id']);
@@ -41,7 +42,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     $response["area_name"] = $getArea["area_name"]; 
                     $response["address"] = $getAddressDetails["address"]; 
                     $response["pincode"] = $getPincode["pincode"]; 
-                    $response["pincode"] = $subArea; 
+                    $response["phone"] = $getAddressDetails["phone"]; 
+                    $response["subArea"] = $subArea; 
                     //$response["address_details"] = $getState["state_name"] . ',' . $getDistrict["district_name"] .',' . $getCity["city_name"] .',' . $getArea["area_name"] .',' . $subArea .', ' . $getAddressDetails["address"].',' . $getPincode["pincode"];
                     $response["status"] = $getAddressDetails["lkp_status_id"];
                     
