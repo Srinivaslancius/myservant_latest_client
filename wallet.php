@@ -185,7 +185,7 @@
 							            			<td>Rs. <?php echo $UpDateWallet2['credit_amnt']; ?> </td>
 													<td><?php echo $PaymentStatus['payment_status']; ?></td>
 													<td><?php echo $UpDateWallet2['description']; ?></td>
-													<td><?php echo $UpDateWallet2['updated_date']; ?></td>
+													<td><?php echo changeDateFormat1($UpDateWallet2['updated_date']); ?></td>
 							            		  </tr>
 											       <?php } ?>
 												  <!--<tr>
@@ -233,7 +233,7 @@
 							            			<td>Rs. <?php echo $UpDateWallets2['debit_amnt']; ?> </td>
 													<td><?php echo $PaymentStatus1['payment_status']; ?></td>
 													<td><?php echo $UpDateWallets2['description']; ?></td>
-													<td><?php echo $UpDateWallets2['updated_date']; ?></td>
+													<td><?php echo changeDateFormat1($UpDateWallets2['updated_date']); ?></td>
 							            		  </tr>
 											       <?php }?>
 												  <!--<tr>
@@ -287,7 +287,7 @@
 							            			<td>Rs. <?php echo $amount; ?> </td>
 													<td><?php echo $PaymentStatus1['payment_status']; ?></td>
 													<td><?php echo $UpDateWallets2['description']; ?></td>
-													<td><?php echo $UpDateWallets2['updated_date']; ?></td>
+													<td><?php echo changeDateFormat1($UpDateWallets2['updated_date']); ?></td>
 							            		  </tr>
 											       <?php }?>
 												  <!--<tr>

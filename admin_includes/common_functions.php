@@ -241,6 +241,24 @@
         return date('M d , Y', $yrdata);
     }
 
+    function changeDateFormat1($date) {
+        //Save data into logs table
+        $yrdata= strtotime($date);
+        return date('M d , Y H:i:s', $yrdata);
+    }
+
+    function dateFormat($date) {
+        //Save data into logs table
+        $yrdata= strtotime($date);
+        return date('d/m/Y H:i:s', $yrdata);
+    }
+
+    function dateFormat1($date) {
+        //Save data into logs table
+        $yrdata= strtotime($date);
+        return date('d/m/Y', $yrdata);
+    }
+
     function updateAdminLogs($service_id,$user_id) {
         //Update User Log end time
         global $conn;

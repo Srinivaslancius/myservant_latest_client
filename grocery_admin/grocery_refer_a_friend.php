@@ -58,7 +58,7 @@
                                 <td><?php echo $row['register_status']; ?></td>
                                 <td><?php echo $row['first_transaction_status']; ?></td>
                                 <td><?php echo $row['referal_code']; ?></td>
-                                <td><?php echo $row['created_at']; ?></td>
+                                <td><?php echo dateFormat($row['created_at']); ?></td>
                             </tr>
                             <?php $i++; } ?>
                           </tbody>

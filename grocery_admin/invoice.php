@@ -79,7 +79,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
                 <p>Order Id: <?php echo $getOrdersData1['order_id']; ?>
                   <br>Delivery Slot Date: <?php echo changeDateFormat($getOrdersData1['delivery_slot_date']);?>
                   <br>Delivery Slot Time: <?php echo $getOrdersData1['delivery_time'];?>
-                  <br>Order Date: <?php echo $getOrdersData1['created_at']; ?>
+                  <br>Order Date: <?php echo dateFormat($getOrdersData1['created_at']); ?>
                   <br>Order Status : <?php echo $orderStatus['order_status']; ?> 
                   <br>Payment Status : <?php echo $paymentStatus['payment_status']; ?>
                   <br>Payment Method: <?php echo $getpaymentTypes['status']; ?>
