@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $offerId = $_REQUEST['offerId'];
         $brandId = $_REQUEST['brandId'];
         
-         if($catId!='' && $catId!=0 && $subCatId!='' && $subCatId!=0 && $brandId!='') {
+         if($catId!='' && $catId!=0 && $subCatId!='' && $subCatId!=0 && $brandId!='' && $brandId!=0) {
         	$getProducts = "SELECT * from grocery_products WHERE grocery_sub_category_id = $subCatId  AND grocery_category_id =$catId AND lkp_status_id = 0 AND id IN (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = '$lkp_city_id') AND id IN (SELECT product_id FROM grocery_product_bind_brands WHERE brand_id IN ('".$brandId."') ) ";
         	$getProducts1 = $conn->query($getProducts);
         } elseif($catId!='' && $catId!=0 && $subCatId!='' && $subCatId!=0) {
