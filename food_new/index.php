@@ -285,9 +285,12 @@ a.mask {
         
         
         </div><!-- End container -->
-            
+         <div class="high_light">
+       <?php include_once 'view_restaurants.php';?>
+      </div><!-- End hight_light -->
+                
            
-    <div class="white_bg">
+   <div class="white_bg">
     <div class="container margin_60">
         
         <div class="main_title">
@@ -420,10 +423,7 @@ a.mask {
         </div>
 			</div>
     </div>
-       <div class="high_light">
-       <?php include_once 'view_restaurants.php';?>
-      </div><!-- End hight_light -->
-            
+      
     
     <!-- End Content =============================================== -->
     
