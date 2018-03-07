@@ -196,6 +196,13 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 									</div>
 									<div class="clearfix"></div>
 								</div><!-- /.slider-item style1 -->
+								<?php } elseif ($getBannersData1['type'] == 0) { ?>
+								<div class="slider-item style1">
+									<div class="item-image">
+										<a href="<?php echo $getBannersData1['link']; ?>" target="_blank"><img title="<?php echo $getBannersData1['title']; ?>" src="<?php echo $base_url . 'grocery_admin/uploads/grocery_banner_web_image/'.$getBannersData1['web_image'] ?>" alt=""></a>
+									</div>
+									<div class="clearfix"></div>
+								</div><!-- /.slider-item style1 -->
 								<?php } else { ?>
 								<div class="slider-item style1">
 									<div class="item-image">

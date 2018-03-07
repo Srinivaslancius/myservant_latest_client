@@ -49,14 +49,22 @@
                 $category_id = $_POST['category_id'];
                 $sub_category_id = '';
                 $product_id = '';
+                $link = '';
             } elseif($type == 2) {
                 $category_id = '';
                 $sub_category_id = $_POST['sub_category_id'];
                 $product_id = '';
+                $link = '';
+            } elseif($type == 0) {
+                $category_id = '';
+                $sub_category_id = '';
+                $product_id = '';
+                $link = $_POST['link'];
             } else {
                 $category_id = '';
                 $sub_category_id = '';
                 $product_id = $_POST['product_id'];
+                $link = '';
             }
             if($_FILES["web_image"]["name"]!='' || $_FILES["app_image"]["name"]!='') {
                 $web_image = uniqid().$_FILES["web_image"]["name"];
@@ -68,17 +76,17 @@
                 $app_image_file = $app_image_dir . basename($app_image);
                 
                 if(move_uploaded_file($_FILES["web_image"]["tmp_name"], $web_image_file) && move_uploaded_file($_FILES["app_image"]["tmp_name"], $app_image_file)) {
-                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',link = '$link',type = '$type', web_image = '$web_image', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } elseif($_FILES["web_image"]["name"]!='') {
                     move_uploaded_file($_FILES["web_image"]["tmp_name"], $web_image_file);
-                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', web_image = '$web_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',link = '$link',type = '$type', web_image = '$web_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } elseif($_FILES["app_image"]["name"]!='') {
                     move_uploaded_file($_FILES["app_image"]["tmp_name"], $app_image_file);
-                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
+                    $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',link = '$link',type = '$type', app_image = '$app_image',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                 } 
 
             } else{
-               $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',type = '$type',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
+               $sql = "UPDATE `grocery_banners` SET title = '$title',lkp_city_id = '$lkp_city_id',category_id = '$category_id',sub_category_id = '$sub_category_id',product_id = '$product_id',link = '$link',type = '$type',banner_image_type = '$banner_image_type',max_percentage = '$max_percentage',min_percentage = '$min_percentage' WHERE id = '$banner_id' ";
                //$conn->query($sql);
             }          
             //echo $sql; die;
@@ -173,6 +181,7 @@
                                         <?php while($row = $getTypes->fetch_assoc()) {  ?>
                                             <option <?php if($row['id'] == $getBanners['type']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>" ><?php echo $row['banner_type']; ?></option>
                                         <?php } ?>
+                                        <option <?php if($getBanners['type'] == 0) { echo "Selected"; } ?> value="0">Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -212,7 +221,13 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>                          
+                            </div> 
+                            <div class="form-group" id="link">
+                                <label class="col-sm-3 control-label" for="form-control-9">Link</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="url" name="link" class="form-control link" id="form-control-3" placeholder="Enter link" required value="<?php echo $getBanners['link']; ?>">
+                                </div>
+                            </div>                         
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                                     <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
@@ -230,38 +245,47 @@
     <script src="js/tables-datatables.min.js"></script>
 
     <script type="text/javascript">
-    $("#category,#sub_category,#product,#offer_percentage").hide();
+    $("#category,#sub_category,#product,#link,#offer_percentage").hide();
       $(document).ready(function () {
         $("#type").change(function() {
             if($(this).val() == 1) {
                 $("#category").show();
-                $("#sub_category,#product").hide();
+                $("#sub_category,#link,#product").hide();
                 $('.category').val("");
                 $(".category").attr("required", "true");
-                $(".sub_category,.product").removeAttr('required');
+                $(".sub_category,.link,.product").removeAttr('required');
             } else if($(this).val() == 2) {
                 $("#sub_category").show();
-                $("#category,#product").hide();
+                $("#category,#link,#product").hide();
                 $('.sub_category').val("");
                 $(".sub_category").attr("required", "true");
-                $(".category,.product").removeAttr('required');
+                $(".category,.link,.product").removeAttr('required');
+            } else if($(this).val() == 0) {
+                $("#link").show();
+                $("#category,#sub_category,#product").hide();
+                $('.link').val("");
+                $(".link").attr("required", "true");
+                $(".category,.sub_category,.product").removeAttr('required');
             } else {
                 $("#product").show();
-                $("#category,#sub_category").hide();
+                $("#category,#link,#sub_category").hide();
                 $('.product').val("");
                 $(".product").attr("required", "true");
-                $(".category,.sub_category").removeAttr('required');
+                $(".category,.link,.sub_category").removeAttr('required');
             }   
         });
             if($('#type').val() == 1) {
                 $("#category").show();
-                $("#sub_category,#product").hide();
+                $("#sub_category,#link,#product").hide();
             } else if($('#type').val() == 2) {
                 $("#sub_category").show();
-                $("#category,#product").hide();
+                $("#category,#link,#product").hide();
+            } else if($('#type').val() == 0) {
+                $("#link").show();
+                $("#category,#sub_category,#product").hide();
             } else {
                 $("#product").show();
-                $("#category,#sub_category").hide();
+                $("#category,#link,#sub_category").hide();
             }
         $("#banner_image_type1").click(function() {
             $("#offer_percentage").show();

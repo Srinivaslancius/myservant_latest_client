@@ -42,14 +42,22 @@
                 $category_id = $_POST['category_id'];
                 $sub_category_id = '';
                 $product_id = '';
+                $link = '';
             } elseif($type == 2) {
                 $category_id = '';
                 $sub_category_id = $_POST['sub_category_id'];
                 $product_id = '';
+                $link = '';
+            } elseif($type == 0) {
+                $category_id = '';
+                $sub_category_id = '';
+                $product_id = '';
+                $link = $_POST['link'];
             } else {
                 $category_id = '';
                 $sub_category_id = '';
                 $product_id = $_POST['product_id'];
+                $link = '';
             }
           $banner_image_type = $_POST['banner_image_type'];
           if($banner_image_type == 0) {
@@ -70,7 +78,7 @@
             $imageFileType = pathinfo($target_file1,PATHINFO_EXTENSION);
             if (move_uploaded_file($_FILES["web_image"]["tmp_name"], $target_file)) {
                 move_uploaded_file($_FILES["app_image"]["tmp_name"], $target_file1);
-                $sql = "INSERT INTO grocery_banners (`title`,`lkp_city_id`,`category_id`,`sub_category_id`,`product_id`,`type`,`web_image`,`app_image`,`banner_image_type`,`min_percentage`,`max_percentage`) VALUES ('$title', '$lkp_city_id','$category_id','$sub_category_id', '$product_id','$type','$web_image', '$app_image', '$banner_image_type', '$min_percentage', '$max_percentage')"; 
+                $sql = "INSERT INTO grocery_banners (`title`,`lkp_city_id`,`category_id`,`sub_category_id`,`product_id`,`link`,`type`,`web_image`,`app_image`,`banner_image_type`,`min_percentage`,`max_percentage`) VALUES ('$title', '$lkp_city_id','$category_id','$sub_category_id', '$product_id', '$link','$type','$web_image', '$app_image', '$banner_image_type', '$min_percentage', '$max_percentage')"; 
                 if($conn->query($sql) === TRUE){
                    echo "<script type='text/javascript'>window.location='grocery_banners.php?msg=success'</script>";
                 } else {
@@ -163,6 +171,7 @@
                                         <?php while($row = $getTypes->fetch_assoc()) {  ?>
                                             <option value="<?php echo $row['id']; ?>" ><?php echo $row['banner_type']; ?></option>
                                         <?php } ?>
+                                        <option value="0">Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -201,6 +210,12 @@
                                             <option value="<?php echo $row['id']; ?>" ><?php echo $getProductNames['product_name']; ?></option>
                                         <?php } ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="link">
+                                <label class="col-sm-3 control-label" for="form-control-9">Link</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <input type="url" name="link" class="form-control link" id="form-control-3" placeholder="Enter link" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -257,28 +272,34 @@
      <script src="js/forms-plugins.min.js"></script>
     <script src="js/tables-datatables.min.js"></script>
     <script type="text/javascript">
-    $("#category,#sub_category,#product,#offer_percentage").hide();
+    $("#category,#sub_category,#product,#link,#offer_percentage").hide();
     $("#min_offer_percentage,#max_offer_percentage").removeAttr('required');
       $(document).ready(function () {
         $("#type").change(function() {
             if($(this).val() == 1) {
                 $("#category").show();
-                $("#sub_category,#product").hide();
+                $("#sub_category,#link,#product").hide();
                 $('.category').val("");
                 $(".category").attr("required", "true");
-                $(".sub_category,.product").removeAttr('required');
+                $(".sub_category,.link,.product").removeAttr('required');
             } else if($(this).val() == 2) {
                 $("#sub_category").show();
-                $("#category,#product").hide();
+                $("#category,#link,#product").hide();
                 $('.sub_category').val("");
                 $(".sub_category").attr("required", "true");
-                $(".category,.product").removeAttr('required');
+                $(".category,.link,.product").removeAttr('required');
+            } else if($(this).val() == 0) {
+                $("#link").show();
+                $("#category,#sub_category,#product").hide();
+                $('.link').val("");
+                $(".link").attr("required", "true");
+                $(".category,.sub_category,.product").removeAttr('required');
             } else {
                 $("#product").show();
-                $("#category,#sub_category").hide();
+                $("#category,#link,#sub_category").hide();
                 $('.product').val("");
                 $(".product").attr("required", "true");
-                $(".category,.sub_category").removeAttr('required');
+                $(".category,.link,.sub_category").removeAttr('required');
             }   
         });
         $("#banner_image_type1").click(function() {
