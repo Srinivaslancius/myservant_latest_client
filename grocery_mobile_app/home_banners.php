@@ -42,6 +42,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		    	} elseif($row['type'] == 3) {
 		    	    $lists["subCategoryId"] = '0';
 		    		$lists["categoryId"] = '0';
+		    	} else {
+		    		$lists["subCategoryId"] = '0';
+		    		$lists["categoryId"] = '0';
 		    	}
 
 		    	$lists["title"] = $row["title"];
