@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $city= $_REQUEST['city'];
         $pincode= $_REQUEST['pincode'];
         $location= $_REQUEST['location'];
-        $subLocation = $_POST['subLocation'];
+        $subLocation = $_REQUEST['subLocation'];
         $address= $_REQUEST['address'];
         $date = date("Y-m-d h:i:s");
         $lkp_status_id = 0;
