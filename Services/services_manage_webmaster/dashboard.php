@@ -258,7 +258,7 @@
                 <div class="panel-tools">
                 </div>
                 <h3 class="panel-title"> Today Orders</h3>
-                <div class="panel-subtitle"><?php echo date("Y-m-d");?></div>
+                <div class="panel-subtitle"><?php echo dateFormat1(date("Y-m-d"));?></div>
               </div>
               <?php $serviceOrders = "SELECT * FROM services_orders WHERE DATE(`delivery_date`) = CURDATE() GROUP BY order_id ORDER BY id DESC"; 
                 $getServiceOrderData = $conn->query($serviceOrders); $i=1; ?>
@@ -289,7 +289,7 @@
                       <td>
                         <?php echo $getTotalOrders['mobile'];?>
                       </td>
-                      <td><?php echo $getTotalOrders['created_at'];?></td>
+                      <td><?php echo dateFormat($getTotalOrders['created_at']);?></td>
                       <td><?php echo $getTotalOrders['order_id'];?>
                       </td>
                       <td><a href="view_category_orders.php?order_id=<?php echo $getTotalOrders['order_id']; ?>"><i class="zmdi zmdi-eye zmdi-hc-fw"  class=""></i></a>

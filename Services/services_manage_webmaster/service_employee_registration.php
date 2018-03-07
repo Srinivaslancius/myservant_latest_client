@@ -61,7 +61,7 @@
                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='services_employee_registration'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='services_employee_registration'>In Active</span>" ;} ?></td>
                     <td><?php echo $row['specalization'];?></td>
                     <td><img src="<?php echo $base_url . 'uploads/service_employee_photo/'.$row['photo'] ?>" height="100" width="100"/></td>
-                    <td><?php echo $row['created_at'];?></td>
+                    <td><?php echo dateFormat($row['created_at']);?></td>
                    
                    <td> <a href="edit_service_employee_registration.php?seid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp;<!--  <a href="delete_service_employee_registration.php?seid=<?php echo $row['id']; ?>&table=<?php echo "services_employee_registration";?>"><i class="zmdi zmdi-delete zmdi-hc-fw" onclick="return confirm('Are you sure you want to delete?')"></i></a>&nbsp; --><a target="_blank" href="service_employee_details.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-local-printshop"  class=""></i></a></td>
                   </tr>

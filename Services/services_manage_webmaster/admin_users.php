@@ -43,7 +43,7 @@ $getAdminUsersData = $conn->query($getAdminUsers); $i=1; ?>
                     <td><?php echo $i;?></td>
                     <td><?php echo $row['admin_name'];?></td>
                     <td><?php echo $row['admin_email'];?></td>
-                    <td><?php echo $row['created_at'];?></td>
+                    <td><?php echo dateFormat($row['created_at']);?></td>
                    <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='admin_users'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='admin_users'>In Active</span>" ;} ?></td>
                    <td> <a href="edit_admin_users.php?uid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp; <a href="delete.php?id=<?php echo $row['id']; ?>&table=<?php echo "admin_users";?>"><i class="zmdi zmdi-delete zmdi-hc-fw" onclick="return confirm('Are you sure you want to delete?')"></i></a> &nbsp;<a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
                      <!-- Open Modal Box  here -->
