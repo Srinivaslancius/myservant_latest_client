@@ -10,7 +10,7 @@ if (!isset($_POST['submit']))  {
     $category_id = $_POST['category_id'];
     $specifications = $_POST['specifications'];
     $item_type = $_POST['item_type'];
-    //$availability_id = $_POST['availability_id'];
+    $availability_id = $_POST['availability_id'];
     $lkp_status_id = $_POST['lkp_status_id'];
     $fileToUpload = uniqid().$_FILES["fileToUpload"]["name"];
     $created_at = date("Y-m-d h:i:s");
@@ -21,7 +21,7 @@ if (!isset($_POST['submit']))  {
         $target_file = $target_dir . basename($fileToUpload);
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {        
-    $sql1 = "INSERT INTO food_products (`product_name`,`product_image`,`restaurant_id`,`category_id`,`specifications`,`item_type`,`lkp_status_id`,`created_by`,`created_at`) VALUES ('$product_name','$fileToUpload','$restaurant_id','$category_id','$specifications','$item_type', '$lkp_status_id','$created_by','$created_at')";
+    $sql1 = "INSERT INTO food_products (`product_name`,`product_image`,`restaurant_id`,`category_id`,`specifications`,`availability_id`,`item_type`,`lkp_status_id`,`created_by`,`created_at`) VALUES ('$product_name','$fileToUpload','$restaurant_id','$category_id','$specifications','$availability_id','$item_type', '$lkp_status_id','$created_by','$created_at')";
      $result1 = $conn->query($sql1);
      $last_id = $conn->insert_id;
    }else {
@@ -174,6 +174,15 @@ if (!isset($_POST['submit']))  {
                     <div class="help-block with-errors"></div>
                   </div>
                   
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Availability</label>
+                    <select id="form-control-3" name="availability_id" class="custom-select" data-error="This field is required." required>
+                      <option value="">Avalability</option>
+                        <option value="0">Available</option>
+                        <option value="1">Un Available</option>
+                   </select>
+                    <div class="help-block with-errors"></div>
+                  </div>
                  
                   <?php $getStatus = getAllData('lkp_status');?>
                   <div class="form-group">
