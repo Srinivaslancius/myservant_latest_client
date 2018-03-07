@@ -11,7 +11,7 @@ if (!isset($_POST['submit']))  {
     $category_id = $_POST['category_id'];
     $item_type = $_POST['item_type'];
     $specifications = $_POST['specifications'];
-    //$availability_id = $_POST['availability_id'];
+    $availability_id = $_POST['availability_id'];
     $lkp_status_id = $_POST['lkp_status_id'];
     $fileToUpload = uniqid().$_FILES["fileToUpload"]["name"];
     //save product images into product_images table    
@@ -23,7 +23,7 @@ if (!isset($_POST['submit']))  {
               $getImgUnlink = getImageUnlink('product_image','food_products','id',$id,$target_dir);
                 //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
               if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                $sql1 = "UPDATE food_products SET restaurant_id = '$restaurant_id',product_name = '$product_name',product_image='$fileToUpload', category_id ='$category_id', specifications = '$specifications',item_type = '$item_type', lkp_status_id = '$lkp_status_id' WHERE id = '$id'"; 
+                $sql1 = "UPDATE food_products SET restaurant_id = '$restaurant_id',product_name = '$product_name',product_image='$fileToUpload', category_id ='$category_id', specifications = '$specifications', availability_id = '$availability_id',item_type = '$item_type', lkp_status_id = '$lkp_status_id' WHERE id = '$id'"; 
     
         if ($conn->query($sql1) === TRUE) {
         echo "Record updated successfully";
@@ -33,7 +33,7 @@ if (!isset($_POST['submit']))  {
       }  
 
     } else{
-            $sql1 = "UPDATE food_products SET restaurant_id = '$restaurant_id',product_name = '$product_name',category_id ='$category_id', specifications = '$specifications',item_type = '$item_type',  lkp_status_id = '$lkp_status_id' WHERE id = '$id'";
+            $sql1 = "UPDATE food_products SET restaurant_id = '$restaurant_id',product_name = '$product_name',category_id ='$category_id', specifications = '$specifications',availability_id = '$availability_id',item_type = '$item_type',  lkp_status_id = '$lkp_status_id' WHERE id = '$id'";
             if ($conn->query($sql1) === TRUE) {
               echo "Record updated successfully";
             } else {
@@ -226,7 +226,16 @@ if (!isset($_POST['submit']))  {
                     <div class="help-block with-errors"></div>
                   </div>
 
-                  
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Availability</label>
+                    <select id="form-control-3" name="availability_id" class="custom-select" data-error="This field is required." required>
+                      <option value="" disabled selected>Avalability</option>
+                      <option value="0" <?php if($getProducts['availability_id'] == 0) { echo "Selected=Selected"; }?>>Available</option>
+                      <option value="1" <?php if($getProducts['availability_id'] == 1) { echo "Selected=Selected"; }?>>Un Available</option>
+                   </select>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
                   <?php $getStatus = getAllData('lkp_status');?>
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your status</label>
