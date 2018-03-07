@@ -92,7 +92,7 @@
                 <span class="menu-text">Brand Logos</span>
               </a>
             </li> -->
-            <li class="<?php if($page_name == 'grocery_banners.php' || $page_name == 'edit_grocery_banners.php') { echo "active"; } ?>"><a href="grocery_banners.php">
+            <li class="<?php if($page_name == 'grocery_banners.php' || $page_name == 'edit_grocery_banners.php' || $page_name == 'add_grocery_banners.php') { echo "active"; } ?>"><a href="grocery_banners.php">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-collection-image  zmdi-hc-fw"></i>
                 </span>
