@@ -49,7 +49,7 @@ $order_id = $_GET['order_id'];
                                    <td><?php echo $row['order_price'];?></td>
                                   <td><?php $orderStatus = getIndividualDetails('lkp_order_status','id',$row['lkp_order_status_id']); echo $orderStatus['order_status']; ?></td>
                                   <td><?php $orderPaymentStatus = getIndividualDetails('lkp_payment_status','id',$row['lkp_payment_status_id']); echo $orderPaymentStatus['payment_status']; ?></td>
-                                  <td><?php echo $row['created_at'];?></td> 
+                                  <td><?php echo dateFormat($row['created_at']);?></td> 
                                   <?php if($row['assign_service_provider_id'] == '0') { ?>
                                  <td><a href="assign_to.php?assign_id=<?php echo $row['id']; ?>&subcat_id=<?php echo $row['sub_category_id'] ?>&order_id=<?php echo $row['order_id']; ?>&category_id=<?php echo $category_id ?>">Assign To</a></td>
                                  <?php } else { 

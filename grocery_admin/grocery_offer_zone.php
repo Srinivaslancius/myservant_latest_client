@@ -174,8 +174,8 @@
                                     <td><?php echo $row['offer_description'];?></td>
                                     <td><?php echo $row['max_offer_percentage'];?></td>
                                     <td><?php echo $row['min_offer_percentage'];?></td>
-                                    <td><?php echo $row['offer_start_date'];?></td>
-                                    <td><?php echo $row['offer_end_date'];?></td>  
+                                    <td><?php echo dateFormat1($row['offer_start_date']);?></td>
+                                    <td><?php echo dateFormat1($row['offer_end_date']);?></td>  
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_offer_zone'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_offer_zone'>In Active</span>" ;} ?></td>
                                    <td><a href="edit_grocery_offer_zone.php?offer_zone_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
                                 </tr>

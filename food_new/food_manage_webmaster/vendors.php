@@ -30,7 +30,7 @@ $getVendorsData = $conn->query($getVendors);$i=1; ?>
                     <td><?php echo $row['vendor_name'];?></td>
                     <td><?php echo $row['vendor_email'];?></td>
                     <td><?php echo $row['vendor_mobile'];?></td>
-                    <td><?php echo $row['created_at'];?></td>
+                    <td><?php echo dateFormat($row['created_at']);?></td>
                     <?php if ($row['vendor_charges_approved']==1 || ($row['delivery_charges'] == '' && $row['admin_comission'] == '')) { ?>
                     <td>--</td>
                     <?php } else { ?>

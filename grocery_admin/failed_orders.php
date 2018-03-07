@@ -65,7 +65,7 @@
                         <td><?php echo $row['first_name'];?></td>
                         <td><?php echo $row['email'];?></td>
                         <td><?php echo $row['mobile'];?></td>
-                        <td><?php echo $row['created_at'];?></td>
+                        <td><?php echo dateFormat($row['created_at']);?></td>
                         <!-- <td><?php echo $row['delivery_date'];?></td> -->
                         <td><?php $getGroceryPaymentsTypes = getAllData('lkp_payment_types');
                          while($getPaymentsTypes = $getGroceryPaymentsTypes->fetch_assoc()) { if($row['payment_method'] == $getPaymentsTypes['id']) { echo $getPaymentsTypes['status']; } } ?></td>

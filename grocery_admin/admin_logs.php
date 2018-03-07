@@ -66,7 +66,7 @@
                                     <td><?php echo $getServName['admin_service_type']; ?></td>
                                     <td><?php echo $row['message']; ?></td>
                                     <td><?php echo $row['remote_addr']; ?></td>
-                                    <td><?php echo $row['log_start_date']; ?></td>
+                                    <td><?php echo dateFormat($row['log_start_date']); ?></td>
                                     <!-- <td><?php if($row['log_end_date']!='') { echo $row['log_end_date']; } else { echo "---"; } ?></td> -->                                    
                                 </tr>
                                 <?php $i++; } ?>

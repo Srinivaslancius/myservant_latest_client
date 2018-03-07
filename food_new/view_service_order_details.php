@@ -133,7 +133,7 @@ h3,h5{
 			<td colspan="2" style="padding-left:20px">
 			<h3>Order Information</h3>
 			<p>Order Sub Id: <?php echo $getOrdersData1['order_sub_id'];?></p>
-      <p>Order Date:: <?php echo $getOrdersData1['created_at'];?></p>
+      <p>Order Date:: <?php echo changeDateFormat1($getOrdersData1['created_at']);?></p>
       <p>Payment method: <?php echo $getPaymentMethodData['status'];?></p>
       <p>Order Status: <?php echo $getOrderStataus['order_status'];?></p>
       <p>Note: <?php echo $getOrdersData1['service_provider_note'];?></p></td>
@@ -166,7 +166,7 @@ h3,h5{
 			<td colspan="2"><p><?php echo $getServiceNamesData['group_service_name'] ?></p></td>
       <td><p><?php echo $getOrdersData1['order_price'] ?></p></td>
       <td><p><?php echo $getOrdersData1['service_quantity'] ?></p></td>
-      <td><p><?php echo $getOrdersData1['service_selected_date'] ?></p></td>
+      <td><p><?php echo changeDateFormat($getOrdersData1['service_selected_date']) ?></p></td>
       <td><p><?php echo $getOrdersData1['service_selected_time'] ?></p></td>
 	     <td></td>
       <td></td>

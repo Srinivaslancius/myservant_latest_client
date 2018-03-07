@@ -210,8 +210,8 @@
                                     <td><?php if($row['price_type_id'] == 1) { echo "Price"; } else { echo "Percentage"; }?></td>
                                     <td><?php echo $row['discount_price'];?></td>
                                     <td><?php echo $row['min_order_amount'];?></td>
-                                    <td><?php echo $row['coupon_start_date'];?></td>
-                                    <td><?php echo $row['coupon_end_date'];?></td>  
+                                    <td><?php echo dateFormat1($row['coupon_start_date']);?></td>
+                                    <td><?php echo dateFormat1($row['coupon_end_date']);?></td>  
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_coupons'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_coupons'>In Active</span>" ;} ?></td>
                                    <td> <a href="edit_grocery_coupons.php?coupon_id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
                                 </tr>

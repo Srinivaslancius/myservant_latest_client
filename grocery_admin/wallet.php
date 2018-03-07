@@ -59,7 +59,7 @@
                                   if($row['user_id'] == $getUsersData['id']) { echo $getUsersData['user_full_name']; } } ?>
                                 </td>
                                 <td><?php echo $row['amount']; ?></td>      
-                                <td><?php echo $row['created_at']; ?></td>
+                                <td><?php echo dateFormat($row['created_at']); ?></td>
                                 </td>
                                 <td><span><a href="wallet_details.php?user_id=<?php echo $row['user_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span></td>
                             </tr>

@@ -52,7 +52,7 @@
                     <td><?php echo $row['first_name'];?></td>
                     <td><?php echo $row['mobile'];?></td>
                     <td><?php echo $row['email'];?></td>
-                    <td><?php echo $row['created_at'];?></td>
+                    <td><?php echo dateFormat($row['created_at']);?></td>
                     <td><?php $adminServiceTypes = getIndividualDetails('lkp_food_order_status','id',$row['lkp_order_status_id']); echo $adminServiceTypes['order_status']; ?></td>
                     <td><?php if($row['lkp_order_status_id'] != 6) {  if ($row['vendor_order_status']==1) { echo "<span class='label label-outline-success check_active1 open_cursor' data-incId=".$row['id']." style='border-color:#7d57c1;color:#7d57c1' data-status=".$row['vendor_order_status']." data-tbname='food_orders'>Confirm Order</span>" ;} else { echo "<span class='label label-outline-info check_active1 open_cursor' style='border-color:green;color:green'php data-status=".$row['vendor_order_status']." data-incId=".$row['order_id']." data-tbname='food_orders'>Confirmed</span>" ; } } else { echo '--' ; }?></td>
                     <?php 

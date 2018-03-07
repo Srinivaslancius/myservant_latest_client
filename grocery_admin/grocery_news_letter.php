@@ -50,7 +50,7 @@
                             <tr>
                                 <td><?php echo $i; ?></td>
                                 <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a></td>
-                                <td><?php echo $row['created_at']; ?></td>
+                                <td><?php echo dateFormat($row['created_at']); ?></td>
                             </tr>
                             <?php $i++; } ?>
                           </tbody>
