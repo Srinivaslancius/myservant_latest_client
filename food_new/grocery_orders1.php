@@ -110,7 +110,7 @@
 					
             		<thead>
             		  <tr>
-					  <th>Order PLACED</th>
+					  <th>Order Placed</th>
                         <th>Order Price</th>
                         <th>SHIP TO</th>
                         <th>ORDER ID</th>
@@ -119,7 +119,7 @@
             		</thead>
             		<tbody>
             		  <tr>
-					  <td><?php echo $orderData['created_at']; ?>  </td>
+					  <td><?php echo changeDateFormat1($orderData['created_at']); ?>  </td>
                         <td>Rs.<?php echo $orderData['order_total']; ?></td>
                         <td><?php echo $orderData['first_name']; ?><br><?php echo $orderData['address']; ?></td>
                         <td><?php echo $orderData['order_id']; ?></td>

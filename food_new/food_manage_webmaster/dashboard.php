@@ -281,7 +281,7 @@ $getFoodTodayOrdersData = $conn->query($getFoodTodayOrders); $i=1;
                 <div class="panel-tools">
                 </div>
                 <h3 class="panel-title"> Today Orders</h3>
-                <div class="panel-subtitle"><?php echo date("Y-m-d");?></div>
+                <div class="panel-subtitle"><?php echo dateFormat1(date("Y-m-d"));?></div>
               </div>
               <?php $FoodOrders = "SELECT * FROM food_orders WHERE DATE(`created_at`) = CURDATE() AND lkp_order_status_id = 1 AND lkp_payment_status_id!=3 ORDER BY lkp_order_status_id DESC ";
                 $getFoodOrderData = $conn->query($FoodOrders); $i=1; ?>
@@ -312,7 +312,7 @@ $getFoodTodayOrdersData = $conn->query($getFoodTodayOrders); $i=1;
                       <td>
                         <?php echo $getTotalOrders['mobile'];?>
                       </td>
-                      <td><?php echo $getTotalOrders['created_at'];?></td>
+                      <td><?php echo changeDateFormat1($getTotalOrders['created_at']);?></td>
                       <td><?php echo $getTotalOrders['order_id'];?>
                       </td>
                       <td><a href="food_orders.php"><i class="zmdi zmdi-eye zmdi-hc-fw"  class=""></i></a>

@@ -56,7 +56,7 @@ $content .='<html lang="en">
 		<th></th>
 		<th colspan="2"><h3 style="color:#f26226">Invoice</h3>
 		<p>Oreder Id: '.$getOrdersData1['order_id'].'</p>
-		<p>Order Date:'.$getOrdersData1['created_at'].'</p>
+		<p>Order Date:dateFormat('.$getOrdersData1['created_at'].')</p>
 		</th>	
       </tr>
     </thead>

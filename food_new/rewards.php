@@ -118,7 +118,7 @@ h3,h4{
 						<a href="" class="notif2"><span class="badge1">44</span></a>
 						</div>
                      </div>
-                <div class="table-responsive">						
+                <!-- <div class="table-responsive">						
         			<table class="table" style="border:1px solid #ddd;width:100%">					
             		<thead>
             		  <tr>
@@ -142,7 +142,7 @@ h3,h4{
         	     </table>
         	     
 				
-        	  </div>
+        	  </div> -->
                       </div>
                   </div>
                   
