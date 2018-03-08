@@ -104,7 +104,7 @@
                           <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
                           <?php }?>
                         <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 2 && $row['lkp_payment_status_id'] == 1) {  } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>"><i class="zmdi zmdi-edit"></i></a><?php } ?> </td>
-                        <?php if ($row['lkp_order_status_id']!=2) { ?>
+                        <?php if ($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
                         <td><?php if ($row['lkp_order_status_id']!=3) { echo "<span class='label label-outline-success check_order_status open_cursor' data-incId=".$row['order_id']." data-status=".$row['lkp_order_status_id']." data-tbname='grocery_orders'>Cancel</span>" ;} else { echo "<span class='label label-outline-info check_order_status open_cursor' data-status=".$row['lkp_order_status_id']." data-incId=".$row['order_id']." data-tbname='grocery_orders'>Cancelled</span>" ;} ?></td>
                         <?php } else { ?>
                           <td>--</td>
