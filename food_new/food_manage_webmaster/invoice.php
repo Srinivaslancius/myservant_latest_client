@@ -58,6 +58,11 @@ if($getOrdersData1['delivery_charges'] == '0') {
 	$order_type = "Delivery";
 	$delivery_charges = $getOrdersData1['delivery_charges'];
 }
+$getState = getIndividualDetails('lkp_states','id',$getOrdersData1['lkp_state_id']);
+$getDistrict = getIndividualDetails('lkp_districts','id',$getOrdersData1['lkp_district_id']);
+$getPincode = getIndividualDetails('lkp_pincodes','id',$getOrdersData1['lkp_pincode_id']);
+$getCity = getIndividualDetails('lkp_cities','id',$getOrdersData1['lkp_city_id']);
+$getArea = getIndividualDetails('lkp_locations','id',$getOrdersData1['lkp_location_id']);
 ?>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
     <div class="site-overlay"></div>
@@ -76,7 +81,7 @@ if($getOrdersData1['delivery_charges'] == '0') {
                 <p><strong>Customer Address</strong></p>
                 <p><?php echo $getOrdersData1['first_name']; ?>
                   <br><?php echo $getOrdersData1['email']; ?>
-                  <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getOrdersData1['postal_code']; ?></p>
+                  <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['location_name']; ?> - <?php echo $getPincode['pincode']; ?></p>
                 <p class="m-b-0">Mobile: <?php echo $getOrdersData1['mobile']; ?></p>
               </div>
               <div class="col-sm-6">                

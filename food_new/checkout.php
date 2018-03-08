@@ -315,7 +315,7 @@ if($_SESSION['user_login_session_id'] == '') {
 					<div class="col-md-6 col-sm-6">
 					<div class="form-group">
 						<label>Last name *</label>
-						<input type="text" readonly class="form-control" id="lastname_order" name="lastname_order" placeholder="Last name" required value="getCustomerDeatils['last_name']">
+						<input type="text" readonly class="form-control" id="lastname_order" name="lastname_order" placeholder="Last name" required value="<?php echo $getCustomerDeatils['last_name']; ?>">
 					</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
