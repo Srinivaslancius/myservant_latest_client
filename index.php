@@ -68,7 +68,9 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     cursor: pointer;
 	height:36px;
 }
-
+#ui-id-1{
+	display:block;
+}
 </style>
 <?php 
 	if(isset($_POST['news_letter'])) {
@@ -1213,6 +1215,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				 });
 			}
 		</script>
+	
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>    
  <!-- Auto complete home page search -->           
