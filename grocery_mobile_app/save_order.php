@@ -21,8 +21,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$service_tax = $_REQUEST["service_tax"];
 		$delivery_charges = $_REQUEST["delivery_charges"];
 
-		$delivery_slot_date = date("Y-m-d",strtotime($_POST["delivery_date"]));
-		$delivery_time = $_POST["delivery_time"];
+		$delivery_slot_date = date("Y-m-d",strtotime($_REQUEST["delivery_date"]));
+		$delivery_time = $_REQUEST["delivery_time"];
 		//$servicesCount = count($_REQUEST["service_id"]);
 		//Saving user id and coupon id
 		$user_id = $_REQUEST["user_id"];
