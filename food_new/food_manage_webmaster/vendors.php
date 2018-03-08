@@ -45,7 +45,7 @@ $getVendorsData = $conn->query($getVendors);$i=1; ?>
                       <?php } ?>
 
                     </td>
-                    <td><a href="edit_vendors.php?bid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a>&nbsp;<a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
+                    <td><a href="edit_vendors.php?bid=<?php echo $row['id']; ?>">edit</a>&nbsp;<a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
                     <!-- Open Modal Box  here -->
 
                      <div id="<?php echo $row['id']; ?>_1" class="modal fade" tabindex="-1" role="dialog">
