@@ -149,7 +149,7 @@
                                   </div>
                               </div>
                           </div>
-                          <?php } ?>
+                          <?php $i++; } ?>
                       </div>
                       <?php $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1); ?>
                       <div class="modal-footer">

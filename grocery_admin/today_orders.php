@@ -74,12 +74,12 @@
                          while($getPaymentsStatus = $getGroceryPaymentsStatus->fetch_assoc()) { if($row['lkp_payment_status_id'] == $getPaymentsStatus['id']) { echo $getPaymentsStatus['payment_status']; } } ?></td>
                          <td><?php $getGroceryOrderStatus = getAllData('lkp_order_status');
                          while($getOrderStatus = $getGroceryOrderStatus->fetch_assoc()) { if($row['lkp_order_status_id'] == $getOrderStatus['id']) { echo $getOrderStatus['order_status']; } } ?></td>
-                        <?php if($row['assign_delivery_id'] == '0' || $row['assign_delivery_id'] == '') { ?>
+                        <!-- <?php if($row['assign_delivery_id'] == '0' || $row['assign_delivery_id'] == '') { ?>
                         <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>">Assign To</a></td>
                         <?php } else { 
                           $getDeliveryBoysNames = getAllDataWhere('grocery_delivery_boys','id',$row['assign_delivery_id']); $getDeliveryBoysNamesData = $getDeliveryBoysNames->fetch_assoc(); ?>
                           <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
-                          <?php }?>
+                          <?php }?> -->
                         <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span> </td>
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
@@ -156,7 +156,7 @@
                                   </div>
                               </div>
                           </div>
-                          <?php } ?>
+                          <?php $i++; } ?>
                       </div>
                       <?php $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1); ?>
                       <div class="modal-footer">
