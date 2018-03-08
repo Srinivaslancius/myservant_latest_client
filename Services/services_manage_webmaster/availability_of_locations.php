@@ -30,7 +30,7 @@
                     <?php $getCityNames = getIndividualDetails('lkp_cities','id',$row['lkp_city_id']); ?>
                     <td><?php echo $getCityNames['city_name'];?></td>
                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='availability_of_locations'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='availability_of_locations'>In Active</span>" ;} ?></td>
-                   <td> <a href="edit_availability_of_locations.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
+                   <td> <a href="edit_availability_of_locations.php?id=<?php echo $row['id']; ?>">edit</a></td>
                   </tr>
                   <?php  $i++; } ?>
                 </tbody>
