@@ -7,7 +7,7 @@ $response = array();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    if (isset($_REQUEST['userId']) && isset($_REQUEST['firstName']) && !empty($_REQUEST['lastName']) && !empty($_REQUEST['email']) && !empty($_REQUEST['mobile']) && !empty($_REQUEST['state']) && !empty($_REQUEST['district']) && !empty($_REQUEST['city']) && !empty($_REQUEST['pincode']) && !empty($_REQUEST['location']) && !empty($_REQUEST['address']) ) {
+    if (isset($_REQUEST['userId']) && isset($_REQUEST['firstName']) && !empty($_REQUEST['lastName']) && !empty($_REQUEST['email']) && !empty($_REQUEST['mobile']) && !empty($_REQUEST['state']) && !empty($_REQUEST['district']) && !empty($_REQUEST['city']) && !empty($_REQUEST['pincode']) && !empty($_REQUEST['location']) && !empty($_REQUEST['address']) && $_REQUEST['update_flag']) {
 
         $userId = $_REQUEST['userId'];        
         $first_name= $_REQUEST['firstName'];
@@ -24,9 +24,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $date = date("Y-m-d h:i:s");
         $lkp_status_id = 0;
         $make_it_default = 1;
+        
+        $updateAddress =  $_REQUEST['update_flag'];
 
-        if($updateAddress = 1) {
-            $sql = "UPDATE grocery_add_address SET user_id = '$userId',first_name = '$first_name',last_name = '$last_name',email = '$email',phone = '$mobile',lkp_state_id = '$state',lkp_district_id = '$district',lkp_city_id = '$city',lkp_pincode_id = '$pincode',lkp_location_id = '$location',lkp_sub_location_id = '$subLocation',address = '$address'"
+        if($updateAddress == 2) {
+            $sql = "UPDATE grocery_add_address SET user_id = '$userId',first_name = '$first_name',last_name = '$last_name',email = '$email',phone = '$mobile',lkp_state_id = '$state',lkp_district_id = '$district',lkp_city_id = '$city',lkp_pincode_id = '$pincode',lkp_location_id = '$location',lkp_sub_location_id = '$subLocation',address = '$address'";
         } else {
             $default = "UPDATE grocery_add_address SET make_it_default = 0 WHERE user_id = '$userId'";
             $conn->query($default);
