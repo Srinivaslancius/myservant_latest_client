@@ -53,10 +53,10 @@ if(isset($_SESSION['order_last_session_id']) && $_SESSION['order_last_session_id
 	$message .= '<body>
 		<div class="container" style=" width:50%;border: 5px solid #fe6003;margin:0 auto">
 		<header style="padding:0.8em;color: white;background-color: #fe6003;clear: left;text-align: center;">
-		 <center><img src='.$base_url . "grocery_admin/uploads/logo/".$getSiteSettings1["logo"].' class="logo-responsive"></center>
+		 <center><h1>My Servant</h1></center>
 		</header>
 		<article style=" border-left: 1px solid gray;overflow: hidden;text-align:justify; word-spacing:0.1px;line-height:25px;padding:15px">
-		  <h1 style="color:#fe6003">Greetings From Myservant</h1>
+		  <h1 style="color:#fe6003">Greetings From My Servant</h1>
 		  <p>Dear <span style="color:#fe6003;">'.$getWalletAmount['first_name'].'</span>, Thank you for Ordering myservant.com!</p>
 			<p>Your Order Number is: <span style="color:#fe6003;">'.$order_id.'</span></p>
 			<p>Your Order Total: Rs. <span style="color:#fe6003;">'.$getWalletAmount['order_total'].'</span></p>
