@@ -29,7 +29,7 @@
                     <td><?php echo $row['meta_title'];?></td>
                     <td><?php echo $row['meta_keywords'];?></td>
                     <td><?php echo substr(strip_tags($row['meta_desc']), 0,150);?></td>
-                    <td> <a href="edit_food_content_pages.php?fcid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
+                    <td> <a href="edit_food_content_pages.php?fcid=<?php echo $row['id']; ?>">edit</a></td>
                   </tr>
                   <?php  $i++; } ?>
                 </tbody>
