@@ -52,7 +52,7 @@ if (!isset($_POST['submit'])) {
     //Sending SMS after order completion
     $getUserDetails = getIndividualDetails('users','id',$user_id);
     $user_mobile = $getUserDetails['user_mobile'];
-    $message1 = urlencode('Your order ('.$order_id.') is placed. We hope you enjoy your stay at myservant.com.'); // Message text required to deliver on mobile number
+    $message1 = urlencode('Delivered: Your order ('.$order_id.') delivered Successfully. We hope you enjoy your stay at myservant.com.'); // Message text required to deliver on mobile number
     $sendSMS = sendMobileSMS($message1,$user_mobile);
 
     //Changing transaction status of referd email
