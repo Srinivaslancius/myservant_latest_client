@@ -27,4 +27,9 @@ include "admin_includes/common_functions.php";
 	<link href="stylesheets/animate.min.css" rel="stylesheet">
 
 	<script type="text/javascript" src="javascript/modernAlert.min.js"></script>
+
+	<?php $getSiteSettings1 = getAllDataWhere('grocery_site_settings','id','1'); 
+	$getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
+
+	<?php echo $getSiteSettingsData1['google_analytics_code']; ?>
 </head>
