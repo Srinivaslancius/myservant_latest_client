@@ -182,7 +182,7 @@
                 <li class="<?php if($page_name == 'employees.php' || $page_name == 'edit_employees.php') { echo "active"; } ?>"><a href="employees.php">Employees</a></li>
                 <li class="<?php if($page_name == 'delivery_boys.php' || $page_name == 'edit_deliveryboys.php') { echo "active"; } ?>"><a href="delivery_boys.php">Delivery Boys</a></li>
                 <li class="<?php if($page_name == 'admin_users.php' || $page_name == 'edit_admin_users.php') { echo "active"; } ?>"><a href="admin_users.php">Admin Users</a></li>
-                <li class="<?php if($page_name == 'city_wise_admin_users.php' || $page_name == 'edit_citywise_admin_users.php') { echo "active"; } ?>"><a href="city_wise_admin_users.php">City Wise Admins</a></li>
+                <!-- <li class="<?php if($page_name == 'city_wise_admin_users.php' || $page_name == 'edit_citywise_admin_users.php') { echo "active"; } ?>"><a href="city_wise_admin_users.php">City Wise Admins</a></li> -->
                 
               </ul>
             </li>
