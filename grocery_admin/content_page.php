@@ -119,7 +119,7 @@
                                     <td><?php echo $i; ?></td>
                                     <!-- <td>ST1234</td> -->
                                     <td><?php echo $row['title']; ?></td>
-                                    <td> <a href="edit_content_pages.php?cid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
+                                    <td> <a href="edit_content_pages.php?cid=<?php echo $row['id']; ?>">edit</a></td>
                                     <!-- <td><span><a href="#"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a></span> <span><a href="#"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></span></td> -->
                                 </tr>
                                 <?php $i++; } ?>

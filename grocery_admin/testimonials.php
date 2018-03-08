@@ -136,7 +136,7 @@
                                     <td><?php echo $row['name']; ?></td>
                                     <td><img src="<?php echo $base_url . 'grocery_admin/uploads/grocery_testimonials/'.$row['image']; ?>"  id="output" height="60" width="60"/></td>
                                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='grocery_testimonials'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='grocery_testimonials'>In Active</span>" ;} ?></td>
-                                    <td> <a href="edit_testimonials.php?cid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a></td>
+                                    <td> <a href="edit_testimonials.php?cid=<?php echo $row['id']; ?>">edit</a></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>

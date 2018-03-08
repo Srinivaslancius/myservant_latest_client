@@ -201,7 +201,7 @@
                                     <td><?php echo $getProdInfo['mrp_price']; ?></td>
                                     <td><?php echo $getProdInfo['selling_price']; ?></td>
                                     <td><?php if ($getProdInfo['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$getProdInfo['id']." data-status=".$getProdInfo['lkp_status_id']." data-tbname='grocery_product_bind_weight_prices'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$getProdInfo['lkp_status_id']." data-incId=".$getProdInfo['id']." data-tbname='grocery_product_bind_weight_prices'>In Active</span>" ;} ?></td>
-                                    <td><span><a href="edit_product_price.php?product_id=<?php echo $getProdInfo['id'];?>&pid=<?php echo $pid;?>"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></span></td>
+                                    <td><span><a href="edit_product_price.php?product_id=<?php echo $getProdInfo['id'];?>&pid=<?php echo $pid;?>">edit</a></span></td>
                                 </tr>
                                 <?php $i++; } ?>
                             </tbody>
