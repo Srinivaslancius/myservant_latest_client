@@ -20,6 +20,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$order_id = $contstr.$random1.$random2;
 		$service_tax = $_REQUEST["service_tax"];
 		$delivery_charges = $_REQUEST["delivery_charges"];
+
+		$delivery_slot_date = date("Y-m-d",strtotime($_POST["delivery_date"]));
+		$delivery_time = $_POST["delivery_time"];
 		//$servicesCount = count($_REQUEST["service_id"]);
 		//Saving user id and coupon id
 		$user_id = $_REQUEST["user_id"];
@@ -57,7 +60,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			$date = date("ymdhis");
 			$contstr = "MYSERVANT-GR";
 			$sub_order_id = $contstr.$random1.$random2.$date;
-			$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `created_at`) VALUES ('$user_id','".$_REQUEST["first_name"]."','".$_REQUEST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_REQUEST["address"]."','".$_REQUEST["state"]."','".$_REQUEST["district"]."','".$_REQUEST["city"]."','".$_REQUEST["postal_code"]."','".$_REQUEST["location"]."','".$_REQUEST["order_note"]."','" . $category_id[$i] . "','" . $sub_cat_id[$i] . "','" . $product_id[$i] . "','".$product_weight[$i]."','" . $product_price[$i] . "','" . $product_quantity[$i] . "','".$_REQUEST["sub_total"]."','".$_REQUEST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_REQUEST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$order_date')";
+			$orders = "INSERT INTO grocery_orders (`user_id`,`first_name`, `last_name`, `email`, `mobile`, `address`, `lkp_state_id`, `lkp_district_id`, `lkp_city_id`, `lkp_pincode_id`, `lkp_location_id`, `order_note`, `category_id`, `sub_cat_id`, `product_id`, `item_weight_type_id`, `item_price`, `item_quantity`, `sub_total`, `order_total`, `coupen_code`, `coupen_code_type`, `discout_money`,  `payment_method`,`lkp_payment_status_id`,`service_tax`,`delivery_charges`, `order_id`,`order_sub_id`,`wallet_id`,`wallet_amount`, `delivery_slot_date`,`delivery_time`,`created_at`) VALUES ('$user_id','".$_REQUEST["first_name"]."','".$_REQUEST["last_name"]."', '".$_POST["email"]."','".$_POST["mobile"]."','".$_REQUEST["address"]."','".$_REQUEST["state"]."','".$_REQUEST["district"]."','".$_REQUEST["city"]."','".$_REQUEST["postal_code"]."','".$_REQUEST["location"]."','".$_REQUEST["order_note"]."','" . $category_id[$i] . "','" . $sub_cat_id[$i] . "','" . $product_id[$i] . "','".$product_weight[$i]."','" . $product_price[$i] . "','" . $product_quantity[$i] . "','".$_REQUEST["sub_total"]."','".$_REQUEST["order_total"]."',UPPER('$coupon_code'),'$coupon_code_type','$discount_money','$payment_group','$payment_status','".$_REQUEST["service_tax"]."','$delivery_charges', '$order_id','$sub_order_id','$wallet_id','$wallet_amount','$delivery_slot_date','$delivery_time','$order_date')";
 
 			if ($conn->query($orders) === TRUE) {
 	            // check the conditions for query success or not
