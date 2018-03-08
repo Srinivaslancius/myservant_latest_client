@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/cosmos.min.css">
     <link rel="stylesheet" href="css/application.min.css">
-	<style>
-	.modal-body{
-		padding-left:15px !important;
-	}
-	</style>
+  <style>
+  .modal-body{
+    padding-left:15px !important;
+  }
+  </style>
   </head>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
     <div class="site-overlay"></div>
@@ -78,6 +78,7 @@
                     <th>Order Status</th>
                     <th>Delivery Boy</th>
                     <th>Action</th>
+                    <th>Cancel Order</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,6 +104,11 @@
                           <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
                           <?php }?>
                         <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 2 && $row['lkp_payment_status_id'] == 1) {  } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>">edit</a><?php } ?> </td>
+                        <?php if ($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
+                        <td><?php if ($row['lkp_order_status_id']!=3) { echo "<span class='label label-outline-success check_order_status open_cursor' data-incId=".$row['order_id']." data-status=".$row['lkp_order_status_id']." data-tbname='grocery_orders'>Cancel</span>" ;} else { echo "<span class='label label-outline-info check_order_status open_cursor' data-status=".$row['lkp_order_status_id']." data-incId=".$row['order_id']." data-tbname='grocery_orders'>Cancelled</span>" ;} ?></td>
+                        <?php } else { ?>
+                          <td>--</td>
+                        <?php } ?>
 
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
@@ -117,7 +123,7 @@
                       </div>
                       <div class="modal-body">
                         <div class="col-md-12 fr1">
-						
+            
                            <div class="col-md-8">
                                <h3 class="m-t-0 m-b-5 font_sz_view"><b>User Details</b></h3><br>
                                <p>Name : <?php echo $row['first_name'];?></p>
@@ -125,7 +131,7 @@
                                <p>Mobile Number: <?php echo $row['mobile'];?></p>
                                <p>Order Date: <?php echo dateFormat($row['created_at']);?></p>
                            </div>
-						 
+             
                             <div class="col-md-4">
                               <h3 class="m-t-0 m-b-5 font_sz_view"><b>Delivery Details</b></h3><br>
                               <p>Delivery Date: <?php echo changeDateFormat($row['delivery_slot_date']);?></p>
@@ -188,7 +194,7 @@
                       </div>
                       <?php $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1); ?>
                       <div class="modal-footer" style="text-align:left">
-					  
+            
                           <div class="col-md-12">
                               <div class="col-md-9"></div>
                               <div class="col-md-3"><br>
@@ -280,6 +286,29 @@
 
     // End  Date range filter
     //End here
+    </script>
+    <script type="text/javascript">
+      //check Order status cancelled or not
+      $(".check_order_status").click(function(){
+        var check_active_id = $(this).attr("data-incId");
+        var table_name = $(this).attr("data-tbname");
+        var current_status = $(this).attr("data-status");
+        if(current_status != 3) {
+          send_status = 3;
+        } 
+        $.ajax({
+          type:"post",
+          url:"change_order_status.php",
+          data:"check_active_id="+check_active_id+"&table_name="+table_name+"&send_status="+send_status,
+          success:function(result){  
+            if(result ==1) {
+              //alert("Your Status Updated!");
+              //location.reload();
+              window.location = "?msg=success";
+            }
+          }
+        });
+      }); 
     </script>
   </body>
 </html>

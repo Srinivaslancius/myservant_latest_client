@@ -2,6 +2,8 @@
 include "../admin_includes/config.php";
 include "../admin_includes/common_functions.php";
 include "../admin_includes/food_common_functions.php";
+$getFoodSiteSettings = getAllDataWhere('food_site_settings','id','1'); 
+$getFoodSiteSettingsData = $getFoodSiteSettings->fetch_assoc();
 //echo "<pre>"; print_r($_POST); exit;
 $getRestKey1 =$_POST['key'];
 if(isset($_POST['item_type']) && $_POST['item_type']=='undefined' ) {
