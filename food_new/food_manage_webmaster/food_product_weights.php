@@ -24,7 +24,7 @@
                     <td><?php echo $i;?></td>
                     <td><?php echo $row['weight_type'];?></td>
                     <td><?php if ($row['lkp_status_id']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['lkp_status_id']." data-tbname='food_product_weights'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['lkp_status_id']." data-incId=".$row['id']." data-tbname='food_product_weights'>In Active</span>" ;} ?></td>
-                    <td> <a href="edit_food_product_weights.php?wid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a>&nbsp; </td>                    
+                    <td> <a href="edit_food_product_weights.php?wid=<?php echo $row['id']; ?>">edit</a>&nbsp; </td>                    
                   </tr>
                   <?php  $i++; }?>
                 </tbody>

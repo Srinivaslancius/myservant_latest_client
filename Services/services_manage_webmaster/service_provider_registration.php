@@ -60,7 +60,7 @@
                     <?php } else { ?>
                     <td><?php echo "--" ?> </td>
                     <?php } ?>
-                    <td> <a href="edit_service_provider_registration.php?registrationid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp; <!-- <a href="delete_service_provider_registration.php?registrationid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-delete zmdi-hc-fw" onclick="return confirm('Are you sure you want to delete?')"></i></a> &nbsp; -->&nbsp;<a target="_blank" href="service_provider_details.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-local-printshop"  class=""></i></a> &nbsp;<a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
+                    <td> <a href="edit_service_provider_registration.php?registrationid=<?php echo $row['id']; ?>">edit</a> &nbsp; <!-- <a href="delete_service_provider_registration.php?registrationid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-delete zmdi-hc-fw" onclick="return confirm('Are you sure you want to delete?')"></i></a> &nbsp; -->&nbsp;<a target="_blank" href="service_provider_details.php?id=<?php echo $row['id']; ?>"><i class="zmdi zmdi-local-printshop"  class=""></i></a> &nbsp;<a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
                     <!-- Open Modal Box  here -->
                     <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                       <div class="modal-dialog">
