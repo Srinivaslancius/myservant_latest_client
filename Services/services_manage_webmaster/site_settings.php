@@ -19,6 +19,9 @@
     $footer_text = $_POST['footer_text'];
     $address = $_POST['address'];
     $paytm = $_POST['paytm'];
+    $min_charges = $_POST['min_charges'];
+    $max_time = $_POST['max_time'];
+    $duration = $_POST['duration'];
 
     if($_FILES["logo"]["name"]!='') {
                                           
@@ -35,7 +38,7 @@
         $getImgUnlink = getImageUnlink('logo','services_site_settings','id',$id,$target_dir);
         //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
         if (move_uploaded_file($_FILES["logo"]["tmp_name"], $target_file)) {
-            $sql = "UPDATE `services_site_settings` SET admin_title = '$admin_title', email='$email',from_email='$from_email',orders_email='$orders_email',contact_email='$contact_email',google_analytics_code='$google_analytics_code',sms_gateway_no='$sms_gateway_no', mobile='$mobile', service_tax='$service_tax', logo = '$logo',footer_text='$footer_text', address='$address', paytm='$paytm' WHERE id = '$id' ";
+            $sql = "UPDATE `services_site_settings` SET admin_title = '$admin_title', email='$email',from_email='$from_email',orders_email='$orders_email',contact_email='$contact_email',google_analytics_code='$google_analytics_code',sms_gateway_no='$sms_gateway_no', mobile='$mobile', service_tax='$service_tax', logo = '$logo',footer_text='$footer_text', address='$address', paytm='$paytm', min_charges='$min_charges', max_time='$max_time', duration='$duration' WHERE id = '$id' ";
             if($conn->query($sql) === TRUE){
                echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
             } else {
@@ -46,7 +49,7 @@
             echo "Sorry, there was an error uploading your file.";
         }
     }  else {
-        $sql = "UPDATE `services_site_settings` SET admin_title = '$admin_title', email='$email',from_email='$from_email',orders_email='$orders_email',contact_email='$contact_email',google_analytics_code='$google_analytics_code',sms_gateway_no='$sms_gateway_no',  mobile='$mobile', service_tax='$service_tax',footer_text='$footer_text', address='$address', paytm='$paytm' WHERE id = '$id' ";
+        $sql = "UPDATE `services_site_settings` SET admin_title = '$admin_title', email='$email',from_email='$from_email',orders_email='$orders_email',contact_email='$contact_email',google_analytics_code='$google_analytics_code',sms_gateway_no='$sms_gateway_no',  mobile='$mobile', service_tax='$service_tax',footer_text='$footer_text', address='$address', paytm='$paytm', min_charges='$min_charges', max_time='$max_time', duration='$duration' WHERE id = '$id' ";
         if($conn->query($sql) === TRUE){
            echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
         } else {
@@ -124,6 +127,31 @@
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">GST (%)</label>
                     <input type="text" name="service_tax" class="form-control" id="form-control-2" placeholder="GST" data-error="Please enter GST." value="<?php echo $getSiteSettingsData['service_tax'];?>" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Minimum Charges</label>
+                    <input type="text" name="min_charges" class="form-control valid_price_dec" id="form-control-2" placeholder="Minimum Charges" data-error="Please enter Minimum Charges." value="<?php echo $getSiteSettingsData['min_charges'];?>" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
+                  <!-- <div class="form-group">
+                    <label for="form-control-2" class="control-label">Minimum Time</label>
+                    <input type="text" name="min_time" class="form-control" id="form-control-2" placeholder="Minimum Time" data-error="Please enter Minimum Time." value="<?php echo $getSiteSettingsData['min_time'];?>" required>
+                    <div class="help-block with-errors"></div>
+                  </div> -->
+
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Maximum time</label>
+                    <input type="text" name="max_time" class="form-control" id="form-control-2" placeholder="Maximum time" data-error="Please enter Maximum time." value="<?php echo $getSiteSettingsData['max_time'];?>" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Duration in minutes</label>
+                    <input type="text" name="duration" class="form-control valid_mobile_num" id="form-control-2" placeholder="Duration" data-error="Please enter Duration." value="<?php echo $getSiteSettingsData['duration'];?>" required>
+                    (Example : 180)
                     <div class="help-block with-errors"></div>
                   </div>
 

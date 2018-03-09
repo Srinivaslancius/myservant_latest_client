@@ -14,8 +14,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				//Chedck the condioton for emptty or not		
 				$lists = array();
 		    	$lists["id"] = $row["id"];
-		    	$lists["title"] = $row["title"];	
-		    	$lists["description"] = strip_tags($row["description"]);	    			    	
+		    	$lists["question"] = $row["question"];	
+		    	$lists["answer"] = strip_tags($row["answer"]);	    			    	
 				array_push($response["lists"], $lists);		 
 			}
 			$response["success"] = 0;
