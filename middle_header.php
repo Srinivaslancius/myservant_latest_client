@@ -13,8 +13,8 @@
 								<form action="single_product.php" method="post" class="form-search" accept-charset="utf-8"  autocomplete="off">
 									
 									<div class="box-search">
-										<input type="text" name="searchKey" placeholder="Search Your Products..." id="search-box" required>
-										<div id="suggesstion-box"></div>
+										<input type="text" name="searchKey" placeholder="Search Your Products..." required class='auto'>
+										<!-- <div id="suggesstion-box"></div> -->
 										<span class="btn-search">
 											<button type="submit" class="waves-effect"><img src="images/icons/search.png" alt=""></button>
 										</span>
