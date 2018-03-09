@@ -225,7 +225,7 @@
                             <div class="form-group" id="link">
                                 <label class="col-sm-3 control-label" for="form-control-9">Link</label>
                                 <div class="col-sm-6 col-md-4">
-                                    <input type="url" name="link" class="form-control link" id="form-control-3" placeholder="Enter link" required value="<?php echo $getBanners['link']; ?>">
+                                    <input type="url" name="link" class="form-control link" id="form-control-3" placeholder="Enter link" value="<?php echo $getBanners['link']; ?>">
                                 </div>
                             </div>                         
                             <div class="form-group">
