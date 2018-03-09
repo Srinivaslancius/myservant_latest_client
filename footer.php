@@ -213,7 +213,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 		</ul>
 	</div>
 </div><!-- /.container -->
-<?php include "search_js_script.php"; ?>
+<?php //include "search_js_script.php"; ?>
 <script type="text/javascript">
 function addWishList(productId) {
 

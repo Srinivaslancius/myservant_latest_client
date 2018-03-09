@@ -1,39 +1,33 @@
 
  <!-- Auto complete home page search -->           
-    <script type="text/javascript">   
-    // AJAX call for autocomplete 
-    $(document).ready(function(){
-        $("#search-box").keyup(function(){
-            $.ajax({
-            type: "POST",
-            url: "get_product_names.php",
-            data:'keyword='+$(this).val(),
-            beforeSend: function(){
-                $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
-            },
-            success: function(data){
-                $("#suggesstion-box").show();
-                $("#suggesstion-box").html(data);
-                $("#search-box").css("background","#FFF");
-            }
-            });
-        });
-    });
-    //To select country name
-    function selectProduct(val) {
-        $("#search-box").val(val);
-        $("#suggesstion-box").hide();
-    }
-    </script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>    
+ <!-- Auto complete home page search -->           
+<script type="text/javascript">
+$(document).ready(function() {
     
-<style>
-#country-list{float:left;list-style:none;margin-top:0px;padding:0;width:100%;position: absolute;z-index: 9999;}
-#country-list li{padding: 10px; background: #ffffff;border-bottom:1px solid #DEDEDE}
-#country-list li:hover{background:#ece3d2;cursor: pointer;}
-/*#search-box{padding: 10px;border: #a8d4b1 1px solid;border-radius:0px;}*/
-#suggesstion-box{
-    border-radius:30px !important;
-}
-</style>
-
+    //autocomplete
+    $(".auto").autocomplete({
+        source: function(request, response) {
+        $.ajax({
+          url: "get_product_names.php",
+          dataType: "json",
+          data: request,                    
+          success: function (data) {
+            // No matching result
+            if (!data || data.length == 0) {
+              response([{ label: 'No results found.', val: -1}]);
+            }
+            else {
+              response(data);
+            }
+          }});
+        },
+        // source: "get_product_names.php",
+        minLength: 2,
+        select: function(event, ui) {
+            $('#search_form').submit();
+        }
+    });
+});
+</script>
     <!-- End home page search -->

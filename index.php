@@ -1132,6 +1132,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
+
 	
 	
 <script>
@@ -1216,37 +1217,7 @@ if($getTodayDeals1->num_rows > 0) { ?>
 			}
 		</script>
 	
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>    
- <!-- Auto complete home page search -->           
-<script type="text/javascript">
-$(document).ready(function() {
-    
-    //autocomplete
-    $(".auto").autocomplete({
-    	source: function(request, response) {
-	    $.ajax({
-	      url: "get_product_names.php",
-	      dataType: "json",
-	      data: request,                    
-	      success: function (data) {
-	        // No matching result
-	        if (!data || data.length == 0) {
-	          response([{ label: 'No results found.', val: -1}]);
-	        }
-	        else {
-	          response(data);
-	        }
-	      }});
-	    },
-        // source: "get_product_names.php",
-        minLength: 2,
-    	select: function(event, ui) {
-    		$('#search_form').submit();
-    	}
-	});
-});
-</script>
 
+<?php include "search_js_script.php"; ?>
 </body>	
 </html>
