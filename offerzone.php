@@ -308,6 +308,6 @@ setInterval(function() { makeTimer(); }, 1000);
   color: #abcd58;
 }
 </style>
-
+<?php include "search_js_script.php"; ?>
 </body>	
 </html>

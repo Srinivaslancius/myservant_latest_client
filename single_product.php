@@ -591,5 +591,6 @@ width:100% !important;
 			}
 		</script>
 
+		<?php include "search_js_script.php"; ?>
 	</body>	
 </html>

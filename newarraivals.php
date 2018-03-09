@@ -60,10 +60,11 @@
 									<li>
 										<span><?php echo $filtCat['category_name']; ?></span>
 										<?php $subCat = "SELECT * FROM grocery_sub_category WHERE lkp_status_id = 0 AND grocery_category_id ='".$filtCat['id']."' AND id IN (SELECT grocery_sub_category_id FROM grocery_products WHERE lkp_status_id = 0 AND id in (SELECT product_id FROM grocery_product_bind_weight_prices WHERE lkp_status_id = 0 AND lkp_city_id = $lkp_city_id)) ORDER BY id DESC "; $getSubs = $conn->query($subCat); ?>
-										<ul class="cat-child">
+										<ul class="cat-child box-checkbox">
 											<?php while($getSubCatName = $getSubs->fetch_assoc() ) { ?>
-												<li>
-													<a href="javascript:void(0)" title="<?php echo $getSubCatName['sub_category_name']; ?>" onClick="loadFilterProducts(<?php echo $getSubCatName['id']; ?>)"><?php echo $getSubCatName['sub_category_name']; ?></a>
+												<li class="check-box">
+													<input type="checkbox" id="sub_cat_id<?php echo $getSubCatName['id']; ?>" name="categories[]" class="item_filter categories" value="<?php echo $getSubCatName['id']; ?>">
+													<label for="sub_cat_id<?php echo $getSubCatName['id']; ?>"><?php echo $getSubCatName['sub_category_name']; ?></label>
 												</li>
 											<?php } ?>
 										</ul>
@@ -88,7 +89,7 @@
 										<ul class="box-checkbox scroll">
 											<?php while($getAllBrandsNames = $getAllBrands->fetch_assoc() ) { ?>
 											<li class="check-box">
-												<input type="checkbox" id="checkbox<?php echo $getAllBrandsNames['id']; ?>" name="brands_filt[]" class="brand_filters" value="<?php echo $getAllBrandsNames['id']; ?>">
+												<input type="checkbox" id="checkbox<?php echo $getAllBrandsNames['id']; ?>" name="brands_filt[]" class="item_filter brand" value="<?php echo $getAllBrandsNames['id']; ?>">
 												<label for="checkbox<?php echo $getAllBrandsNames['id']; ?>"><?php echo $getAllBrandsNames['brand_name']; ?></label>
 											</li>	
 											<?php } ?>									
@@ -108,28 +109,28 @@
 									<div class="widget-content">
 									<form id="search_form">									
 										<ul class="box-checkbox scroll">
-											<li class="check-box check_price_type">
-												<input type="checkbox" id="check1" name="price[]" value="0 - 500">
+											<li class="check-box">
+												<input type="checkbox" class="item_filter price" id="check1" name="price[]" value="0 - 500">
 												<label for="check1">0 - 500/-</label>
 											</li>
-											<li class="check-box check_price_type">
-												<input type="checkbox" id="check2" name="price[]" value="500 - 1000">
+											<li class="check-box">
+												<input type="checkbox" class="item_filter price" id="check2" name="price[]" value="500 - 1000">
 												<label for="check2">500 - 1000/-</label>
 											</li>
-											<li class="check-box check_price_type">
-												<input type="checkbox" id="check3" name="price[]" value="1000 - 1500">
+											<li class="check-box">
+												<input type="checkbox" class="item_filter price" id="check3" name="price[]" value="1000 - 1500">
 												<label for="check3">1000 - 1500/-</label>
 											</li>
-											<li class="check-box check_price_type">
-												<input type="checkbox" id="check4" name="price[]" value="1500 - 2000">
+											<li class="check-box">
+												<input type="checkbox" class="item_filter price" id="check4" name="price[]" value="1500 - 2000">
 												<label for="check4">1500 - 2000/-</label>
 											</li>
-											<li class="check-box check_price_type">
-												<input type="checkbox" id="check5" name="price[]" value="2000 - 2500">
+											<li class="check-box">
+												<input type="checkbox" class="item_filter price" id="check5" name="price[]" value="2000 - 2500">
 												<label for="check5">2000 - 2500/-</label>
 											</li>
-											<li class="check-box check_price_type">
-												<input type="checkbox" id="check6" name="price[]" value="2500 - 3000">
+											<li class="check-box">
+												<input type="checkbox" class="item_filter price" id="check6" name="price[]" value="2500 - 3000">
 												<label for="check6">2500 - 3000/-</label>
 											</li>
 										</ul>
@@ -172,7 +173,7 @@
 									</ul>
 									<div class="sort">
 										<div class="popularity">
-											<select name="popularity" onChange="loadPopularity(this.value)">
+											<select name="popularity" class="item_filter" id="sort">
 												<option value="">Sort by popularity</option>
 												<option value="recent">Sort by recent</option>
 												<option value="low_high">Price low to high</option>
@@ -557,110 +558,43 @@
 				});
 			}
 		</script>
+		<script>
+	        var categories,brand,sorting;
+	        $(function(){
+	            //$('.item_filter').click(function(){
+	            $('.item_filter').on('click change',function(event) {
+	                categories = multiple_values('categories');
+	                brand  = multiple_values('brand');
+	                price  = multiple_values('price');
+	                sorting = $("#sort").val();
+	                $.ajax({
+	                    url:"filter_products.php",
+	                    type:'post',
+	                    data:{categories:categories,brand:brand,price:price,sorting:sorting},
+	                    success:function(result){
+	                        $('#all_rows').html(result);
+	                    }
+	                });
+	                $.ajax({
+	                    url:"filter_products_grid.php",
+	                    type:'post',
+	                    data:{categories:categories,brand:brand,price:price,sorting:sorting},
+	                    success:function(result){
+	                        $('#all_rows_grid').html(result);
+	                    }
+	                });
+	            });
+	        });    
+	        
+	        function multiple_values(inputclass){
+	            var val = new Array();
+	            $("."+inputclass+":checked").each(function() {
+	                val.push($(this).val());
+	            });
+	            return val;
+	        }
+	    </script>
 
-	<script type="text/javascript">
-	function loadFilterProducts(subCatId) {
-	
-		$.ajax({
-	      type: 'post',
-	      url: 'load_filter_products.php',
-	      data: {
-	       subCatId:subCatId,
-	      },
-	      success: function (response) {
-	      //alert(response);
-	      $('#all_rows').html(response);		  
-	      }
-		});
-
-		$.ajax({
-	      type: 'post',
-	      url: 'load_filter_products_grid.php',
-	      data: {
-	       subCatId:subCatId,
-	      },
-	      success: function (response) {
-	      //alert(response);
-	      $('#all_rows_grid').html(response);		  
-	      }
-		});
-	}
-
-	function loadPopularity(popStatus) {
-
-		$.ajax({
-	      type: 'post',
-	      url: 'load_popular_products.php',
-	      data: {
-	       popularity:popStatus,
-	      },
-	      success: function (response) {
-	      //alert(response);
-	      $('#all_rows').html(response);		  
-	      }
-		});
-
-		$.ajax({
-	      type: 'post',
-	      url: 'load_popular_products_grid.php',
-	      data: {
-	       popularity:popStatus,
-	      },
-	      success: function (response) {
-	      //alert(response);
-	      $('#all_rows_grid').html(response);		  
-	      }
-		});
-	}
-	
-	$(document).on('change','.brand_filters',function(){
-
-	   $.ajax({
-	      type: 'post',
-	      url: 'load_brands_products.php',
-	      data: $("#check_filter_form").serialize(),
-	      success: function (response) {
-	      //alert(response);
-	      $('#all_rows').html(response);		  
-	      }
-		});
-
-		$.ajax({
-	      type: 'post',
-	      url: 'load_brands_products_grid.php',
-	      data: $("#check_filter_form").serialize(),
-	      success: function (response) {
-	      //alert(response);
-	      $('#all_rows_grid').html(response);		  
-	      }
-		});	   
-
-	});
-	</script>
-	<script type="text/javascript">
-		$(document).on('change','.check_price_type',function(){
-		   $.ajax({
-		     type: "POST",
-		     url: 'price_filters.php',
-		     data: $("#search_form").serialize(),
-		     success: function(response)
-		     {                  
-		        //alert(response);
-		        $('#all_rows').html(response);
-		     }               
-		   });
-		  $.ajax({
-		     type: "POST",
-		     url: 'price_filters_grid.php',
-		     data: $("#search_form").serialize(),
-		     success: function(response)
-		     {                  
-		        //alert(response);
-		        $('#all_rows_grid').html(response);
-		     }               
-		   });
-		});
-		</script>
-
+<?php include "search_js_script.php"; ?>
 </body>	
 </html>

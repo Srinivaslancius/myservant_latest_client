@@ -114,5 +114,6 @@
 
 		<script type="text/javascript" src="javascript/main.js"></script>	
 
+<?php include "search_js_script.php"; ?>
 </body>	
 </html>

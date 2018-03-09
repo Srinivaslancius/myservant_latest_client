@@ -342,6 +342,6 @@ if($resultEmail == 0) {
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 
 		<script type="text/javascript" src="javascript/main.js"></script>
-
+        <?php include "search_js_script.php"; ?>
 </body>	
 </html>
