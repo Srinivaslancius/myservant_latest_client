@@ -419,5 +419,6 @@ if($getTodayDeals1->num_rows > 0) { ?>
 				 });
 			}
 		</script>
+		<?php include "search_js_script.php"; ?>
 </body>	
 </html>

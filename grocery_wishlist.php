@@ -240,5 +240,6 @@ function removeIngItem(ingUniqId) {
 
 }
 </script>
+<?php include "search_js_script.php"; ?>
 </body>	
 </html>

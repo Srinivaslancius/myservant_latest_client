@@ -169,7 +169,7 @@ if(isset($_POST['refer_friend']) && !empty($_POST['refer_friend'])) {
 	   	<script type="text/javascript" src="javascript/waves.min.js"></script>
 		<script type="text/javascript" src="javascript/jquery.countdown.js"></script>
 		<script type="text/javascript" src="javascript/main.js"></script>
-
+		<?php include "search_js_script.php"; ?>
 		<script>
 function removeIngItem(ingUniqId) {
 
