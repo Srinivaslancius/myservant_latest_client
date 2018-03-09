@@ -94,7 +94,7 @@ if($_SESSION['city_name'] == '') {
 												<?php } ?>
 											<?php } else { ?>
 												<?php while($row = $getTotalTimeSlots->fetch_assoc()) { ?>
-												<a href="#">Today - <?php echo $row['total_slot_time']; ?></a>
+												<a href="#">Tomorrow - <?php echo $row['total_slot_time']; ?></a>
 												<?php } ?>
 											<?php } ?>
 										  </div>
