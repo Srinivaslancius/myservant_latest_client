@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $offerZoneId = $_REQUEST['offerZoneId'];
         $offerZoneDetails = getAllDataWhere('grocery_offer_zone','id',$offerZoneId);
         $response["lists"] = array();
-        while($getOrdersData2 = $getOrdersData3->fetch_assoc()) {
+        while($row = $offerZoneDetails->fetch_assoc()) {
             $lists = array();
             $lists["offerImage"] = $base_url."grocery_admin/uploads/grocery_offer_zone_images/".$row["offer_image"];
             $lists["offerDescription"] = $row["offer_description"];
