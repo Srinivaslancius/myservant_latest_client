@@ -43,43 +43,64 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 			</div><!-- /.container -->
 		</section><!-- /.flat-breadcrumb -->
         <script src="https://maps.google.com/maps/api/js?key=AIzaSyA_wD4yy0lpl0j2e7f-gCVhbZadHycfk7U" type="text/javascript"></script>
+        <?php $getContentData = getAllDataWhere('grocery_content_pages','id','8'); 
+        $getContent = $getContentData->fetch_assoc();
+        $address =$getContent['description']; // Google HQ
+              $prepAddr = str_replace(' ','+',$address);
+              $geocode=file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
+              $output= json_decode($geocode);
+              $latitude = $output->results[0]->geometry->location->lat;
+              $longitude = $output->results[0]->geometry->location->lng;
+        ?>
 		<section class="flat-map">
 		<div class="container">
 		
 		<div id="map" style="height:400px;width:100%"></div>
+        <div id="message"> <?php echo $getContent['description']; ?></div>
           </div>
         </section><!-- /#flat-map -->
         <script type="text/javascript">
-                            var locations = [
-                              ['Lancius it solutions', 17.445913, 78.381229],
-                              ['Maxcure Hospital', 17.446740, 78.380109],
-                              ['Cyber Towers ', 17.450415, 78.381095],
-                            ];
-
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                              zoom: 14,
-                              center: new google.maps.LatLng(17.448293, 78.391485),
-                              mapTypeId: google.maps.MapTypeId.ROADMAP
+                            var map;
+                            var infowindow = new google.maps.InfoWindow({
+                                content: document.getElementById('message')
                             });
-
-                            var infowindow = new google.maps.InfoWindow();
-
-                            var marker, i;
-
-                            for (i = 0; i < locations.length; i++) {  
-                              marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                map: map
-                              });
-
-                              google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                                return function() {
-                                  infowindow.setContent(locations[i][0]);
-                                  infowindow.open(map, marker);
+                            function initialize() {
+                                // Set static latitude, longitude value
+                                var latlng = new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>);
+                                // Set map options
+                                var myOptions = {
+                                    zoom: 16,
+                                    center: latlng,
+                                    panControl: true,
+                                    zoomControl: true,
+                                    scaleControl: true,
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP
                                 }
-                              })(marker, i));
+                                // Create map object with options
+                                map = new google.maps.Map(document.getElementById("map"), myOptions);
+                            <?php
+
+
+                                    echo "addMarker(new google.maps.LatLng(".$latitude.", ".$longitude."), map);";
+                            ?>
                             }
-                          </script>
+                            function addMarker(latLng, map) {
+                                var marker = new google.maps.Marker({
+                                    position: latLng,
+                                    map: map,
+                                    draggable: true, // enables drag & drop
+                                    animation: google.maps.Animation.DROP
+                                });
+                                google.maps.event.addListener(marker, 'click', function() {
+                                    infowindow.open(map, marker);
+                                  });
+
+                                return marker;
+                            }
+                            google.maps.event.addDomListener(window, 'load', initialize);
+                        </script>
+
+                
         <section class="flat-iconbox style4">
         	<div class="container">
         		<div class="row">
