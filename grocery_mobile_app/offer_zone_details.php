@@ -7,7 +7,7 @@ $lists = array();
 $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    if(isset($_REQUEST['offerZoneId']))  {
+    if(!empty($_REQUEST['offerZoneId']))  {
 
         $offerZoneId = $_REQUEST['offerZoneId'];
         $offerZoneDetails = getAllDataWhere('grocery_offer_zone','id',$offerZoneId);
