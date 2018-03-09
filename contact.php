@@ -43,9 +43,8 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 			</div><!-- /.container -->
 		</section><!-- /.flat-breadcrumb -->
         <script src="https://maps.google.com/maps/api/js?key=AIzaSyA_wD4yy0lpl0j2e7f-gCVhbZadHycfk7U" type="text/javascript"></script>
-        <?php $getContentData = getAllDataWhere('grocery_content_pages','id','8'); 
-        $getContent = $getContentData->fetch_assoc();
-        $address =$getContent['description']; // Google HQ
+        <?php 
+        $address =$getSiteSettingsData1['address']; // Google HQ
               $prepAddr = str_replace(' ','+',$address);
               $geocode=file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
               $output= json_decode($geocode);
@@ -56,7 +55,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 		<div class="container">
 		
 		<div id="map" style="height:400px;width:100%"></div>
-        <div id="message"> <?php echo $getContent['description']; ?></div>
+        <div id="message"> <?php echo $getSiteSettingsData1['description']; ?></div>
           </div>
         </section><!-- /#flat-map -->
         <script type="text/javascript">
@@ -100,7 +99,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
                             google.maps.event.addDomListener(window, 'load', initialize);
                         </script>
 
-                
+
         <section class="flat-iconbox style4">
         	<div class="container">
         		<div class="row">
