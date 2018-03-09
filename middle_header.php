@@ -10,7 +10,7 @@
 						</div><!-- /.col-md-3 -->
 						<div class="col-md-7">
 							<div class="top-search">
-								<form action="single_product.php" method="post" class="form-search" accept-charset="utf-8"  autocomplete="off">
+								<form action="single_product.php" method="post" class="form-search" accept-charset="utf-8"  autocomplete="off" id="search_form">
 									
 									<div class="box-search">
 										<input type="text" name="searchKey" placeholder="Search Your Products..." required class='auto'>
