@@ -55,7 +55,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 		<div class="container">
 		
 		<div id="map" style="height:400px;width:100%"></div>
-        <div id="message"> <?php echo $getSiteSettingsData1['description']; ?></div>
+        <div id="message"> <?php echo $getSiteSettingsData1['address']; ?></div>
           </div>
         </section><!-- /#flat-map -->
         <script type="text/javascript">
