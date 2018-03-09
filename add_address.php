@@ -294,7 +294,7 @@
 												$duration='+'.$getDuration['booking_time_gap'].' minutes';
 												$getCurTime = date('H:i:00', strtotime($duration, strtotime($cur_time)));
 
-                                        		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND start_time > '$getCurTime' ";
+                                        		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0 ";
                                         		$getTotalTimeSlots = $conn->query($getTimeSlots);
                                         		$gettotalSlt = $getTotalTimeSlots->num_rows;
 
@@ -303,32 +303,13 @@
 												    <div class="col-sm-6">
                                                 <h4>Delivery Slot:</h4>
 												
-												<?php if($gettotalSlt == 0) { ?>
-                                        		<?php 
-
-                                        			$getTimeSlots1 = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
-                                        			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
-                                        		?>
-			                                        
-			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings" style="height:45px;">
-															<?php 
-																while($row1 = $getTotalTimeSlots1->fetch_assoc()) {  	
-															?>
-																<option value="<?php echo $row1['total_slot_time']; ?>"><?php echo $row1['total_slot_time']; ?></option>
-															<?php } ?>
-														</select>
-			                                        
-			                                    <?php } else { ?>
-			                                    	
-			                                        	<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings"style="height:45px;">
-															<?php 
-																while($row = $getTotalTimeSlots->fetch_assoc()) {  	
-															?>
-																<option value="<?php echo $row['total_slot_time']; ?>">Today - <?php echo $row['total_slot_time']; ?></option>
-															<?php } ?>
-														</select>
-			                                        
-			                                    <?php } ?>
+												<select name="slot_timings" style="border: 1px solid #ccc;" id="slot_timings"style="height:45px;">
+													<?php 
+														while($row = $getTotalTimeSlots->fetch_assoc()) {  	
+													?>
+														<option value="<?php echo $row['total_slot_time']; ?>">Tomorrow - <?php echo $row['total_slot_time']; ?></option>
+													<?php } ?>
+												</select>
 												</div>
 													
 													</div>
@@ -504,9 +485,9 @@
 
             	$('#datepicker').datepicker({
 				format: "mm/dd/yyyy",
-				minDate:0,
+				minDate:1,
 				todayHighlight: true,
-				startDate: today,				
+				startDate: today+1,				
 				autoclose: true,
 				maxDate: "+2M",
 					onSelect: function (dateText, inst) {

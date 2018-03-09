@@ -63,7 +63,7 @@ if($_SESSION['city_name'] == '') {
                 		$cur_time=date("Y-m-d H:i:00");
 						$duration='+'.$getDuration['booking_time_gap'].' minutes';
 						$getCurTime = date('H:i:00', strtotime($duration, strtotime($cur_time)));
-                		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  AND start_time > '$getCurTime' ";
+                		$getTimeSlots = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
                 		$getTotalTimeSlots = $conn->query($getTimeSlots);
                 		$gettotalSlt = $getTotalTimeSlots->num_rows;
                 		?>
@@ -85,17 +85,8 @@ if($_SESSION['city_name'] == '') {
 										  <button class="dropbtn" style="border:1px solid #f9f9f9;
 											margin-top:12px;">Get Available Time Slots Here</button>
 										  <div class="dropdown-content">
-										  	<?php if($gettotalSlt == 0) {
-                                    			$getTimeSlots1 = "SELECT * FROM grocery_manage_time_slots WHERE lkp_status_id = 0  ";
-                                    			$getTotalTimeSlots1 = $conn->query($getTimeSlots1);
-                                    		?>
-                                    			<?php while($row1 = $getTotalTimeSlots1->fetch_assoc()) { ?>
-												<a href="#">Tomorrow - <?php echo $row1['total_slot_time']; ?></a>
-												<?php } ?>
-											<?php } else { ?>
-												<?php while($row = $getTotalTimeSlots->fetch_assoc()) { ?>
+										  	<?php while($row = $getTotalTimeSlots->fetch_assoc()) { ?>
 												<a href="#">Tomorrow - <?php echo $row['total_slot_time']; ?></a>
-												<?php } ?>
 											<?php } ?>
 										  </div>
 										</div>

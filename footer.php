@@ -67,7 +67,7 @@ $getSiteSettingsData1 = $getSiteSettings1->fetch_assoc(); ?>
 					</li> -->
 					<li>
 						<a href="faq.php" title="">
-							Help Center
+							FAQs
 						</a>
 					</li>
 					<li>
