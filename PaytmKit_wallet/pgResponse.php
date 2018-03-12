@@ -20,14 +20,9 @@ $paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : ""; //
 //Verify all parameters received from Paytm pg to your application. Like MID received from paytm pg is same as your application’s MID, TXN_AMOUNT and ORDER_ID are same as what was sent by you to Paytm PG for initiating transaction etc.
 $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum); //will return TRUE or FALSE string.
 
-$order_id = $_SESSION['order_last_session_id'];
 $user_id = $_SESSION['user_login_session_id'];
 $last_id = $_SESSION['last_id'];
 
-if($_SESSION['CART_TEMP_RANDOM'] == "") {
-    $_SESSION['CART_TEMP_RANDOM'] = rand(10, 10).sha1(crypt(time())).time();
-}
-$session_cart_id = $_SESSION['CART_TEMP_RANDOM'];
 
 if($isValidChecksum == "TRUE") {
 	//echo "<b>Checksum matched and following are the transaction details:</b>" . "<br/>";
@@ -36,17 +31,16 @@ if($isValidChecksum == "TRUE") {
 		$getSiteSettings1 = getIndividualDetails('grocery_site_settings','id','1');
 		$getUserDetails = getIndividualDetails('users','id',$user_id);
 
-		header("Location: ../walletsuccess.php?lastTransId=".$lastTransId."");
+		header("Location: ../walletsuccess.php?lastTransId=".$last_id."");
 		//echo 1; die;
 		//Process your transaction here as success transaction.
 		//Verify amount & order id received from Payment gateway with your application's order id and amount.
 	} else {	
 		
-		//echo "<b>Transaction status is failure</b>" . "<br/>";
-		unset($_SESSION['order_last_session_id']);
+		//echo "<b>Transaction status is failure</b>" . "<br/>";		
 		//unset($_SESSION['payment_service_type']);
 
-		header("Location: ../walletfailure.php?lastTransId=".$lastTransId."");
+		header("Location: ../walletfailure.php?lastTransId=".$last_id."");
 		//echo 2; die;
 	}
 
@@ -61,9 +55,9 @@ if($isValidChecksum == "TRUE") {
 }
 else {
 
-	unset($_SESSION['order_last_session_id']);
+	//unset($_SESSION['order_last_session_id']);
 	unset($_SESSION['payment_service_type']);
-	header("Location: ../walletfailure.php?lastTransId=".$lastTransId."");
+	header("Location: ../walletfailure.php?lastTransId=".$last_id."");
 	echo "<b>Checksum mismatched.</b>";
 	//Process transaction as suspicious.
 }
