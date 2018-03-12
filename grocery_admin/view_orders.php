@@ -226,7 +226,8 @@
     <!-- <script src="js/tables-datatables.min.js"></script> -->
     <script type="text/javascript">
       var table =  $('#table-2').DataTable({
-        dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"]
+        dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"],
+        "iDisplayLength": 20
     });
 
     $('#select-email').on('change', function () {
