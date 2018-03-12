@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $response["offerDescription"] = $row["offer_description"];
             $response["offerStartDate"] = $row["offer_start_date"];
             $response["offerEndDateate"] = $row["offer_end_date"];
-            $response["offerRewardPoints"] = $row["offer_reward_points"];
+            $response["minimumOfferRewardPoints"] = $row["offer_reward_points"];
            
             //array_push($response["lists"], $lists); 
         //}       
