@@ -79,6 +79,7 @@
                     <th>Order Tracking Status</th>
                     <th>Delivery Boy</th>
                     <th>Action</th>
+                    <th>Search Filter Date(for filter)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -106,6 +107,7 @@
                           <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
                           <?php }?>
                         <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span></td>
+                        <td><?php echo $row['created_at'];?></td>
 
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
@@ -224,7 +226,11 @@
     <script type="text/javascript">
       var table =  $('#table-2').DataTable({
         dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"],
-        "iDisplayLength": 20
+        "iDisplayLength": 20,
+        "aoColumnDefs": [
+            { "bSearchable": true, "bVisible": false, "aTargets": [ 12 ] },
+            { "bVisible": false, "aTargets": [ 12 ] }
+        ]
     });
 
     $('#select-email').on('change', function () {
@@ -263,7 +269,7 @@
       $.fn.dataTableExt.afnFiltering.push(
         function(oSettings, aData, iDataIndex) {
           if (typeof aData._date == 'undefined') {
-            aData._date = new Date(aData[2]).getTime();
+            aData._date = new Date(aData[12]).getTime();
           }
 
           if (minDateFilter && !isNaN(minDateFilter)) {
