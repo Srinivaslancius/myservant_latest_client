@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$offer_end_date = $_REQUEST["offerEndDate"];
 		$offer_code = $_REQUEST["offerCode"];
 		//Saving user id 
-		$user_id = $_REQUEST['userId';
+		$user_id = $_REQUEST['userId'];
 
 		$orders = "INSERT INTO grocery_offer_zone_orders (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_phone`, `order_id`, `offer_id`, `offer_reward_points`, `offer_end_date`, `created_at`) VALUES ('$user_id','$user_first_name','$user_last_name','$user_email','$user_phone','$order_id','$offer_id','$offer_reward_points','$offer_end_date','$order_date')";
 		$groceryOrders = $conn->query($orders);
