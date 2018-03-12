@@ -32,7 +32,7 @@
 					<div class="col-md-12">
 						<ul class="breadcrumbs">
 							<li class="trail-item">
-								<a href="index.php" title="">Home</a>
+								<a href="<?php echo $base_url; ?>" title="">Home</a>
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
@@ -195,6 +195,6 @@
 			    }
 			}
 		</script>
-
+		<?php include "search_js_script.php"; ?>
 </body>	
 </html>
