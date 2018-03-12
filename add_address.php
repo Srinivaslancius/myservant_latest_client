@@ -32,6 +32,11 @@
 }
 
 </style>
+<?php
+if($_SESSION['user_login_session_id'] == '') {
+    header ("Location: logout.php");
+}
+?>
 <body class="header_sticky" onload="getDateTime()">
 	<div class="boxed">
 
