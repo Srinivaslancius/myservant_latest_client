@@ -15,11 +15,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         //$response["lists"] = array();
         //while($row = $offerZoneDetails->fetch_assoc()) {
             //$lists = array();
+            $response["offerId"] = $row["id"];
             $response["offerImage"] = $base_url."grocery_admin/uploads/grocery_offer_zone_images/".$row["offer_image"];
             $response["offerDescription"] = $row["offer_description"];
             $response["offerStartDate"] = $row["offer_start_date"];
             $response["offerEndDateate"] = $row["offer_end_date"];
-            $response["offerRewardPoints"] = $row["offer_reward_points"];
+            $response["minimumOfferRewardPoints"] = $row["offer_reward_points"];
            
             //array_push($response["lists"], $lists); 
         //}       
