@@ -36,7 +36,7 @@
       </div>
       <div class="site-content">
         <?php 
-          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 GROUP BY order_id ORDER BY id DESC"; 
+          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id = 1 GROUP BY order_id ORDER BY id DESC"; 
           $groceryOrdersData = $conn->query($groceryOrders);
           $i=1;
         ?>
@@ -68,7 +68,7 @@
                   <tr>
                     <th>S.No</th>
                     <th>Order Id</th>
-                    <th>Order Date</th>
+                    <th>Order Date</th>                    
                     <th>Customer</th>
                     <th>Email</th>
                     <th>Mobile Number</th>
@@ -76,9 +76,12 @@
                     <th>Payment Option</th>
                     <th>Payment Status</th>
                     <th>Order Status</th>
+                    <th>Order Tracking Status</th>
                     <th>Delivery Boy</th>
                     <th>Action</th>
                     <th>Cancel Order</th>
+                    <th>Search Filter Date(for filter)</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -86,7 +89,7 @@
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><?php echo $row['order_id'];?></a></td>
-                        <td><?php echo dateFormat($row['created_at']);?></td>
+                        <td><?php echo dateFormat($row['created_at']);?></td>                        
                         <td><?php echo $row['first_name'];?></td>
                         <td><?php echo $row['email'];?></td>
                         <td><?php echo $row['mobile'];?></td>
@@ -97,18 +100,21 @@
                          while($getPaymentsStatus = $getGroceryPaymentsStatus->fetch_assoc()) { if($row['lkp_payment_status_id'] == $getPaymentsStatus['id']) { echo $getPaymentsStatus['payment_status']; } } ?></td>
                          <td><?php $getGroceryOrderStatus = getAllData('lkp_order_status');
                          while($getOrderStatus = $getGroceryOrderStatus->fetch_assoc()) { if($row['lkp_order_status_id'] == $getOrderStatus['id']) { echo $getOrderStatus['order_status']; } } ?></td>
+                         <td><?php $getGroceryOrderTrackingStatus = getAllData('lkp_order_tracking_status');
+                         while($getOrderTrackingStatus = $getGroceryOrderTrackingStatus->fetch_assoc()) { if($row['lkp_order_tracking_status_id'] == $getOrderTrackingStatus['id']) { echo $getOrderTrackingStatus['status']; } } ?></td>
                         <?php if($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
                         <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>">Assign To</a></td>
                         <?php } else { 
                           $getDeliveryBoysNames = getAllDataWhere('grocery_delivery_boys','id',$row['assign_delivery_id']); $getDeliveryBoysNamesData = $getDeliveryBoysNames->fetch_assoc(); ?>
                           <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
                           <?php }?>
-                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 2 && $row['lkp_payment_status_id'] == 1) {  } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>">edit</a><?php } ?> </td>
+                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 2 && $row['lkp_payment_status_id'] == 1) {  } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>">Edit</a><?php } ?> </td>
                         <?php if ($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
                         <td><?php if ($row['lkp_order_status_id']!=3) { echo "<span class='label label-outline-success check_order_status open_cursor' data-incId=".$row['order_id']." data-status=".$row['lkp_order_status_id']." data-tbname='grocery_orders'>Cancel</span>" ;} else { echo "<span class='label label-outline-info check_order_status open_cursor' data-status=".$row['lkp_order_status_id']." data-incId=".$row['order_id']." data-tbname='grocery_orders'>Cancelled</span>" ;} ?></td>
                         <?php } else { ?>
                           <td>--</td>
                         <?php } ?>
+                        <td><?php echo $row['created_at'];?></td>
 
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
@@ -227,7 +233,11 @@
     <script type="text/javascript">
       var table =  $('#table-2').DataTable({
         dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"],
-        "iDisplayLength": 20
+        "iDisplayLength": 20,
+          "aoColumnDefs": [
+            { "bSearchable": true, "bVisible": false, "aTargets": [ 12 ] },
+            { "bVisible": false, "aTargets": [ 12 ] }
+        ] 
     });
 
     $('#select-email').on('change', function () {
@@ -266,7 +276,7 @@
       $.fn.dataTableExt.afnFiltering.push(
         function(oSettings, aData, iDataIndex) {
           if (typeof aData._date == 'undefined') {
-            aData._date = new Date(aData[2]).getTime();
+            aData._date = new Date(aData[12]).getTime();
           }
 
           if (minDateFilter && !isNaN(minDateFilter)) {

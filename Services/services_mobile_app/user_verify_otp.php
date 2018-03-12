@@ -33,6 +33,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 			$saveUser = saveUser($user_full_name, $user_email, $user_mobile, $user_password,$lkp_status_id,$login_count,$last_login_visit,$lkp_register_device_type_id,$user_login_type,$mobile_token,$user_register_service_id,$created_at);
 
+			if($_SESSION['wallet_id'] == "") {
+				$string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
+				$random1 = substr($string1,0,3);
+				$string2 = str_shuffle('1234567890');
+				$random2 = substr($string2,0,3);
+				$contstr = "MYSER-WALLET_";
+				$_SESSION['wallet_id'] = $contstr.$random1.$random2;
+			}
+			$wallet_id = $_SESSION['wallet_id'];
+			$user_id = $_SESSION['user_login_session_id'];
+			$created_at = date("Y-m-d h:i:s");
+			$amount = 0;
+			$sqlInwallet = "INSERT INTO `user_wallet`(`wallet_id`, `user_id`, `amount`, `created_at`) VALUES ('$wallet_id','$user_id','$amount','$created_at')";
+			$sqlInwallet1 = $conn->query($sqlInwallet);
+
 			$updateRefer = "UPDATE `grocery_refer_a_friend` SET register_status = '1' WHERE refer_email_id = '$user_email' AND referal_code = '$referal_code'";
         	$conn->query($updateRefer); 
 
