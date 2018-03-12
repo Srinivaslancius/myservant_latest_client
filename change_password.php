@@ -193,6 +193,6 @@
 		      	}, 2000);
 			});
         </script>
-
+        <?php include "search_js_script.php"; ?>
 </body>	
 </html>
