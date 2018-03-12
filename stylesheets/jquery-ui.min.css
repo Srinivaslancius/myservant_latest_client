@@ -503,12 +503,12 @@ input.ui-button::-moz-focus-inner,button.ui-button::-moz-focus-inner {
 }
 
 .ui-menu .ui-menu-item a {
-    text-decoration: none;
-    display: block;
-    padding: 10px 1em;
-    line-height: 1.5;
-    min-height: 0;
-    font-weight: normal;
+    text-decoration: none !important;
+    display: block !important;
+    padding: 10px 1em !important;
+    line-height: 1.5 !important;
+    min-height: 0 !important;
+    font-weight: normal !important;
 }
 
 .ui-menu .ui-menu-item a.ui-state-focus,.ui-menu .ui-menu-item a.ui-state-active {
@@ -969,31 +969,31 @@ body .ui-tooltip {
 }
 
 .ui-icon,.ui-widget-content .ui-icon {
-    background-image: url(images/ui-icons_222222_256x240.png)
+    background-image: url(../images/ui-icons_444444_256x240.png)!important;
 }
 
 .ui-widget-header .ui-icon {
-    background-image: url(images/ui-icons_222222_256x240.png)
+    background-image: url(../images/ui-icons_222222_256x240.png);
 }
 
 .ui-state-default .ui-icon {
-    background-image: url(images/ui-icons_888888_256x240.png)
+    background-image: url(../images/ui-icons_888888_256x240.png);
 }
 
 .ui-state-hover .ui-icon,.ui-state-focus .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(../images/ui-icons_454545_256x240.png);
 }
 
 .ui-state-active .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(../images/ui-icons_454545_256x240.png);
 }
 
 .ui-state-highlight .ui-icon {
-    background-image: url(images/ui-icons_2e83ff_256x240.png)
+    background-image: url(images/ui-icons_2e83ff_256x240.png);
 }
 
 .ui-state-error .ui-icon,.ui-state-error-text .ui-icon {
-    background-image: url(images/ui-icons_cd0a0a_256x240.png)
+    background-image: url(images/ui-icons_cd0a0a_256x240.png);
 }
 
 .ui-icon-carat-1-n {
