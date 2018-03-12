@@ -36,7 +36,7 @@
       </div>
       <div class="site-content">
         <?php 
-          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 GROUP BY order_id ORDER BY id DESC"; 
+          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id = 1 GROUP BY order_id ORDER BY id DESC"; 
           $groceryOrdersData = $conn->query($groceryOrders);
           $i=1;
         ?>
@@ -76,6 +76,7 @@
                     <th>Payment Option</th>
                     <th>Payment Status</th>
                     <th>Order Status</th>
+                    <th>Order Tracking Status</th>
                     <th>Delivery Boy</th>
                     <th>Action</th>
                     <th>Cancel Order</th>
@@ -97,13 +98,15 @@
                          while($getPaymentsStatus = $getGroceryPaymentsStatus->fetch_assoc()) { if($row['lkp_payment_status_id'] == $getPaymentsStatus['id']) { echo $getPaymentsStatus['payment_status']; } } ?></td>
                          <td><?php $getGroceryOrderStatus = getAllData('lkp_order_status');
                          while($getOrderStatus = $getGroceryOrderStatus->fetch_assoc()) { if($row['lkp_order_status_id'] == $getOrderStatus['id']) { echo $getOrderStatus['order_status']; } } ?></td>
+                         <td><?php $getGroceryOrderTrackingStatus = getAllData('lkp_order_tracking_status');
+                         while($getOrderTrackingStatus = $getGroceryOrderTrackingStatus->fetch_assoc()) { if($row['lkp_order_tracking_status_id'] == $getOrderTrackingStatus['id']) { echo $getOrderTrackingStatus['status']; } } ?></td>
                         <?php if($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
                         <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>">Assign To</a></td>
                         <?php } else { 
                           $getDeliveryBoysNames = getAllDataWhere('grocery_delivery_boys','id',$row['assign_delivery_id']); $getDeliveryBoysNamesData = $getDeliveryBoysNames->fetch_assoc(); ?>
                           <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
                           <?php }?>
-                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 2 && $row['lkp_payment_status_id'] == 1) {  } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>">edit</a><?php } ?> </td>
+                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 2 && $row['lkp_payment_status_id'] == 1) {  } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>">Edit</a><?php } ?> </td>
                         <?php if ($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
                         <td><?php if ($row['lkp_order_status_id']!=3) { echo "<span class='label label-outline-success check_order_status open_cursor' data-incId=".$row['order_id']." data-status=".$row['lkp_order_status_id']." data-tbname='grocery_orders'>Cancel</span>" ;} else { echo "<span class='label label-outline-info check_order_status open_cursor' data-status=".$row['lkp_order_status_id']." data-incId=".$row['order_id']." data-tbname='grocery_orders'>Cancelled</span>" ;} ?></td>
                         <?php } else { ?>
