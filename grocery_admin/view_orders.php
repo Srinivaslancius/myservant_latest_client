@@ -68,10 +68,10 @@
                   <tr>
                     <th>S.No</th>
                     <th>Order Id</th>
+                    <th>Order Date</th>
                     <th>Customer</th>
                     <th>Email</th>
                     <th>Mobile Number</th>
-                    <th>Order Date</th>
                     <!-- <th>Delivery Date</th> -->
                     <th>Payment Option</th>
                     <th>Payment Status</th>
@@ -86,10 +86,10 @@
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><?php echo $row['order_id'];?></a></td>
+                        <td><?php echo dateFormat($row['created_at']);?></td>
                         <td><?php echo $row['first_name'];?></td>
                         <td><?php echo $row['email'];?></td>
                         <td><?php echo $row['mobile'];?></td>
-                        <td><?php echo dateFormat($row['created_at']);?></td>
                         <!-- <td><?php echo $row['delivery_date'];?></td> -->
                         <td><?php $getGroceryPaymentsTypes = getAllData('lkp_payment_types');
                          while($getPaymentsTypes = $getGroceryPaymentsTypes->fetch_assoc()) { if($row['payment_method'] == $getPaymentsTypes['id']) { echo $getPaymentsTypes['status']; } } ?></td>
@@ -226,11 +226,12 @@
     <!-- <script src="js/tables-datatables.min.js"></script> -->
     <script type="text/javascript">
       var table =  $('#table-2').DataTable({
-        dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"]
+        dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"],
+        "iDisplayLength": 20
     });
 
     $('#select-email').on('change', function () {
-        table.columns(3).search( this.value ).draw();
+        table.columns(4).search( this.value ).draw();
     } );
       //Date picker for filters
     $("#datepicker_from").datepicker({
@@ -265,7 +266,7 @@
       $.fn.dataTableExt.afnFiltering.push(
         function(oSettings, aData, iDataIndex) {
           if (typeof aData._date == 'undefined') {
-            aData._date = new Date(aData[5]).getTime();
+            aData._date = new Date(aData[2]).getTime();
           }
 
           if (minDateFilter && !isNaN(minDateFilter)) {
