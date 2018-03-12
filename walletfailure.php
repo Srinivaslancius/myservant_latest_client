@@ -9,6 +9,7 @@ if(isset($_SESSION['user_login_session_id']) && $_GET['lastTransId']!="") {
 	$txnid = $_POST['txnid'];
 	$sqlInwallet = "UPDATE user_wallet_transactions SET lkp_payment_status_id =3 , transaction_id='$txnid' WHERE id='$key' ";
 	$conn->query($sqlInwallet);	
+	unset($_SESSION['last_id']);
 	header("Location: wallet_failure.php");
 }
 ?>

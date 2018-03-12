@@ -16,6 +16,7 @@ if(isset($_SESSION['user_login_session_id']) && $_GET['lastTransId']!="") {
 	$walletAmount = $getWalletPrice['credit_amnt']+$amount['amount'];
 	$updateWalletAmount = "UPDATE `user_wallet` SET amount='$walletAmount' WHERE user_id='".$_SESSION['user_login_session_id']."' AND wallet_id = '".$_SESSION['wallet_id']."'";
 	$updateWalletAmount1 = $conn->query($updateWalletAmount);
+	unset($_SESSION['last_id']);
 	header("Location: wallet_thankyou.php");
 }
 ?>

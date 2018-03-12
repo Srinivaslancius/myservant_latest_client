@@ -50,7 +50,7 @@
 					<div class="col-md-12">
 						<ul class="breadcrumbs">
 							<li class="trail-item">
-								<a href="index.php" title="">Home</a>
+								<a href="<?php echo $base_url; ?>" title="">Home</a>
 								<span><img src="images/icons/arrow-right.png" alt=""></span>
 							</li>
 							<li class="trail-item">
@@ -113,7 +113,9 @@
             			$sqlInwallet = "INSERT INTO `user_wallet_transactions`( `wallet_id`, `user_id`, `credit_amnt`, `description`, `lkp_payment_status_id`, `updated_date`) VALUES ('$wallet_id','$user_id','$credit_amnt','$description','2','$updated_date')";
             			if($conn->query($sqlInwallet) === TRUE) {
             				$last_id = $conn->insert_id;
-            				header("Location: PayUMoney_form_wallet.php?key=".$last_id."");
+            				$_SESSION['last_id'] = $last_id;
+            				// header("Location: PayUMoney_form_wallet.php?key=".$last_id."");
+            				header("Location: PaytmKit_wallet/TxnTest.php?pay_key=".encryptPassword($credit_amnt)."");
             			}
             		}
             		$user_id = $_SESSION['user_login_session_id'];
@@ -353,5 +355,6 @@
 				}
 			}
 		</script>
+		<?php include "search_js_script.php"; ?>
 </body>	
 </html>
