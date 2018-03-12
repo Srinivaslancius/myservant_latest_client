@@ -36,7 +36,7 @@
       </div>
       <div class="site-content">
         <?php 
-          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id = 1 GROUP BY order_id ORDER BY id DESC"; 
+          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id = 5 GROUP BY order_id ORDER BY id DESC"; 
           $groceryOrdersData = $conn->query($groceryOrders);
           $i=1;
         ?>
@@ -68,7 +68,7 @@
                   <tr>
                     <th>S.No</th>
                     <th>Order Id</th>
-                    <th>Order Date</th>                    
+                    <th>Order Date</th>
                     <th>Customer</th>
                     <th>Email</th>
                     <th>Mobile Number</th>
@@ -79,9 +79,6 @@
                     <th>Order Tracking Status</th>
                     <th>Delivery Boy</th>
                     <th>Action</th>
-                    <th>Cancel Order</th>
-                    <th>Search Filter Date(for filter)</th>
-
                   </tr>
                 </thead>
                 <tbody>
@@ -89,7 +86,7 @@
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><?php echo $row['order_id'];?></a></td>
-                        <td><?php echo dateFormat($row['created_at']);?></td>                        
+                        <td><?php echo dateFormat($row['created_at']);?></td>
                         <td><?php echo $row['first_name'];?></td>
                         <td><?php echo $row['email'];?></td>
                         <td><?php echo $row['mobile'];?></td>
@@ -108,13 +105,7 @@
                           $getDeliveryBoysNames = getAllDataWhere('grocery_delivery_boys','id',$row['assign_delivery_id']); $getDeliveryBoysNamesData = $getDeliveryBoysNames->fetch_assoc(); ?>
                           <td><a href="assign_to.php?order_id=<?php echo $row['order_id']; ?>"><?php if($getDeliveryBoysNamesData['id'] == $row['assign_delivery_id']) { echo $getDeliveryBoysNamesData['deliveryboy_name']; } ?>(Assigned)</a></td>
                           <?php }?>
-                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span>&nbsp;<?php if($row['lkp_order_status_id'] == 2 && $row['lkp_payment_status_id'] == 1) {  } elseif($row['assign_delivery_id'] > 0) { ?> <a href="edit_orders.php?order_id=<?php echo $row['order_id']; ?>">Edit</a><?php } ?> </td>
-                        <?php if ($row['assign_delivery_id'] == 0 || $row['assign_delivery_id'] == '') { ?>
-                        <td><?php if ($row['lkp_order_status_id']!=3) { echo "<span class='label label-outline-success check_order_status open_cursor' data-incId=".$row['order_id']." data-status=".$row['lkp_order_status_id']." data-tbname='grocery_orders'>Cancel</span>" ;} else { echo "<span class='label label-outline-info check_order_status open_cursor' data-status=".$row['lkp_order_status_id']." data-incId=".$row['order_id']." data-tbname='grocery_orders'>Cancelled</span>" ;} ?></td>
-                        <?php } else { ?>
-                          <td>--</td>
-                        <?php } ?>
-                        <td><?php echo $row['created_at'];?></td>
+                        <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span></td>
 
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
@@ -233,11 +224,7 @@
     <script type="text/javascript">
       var table =  $('#table-2').DataTable({
         dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"],
-        "iDisplayLength": 20,
-          "aoColumnDefs": [
-            { "bSearchable": true, "bVisible": false, "aTargets": [ 13 ] },
-            { "bVisible": false, "aTargets": [ 13 ] }
-        ] 
+        "iDisplayLength": 20
     });
 
     $('#select-email').on('change', function () {
@@ -276,7 +263,7 @@
       $.fn.dataTableExt.afnFiltering.push(
         function(oSettings, aData, iDataIndex) {
           if (typeof aData._date == 'undefined') {
-            aData._date = new Date(aData[13]).getTime();
+            aData._date = new Date(aData[2]).getTime();
           }
 
           if (minDateFilter && !isNaN(minDateFilter)) {
@@ -297,29 +284,6 @@
 
     // End  Date range filter
     //End here
-    </script>
-    <script type="text/javascript">
-      //check Order status cancelled or not
-      $(".check_order_status").click(function(){
-        var check_active_id = $(this).attr("data-incId");
-        var table_name = $(this).attr("data-tbname");
-        var current_status = $(this).attr("data-status");
-        if(current_status != 3) {
-          send_status = 3;
-        } 
-        $.ajax({
-          type:"post",
-          url:"change_order_status.php",
-          data:"check_active_id="+check_active_id+"&table_name="+table_name+"&send_status="+send_status,
-          success:function(result){  
-            if(result ==1) {
-              //alert("Your Status Updated!");
-              //location.reload();
-              window.location = "?msg=success";
-            }
-          }
-        });
-      }); 
     </script>
   </body>
 </html>

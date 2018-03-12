@@ -38,6 +38,7 @@ if (!isset($_POST['submit'])) {
     //If success 
   $lkp_payment_status_id = $_POST['lkp_payment_status_id'];
   $lkp_order_status_id = $_POST['lkp_order_status_id'];
+  $lkp_order_tracking_status_id = $_POST['lkp_order_tracking_status_id'];
   $user_id = $_POST['user_id'];
   $delivery_date = date("Y-m-d h:i:s");
   $getSiteSettings1 = getIndividualDetails('grocery_site_settings','id','1');
@@ -81,9 +82,10 @@ if (!isset($_POST['submit'])) {
     }
   }
 
-  $sql = "UPDATE `grocery_orders` SET lkp_payment_status_id = '$lkp_payment_status_id',lkp_order_status_id = '$lkp_order_status_id' WHERE order_id = '$order_id' ";
+  $sql = "UPDATE `grocery_orders` SET lkp_payment_status_id = '$lkp_payment_status_id',lkp_order_status_id = '$lkp_order_status_id',lkp_order_tracking_status_id = '$lkp_order_tracking_status_id' WHERE order_id = '$order_id' ";
   $res = $conn->query($sql);
   header("Location: edit_orders.php?order_id=".$order_id."&msg=success");
+  //header("Location:javascript://history.go(-1)");
 }   
 ?>
 
@@ -102,6 +104,12 @@ if (!isset($_POST['submit'])) {
                         $getPaymentStatusData = "SELECT * FROM lkp_payment_status WHERE id != 3";
                         $getPaymentStatus = $conn->query($getPaymentStatusData);?>
                         <input type="hidden" name="user_id" value="<?php echo $getGroceryOrdersData['user_id']; ?>">
+                        <div class="form-group">
+                          <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Order Id</label>
+                          <div class="col-sm-6 col-md-4">
+                            <input type="text" class="form-control" readonly name="order_id" value="<?php echo $order_id; ?>">
+                          </div>
+                        </div>
                            <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Choose your Payment status</label>
                                 <div class="col-sm-6 col-md-4">
@@ -115,7 +123,15 @@ if (!isset($_POST['submit'])) {
                                 </div>
                             </div>
                             <?php
-                            $getOrderStatusData = "SELECT * FROM lkp_order_status";
+                            if($getGroceryOrdersData['lkp_order_status_id'] == 1) {
+                              $getOrderStatusData = "SELECT * FROM lkp_order_status WHERE id != 1";
+                            } elseif ($getGroceryOrdersData['lkp_order_status_id'] == 4) {
+                              $getOrderStatusData = "SELECT * FROM lkp_order_status WHERE id NOT IN (1,4)";
+                            } elseif ($getGroceryOrdersData['lkp_order_status_id'] == 2) {
+                              $getOrderStatusData = "SELECT * FROM lkp_order_status WHERE id NOT IN (1,2,4)";
+                            } elseif ($getGroceryOrdersData['lkp_order_status_id'] == 5) {
+                              $getOrderStatusData = "SELECT * FROM lkp_order_status WHERE id NOT IN (1,2,4)";
+                            }
                             $getStatusData = $conn->query($getOrderStatusData);?>
                             <div class="form-group">
                                 <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Choose your Order status</label>
@@ -125,6 +141,29 @@ if (!isset($_POST['submit'])) {
                                       
                                       <?php while($row = $getStatusData->fetch_assoc()) { ?>
                                       <option <?php if($row['id'] == $getGroceryOrdersData['lkp_order_status_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['order_status']; ?></option>
+                                      <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <?php
+                            if($getGroceryOrdersData['lkp_order_tracking_status_id'] == 1) {
+                              $getOrderStatusData = "SELECT * FROM lkp_order_tracking_status WHERE id != 1";
+                            } elseif ($getGroceryOrdersData['lkp_order_tracking_status_id'] == 2) {
+                              $getOrderStatusData = "SELECT * FROM lkp_order_tracking_status WHERE id NOT IN (1,2)";
+                            } elseif ($getGroceryOrdersData['lkp_order_tracking_status_id'] == 3) {
+                              $getOrderStatusData = "SELECT * FROM lkp_order_tracking_status WHERE id NOT IN (1,2,3)";
+                            } elseif ($getGroceryOrdersData['lkp_order_tracking_status_id'] == 4) {
+                              $getOrderStatusData = "SELECT * FROM lkp_order_tracking_status WHERE id NOT IN (1,2,3)";
+                            }
+                            $getStatusData = $conn->query($getOrderStatusData);?>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-md-4 control-label" for="form-control-9">Choose Order Tracking Status</label>
+                                <div class="col-sm-6 col-md-4">
+                                    <select id="form-control-1" name="lkp_order_tracking_status_id" class="form-control" data-plugin="select2" data-options="{ theme: bootstrap }" required>
+                                        <option value="">Select Order Tracking Status</option>
+                                      
+                                      <?php while($row = $getStatusData->fetch_assoc()) { ?>
+                                      <option <?php if($row['id'] == $getGroceryOrdersData['lkp_order_tracking_status_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
                                       <?php } ?>
                                     </select>
                                 </div>
