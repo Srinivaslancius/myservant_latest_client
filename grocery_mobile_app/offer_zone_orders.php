@@ -5,12 +5,17 @@ include "../admin_includes/common_functions.php";
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-	if (isset($_REQUEST['userId']) && !empty($_REQUEST['userId'])  ) {
+	if (isset($_REQUEST['userId']) && !empty($_REQUEST['userId']) && !empty($_REQUEST['offerId']) ) {
 
-		$user_first_name = $_REQUEST["userFirstName"];
-		$user_last_name = $_REQUEST["userLastName"];
-		$user_email = $_REQUEST["userEmail"];
-		$user_phone = $_REQUEST["userPhone"];
+		$user_id = $_REQUEST['userId'];
+		$offer_id = $_REQUEST['offerId'];
+		$getUserData = getIndividualDetails('users','id',$user_id);
+		$offerZone = getIndividualDetails('grocery_offer_zone','id',$id);
+
+		$user_first_name = $getUserData['user_full_name'];
+		$user_last_name = $getUserData['user_full_name'];
+		$user_email = $getUserData['user_email'];
+		$user_phone = $getUserData['user_mobile'];
 		$order_date = date("Y-m-d h:i:s");
 		$string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
 		$random1 = substr($string1,0,3);
@@ -18,12 +23,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$random2 = substr($string2,0,3);
 		$contstr = "MYSER-GR";
 		$order_id = $contstr.$random1.$random2;
-		$offer_id = $_GET['offer_id'];
-		$offer_reward_points = $_REQUEST["offerRewardPoints"];
-		$offer_end_date = $_REQUEST["offerEndDate"];
-		$offer_code = $_REQUEST["offerCode"];
-		//Saving user id 
-		$user_id = $_REQUEST['userId';
+		$offer_reward_points = $offerZone['offer_reward_points'];
+		$offer_end_date = $offerZone['offer_end_date'];
+		$offer_code = $offerZone['offer_code'];
 
 		$orders = "INSERT INTO grocery_offer_zone_orders (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_phone`, `order_id`, `offer_id`, `offer_reward_points`, `offer_end_date`, `created_at`) VALUES ('$user_id','$user_first_name','$user_last_name','$user_email','$user_phone','$order_id','$offer_id','$offer_reward_points','$offer_end_date','$order_date')";
 		$groceryOrders = $conn->query($orders);
