@@ -10,12 +10,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$user_id = $_REQUEST['userId'];
 		$offer_id = $_REQUEST['offerId'];
 		$getUserData = getIndividualDetails('users','id',$user_id);
-<<<<<<< HEAD
-		$offerZone = getIndividualDetails('grocery_offer_zone','id',$id);
-		$getSiteSettingsData1 = getIndividualDetails('grocery_site_settings','id','1');
-=======
 		$offerZone = getIndividualDetails('grocery_offer_zone','id',$offer_id);
->>>>>>> 5caef2fe1f103b1e4a544af6101ab10d9f1c15f3
+		$getSiteSettingsData1 = getIndividualDetails('grocery_site_settings','id','1');
 
 		$user_first_name = $getUserData['user_full_name'];
 		$user_last_name = $getUserData['user_full_name'];
