@@ -17,7 +17,7 @@ $TXN_AMOUNT = $_POST["TXN_AMOUNT"];
 
 // Create an array having all required parameters for creating checksum.
 
-$callBakcUrl = "https://myservant.com/PaytmKit/pgResponse.php";
+$callBakcUrl = "https://myservant.com/PaytmKit_wallet/pgResponse.php";
 //$callBakcUrl = "http://localhost/myservant_latest_client/PaytmKit/pgResponse.php";
 $paramList["MID"] = PAYTM_MERCHANT_MID;
 $paramList["ORDER_ID"] = $ORDER_ID;
