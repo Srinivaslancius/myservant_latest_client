@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$updated_date = date('Y-m-d H:i:s');
 
 		//Insert Reward Transcation
-		$transaction = "INSERT INTO `grocery_reward_transactions` (`user_id`,`transation_status`,`debit_reward_points`,`transanction_amount`) VALUES ('$user_id','$transation_status','$reward_points','$total_amount')";
+		$transaction = "INSERT INTO `grocery_reward_transactions` (`user_id`,`transation_status`,`debit_reward_points`,`transanction_amount`) VALUES ('$user_id','$transation_status','$totalRewards','$total_amount')";
 		$conn->query($transaction);
 
 		//Insert User Wallet Transcation
