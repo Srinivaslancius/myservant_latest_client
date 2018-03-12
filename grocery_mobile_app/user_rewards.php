@@ -10,14 +10,16 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId']))  {
 
 		$uid = $_REQUEST['userId'];
-		$getRewards1 = "SELECT * FROM grocery_orders WHERE user_id = '$user_id' AND lkp_order_status_id = 2";
+		$getRewards1 = "SELECT * FROM grocery_reward_transactions WHERE user_id = '$user_id'";
  		$getRewards = $conn->query($getRewards1);
 
-		if ($getRewardAmount->num_rows > 0) {
+		if ($getRewards->num_rows > 0) {
 				$response["lists"] = array();				
-				while ($getRewards1 = $getRewards->fetch_assoc()) {					
-					$totalRewards += $getRewards1['product_reward_points'];
-				}
+				while ($getRewards1 = $getRewards->fetch_assoc()) {
+		 			$credit_reward_points += $getRewards1['credit_reward_points'];
+		 			$debit_reward_points += $getRewards1['debit_reward_points'];
+		 		}
+		 		$totalRewards = $credit_reward_points - $debit_reward_points;
 				$response["totalRewards"] = $totalRewards;
 				$response["success"] = 0;
 				$response["message"] = "Success";				
