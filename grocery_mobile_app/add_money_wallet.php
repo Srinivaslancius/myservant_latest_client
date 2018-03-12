@@ -1,5 +1,5 @@
 <?php 
-error_reporting(0);
+error_reporting(1);
 include "../admin_includes/config.php";
 include "../admin_includes/common_functions.php";
 //Set Array for list
@@ -7,7 +7,7 @@ $lists = array();
 $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-	if (isset($_REQUEST['userId']) && !empty($_REQUEST['userId']) && !empty($_REQUEST['walletAmount'] && !empty($_REQUEST['authKey']) ) {
+	if (isset($_REQUEST['userId']) && !empty($_REQUEST['userId']) && !empty($_REQUEST['walletAmount']) && !empty($_REQUEST['authKey']) ) {
 
 		$authKey = 'b927208497eeec7cc2d92bf7fed02fb9f999327ebdb04c37b1744eb0b4657fe2';
 
