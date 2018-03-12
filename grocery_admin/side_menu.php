@@ -142,7 +142,7 @@
                 <span class="menu-text">Offer Zone</span>
               </a>
             </li>
-           <li class="with-sub">
+           <!-- <li class="with-sub">
               <a href="#" aria-haspopup="true">
                 <span class="menu-icon">
                   <i class="zmdi zmdi-shopping-cart-plus zmdi-hc-fw"></i>
@@ -159,6 +159,29 @@
                 </li>
                 <li  class="<?php if($page_name == 'today_orders.php' ) { echo "active"; } ?>"><a href="today_orders.php">Today Orders</a>
                 </li> 
+              </ul>
+            </li> -->
+            <li class="with-sub">
+              <a href="#" aria-haspopup="true">
+                <span class="menu-icon">
+                  <i class="zmdi zmdi-shopping-cart-plus zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">Orders</span>
+              </a>
+              <ul class="sidebar-submenu collapse">
+                <li class="menu-subtitle">Orders</li>
+                <li  class="<?php if($page_name == 'view_orders.php') { echo "active"; } ?>"><a href="view_orders.php">New Orders</a>
+                </li>
+                <li  class="<?php if($page_name == 'inprocess_orders.php') { echo "active"; } ?>"><a href="inprocess_orders.php">In Process Orders</a>
+                </li>
+                <li  class="<?php if($page_name == 'completed_orders.php') { echo "active"; } ?>"><a href="completed_orders.php">Complete Orders</a>
+                </li>
+                <li  class="<?php if($page_name == 'delivered_orders.php') { echo "active"; } ?>"><a href="delivered_orders.php">Delivered Orders</a>
+                </li>
+                <li  class="<?php if($page_name == 'failed_orders.php') { echo "active"; } ?>"><a href="failed_orders.php">Failed Orders</a>
+                </li>
+                <li  class="<?php if($page_name == 'cancelled_orders.php' ) { echo "active"; } ?>"><a href="cancelled_orders.php">Cancelled Orders</a>
+                </li>
               </ul>
             </li>
             <li class="<?php if($page_name == 'grocery_coupons.php' || $page_name == 'edit_grocery_coupons.php') { echo "active"; } ?>">
