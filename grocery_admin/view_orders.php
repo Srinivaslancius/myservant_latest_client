@@ -68,7 +68,7 @@
                   <tr>
                     <th>S.No</th>
                     <th>Order Id</th>
-                    <th>Order Date</th>
+                    <th>Order Date</th>                    
                     <th>Customer</th>
                     <th>Email</th>
                     <th>Mobile Number</th>
@@ -79,6 +79,8 @@
                     <th>Delivery Boy</th>
                     <th>Action</th>
                     <th>Cancel Order</th>
+                    <th>Search Filter Date(for filter)</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -86,7 +88,7 @@
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><?php echo $row['order_id'];?></a></td>
-                        <td><?php echo dateFormat($row['created_at']);?></td>
+                        <td><?php echo dateFormat($row['created_at']);?></td>                        
                         <td><?php echo $row['first_name'];?></td>
                         <td><?php echo $row['email'];?></td>
                         <td><?php echo $row['mobile'];?></td>
@@ -109,6 +111,7 @@
                         <?php } else { ?>
                           <td>--</td>
                         <?php } ?>
+                        <td><?php echo $row['created_at'];?></td>
 
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
@@ -227,7 +230,11 @@
     <script type="text/javascript">
       var table =  $('#table-2').DataTable({
         dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"],
-        "iDisplayLength": 20
+        "iDisplayLength": 20,
+          "aoColumnDefs": [
+            { "bSearchable": true, "bVisible": false, "aTargets": [ 12 ] },
+            { "bVisible": false, "aTargets": [ 12 ] }
+        ] 
     });
 
     $('#select-email').on('change', function () {
@@ -266,7 +273,7 @@
       $.fn.dataTableExt.afnFiltering.push(
         function(oSettings, aData, iDataIndex) {
           if (typeof aData._date == 'undefined') {
-            aData._date = new Date(aData[2]).getTime();
+            aData._date = new Date(aData[12]).getTime();
           }
 
           if (minDateFilter && !isNaN(minDateFilter)) {
