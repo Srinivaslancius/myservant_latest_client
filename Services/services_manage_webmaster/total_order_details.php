@@ -55,7 +55,11 @@ $discount_money = $getOrdersData1['discount_money'].'(<span style="color:green">
 } else {
 	$discount_money = 0;
 }
-
+$getState = getIndividualDetails('lkp_states','id',$getOrdersData1['state']);
+$getDistrict = getIndividualDetails('lkp_districts','id',$getOrdersData1['district']);
+$getPincode = getIndividualDetails('lkp_pincodes','id',$getOrdersData1['postal_code']);
+$getCity = getIndividualDetails('lkp_cities','id',$getOrdersData1['city']);
+$getArea = getIndividualDetails('lkp_locations','id',$getOrdersData1['location']);
 ?>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
     <div class="site-overlay"></div>
@@ -73,7 +77,7 @@ $discount_money = $getOrdersData1['discount_money'].'(<span style="color:green">
                 <p><strong>Customer Address</strong></p>
                 <p><?php echo $getOrdersData1['first_name']; ?>
                   <br><?php echo $getOrdersData1['email']; ?>
-                  <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getOrdersData1['postal_code']; ?></p>
+                  <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['location_name']; ?> - <?php echo $getPincode['pincode']; ?></p>
                 <p class="m-b-0">Mobile: <?php echo $getOrdersData1['mobile']; ?></p>
               </div>
               <div class="col-sm-6">                
