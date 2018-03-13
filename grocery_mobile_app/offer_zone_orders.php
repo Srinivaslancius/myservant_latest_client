@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $response["message"] = "Save Successfully";   
             $response["order_id"] = $order_id;
 
-            $dataem = $_POST["user_email"];
+            $dataem = $getUserData['user_email'];
 			$to = $dataem;
 			$from = $getSiteSettingsData1["orders_email"];
 			$subject = "My Servent - Offer Coupon ";
