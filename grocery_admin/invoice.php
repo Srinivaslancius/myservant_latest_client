@@ -39,7 +39,13 @@ $getOrdersData1 = $getOrdersData->fetch_assoc();
 $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1);
 $getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$getOrdersData1['payment_method']);
 $orderStatus = getIndividualDetails('lkp_order_status','id',$getOrdersData1['lkp_order_status_id']);
-
+$getState = getIndividualDetails('grocery_lkp_states','id',$getOrdersData1['lkp_state_id']);
+$getDistrict = getIndividualDetails('grocery_lkp_districts','id',$getOrdersData1['lkp_district_id']);
+$getPincode = getIndividualDetails('grocery_lkp_pincodes','id',$getOrdersData1['lkp_pincode_id']);
+$getCity = getIndividualDetails('grocery_lkp_cities','id',$getOrdersData1['lkp_city_id']);
+$getArea = getIndividualDetails('grocery_lkp_areas','id',$getOrdersData1['lkp_location_id']);
+$getsubArea = getIndividualDetails('grocery_lkp_sub_areas','id',$getOrdersData1['lkp_sub_location_id']);
+                    
 $service_tax = $getOrdersData1['sub_total']*$getSiteSettingsData['service_tax']/100;
 if($getOrdersData1['delivery_charges'] == '0') {
 	$order_type = "Take Away";
@@ -73,7 +79,7 @@ $paymentStatus = getIndividualDetails('lkp_payment_status','id',$getOrdersData1[
                 <p><strong>Customer Address</strong></p>
                 <p><?php echo $getOrdersData1['first_name']; ?>
                   <br><?php echo $getOrdersData1['email']; ?>
-                  <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getOrdersData1['postal_code']; ?></p>
+                  <br><?php echo $getOrdersData1['address']; ?>,<?php echo $getState['state_name']; ?>,<?php echo $getDistrict['district_name']; ?>,<?php echo $getCity['city_name']; ?>,<?php echo $getArea['area_name']; ?><?php if($getCustomerDeatils['lkp_sub_location_id'] != 0) { echo ','.$getsubArea['sub_area_name']; } ?> - <?php echo $getPincode['pincode']; ?></p>
                 <p class="m-b-0">Mobile: <?php echo $getOrdersData1['mobile']; ?></p>
               </div>
 			  
