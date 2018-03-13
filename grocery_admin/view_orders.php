@@ -36,7 +36,8 @@
       </div>
       <div class="site-content">
         <?php 
-          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id = 1 GROUP BY order_id ORDER BY id DESC"; 
+          $groceryOrders = "SELECT * FROM grocery_orders WHERE IF(payment_method != 1 , lkp_payment_status_id = 1 , lkp_payment_status_id != 3) AND lkp_order_status_id = 1 GROUP BY order_id ORDER BY id DESC";
+          // $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id = 1 GROUP BY order_id ORDER BY id DESC"; 
           $groceryOrdersData = $conn->query($groceryOrders);
           $i=1;
         ?>

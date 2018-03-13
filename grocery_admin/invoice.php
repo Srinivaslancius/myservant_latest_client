@@ -39,7 +39,6 @@ $getOrdersData1 = $getOrdersData->fetch_assoc();
 $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1);
 $getpaymentTypes = getIndividualDetails('lkp_payment_types','id',$getOrdersData1['payment_method']);
 $orderStatus = getIndividualDetails('lkp_order_status','id',$getOrdersData1['lkp_order_status_id']);
-$paymentStatus = getIndividualDetails('lkp_payment_status','id',$getOrdersData1['lkp_payment_status_id']);
 
 $service_tax = $getOrdersData1['sub_total']*$getSiteSettingsData['service_tax']/100;
 if($getOrdersData1['delivery_charges'] == '0') {
@@ -49,6 +48,10 @@ if($getOrdersData1['delivery_charges'] == '0') {
 	$order_type = "Delivery";
 	$delivery_charges = $getOrdersData1['delivery_charges'];
 }
+if($getOrdersData1['payment_method'] != 1 && $getOrdersData1['lkp_payment_status_id'] == 2) {
+  $getOrdersData1['lkp_payment_status_id'] = 3;
+}
+$paymentStatus = getIndividualDetails('lkp_payment_status','id',$getOrdersData1['lkp_payment_status_id']);
 ?>
   <body class="layout layout-header-fixed layout-left-sidebar-fixed">
   
