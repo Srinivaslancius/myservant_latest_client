@@ -101,7 +101,7 @@ if (!isset($_POST['submit'])) {
                         ?>
                         <form class="form-horizontal" method="POST" autocomplete="off" enctype="multipart/form-data">
                           <?php 
-                        $getPaymentStatusData = "SELECT * FROM lkp_payment_status WHERE id != 3";
+                        $getPaymentStatusData = "SELECT * FROM lkp_payment_status";
                         $getPaymentStatus = $conn->query($getPaymentStatusData);?>
                         <input type="hidden" name="user_id" value="<?php echo $getGroceryOrdersData['user_id']; ?>">
                         <div class="form-group">
