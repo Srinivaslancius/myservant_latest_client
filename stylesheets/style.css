@@ -3698,6 +3698,9 @@ width:90%;
 	}
 	@media screen and (max-width: 1024px) and (min-width: 768px)
 	{
+		#mainnav ul.menu > li > a {
+    padding: 0 13px !important;
+}
 		select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], input[type="email"]{
 			padding: 8px 15px 8px 15px;
 		}
