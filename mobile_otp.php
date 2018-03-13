@@ -96,6 +96,7 @@
 									<div class="form-box">
 										<label for="OTP" style="margin-right:415px">OTP:</label>
 										<input type="tel" id="mobile_otp" name="mobile_otp" placeholder="Enter OTP" maxlength="4" class="valid_mobile_num" required>
+										<a style="cursor:pointer" onClick="resend_otp(<?php echo $_POST['user_mobile']; ?>);">Resend</a>
 									</div>
 									<span id="return_msg" style="display:none"></span><br />
                                 	<div class="clear_fix"></div>
@@ -190,6 +191,19 @@ $('#verify_otp').on('click', function () {
   
 });
 
+</script>
+<script type="text/javascript">
+	function resend_otp(phone) {
+		$.ajax({
+	      type:'post',
+	      url:'resend_otp.php',
+	      data:{		        
+	        phone:phone
+	      },
+	      success:function(response) {
+	      }
+	    });
+	}
 </script>
 <?php include "search_js_script.php"; ?>
 </body>	
