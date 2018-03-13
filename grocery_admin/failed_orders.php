@@ -31,7 +31,7 @@
       </div>
       <div class="site-content">
         <?php 
-          $groceryOrders = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id = 3 GROUP BY order_id ORDER BY id DESC"; 
+          $groceryOrders = "SELECT * FROM grocery_orders WHERE IF(payment_method != 1 , lkp_payment_status_id != 1 , lkp_payment_status_id = 3) GROUP BY order_id ORDER BY id DESC"; 
           $groceryOrdersData = $conn->query($groceryOrders);
           $i=1;
         ?>
@@ -42,7 +42,7 @@
           <div class="panel-body">
             <div class="table-responsive">
               <div class="col s12 m12 l12">                  
-                <?php $sql = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id = 3 GROUP BY email"; $getUsersData1 = $conn->query($sql);?>
+                <?php $sql = "SELECT * FROM grocery_orders WHERE IF(payment_method != 1 , lkp_payment_status_id != 1 , lkp_payment_status_id = 3) GROUP BY email"; $getUsersData1 = $conn->query($sql);?>
                   <div class="form-group col-md-3">                    
                     <select id="select-email" class="custom-select">
                        <option value="">Select email</option>
@@ -88,6 +88,9 @@
                         <!-- <td><?php echo $row['delivery_date'];?></td> -->
                         <td><?php $getGroceryPaymentsTypes = getAllData('lkp_payment_types');
                          while($getPaymentsTypes = $getGroceryPaymentsTypes->fetch_assoc()) { if($row['payment_method'] == $getPaymentsTypes['id']) { echo $getPaymentsTypes['status']; } } ?></td>
+                        <?php if($row['lkp_payment_status_id'] == 2) {
+                          $row['lkp_payment_status_id'] = 3;
+                        } ?>
                         <td><?php $getGroceryPaymentsStatus = getAllData('lkp_payment_status');
                          while($getPaymentsStatus = $getGroceryPaymentsStatus->fetch_assoc()) { if($row['lkp_payment_status_id'] == $getPaymentsStatus['id']) { echo $getPaymentsStatus['payment_status']; } } ?></td>
                         <td><?php $getGroceryOrderStatus = getAllData('lkp_order_status');
@@ -149,7 +152,7 @@
                               <h3 class="m-t-0 m-b-5 font_sz_view">Ordered Items</h3>
                           </div>
                           <?php 
-                          $groceryOrders1 = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 AND order_id = '".$row['order_id']."'"; 
+                          $groceryOrders1 = "SELECT * FROM grocery_orders WHERE IF(payment_method != 1 , lkp_payment_status_id != 1 , lkp_payment_status_id = 3) AND lkp_order_status_id != 3 AND order_id = '".$row['order_id']."'"; 
                           $groceryOrdersData1 = $conn->query($groceryOrders1); ?>
                           <?php while($OrderDetails = $groceryOrdersData1->fetch_assoc()) { 
                           $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
