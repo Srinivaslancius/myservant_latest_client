@@ -41,6 +41,23 @@
           </div>
           <div class="panel-body">
             <div class="table-responsive">
+              <div class="col s12 m12 l12">                  
+                <?php $sql = "SELECT * FROM grocery_orders WHERE lkp_order_status_id = 3 GROUP BY email"; $getUsersData1 = $conn->query($sql);?>
+                  <div class="form-group col-md-3">                    
+                    <select id="select-email" class="custom-select">
+                       <option value="">Select email</option>
+                        <?php while ($row = $getUsersData1->fetch_assoc()) { ?>
+                          <option value="<?php echo $row['email']; ?>"><?php echo $row['email']; ?></option>
+                        <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="clear_fix"></div>
+                <p id="date_filter">
+                  <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="text" id="datepicker_from" />
+                  <span id="date-label-to" class="date-label">To:<input class="date_range_filter date" type="text" id="datepicker_to" />
+                </p>
+                <div class="clear_fix"></div>
               <table class="table table-striped table-bordered dataTable" id="table-2">
                 <thead>
                   <tr>
@@ -54,7 +71,9 @@
                     <th>Payment Option</th>
                     <th>Payment Status</th>
                     <th>Order Status</th>
+                    <th>Order Tracking Status</th>
                     <th>Action</th>
+                    <th>Search Filter Date(for filter)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -71,10 +90,12 @@
                          while($getPaymentsTypes = $getGroceryPaymentsTypes->fetch_assoc()) { if($row['payment_method'] == $getPaymentsTypes['id']) { echo $getPaymentsTypes['status']; } } ?></td>
                         <td><?php $getGroceryPaymentsStatus = getAllData('lkp_payment_status');
                          while($getPaymentsStatus = $getGroceryPaymentsStatus->fetch_assoc()) { if($row['lkp_payment_status_id'] == $getPaymentsStatus['id']) { echo $getPaymentsStatus['payment_status']; } } ?></td>
-                         <td><?php $getGroceryOrderStatus = getAllData('lkp_order_status');
+                        <td><?php $getGroceryOrderStatus = getAllData('lkp_order_status');
                          while($getOrderStatus = $getGroceryOrderStatus->fetch_assoc()) { if($row['lkp_order_status_id'] == $getOrderStatus['id']) { echo $getOrderStatus['order_status']; } } ?></td>
-                        
+                        <td><?php $getGroceryOrderTrackingStatus = getAllData('lkp_order_tracking_status');
+                         while($getOrderTrackingStatus = $getGroceryOrderTrackingStatus->fetch_assoc()) { if($row['lkp_order_tracking_status_id'] == $getOrderTrackingStatus['id']) { echo $getOrderTrackingStatus['status']; } } ?></td>
                         <td><span><a href="invoice.php?order_id=<?php echo $row['order_id']; ?>" target="_blank"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a></span> </td>
+                        <td><?php echo $row['created_at'];?></td>
                         <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -129,8 +150,7 @@
                           </div>
                           <?php 
                           $groceryOrders1 = "SELECT * FROM grocery_orders WHERE lkp_payment_status_id != 3 AND lkp_order_status_id != 3 AND order_id = '".$row['order_id']."'"; 
-                          $groceryOrdersData1 = $conn->query($groceryOrders1);
-                          $i=1; ?>
+                          $groceryOrdersData1 = $conn->query($groceryOrders1); ?>
                           <?php while($OrderDetails = $groceryOrdersData1->fetch_assoc()) { 
                           $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
                           $getProducts1 = getIndividualDetails('grocery_product_bind_images','product_id',$OrderDetails['product_id']);
@@ -150,7 +170,7 @@
                                   </div>
                               </div>
                           </div>
-                          <?php $i++; } ?>
+                          <?php } ?>
                       </div>
                       <?php $getSiteSettingsData = getIndividualDetails('grocery_site_settings','id',1); ?>
                       <div class="modal-footer">
@@ -180,6 +200,74 @@
     <?php include_once 'footer.php'; ?>
     <script src="js/dashboard-3.min.js"></script>
      <script src="js/forms-plugins.min.js"></script>
-    <script src="js/tables-datatables.min.js"></script>
+    <!-- <script src="js/tables-datatables.min.js"></script> -->
+    <script type="text/javascript">
+      var table =  $('#table-2').DataTable({
+        dom:"Bfrtip",buttons:["copy","excel","csv","pdf","print"],
+        "iDisplayLength": 20,
+          "aoColumnDefs": [
+            { "bSearchable": true, "bVisible": false, "aTargets": [ 11 ] },
+            { "bVisible": false, "aTargets": [ 11 ] }
+        ] 
+    });
+
+    $('#select-email').on('change', function () {
+        table.columns(4).search( this.value ).draw();
+    } );
+      //Date picker for filters
+    $("#datepicker_from").datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: false,
+      "onSelect": function(date) {
+        minDateFilter = new Date(date).getTime();
+        table.draw();
+      }
+    }).keyup(function() {
+      minDateFilter = new Date(this.value).getTime();
+      table.draw();
+    });
+
+    $("#datepicker_to").datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: false,
+      "onSelect": function(date) {
+        maxDateFilter = new Date(date).getTime();
+        table.draw();
+      }
+    }).keyup(function() {
+      maxDateFilter = new Date(this.value).getTime();
+      table.draw();
+    });
+    // Date range filter
+      minDateFilter = "";
+      maxDateFilter = "";
+
+      $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex) {
+          if (typeof aData._date == 'undefined') {
+            aData._date = new Date(aData[11]).getTime();
+          }
+
+          if (minDateFilter && !isNaN(minDateFilter)) {
+            if (aData._date < minDateFilter) {
+              return false;
+            }
+          }
+
+          if (maxDateFilter && !isNaN(maxDateFilter)) {
+            if (aData._date > maxDateFilter) {
+              return false;
+            }
+          }
+
+          return true;
+        }
+      );
+
+    // End  Date range filter
+    //End here
+    </script>
   </body>
 </html>
