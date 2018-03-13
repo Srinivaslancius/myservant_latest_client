@@ -193,8 +193,9 @@ body .ui-tooltip{border-width:2px;}
 .ui-menu.ui-widget.ui-widget-content{
 	z-index: 999;
 	display: block !important;
-	max-height: 250px;
-	overflow-y:  auto;
+	max-height: 406px;
+	overflow-y: auto;
+	border: 1px solid #e5e5e5;
 }
 .ui-widget-content{background: #fff;color:#333333;/*border: 1px solid #f4f4f4;/* padding: 7px; */}
 .ui-widget-content a{color:#333333;}
