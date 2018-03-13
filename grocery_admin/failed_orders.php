@@ -46,10 +46,10 @@
                   <tr>
                     <th>S.No</th>
                     <th>Order Id</th>
+                    <th>Order Date</th>
                     <th>Customer</th>
                     <th>Email</th>
                     <th>Mobile Number</th>
-                    <th>Order Date</th>
                     <!-- <th>Delivery Date</th> -->
                     <th>Payment Option</th>
                     <th>Payment Status</th>
@@ -62,10 +62,10 @@
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><a href="#" data-toggle="modal" data-target="#<?php echo $row['id']; ?>"><?php echo $row['order_id'];?></a></td>
+                        <td><?php echo dateFormat($row['created_at']);?></td>
                         <td><?php echo $row['first_name'];?></td>
                         <td><?php echo $row['email'];?></td>
                         <td><?php echo $row['mobile'];?></td>
-                        <td><?php echo dateFormat($row['created_at']);?></td>
                         <!-- <td><?php echo $row['delivery_date'];?></td> -->
                         <td><?php $getGroceryPaymentsTypes = getAllData('lkp_payment_types');
                          while($getPaymentsTypes = $getGroceryPaymentsTypes->fetch_assoc()) { if($row['payment_method'] == $getPaymentsTypes['id']) { echo $getPaymentsTypes['status']; } } ?></td>
