@@ -89,7 +89,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	        }
  		} else { 
  			$response["success"] = 4;
-            $response["message"] = "To purchase this coupon minimum ".$offer_reward_points." required.";
+            $response["message"] = "To purchase this coupon minimum ".$offer_reward_points." reward points required.";
  		}
 		 
 	} else {
