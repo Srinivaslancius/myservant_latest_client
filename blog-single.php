@@ -90,104 +90,9 @@
 										<div class="entry-post">
 											<?php echo $getBlog['long_description']; ?>
 										</div><!-- /.entry-post -->
-										<div class="social-single">
-											<span>SHARE</span>
-											<ul class="social-list style2">
-												<li>
-													<a href="#" title="">
-														<i class="fa fa-facebook" aria-hidden="true" style="font-size:20px"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#" title="">
-														<i class="fa fa-twitter" aria-hidden="true"style="font-size:20px"></i>
-													</a>
-												</li>
-												
-												<li>
-													<a href="#" title="">
-														<i class="fa fa-google" aria-hidden="true"style="font-size:20px"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#" title="">
-														<i class="fa fa-linkedin" aria-hidden="true"style="font-size:20px"></i>
-													</a>
-												</li>
-											</ul>
-										</div><!-- /.social-single -->
 									</div><!-- /.content-post -->
 								</article><!-- /.main-post single -->
 							</div><!-- /.post-wrap -->
-							<!-- <div class="blog-pagination single">
-								<ul class="flat-pagination style2">
-									<li class="prev">
-										<a href="#" title="">
-											<img src="images/icons/left-1.png" alt="">Prev Page
-										</a>
-									</li>
-									<li class="next">
-										<a href="#" title="">
-											Next Page<img src="images/icons/right-1.png" alt="">
-										</a>
-									</li>
-								</ul>
-							</div> -->
-							<!-- <div class="comment-area">
-								<h2 class="comment-title">1 Comment</h2>
-								<ol class="comment-list">
-									<li class="comment">
-										<div class="comment-author">
-											<img src="images/blog/comment-01.jpg" alt="">
-										</div>
-										<div class="comment-text">
-											<div class="comment-metadata">
-												<div class="name">
-													Ali Tufan : <span>April 3, 2016</span>
-												</div>
-												<div class="queue">
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-												</div>
-											</div>
-											<div class="comment-content">
-												<p>
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
-													took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-												</p> 
-											</div>
-											<div class="clearfix"></div>
-										</div>
-									</li>
-									
-								</ol>
-								<div class="comment-respond">
-									<h2 class="comment-reply-title">Leave a Reply</h2>
-									<p>Your email address will not be published. Required fields are marked *</p>
-									<div class="form-comment">
-										<form action="#" method="get" accept-charset="utf-8">
-											<div class="comment-form-name">
-												<label id="name-author">Name</label>
-												<input type="text" name="name-author" value="" placeholder="Ali">
-											</div>
-											<div class="comment-form-email">
-												<label id="email-author">Email</label>
-												<input type="text" name="email-author" value="">
-											</div>
-											<div class="comment-form-comment">
-												<label id="comment-author">Comment</label>
-												<textarea name="comment-text"></textarea>
-											</div>
-											<div class="btn-submit">
-												<button type="submit">Post Comment</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div> -->
 						</div>
 						
 					</div><!-- /.row -->
@@ -210,7 +115,6 @@
 		<script type="text/javascript" src="javascript/waypoints.min.js"></script>
 		<script type="text/javascript" src="javascript/jquery.circlechart.js"></script>
 		<script type="text/javascript" src="javascript/easing.js"></script>
-<script type="text/javascript" src="javascript/jquery.zoom.min.js"></script>
 		<script type="text/javascript" src="javascript/jquery.flexslider-min.js"></script>
 		<script type="text/javascript" src="javascript/owl.carousel.js"></script>
 		<script type="text/javascript" src="javascript/smoothscroll.js"></script>

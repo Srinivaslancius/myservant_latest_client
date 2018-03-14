@@ -100,110 +100,6 @@
 								
 								<div class="clearfix"></div>
 							</div><!-- /.post-wrap style2 -->
-							<!-- <div class="blog-pagination style3">
-								<ul class="flat-pagination">
-									<li class="prev">
-										<a href="#" title="">
-											<img src="images/icons/left-1.png" alt="">Prev Page
-										</a>
-									</li>
-									<li>
-										<a href="#" class="waves-effect" title="">01</a>
-									</li>
-									<li>
-										<a href="#" class="waves-effect" title="">02</a>
-									</li>
-									<li class="active">
-										<a href="#" class="waves-effect" title="">03</a>
-									</li>
-									<li>
-										<a href="#" class="waves-effect" title="">04</a>
-									</li>
-									<li class="next">
-										<a href="#" title="">
-											Next Page<img src="images/icons/right-1.png" alt="">
-										</a>
-									</li>
-								</ul><!-- /.flat-pagination -->
-							</div><!-- /.blog-pagination style3 -->
-						</div><!-- /.col-md-8 col-lg-9 -->
-						<div class="col-md-4 col-lg-3">
-						
-						</div><!-- /.col-md-4 col-lg-3 -->
-					</div><!-- /.row -->
-				</div><!-- /.container -->
-			</section><!-- /.main-blog -->
-			<section class="main-blog">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 col-lg-12">
-							<div class="post-wrap style2">
-							<?php for($i=0; $i<6; $i++) {?>
-								<article class="main-post style2">
-									<div class="featured-post">
-										<a href="blog-single.php" title="">
-											<img src="images/blog/05.jpg" alt="">
-										</a>
-									</div><!-- /.featured-post -->
-									<div class="divider26"></div>
-									<div class="content-post">
-										<h3 class="title-post">
-											<a href="blog-single.php" title="">There are many variations of passages</a>
-										</h3>
-										<ul class="meta-post">
-											<li class="comment">
-												<a href="#" title="">
-													2 Comments
-												</a>
-											</li>
-											<li class="date">
-												<a href="#" title="">
-													February 20, 2017
-												</a>
-											</li>
-										</ul>
-										<div class="entry-post">
-											<p>This is a Rebel that surrendered to us. Although he denies it, I believe there may be more of them, and I request permission to conduct a further search of the area. He was armed only with this.</p>
-											<div class="more-link">
-												<a href="blog-single.php" title="">Read More
-													<span>
-														<img src="images/icons/right-2.png" alt="">
-													</span>
-												</a>
-											</div>
-										</div>
-									</div><!-- /.content-post -->
-								</article><!-- /.main-post style2 -->
-								<?php } ?>
-								
-								<div class="clearfix"></div>
-							</div><!-- /.post-wrap style2 -->
-							<div class="blog-pagination style3">
-								<ul class="flat-pagination">
-									<li class="prev">
-										<a href="#" title="">
-											<img src="images/icons/left-1.png" alt="">Prev Page
-										</a>
-									</li>
-									<li>
-										<a href="#" class="waves-effect" title="">01</a>
-									</li>
-									<li>
-										<a href="#" class="waves-effect" title="">02</a>
-									</li>
-									<li class="active">
-										<a href="#" class="waves-effect" title="">03</a>
-									</li>
-									<li>
-										<a href="#" class="waves-effect" title="">04</a>
-									</li>
-									<li class="next">
-										<a href="#" title="">
-											Next Page<img src="images/icons/right-1.png" alt="">
-										</a>
-									</li>
-								</ul><!-- /.flat-pagination -->
-							</div><!-- /.blog-pagination style3 -->
 						</div><!-- /.col-md-8 col-lg-9 -->
 						<div class="col-md-4 col-lg-3">
 						
@@ -228,7 +124,6 @@
 		<script type="text/javascript" src="javascript/waypoints.min.js"></script>
 		<script type="text/javascript" src="javascript/jquery.circlechart.js"></script>
 		<script type="text/javascript" src="javascript/easing.js"></script>
-<script type="text/javascript" src="javascript/jquery.zoom.min.js"></script>
 		<script type="text/javascript" src="javascript/jquery.flexslider-min.js"></script>
 		<script type="text/javascript" src="javascript/owl.carousel.js"></script>
 		<script type="text/javascript" src="javascript/smoothscroll.js"></script>
