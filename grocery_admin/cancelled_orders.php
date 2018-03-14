@@ -149,7 +149,7 @@
                               <h3 class="m-t-0 m-b-5 font_sz_view">Ordered Items</h3>
                           </div>
                           <?php 
-                          $groceryOrders1 = "SELECT * FROM grocery_orders WHERE kp_order_status_id = 3 AND order_id = '".$row['order_id']."'"; 
+                          $groceryOrders1 = "SELECT * FROM grocery_orders WHERE order_id = '".$row['order_id']."'"; 
                           $groceryOrdersData1 = $conn->query($groceryOrders1); ?>
                           <?php while($OrderDetails = $groceryOrdersData1->fetch_assoc()) { 
                           $getProducts = getIndividualDetails('grocery_product_name_bind_languages','product_id',$OrderDetails['product_id']);
