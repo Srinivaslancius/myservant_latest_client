@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 include "admin_includes/config.php";
 include "admin_includes/common_functions.php";
 //echo "<pre>"; print_r($_POST); die;

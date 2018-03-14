@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 include "admin_includes/config.php";
 //echo "<pre>"; print_r($_POST); die;
 //Order id generating using sessions
