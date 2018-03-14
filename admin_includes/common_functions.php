@@ -58,6 +58,7 @@
         $data = "http://158.69.130.136:9091/SMSPANELAPI?".$data;
         $ch = curl_init();
         curl_setopt($ch,CURLOPT_URL,$data);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         $response = curl_exec($ch);        
     }
     
