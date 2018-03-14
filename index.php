@@ -1120,7 +1120,6 @@ if($getTodayDeals1->num_rows > 0) { ?>
 		<script type="text/javascript" src="javascript/waypoints.min.js"></script>
 		<!-- <script type="text/javascript" src="javascript/jquery.circlechart.js"></script> -->
 		<script type="text/javascript" src="javascript/easing.js"></script>
-<script type="text/javascript" src="javascript/jquery.zoom.min.js"></script>
 		<script type="text/javascript" src="javascript/jquery.flexslider-min.js"></script>
 		<script type="text/javascript" src="javascript/owl.carousel.js"></script>
 		<script type="text/javascript" src="javascript/smoothscroll.js"></script>
