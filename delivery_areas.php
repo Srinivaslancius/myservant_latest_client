@@ -48,9 +48,10 @@
 							<div class="text-wrap">
 								<h2 style="text-align:center">Delivery Areas</h2><br>
 								<h3>MY SERVANT CASH ON DELIVERY AVAILABLE IN VIJAYAWADA</h3>
-								<?php for($i=0; $i<10; $i++) {?>
-								<p>1. MY SERVANT CASH ON DELIVERY AVAILABLE IN Arundalpet</p>
-								<?php } ?>
+								<?php $getCities = getAllDataWithActiveRecent('grocery_lkp_areas'); $i=1;
+                                while ($row = $getCities->fetch_assoc()) { ?>
+								<p><?php echo $i;?>. MY SERVANT CASH ON DELIVERY AVAILABLE IN <?php echo $row['area_name'];?></p>
+								<?php $i++; } ?>
 							</div><!-- /.text-wrap -->
 						
 						</div><!-- /.term-conditions -->
