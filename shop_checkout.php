@@ -73,12 +73,7 @@ th,td{
 
 		<div class="overlay"></div>
 
-		<!-- Preloader -->
-		<div class="preloader">
-			<div class="clear-loading loading-effect-2">
-				<span></span>
-			</div>
-		</div><!-- /.preloader -->
+		
 		<section id="header" class="header">
 			<div class="header-top">
 			<?php include_once 'top_header.php';?>
