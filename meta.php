@@ -10,7 +10,7 @@ include "admin_includes/common_functions.php";
 	<meta charset="UTF-8">
 	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 	<title>Myservant</title>
-	<link rel="shortcut icon" href="favicon/favicon.png">
+	<link rel="shortcut icon" href="images/logos/logo1.png">
 	<meta name="" content="">
 
 	<!-- Mobile Specific Metas -->
