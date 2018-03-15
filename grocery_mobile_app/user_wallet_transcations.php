@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     if(isset($_REQUEST['userId']) && !empty($_REQUEST['userId'])) {
 
         $userId = $_REQUEST['userId'];
-        $UpdateWallet = "SELECT * FROM user_wallet_transactions WHERE lkp_payment_status_id = 1 AND user_id='$userId' ";
+        $UpdateWallet = "SELECT * FROM user_wallet_transactions WHERE user_id='$userId' ";
         $UpDateWallet1 = $conn->query($UpdateWallet);
         
         if ($UpDateWallet1->num_rows > 0) {
@@ -27,6 +27,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     $lists["description"] = $UpDateWallet2['description'];
                     $lists["updatedDate"] = $UpDateWallet2['updated_date'];
                     $lists["debitAmount"] = $UpDateWallets2['debit_amnt'];
+                    $lists["amountType"] = 1; //1-Debit,2-Credit
                     
                     array_push($response["lists"], $lists);      
                 }
